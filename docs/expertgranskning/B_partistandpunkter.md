@@ -1,0 +1,399 @@
+# Granskning B — partiståndpunkter (`config/party_positions.yaml`)
+
+> AUTOGENERERAD av `pipeline/tools/review_packet.py` — ändra inte för hand.
+> Källa för betygskonsekvensen är det faktiska join-maskineriet i `pipeline/positions.py`.
+
+**130 ståndpunkter** → 157 evidence_effect-claims. Stance: {'supports': 113, 'opposes': 17}. Konfidens: {'high': 71, 'medium': 28, 'low': 17, 'None': 14}.
+
+Pipelinen joinar **bara** på `party + policy_type + stance`. `supports` behåller evidensens riktning; `opposes` **vänder** den. Övriga fält är spårbarhet.
+
+## Så granskar du
+
+1. Öppna `source_url`, läs `quote` i sitt sammanhang (`.text`-endpoint för riksdagsdok).
+2. Bekräfta att (a) citatet är ordagrant, (b) `stance` stämmer med partiets faktiska linje på det **namngivna instrumentet**, (c) `policy_type` är rätt åtgärdstyp.
+3. Sätt verdikt i kolumnen **OK?** (✅/✏️/❌) och notera ev. rättelse.
+
+---
+
+## ⚑ Prioriterad granskning (högst betygspåverkan/risk)
+
+79 rader där fel gör störst skada: **opposes** (vänder evidensen), **prop_avslag** (måste verifiera att propositionen ÄR instrumentet), **ny_karnkraft** (laddad fråga), **low_confidence**, **single_member**, **äldre källa**.
+
+| OK? | Parti | Åtgärdstyp | Stance | B-konsekvens | Konf. | doc_id | Datum | Flaggor |
+|-----|-------|-----------|--------|--------------|-------|--------|-------|---------|
+|  | KD | aktiveringskrav_ekonomiskt_bistand | **supports** | ↑ mot bättre (höjer B) | high | H9024212 | 2021-10-05 | old_source_2021 |
+|  | L | aktiveringskrav_ekonomiskt_bistand | **supports** | ↑ mot bättre (höjer B) | high | H9024181 | 2021-10-01 | old_source_2021 |
+|  | M | aktiveringskrav_ekonomiskt_bistand | **supports** | ↑ mot bättre (höjer B) | high | H9024033 | 2021-10-05 | old_source_2021 |
+|  | V | aktiveringskrav_ekonomiskt_bistand | **opposes** | ↓ mot sämre (sänker B) | high | HD024027 | 2026-04-01 | opposes, prop_avslag |
+|  | C | arbetsmarknadsutbildning | **opposes** | ↓ mot sämre (sänker B) | medium | H9024129 | 2021-10-05 | opposes, old_source_2021 |
+|  | KD | arbetsmarknadsutbildning | **opposes** | ↓ mot sämre (sänker B) | medium | H8023409 | 2020-10-06 | opposes, old_source_2020 |
+|  | L | arbetsmarknadsutbildning | **opposes** | ↓ mot sämre (sänker B) | medium | H9024181 | 2021-10-04 | opposes, old_source_2021 |
+|  | M | arbetsmarknadsutbildning | **supports** | ↑ mot bättre (höjer B) | medium | H6022931 | 2018-11-30 | old_source_2018 |
+|  | C | ateraktiverad_utokad_varnplikt | **supports** | ↑ mot bättre (höjer B) | high | HD022822 | 2025-10-06 | single_member |
+|  | KD | ateraktiverad_utokad_varnplikt | **supports** | ↑ mot bättre (höjer B) | medium | H9023908 | 2021-10-05 | single_member, old_source_2021 |
+|  | L | ateraktiverad_utokad_varnplikt | **supports** | ↑ mot bättre (höjer B) | medium | H3022265 | 2015-10-06 | single_member, old_source_2015 |
+|  | M | ateraktiverad_utokad_varnplikt | **supports** | ↑ mot bättre (höjer B) | medium | H9023641 | 2021-10-05 | single_member, old_source_2021 |
+|  | S | ateraktiverad_utokad_varnplikt | **supports** | ↑ mot bättre (höjer B) | high | HC023023 | 2024-10-04 | single_member |
+|  | SD | ateraktiverad_utokad_varnplikt | **supports** | ↑ mot bättre (höjer B) | high | HA02948 | 2022-11-22 | single_member |
+|  | V | ateraktiverad_utokad_varnplikt | **supports** | ↑ mot bättre (höjer B) | high | HD02199 | 2025-09-23 | single_member |
+|  | L | atgarder_mot_otillaten_paverkan_offentlig_sektor | **supports** | ↑ mot bättre (höjer B) | low | HD022663 | 2025-10-06 | low_confidence |
+|  | C | behandlingsprogram_kriminalvard | **supports** | ↑ mot bättre (höjer B) | high | H6023062 | 2019-04-10 | old_source_2019 |
+|  | KD | behandlingsprogram_kriminalvard | **supports** | ↑ mot bättre (höjer B) | low | HD021560 | 2025-10-02 | low_confidence |
+|  | L | behandlingsprogram_kriminalvard | **supports** | ↑ mot bättre (höjer B) | high | H9023974 | 2021-10-05 | old_source_2021 |
+|  | M | behandlingsprogram_kriminalvard | **supports** | ↑ mot bättre (höjer B) | high | H9023779 | 2021-09-30 | old_source_2021 |
+|  | V | behandlingsprogram_kriminalvard | **supports** | ↑ mot bättre (höjer B) | high | H902916 | 2021-09-29 | old_source_2021 |
+|  | MP | fokuserad_avskrackning_gvi | **supports** | ↑ mot bättre (höjer B) | low | H8022726 | 2020-10-05 | low_confidence, old_source_2020 |
+|  | KD | koldioxidskatt | **supports** | ↑ mot bättre (höjer B) | — | H8022807 | 2020/21 | old_source_2020 |
+|  | L | koldioxidskatt | **supports** | ↑ mot bättre (höjer B) | — | H9024199 | 2021/22 | old_source_2021 |
+|  | M | koldioxidskatt | **supports** | ↑ mot bättre (höjer B) | — | H9024030 | 2021/22 | old_source_2021 |
+|  | SD | koldioxidskatt | **opposes** | ↓ mot sämre (sänker B) | — | HA02998 | 2022/23 | opposes |
+|  | KD | kompetensutveckling_larare | **supports** | ↑ mot bättre (höjer B) | high | H9024163 | 2021-10-05 | old_source_2021 |
+|  | L | kompetensutveckling_larare | **supports** | ↑ mot bättre (höjer B) | high | H9024181 | 2021-10-05 | old_source_2021 |
+|  | M | kompetensutveckling_larare | **supports** | ↑ mot bättre (höjer B) | high | H9023988 | 2021-10-05 | old_source_2021 |
+|  | SD | kompetensutveckling_larare | **supports** | ↑ mot bättre (höjer B) | high | H9022542 | 2021-10-01 | old_source_2021 |
+|  | KD | kontroller_och_informationsutbyte_mot_valfardsbrott | **supports** | ↑ mot bättre (höjer B) | high | H9024184 | 2021-10-05 | old_source_2021 |
+|  | L | kontroller_och_informationsutbyte_mot_valfardsbrott | **supports** | ↑ mot bättre (höjer B) | high | H9023974 | 2021-10-05 | old_source_2021 |
+|  | M | kontroller_och_informationsutbyte_mot_valfardsbrott | **supports** | ↑ mot bättre (höjer B) | low | HC023146 | 2024-10-04 | low_confidence, single_member |
+|  | V | kontroller_och_informationsutbyte_mot_valfardsbrott | **opposes** | ↓ mot sämre (sänker B) | high | HC023445 | 2025-06-17 | opposes, prop_avslag |
+|  | KD | minskad_klasstorlek | **supports** | ↑ mot bättre (höjer B) | medium | H2023002 | 2014-11-11 | old_source_2014 |
+|  | L | minskad_klasstorlek | **supports** | ↑ mot bättre (höjer B) | medium | H2023002 | 2014-11-11 | old_source_2014 |
+|  | M | minskad_klasstorlek | **supports** | ↑ mot bättre (höjer B) | medium | H2023002 | 2014-11-11 | old_source_2014 |
+|  | SD | minskad_klasstorlek | **opposes** | ↓ mot sämre (sänker B) | high | H302761 | 2015-10-02 | opposes, old_source_2015 |
+|  | KD | ny_karnkraft | **supports** | ↑ mot bättre (höjer B) | medium | H9024195 | 2021-10-05 | ny_karnkraft, old_source_2021 |
+|  | L | ny_karnkraft | **supports** | ↑ mot bättre (höjer B) | medium | H8023242 | 2020-10-06 | ny_karnkraft, old_source_2020 |
+|  | M | ny_karnkraft | **supports** | ↑ mot bättre (höjer B) | medium | H9023688 | 2021-10-05 | ny_karnkraft, old_source_2021 |
+|  | MP | ny_karnkraft | **opposes** | ↓ mot sämre (sänker B) | high | HD023984 | 2026-03-25 | opposes, prop_avslag, ny_karnkraft |
+|  | S | ny_karnkraft | **supports** | ↑ mot bättre (höjer B) | medium | HD023594 | 2025-10-07 | ny_karnkraft |
+|  | SD | ny_karnkraft | **supports** | ↑ mot bättre (höjer B) | high | HC021464 | 2024-10-02 | ny_karnkraft |
+|  | V | ny_karnkraft | **opposes** | ↓ mot sämre (sänker B) | high | HD023961 | 2026-03-19 | opposes, prop_avslag, ny_karnkraft |
+|  | KD | reduktionsplikt_drivmedel | **opposes** | ↓ mot sämre (sänker B) | — | HB01MJU5 / votering 21E8B615-C235-489F-8189-D26CABD56F24 punkt 1 | 2023/24 | opposes |
+|  | L | reduktionsplikt_drivmedel | **opposes** | ↓ mot sämre (sänker B) | — | HB01MJU5 / votering 21E8B615-C235-489F-8189-D26CABD56F24 punkt 1 | 2023/24 | opposes |
+|  | M | reduktionsplikt_drivmedel | **opposes** | ↓ mot sämre (sänker B) | — | HB01MJU5 / votering 21E8B615-C235-489F-8189-D26CABD56F24 punkt 1 | 2023/24 | opposes |
+|  | SD | reduktionsplikt_drivmedel | **opposes** | ↓ mot sämre (sänker B) | — | HB01MJU5 / votering 21E8B615-C235-489F-8189-D26CABD56F24 punkt 1 | 2023/24 | opposes |
+|  | KD | riktade_insatser_nyanlanda_elever | **supports** | ↑ mot bättre (höjer B) | medium | H9024163 | 2021-10-05 | old_source_2021 |
+|  | L | riktade_insatser_nyanlanda_elever | **supports** | ↑ mot bättre (höjer B) | high | H9024002 | 2021-10-05 | old_source_2021 |
+|  | M | riktade_insatser_nyanlanda_elever | **supports** | ↑ mot bättre (höjer B) | high | H9024033 | 2021-10-05 | old_source_2021 |
+|  | C | sfi_kombinerat_med_praktik | **supports** | ↑ mot bättre (höjer B) | low | HB021255 | 2023-10-04 | low_confidence, single_member |
+|  | KD | sfi_kombinerat_med_praktik | **supports** | ↑ mot bättre (höjer B) | low | H9024198 | 2021-10-04 | low_confidence, old_source_2021 |
+|  | L | sfi_kombinerat_med_praktik | **supports** | ↑ mot bättre (höjer B) | low | H9023965 | 2021-10-05 | low_confidence, old_source_2021 |
+|  | M | sfi_kombinerat_med_praktik | **supports** | ↑ mot bättre (höjer B) | low | H4023372 | 2016-10-05 | low_confidence, old_source_2016 |
+|  | KD | situationell_prevention_utomhusbelysning | **supports** | ↑ mot bättre (höjer B) | medium | H3022686 | 2015-10-06 | old_source_2015 |
+|  | L | situationell_prevention_utomhusbelysning | **supports** | ↑ mot bättre (höjer B) | medium | H9023974 | 2021-10-05 | old_source_2021 |
+|  | SD | situationell_prevention_utomhusbelysning | **supports** | ↑ mot bättre (höjer B) | low | HD02256 | 2025-09-24 | low_confidence |
+|  | KD | sprakpraktik_kombinerad_sprakutbildning_och_arbetspraktik | **supports** | ↑ mot bättre (höjer B) | low | HD021563 | 2025-10-02 | low_confidence |
+|  | MP | sprakpraktik_kombinerad_sprakutbildning_och_arbetspraktik | **supports** | ↑ mot bättre (höjer B) | medium | GQ02Sf289 | 2002-10-23 | old_source_2002 |
+|  | KD | starkt_oberoende_granskning_och_insyn | **supports** | ↑ mot bättre (höjer B) | low | HD021556 | 2025-10-02 | low_confidence |
+|  | L | starkt_oberoende_granskning_och_insyn | **supports** | ↑ mot bättre (höjer B) | low | HD023766 | 2025-10-07 | low_confidence, single_member |
+|  | M | starkt_oberoende_granskning_och_insyn | **supports** | ↑ mot bättre (höjer B) | low | HD021743 | 2025-10-02 | low_confidence, single_member |
+|  | SD | starkt_oberoende_granskning_och_insyn | **supports** | ↑ mot bättre (höjer B) | low | HD021701 | 2025-10-02 | low_confidence |
+|  | C | subventionerade_anstallningar | **opposes** | ↓ mot sämre (sänker B) | high | HD023191 | 2025-10-06 | opposes |
+|  | KD | subventionerade_anstallningar | **supports** | ↑ mot bättre (höjer B) | high | H9024198 | 2021-10-05 | old_source_2021 |
+|  | L | subventionerade_anstallningar | **supports** | ↑ mot bättre (höjer B) | high | H9023952 | 2021-10-05 | old_source_2021 |
+|  | M | subventionerade_anstallningar | **supports** | ↑ mot bättre (höjer B) | high | H9024036 | 2021-10-05 | old_source_2021 |
+|  | SD | subventionerade_anstallningar | **opposes** | ↓ mot sämre (sänker B) | high | HC022386 | 2024-10-03 | opposes |
+|  | L | systematiskt_antikorruptionsarbete_kommuner_regioner | **supports** | ↑ mot bättre (höjer B) | low | HD022663 | 2025-10-06 | low_confidence |
+|  | S | systematiskt_antikorruptionsarbete_kommuner_regioner | **supports** | ↑ mot bättre (höjer B) | low | HC02445 | 2024-09-25 | low_confidence |
+|  | SD | systematiskt_antikorruptionsarbete_kommuner_regioner | **supports** | ↑ mot bättre (höjer B) | low | HD02247 | 2025-09-24 | low_confidence |
+|  | C | tidiga_insatser_lagstadiet | **opposes** | ↓ mot sämre (sänker B) | medium | H5023910 | 2017-10-12 | opposes, prop_avslag, old_source_2017 |
+|  | KD | tidiga_insatser_lagstadiet | **supports** | ↑ mot bättre (höjer B) | medium | H5024117 | 2018-04-11 | old_source_2018 |
+|  | M | tidiga_insatser_lagstadiet | **supports** | ↑ mot bättre (höjer B) | medium | H5024117 | 2018-04-11 | old_source_2018 |
+|  | SD | tidiga_insatser_lagstadiet | **opposes** | ↓ mot sämre (sänker B) | high | H501UbU10 | 2018-05-30 | opposes, prop_avslag, old_source_2018 |
+|  | L | tydlig_statlig_styrning_civilt_forsvar | **supports** | ↑ mot bättre (höjer B) | high | H8023429 | 2020-10-06 | old_source_2020 |
+|  | M | tydlig_statlig_styrning_civilt_forsvar | **supports** | ↑ mot bättre (höjer B) | high | H9023642 | 2021-10-05 | old_source_2021 |
+
+---
+
+## Alla ståndpunkter per kategori (panelvy)
+
+Granska varje åtgärdstyp som en panel — alla partier sida vid sida, så asymmetrier syns.
+
+### demokrati
+
+#### `atgarder_mot_otillaten_paverkan_offentlig_sektor`
+
+Liggarens effekt: korruption=positive (low)
+
+| OK? | Parti | Stance | B-konsekvens | Konf. | doc_id | Datum |
+|-----|-------|--------|--------------|-------|--------|-------|
+|  | C | supports | ↑ mot bättre (höjer B) | high | HD023581 | 2025-10-07 |
+|  | L ⚑ | supports | ↑ mot bättre (höjer B) | low | HD022663 | 2025-10-06 |
+|  | MP | supports | ↑ mot bättre (höjer B) | high | HB022669 | 2023-10-05 |
+|  | S | supports | ↑ mot bättre (höjer B) | high | HD023586 | 2025-10-07 |
+
+#### `starkt_oberoende_granskning_och_insyn`
+
+Liggarens effekt: korruption=positive (low)
+
+| OK? | Parti | Stance | B-konsekvens | Konf. | doc_id | Datum |
+|-----|-------|--------|--------------|-------|--------|-------|
+|  | C | supports | ↑ mot bättre (höjer B) | high | HD023583 | 2025-10-07 |
+|  | KD ⚑ | supports | ↑ mot bättre (höjer B) | low | HD021556 | 2025-10-02 |
+|  | L ⚑ | supports | ↑ mot bättre (höjer B) | low | HD023766 | 2025-10-07 |
+|  | M ⚑ | supports | ↑ mot bättre (höjer B) | low | HD021743 | 2025-10-02 |
+|  | MP | supports | ↑ mot bättre (höjer B) | high | HA02181 | 2022-11-16 |
+|  | S | supports | ↑ mot bättre (höjer B) | high | HD024024 | 2026-04-01 |
+|  | SD ⚑ | supports | ↑ mot bättre (höjer B) | low | HD021701 | 2025-10-02 |
+|  | V | supports | ↑ mot bättre (höjer B) | high | HD023996 | 2026-03-31 |
+
+#### `systematiskt_antikorruptionsarbete_kommuner_regioner`
+
+Liggarens effekt: korruption=positive (low)
+
+| OK? | Parti | Stance | B-konsekvens | Konf. | doc_id | Datum |
+|-----|-------|--------|--------------|-------|--------|-------|
+|  | C | supports | ↑ mot bättre (höjer B) | medium | HD023581 | 2025-10-07 |
+|  | L ⚑ | supports | ↑ mot bättre (höjer B) | low | HD022663 | 2025-10-06 |
+|  | S ⚑ | supports | ↑ mot bättre (höjer B) | low | HC02445 | 2024-09-25 |
+|  | SD ⚑ | supports | ↑ mot bättre (höjer B) | low | HD02247 | 2025-09-24 |
+
+### ekonomi
+
+#### `arbetsmarknadsutbildning`
+
+Liggarens effekt: sysselsattning=positive (high)
+
+| OK? | Parti | Stance | B-konsekvens | Konf. | doc_id | Datum |
+|-----|-------|--------|--------------|-------|--------|-------|
+|  | C ⚑ | opposes | ↓ mot sämre (sänker B) | medium | H9024129 | 2021-10-05 |
+|  | KD ⚑ | opposes | ↓ mot sämre (sänker B) | medium | H8023409 | 2020-10-06 |
+|  | L ⚑ | opposes | ↓ mot sämre (sänker B) | medium | H9024181 | 2021-10-04 |
+|  | M | supports | ↑ mot bättre (höjer B) | medium | H6022931 | 2018-11-30 |
+|  | MP | supports | ↑ mot bättre (höjer B) | high | HD023525 | 2025-10-07 |
+|  | S | supports | ↑ mot bättre (höjer B) | high | HD023590 | 2025-10-07 |
+|  | SD | supports | ↑ mot bättre (höjer B) | high | HC022386 | 2024-10-03 |
+|  | V | supports | ↑ mot bättre (höjer B) | high | HD023167 | 2025-10-06 |
+
+#### `subventionerade_anstallningar`
+
+Liggarens effekt: arbetsloshet=positive (medium); sysselsattning=positive (medium)
+
+| OK? | Parti | Stance | B-konsekvens | Konf. | doc_id | Datum |
+|-----|-------|--------|--------------|-------|--------|-------|
+|  | C ⚑ | opposes | ↓ mot sämre (sänker B) | high | HD023191 | 2025-10-06 |
+|  | KD | supports | ↑ mot bättre (höjer B) | high | H9024198 | 2021-10-05 |
+|  | L | supports | ↑ mot bättre (höjer B) | high | H9023952 | 2021-10-05 |
+|  | M | supports | ↑ mot bättre (höjer B) | high | H9024036 | 2021-10-05 |
+|  | MP | supports | ↑ mot bättre (höjer B) | high | HB022698 | 2023-10-05 |
+|  | S | supports | ↑ mot bättre (höjer B) | high | HD023590 | 2025-2026 |
+|  | SD ⚑ | opposes | ↓ mot sämre (sänker B) | high | HC022386 | 2024-10-03 |
+|  | V | supports | ↑ mot bättre (höjer B) | high | HB02441 | 2023-09-29 |
+
+### forsvar
+
+#### `ateraktiverad_utokad_varnplikt`
+
+Liggarens effekt: personal_varnpliktiga=positive (high)
+
+| OK? | Parti | Stance | B-konsekvens | Konf. | doc_id | Datum |
+|-----|-------|--------|--------------|-------|--------|-------|
+|  | C ⚑ | supports | ↑ mot bättre (höjer B) | high | HD022822 | 2025-10-06 |
+|  | KD ⚑ | supports | ↑ mot bättre (höjer B) | medium | H9023908 | 2021-10-05 |
+|  | L ⚑ | supports | ↑ mot bättre (höjer B) | medium | H3022265 | 2015-10-06 |
+|  | M ⚑ | supports | ↑ mot bättre (höjer B) | medium | H9023641 | 2021-10-05 |
+|  | S ⚑ | supports | ↑ mot bättre (höjer B) | high | HC023023 | 2024-10-04 |
+|  | SD ⚑ | supports | ↑ mot bättre (höjer B) | high | HA02948 | 2022-11-22 |
+|  | V ⚑ | supports | ↑ mot bättre (höjer B) | high | HD02199 | 2025-09-23 |
+
+#### `tydlig_statlig_styrning_civilt_forsvar`
+
+Liggarens effekt: civil_beredskap_niva=positive (low)
+
+| OK? | Parti | Stance | B-konsekvens | Konf. | doc_id | Datum |
+|-----|-------|--------|--------------|-------|--------|-------|
+|  | L | supports | ↑ mot bättre (höjer B) | high | H8023429 | 2020-10-06 |
+|  | M | supports | ↑ mot bättre (höjer B) | high | H9023642 | 2021-10-05 |
+|  | S | supports | ↑ mot bättre (höjer B) | high | HD023556 | 2025-10-07 |
+|  | SD | supports | ↑ mot bättre (höjer B) | high | HC021407 | 2024-10-02 |
+|  | V | supports | ↑ mot bättre (höjer B) | medium | HB0266 | 2023-09-21 |
+
+### integration
+
+#### `aktiveringskrav_ekonomiskt_bistand`
+
+Liggarens effekt: bidragsberoende=positive (high); sysselsattningsgap_inrikes_utrikes=positive (medium)
+
+| OK? | Parti | Stance | B-konsekvens | Konf. | doc_id | Datum |
+|-----|-------|--------|--------------|-------|--------|-------|
+|  | C | supports | ↑ mot bättre (höjer B) | high | HD024032 | 2026-04-01 |
+|  | KD | supports | ↑ mot bättre (höjer B) | high | H9024212 | 2021-10-05 |
+|  | L | supports | ↑ mot bättre (höjer B) | high | H9024181 | 2021-10-01 |
+|  | M | supports | ↑ mot bättre (höjer B) | high | H9024033 | 2021-10-05 |
+|  | S | supports | ↑ mot bättre (höjer B) | high | HD024016 | 2026-04-01 |
+|  | SD | supports | ↑ mot bättre (höjer B) | high | HA02924 | 2022-11-22 |
+|  | V ⚑ | opposes | ↓ mot sämre (sänker B) | high | HD024027 | 2026-04-01 |
+
+#### `riktade_insatser_nyanlanda_elever`
+
+Liggarens effekt: skolresultat_utsatta_omraden=positive (high)
+
+| OK? | Parti | Stance | B-konsekvens | Konf. | doc_id | Datum |
+|-----|-------|--------|--------------|-------|--------|-------|
+|  | C | supports | ↑ mot bättre (höjer B) | high | HA021880 | 2022-11-23 |
+|  | KD | supports | ↑ mot bättre (höjer B) | medium | H9024163 | 2021-10-05 |
+|  | L | supports | ↑ mot bättre (höjer B) | high | H9024002 | 2021-10-05 |
+|  | M | supports | ↑ mot bättre (höjer B) | high | H9024033 | 2021-10-05 |
+|  | SD | supports | ↑ mot bättre (höjer B) | high | HC021447 | 2024-10-02 |
+|  | V | supports | ↑ mot bättre (höjer B) | high | HC021932 | 2024-10-03 |
+
+#### `sfi_kombinerat_med_praktik`
+
+Liggarens effekt: sysselsattningsgap_inrikes_utrikes=positive (low)
+
+| OK? | Parti | Stance | B-konsekvens | Konf. | doc_id | Datum |
+|-----|-------|--------|--------------|-------|--------|-------|
+|  | C ⚑ | supports | ↑ mot bättre (höjer B) | low | HB021255 | 2023-10-04 |
+|  | KD ⚑ | supports | ↑ mot bättre (höjer B) | low | H9024198 | 2021-10-04 |
+|  | L ⚑ | supports | ↑ mot bättre (höjer B) | low | H9023965 | 2021-10-05 |
+|  | M ⚑ | supports | ↑ mot bättre (höjer B) | low | H4023372 | 2016-10-05 |
+|  | S | supports | ↑ mot bättre (höjer B) | high | HD02319 | 2025-09-25 |
+
+#### `sprakpraktik_kombinerad_sprakutbildning_och_arbetspraktik`
+
+Liggarens effekt: sysselsattningsgap_inrikes_utrikes=positive (medium)
+
+| OK? | Parti | Stance | B-konsekvens | Konf. | doc_id | Datum |
+|-----|-------|--------|--------------|-------|--------|-------|
+|  | C | supports | ↑ mot bättre (höjer B) | high | HD023738 | 2025-10-07 |
+|  | KD ⚑ | supports | ↑ mot bättre (höjer B) | low | HD021563 | 2025-10-02 |
+|  | MP | supports | ↑ mot bättre (höjer B) | medium | GQ02Sf289 | 2002-10-23 |
+|  | V | supports | ↑ mot bättre (höjer B) | high | HA021299 | 2022-11-22 |
+
+### klimat
+
+#### `koldioxidskatt`
+
+Liggarens effekt: territoriella_utslapp=positive (medium); territoriella_utslapp=positive (medium); utslappsminskning_per_krona=positive (medium)
+
+| OK? | Parti | Stance | B-konsekvens | Konf. | doc_id | Datum |
+|-----|-------|--------|--------------|-------|--------|-------|
+|  | KD | supports | ↑ mot bättre (höjer B) | — | H8022807 | 2020/21 |
+|  | L | supports | ↑ mot bättre (höjer B) | — | H9024199 | 2021/22 |
+|  | M | supports | ↑ mot bättre (höjer B) | — | H9024030 | 2021/22 |
+|  | MP | supports | ↑ mot bättre (höjer B) | — | HC022613 | 2024/25 |
+|  | SD ⚑ | opposes | ↓ mot sämre (sänker B) | — | HA02998 | 2022/23 |
+|  | V | supports | ↑ mot bättre (höjer B) | — | HC021924 | 2024/25 |
+
+#### `ny_karnkraft`
+
+Liggarens effekt: effektbrist=positive (high)
+
+| OK? | Parti | Stance | B-konsekvens | Konf. | doc_id | Datum |
+|-----|-------|--------|--------------|-------|--------|-------|
+|  | KD ⚑ | supports | ↑ mot bättre (höjer B) | medium | H9024195 | 2021-10-05 |
+|  | L ⚑ | supports | ↑ mot bättre (höjer B) | medium | H8023242 | 2020-10-06 |
+|  | M ⚑ | supports | ↑ mot bättre (höjer B) | medium | H9023688 | 2021-10-05 |
+|  | MP ⚑ | opposes | ↓ mot sämre (sänker B) | high | HD023984 | 2026-03-25 |
+|  | S ⚑ | supports | ↑ mot bättre (höjer B) | medium | HD023594 | 2025-10-07 |
+|  | SD ⚑ | supports | ↑ mot bättre (höjer B) | high | HC021464 | 2024-10-02 |
+|  | V ⚑ | opposes | ↓ mot sämre (sänker B) | high | HD023961 | 2026-03-19 |
+
+#### `reduktionsplikt_drivmedel`
+
+Liggarens effekt: territoriella_utslapp=positive (medium)
+
+| OK? | Parti | Stance | B-konsekvens | Konf. | doc_id | Datum |
+|-----|-------|--------|--------------|-------|--------|-------|
+|  | C | supports | ↑ mot bättre (höjer B) | — | HB01MJU5 / votering 21E8B615-C235-489F-8189-D26CABD56F24 punkt 1 | 2023/24 |
+|  | KD ⚑ | opposes | ↓ mot sämre (sänker B) | — | HB01MJU5 / votering 21E8B615-C235-489F-8189-D26CABD56F24 punkt 1 | 2023/24 |
+|  | L ⚑ | opposes | ↓ mot sämre (sänker B) | — | HB01MJU5 / votering 21E8B615-C235-489F-8189-D26CABD56F24 punkt 1 | 2023/24 |
+|  | M ⚑ | opposes | ↓ mot sämre (sänker B) | — | HB01MJU5 / votering 21E8B615-C235-489F-8189-D26CABD56F24 punkt 1 | 2023/24 |
+|  | MP | supports | ↑ mot bättre (höjer B) | — | HB01MJU5 / votering 21E8B615-C235-489F-8189-D26CABD56F24 punkt 1 | 2023/24 |
+|  | S | supports | ↑ mot bättre (höjer B) | — | HB01MJU5 / votering 21E8B615-C235-489F-8189-D26CABD56F24 punkt 1 | 2023/24 |
+|  | SD ⚑ | opposes | ↓ mot sämre (sänker B) | — | HB01MJU5 / votering 21E8B615-C235-489F-8189-D26CABD56F24 punkt 1 | 2023/24 |
+|  | V | supports | ↑ mot bättre (höjer B) | — | HB01MJU5 / votering 21E8B615-C235-489F-8189-D26CABD56F24 punkt 1 | 2023/24 |
+
+### trygghet
+
+#### `behandlingsprogram_kriminalvard`
+
+Liggarens effekt: aterfall_i_brott=positive (medium)
+
+| OK? | Parti | Stance | B-konsekvens | Konf. | doc_id | Datum |
+|-----|-------|--------|--------------|-------|--------|-------|
+|  | C | supports | ↑ mot bättre (höjer B) | high | H6023062 | 2019-04-10 |
+|  | KD ⚑ | supports | ↑ mot bättre (höjer B) | low | HD021560 | 2025-10-02 |
+|  | L | supports | ↑ mot bättre (höjer B) | high | H9023974 | 2021-10-05 |
+|  | M | supports | ↑ mot bättre (höjer B) | high | H9023779 | 2021-09-30 |
+|  | MP | supports | ↑ mot bättre (höjer B) | medium | HC023268 | 2024-11-20 |
+|  | S | supports | ↑ mot bättre (höjer B) | high | HC023264 | 2024-11-20 |
+|  | V | supports | ↑ mot bättre (höjer B) | high | H902916 | 2021-09-29 |
+
+#### `fokuserad_avskrackning_gvi`
+
+Liggarens effekt: skjutningar_sprangningar=positive (medium)
+
+| OK? | Parti | Stance | B-konsekvens | Konf. | doc_id | Datum |
+|-----|-------|--------|--------------|-------|--------|-------|
+|  | MP ⚑ | supports | ↑ mot bättre (höjer B) | low | H8022726 | 2020-10-05 |
+|  | S | supports | ↑ mot bättre (höjer B) | high | HC023111 | 2024-10-04 |
+|  | V | supports | ↑ mot bättre (höjer B) | high | HD022788 | 2025-10-06 |
+
+#### `situationell_prevention_utomhusbelysning`
+
+Liggarens effekt: brottsutsatthet=positive (medium)
+
+| OK? | Parti | Stance | B-konsekvens | Konf. | doc_id | Datum |
+|-----|-------|--------|--------------|-------|--------|-------|
+|  | KD | supports | ↑ mot bättre (höjer B) | medium | H3022686 | 2015-10-06 |
+|  | L | supports | ↑ mot bättre (höjer B) | medium | H9023974 | 2021-10-05 |
+|  | MP | supports | ↑ mot bättre (höjer B) | medium | HB022669 | 2023-10-05 |
+|  | SD ⚑ | supports | ↑ mot bättre (höjer B) | low | HD02256 | 2025-09-24 |
+|  | V | supports | ↑ mot bättre (höjer B) | medium | HA021217 | 2022-11-01 |
+
+### valfard
+
+#### `kompetensutveckling_larare`
+
+Liggarens effekt: skolresultat=positive (medium)
+
+| OK? | Parti | Stance | B-konsekvens | Konf. | doc_id | Datum |
+|-----|-------|--------|--------------|-------|--------|-------|
+|  | C | supports | ↑ mot bättre (höjer B) | high | HD023186 | 2025-10-06 |
+|  | KD | supports | ↑ mot bättre (höjer B) | high | H9024163 | 2021-10-05 |
+|  | L | supports | ↑ mot bättre (höjer B) | high | H9024181 | 2021-10-05 |
+|  | M | supports | ↑ mot bättre (höjer B) | high | H9023988 | 2021-10-05 |
+|  | MP | supports | ↑ mot bättre (höjer B) | high | HD023364 | 2025-10-06 |
+|  | S | supports | ↑ mot bättre (höjer B) | high | HB022687 | 2023-10-05 |
+|  | SD | supports | ↑ mot bättre (höjer B) | high | H9022542 | 2021-10-01 |
+|  | V | supports | ↑ mot bättre (höjer B) | medium | HC021924 | 2024-10-03 |
+
+#### `kontroller_och_informationsutbyte_mot_valfardsbrott`
+
+Liggarens effekt: valfardsbrottslighet=positive (medium)
+
+| OK? | Parti | Stance | B-konsekvens | Konf. | doc_id | Datum |
+|-----|-------|--------|--------------|-------|--------|-------|
+|  | C | supports | ↑ mot bättre (höjer B) | medium | HC023249 | 2024-10-30 |
+|  | KD | supports | ↑ mot bättre (höjer B) | high | H9024184 | 2021-10-05 |
+|  | L | supports | ↑ mot bättre (höjer B) | high | H9023974 | 2021-10-05 |
+|  | M ⚑ | supports | ↑ mot bättre (höjer B) | low | HC023146 | 2024-10-04 |
+|  | MP | supports | ↑ mot bättre (höjer B) | high | HB022669 | 2023-10-05 |
+|  | SD | supports | ↑ mot bättre (höjer B) | high | HA021147 | 2022-11-22 |
+|  | V ⚑ | opposes | ↓ mot sämre (sänker B) | high | HC023445 | 2025-06-17 |
+
+#### `minskad_klasstorlek`
+
+Liggarens effekt: skolresultat=positive (high)
+
+| OK? | Parti | Stance | B-konsekvens | Konf. | doc_id | Datum |
+|-----|-------|--------|--------------|-------|--------|-------|
+|  | C | supports | ↑ mot bättre (höjer B) | high | HD023186 | 2025-10-06 |
+|  | KD | supports | ↑ mot bättre (höjer B) | medium | H2023002 | 2014-11-11 |
+|  | L | supports | ↑ mot bättre (höjer B) | medium | H2023002 | 2014-11-11 |
+|  | M | supports | ↑ mot bättre (höjer B) | medium | H2023002 | 2014-11-11 |
+|  | S | supports | ↑ mot bättre (höjer B) | high | HD023810 | 2025-10-07 |
+|  | SD ⚑ | opposes | ↓ mot sämre (sänker B) | high | H302761 | 2015-10-02 |
+|  | V | supports | ↑ mot bättre (höjer B) | high | HD022791 | 2025-10-06 |
+
+#### `tidiga_insatser_lagstadiet`
+
+Liggarens effekt: skolresultat=positive (medium)
+
+| OK? | Parti | Stance | B-konsekvens | Konf. | doc_id | Datum |
+|-----|-------|--------|--------------|-------|--------|-------|
+|  | C ⚑ | opposes | ↓ mot sämre (sänker B) | medium | H5023910 | 2017-10-12 |
+|  | KD | supports | ↑ mot bättre (höjer B) | medium | H5024117 | 2018-04-11 |
+|  | M | supports | ↑ mot bättre (höjer B) | medium | H5024117 | 2018-04-11 |
+|  | MP | supports | ↑ mot bättre (höjer B) | high | HD023364 | 2025-10-06 |
+|  | S | supports | ↑ mot bättre (höjer B) | high | HD023810 | 2025/26 |
+|  | SD ⚑ | opposes | ↓ mot sämre (sänker B) | high | H501UbU10 | 2018-05-30 |
