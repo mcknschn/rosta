@@ -1,0 +1,56 @@
+// Enhetstester för de rena frontend-modulerna (format.js + score.js).
+// Kör: node --test web/tests/   (eller npm run test:unit)
+import { test } from "node:test";
+import assert from "node:assert/strict";
+import { fmtNum, fmtScoreWithCI, pct } from "../format.js";
+import { normalizeWeights, partyTotals, ciOverlap } from "../score.js";
+
+test("fmtNum: svensk decimalkomma + avrundning", () => {
+  assert.equal(fmtNum(3.842), "3,84");
+  assert.equal(fmtNum(3.842, 1), "3,8");
+  assert.equal(fmtNum(20, 0), "20");
+  assert.equal(fmtNum(undefined), "–");
+});
+
+test("fmtScoreWithCI: '3,84 / 5 (3,5–4,1)'", () => {
+  assert.equal(fmtScoreWithCI(3.842, [3.5, 4.1]), "3,84 / 5 (3,5–4,1)");
+  assert.equal(fmtScoreWithCI(2.5, null), "2,50 / 5");
+});
+
+test("pct: klampar till 0–5", () => {
+  assert.equal(pct(2.5), "50%");
+  assert.equal(pct(6), "100%");
+  assert.equal(pct(-1), "0%");
+});
+
+test("normalizeWeights summerar till 1 (eller 0 om alla 0, ingen NaN)", () => {
+  const n = normalizeWeights({ a: 20, b: 20, c: 10 }, ["a", "b", "c"]);
+  assert.ok(Math.abs(n.a + n.b + n.c - 1) < 1e-9);
+  assert.ok(Math.abs(n.a - 0.4) < 1e-9);
+  const z = normalizeWeights({ a: 0, b: 0 }, ["a", "b"]);
+  assert.equal(z.a, 0); assert.equal(z.b, 0);
+  assert.ok(!Number.isNaN(z.a));
+});
+
+test("partyTotals: viktad summa, fallande, alfabetisk tie-break", () => {
+  const scores = {
+    X: { a: { score: 4, ci: [3, 5] }, b: { score: 2, ci: [1, 3] } },
+    Y: { a: { score: 2, ci: [1, 3] }, b: { score: 4, ci: [3, 5] } },
+    Z: { a: { score: 3, ci: [2, 4] }, b: { score: 3, ci: [2, 4] } },
+  };
+  // lika vikt -> alla snitt 3; tie-break alfabetisk X,Y,Z
+  const eq = partyTotals(scores, { a: 1, b: 1 }, ["a", "b"]);
+  assert.deepEqual(eq.map((r) => r.party), ["X", "Y", "Z"]);
+  eq.forEach((r) => assert.ok(Math.abs(r.total - 3) < 1e-9));
+  // vikta a tungt -> X (4) > Z (3) > Y (2)
+  const wa = partyTotals(scores, { a: 1, b: 0 }, ["a", "b"]);
+  assert.deepEqual(wa.map((r) => r.party), ["X", "Z", "Y"]);
+  assert.ok(Math.abs(wa[0].total - 4) < 1e-9);
+  assert.ok(Math.abs(wa[0].lo - 3) < 1e-9 && Math.abs(wa[0].hi - 5) < 1e-9);
+});
+
+test("ciOverlap", () => {
+  assert.equal(ciOverlap({ lo: 3, hi: 4 }, { lo: 3.5, hi: 5 }), true);
+  assert.equal(ciOverlap({ lo: 3, hi: 4 }, { lo: 4.1, hi: 5 }), false);
+  assert.equal(ciOverlap({ lo: 2, hi: 4 }, { lo: 4, hi: 5 }), true); // kantfall: rör vid
+});

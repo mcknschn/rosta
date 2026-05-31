@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rösta — väljarkompass</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Hoppa till innehållet</a>
+  <header>
+    <h1>Rösta</h1>
+    <p class="tagline">Vikta sakfrågorna du bryr dig om — appen rangordnar partierna utifrån officiell svensk data.</p>
+  </header>
+
+  <p id="version0" class="banner warn" role="note">
+    <b>Version 0 — demonstration, inte röstråd.</b> Betygen bygger på riktig officiell data men är ännu inte
+    expertgranskade. Se <em>Så funkar det</em> nedan.
+  </p>
+  <p id="error" class="banner err" role="alert" hidden></p>
+  <p id="coverage" class="banner" role="status"></p>
+
+  <main id="main-content" tabindex="-1">
+    <section id="weights" aria-label="Dina vikter">
+      <h2>Dina vikter</h2>
+      <p class="hint">Justera hur mycket varje kategori betyder för dig. Summan normaliseras automatiskt.</p>
+      <div id="sliders"></div>
+      <div class="actions">
+        <button id="reset" type="button">Återställ till standardvikter</button>
+        <button id="share" type="button">Dela mina vikter</button>
+      </div>
+    </section>
+
+    <section id="ranking" aria-label="Rangordning">
+      <h2>Rangordning</h2>
+      <p id="status" class="sr-only" role="status" aria-atomic="true"></p>
+      <ol id="parties"></ol>
+    </section>
+
+    <section id="method">
+      <details>
+        <summary><h2>Så funkar det</h2></summary>
+        <div id="method-body"></div>
+      </details>
+    </section>
+  </main>
+
+  <footer>
+    <p id="attribution"></p>
+    <p id="generated" class="muted"></p>
+    <p class="muted">Betyg och osäkerhet förberäknas lokalt; endast <code>scores.json</code> + <code>evidence.json</code>
+       levereras till appen. Frontend gör bara viktningen, ingen betygslogik.</p>
+  </footer>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

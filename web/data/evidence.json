@@ -1,0 +1,2327 @@
+{
+  "claim:responsibility:S:national:2014-10-03/2019-01-21:government": {
+    "kind": "claim",
+    "statement": "S hade government (national) under 2014-10-03/2019-01-21.",
+    "source_name": "Regeringskansliet"
+  },
+  "claim:responsibility:MP:national:2014-10-03/2019-01-21:government": {
+    "kind": "claim",
+    "statement": "MP hade government (national) under 2014-10-03/2019-01-21.",
+    "source_name": "Regeringskansliet"
+  },
+  "claim:responsibility:S:national:2019-01-21/2021-11-30:government": {
+    "kind": "claim",
+    "statement": "S hade government (national) under 2019-01-21/2021-11-30.",
+    "source_name": "Regeringskansliet"
+  },
+  "claim:responsibility:MP:national:2019-01-21/2021-11-30:government": {
+    "kind": "claim",
+    "statement": "MP hade government (national) under 2019-01-21/2021-11-30.",
+    "source_name": "Regeringskansliet"
+  },
+  "claim:responsibility:C:national:2019-01-21/2021-11-30:support": {
+    "kind": "claim",
+    "statement": "C hade support (national) under 2019-01-21/2021-11-30.",
+    "source_name": "Regeringskansliet"
+  },
+  "claim:responsibility:L:national:2019-01-21/2021-11-30:support": {
+    "kind": "claim",
+    "statement": "L hade support (national) under 2019-01-21/2021-11-30.",
+    "source_name": "Regeringskansliet"
+  },
+  "claim:responsibility:S:national:2021-11-30/2022-10-18:government": {
+    "kind": "claim",
+    "statement": "S hade government (national) under 2021-11-30/2022-10-18.",
+    "source_name": "Regeringskansliet"
+  },
+  "claim:responsibility:M:national:2022-10-18/pagaende:government": {
+    "kind": "claim",
+    "statement": "M hade government (national) under 2022-10-18/pagaende.",
+    "source_name": "Regeringskansliet"
+  },
+  "claim:responsibility:KD:national:2022-10-18/pagaende:government": {
+    "kind": "claim",
+    "statement": "KD hade government (national) under 2022-10-18/pagaende.",
+    "source_name": "Regeringskansliet"
+  },
+  "claim:responsibility:L:national:2022-10-18/pagaende:government": {
+    "kind": "claim",
+    "statement": "L hade government (national) under 2022-10-18/pagaende.",
+    "source_name": "Regeringskansliet"
+  },
+  "claim:responsibility:SD:national:2022-10-18/pagaende:support": {
+    "kind": "claim",
+    "statement": "SD hade support (national) under 2022-10-18/pagaende.",
+    "source_name": "Regeringskansliet"
+  },
+  "claim:action:C:trygghet:motioner": {
+    "kind": "claim",
+    "statement": "C lämnade 340 motioner i utskott kopplade till trygghet.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:KD:forsvar:motioner": {
+    "kind": "claim",
+    "statement": "KD lämnade 435 motioner i utskott kopplade till forsvar.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:MP:demokrati:motioner": {
+    "kind": "claim",
+    "statement": "MP lämnade 200 motioner i utskott kopplade till demokrati.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:C:ekonomi:motioner": {
+    "kind": "claim",
+    "statement": "C lämnade 1632 motioner i utskott kopplade till ekonomi.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:C:integration:motioner": {
+    "kind": "claim",
+    "statement": "C lämnade 657 motioner i utskott kopplade till integration.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:KD:demokrati:motioner": {
+    "kind": "claim",
+    "statement": "KD lämnade 335 motioner i utskott kopplade till demokrati.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:L:klimat:motioner": {
+    "kind": "claim",
+    "statement": "L lämnade 136 motioner i utskott kopplade till klimat.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:MP:forsvar:motioner": {
+    "kind": "claim",
+    "statement": "MP lämnade 147 motioner i utskott kopplade till forsvar.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:KD:klimat:motioner": {
+    "kind": "claim",
+    "statement": "KD lämnade 246 motioner i utskott kopplade till klimat.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:L:demokrati:motioner": {
+    "kind": "claim",
+    "statement": "L lämnade 316 motioner i utskott kopplade till demokrati.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:C:klimat:motioner": {
+    "kind": "claim",
+    "statement": "C lämnade 631 motioner i utskott kopplade till klimat.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:L:ekonomi:motioner": {
+    "kind": "claim",
+    "statement": "L lämnade 735 motioner i utskott kopplade till ekonomi.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:L:integration:motioner": {
+    "kind": "claim",
+    "statement": "L lämnade 295 motioner i utskott kopplade till integration.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:S:trygghet:motioner": {
+    "kind": "claim",
+    "statement": "S lämnade 440 motioner i utskott kopplade till trygghet.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:M:forsvar:motioner": {
+    "kind": "claim",
+    "statement": "M lämnade 660 motioner i utskott kopplade till forsvar.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:SD:forsvar:motioner": {
+    "kind": "claim",
+    "statement": "SD lämnade 616 motioner i utskott kopplade till forsvar.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:V:trygghet:motioner": {
+    "kind": "claim",
+    "statement": "V lämnade 156 motioner i utskott kopplade till trygghet.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:C:demokrati:motioner": {
+    "kind": "claim",
+    "statement": "C lämnade 402 motioner i utskott kopplade till demokrati.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:KD:ekonomi:motioner": {
+    "kind": "claim",
+    "statement": "KD lämnade 1009 motioner i utskott kopplade till ekonomi.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:KD:integration:motioner": {
+    "kind": "claim",
+    "statement": "KD lämnade 339 motioner i utskott kopplade till integration.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:MP:trygghet:motioner": {
+    "kind": "claim",
+    "statement": "MP lämnade 100 motioner i utskott kopplade till trygghet.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:C:valfard:motioner": {
+    "kind": "claim",
+    "statement": "C lämnade 744 motioner i utskott kopplade till valfard.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:C:forsvar:motioner": {
+    "kind": "claim",
+    "statement": "C lämnade 233 motioner i utskott kopplade till forsvar.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:KD:trygghet:motioner": {
+    "kind": "claim",
+    "statement": "KD lämnade 322 motioner i utskott kopplade till trygghet.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:MP:ekonomi:motioner": {
+    "kind": "claim",
+    "statement": "MP lämnade 509 motioner i utskott kopplade till ekonomi.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:MP:integration:motioner": {
+    "kind": "claim",
+    "statement": "MP lämnade 268 motioner i utskott kopplade till integration.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:S:valfard:motioner": {
+    "kind": "claim",
+    "statement": "S lämnade 1986 motioner i utskott kopplade till valfard.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:V:valfard:motioner": {
+    "kind": "claim",
+    "statement": "V lämnade 277 motioner i utskott kopplade till valfard.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:L:forsvar:motioner": {
+    "kind": "claim",
+    "statement": "L lämnade 223 motioner i utskott kopplade till forsvar.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:MP:klimat:motioner": {
+    "kind": "claim",
+    "statement": "MP lämnade 250 motioner i utskott kopplade till klimat.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:KD:valfard:motioner": {
+    "kind": "claim",
+    "statement": "KD lämnade 534 motioner i utskott kopplade till valfard.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:M:valfard:motioner": {
+    "kind": "claim",
+    "statement": "M lämnade 2939 motioner i utskott kopplade till valfard.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:SD:valfard:motioner": {
+    "kind": "claim",
+    "statement": "SD lämnade 1530 motioner i utskott kopplade till valfard.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:L:trygghet:motioner": {
+    "kind": "claim",
+    "statement": "L lämnade 226 motioner i utskott kopplade till trygghet.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:S:forsvar:motioner": {
+    "kind": "claim",
+    "statement": "S lämnade 429 motioner i utskott kopplade till forsvar.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:M:trygghet:motioner": {
+    "kind": "claim",
+    "statement": "M lämnade 1569 motioner i utskott kopplade till trygghet.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:SD:trygghet:motioner": {
+    "kind": "claim",
+    "statement": "SD lämnade 808 motioner i utskott kopplade till trygghet.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:V:forsvar:motioner": {
+    "kind": "claim",
+    "statement": "V lämnade 183 motioner i utskott kopplade till forsvar.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:L:valfard:motioner": {
+    "kind": "claim",
+    "statement": "L lämnade 514 motioner i utskott kopplade till valfard.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:M:klimat:motioner": {
+    "kind": "claim",
+    "statement": "M lämnade 1612 motioner i utskott kopplade till klimat.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:SD:klimat:motioner": {
+    "kind": "claim",
+    "statement": "SD lämnade 672 motioner i utskott kopplade till klimat.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:S:demokrati:motioner": {
+    "kind": "claim",
+    "statement": "S lämnade 703 motioner i utskott kopplade till demokrati.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:M:ekonomi:motioner": {
+    "kind": "claim",
+    "statement": "M lämnade 4718 motioner i utskott kopplade till ekonomi.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:M:integration:motioner": {
+    "kind": "claim",
+    "statement": "M lämnade 1478 motioner i utskott kopplade till integration.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:SD:ekonomi:motioner": {
+    "kind": "claim",
+    "statement": "SD lämnade 2112 motioner i utskott kopplade till ekonomi.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:SD:integration:motioner": {
+    "kind": "claim",
+    "statement": "SD lämnade 841 motioner i utskott kopplade till integration.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:V:demokrati:motioner": {
+    "kind": "claim",
+    "statement": "V lämnade 146 motioner i utskott kopplade till demokrati.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:S:ekonomi:motioner": {
+    "kind": "claim",
+    "statement": "S lämnade 2660 motioner i utskott kopplade till ekonomi.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:S:integration:motioner": {
+    "kind": "claim",
+    "statement": "S lämnade 1135 motioner i utskott kopplade till integration.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:M:demokrati:motioner": {
+    "kind": "claim",
+    "statement": "M lämnade 1174 motioner i utskott kopplade till demokrati.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:SD:demokrati:motioner": {
+    "kind": "claim",
+    "statement": "SD lämnade 1248 motioner i utskott kopplade till demokrati.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:V:ekonomi:motioner": {
+    "kind": "claim",
+    "statement": "V lämnade 407 motioner i utskott kopplade till ekonomi.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:V:integration:motioner": {
+    "kind": "claim",
+    "statement": "V lämnade 254 motioner i utskott kopplade till integration.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:S:klimat:motioner": {
+    "kind": "claim",
+    "statement": "S lämnade 600 motioner i utskott kopplade till klimat.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:V:klimat:motioner": {
+    "kind": "claim",
+    "statement": "V lämnade 84 motioner i utskott kopplade till klimat.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:MP:valfard:motioner": {
+    "kind": "claim",
+    "statement": "MP lämnade 373 motioner i utskott kopplade till valfard.",
+    "source_name": "Riksdagen"
+  },
+  "claim:observed_result:obs:scb:arbetsloshet:2001": {
+    "kind": "claim",
+    "statement": "arbetsloshet = 6.0 (ekonomi, 2001).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:arbetsloshet:2002": {
+    "kind": "claim",
+    "statement": "arbetsloshet = 6.1 (ekonomi, 2002).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:arbetsloshet:2003": {
+    "kind": "claim",
+    "statement": "arbetsloshet = 6.7 (ekonomi, 2003).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:arbetsloshet:2004": {
+    "kind": "claim",
+    "statement": "arbetsloshet = 7.5 (ekonomi, 2004).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:arbetsloshet:2005": {
+    "kind": "claim",
+    "statement": "arbetsloshet = 7.9 (ekonomi, 2005).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:arbetsloshet:2006": {
+    "kind": "claim",
+    "statement": "arbetsloshet = 7.2 (ekonomi, 2006).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:arbetsloshet:2007": {
+    "kind": "claim",
+    "statement": "arbetsloshet = 6.3 (ekonomi, 2007).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:arbetsloshet:2008": {
+    "kind": "claim",
+    "statement": "arbetsloshet = 6.3 (ekonomi, 2008).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:arbetsloshet:2009": {
+    "kind": "claim",
+    "statement": "arbetsloshet = 8.4 (ekonomi, 2009).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:arbetsloshet:2010": {
+    "kind": "claim",
+    "statement": "arbetsloshet = 8.7 (ekonomi, 2010).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:arbetsloshet:2011": {
+    "kind": "claim",
+    "statement": "arbetsloshet = 7.9 (ekonomi, 2011).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:arbetsloshet:2012": {
+    "kind": "claim",
+    "statement": "arbetsloshet = 8.1 (ekonomi, 2012).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:arbetsloshet:2013": {
+    "kind": "claim",
+    "statement": "arbetsloshet = 8.1 (ekonomi, 2013).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:arbetsloshet:2014": {
+    "kind": "claim",
+    "statement": "arbetsloshet = 8.0 (ekonomi, 2014).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:arbetsloshet:2015": {
+    "kind": "claim",
+    "statement": "arbetsloshet = 7.5 (ekonomi, 2015).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:arbetsloshet:2016": {
+    "kind": "claim",
+    "statement": "arbetsloshet = 7.1 (ekonomi, 2016).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:arbetsloshet:2017": {
+    "kind": "claim",
+    "statement": "arbetsloshet = 6.8 (ekonomi, 2017).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:arbetsloshet:2018": {
+    "kind": "claim",
+    "statement": "arbetsloshet = 6.5 (ekonomi, 2018).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:arbetsloshet:2019": {
+    "kind": "claim",
+    "statement": "arbetsloshet = 6.9 (ekonomi, 2019).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:arbetsloshet:2020": {
+    "kind": "claim",
+    "statement": "arbetsloshet = 8.5 (ekonomi, 2020).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:arbetsloshet:2021": {
+    "kind": "claim",
+    "statement": "arbetsloshet = 8.9 (ekonomi, 2021).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:arbetsloshet:2022": {
+    "kind": "claim",
+    "statement": "arbetsloshet = 7.5 (ekonomi, 2022).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:arbetsloshet:2023": {
+    "kind": "claim",
+    "statement": "arbetsloshet = 7.7 (ekonomi, 2023).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:arbetsloshet:2024": {
+    "kind": "claim",
+    "statement": "arbetsloshet = 8.4 (ekonomi, 2024).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:arbetsloshet:2025": {
+    "kind": "claim",
+    "statement": "arbetsloshet = 8.8 (ekonomi, 2025).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:sysselsattning:2001": {
+    "kind": "claim",
+    "statement": "sysselsattning = 66.8 (ekonomi, 2001).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:sysselsattning:2002": {
+    "kind": "claim",
+    "statement": "sysselsattning = 66.7 (ekonomi, 2002).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:sysselsattning:2003": {
+    "kind": "claim",
+    "statement": "sysselsattning = 66.1 (ekonomi, 2003).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:sysselsattning:2004": {
+    "kind": "claim",
+    "statement": "sysselsattning = 65.3 (ekonomi, 2004).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:sysselsattning:2005": {
+    "kind": "claim",
+    "statement": "sysselsattning = 65.0 (ekonomi, 2005).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:sysselsattning:2006": {
+    "kind": "claim",
+    "statement": "sysselsattning = 65.6 (ekonomi, 2006).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:sysselsattning:2007": {
+    "kind": "claim",
+    "statement": "sysselsattning = 66.5 (ekonomi, 2007).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:sysselsattning:2008": {
+    "kind": "claim",
+    "statement": "sysselsattning = 66.6 (ekonomi, 2008).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:sysselsattning:2009": {
+    "kind": "claim",
+    "statement": "sysselsattning = 64.5 (ekonomi, 2009).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:sysselsattning:2010": {
+    "kind": "claim",
+    "statement": "sysselsattning = 64.2 (ekonomi, 2010).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:sysselsattning:2011": {
+    "kind": "claim",
+    "statement": "sysselsattning = 65.2 (ekonomi, 2011).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:sysselsattning:2012": {
+    "kind": "claim",
+    "statement": "sysselsattning = 65.3 (ekonomi, 2012).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:sysselsattning:2013": {
+    "kind": "claim",
+    "statement": "sysselsattning = 65.5 (ekonomi, 2013).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:sysselsattning:2014": {
+    "kind": "claim",
+    "statement": "sysselsattning = 66.0 (ekonomi, 2014).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:sysselsattning:2015": {
+    "kind": "claim",
+    "statement": "sysselsattning = 66.5 (ekonomi, 2015).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:sysselsattning:2016": {
+    "kind": "claim",
+    "statement": "sysselsattning = 66.8 (ekonomi, 2016).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:sysselsattning:2017": {
+    "kind": "claim",
+    "statement": "sysselsattning = 67.6 (ekonomi, 2017).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:sysselsattning:2018": {
+    "kind": "claim",
+    "statement": "sysselsattning = 68.1 (ekonomi, 2018).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:sysselsattning:2019": {
+    "kind": "claim",
+    "statement": "sysselsattning = 68.1 (ekonomi, 2019).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:sysselsattning:2020": {
+    "kind": "claim",
+    "statement": "sysselsattning = 66.8 (ekonomi, 2020).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:sysselsattning:2021": {
+    "kind": "claim",
+    "statement": "sysselsattning = 67.1 (ekonomi, 2021).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:sysselsattning:2022": {
+    "kind": "claim",
+    "statement": "sysselsattning = 68.8 (ekonomi, 2022).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:sysselsattning:2023": {
+    "kind": "claim",
+    "statement": "sysselsattning = 69.4 (ekonomi, 2023).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:sysselsattning:2024": {
+    "kind": "claim",
+    "statement": "sysselsattning = 69.0 (ekonomi, 2024).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:sysselsattning:2025": {
+    "kind": "claim",
+    "statement": "sysselsattning = 69.0 (ekonomi, 2025).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:bnp_per_capita:1980": {
+    "kind": "claim",
+    "statement": "bnp_per_capita = 271000.0 (ekonomi, 1980).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:bnp_per_capita:1981": {
+    "kind": "claim",
+    "statement": "bnp_per_capita = 270000.0 (ekonomi, 1981).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:bnp_per_capita:1982": {
+    "kind": "claim",
+    "statement": "bnp_per_capita = 273000.0 (ekonomi, 1982).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:bnp_per_capita:1983": {
+    "kind": "claim",
+    "statement": "bnp_per_capita = 279000.0 (ekonomi, 1983).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:bnp_per_capita:1984": {
+    "kind": "claim",
+    "statement": "bnp_per_capita = 290000.0 (ekonomi, 1984).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:bnp_per_capita:1985": {
+    "kind": "claim",
+    "statement": "bnp_per_capita = 297000.0 (ekonomi, 1985).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:bnp_per_capita:1986": {
+    "kind": "claim",
+    "statement": "bnp_per_capita = 305000.0 (ekonomi, 1986).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:bnp_per_capita:1987": {
+    "kind": "claim",
+    "statement": "bnp_per_capita = 315000.0 (ekonomi, 1987).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:bnp_per_capita:1988": {
+    "kind": "claim",
+    "statement": "bnp_per_capita = 321000.0 (ekonomi, 1988).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:bnp_per_capita:1989": {
+    "kind": "claim",
+    "statement": "bnp_per_capita = 327000.0 (ekonomi, 1989).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:bnp_per_capita:1990": {
+    "kind": "claim",
+    "statement": "bnp_per_capita = 326000.0 (ekonomi, 1990).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:bnp_per_capita:1991": {
+    "kind": "claim",
+    "statement": "bnp_per_capita = 320000.0 (ekonomi, 1991).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:bnp_per_capita:1992": {
+    "kind": "claim",
+    "statement": "bnp_per_capita = 315000.0 (ekonomi, 1992).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:bnp_per_capita:1993": {
+    "kind": "claim",
+    "statement": "bnp_per_capita = 307000.0 (ekonomi, 1993).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:bnp_per_capita:1994": {
+    "kind": "claim",
+    "statement": "bnp_per_capita = 318000.0 (ekonomi, 1994).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:bnp_per_capita:1995": {
+    "kind": "claim",
+    "statement": "bnp_per_capita = 329000.0 (ekonomi, 1995).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:bnp_per_capita:1996": {
+    "kind": "claim",
+    "statement": "bnp_per_capita = 334000.0 (ekonomi, 1996).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:bnp_per_capita:1997": {
+    "kind": "claim",
+    "statement": "bnp_per_capita = 344000.0 (ekonomi, 1997).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:bnp_per_capita:1998": {
+    "kind": "claim",
+    "statement": "bnp_per_capita = 358000.0 (ekonomi, 1998).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:bnp_per_capita:1999": {
+    "kind": "claim",
+    "statement": "bnp_per_capita = 373000.0 (ekonomi, 1999).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:bnp_per_capita:2000": {
+    "kind": "claim",
+    "statement": "bnp_per_capita = 390000.0 (ekonomi, 2000).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:bnp_per_capita:2001": {
+    "kind": "claim",
+    "statement": "bnp_per_capita = 394000.0 (ekonomi, 2001).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:bnp_per_capita:2002": {
+    "kind": "claim",
+    "statement": "bnp_per_capita = 402000.0 (ekonomi, 2002).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:bnp_per_capita:2003": {
+    "kind": "claim",
+    "statement": "bnp_per_capita = 408000.0 (ekonomi, 2003).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:bnp_per_capita:2004": {
+    "kind": "claim",
+    "statement": "bnp_per_capita = 423000.0 (ekonomi, 2004).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:bnp_per_capita:2005": {
+    "kind": "claim",
+    "statement": "bnp_per_capita = 433000.0 (ekonomi, 2005).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:bnp_per_capita:2006": {
+    "kind": "claim",
+    "statement": "bnp_per_capita = 451000.0 (ekonomi, 2006).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:bnp_per_capita:2007": {
+    "kind": "claim",
+    "statement": "bnp_per_capita = 462000.0 (ekonomi, 2007).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:bnp_per_capita:2008": {
+    "kind": "claim",
+    "statement": "bnp_per_capita = 454000.0 (ekonomi, 2008).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:bnp_per_capita:2009": {
+    "kind": "claim",
+    "statement": "bnp_per_capita = 431000.0 (ekonomi, 2009).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:bnp_per_capita:2010": {
+    "kind": "claim",
+    "statement": "bnp_per_capita = 452000.0 (ekonomi, 2010).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:bnp_per_capita:2011": {
+    "kind": "claim",
+    "statement": "bnp_per_capita = 463000.0 (ekonomi, 2011).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:bnp_per_capita:2012": {
+    "kind": "claim",
+    "statement": "bnp_per_capita = 458000.0 (ekonomi, 2012).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:bnp_per_capita:2013": {
+    "kind": "claim",
+    "statement": "bnp_per_capita = 459000.0 (ekonomi, 2013).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:bnp_per_capita:2014": {
+    "kind": "claim",
+    "statement": "bnp_per_capita = 465000.0 (ekonomi, 2014).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:bnp_per_capita:2015": {
+    "kind": "claim",
+    "statement": "bnp_per_capita = 480000.0 (ekonomi, 2015).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:bnp_per_capita:2016": {
+    "kind": "claim",
+    "statement": "bnp_per_capita = 484000.0 (ekonomi, 2016).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:bnp_per_capita:2017": {
+    "kind": "claim",
+    "statement": "bnp_per_capita = 487000.0 (ekonomi, 2017).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:bnp_per_capita:2018": {
+    "kind": "claim",
+    "statement": "bnp_per_capita = 490000.0 (ekonomi, 2018).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:bnp_per_capita:2019": {
+    "kind": "claim",
+    "statement": "bnp_per_capita = 497000.0 (ekonomi, 2019).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:bnp_per_capita:2020": {
+    "kind": "claim",
+    "statement": "bnp_per_capita = 484000.0 (ekonomi, 2020).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:bnp_per_capita:2021": {
+    "kind": "claim",
+    "statement": "bnp_per_capita = 506000.0 (ekonomi, 2021).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:bnp_per_capita:2022": {
+    "kind": "claim",
+    "statement": "bnp_per_capita = 508000.0 (ekonomi, 2022).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:bnp_per_capita:2023": {
+    "kind": "claim",
+    "statement": "bnp_per_capita = 503000.0 (ekonomi, 2023).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:bnp_per_capita:2024": {
+    "kind": "claim",
+    "statement": "bnp_per_capita = 511000.0 (ekonomi, 2024).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:territoriella_utslapp:1990": {
+    "kind": "claim",
+    "statement": "territoriella_utslapp = 71255.7 (klimat, 1990).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:territoriella_utslapp:1991": {
+    "kind": "claim",
+    "statement": "territoriella_utslapp = 71384.0 (klimat, 1991).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:territoriella_utslapp:1992": {
+    "kind": "claim",
+    "statement": "territoriella_utslapp = 71062.5 (klimat, 1992).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:territoriella_utslapp:1993": {
+    "kind": "claim",
+    "statement": "territoriella_utslapp = 71282.0 (klimat, 1993).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:territoriella_utslapp:1994": {
+    "kind": "claim",
+    "statement": "territoriella_utslapp = 73769.6 (klimat, 1994).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:territoriella_utslapp:1995": {
+    "kind": "claim",
+    "statement": "territoriella_utslapp = 73138.3 (klimat, 1995).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:territoriella_utslapp:1996": {
+    "kind": "claim",
+    "statement": "territoriella_utslapp = 77039.1 (klimat, 1996).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:territoriella_utslapp:1997": {
+    "kind": "claim",
+    "statement": "territoriella_utslapp = 72134.9 (klimat, 1997).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:territoriella_utslapp:1998": {
+    "kind": "claim",
+    "statement": "territoriella_utslapp = 72518.1 (klimat, 1998).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:territoriella_utslapp:1999": {
+    "kind": "claim",
+    "statement": "territoriella_utslapp = 69358.3 (klimat, 1999).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:territoriella_utslapp:2000": {
+    "kind": "claim",
+    "statement": "territoriella_utslapp = 68101.7 (klimat, 2000).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:territoriella_utslapp:2001": {
+    "kind": "claim",
+    "statement": "territoriella_utslapp = 68870.1 (klimat, 2001).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:territoriella_utslapp:2002": {
+    "kind": "claim",
+    "statement": "territoriella_utslapp = 69487.8 (klimat, 2002).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:territoriella_utslapp:2003": {
+    "kind": "claim",
+    "statement": "territoriella_utslapp = 69819.7 (klimat, 2003).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:territoriella_utslapp:2004": {
+    "kind": "claim",
+    "statement": "territoriella_utslapp = 69159.3 (klimat, 2004).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:territoriella_utslapp:2005": {
+    "kind": "claim",
+    "statement": "territoriella_utslapp = 66252.0 (klimat, 2005).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:territoriella_utslapp:2006": {
+    "kind": "claim",
+    "statement": "territoriella_utslapp = 65899.5 (klimat, 2006).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:territoriella_utslapp:2007": {
+    "kind": "claim",
+    "statement": "territoriella_utslapp = 64740.0 (klimat, 2007).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:territoriella_utslapp:2008": {
+    "kind": "claim",
+    "statement": "territoriella_utslapp = 62349.7 (klimat, 2008).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:territoriella_utslapp:2009": {
+    "kind": "claim",
+    "statement": "territoriella_utslapp = 58125.4 (klimat, 2009).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:territoriella_utslapp:2010": {
+    "kind": "claim",
+    "statement": "territoriella_utslapp = 64113.9 (klimat, 2010).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:territoriella_utslapp:2011": {
+    "kind": "claim",
+    "statement": "territoriella_utslapp = 59736.3 (klimat, 2011).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:territoriella_utslapp:2012": {
+    "kind": "claim",
+    "statement": "territoriella_utslapp = 56822.6 (klimat, 2012).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:territoriella_utslapp:2013": {
+    "kind": "claim",
+    "statement": "territoriella_utslapp = 55201.7 (klimat, 2013).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:territoriella_utslapp:2014": {
+    "kind": "claim",
+    "statement": "territoriella_utslapp = 53458.0 (klimat, 2014).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:territoriella_utslapp:2015": {
+    "kind": "claim",
+    "statement": "territoriella_utslapp = 53250.6 (klimat, 2015).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:territoriella_utslapp:2016": {
+    "kind": "claim",
+    "statement": "territoriella_utslapp = 53160.8 (klimat, 2016).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:territoriella_utslapp:2017": {
+    "kind": "claim",
+    "statement": "territoriella_utslapp = 52249.0 (klimat, 2017).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:territoriella_utslapp:2018": {
+    "kind": "claim",
+    "statement": "territoriella_utslapp = 51430.3 (klimat, 2018).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:territoriella_utslapp:2019": {
+    "kind": "claim",
+    "statement": "territoriella_utslapp = 50191.1 (klimat, 2019).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:territoriella_utslapp:2020": {
+    "kind": "claim",
+    "statement": "territoriella_utslapp = 45968.6 (klimat, 2020).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:territoriella_utslapp:2021": {
+    "kind": "claim",
+    "statement": "territoriella_utslapp = 47711.2 (klimat, 2021).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:territoriella_utslapp:2022": {
+    "kind": "claim",
+    "statement": "territoriella_utslapp = 45168.0 (klimat, 2022).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:territoriella_utslapp:2023": {
+    "kind": "claim",
+    "statement": "territoriella_utslapp = 44233.6 (klimat, 2023).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:territoriella_utslapp:2024": {
+    "kind": "claim",
+    "statement": "territoriella_utslapp = 47493.7 (klimat, 2024).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:trangboddhet:1988-1989": {
+    "kind": "claim",
+    "statement": "trangboddhet = 2.5 (integration, 1988-1989).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:trangboddhet:2002-2003": {
+    "kind": "claim",
+    "statement": "trangboddhet = 2.5 (integration, 2002-2003).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:trangboddhet:2004-2005": {
+    "kind": "claim",
+    "statement": "trangboddhet = 2.7 (integration, 2004-2005).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:trangboddhet:2008-2009": {
+    "kind": "claim",
+    "statement": "trangboddhet = 3.1 (integration, 2008-2009).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:trangboddhet:2010-2011": {
+    "kind": "claim",
+    "statement": "trangboddhet = 3.6 (integration, 2010-2011).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:trangboddhet:2012-2013": {
+    "kind": "claim",
+    "statement": "trangboddhet = 4.1 (integration, 2012-2013).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:trangboddhet:2014-2015": {
+    "kind": "claim",
+    "statement": "trangboddhet = 3.9 (integration, 2014-2015).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:trangboddhet:2016-2017": {
+    "kind": "claim",
+    "statement": "trangboddhet = 4.5 (integration, 2016-2017).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:trangboddhet:2018-2019": {
+    "kind": "claim",
+    "statement": "trangboddhet = 5.1 (integration, 2018-2019).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:trangboddhet:2020-2020": {
+    "kind": "claim",
+    "statement": "trangboddhet = 4.8 (integration, 2020-2020).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:trangboddhet:2021-2021": {
+    "kind": "claim",
+    "statement": "trangboddhet = 5.4 (integration, 2021-2021).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:trangboddhet:2022-2022": {
+    "kind": "claim",
+    "statement": "trangboddhet = 4.8 (integration, 2022-2022).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:trangboddhet:2023-2023": {
+    "kind": "claim",
+    "statement": "trangboddhet = 5.3 (integration, 2023-2023).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:trangboddhet:2024-2024": {
+    "kind": "claim",
+    "statement": "trangboddhet = 5.5 (integration, 2024-2024).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:trangboddhet:2025-2025": {
+    "kind": "claim",
+    "statement": "trangboddhet = 5.0 (integration, 2025-2025).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:kolada:N15507:0000:2015": {
+    "kind": "claim",
+    "statement": "skolresultat = 224.7 (valfard, 2015).",
+    "source_name": "Kolada"
+  },
+  "claim:observed_result:obs:kolada:N15507:0000:2016": {
+    "kind": "claim",
+    "statement": "skolresultat = 229.2 (valfard, 2016).",
+    "source_name": "Kolada"
+  },
+  "claim:observed_result:obs:kolada:N15507:0000:2017": {
+    "kind": "claim",
+    "statement": "skolresultat = 234.4 (valfard, 2017).",
+    "source_name": "Kolada"
+  },
+  "claim:observed_result:obs:kolada:N15507:0000:2018": {
+    "kind": "claim",
+    "statement": "skolresultat = 230.0 (valfard, 2018).",
+    "source_name": "Kolada"
+  },
+  "claim:observed_result:obs:kolada:N15507:0000:2019": {
+    "kind": "claim",
+    "statement": "skolresultat = 230.0 (valfard, 2019).",
+    "source_name": "Kolada"
+  },
+  "claim:observed_result:obs:kolada:N15507:0000:2020": {
+    "kind": "claim",
+    "statement": "skolresultat = 232.0 (valfard, 2020).",
+    "source_name": "Kolada"
+  },
+  "claim:observed_result:obs:kolada:N15507:0000:2021": {
+    "kind": "claim",
+    "statement": "skolresultat = 233.0 (valfard, 2021).",
+    "source_name": "Kolada"
+  },
+  "claim:observed_result:obs:kolada:N15507:0000:2022": {
+    "kind": "claim",
+    "statement": "skolresultat = 230.0 (valfard, 2022).",
+    "source_name": "Kolada"
+  },
+  "claim:observed_result:obs:kolada:N15507:0000:2023": {
+    "kind": "claim",
+    "statement": "skolresultat = 229.0 (valfard, 2023).",
+    "source_name": "Kolada"
+  },
+  "claim:observed_result:obs:kolada:N15507:0000:2024": {
+    "kind": "claim",
+    "statement": "skolresultat = 228.0 (valfard, 2024).",
+    "source_name": "Kolada"
+  },
+  "claim:observed_result:obs:kolada:N15507:0000:2025": {
+    "kind": "claim",
+    "statement": "skolresultat = 229.0 (valfard, 2025).",
+    "source_name": "Kolada"
+  },
+  "claim:observed_result:obs:kolada:N15813:0000:2015": {
+    "kind": "claim",
+    "statement": "behoriga_larare = 71.9121 (valfard, 2015).",
+    "source_name": "Kolada"
+  },
+  "claim:observed_result:obs:kolada:N15813:0000:2016": {
+    "kind": "claim",
+    "statement": "behoriga_larare = 71.357958 (valfard, 2016).",
+    "source_name": "Kolada"
+  },
+  "claim:observed_result:obs:kolada:N15813:0000:2017": {
+    "kind": "claim",
+    "statement": "behoriga_larare = 71.361638 (valfard, 2017).",
+    "source_name": "Kolada"
+  },
+  "claim:observed_result:obs:kolada:N15813:0000:2018": {
+    "kind": "claim",
+    "statement": "behoriga_larare = 70.53812 (valfard, 2018).",
+    "source_name": "Kolada"
+  },
+  "claim:observed_result:obs:kolada:N15813:0000:2019": {
+    "kind": "claim",
+    "statement": "behoriga_larare = 70.097622 (valfard, 2019).",
+    "source_name": "Kolada"
+  },
+  "claim:observed_result:obs:kolada:N15813:0000:2020": {
+    "kind": "claim",
+    "statement": "behoriga_larare = 71.129307 (valfard, 2020).",
+    "source_name": "Kolada"
+  },
+  "claim:observed_result:obs:kolada:N15813:0000:2021": {
+    "kind": "claim",
+    "statement": "behoriga_larare = 71.036239 (valfard, 2021).",
+    "source_name": "Kolada"
+  },
+  "claim:observed_result:obs:kolada:N15813:0000:2022": {
+    "kind": "claim",
+    "statement": "behoriga_larare = 70.818968 (valfard, 2022).",
+    "source_name": "Kolada"
+  },
+  "claim:observed_result:obs:kolada:N15813:0000:2023": {
+    "kind": "claim",
+    "statement": "behoriga_larare = 71.458957 (valfard, 2023).",
+    "source_name": "Kolada"
+  },
+  "claim:observed_result:obs:kolada:N15813:0000:2024": {
+    "kind": "claim",
+    "statement": "behoriga_larare = 72.551458 (valfard, 2024).",
+    "source_name": "Kolada"
+  },
+  "claim:observed_result:obs:kolada:N15813:0000:2025": {
+    "kind": "claim",
+    "statement": "behoriga_larare = 73.3 (valfard, 2025).",
+    "source_name": "Kolada"
+  },
+  "claim:observed_result:obs:kolada:N31825:0000:2010": {
+    "kind": "claim",
+    "statement": "bidragsberoende = 3.921376 (integration, 2010).",
+    "source_name": "Kolada"
+  },
+  "claim:observed_result:obs:kolada:N31825:0000:2011": {
+    "kind": "claim",
+    "statement": "bidragsberoende = 3.719448 (integration, 2011).",
+    "source_name": "Kolada"
+  },
+  "claim:observed_result:obs:kolada:N31825:0000:2012": {
+    "kind": "claim",
+    "statement": "bidragsberoende = 3.512415 (integration, 2012).",
+    "source_name": "Kolada"
+  },
+  "claim:observed_result:obs:kolada:N31825:0000:2013": {
+    "kind": "claim",
+    "statement": "bidragsberoende = 3.490464 (integration, 2013).",
+    "source_name": "Kolada"
+  },
+  "claim:observed_result:obs:kolada:N31825:0000:2014": {
+    "kind": "claim",
+    "statement": "bidragsberoende = 3.477228 (integration, 2014).",
+    "source_name": "Kolada"
+  },
+  "claim:observed_result:obs:kolada:N31825:0000:2015": {
+    "kind": "claim",
+    "statement": "bidragsberoende = 3.486776 (integration, 2015).",
+    "source_name": "Kolada"
+  },
+  "claim:observed_result:obs:kolada:N31825:0000:2016": {
+    "kind": "claim",
+    "statement": "bidragsberoende = 3.403607 (integration, 2016).",
+    "source_name": "Kolada"
+  },
+  "claim:observed_result:obs:kolada:N31825:0000:2017": {
+    "kind": "claim",
+    "statement": "bidragsberoende = 3.309086 (integration, 2017).",
+    "source_name": "Kolada"
+  },
+  "claim:observed_result:obs:kolada:N31825:0000:2018": {
+    "kind": "claim",
+    "statement": "bidragsberoende = 3.155766 (integration, 2018).",
+    "source_name": "Kolada"
+  },
+  "claim:observed_result:obs:kolada:N31825:0000:2019": {
+    "kind": "claim",
+    "statement": "bidragsberoende = 3.048392 (integration, 2019).",
+    "source_name": "Kolada"
+  },
+  "claim:observed_result:obs:kolada:N31825:0000:2020": {
+    "kind": "claim",
+    "statement": "bidragsberoende = 2.979612 (integration, 2020).",
+    "source_name": "Kolada"
+  },
+  "claim:observed_result:obs:kolada:N31825:0000:2021": {
+    "kind": "claim",
+    "statement": "bidragsberoende = 2.705775 (integration, 2021).",
+    "source_name": "Kolada"
+  },
+  "claim:observed_result:obs:kolada:N31825:0000:2022": {
+    "kind": "claim",
+    "statement": "bidragsberoende = 2.374954 (integration, 2022).",
+    "source_name": "Kolada"
+  },
+  "claim:observed_result:obs:kolada:N31825:0000:2023": {
+    "kind": "claim",
+    "statement": "bidragsberoende = 2.115018 (integration, 2023).",
+    "source_name": "Kolada"
+  },
+  "claim:observed_result:obs:kolada:N31825:0000:2024": {
+    "kind": "claim",
+    "statement": "bidragsberoende = 2.063795 (integration, 2024).",
+    "source_name": "Kolada"
+  },
+  "claim:observed_result:obs:scb:konsumtionsbaserade_utslapp:2008": {
+    "kind": "claim",
+    "statement": "konsumtionsbaserade_utslapp = 109925262.0 (klimat, 2008).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:konsumtionsbaserade_utslapp:2009": {
+    "kind": "claim",
+    "statement": "konsumtionsbaserade_utslapp = 92721097.0 (klimat, 2009).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:konsumtionsbaserade_utslapp:2010": {
+    "kind": "claim",
+    "statement": "konsumtionsbaserade_utslapp = 105609083.0 (klimat, 2010).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:konsumtionsbaserade_utslapp:2011": {
+    "kind": "claim",
+    "statement": "konsumtionsbaserade_utslapp = 111045273.0 (klimat, 2011).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:konsumtionsbaserade_utslapp:2012": {
+    "kind": "claim",
+    "statement": "konsumtionsbaserade_utslapp = 102613014.0 (klimat, 2012).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:konsumtionsbaserade_utslapp:2013": {
+    "kind": "claim",
+    "statement": "konsumtionsbaserade_utslapp = 102599361.0 (klimat, 2013).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:konsumtionsbaserade_utslapp:2014": {
+    "kind": "claim",
+    "statement": "konsumtionsbaserade_utslapp = 96395839.0 (klimat, 2014).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:konsumtionsbaserade_utslapp:2015": {
+    "kind": "claim",
+    "statement": "konsumtionsbaserade_utslapp = 95354143.0 (klimat, 2015).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:konsumtionsbaserade_utslapp:2016": {
+    "kind": "claim",
+    "statement": "konsumtionsbaserade_utslapp = 96180560.0 (klimat, 2016).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:konsumtionsbaserade_utslapp:2017": {
+    "kind": "claim",
+    "statement": "konsumtionsbaserade_utslapp = 94013938.0 (klimat, 2017).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:konsumtionsbaserade_utslapp:2018": {
+    "kind": "claim",
+    "statement": "konsumtionsbaserade_utslapp = 95274815.0 (klimat, 2018).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:konsumtionsbaserade_utslapp:2019": {
+    "kind": "claim",
+    "statement": "konsumtionsbaserade_utslapp = 89688662.0 (klimat, 2019).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:konsumtionsbaserade_utslapp:2020": {
+    "kind": "claim",
+    "statement": "konsumtionsbaserade_utslapp = 80446267.0 (klimat, 2020).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:konsumtionsbaserade_utslapp:2021": {
+    "kind": "claim",
+    "statement": "konsumtionsbaserade_utslapp = 85498587.0 (klimat, 2021).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:konsumtionsbaserade_utslapp:2022": {
+    "kind": "claim",
+    "statement": "konsumtionsbaserade_utslapp = 88683274.0 (klimat, 2022).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:konsumtionsbaserade_utslapp:2023": {
+    "kind": "claim",
+    "statement": "konsumtionsbaserade_utslapp = 80428937.0 (klimat, 2023).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:sjalvforsorjningsgrad:2005": {
+    "kind": "claim",
+    "statement": "sjalvforsorjningsgrad = 55.5 (integration, 2005).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:sjalvforsorjningsgrad:2006": {
+    "kind": "claim",
+    "statement": "sjalvforsorjningsgrad = 55.8 (integration, 2006).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:sjalvforsorjningsgrad:2007": {
+    "kind": "claim",
+    "statement": "sjalvforsorjningsgrad = 56.9 (integration, 2007).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:sjalvforsorjningsgrad:2008": {
+    "kind": "claim",
+    "statement": "sjalvforsorjningsgrad = 57.7 (integration, 2008).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:sjalvforsorjningsgrad:2009": {
+    "kind": "claim",
+    "statement": "sjalvforsorjningsgrad = 55.8 (integration, 2009).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:sjalvforsorjningsgrad:2010": {
+    "kind": "claim",
+    "statement": "sjalvforsorjningsgrad = 55.1 (integration, 2010).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:sjalvforsorjningsgrad:2011": {
+    "kind": "claim",
+    "statement": "sjalvforsorjningsgrad = 56.4 (integration, 2011).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:sjalvforsorjningsgrad:2012": {
+    "kind": "claim",
+    "statement": "sjalvforsorjningsgrad = 56.9 (integration, 2012).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:sjalvforsorjningsgrad:2013": {
+    "kind": "claim",
+    "statement": "sjalvforsorjningsgrad = 57.5 (integration, 2013).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:sjalvforsorjningsgrad:2014": {
+    "kind": "claim",
+    "statement": "sjalvforsorjningsgrad = 58.5 (integration, 2014).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:sjalvforsorjningsgrad:2015": {
+    "kind": "claim",
+    "statement": "sjalvforsorjningsgrad = 59.2 (integration, 2015).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:sjalvforsorjningsgrad:2016": {
+    "kind": "claim",
+    "statement": "sjalvforsorjningsgrad = 59.9 (integration, 2016).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:sjalvforsorjningsgrad:2017": {
+    "kind": "claim",
+    "statement": "sjalvforsorjningsgrad = 61.4 (integration, 2017).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:sjalvforsorjningsgrad:2018": {
+    "kind": "claim",
+    "statement": "sjalvforsorjningsgrad = 61.4 (integration, 2018).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:sjalvforsorjningsgrad:2019": {
+    "kind": "claim",
+    "statement": "sjalvforsorjningsgrad = 61.4 (integration, 2019).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:sjalvforsorjningsgrad:2020": {
+    "kind": "claim",
+    "statement": "sjalvforsorjningsgrad = 59.2 (integration, 2020).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:sjalvforsorjningsgrad:2021": {
+    "kind": "claim",
+    "statement": "sjalvforsorjningsgrad = 60.4 (integration, 2021).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:sjalvforsorjningsgrad:2022": {
+    "kind": "claim",
+    "statement": "sjalvforsorjningsgrad = 64.2 (integration, 2022).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:sjalvforsorjningsgrad:2023": {
+    "kind": "claim",
+    "statement": "sjalvforsorjningsgrad = 67.1 (integration, 2023).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:sjalvforsorjningsgrad:2024": {
+    "kind": "claim",
+    "statement": "sjalvforsorjningsgrad = 65.8 (integration, 2024).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:scb:sjalvforsorjningsgrad:2025": {
+    "kind": "claim",
+    "statement": "sjalvforsorjningsgrad = 66.3 (integration, 2025).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:kolada:N79242:0000:2021": {
+    "kind": "claim",
+    "statement": "vardkoer = 76.5 (valfard, 2021).",
+    "source_name": "Kolada"
+  },
+  "claim:observed_result:obs:kolada:N79242:0000:2022": {
+    "kind": "claim",
+    "statement": "vardkoer = 65.0 (valfard, 2022).",
+    "source_name": "Kolada"
+  },
+  "claim:observed_result:obs:kolada:N79242:0000:2023": {
+    "kind": "claim",
+    "statement": "vardkoer = 67.0 (valfard, 2023).",
+    "source_name": "Kolada"
+  },
+  "claim:observed_result:obs:kolada:N79242:0000:2024": {
+    "kind": "claim",
+    "statement": "vardkoer = 64.0 (valfard, 2024).",
+    "source_name": "Kolada"
+  },
+  "claim:observed_result:obs:bra:dodligt_vald:2002": {
+    "kind": "claim",
+    "statement": "dodligt_vald = 1.1 (trygghet, 2002).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:dodligt_vald:2003": {
+    "kind": "claim",
+    "statement": "dodligt_vald = 0.9 (trygghet, 2003).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:dodligt_vald:2004": {
+    "kind": "claim",
+    "statement": "dodligt_vald = 1.1 (trygghet, 2004).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:dodligt_vald:2005": {
+    "kind": "claim",
+    "statement": "dodligt_vald = 0.9 (trygghet, 2005).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:dodligt_vald:2006": {
+    "kind": "claim",
+    "statement": "dodligt_vald = 1.0 (trygghet, 2006).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:dodligt_vald:2007": {
+    "kind": "claim",
+    "statement": "dodligt_vald = 1.2 (trygghet, 2007).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:dodligt_vald:2008": {
+    "kind": "claim",
+    "statement": "dodligt_vald = 0.9 (trygghet, 2008).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:dodligt_vald:2009": {
+    "kind": "claim",
+    "statement": "dodligt_vald = 1.0 (trygghet, 2009).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:dodligt_vald:2010": {
+    "kind": "claim",
+    "statement": "dodligt_vald = 1.0 (trygghet, 2010).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:dodligt_vald:2011": {
+    "kind": "claim",
+    "statement": "dodligt_vald = 0.9 (trygghet, 2011).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:dodligt_vald:2012": {
+    "kind": "claim",
+    "statement": "dodligt_vald = 0.7 (trygghet, 2012).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:dodligt_vald:2013": {
+    "kind": "claim",
+    "statement": "dodligt_vald = 0.9 (trygghet, 2013).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:dodligt_vald:2014": {
+    "kind": "claim",
+    "statement": "dodligt_vald = 0.9 (trygghet, 2014).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:dodligt_vald:2015": {
+    "kind": "claim",
+    "statement": "dodligt_vald = 1.1 (trygghet, 2015).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:dodligt_vald:2016": {
+    "kind": "claim",
+    "statement": "dodligt_vald = 1.1 (trygghet, 2016).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:dodligt_vald:2017": {
+    "kind": "claim",
+    "statement": "dodligt_vald = 1.1 (trygghet, 2017).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:dodligt_vald:2018": {
+    "kind": "claim",
+    "statement": "dodligt_vald = 1.1 (trygghet, 2018).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:dodligt_vald:2019": {
+    "kind": "claim",
+    "statement": "dodligt_vald = 1.1 (trygghet, 2019).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:dodligt_vald:2020": {
+    "kind": "claim",
+    "statement": "dodligt_vald = 1.2 (trygghet, 2020).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:dodligt_vald:2021": {
+    "kind": "claim",
+    "statement": "dodligt_vald = 1.1 (trygghet, 2021).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:dodligt_vald:2022": {
+    "kind": "claim",
+    "statement": "dodligt_vald = 1.1 (trygghet, 2022).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:dodligt_vald:2023": {
+    "kind": "claim",
+    "statement": "dodligt_vald = 1.1 (trygghet, 2023).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:dodligt_vald:2024": {
+    "kind": "claim",
+    "statement": "dodligt_vald = 0.9 (trygghet, 2024).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:dodligt_vald:2025": {
+    "kind": "claim",
+    "statement": "dodligt_vald = 0.8 (trygghet, 2025).",
+    "source_name": "bra"
+  },
+  "claim:evidence_effect:S:arbetsmarknadsutbildning:ekonomi:sysselsattning": {
+    "kind": "claim",
+    "statement": "S driver arbetsmarknadsutbildning; evidens (authority_evaluation) talar för riktning positive på sysselsattning.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:M:arbetsmarknadsutbildning:ekonomi:sysselsattning": {
+    "kind": "claim",
+    "statement": "M driver arbetsmarknadsutbildning; evidens (authority_evaluation) talar för riktning positive på sysselsattning.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:SD:arbetsmarknadsutbildning:ekonomi:sysselsattning": {
+    "kind": "claim",
+    "statement": "SD driver arbetsmarknadsutbildning; evidens (authority_evaluation) talar för riktning positive på sysselsattning.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:C:arbetsmarknadsutbildning:ekonomi:sysselsattning": {
+    "kind": "claim",
+    "statement": "C motsätter sig arbetsmarknadsutbildning; evidens (authority_evaluation) talar för riktning negative på sysselsattning.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:V:arbetsmarknadsutbildning:ekonomi:sysselsattning": {
+    "kind": "claim",
+    "statement": "V driver arbetsmarknadsutbildning; evidens (authority_evaluation) talar för riktning positive på sysselsattning.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:KD:arbetsmarknadsutbildning:ekonomi:sysselsattning": {
+    "kind": "claim",
+    "statement": "KD motsätter sig arbetsmarknadsutbildning; evidens (authority_evaluation) talar för riktning negative på sysselsattning.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:L:arbetsmarknadsutbildning:ekonomi:sysselsattning": {
+    "kind": "claim",
+    "statement": "L motsätter sig arbetsmarknadsutbildning; evidens (authority_evaluation) talar för riktning negative på sysselsattning.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:MP:arbetsmarknadsutbildning:ekonomi:sysselsattning": {
+    "kind": "claim",
+    "statement": "MP driver arbetsmarknadsutbildning; evidens (authority_evaluation) talar för riktning positive på sysselsattning.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:S:subventionerade_anstallningar:ekonomi:arbetsloshet": {
+    "kind": "claim",
+    "statement": "S driver subventionerade_anstallningar; evidens (authority_evaluation) talar för riktning positive på arbetsloshet.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:S:subventionerade_anstallningar:ekonomi:sysselsattning": {
+    "kind": "claim",
+    "statement": "S driver subventionerade_anstallningar; evidens (systematic_review) talar för riktning positive på sysselsattning.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:M:subventionerade_anstallningar:ekonomi:arbetsloshet": {
+    "kind": "claim",
+    "statement": "M driver subventionerade_anstallningar; evidens (authority_evaluation) talar för riktning positive på arbetsloshet.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:M:subventionerade_anstallningar:ekonomi:sysselsattning": {
+    "kind": "claim",
+    "statement": "M driver subventionerade_anstallningar; evidens (systematic_review) talar för riktning positive på sysselsattning.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:SD:subventionerade_anstallningar:ekonomi:arbetsloshet": {
+    "kind": "claim",
+    "statement": "SD motsätter sig subventionerade_anstallningar; evidens (authority_evaluation) talar för riktning negative på arbetsloshet.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:SD:subventionerade_anstallningar:ekonomi:sysselsattning": {
+    "kind": "claim",
+    "statement": "SD motsätter sig subventionerade_anstallningar; evidens (systematic_review) talar för riktning negative på sysselsattning.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:C:subventionerade_anstallningar:ekonomi:arbetsloshet": {
+    "kind": "claim",
+    "statement": "C motsätter sig subventionerade_anstallningar; evidens (authority_evaluation) talar för riktning negative på arbetsloshet.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:C:subventionerade_anstallningar:ekonomi:sysselsattning": {
+    "kind": "claim",
+    "statement": "C motsätter sig subventionerade_anstallningar; evidens (systematic_review) talar för riktning negative på sysselsattning.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:V:subventionerade_anstallningar:ekonomi:arbetsloshet": {
+    "kind": "claim",
+    "statement": "V driver subventionerade_anstallningar; evidens (authority_evaluation) talar för riktning positive på arbetsloshet.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:V:subventionerade_anstallningar:ekonomi:sysselsattning": {
+    "kind": "claim",
+    "statement": "V driver subventionerade_anstallningar; evidens (systematic_review) talar för riktning positive på sysselsattning.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:KD:subventionerade_anstallningar:ekonomi:arbetsloshet": {
+    "kind": "claim",
+    "statement": "KD driver subventionerade_anstallningar; evidens (authority_evaluation) talar för riktning positive på arbetsloshet.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:KD:subventionerade_anstallningar:ekonomi:sysselsattning": {
+    "kind": "claim",
+    "statement": "KD driver subventionerade_anstallningar; evidens (systematic_review) talar för riktning positive på sysselsattning.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:L:subventionerade_anstallningar:ekonomi:arbetsloshet": {
+    "kind": "claim",
+    "statement": "L driver subventionerade_anstallningar; evidens (authority_evaluation) talar för riktning positive på arbetsloshet.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:L:subventionerade_anstallningar:ekonomi:sysselsattning": {
+    "kind": "claim",
+    "statement": "L driver subventionerade_anstallningar; evidens (systematic_review) talar för riktning positive på sysselsattning.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:MP:subventionerade_anstallningar:ekonomi:arbetsloshet": {
+    "kind": "claim",
+    "statement": "MP driver subventionerade_anstallningar; evidens (authority_evaluation) talar för riktning positive på arbetsloshet.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:MP:subventionerade_anstallningar:ekonomi:sysselsattning": {
+    "kind": "claim",
+    "statement": "MP driver subventionerade_anstallningar; evidens (systematic_review) talar för riktning positive på sysselsattning.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:S:kompetensutveckling_larare:valfard:skolresultat": {
+    "kind": "claim",
+    "statement": "S driver kompetensutveckling_larare; evidens (authority_evaluation) talar för riktning positive på skolresultat.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:M:kompetensutveckling_larare:valfard:skolresultat": {
+    "kind": "claim",
+    "statement": "M driver kompetensutveckling_larare; evidens (authority_evaluation) talar för riktning positive på skolresultat.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:SD:kompetensutveckling_larare:valfard:skolresultat": {
+    "kind": "claim",
+    "statement": "SD driver kompetensutveckling_larare; evidens (authority_evaluation) talar för riktning positive på skolresultat.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:C:kompetensutveckling_larare:valfard:skolresultat": {
+    "kind": "claim",
+    "statement": "C driver kompetensutveckling_larare; evidens (authority_evaluation) talar för riktning positive på skolresultat.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:V:kompetensutveckling_larare:valfard:skolresultat": {
+    "kind": "claim",
+    "statement": "V driver kompetensutveckling_larare; evidens (authority_evaluation) talar för riktning positive på skolresultat.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:KD:kompetensutveckling_larare:valfard:skolresultat": {
+    "kind": "claim",
+    "statement": "KD driver kompetensutveckling_larare; evidens (authority_evaluation) talar för riktning positive på skolresultat.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:L:kompetensutveckling_larare:valfard:skolresultat": {
+    "kind": "claim",
+    "statement": "L driver kompetensutveckling_larare; evidens (authority_evaluation) talar för riktning positive på skolresultat.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:MP:kompetensutveckling_larare:valfard:skolresultat": {
+    "kind": "claim",
+    "statement": "MP driver kompetensutveckling_larare; evidens (authority_evaluation) talar för riktning positive på skolresultat.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:M:kontroller_och_informationsutbyte_mot_valfardsbrott:valfard:valfardsbrottslighet": {
+    "kind": "claim",
+    "statement": "M driver kontroller_och_informationsutbyte_mot_valfardsbrott; evidens (authority_evaluation) talar för riktning positive på valfardsbrottslighet.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:SD:kontroller_och_informationsutbyte_mot_valfardsbrott:valfard:valfardsbrottslighet": {
+    "kind": "claim",
+    "statement": "SD driver kontroller_och_informationsutbyte_mot_valfardsbrott; evidens (authority_evaluation) talar för riktning positive på valfardsbrottslighet.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:C:kontroller_och_informationsutbyte_mot_valfardsbrott:valfard:valfardsbrottslighet": {
+    "kind": "claim",
+    "statement": "C driver kontroller_och_informationsutbyte_mot_valfardsbrott; evidens (authority_evaluation) talar för riktning positive på valfardsbrottslighet.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:V:kontroller_och_informationsutbyte_mot_valfardsbrott:valfard:valfardsbrottslighet": {
+    "kind": "claim",
+    "statement": "V motsätter sig kontroller_och_informationsutbyte_mot_valfardsbrott; evidens (authority_evaluation) talar för riktning negative på valfardsbrottslighet.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:KD:kontroller_och_informationsutbyte_mot_valfardsbrott:valfard:valfardsbrottslighet": {
+    "kind": "claim",
+    "statement": "KD driver kontroller_och_informationsutbyte_mot_valfardsbrott; evidens (authority_evaluation) talar för riktning positive på valfardsbrottslighet.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:L:kontroller_och_informationsutbyte_mot_valfardsbrott:valfard:valfardsbrottslighet": {
+    "kind": "claim",
+    "statement": "L driver kontroller_och_informationsutbyte_mot_valfardsbrott; evidens (authority_evaluation) talar för riktning positive på valfardsbrottslighet.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:MP:kontroller_och_informationsutbyte_mot_valfardsbrott:valfard:valfardsbrottslighet": {
+    "kind": "claim",
+    "statement": "MP driver kontroller_och_informationsutbyte_mot_valfardsbrott; evidens (authority_evaluation) talar för riktning positive på valfardsbrottslighet.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:S:minskad_klasstorlek:valfard:skolresultat": {
+    "kind": "claim",
+    "statement": "S driver minskad_klasstorlek; evidens (authority_evaluation) talar för riktning positive på skolresultat.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:M:minskad_klasstorlek:valfard:skolresultat": {
+    "kind": "claim",
+    "statement": "M driver minskad_klasstorlek; evidens (authority_evaluation) talar för riktning positive på skolresultat.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:SD:minskad_klasstorlek:valfard:skolresultat": {
+    "kind": "claim",
+    "statement": "SD motsätter sig minskad_klasstorlek; evidens (authority_evaluation) talar för riktning negative på skolresultat.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:C:minskad_klasstorlek:valfard:skolresultat": {
+    "kind": "claim",
+    "statement": "C driver minskad_klasstorlek; evidens (authority_evaluation) talar för riktning positive på skolresultat.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:V:minskad_klasstorlek:valfard:skolresultat": {
+    "kind": "claim",
+    "statement": "V driver minskad_klasstorlek; evidens (authority_evaluation) talar för riktning positive på skolresultat.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:KD:minskad_klasstorlek:valfard:skolresultat": {
+    "kind": "claim",
+    "statement": "KD driver minskad_klasstorlek; evidens (authority_evaluation) talar för riktning positive på skolresultat.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:L:minskad_klasstorlek:valfard:skolresultat": {
+    "kind": "claim",
+    "statement": "L driver minskad_klasstorlek; evidens (authority_evaluation) talar för riktning positive på skolresultat.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:S:tidiga_insatser_lagstadiet:valfard:skolresultat": {
+    "kind": "claim",
+    "statement": "S driver tidiga_insatser_lagstadiet; evidens (systematic_review) talar för riktning positive på skolresultat.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:M:tidiga_insatser_lagstadiet:valfard:skolresultat": {
+    "kind": "claim",
+    "statement": "M driver tidiga_insatser_lagstadiet; evidens (systematic_review) talar för riktning positive på skolresultat.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:SD:tidiga_insatser_lagstadiet:valfard:skolresultat": {
+    "kind": "claim",
+    "statement": "SD motsätter sig tidiga_insatser_lagstadiet; evidens (systematic_review) talar för riktning negative på skolresultat.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:C:tidiga_insatser_lagstadiet:valfard:skolresultat": {
+    "kind": "claim",
+    "statement": "C motsätter sig tidiga_insatser_lagstadiet; evidens (systematic_review) talar för riktning negative på skolresultat.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:KD:tidiga_insatser_lagstadiet:valfard:skolresultat": {
+    "kind": "claim",
+    "statement": "KD driver tidiga_insatser_lagstadiet; evidens (systematic_review) talar för riktning positive på skolresultat.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:MP:tidiga_insatser_lagstadiet:valfard:skolresultat": {
+    "kind": "claim",
+    "statement": "MP driver tidiga_insatser_lagstadiet; evidens (systematic_review) talar för riktning positive på skolresultat.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:S:behandlingsprogram_kriminalvard:trygghet:aterfall_i_brott": {
+    "kind": "claim",
+    "statement": "S driver behandlingsprogram_kriminalvard; evidens (authority_evaluation) talar för riktning positive på aterfall_i_brott.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:M:behandlingsprogram_kriminalvard:trygghet:aterfall_i_brott": {
+    "kind": "claim",
+    "statement": "M driver behandlingsprogram_kriminalvard; evidens (authority_evaluation) talar för riktning positive på aterfall_i_brott.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:C:behandlingsprogram_kriminalvard:trygghet:aterfall_i_brott": {
+    "kind": "claim",
+    "statement": "C driver behandlingsprogram_kriminalvard; evidens (authority_evaluation) talar för riktning positive på aterfall_i_brott.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:V:behandlingsprogram_kriminalvard:trygghet:aterfall_i_brott": {
+    "kind": "claim",
+    "statement": "V driver behandlingsprogram_kriminalvard; evidens (authority_evaluation) talar för riktning positive på aterfall_i_brott.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:KD:behandlingsprogram_kriminalvard:trygghet:aterfall_i_brott": {
+    "kind": "claim",
+    "statement": "KD driver behandlingsprogram_kriminalvard; evidens (authority_evaluation) talar för riktning positive på aterfall_i_brott.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:L:behandlingsprogram_kriminalvard:trygghet:aterfall_i_brott": {
+    "kind": "claim",
+    "statement": "L driver behandlingsprogram_kriminalvard; evidens (authority_evaluation) talar för riktning positive på aterfall_i_brott.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:MP:behandlingsprogram_kriminalvard:trygghet:aterfall_i_brott": {
+    "kind": "claim",
+    "statement": "MP driver behandlingsprogram_kriminalvard; evidens (authority_evaluation) talar för riktning positive på aterfall_i_brott.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:S:fokuserad_avskrackning_gvi:trygghet:skjutningar_sprangningar": {
+    "kind": "claim",
+    "statement": "S driver fokuserad_avskrackning_gvi; evidens (systematic_review) talar för riktning positive på skjutningar_sprangningar.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:V:fokuserad_avskrackning_gvi:trygghet:skjutningar_sprangningar": {
+    "kind": "claim",
+    "statement": "V driver fokuserad_avskrackning_gvi; evidens (systematic_review) talar för riktning positive på skjutningar_sprangningar.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:MP:fokuserad_avskrackning_gvi:trygghet:skjutningar_sprangningar": {
+    "kind": "claim",
+    "statement": "MP driver fokuserad_avskrackning_gvi; evidens (systematic_review) talar för riktning positive på skjutningar_sprangningar.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:SD:situationell_prevention_utomhusbelysning:trygghet:brottsutsatthet": {
+    "kind": "claim",
+    "statement": "SD driver situationell_prevention_utomhusbelysning; evidens (systematic_review) talar för riktning positive på brottsutsatthet.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:V:situationell_prevention_utomhusbelysning:trygghet:brottsutsatthet": {
+    "kind": "claim",
+    "statement": "V driver situationell_prevention_utomhusbelysning; evidens (systematic_review) talar för riktning positive på brottsutsatthet.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:KD:situationell_prevention_utomhusbelysning:trygghet:brottsutsatthet": {
+    "kind": "claim",
+    "statement": "KD driver situationell_prevention_utomhusbelysning; evidens (systematic_review) talar för riktning positive på brottsutsatthet.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:L:situationell_prevention_utomhusbelysning:trygghet:brottsutsatthet": {
+    "kind": "claim",
+    "statement": "L driver situationell_prevention_utomhusbelysning; evidens (systematic_review) talar för riktning positive på brottsutsatthet.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:MP:situationell_prevention_utomhusbelysning:trygghet:brottsutsatthet": {
+    "kind": "claim",
+    "statement": "MP driver situationell_prevention_utomhusbelysning; evidens (systematic_review) talar för riktning positive på brottsutsatthet.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:S:ateraktiverad_utokad_varnplikt:forsvar:personal_varnpliktiga": {
+    "kind": "claim",
+    "statement": "S driver ateraktiverad_utokad_varnplikt; evidens (authority_evaluation) talar för riktning positive på personal_varnpliktiga.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:M:ateraktiverad_utokad_varnplikt:forsvar:personal_varnpliktiga": {
+    "kind": "claim",
+    "statement": "M driver ateraktiverad_utokad_varnplikt; evidens (authority_evaluation) talar för riktning positive på personal_varnpliktiga.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:SD:ateraktiverad_utokad_varnplikt:forsvar:personal_varnpliktiga": {
+    "kind": "claim",
+    "statement": "SD driver ateraktiverad_utokad_varnplikt; evidens (authority_evaluation) talar för riktning positive på personal_varnpliktiga.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:C:ateraktiverad_utokad_varnplikt:forsvar:personal_varnpliktiga": {
+    "kind": "claim",
+    "statement": "C driver ateraktiverad_utokad_varnplikt; evidens (authority_evaluation) talar för riktning positive på personal_varnpliktiga.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:V:ateraktiverad_utokad_varnplikt:forsvar:personal_varnpliktiga": {
+    "kind": "claim",
+    "statement": "V driver ateraktiverad_utokad_varnplikt; evidens (authority_evaluation) talar för riktning positive på personal_varnpliktiga.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:KD:ateraktiverad_utokad_varnplikt:forsvar:personal_varnpliktiga": {
+    "kind": "claim",
+    "statement": "KD driver ateraktiverad_utokad_varnplikt; evidens (authority_evaluation) talar för riktning positive på personal_varnpliktiga.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:L:ateraktiverad_utokad_varnplikt:forsvar:personal_varnpliktiga": {
+    "kind": "claim",
+    "statement": "L driver ateraktiverad_utokad_varnplikt; evidens (authority_evaluation) talar för riktning positive på personal_varnpliktiga.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:S:tydlig_statlig_styrning_civilt_forsvar:forsvar:civil_beredskap_niva": {
+    "kind": "claim",
+    "statement": "S driver tydlig_statlig_styrning_civilt_forsvar; evidens (authority_evaluation) talar för riktning positive på civil_beredskap_niva.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:M:tydlig_statlig_styrning_civilt_forsvar:forsvar:civil_beredskap_niva": {
+    "kind": "claim",
+    "statement": "M driver tydlig_statlig_styrning_civilt_forsvar; evidens (authority_evaluation) talar för riktning positive på civil_beredskap_niva.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:SD:tydlig_statlig_styrning_civilt_forsvar:forsvar:civil_beredskap_niva": {
+    "kind": "claim",
+    "statement": "SD driver tydlig_statlig_styrning_civilt_forsvar; evidens (authority_evaluation) talar för riktning positive på civil_beredskap_niva.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:V:tydlig_statlig_styrning_civilt_forsvar:forsvar:civil_beredskap_niva": {
+    "kind": "claim",
+    "statement": "V driver tydlig_statlig_styrning_civilt_forsvar; evidens (authority_evaluation) talar för riktning positive på civil_beredskap_niva.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:L:tydlig_statlig_styrning_civilt_forsvar:forsvar:civil_beredskap_niva": {
+    "kind": "claim",
+    "statement": "L driver tydlig_statlig_styrning_civilt_forsvar; evidens (authority_evaluation) talar för riktning positive på civil_beredskap_niva.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:M:koldioxidskatt:klimat:territoriella_utslapp": {
+    "kind": "claim",
+    "statement": "M driver koldioxidskatt; evidens (authority_evaluation) talar för riktning positive på territoriella_utslapp.",
+    "source_name": "Motion 2021/22"
+  },
+  "claim:evidence_effect:M:koldioxidskatt:klimat:utslappsminskning_per_krona": {
+    "kind": "claim",
+    "statement": "M driver koldioxidskatt; evidens (authority_evaluation) talar för riktning positive på utslappsminskning_per_krona.",
+    "source_name": "Motion 2021/22"
+  },
+  "claim:evidence_effect:SD:koldioxidskatt:klimat:territoriella_utslapp": {
+    "kind": "claim",
+    "statement": "SD motsätter sig koldioxidskatt; evidens (authority_evaluation) talar för riktning negative på territoriella_utslapp.",
+    "source_name": "Motion 2022/23"
+  },
+  "claim:evidence_effect:SD:koldioxidskatt:klimat:utslappsminskning_per_krona": {
+    "kind": "claim",
+    "statement": "SD motsätter sig koldioxidskatt; evidens (authority_evaluation) talar för riktning negative på utslappsminskning_per_krona.",
+    "source_name": "Motion 2022/23"
+  },
+  "claim:evidence_effect:V:koldioxidskatt:klimat:territoriella_utslapp": {
+    "kind": "claim",
+    "statement": "V driver koldioxidskatt; evidens (authority_evaluation) talar för riktning positive på territoriella_utslapp.",
+    "source_name": "Budgetmotion 2024/25"
+  },
+  "claim:evidence_effect:V:koldioxidskatt:klimat:utslappsminskning_per_krona": {
+    "kind": "claim",
+    "statement": "V driver koldioxidskatt; evidens (authority_evaluation) talar för riktning positive på utslappsminskning_per_krona.",
+    "source_name": "Budgetmotion 2024/25"
+  },
+  "claim:evidence_effect:KD:koldioxidskatt:klimat:territoriella_utslapp": {
+    "kind": "claim",
+    "statement": "KD driver koldioxidskatt; evidens (authority_evaluation) talar för riktning positive på territoriella_utslapp.",
+    "source_name": "Motion 2020/21"
+  },
+  "claim:evidence_effect:KD:koldioxidskatt:klimat:utslappsminskning_per_krona": {
+    "kind": "claim",
+    "statement": "KD driver koldioxidskatt; evidens (authority_evaluation) talar för riktning positive på utslappsminskning_per_krona.",
+    "source_name": "Motion 2020/21"
+  },
+  "claim:evidence_effect:L:koldioxidskatt:klimat:territoriella_utslapp": {
+    "kind": "claim",
+    "statement": "L driver koldioxidskatt; evidens (authority_evaluation) talar för riktning positive på territoriella_utslapp.",
+    "source_name": "Motion 2021/22"
+  },
+  "claim:evidence_effect:L:koldioxidskatt:klimat:utslappsminskning_per_krona": {
+    "kind": "claim",
+    "statement": "L driver koldioxidskatt; evidens (authority_evaluation) talar för riktning positive på utslappsminskning_per_krona.",
+    "source_name": "Motion 2021/22"
+  },
+  "claim:evidence_effect:MP:koldioxidskatt:klimat:territoriella_utslapp": {
+    "kind": "claim",
+    "statement": "MP driver koldioxidskatt; evidens (authority_evaluation) talar för riktning positive på territoriella_utslapp.",
+    "source_name": "Motion 2024/25"
+  },
+  "claim:evidence_effect:MP:koldioxidskatt:klimat:utslappsminskning_per_krona": {
+    "kind": "claim",
+    "statement": "MP driver koldioxidskatt; evidens (authority_evaluation) talar för riktning positive på utslappsminskning_per_krona.",
+    "source_name": "Motion 2024/25"
+  },
+  "claim:evidence_effect:S:ny_karnkraft:klimat:effektbrist": {
+    "kind": "claim",
+    "statement": "S driver ny_karnkraft; evidens (authority_evaluation) talar för riktning positive på effektbrist.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:M:ny_karnkraft:klimat:effektbrist": {
+    "kind": "claim",
+    "statement": "M driver ny_karnkraft; evidens (authority_evaluation) talar för riktning positive på effektbrist.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:SD:ny_karnkraft:klimat:effektbrist": {
+    "kind": "claim",
+    "statement": "SD driver ny_karnkraft; evidens (authority_evaluation) talar för riktning positive på effektbrist.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:V:ny_karnkraft:klimat:effektbrist": {
+    "kind": "claim",
+    "statement": "V motsätter sig ny_karnkraft; evidens (authority_evaluation) talar för riktning negative på effektbrist.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:KD:ny_karnkraft:klimat:effektbrist": {
+    "kind": "claim",
+    "statement": "KD driver ny_karnkraft; evidens (authority_evaluation) talar för riktning positive på effektbrist.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:L:ny_karnkraft:klimat:effektbrist": {
+    "kind": "claim",
+    "statement": "L driver ny_karnkraft; evidens (authority_evaluation) talar för riktning positive på effektbrist.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:MP:ny_karnkraft:klimat:effektbrist": {
+    "kind": "claim",
+    "statement": "MP motsätter sig ny_karnkraft; evidens (authority_evaluation) talar för riktning negative på effektbrist.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:S:reduktionsplikt_drivmedel:klimat:territoriella_utslapp": {
+    "kind": "claim",
+    "statement": "S driver reduktionsplikt_drivmedel; evidens (authority_evaluation) talar för riktning positive på territoriella_utslapp.",
+    "source_name": "Votering bet. 2023/24"
+  },
+  "claim:evidence_effect:M:reduktionsplikt_drivmedel:klimat:territoriella_utslapp": {
+    "kind": "claim",
+    "statement": "M motsätter sig reduktionsplikt_drivmedel; evidens (authority_evaluation) talar för riktning negative på territoriella_utslapp.",
+    "source_name": "Votering bet. 2023/24"
+  },
+  "claim:evidence_effect:SD:reduktionsplikt_drivmedel:klimat:territoriella_utslapp": {
+    "kind": "claim",
+    "statement": "SD motsätter sig reduktionsplikt_drivmedel; evidens (authority_evaluation) talar för riktning negative på territoriella_utslapp.",
+    "source_name": "Votering bet. 2023/24"
+  },
+  "claim:evidence_effect:C:reduktionsplikt_drivmedel:klimat:territoriella_utslapp": {
+    "kind": "claim",
+    "statement": "C driver reduktionsplikt_drivmedel; evidens (authority_evaluation) talar för riktning positive på territoriella_utslapp.",
+    "source_name": "Votering bet. 2023/24"
+  },
+  "claim:evidence_effect:V:reduktionsplikt_drivmedel:klimat:territoriella_utslapp": {
+    "kind": "claim",
+    "statement": "V driver reduktionsplikt_drivmedel; evidens (authority_evaluation) talar för riktning positive på territoriella_utslapp.",
+    "source_name": "Votering bet. 2023/24"
+  },
+  "claim:evidence_effect:KD:reduktionsplikt_drivmedel:klimat:territoriella_utslapp": {
+    "kind": "claim",
+    "statement": "KD motsätter sig reduktionsplikt_drivmedel; evidens (authority_evaluation) talar för riktning negative på territoriella_utslapp.",
+    "source_name": "Votering bet. 2023/24"
+  },
+  "claim:evidence_effect:L:reduktionsplikt_drivmedel:klimat:territoriella_utslapp": {
+    "kind": "claim",
+    "statement": "L motsätter sig reduktionsplikt_drivmedel; evidens (authority_evaluation) talar för riktning negative på territoriella_utslapp.",
+    "source_name": "Votering bet. 2023/24"
+  },
+  "claim:evidence_effect:MP:reduktionsplikt_drivmedel:klimat:territoriella_utslapp": {
+    "kind": "claim",
+    "statement": "MP driver reduktionsplikt_drivmedel; evidens (authority_evaluation) talar för riktning positive på territoriella_utslapp.",
+    "source_name": "Votering bet. 2023/24"
+  },
+  "claim:evidence_effect:S:aktiveringskrav_ekonomiskt_bistand:integration:bidragsberoende": {
+    "kind": "claim",
+    "statement": "S driver aktiveringskrav_ekonomiskt_bistand; evidens (authority_evaluation) talar för riktning positive på bidragsberoende.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:S:aktiveringskrav_ekonomiskt_bistand:integration:sysselsattningsgap_inrikes_utrikes": {
+    "kind": "claim",
+    "statement": "S driver aktiveringskrav_ekonomiskt_bistand; evidens (authority_evaluation) talar för riktning positive på sysselsattningsgap_inrikes_utrikes.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:M:aktiveringskrav_ekonomiskt_bistand:integration:bidragsberoende": {
+    "kind": "claim",
+    "statement": "M driver aktiveringskrav_ekonomiskt_bistand; evidens (authority_evaluation) talar för riktning positive på bidragsberoende.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:M:aktiveringskrav_ekonomiskt_bistand:integration:sysselsattningsgap_inrikes_utrikes": {
+    "kind": "claim",
+    "statement": "M driver aktiveringskrav_ekonomiskt_bistand; evidens (authority_evaluation) talar för riktning positive på sysselsattningsgap_inrikes_utrikes.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:SD:aktiveringskrav_ekonomiskt_bistand:integration:bidragsberoende": {
+    "kind": "claim",
+    "statement": "SD driver aktiveringskrav_ekonomiskt_bistand; evidens (authority_evaluation) talar för riktning positive på bidragsberoende.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:SD:aktiveringskrav_ekonomiskt_bistand:integration:sysselsattningsgap_inrikes_utrikes": {
+    "kind": "claim",
+    "statement": "SD driver aktiveringskrav_ekonomiskt_bistand; evidens (authority_evaluation) talar för riktning positive på sysselsattningsgap_inrikes_utrikes.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:C:aktiveringskrav_ekonomiskt_bistand:integration:bidragsberoende": {
+    "kind": "claim",
+    "statement": "C driver aktiveringskrav_ekonomiskt_bistand; evidens (authority_evaluation) talar för riktning positive på bidragsberoende.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:C:aktiveringskrav_ekonomiskt_bistand:integration:sysselsattningsgap_inrikes_utrikes": {
+    "kind": "claim",
+    "statement": "C driver aktiveringskrav_ekonomiskt_bistand; evidens (authority_evaluation) talar för riktning positive på sysselsattningsgap_inrikes_utrikes.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:V:aktiveringskrav_ekonomiskt_bistand:integration:bidragsberoende": {
+    "kind": "claim",
+    "statement": "V motsätter sig aktiveringskrav_ekonomiskt_bistand; evidens (authority_evaluation) talar för riktning negative på bidragsberoende.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:V:aktiveringskrav_ekonomiskt_bistand:integration:sysselsattningsgap_inrikes_utrikes": {
+    "kind": "claim",
+    "statement": "V motsätter sig aktiveringskrav_ekonomiskt_bistand; evidens (authority_evaluation) talar för riktning negative på sysselsattningsgap_inrikes_utrikes.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:KD:aktiveringskrav_ekonomiskt_bistand:integration:bidragsberoende": {
+    "kind": "claim",
+    "statement": "KD driver aktiveringskrav_ekonomiskt_bistand; evidens (authority_evaluation) talar för riktning positive på bidragsberoende.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:KD:aktiveringskrav_ekonomiskt_bistand:integration:sysselsattningsgap_inrikes_utrikes": {
+    "kind": "claim",
+    "statement": "KD driver aktiveringskrav_ekonomiskt_bistand; evidens (authority_evaluation) talar för riktning positive på sysselsattningsgap_inrikes_utrikes.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:L:aktiveringskrav_ekonomiskt_bistand:integration:bidragsberoende": {
+    "kind": "claim",
+    "statement": "L driver aktiveringskrav_ekonomiskt_bistand; evidens (authority_evaluation) talar för riktning positive på bidragsberoende.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:L:aktiveringskrav_ekonomiskt_bistand:integration:sysselsattningsgap_inrikes_utrikes": {
+    "kind": "claim",
+    "statement": "L driver aktiveringskrav_ekonomiskt_bistand; evidens (authority_evaluation) talar för riktning positive på sysselsattningsgap_inrikes_utrikes.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:M:riktade_insatser_nyanlanda_elever:integration:skolresultat_utsatta_omraden": {
+    "kind": "claim",
+    "statement": "M driver riktade_insatser_nyanlanda_elever; evidens (authority_evaluation) talar för riktning positive på skolresultat_utsatta_omraden.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:SD:riktade_insatser_nyanlanda_elever:integration:skolresultat_utsatta_omraden": {
+    "kind": "claim",
+    "statement": "SD driver riktade_insatser_nyanlanda_elever; evidens (authority_evaluation) talar för riktning positive på skolresultat_utsatta_omraden.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:C:riktade_insatser_nyanlanda_elever:integration:skolresultat_utsatta_omraden": {
+    "kind": "claim",
+    "statement": "C driver riktade_insatser_nyanlanda_elever; evidens (authority_evaluation) talar för riktning positive på skolresultat_utsatta_omraden.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:V:riktade_insatser_nyanlanda_elever:integration:skolresultat_utsatta_omraden": {
+    "kind": "claim",
+    "statement": "V driver riktade_insatser_nyanlanda_elever; evidens (authority_evaluation) talar för riktning positive på skolresultat_utsatta_omraden.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:KD:riktade_insatser_nyanlanda_elever:integration:skolresultat_utsatta_omraden": {
+    "kind": "claim",
+    "statement": "KD driver riktade_insatser_nyanlanda_elever; evidens (authority_evaluation) talar för riktning positive på skolresultat_utsatta_omraden.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:L:riktade_insatser_nyanlanda_elever:integration:skolresultat_utsatta_omraden": {
+    "kind": "claim",
+    "statement": "L driver riktade_insatser_nyanlanda_elever; evidens (authority_evaluation) talar för riktning positive på skolresultat_utsatta_omraden.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:S:sfi_kombinerat_med_praktik:integration:sysselsattningsgap_inrikes_utrikes": {
+    "kind": "claim",
+    "statement": "S driver sfi_kombinerat_med_praktik; evidens (authority_evaluation) talar för riktning positive på sysselsattningsgap_inrikes_utrikes.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:M:sfi_kombinerat_med_praktik:integration:sysselsattningsgap_inrikes_utrikes": {
+    "kind": "claim",
+    "statement": "M driver sfi_kombinerat_med_praktik; evidens (authority_evaluation) talar för riktning positive på sysselsattningsgap_inrikes_utrikes.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:C:sfi_kombinerat_med_praktik:integration:sysselsattningsgap_inrikes_utrikes": {
+    "kind": "claim",
+    "statement": "C driver sfi_kombinerat_med_praktik; evidens (authority_evaluation) talar för riktning positive på sysselsattningsgap_inrikes_utrikes.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:KD:sfi_kombinerat_med_praktik:integration:sysselsattningsgap_inrikes_utrikes": {
+    "kind": "claim",
+    "statement": "KD driver sfi_kombinerat_med_praktik; evidens (authority_evaluation) talar för riktning positive på sysselsattningsgap_inrikes_utrikes.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:L:sfi_kombinerat_med_praktik:integration:sysselsattningsgap_inrikes_utrikes": {
+    "kind": "claim",
+    "statement": "L driver sfi_kombinerat_med_praktik; evidens (authority_evaluation) talar för riktning positive på sysselsattningsgap_inrikes_utrikes.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:C:sprakpraktik_kombinerad_sprakutbildning_och_arbetspraktik:integration:sysselsattningsgap_inrikes_utrikes": {
+    "kind": "claim",
+    "statement": "C driver sprakpraktik_kombinerad_sprakutbildning_och_arbetspraktik; evidens (authority_evaluation) talar för riktning positive på sysselsattningsgap_inrikes_utrikes.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:V:sprakpraktik_kombinerad_sprakutbildning_och_arbetspraktik:integration:sysselsattningsgap_inrikes_utrikes": {
+    "kind": "claim",
+    "statement": "V driver sprakpraktik_kombinerad_sprakutbildning_och_arbetspraktik; evidens (authority_evaluation) talar för riktning positive på sysselsattningsgap_inrikes_utrikes.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:KD:sprakpraktik_kombinerad_sprakutbildning_och_arbetspraktik:integration:sysselsattningsgap_inrikes_utrikes": {
+    "kind": "claim",
+    "statement": "KD driver sprakpraktik_kombinerad_sprakutbildning_och_arbetspraktik; evidens (authority_evaluation) talar för riktning positive på sysselsattningsgap_inrikes_utrikes.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:MP:sprakpraktik_kombinerad_sprakutbildning_och_arbetspraktik:integration:sysselsattningsgap_inrikes_utrikes": {
+    "kind": "claim",
+    "statement": "MP driver sprakpraktik_kombinerad_sprakutbildning_och_arbetspraktik; evidens (authority_evaluation) talar för riktning positive på sysselsattningsgap_inrikes_utrikes.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:S:atgarder_mot_otillaten_paverkan_offentlig_sektor:demokrati:korruption": {
+    "kind": "claim",
+    "statement": "S driver atgarder_mot_otillaten_paverkan_offentlig_sektor; evidens (expert_opinion) talar för riktning positive på korruption.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:C:atgarder_mot_otillaten_paverkan_offentlig_sektor:demokrati:korruption": {
+    "kind": "claim",
+    "statement": "C driver atgarder_mot_otillaten_paverkan_offentlig_sektor; evidens (expert_opinion) talar för riktning positive på korruption.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:L:atgarder_mot_otillaten_paverkan_offentlig_sektor:demokrati:korruption": {
+    "kind": "claim",
+    "statement": "L driver atgarder_mot_otillaten_paverkan_offentlig_sektor; evidens (expert_opinion) talar för riktning positive på korruption.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:MP:atgarder_mot_otillaten_paverkan_offentlig_sektor:demokrati:korruption": {
+    "kind": "claim",
+    "statement": "MP driver atgarder_mot_otillaten_paverkan_offentlig_sektor; evidens (expert_opinion) talar för riktning positive på korruption.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:S:starkt_oberoende_granskning_och_insyn:demokrati:korruption": {
+    "kind": "claim",
+    "statement": "S driver starkt_oberoende_granskning_och_insyn; evidens (expert_opinion) talar för riktning positive på korruption.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:M:starkt_oberoende_granskning_och_insyn:demokrati:korruption": {
+    "kind": "claim",
+    "statement": "M driver starkt_oberoende_granskning_och_insyn; evidens (expert_opinion) talar för riktning positive på korruption.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:SD:starkt_oberoende_granskning_och_insyn:demokrati:korruption": {
+    "kind": "claim",
+    "statement": "SD driver starkt_oberoende_granskning_och_insyn; evidens (expert_opinion) talar för riktning positive på korruption.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:C:starkt_oberoende_granskning_och_insyn:demokrati:korruption": {
+    "kind": "claim",
+    "statement": "C driver starkt_oberoende_granskning_och_insyn; evidens (expert_opinion) talar för riktning positive på korruption.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:V:starkt_oberoende_granskning_och_insyn:demokrati:korruption": {
+    "kind": "claim",
+    "statement": "V driver starkt_oberoende_granskning_och_insyn; evidens (expert_opinion) talar för riktning positive på korruption.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:KD:starkt_oberoende_granskning_och_insyn:demokrati:korruption": {
+    "kind": "claim",
+    "statement": "KD driver starkt_oberoende_granskning_och_insyn; evidens (expert_opinion) talar för riktning positive på korruption.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:L:starkt_oberoende_granskning_och_insyn:demokrati:korruption": {
+    "kind": "claim",
+    "statement": "L driver starkt_oberoende_granskning_och_insyn; evidens (expert_opinion) talar för riktning positive på korruption.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:MP:starkt_oberoende_granskning_och_insyn:demokrati:korruption": {
+    "kind": "claim",
+    "statement": "MP driver starkt_oberoende_granskning_och_insyn; evidens (expert_opinion) talar för riktning positive på korruption.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:S:systematiskt_antikorruptionsarbete_kommuner_regioner:demokrati:korruption": {
+    "kind": "claim",
+    "statement": "S driver systematiskt_antikorruptionsarbete_kommuner_regioner; evidens (expert_opinion) talar för riktning positive på korruption.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:SD:systematiskt_antikorruptionsarbete_kommuner_regioner:demokrati:korruption": {
+    "kind": "claim",
+    "statement": "SD driver systematiskt_antikorruptionsarbete_kommuner_regioner; evidens (expert_opinion) talar för riktning positive på korruption.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:C:systematiskt_antikorruptionsarbete_kommuner_regioner:demokrati:korruption": {
+    "kind": "claim",
+    "statement": "C driver systematiskt_antikorruptionsarbete_kommuner_regioner; evidens (expert_opinion) talar för riktning positive på korruption.",
+    "source_name": "Riksdagen"
+  },
+  "claim:evidence_effect:L:systematiskt_antikorruptionsarbete_kommuner_regioner:demokrati:korruption": {
+    "kind": "claim",
+    "statement": "L driver systematiskt_antikorruptionsarbete_kommuner_regioner; evidens (expert_opinion) talar för riktning positive på korruption.",
+    "source_name": "Riksdagen"
+  }
+}

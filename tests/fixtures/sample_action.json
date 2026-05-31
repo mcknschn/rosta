@@ -1,0 +1,12 @@
+{
+  "id": "action:M:forsvar:2023:UO6:budgetrad",
+  "party": "M",
+  "kind": "budgetrad",
+  "category": "forsvar",
+  "submeasure": "ekonomisk_ambition",
+  "period": "2023",
+  "expenditure_area": "UO6",
+  "amount_sek": 12000000000,
+  "outcome": "bifall",
+  "source_ref": "riksdag:prop:2023/24:1:UO6"
+}

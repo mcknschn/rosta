@@ -1,0 +1,24 @@
+# Rådata och lokal warehouse — stannar lokalt, deployas ALDRIG (se DATA.md)
+/data/
+*.duckdb
+*.duckdb.wal
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+
+# OS/editor
+.DS_Store
+Thumbs.db
+
+# Frontend dev-deps + Playwright-artefakter (web/ test:e2e) — endast källkod committas
+web/node_modules/
+web/test-results/
+web/playwright-report/
+web/blob-report/
+web/.playwright/
+
+# Obs: /dist/ (scores.json + evidence.json) är deploy-artefakten och versionshanteras.

@@ -1,0 +1,176 @@
+# Rösta — föreslagna utgiftsramar per utgiftsområde (UO), per parti, per budgetår.
+# Matar delpoäng A:s a1 (budgetprioritering). Se pipeline/budget.py + docs/fas1b_budget_metod.md.
+#
+# VERSION 0 — kräver mänsklig slutgranskning (som config/party_positions.yaml). Beloppen är
+# MANUELLT transkriberade ur officiella källor (FiU1 rambeslut + partiernas budgetmotioner) och
+# adversariellt verifierade mot källtexten. INGEN runtime-parser av budgetdokument finns: en
+# bräcklig parser får aldrig korrumpera A (tyngsta delpoängen). Inga belopp imputeras eller
+# jämkas; varje frame citerar exakt sin källrad. Saknad/ogiltig cell -> hård fail i a1_shares.
+#
+# Struktur:
+#   unit: beloppens enhet (alla frames i samma enhet; relativa andelar är enhetsoberoende)
+#
+
+budget_years:
+  2025:
+    decided_in: "bet. 2024/25:FiU1 (Statens budget 2025 – Rambeslutet)"
+    # Föreslagna utgiftsramar per UO (miljoner kronor) ur bet. 2024/25:FiU1 tabell 35.
+    # Regeringens förslag absolut; opposition = regeringen + partiets avvikelse (mekanisk
+    # normalisering, ingen imputation). Endast UO1–27 (summarader uteslutna).
+    ramar:
+      regeringen:
+        source_ref: "riksdag:prop:2024/25:1 (regeringens förslag, bet. 2024/25:FiU1 tabell 35)"
+        UO1: 20131     # Rikets styrelse
+        UO2: 21734     # Samhällsekonomi och finansförvaltning
+        UO3: 14812     # Skatt, tull och exekution
+        UO4: 86792     # Rättsväsendet
+        UO5: 2278      # Internationell samverkan
+        UO6: 169680    # Försvar och samhällets krisberedskap
+        UO7: 44500     # Internationellt bistånd
+        UO8: 11938     # Migration
+        UO9: 120255    # Hälsovård, sjukvård och social omsorg
+        UO10: 123059    # Ekonomisk trygghet vid sjukdom
+        UO11: 62890     # Ekonomisk trygghet vid ålderdom
+        UO12: 104531    # Ekonomisk trygghet för familjer och barn
+        UO13: 6266      # Integration och jämställdhet
+        UO14: 93539     # Arbetsmarknad och arbetsliv
+        UO15: 33793     # Studiestöd
+        UO16: 103845    # Utbildning och universitetsforskning
+        UO17: 16862     # Kultur, medier, trossamfund och fritid
+        UO18: 3240      # Samhällsplanering, bostäder, byggande
+        UO19: 4294      # Regional utveckling
+        UO20: 16439     # Klimat, miljö och natur
+        UO21: 6631      # Energi
+        UO22: 94447     # Kommunikationer
+        UO23: 21698     # Areella näringar, landsbygd och livsmedel
+        UO24: 8315      # Näringsliv
+        UO25: 173107    # Allmänna bidrag till kommuner
+        UO26: 28755     # Statsskuldsräntor m.m.
+        UO27: 47762     # Avgiften till Europeiska unionen
+      S:
+        source_ref: "riksdag:bet:2024/25:FiU1:tabell35 (regeringen + S avvikelse; S budgetmotion 2024/25)"
+        UO1: 19851     # Rikets styrelse
+        UO2: 21784     # Samhällsekonomi och finansförvaltning
+        UO3: 14812     # Skatt, tull och exekution
+        UO4: 86937     # Rättsväsendet
+        UO5: 2278      # Internationell samverkan
+        UO6: 169680    # Försvar och samhällets krisberedskap
+        UO7: 45500     # Internationellt bistånd
+        UO8: 11938     # Migration
+        UO9: 120618    # Hälsovård, sjukvård och social omsorg
+        UO10: 123293    # Ekonomisk trygghet vid sjukdom
+        UO11: 63940     # Ekonomisk trygghet vid ålderdom
+        UO12: 109900    # Ekonomisk trygghet för familjer och barn
+        UO13: 6358      # Integration och jämställdhet
+        UO14: 94556     # Arbetsmarknad och arbetsliv
+        UO15: 34567     # Studiestöd
+        UO16: 108555    # Utbildning och universitetsforskning
+        UO17: 18558     # Kultur, medier, trossamfund och fritid
+        UO18: 3750      # Samhällsplanering, bostäder, byggande
+        UO19: 6914      # Regional utveckling
+        UO20: 17739     # Klimat, miljö och natur
+        UO21: 6731      # Energi
+        UO22: 96122     # Kommunikationer
+        UO23: 21853     # Areella näringar, landsbygd och livsmedel
+        UO24: 8495      # Näringsliv
+        UO25: 181233    # Allmänna bidrag till kommuner
+        UO26: 28755     # Statsskuldsräntor m.m.
+        UO27: 47762     # Avgiften till Europeiska unionen
+      V:
+        source_ref: "riksdag:bet:2024/25:FiU1:tabell35 (regeringen + V avvikelse; V budgetmotion 2024/25)"
+        UO1: 20447     # Rikets styrelse
+        UO2: 21878     # Samhällsekonomi och finansförvaltning
+        UO3: 14912     # Skatt, tull och exekution
+        UO4: 86887     # Rättsväsendet
+        UO5: 2330      # Internationell samverkan
+        UO6: 169680    # Försvar och samhällets krisberedskap
+        UO7: 55099     # Internationellt bistånd
+        UO8: 12043     # Migration
+        UO9: 126533    # Hälsovård, sjukvård och social omsorg
+        UO10: 139109    # Ekonomisk trygghet vid sjukdom
+        UO11: 66190     # Ekonomisk trygghet vid ålderdom
+        UO12: 118919    # Ekonomisk trygghet för familjer och barn
+        UO13: 7835      # Integration och jämställdhet
+        UO14: 112210    # Arbetsmarknad och arbetsliv
+        UO15: 34413     # Studiestöd
+        UO16: 109230    # Utbildning och universitetsforskning
+        UO17: 19229     # Kultur, medier, trossamfund och fritid
+        UO18: 10111     # Samhällsplanering, bostäder, byggande
+        UO19: 4464      # Regional utveckling
+        UO20: 31925     # Klimat, miljö och natur
+        UO21: 10936     # Energi
+        UO22: 109894    # Kommunikationer
+        UO23: 24705     # Areella näringar, landsbygd och livsmedel
+        UO24: 8842      # Näringsliv
+        UO25: 179754    # Allmänna bidrag till kommuner
+        UO26: 28755     # Statsskuldsräntor m.m.
+        UO27: 47762     # Avgiften till Europeiska unionen
+      C:
+        source_ref: "riksdag:bet:2024/25:FiU1:tabell35 (regeringen + C avvikelse; C budgetmotion 2024/25)"
+        UO1: 19551     # Rikets styrelse
+        UO2: 21730     # Samhällsekonomi och finansförvaltning
+        UO3: 14642     # Skatt, tull och exekution
+        UO4: 87242     # Rättsväsendet
+        UO5: 2278      # Internationell samverkan
+        UO6: 170030    # Försvar och samhällets krisberedskap
+        UO7: 46203     # Internationellt bistånd
+        UO8: 11833     # Migration
+        UO9: 120566    # Hälsovård, sjukvård och social omsorg
+        UO10: 122299    # Ekonomisk trygghet vid sjukdom
+        UO11: 62890     # Ekonomisk trygghet vid ålderdom
+        UO12: 103231    # Ekonomisk trygghet för familjer och barn
+        UO13: 6846      # Integration och jämställdhet
+        UO14: 78065     # Arbetsmarknad och arbetsliv
+        UO15: 33706     # Studiestöd
+        UO16: 108932    # Utbildning och universitetsforskning
+        UO17: 17607     # Kultur, medier, trossamfund och fritid
+        UO18: 3250      # Samhällsplanering, bostäder, byggande
+        UO19: 4349      # Regional utveckling
+        UO20: 21429     # Klimat, miljö och natur
+        UO21: 6986      # Energi
+        UO22: 95447     # Kommunikationer
+        UO23: 22038     # Areella näringar, landsbygd och livsmedel
+        UO24: 8340      # Näringsliv
+        UO25: 178407    # Allmänna bidrag till kommuner
+        UO26: 28755     # Statsskuldsräntor m.m.
+        UO27: 47762     # Avgiften till Europeiska unionen
+      MP:
+        source_ref: "riksdag:bet:2024/25:FiU1:tabell35 (regeringen + MP avvikelse; MP budgetmotion 2024/25)"
+        UO1: 20342     # Rikets styrelse
+        UO2: 21784     # Samhällsekonomi och finansförvaltning
+        UO3: 14812     # Skatt, tull och exekution
+        UO4: 88419     # Rättsväsendet
+        UO5: 2356      # Internationell samverkan
+        UO6: 170554    # Försvar och samhällets krisberedskap
+        UO7: 57009     # Internationellt bistånd
+        UO8: 12295     # Migration
+        UO9: 132550    # Hälsovård, sjukvård och social omsorg
+        UO10: 126863    # Ekonomisk trygghet vid sjukdom
+        UO11: 62890     # Ekonomisk trygghet vid ålderdom
+        UO12: 111825    # Ekonomisk trygghet för familjer och barn
+        UO13: 9291      # Integration och jämställdhet
+        UO14: 95521     # Arbetsmarknad och arbetsliv
+        UO15: 36138     # Studiestöd
+        UO16: 109308    # Utbildning och universitetsforskning
+        UO17: 19755     # Kultur, medier, trossamfund och fritid
+        UO18: 13779     # Samhällsplanering, bostäder, byggande
+        UO19: 4394      # Regional utveckling
+        UO20: 40600     # Klimat, miljö och natur
+        UO21: 19980     # Energi
+        UO22: 133824    # Kommunikationer
+        UO23: 25431     # Areella näringar, landsbygd och livsmedel
+        UO24: 8668      # Näringsliv
+        UO25: 174073    # Allmänna bidrag till kommuner
+        UO26: 28755     # Statsskuldsräntor m.m.
+        UO27: 47762     # Avgiften till Europeiska unionen
+    party_frame:
+      # M/KD/L = regeringsparti; SD = Tidö-stödparti, röstade Ja till rambeslutet (votering
+      # bet. 2024/25:FiU1 punkt 2: M/SD/KD/L Ja). S/V/C/MP = egen budgetmotion 2024/25.
+      M:  { frame: regeringen, role: government, note: "regeringsparti (prop. 2024/25:1)" }
+      KD: { frame: regeringen, role: government, note: "regeringsparti" }
+      L:  { frame: regeringen, role: government, note: "regeringsparti" }
+      SD: { frame: regeringen, role: support, note: "Tidöavtalet; Ja till rambeslutet (votering bet. 2024/25:FiU1 punkt 2)" }
+      S:  { frame: S, role: opposition, note: "egen budgetmotion 2024/25" }
+      V:  { frame: V, role: opposition, note: "egen budgetmotion 2024/25" }
+      C:  { frame: C, role: opposition, note: "egen budgetmotion 2024/25" }
+      MP: { frame: MP, role: opposition, note: "egen budgetmotion 2024/25" }

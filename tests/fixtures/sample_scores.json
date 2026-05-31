@@ -1,0 +1,22 @@
+{
+  "meta": {
+    "generated": "2026-05-29",
+    "window": "2014-2026",
+    "parties": ["S", "M", "SD", "C", "V", "KD", "L", "MP"],
+    "model_version": 1
+  },
+  "categories": [
+    { "id": "ekonomi", "name": "Ekonomi och jobb", "submeasures": ["sysselsattning_arbetsloshet", "bnp_produktivitet"] }
+  ],
+  "scores": {
+    "M": {
+      "ekonomi": {
+        "score": 4.0,
+        "ci": [3.6, 4.3],
+        "components": { "A": 4.1, "B": 3.8, "C": 4.2, "D": 3.9 },
+        "claim_refs": ["claim:action:M:ekonomi:2023:UO14"],
+        "evidence_refs": ["scb:AKU:2025"]
+      }
+    }
+  }
+}

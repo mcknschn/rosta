@@ -1,0 +1,53 @@
+# Rösta — claim-typer, evidensnivåer och tolkningsregler
+#
+# Claims är intern, normaliserad bevisdata: små, källbackade påståenden som
+# byggs deterministiskt från rådata (voteringar, budgetposter, indikatorserier,
+# utvärderingar). Ett claim får ALDRIG vara ett fristående omdöme utan källstöd.
+# Varje tolkningsregel som ett claim vilar på ska finnas här eller i scoring.yaml.
+
+version: 1
+
+# Tillåtna claim-typer.
+claim_types:
+  action:          Konkret agerande — votering, motion, budgetrad, regeringsbeslut.
+  claimed_effect:  Partiet påstår att ett förslag ger en viss indikatoreffekt.
+  evidence_effect: Källa stödjer/motsäger att en åtgärdstyp påverkar en indikator.
+  responsibility:  Partiet hade ansvar (regering nat. / region / kommun) under en period.
+  observed_result: Uppmätt förändring i en indikator under en period.
+
+# Tillåtna etiketter på fält.
+enums:
+  direction: [positive, negative, mixed, unclear]   # relativt indikatorns positiva riktning
+  effect_strength: [low, medium, high, unknown]
+  confidence: [low, medium, high]
+
+# Evidensnivå -> vikt i evidenssammanvägningen. Speglar källtypen i evidensliggaren.
+# Endast officiella svenska myndigheter + svensk akademi (se DATA.md sektion 3).
+evidence_levels:
+  systematic_review:     1.0   # systematisk forskningsöversikt (t.ex. SBU)
+  authority_evaluation:  0.8   # myndighetsutvärdering (IFAU, Brå, Vårdanalys, Riksrevisionen, ESO)
+  single_study_report:   0.5   # enskild rapport/utvärdering
+  descriptive_statistic: 0.4   # beskrivande officiell statistik
+  expert_opinion:        0.2   # expertbedömning från myndighet/akademi
+
+# Numerisk mappning för aggregering.
+numeric:
+  effect_strength: { low: 0.3, medium: 0.6, high: 1.0, unknown: 0.0 }
+  confidence:      { low: 0.3, medium: 0.6, high: 0.85 }
+
+# Aggregering av claims -> indicator_effects.
+# För varje (parti, kategori, indikator):
+#   raw = Σ supporting (evidence_level * effect_strength * confidence * signed_direction)
+#       - Σ contradicting (samma vikt)
+#   net_support = clamp(raw / normalizer, -1, 1)
+#   confidence  = viktat medel av ingående claims confidence
+aggregation:
+  signed_direction: { positive: 1, negative: -1, mixed: 0, unclear: 0 }
+  normalizer: sum_of_abs_weights   # gör net_support skalinvariant mot antalet claims
+  min_claims_for_high_confidence: 3
+
+# Spårbarhetskrav som hävdas i tester och review.
+integrity:
+  require_source_refs: true        # varje claim måste ha minst en source_ref
+  forbid_freestanding_judgement: true
+  rules_must_be_versioned: true

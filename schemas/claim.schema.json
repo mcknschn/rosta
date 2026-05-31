@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "claim.schema.json",
+  "title": "Claim",
+  "description": "Ett litet, källbackat och granskningsbart påstående. Får aldrig vara ett fristående omdöme utan source_refs.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "type", "statement", "source_refs"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^claim:" },
+    "type": { "type": "string", "enum": ["action", "claimed_effect", "evidence_effect", "responsibility", "observed_result"] },
+    "party": { "type": "string" },
+    "category": { "type": "string" },
+    "submeasure": { "type": "string" },
+    "indicator": { "type": "string" },
+    "period": { "type": "string" },
+    "statement": { "type": "string", "minLength": 1 },
+    "direction": { "type": "string", "enum": ["positive", "negative", "mixed", "unclear"] },
+    "effect_strength": { "type": "string", "enum": ["low", "medium", "high", "unknown"] },
+    "evidence_level": { "type": "string", "enum": ["systematic_review", "authority_evaluation", "single_study_report", "descriptive_statistic", "expert_opinion"] },
+    "confidence": { "type": "string", "enum": ["low", "medium", "high"] },
+    "source_refs": { "type": "array", "minItems": 1, "items": { "type": "string" } }
+  }
+}

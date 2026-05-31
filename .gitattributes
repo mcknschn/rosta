@@ -1,0 +1,4 @@
+# Normalisera radslut till LF i repot. CI kör på Linux (ubuntu-latest) och
+# pipelinen kräver deterministisk, byte-identisk output — enhetliga radslut
+# håller diffar och content-hashar stabila oavsett bidragsgivarens OS.
+* text=auto eol=lf

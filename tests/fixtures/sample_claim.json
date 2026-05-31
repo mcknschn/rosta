@@ -1,0 +1,15 @@
+{
+  "id": "claim:action:M:forsvar:2023:UO6",
+  "type": "action",
+  "party": "M",
+  "category": "forsvar",
+  "submeasure": "ekonomisk_ambition",
+  "indicator": "forsvarsanslag_andel_bnp",
+  "period": "2023",
+  "statement": "Moderaterna föreslog ökade anslag till utgiftsområde 6 i sin budgetmotion 2023.",
+  "direction": "positive",
+  "effect_strength": "medium",
+  "evidence_level": "descriptive_statistic",
+  "confidence": "high",
+  "source_refs": ["riksdag:motion:2023/24:Fi:UO6"]
+}

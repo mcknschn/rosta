@@ -1,0 +1,180 @@
+# Rösta — kategorimodell (maskinläsbar transkription av IDEA.md)
+#
+# Detta är den auktoritativa kodifieringen av modellen i IDEA.md:
+#   - 7 huvudkategorier med standardvikt (väljaren kan ändra vikterna vid körning)
+#   - submått per kategori med vikt inom kategorin (summerar till 100)
+#   - indikatorer med positiv riktning (up | down | target)
+#
+# Riktning:
+#   up     = högre värde är bättre
+#   down   = lägre värde är bättre
+#   target = bäst nära en målnivå, inte extremvärde (se note)
+#
+# Standardvikterna summerar till 100. Submåttsvikterna summerar till 100 per kategori.
+# Testas i tests/test_config.py.
+
+meta:
+  version: 1
+  source_doc: IDEA.md
+  score_scale: [0, 5]          # varje parti betygsätts 0-5 per kategori
+  weight_unit: percent
+
+# Delpoängvikter (IDEA.md "Grundformel"). Se config/scoring.yaml för full scoringlogik.
+subscore_weights:
+  A_agerande: 40
+  B_evidens: 35
+  C_ansvar: 15
+  D_resultat: 10
+
+parties:
+  - { code: S,  name: Socialdemokraterna }
+  - { code: M,  name: Moderaterna }
+  - { code: SD, name: Sverigedemokraterna }
+  - { code: C,  name: Centerpartiet }
+  - { code: V,  name: Vänsterpartiet }
+  - { code: KD, name: Kristdemokraterna }
+  - { code: L,  name: Liberalerna }
+  - { code: MP, name: Miljöpartiet }
+
+categories:
+  - id: ekonomi
+    name: Ekonomi och jobb
+    standard_weight: 20
+    description: Tillväxt, inflation, arbetslöshet, reallöner, statsfinanser
+    caveat: Ett parti ska inte få hela äran eller skulden för konjunkturen.
+    submeasures:
+      - { id: sysselsattning_arbetsloshet, name: Sysselsättning och arbetslöshet, weight: 25 }
+      - { id: bnp_produktivitet,           name: BNP per capita och produktivitet, weight: 20 }
+      - { id: realloner_hushall,           name: Reallöner och hushållens ekonomi, weight: 20 }
+      - { id: inflation_prisstabilitet,    name: Inflation och prisstabilitet, weight: 15 }
+      - { id: offentliga_finanser,         name: Offentliga finanser och långsiktig hållbarhet, weight: 20 }
+    indicators:
+      - { id: sysselsattning,       submeasure: sysselsattning_arbetsloshet, direction: up }
+      - { id: arbetsloshet,         submeasure: sysselsattning_arbetsloshet, direction: down }
+      - { id: bnp_per_capita,       submeasure: bnp_produktivitet, direction: up }
+      - { id: produktivitet,        submeasure: bnp_produktivitet, direction: up }
+      - { id: realloner,            submeasure: realloner_hushall, direction: up }
+      - { id: inflation,            submeasure: inflation_prisstabilitet, direction: target, note: "Nära målet (~2 %), inte bara lägst" }
+      - { id: statsskuld_underskott, submeasure: offentliga_finanser, direction: target, note: "Hållbar nivå" }
+
+  - id: valfard
+    name: Välfärd
+    standard_weight: 20
+    description: Vård, skola, omsorg, kommuner, regioner
+    caveat: Mer pengar är inte automatiskt bättre, men underfinansiering kan vara direkt skadligt.
+    submeasures:
+      - { id: vard_tillganglighet,   name: Vårdens tillgänglighet och kvalitet, weight: 30 }
+      - { id: skola_kunskap,         name: Skolans kunskap och likvärdighet, weight: 30 }
+      - { id: omsorg_personal,       name: Omsorg och personalförsörjning, weight: 20 }
+      - { id: finansiering_styrning, name: Finansiering, styrning och anti-fusk, weight: 20 }
+    indicators:
+      - { id: vardkoer,                  submeasure: vard_tillganglighet, direction: down }
+      - { id: vard_i_tid,                submeasure: vard_tillganglighet, direction: up }
+      - { id: overlevnad_svar_sjukdom,   submeasure: vard_tillganglighet, direction: up }
+      - { id: skolresultat,              submeasure: skola_kunskap, direction: up }
+      - { id: skillnader_mellan_skolor,  submeasure: skola_kunskap, direction: down }
+      - { id: behoriga_larare,           submeasure: skola_kunskap, direction: up }
+      - { id: personalomsattning_omsorg, submeasure: omsorg_personal, direction: down }
+      - { id: valfardsbrottslighet,      submeasure: finansiering_styrning, direction: down }
+
+  - id: trygghet
+    name: Lag och trygghet
+    standard_weight: 15
+    description: Brott, rättsväsende, trygghet, återfall, utsatthet
+    caveat: Anmälda brott är inte alltid samma sak som faktisk brottslighet.
+    submeasures:
+      - { id: grov_brottslighet,           name: Grov brottslighet och våldsbrott, weight: 30 }
+      - { id: utsatthet_trygghet,          name: Utsatthet och upplevd trygghet, weight: 20 }
+      - { id: rattsvasendets_effektivitet, name: Rättsväsendets effektivitet, weight: 20 }
+      - { id: forebyggande,                name: Förebyggande arbete, weight: 15 }
+      - { id: aterfall_kriminalvard,       name: Återfall och kriminalvård, weight: 15 }
+    indicators:
+      - { id: dodligt_vald,            submeasure: grov_brottslighet, direction: down }
+      - { id: skjutningar_sprangningar, submeasure: grov_brottslighet, direction: down }
+      - { id: brottsutsatthet,         submeasure: utsatthet_trygghet, direction: down }
+      - { id: upplevd_otrygghet,       submeasure: utsatthet_trygghet, direction: down }
+      - { id: uppklaringsgrad,         submeasure: rattsvasendets_effektivitet, direction: up }
+      - { id: handlaggningstid,        submeasure: rattsvasendets_effektivitet, direction: down }
+      - { id: aterfall_i_brott,        submeasure: aterfall_kriminalvard, direction: down }
+
+  - id: forsvar
+    name: Försvar och beredskap
+    standard_weight: 15
+    description: Militärt försvar, Nato, Ukraina, civilförsvar, krisberedskap
+    caveat: Försvar ska inte mätas bara i pengar. Det centrala är faktisk operativ förmåga.
+    submeasures:
+      - { id: militar_formaga,          name: Militär förmåga, weight: 35 }
+      - { id: ekonomisk_ambition,       name: Ekonomisk ambitionsnivå och långsiktig finansiering, weight: 25 }
+      - { id: civil_beredskap,          name: Civil beredskap, weight: 20 }
+      - { id: nato_ukraina,             name: Nato, Ukraina och internationell trovärdighet, weight: 15 }
+      - { id: genomforbarhet_leverans,  name: Genomförbarhet och leveranstakt, weight: 5 }
+    indicators:
+      - { id: forsvarsanslag_andel_bnp, submeasure: ekonomisk_ambition, direction: target, note: "Upp till beslutad målnivå" }
+      - { id: personal_varnpliktiga,    submeasure: militar_formaga, direction: up, note: "Om utbildningskapacitet finns" }
+      - { id: materiel_formaga,         submeasure: militar_formaga, direction: up, note: "Ammunition, luftvärn, logistik, cyberförmåga" }
+      - { id: civil_beredskap_niva,     submeasure: civil_beredskap, direction: up, note: "Vård, energi, mat, transporter" }
+      - { id: ukraina_stod,             submeasure: nato_ukraina, direction: up, note: "Givet svensk uthållighet" }
+      - { id: leveranstid_materiel,     submeasure: genomforbarhet_leverans, direction: down }
+      - { id: nato_interoperabilitet,   submeasure: nato_ukraina, direction: up }
+
+  - id: klimat
+    name: Klimat, miljö och energi
+    standard_weight: 12.5
+    description: Utsläpp, energi, elpriser, biologisk mångfald, omställning
+    caveat: Klimatpolitik bör vägas mot försörjningstrygghet, kostnad och industriell konkurrenskraft.
+    submeasures:
+      - { id: utslappsminskningar,         name: Utsläppsminskningar, weight: 30 }
+      - { id: energi_elpriser,             name: Energiförsörjning och elpriser, weight: 25 }
+      - { id: kostnadseffektivitet,        name: Omställningens kostnadseffektivitet, weight: 15 }
+      - { id: biologisk_mangfald,          name: Biologisk mångfald och natur, weight: 15 }
+      - { id: industriell_konkurrenskraft, name: Industriell konkurrenskraft i omställningen, weight: 15 }
+    indicators:
+      - { id: territoriella_utslapp,        submeasure: utslappsminskningar, direction: down }
+      - { id: konsumtionsbaserade_utslapp,  submeasure: utslappsminskningar, direction: down }
+      - { id: fossil_energianvandning,      submeasure: energi_elpriser, direction: down }
+      - { id: elprisvolatilitet,            submeasure: energi_elpriser, direction: down }
+      - { id: effektbrist,                  submeasure: energi_elpriser, direction: down }
+      - { id: utslappsminskning_per_krona,  submeasure: kostnadseffektivitet, direction: up }
+      - { id: hotade_arter_naturforlust,    submeasure: biologisk_mangfald, direction: down }
+
+  - id: integration
+    name: Integration och social sammanhållning
+    standard_weight: 10
+    description: Arbete, språk, skolsegregation, självförsörjning, tillit
+    caveat: Här finns stor risk för ideologisk bias. Därför måste indikatorerna vara extra tydliga.
+    submeasures:
+      - { id: arbete_sjalvforsorjning, name: Arbete och självförsörjning, weight: 30 }
+      - { id: skola_sprak,             name: Skola, språk och utbildning, weight: 25 }
+      - { id: boendesegregation,       name: Boendesegregation och trygghet, weight: 20 }
+      - { id: normer_tillit,           name: Normer, tillit och samhällsgemenskap, weight: 15 }
+      - { id: migrationssystem,        name: Migrationssystemets hållbarhet, weight: 10 }
+    indicators:
+      - { id: sysselsattningsgap_inrikes_utrikes, submeasure: arbete_sjalvforsorjning, direction: down }
+      - { id: sjalvforsorjningsgrad,              submeasure: arbete_sjalvforsorjning, direction: up }
+      - { id: bidragsberoende,                    submeasure: arbete_sjalvforsorjning, direction: down }
+      - { id: sfi_sprakkunskaper,                 submeasure: skola_sprak, direction: up }
+      - { id: skolresultat_utsatta_omraden,       submeasure: skola_sprak, direction: up }
+      - { id: trangboddhet,                       submeasure: boendesegregation, direction: down }
+      - { id: segregation,                        submeasure: boendesegregation, direction: down }
+      - { id: tillit_valdeltagande,               submeasure: normer_tillit, direction: up }
+
+  - id: demokrati
+    name: Frihet, demokrati och institutioner
+    standard_weight: 7.5
+    description: Rättsstat, medier, personlig frihet, korruption, myndighetstillit
+    caveat: >-
+      En av de svåraste men viktigaste kategorierna. Ett parti kan ha bra sakpolitik
+      men ändå vara riskabelt om det försvagar institutioner.
+    submeasures:
+      - { id: rattsstat_maktdelning,  name: Rättsstat och maktdelning, weight: 25 }
+      - { id: korruption_tillit,      name: Korruption och myndighetstillit, weight: 20 }
+      - { id: yttrandefrihet_medier,  name: Yttrandefrihet och medier, weight: 20 }
+      - { id: personlig_frihet,       name: Personlig frihet och integritet, weight: 20 }
+      - { id: transparens_ansvar,     name: Transparens och ansvarsutkrävande, weight: 15 }
+    indicators:
+      - { id: korruption,                       submeasure: korruption_tillit, direction: down }
+      - { id: fortroende_domstolar_myndigheter, submeasure: korruption_tillit, direction: up }
+      - { id: mediefrihet,                      submeasure: yttrandefrihet_medier, direction: up }
+      - { id: politisk_transparens,             submeasure: transparens_ansvar, direction: up }
+      - { id: otillborlig_politisering,         submeasure: rattsstat_maktdelning, direction: down }
+      - { id: overvakning_utan_rattssakerhet,   submeasure: personlig_frihet, direction: down }

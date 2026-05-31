@@ -1,0 +1,19 @@
+{
+  "claim:action:M:ekonomi:2023:UO14": {
+    "kind": "claim",
+    "statement": "Moderaterna föreslog ändrade anslag till utgiftsområde 14 (arbetsmarknad) i budgetmotion 2023.",
+    "source_name": "Riksdagen",
+    "dataset_id": "motion-2023/24",
+    "retrieved_at": "2026-05-29",
+    "url": "https://data.riksdagen.se/dokument/"
+  },
+  "scb:AKU:2025": {
+    "kind": "source",
+    "source_name": "SCB",
+    "dataset_id": "AM0401",
+    "retrieved_at": "2026-05-29",
+    "value": 7.5,
+    "url": "https://www.statistikdatabasen.scb.se/",
+    "license": "CC0 1.0"
+  }
+}

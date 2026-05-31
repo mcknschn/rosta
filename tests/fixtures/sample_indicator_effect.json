@@ -1,0 +1,10 @@
+{
+  "party": "M",
+  "category": "ekonomi",
+  "indicator": "arbetsloshet",
+  "expected_direction": "down",
+  "net_support": 0.42,
+  "confidence": 0.61,
+  "supporting_claims": ["claim:evidence_effect:ifau:arbetsmarknad:1", "claim:action:M:ekonomi:2023:UO14"],
+  "contradicting_claims": ["claim:evidence_effect:ifau:arbetsmarknad:2"]
+}

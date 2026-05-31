@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "scores.schema.json",
+  "title": "Rösta scores.json (deploy-artefakt)",
+  "description": "Per parti och kategori: betyg 0-5 med osäkerhetsintervall, delpoäng och bevisreferenser. Enda numeriska som deployas.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["meta", "categories", "scores"],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["generated", "window", "parties"],
+      "properties": {
+        "generated": { "type": "string" },
+        "window": { "type": "string" },
+        "parties": { "type": "array", "items": { "type": "string" } },
+        "model_version": { "type": ["string", "integer"] }
+      }
+    },
+    "categories": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id"],
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "submeasures": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "scores": {
+      "type": "object",
+      "description": "Keyad på partikod -> kategori-id -> kategoribetyg.",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": { "$ref": "#/$defs/categoryScore" }
+      }
+    }
+  },
+  "$defs": {
+    "categoryScore": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["score", "ci", "components"],
+      "properties": {
+        "score": { "type": "number", "minimum": 0, "maximum": 5 },
+        "ci": {
+          "type": "array",
+          "description": "Osäkerhetsintervall [low, high].",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": { "type": "number", "minimum": 0, "maximum": 5 }
+        },
+        "components": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["A", "B", "C", "D"],
+          "properties": {
+            "A": { "type": "number", "minimum": 0, "maximum": 5 },
+            "B": { "type": "number", "minimum": 0, "maximum": 5 },
+            "C": { "type": "number", "minimum": 0, "maximum": 5 },
+            "D": { "type": "number", "minimum": 0, "maximum": 5 }
+          }
+        },
+        "claim_refs": { "type": "array", "items": { "type": "string" } },
+        "evidence_refs": { "type": "array", "items": { "type": "string" } },
+        "flags": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Markörer, t.ex. D_not_applicable, C_missing_subnational."
+        },
+        "confidence": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Resolverad säkerhetsnivå per delpoäng (datadriven).",
+          "properties": {
+            "A": { "type": "string" },
+            "B": { "type": "string" },
+            "C": { "type": "string" },
+            "D": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

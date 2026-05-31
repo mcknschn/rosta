@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "evidence.schema.json",
+  "title": "Rösta evidence.json (deploy-artefakt)",
+  "description": "Bantad bevis-/claims-index. Keyad på ref-id (claim:... eller källref). Bara nyckelvärden deployas, inte rådatat.",
+  "type": "object",
+  "additionalProperties": { "$ref": "#/$defs/evidenceEntry" },
+  "$defs": {
+    "evidenceEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "source_name"],
+      "properties": {
+        "kind": { "type": "string", "enum": ["claim", "source"] },
+        "statement": { "type": "string", "description": "Kort sammanfattning (för claims)." },
+        "source_name": { "type": "string" },
+        "dataset_id": { "type": "string" },
+        "retrieved_at": { "type": "string" },
+        "value": { "type": ["number", "string"], "description": "Nyckelvärde betyget vilar på." },
+        "url": { "type": "string" },
+        "license": { "type": "string" }
+      }
+    }
+  }
+}

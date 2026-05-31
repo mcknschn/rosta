@@ -1,0 +1,1804 @@
+{
+  "meta": {
+    "generated": "2026-05-30",
+    "window": "2014-2026",
+    "parties": [
+      "S",
+      "M",
+      "SD",
+      "C",
+      "V",
+      "KD",
+      "L",
+      "MP"
+    ],
+    "model_version": 1,
+    "coverage": "Preliminär: A=motionsprioritering, andel av egna motioner (full); C=regeringsmakt (full); D=resultatattribution från officiella årsserier för ekonomi/välfärd/klimat/integration där partiet haft nationell makt (medel säkerhet, ej tillämplig för partier utan makt och för trygghet/försvar/demokrati som saknar D-data). B är AKTIVERAD för ALLA 7 kategorier via 130 källbelagda, adversariellt verifierade + panel-harmoniserade partiståndpunkter (riksdagsvotering/motion, Fas 4c); coverage-viktad (B krymps mot neutral efter andel kodade åtgärdstyper, B_thin_coverage-flagga vid tunn täckning). party_positions version 0 — kräver mänsklig slutgranskning."
+  },
+  "categories": [
+    {
+      "id": "ekonomi",
+      "name": "Ekonomi och jobb",
+      "standard_weight": 20,
+      "submeasures": [
+        "sysselsattning_arbetsloshet",
+        "bnp_produktivitet",
+        "realloner_hushall",
+        "inflation_prisstabilitet",
+        "offentliga_finanser"
+      ]
+    },
+    {
+      "id": "valfard",
+      "name": "Välfärd",
+      "standard_weight": 20,
+      "submeasures": [
+        "vard_tillganglighet",
+        "skola_kunskap",
+        "omsorg_personal",
+        "finansiering_styrning"
+      ]
+    },
+    {
+      "id": "trygghet",
+      "name": "Lag och trygghet",
+      "standard_weight": 15,
+      "submeasures": [
+        "grov_brottslighet",
+        "utsatthet_trygghet",
+        "rattsvasendets_effektivitet",
+        "forebyggande",
+        "aterfall_kriminalvard"
+      ]
+    },
+    {
+      "id": "forsvar",
+      "name": "Försvar och beredskap",
+      "standard_weight": 15,
+      "submeasures": [
+        "militar_formaga",
+        "ekonomisk_ambition",
+        "civil_beredskap",
+        "nato_ukraina",
+        "genomforbarhet_leverans"
+      ]
+    },
+    {
+      "id": "klimat",
+      "name": "Klimat, miljö och energi",
+      "standard_weight": 12.5,
+      "submeasures": [
+        "utslappsminskningar",
+        "energi_elpriser",
+        "kostnadseffektivitet",
+        "biologisk_mangfald",
+        "industriell_konkurrenskraft"
+      ]
+    },
+    {
+      "id": "integration",
+      "name": "Integration och social sammanhållning",
+      "standard_weight": 10,
+      "submeasures": [
+        "arbete_sjalvforsorjning",
+        "skola_sprak",
+        "boendesegregation",
+        "normer_tillit",
+        "migrationssystem"
+      ]
+    },
+    {
+      "id": "demokrati",
+      "name": "Frihet, demokrati och institutioner",
+      "standard_weight": 7.5,
+      "submeasures": [
+        "rattsstat_maktdelning",
+        "korruption_tillit",
+        "yttrandefrihet_medier",
+        "personlig_frihet",
+        "transparens_ansvar"
+      ]
+    }
+  ],
+  "scores": {
+    "S": {
+      "ekonomi": {
+        "score": 4.542,
+        "ci": [
+          4.092,
+          4.992
+        ],
+        "components": {
+          "A": 4.286,
+          "B": 5.0,
+          "C": 5.0,
+          "D": 3.279
+        },
+        "confidence": {
+          "A": "high",
+          "B": "medium",
+          "C": "medium",
+          "D": "medium"
+        },
+        "flags": [
+          "B_coverage_2/2"
+        ],
+        "claim_refs": [
+          "claim:action:S:ekonomi:motioner",
+          "claim:responsibility:S:national:2014-10-03/2019-01-21:government",
+          "claim:responsibility:S:national:2019-01-21/2021-11-30:government",
+          "claim:responsibility:S:national:2021-11-30/2022-10-18:government",
+          "claim:observed_result:obs:scb:arbetsloshet:2001",
+          "claim:observed_result:obs:scb:arbetsloshet:2002",
+          "claim:observed_result:obs:scb:arbetsloshet:2003"
+        ],
+        "evidence_refs": []
+      },
+      "valfard": {
+        "score": 4.544,
+        "ci": [
+          4.094,
+          4.994
+        ],
+        "components": {
+          "A": 5.0,
+          "B": 4.375,
+          "C": 5.0,
+          "D": 2.627
+        },
+        "confidence": {
+          "A": "high",
+          "B": "medium",
+          "C": "medium",
+          "D": "medium"
+        },
+        "flags": [
+          "B_coverage_3/4"
+        ],
+        "claim_refs": [
+          "claim:action:S:valfard:motioner",
+          "claim:responsibility:S:national:2014-10-03/2019-01-21:government",
+          "claim:responsibility:S:national:2019-01-21/2021-11-30:government",
+          "claim:responsibility:S:national:2021-11-30/2022-10-18:government",
+          "claim:observed_result:obs:kolada:N15507:0000:2015",
+          "claim:observed_result:obs:kolada:N15507:0000:2016",
+          "claim:observed_result:obs:kolada:N15507:0000:2017"
+        ],
+        "evidence_refs": []
+      },
+      "trygghet": {
+        "score": 2.591,
+        "ci": [
+          2.141,
+          3.041
+        ],
+        "components": {
+          "A": 0.714,
+          "B": 3.75,
+          "C": 5.0,
+          "D": 2.423
+        },
+        "confidence": {
+          "A": "high",
+          "B": "medium",
+          "C": "medium",
+          "D": "medium"
+        },
+        "flags": [
+          "B_coverage_2/4"
+        ],
+        "claim_refs": [
+          "claim:action:S:trygghet:motioner",
+          "claim:responsibility:S:national:2014-10-03/2019-01-21:government",
+          "claim:responsibility:S:national:2019-01-21/2021-11-30:government",
+          "claim:responsibility:S:national:2021-11-30/2022-10-18:government",
+          "claim:observed_result:obs:bra:dodligt_vald:2002",
+          "claim:observed_result:obs:bra:dodligt_vald:2003",
+          "claim:observed_result:obs:bra:dodligt_vald:2004"
+        ],
+        "evidence_refs": []
+      },
+      "forsvar": {
+        "score": 3.321,
+        "ci": [
+          2.883,
+          3.76
+        ],
+        "components": {
+          "A": 1.429,
+          "B": 5.0,
+          "C": 5.0,
+          "D": 2.5
+        },
+        "confidence": {
+          "A": "high",
+          "B": "medium",
+          "C": "high",
+          "D": "low"
+        },
+        "flags": [
+          "B_coverage_2/2",
+          "D_not_applicable"
+        ],
+        "claim_refs": [
+          "claim:action:S:forsvar:motioner",
+          "claim:responsibility:S:national:2014-10-03/2019-01-21:government",
+          "claim:responsibility:S:national:2019-01-21/2021-11-30:government",
+          "claim:responsibility:S:national:2021-11-30/2022-10-18:government"
+        ],
+        "evidence_refs": []
+      },
+      "klimat": {
+        "score": 3.105,
+        "ci": [
+          2.655,
+          3.555
+        ],
+        "components": {
+          "A": 1.429,
+          "B": 4.167,
+          "C": 5.0,
+          "D": 3.252
+        },
+        "confidence": {
+          "A": "high",
+          "B": "medium",
+          "C": "medium",
+          "D": "medium"
+        },
+        "flags": [
+          "B_coverage_2/3"
+        ],
+        "claim_refs": [
+          "claim:action:S:klimat:motioner",
+          "claim:responsibility:S:national:2014-10-03/2019-01-21:government",
+          "claim:responsibility:S:national:2019-01-21/2021-11-30:government",
+          "claim:responsibility:S:national:2021-11-30/2022-10-18:government",
+          "claim:observed_result:obs:scb:territoriella_utslapp:1990",
+          "claim:observed_result:obs:scb:territoriella_utslapp:1991",
+          "claim:observed_result:obs:scb:territoriella_utslapp:1992"
+        ],
+        "evidence_refs": []
+      },
+      "integration": {
+        "score": 3.823,
+        "ci": [
+          3.373,
+          4.273
+        ],
+        "components": {
+          "A": 3.571,
+          "B": 3.75,
+          "C": 5.0,
+          "D": 3.32
+        },
+        "confidence": {
+          "A": "high",
+          "B": "medium",
+          "C": "medium",
+          "D": "medium"
+        },
+        "flags": [
+          "B_coverage_2/4"
+        ],
+        "claim_refs": [
+          "claim:action:S:integration:motioner",
+          "claim:responsibility:S:national:2014-10-03/2019-01-21:government",
+          "claim:responsibility:S:national:2019-01-21/2021-11-30:government",
+          "claim:responsibility:S:national:2021-11-30/2022-10-18:government",
+          "claim:observed_result:obs:scb:trangboddhet:1988-1989",
+          "claim:observed_result:obs:scb:trangboddhet:2002-2003",
+          "claim:observed_result:obs:scb:trangboddhet:2004-2005"
+        ],
+        "evidence_refs": []
+      },
+      "demokrati": {
+        "score": 3.321,
+        "ci": [
+          2.826,
+          3.816
+        ],
+        "components": {
+          "A": 1.429,
+          "B": 5.0,
+          "C": 5.0,
+          "D": 2.5
+        },
+        "confidence": {
+          "A": "high",
+          "B": "medium",
+          "C": "medium",
+          "D": "low"
+        },
+        "flags": [
+          "B_coverage_3/3",
+          "D_not_applicable"
+        ],
+        "claim_refs": [
+          "claim:action:S:demokrati:motioner",
+          "claim:responsibility:S:national:2014-10-03/2019-01-21:government",
+          "claim:responsibility:S:national:2019-01-21/2021-11-30:government",
+          "claim:responsibility:S:national:2021-11-30/2022-10-18:government"
+        ],
+        "evidence_refs": []
+      }
+    },
+    "M": {
+      "ekonomi": {
+        "score": 3.782,
+        "ci": [
+          3.332,
+          4.232
+        ],
+        "components": {
+          "A": 3.571,
+          "B": 5.0,
+          "C": 2.5,
+          "D": 2.288
+        },
+        "confidence": {
+          "A": "high",
+          "B": "medium",
+          "C": "medium",
+          "D": "medium"
+        },
+        "flags": [
+          "B_coverage_2/2"
+        ],
+        "claim_refs": [
+          "claim:action:M:ekonomi:motioner",
+          "claim:responsibility:M:national:2022-10-18/pagaende:government",
+          "claim:observed_result:obs:scb:arbetsloshet:2001",
+          "claim:observed_result:obs:scb:arbetsloshet:2002",
+          "claim:observed_result:obs:scb:arbetsloshet:2003"
+        ],
+        "evidence_refs": []
+      },
+      "valfard": {
+        "score": 3.948,
+        "ci": [
+          3.498,
+          4.398
+        ],
+        "components": {
+          "A": 3.571,
+          "B": 5.0,
+          "C": 2.5,
+          "D": 3.949
+        },
+        "confidence": {
+          "A": "high",
+          "B": "medium",
+          "C": "medium",
+          "D": "medium"
+        },
+        "flags": [
+          "B_coverage_4/4"
+        ],
+        "claim_refs": [
+          "claim:action:M:valfard:motioner",
+          "claim:responsibility:M:national:2022-10-18/pagaende:government",
+          "claim:observed_result:obs:kolada:N15507:0000:2015",
+          "claim:observed_result:obs:kolada:N15507:0000:2016",
+          "claim:observed_result:obs:kolada:N15507:0000:2017"
+        ],
+        "evidence_refs": []
+      },
+      "trygghet": {
+        "score": 3.945,
+        "ci": [
+          3.338,
+          4.553
+        ],
+        "components": {
+          "A": 5.0,
+          "B": 3.125,
+          "C": 2.5,
+          "D": 4.767
+        },
+        "confidence": {
+          "A": "high",
+          "B": "low",
+          "C": "medium",
+          "D": "medium"
+        },
+        "flags": [
+          "B_coverage_1/4",
+          "B_thin_coverage"
+        ],
+        "claim_refs": [
+          "claim:action:M:trygghet:motioner",
+          "claim:responsibility:M:national:2022-10-18/pagaende:government",
+          "claim:observed_result:obs:bra:dodligt_vald:2002",
+          "claim:observed_result:obs:bra:dodligt_vald:2003",
+          "claim:observed_result:obs:bra:dodligt_vald:2004"
+        ],
+        "evidence_refs": []
+      },
+      "forsvar": {
+        "score": 2.375,
+        "ci": [
+          1.936,
+          2.814
+        ],
+        "components": {
+          "A": 0.0,
+          "B": 5.0,
+          "C": 2.5,
+          "D": 2.5
+        },
+        "confidence": {
+          "A": "high",
+          "B": "medium",
+          "C": "high",
+          "D": "low"
+        },
+        "flags": [
+          "B_coverage_2/2",
+          "D_not_applicable"
+        ],
+        "claim_refs": [
+          "claim:action:M:forsvar:motioner",
+          "claim:responsibility:M:national:2022-10-18/pagaende:government"
+        ],
+        "evidence_refs": []
+      },
+      "klimat": {
+        "score": 3.558,
+        "ci": [
+          3.108,
+          4.008
+        ],
+        "components": {
+          "A": 3.571,
+          "B": 4.176,
+          "C": 2.5,
+          "D": 2.926
+        },
+        "confidence": {
+          "A": "high",
+          "B": "medium",
+          "C": "medium",
+          "D": "medium"
+        },
+        "flags": [
+          "B_coverage_3/3"
+        ],
+        "claim_refs": [
+          "claim:action:M:klimat:motioner",
+          "claim:responsibility:M:national:2022-10-18/pagaende:government",
+          "claim:observed_result:obs:scb:territoriella_utslapp:1990",
+          "claim:observed_result:obs:scb:territoriella_utslapp:1991",
+          "claim:observed_result:obs:scb:territoriella_utslapp:1992"
+        ],
+        "evidence_refs": []
+      },
+      "integration": {
+        "score": 2.229,
+        "ci": [
+          1.779,
+          2.679
+        ],
+        "components": {
+          "A": 0.0,
+          "B": 4.375,
+          "C": 2.5,
+          "D": 3.227
+        },
+        "confidence": {
+          "A": "high",
+          "B": "medium",
+          "C": "medium",
+          "D": "medium"
+        },
+        "flags": [
+          "B_coverage_3/4"
+        ],
+        "claim_refs": [
+          "claim:action:M:integration:motioner",
+          "claim:responsibility:M:national:2022-10-18/pagaende:government",
+          "claim:observed_result:obs:scb:trangboddhet:1988-1989",
+          "claim:observed_result:obs:scb:trangboddhet:2002-2003",
+          "claim:observed_result:obs:scb:trangboddhet:2004-2005"
+        ],
+        "evidence_refs": []
+      },
+      "demokrati": {
+        "score": 1.792,
+        "ci": [
+          1.139,
+          2.444
+        ],
+        "components": {
+          "A": 0.0,
+          "B": 3.333,
+          "C": 2.5,
+          "D": 2.5
+        },
+        "confidence": {
+          "A": "high",
+          "B": "low",
+          "C": "medium",
+          "D": "low"
+        },
+        "flags": [
+          "B_coverage_1/3",
+          "B_thin_coverage",
+          "D_not_applicable"
+        ],
+        "claim_refs": [
+          "claim:action:M:demokrati:motioner",
+          "claim:responsibility:M:national:2022-10-18/pagaende:government"
+        ],
+        "evidence_refs": []
+      }
+    },
+    "SD": {
+      "ekonomi": {
+        "score": 0.908,
+        "ci": [
+          0.458,
+          1.358
+        ],
+        "components": {
+          "A": 0.0,
+          "B": 1.328,
+          "C": 1.429,
+          "D": 2.288
+        },
+        "confidence": {
+          "A": "high",
+          "B": "medium",
+          "C": "medium",
+          "D": "medium"
+        },
+        "flags": [
+          "B_coverage_2/2"
+        ],
+        "claim_refs": [
+          "claim:action:SD:ekonomi:motioner",
+          "claim:responsibility:SD:national:2022-10-18/pagaende:support",
+          "claim:observed_result:obs:scb:arbetsloshet:2001",
+          "claim:observed_result:obs:scb:arbetsloshet:2002",
+          "claim:observed_result:obs:scb:arbetsloshet:2003"
+        ],
+        "evidence_refs": []
+      },
+      "valfard": {
+        "score": 2.332,
+        "ci": [
+          1.882,
+          2.782
+        ],
+        "components": {
+          "A": 2.143,
+          "B": 2.474,
+          "C": 1.429,
+          "D": 3.949
+        },
+        "confidence": {
+          "A": "high",
+          "B": "medium",
+          "C": "medium",
+          "D": "medium"
+        },
+        "flags": [
+          "B_coverage_4/4"
+        ],
+        "claim_refs": [
+          "claim:action:SD:valfard:motioner",
+          "claim:responsibility:SD:national:2022-10-18/pagaende:support",
+          "claim:observed_result:obs:kolada:N15507:0000:2015",
+          "claim:observed_result:obs:kolada:N15507:0000:2016",
+          "claim:observed_result:obs:kolada:N15507:0000:2017"
+        ],
+        "evidence_refs": []
+      },
+      "trygghet": {
+        "score": 3.213,
+        "ci": [
+          2.606,
+          3.821
+        ],
+        "components": {
+          "A": 3.571,
+          "B": 3.125,
+          "C": 1.429,
+          "D": 4.767
+        },
+        "confidence": {
+          "A": "high",
+          "B": "low",
+          "C": "medium",
+          "D": "medium"
+        },
+        "flags": [
+          "B_coverage_1/4",
+          "B_thin_coverage"
+        ],
+        "claim_refs": [
+          "claim:action:SD:trygghet:motioner",
+          "claim:responsibility:SD:national:2022-10-18/pagaende:support",
+          "claim:observed_result:obs:bra:dodligt_vald:2002",
+          "claim:observed_result:obs:bra:dodligt_vald:2003",
+          "claim:observed_result:obs:bra:dodligt_vald:2004"
+        ],
+        "evidence_refs": []
+      },
+      "forsvar": {
+        "score": 3.071,
+        "ci": [
+          2.633,
+          3.51
+        ],
+        "components": {
+          "A": 2.143,
+          "B": 5.0,
+          "C": 1.429,
+          "D": 2.5
+        },
+        "confidence": {
+          "A": "high",
+          "B": "medium",
+          "C": "high",
+          "D": "low"
+        },
+        "flags": [
+          "B_coverage_2/2",
+          "D_not_applicable"
+        ],
+        "claim_refs": [
+          "claim:action:SD:forsvar:motioner",
+          "claim:responsibility:SD:national:2022-10-18/pagaende:support"
+        ],
+        "evidence_refs": []
+      },
+      "klimat": {
+        "score": 2.275,
+        "ci": [
+          1.825,
+          2.725
+        ],
+        "components": {
+          "A": 2.857,
+          "B": 1.786,
+          "C": 1.429,
+          "D": 2.926
+        },
+        "confidence": {
+          "A": "high",
+          "B": "medium",
+          "C": "medium",
+          "D": "medium"
+        },
+        "flags": [
+          "B_coverage_3/3",
+          "D_thin_basis"
+        ],
+        "claim_refs": [
+          "claim:action:SD:klimat:motioner",
+          "claim:responsibility:SD:national:2022-10-18/pagaende:support",
+          "claim:observed_result:obs:scb:territoriella_utslapp:1990",
+          "claim:observed_result:obs:scb:territoriella_utslapp:1991",
+          "claim:observed_result:obs:scb:territoriella_utslapp:1992"
+        ],
+        "evidence_refs": []
+      },
+      "integration": {
+        "score": 2.421,
+        "ci": [
+          1.971,
+          2.871
+        ],
+        "components": {
+          "A": 1.429,
+          "B": 3.75,
+          "C": 1.429,
+          "D": 3.227
+        },
+        "confidence": {
+          "A": "high",
+          "B": "medium",
+          "C": "medium",
+          "D": "medium"
+        },
+        "flags": [
+          "B_coverage_2/4"
+        ],
+        "claim_refs": [
+          "claim:action:SD:integration:motioner",
+          "claim:responsibility:SD:national:2022-10-18/pagaende:support",
+          "claim:observed_result:obs:scb:trangboddhet:1988-1989",
+          "claim:observed_result:obs:scb:trangboddhet:2002-2003",
+          "claim:observed_result:obs:scb:trangboddhet:2004-2005"
+        ],
+        "evidence_refs": []
+      },
+      "demokrati": {
+        "score": 3.923,
+        "ci": [
+          3.428,
+          4.418
+        ],
+        "components": {
+          "A": 5.0,
+          "B": 4.167,
+          "C": 1.429,
+          "D": 2.5
+        },
+        "confidence": {
+          "A": "high",
+          "B": "medium",
+          "C": "medium",
+          "D": "low"
+        },
+        "flags": [
+          "B_coverage_2/3",
+          "D_not_applicable"
+        ],
+        "claim_refs": [
+          "claim:action:SD:demokrati:motioner",
+          "claim:responsibility:SD:national:2022-10-18/pagaende:support"
+        ],
+        "evidence_refs": []
+      }
+    },
+    "C": {
+      "ekonomi": {
+        "score": 2.333,
+        "ci": [
+          1.883,
+          2.783
+        ],
+        "components": {
+          "A": 5.0,
+          "B": 0.0,
+          "C": 0.714,
+          "D": 2.262
+        },
+        "confidence": {
+          "A": "high",
+          "B": "medium",
+          "C": "medium",
+          "D": "medium"
+        },
+        "flags": [
+          "B_coverage_2/2"
+        ],
+        "claim_refs": [
+          "claim:action:C:ekonomi:motioner",
+          "claim:responsibility:C:national:2019-01-21/2021-11-30:support",
+          "claim:observed_result:obs:scb:arbetsloshet:2001",
+          "claim:observed_result:obs:scb:arbetsloshet:2002",
+          "claim:observed_result:obs:scb:arbetsloshet:2003"
+        ],
+        "evidence_refs": []
+      },
+      "valfard": {
+        "score": 1.839,
+        "ci": [
+          1.389,
+          2.289
+        ],
+        "components": {
+          "A": 0.0,
+          "B": 3.816,
+          "C": 0.714,
+          "D": 3.964
+        },
+        "confidence": {
+          "A": "high",
+          "B": "medium",
+          "C": "medium",
+          "D": "medium"
+        },
+        "flags": [
+          "B_coverage_4/4"
+        ],
+        "claim_refs": [
+          "claim:action:C:valfard:motioner",
+          "claim:responsibility:C:national:2019-01-21/2021-11-30:support",
+          "claim:observed_result:obs:kolada:N15507:0000:2015",
+          "claim:observed_result:obs:kolada:N15507:0000:2016",
+          "claim:observed_result:obs:kolada:N15507:0000:2017"
+        ],
+        "evidence_refs": []
+      },
+      "trygghet": {
+        "score": 2.027,
+        "ci": [
+          1.42,
+          2.635
+        ],
+        "components": {
+          "A": 1.429,
+          "B": 3.125,
+          "C": 0.714,
+          "D": 2.548
+        },
+        "confidence": {
+          "A": "high",
+          "B": "low",
+          "C": "medium",
+          "D": "medium"
+        },
+        "flags": [
+          "B_coverage_1/4",
+          "B_thin_coverage"
+        ],
+        "claim_refs": [
+          "claim:action:C:trygghet:motioner",
+          "claim:responsibility:C:national:2019-01-21/2021-11-30:support",
+          "claim:observed_result:obs:bra:dodligt_vald:2002",
+          "claim:observed_result:obs:bra:dodligt_vald:2003",
+          "claim:observed_result:obs:bra:dodligt_vald:2004"
+        ],
+        "evidence_refs": []
+      },
+      "forsvar": {
+        "score": 1.955,
+        "ci": [
+          1.517,
+          2.394
+        ],
+        "components": {
+          "A": 0.714,
+          "B": 3.75,
+          "C": 0.714,
+          "D": 2.5
+        },
+        "confidence": {
+          "A": "high",
+          "B": "medium",
+          "C": "high",
+          "D": "low"
+        },
+        "flags": [
+          "B_coverage_1/2",
+          "D_not_applicable"
+        ],
+        "claim_refs": [
+          "claim:action:C:forsvar:motioner",
+          "claim:responsibility:C:national:2019-01-21/2021-11-30:support"
+        ],
+        "evidence_refs": []
+      },
+      "klimat": {
+        "score": 3.519,
+        "ci": [
+          2.912,
+          4.127
+        ],
+        "components": {
+          "A": 5.0,
+          "B": 3.333,
+          "C": 0.714,
+          "D": 2.452
+        },
+        "confidence": {
+          "A": "high",
+          "B": "low",
+          "C": "medium",
+          "D": "medium"
+        },
+        "flags": [
+          "B_coverage_1/3",
+          "B_thin_coverage"
+        ],
+        "claim_refs": [
+          "claim:action:C:klimat:motioner",
+          "claim:responsibility:C:national:2019-01-21/2021-11-30:support",
+          "claim:observed_result:obs:scb:territoriella_utslapp:1990",
+          "claim:observed_result:obs:scb:territoriella_utslapp:1991",
+          "claim:observed_result:obs:scb:territoriella_utslapp:1992"
+        ],
+        "evidence_refs": []
+      },
+      "integration": {
+        "score": 3.346,
+        "ci": [
+          2.896,
+          3.796
+        ],
+        "components": {
+          "A": 2.857,
+          "B": 5.0,
+          "C": 0.714,
+          "D": 3.458
+        },
+        "confidence": {
+          "A": "high",
+          "B": "medium",
+          "C": "medium",
+          "D": "medium"
+        },
+        "flags": [
+          "B_coverage_4/4"
+        ],
+        "claim_refs": [
+          "claim:action:C:integration:motioner",
+          "claim:responsibility:C:national:2019-01-21/2021-11-30:support",
+          "claim:observed_result:obs:scb:trangboddhet:1988-1989",
+          "claim:observed_result:obs:scb:trangboddhet:2002-2003",
+          "claim:observed_result:obs:scb:trangboddhet:2004-2005"
+        ],
+        "evidence_refs": []
+      },
+      "demokrati": {
+        "score": 2.393,
+        "ci": [
+          1.898,
+          2.888
+        ],
+        "components": {
+          "A": 0.714,
+          "B": 5.0,
+          "C": 0.714,
+          "D": 2.5
+        },
+        "confidence": {
+          "A": "high",
+          "B": "medium",
+          "C": "medium",
+          "D": "low"
+        },
+        "flags": [
+          "B_coverage_3/3",
+          "D_not_applicable"
+        ],
+        "claim_refs": [
+          "claim:action:C:demokrati:motioner",
+          "claim:responsibility:C:national:2019-01-21/2021-11-30:support"
+        ],
+        "evidence_refs": []
+      }
+    },
+    "V": {
+      "ekonomi": {
+        "score": 2.286,
+        "ci": [
+          1.791,
+          2.781
+        ],
+        "components": {
+          "A": 0.714,
+          "B": 5.0,
+          "C": 0.0,
+          "D": 2.5
+        },
+        "confidence": {
+          "A": "high",
+          "B": "medium",
+          "C": "medium",
+          "D": "low"
+        },
+        "flags": [
+          "B_coverage_2/2",
+          "D_not_applicable"
+        ],
+        "claim_refs": [
+          "claim:action:V:ekonomi:motioner",
+          "claim:observed_result:obs:scb:arbetsloshet:2001",
+          "claim:observed_result:obs:scb:arbetsloshet:2002",
+          "claim:observed_result:obs:scb:arbetsloshet:2003"
+        ],
+        "evidence_refs": []
+      },
+      "valfard": {
+        "score": 1.828,
+        "ci": [
+          1.333,
+          2.323
+        ],
+        "components": {
+          "A": 1.429,
+          "B": 2.875,
+          "C": 0.0,
+          "D": 2.5
+        },
+        "confidence": {
+          "A": "high",
+          "B": "medium",
+          "C": "medium",
+          "D": "low"
+        },
+        "flags": [
+          "B_coverage_3/4",
+          "D_not_applicable"
+        ],
+        "claim_refs": [
+          "claim:action:V:valfard:motioner",
+          "claim:observed_result:obs:kolada:N15507:0000:2015",
+          "claim:observed_result:obs:kolada:N15507:0000:2016",
+          "claim:observed_result:obs:kolada:N15507:0000:2017"
+        ],
+        "evidence_refs": []
+      },
+      "trygghet": {
+        "score": 3.496,
+        "ci": [
+          3.001,
+          3.991
+        ],
+        "components": {
+          "A": 4.286,
+          "B": 4.375,
+          "C": 0.0,
+          "D": 2.5
+        },
+        "confidence": {
+          "A": "high",
+          "B": "medium",
+          "C": "medium",
+          "D": "low"
+        },
+        "flags": [
+          "B_coverage_3/4",
+          "D_not_applicable"
+        ],
+        "claim_refs": [
+          "claim:action:V:trygghet:motioner",
+          "claim:observed_result:obs:bra:dodligt_vald:2002",
+          "claim:observed_result:obs:bra:dodligt_vald:2003",
+          "claim:observed_result:obs:bra:dodligt_vald:2004"
+        ],
+        "evidence_refs": []
+      },
+      "forsvar": {
+        "score": 3.714,
+        "ci": [
+          3.276,
+          4.153
+        ],
+        "components": {
+          "A": 4.286,
+          "B": 5.0,
+          "C": 0.0,
+          "D": 2.5
+        },
+        "confidence": {
+          "A": "high",
+          "B": "medium",
+          "C": "high",
+          "D": "low"
+        },
+        "flags": [
+          "B_coverage_2/2",
+          "D_not_applicable"
+        ],
+        "claim_refs": [
+          "claim:action:V:forsvar:motioner"
+        ],
+        "evidence_refs": []
+      },
+      "klimat": {
+        "score": 1.661,
+        "ci": [
+          1.166,
+          2.156
+        ],
+        "components": {
+          "A": 0.714,
+          "B": 3.214,
+          "C": 0.0,
+          "D": 2.5
+        },
+        "confidence": {
+          "A": "high",
+          "B": "medium",
+          "C": "medium",
+          "D": "low"
+        },
+        "flags": [
+          "B_coverage_3/3",
+          "D_not_applicable"
+        ],
+        "claim_refs": [
+          "claim:action:V:klimat:motioner",
+          "claim:observed_result:obs:scb:territoriella_utslapp:1990",
+          "claim:observed_result:obs:scb:territoriella_utslapp:1991",
+          "claim:observed_result:obs:scb:territoriella_utslapp:1992"
+        ],
+        "evidence_refs": []
+      },
+      "integration": {
+        "score": 3.086,
+        "ci": [
+          2.591,
+          3.581
+        ],
+        "components": {
+          "A": 5.0,
+          "B": 2.39,
+          "C": 0.0,
+          "D": 2.5
+        },
+        "confidence": {
+          "A": "high",
+          "B": "medium",
+          "C": "medium",
+          "D": "low"
+        },
+        "flags": [
+          "B_coverage_3/4",
+          "D_not_applicable"
+        ],
+        "claim_refs": [
+          "claim:action:V:integration:motioner",
+          "claim:observed_result:obs:scb:trangboddhet:1988-1989",
+          "claim:observed_result:obs:scb:trangboddhet:2002-2003",
+          "claim:observed_result:obs:scb:trangboddhet:2004-2005"
+        ],
+        "evidence_refs": []
+      },
+      "demokrati": {
+        "score": 2.274,
+        "ci": [
+          1.621,
+          2.926
+        ],
+        "components": {
+          "A": 2.143,
+          "B": 3.333,
+          "C": 0.0,
+          "D": 2.5
+        },
+        "confidence": {
+          "A": "high",
+          "B": "low",
+          "C": "medium",
+          "D": "low"
+        },
+        "flags": [
+          "B_coverage_1/3",
+          "B_thin_coverage",
+          "D_not_applicable"
+        ],
+        "claim_refs": [
+          "claim:action:V:demokrati:motioner"
+        ],
+        "evidence_refs": []
+      }
+    },
+    "KD": {
+      "ekonomi": {
+        "score": 3.032,
+        "ci": [
+          2.582,
+          3.482
+        ],
+        "components": {
+          "A": 2.857,
+          "B": 3.672,
+          "C": 2.5,
+          "D": 2.288
+        },
+        "confidence": {
+          "A": "high",
+          "B": "medium",
+          "C": "medium",
+          "D": "medium"
+        },
+        "flags": [
+          "B_coverage_2/2"
+        ],
+        "claim_refs": [
+          "claim:action:KD:ekonomi:motioner",
+          "claim:responsibility:KD:national:2022-10-18/pagaende:government",
+          "claim:observed_result:obs:scb:arbetsloshet:2001",
+          "claim:observed_result:obs:scb:arbetsloshet:2002",
+          "claim:observed_result:obs:scb:arbetsloshet:2003"
+        ],
+        "evidence_refs": []
+      },
+      "valfard": {
+        "score": 2.806,
+        "ci": [
+          2.356,
+          3.256
+        ],
+        "components": {
+          "A": 0.714,
+          "B": 5.0,
+          "C": 2.5,
+          "D": 3.949
+        },
+        "confidence": {
+          "A": "high",
+          "B": "medium",
+          "C": "medium",
+          "D": "medium"
+        },
+        "flags": [
+          "B_coverage_4/4"
+        ],
+        "claim_refs": [
+          "claim:action:KD:valfard:motioner",
+          "claim:responsibility:KD:national:2022-10-18/pagaende:government",
+          "claim:observed_result:obs:kolada:N15507:0000:2015",
+          "claim:observed_result:obs:kolada:N15507:0000:2016",
+          "claim:observed_result:obs:kolada:N15507:0000:2017"
+        ],
+        "evidence_refs": []
+      },
+      "trygghet": {
+        "score": 3.307,
+        "ci": [
+          2.857,
+          3.757
+        ],
+        "components": {
+          "A": 2.857,
+          "B": 3.75,
+          "C": 2.5,
+          "D": 4.767
+        },
+        "confidence": {
+          "A": "high",
+          "B": "medium",
+          "C": "medium",
+          "D": "medium"
+        },
+        "flags": [
+          "B_coverage_2/4"
+        ],
+        "claim_refs": [
+          "claim:action:KD:trygghet:motioner",
+          "claim:responsibility:KD:national:2022-10-18/pagaende:government",
+          "claim:observed_result:obs:bra:dodligt_vald:2002",
+          "claim:observed_result:obs:bra:dodligt_vald:2003",
+          "claim:observed_result:obs:bra:dodligt_vald:2004"
+        ],
+        "evidence_refs": []
+      },
+      "forsvar": {
+        "score": 3.938,
+        "ci": [
+          3.499,
+          4.376
+        ],
+        "components": {
+          "A": 5.0,
+          "B": 3.75,
+          "C": 2.5,
+          "D": 2.5
+        },
+        "confidence": {
+          "A": "high",
+          "B": "medium",
+          "C": "high",
+          "D": "low"
+        },
+        "flags": [
+          "B_coverage_1/2",
+          "D_not_applicable"
+        ],
+        "claim_refs": [
+          "claim:action:KD:forsvar:motioner",
+          "claim:responsibility:KD:national:2022-10-18/pagaende:government"
+        ],
+        "evidence_refs": []
+      },
+      "klimat": {
+        "score": 2.986,
+        "ci": [
+          2.536,
+          3.436
+        ],
+        "components": {
+          "A": 2.143,
+          "B": 4.176,
+          "C": 2.5,
+          "D": 2.926
+        },
+        "confidence": {
+          "A": "high",
+          "B": "medium",
+          "C": "medium",
+          "D": "medium"
+        },
+        "flags": [
+          "B_coverage_3/3"
+        ],
+        "claim_refs": [
+          "claim:action:KD:klimat:motioner",
+          "claim:responsibility:KD:national:2022-10-18/pagaende:government",
+          "claim:observed_result:obs:scb:territoriella_utslapp:1990",
+          "claim:observed_result:obs:scb:territoriella_utslapp:1991",
+          "claim:observed_result:obs:scb:territoriella_utslapp:1992"
+        ],
+        "evidence_refs": []
+      },
+      "integration": {
+        "score": 2.733,
+        "ci": [
+          2.283,
+          3.183
+        ],
+        "components": {
+          "A": 0.714,
+          "B": 5.0,
+          "C": 2.5,
+          "D": 3.227
+        },
+        "confidence": {
+          "A": "high",
+          "B": "medium",
+          "C": "medium",
+          "D": "medium"
+        },
+        "flags": [
+          "B_coverage_4/4"
+        ],
+        "claim_refs": [
+          "claim:action:KD:integration:motioner",
+          "claim:responsibility:KD:national:2022-10-18/pagaende:government",
+          "claim:observed_result:obs:scb:trangboddhet:1988-1989",
+          "claim:observed_result:obs:scb:trangboddhet:2002-2003",
+          "claim:observed_result:obs:scb:trangboddhet:2004-2005"
+        ],
+        "evidence_refs": []
+      },
+      "demokrati": {
+        "score": 2.935,
+        "ci": [
+          2.282,
+          3.587
+        ],
+        "components": {
+          "A": 2.857,
+          "B": 3.333,
+          "C": 2.5,
+          "D": 2.5
+        },
+        "confidence": {
+          "A": "high",
+          "B": "low",
+          "C": "medium",
+          "D": "low"
+        },
+        "flags": [
+          "B_coverage_1/3",
+          "B_thin_coverage",
+          "D_not_applicable"
+        ],
+        "claim_refs": [
+          "claim:action:KD:demokrati:motioner",
+          "claim:responsibility:KD:national:2022-10-18/pagaende:government"
+        ],
+        "evidence_refs": []
+      }
+    },
+    "L": {
+      "ekonomi": {
+        "score": 2.895,
+        "ci": [
+          2.445,
+          3.345
+        ],
+        "components": {
+          "A": 2.143,
+          "B": 3.672,
+          "C": 3.571,
+          "D": 2.172
+        },
+        "confidence": {
+          "A": "high",
+          "B": "medium",
+          "C": "medium",
+          "D": "medium"
+        },
+        "flags": [
+          "B_coverage_2/2"
+        ],
+        "claim_refs": [
+          "claim:action:L:ekonomi:motioner",
+          "claim:responsibility:L:national:2019-01-21/2021-11-30:support",
+          "claim:responsibility:L:national:2022-10-18/pagaende:government",
+          "claim:observed_result:obs:scb:arbetsloshet:2001",
+          "claim:observed_result:obs:scb:arbetsloshet:2002",
+          "claim:observed_result:obs:scb:arbetsloshet:2003"
+        ],
+        "evidence_refs": []
+      },
+      "valfard": {
+        "score": 4.172,
+        "ci": [
+          3.722,
+          4.622
+        ],
+        "components": {
+          "A": 4.286,
+          "B": 4.375,
+          "C": 3.571,
+          "D": 3.904
+        },
+        "confidence": {
+          "A": "high",
+          "B": "medium",
+          "C": "medium",
+          "D": "medium"
+        },
+        "flags": [
+          "B_coverage_3/4"
+        ],
+        "claim_refs": [
+          "claim:action:L:valfard:motioner",
+          "claim:responsibility:L:national:2019-01-21/2021-11-30:support",
+          "claim:responsibility:L:national:2022-10-18/pagaende:government",
+          "claim:observed_result:obs:kolada:N15507:0000:2015",
+          "claim:observed_result:obs:kolada:N15507:0000:2016",
+          "claim:observed_result:obs:kolada:N15507:0000:2017"
+        ],
+        "evidence_refs": []
+      },
+      "trygghet": {
+        "score": 3.095,
+        "ci": [
+          2.645,
+          3.545
+        ],
+        "components": {
+          "A": 2.143,
+          "B": 3.75,
+          "C": 3.571,
+          "D": 3.895
+        },
+        "confidence": {
+          "A": "high",
+          "B": "medium",
+          "C": "medium",
+          "D": "medium"
+        },
+        "flags": [
+          "B_coverage_2/4"
+        ],
+        "claim_refs": [
+          "claim:action:L:trygghet:motioner",
+          "claim:responsibility:L:national:2019-01-21/2021-11-30:support",
+          "claim:responsibility:L:national:2022-10-18/pagaende:government",
+          "claim:observed_result:obs:bra:dodligt_vald:2002",
+          "claim:observed_result:obs:bra:dodligt_vald:2003",
+          "claim:observed_result:obs:bra:dodligt_vald:2004"
+        ],
+        "evidence_refs": []
+      },
+      "forsvar": {
+        "score": 3.964,
+        "ci": [
+          3.526,
+          4.403
+        ],
+        "components": {
+          "A": 3.571,
+          "B": 5.0,
+          "C": 3.571,
+          "D": 2.5
+        },
+        "confidence": {
+          "A": "high",
+          "B": "medium",
+          "C": "high",
+          "D": "low"
+        },
+        "flags": [
+          "B_coverage_2/2",
+          "D_not_applicable"
+        ],
+        "claim_refs": [
+          "claim:action:L:forsvar:motioner",
+          "claim:responsibility:L:national:2019-01-21/2021-11-30:support",
+          "claim:responsibility:L:national:2022-10-18/pagaende:government"
+        ],
+        "evidence_refs": []
+      },
+      "klimat": {
+        "score": 2.209,
+        "ci": [
+          1.759,
+          2.659
+        ],
+        "components": {
+          "A": 0.0,
+          "B": 4.176,
+          "C": 3.571,
+          "D": 2.114
+        },
+        "confidence": {
+          "A": "high",
+          "B": "medium",
+          "C": "medium",
+          "D": "medium"
+        },
+        "flags": [
+          "B_coverage_3/3"
+        ],
+        "claim_refs": [
+          "claim:action:L:klimat:motioner",
+          "claim:responsibility:L:national:2019-01-21/2021-11-30:support",
+          "claim:responsibility:L:national:2022-10-18/pagaende:government",
+          "claim:observed_result:obs:scb:territoriella_utslapp:1990",
+          "claim:observed_result:obs:scb:territoriella_utslapp:1991",
+          "claim:observed_result:obs:scb:territoriella_utslapp:1992"
+        ],
+        "evidence_refs": []
+      },
+      "integration": {
+        "score": 3.255,
+        "ci": [
+          2.805,
+          3.705
+        ],
+        "components": {
+          "A": 2.143,
+          "B": 4.375,
+          "C": 3.571,
+          "D": 3.313
+        },
+        "confidence": {
+          "A": "high",
+          "B": "medium",
+          "C": "medium",
+          "D": "medium"
+        },
+        "flags": [
+          "B_coverage_3/4"
+        ],
+        "claim_refs": [
+          "claim:action:L:integration:motioner",
+          "claim:responsibility:L:national:2019-01-21/2021-11-30:support",
+          "claim:responsibility:L:national:2022-10-18/pagaende:government",
+          "claim:observed_result:obs:scb:trangboddhet:1988-1989",
+          "claim:observed_result:obs:scb:trangboddhet:2002-2003",
+          "claim:observed_result:obs:scb:trangboddhet:2004-2005"
+        ],
+        "evidence_refs": []
+      },
+      "demokrati": {
+        "score": 4.25,
+        "ci": [
+          3.755,
+          4.745
+        ],
+        "components": {
+          "A": 4.286,
+          "B": 5.0,
+          "C": 3.571,
+          "D": 2.5
+        },
+        "confidence": {
+          "A": "high",
+          "B": "medium",
+          "C": "medium",
+          "D": "low"
+        },
+        "flags": [
+          "B_coverage_3/3",
+          "D_not_applicable"
+        ],
+        "claim_refs": [
+          "claim:action:L:demokrati:motioner",
+          "claim:responsibility:L:national:2019-01-21/2021-11-30:support",
+          "claim:responsibility:L:national:2022-10-18/pagaende:government"
+        ],
+        "evidence_refs": []
+      }
+    },
+    "MP": {
+      "ekonomi": {
+        "score": 3.312,
+        "ci": [
+          2.862,
+          3.762
+        ],
+        "components": {
+          "A": 1.429,
+          "B": 5.0,
+          "C": 4.286,
+          "D": 3.481
+        },
+        "confidence": {
+          "A": "high",
+          "B": "medium",
+          "C": "medium",
+          "D": "medium"
+        },
+        "flags": [
+          "B_coverage_2/2"
+        ],
+        "claim_refs": [
+          "claim:action:MP:ekonomi:motioner",
+          "claim:responsibility:MP:national:2014-10-03/2019-01-21:government",
+          "claim:responsibility:MP:national:2019-01-21/2021-11-30:government",
+          "claim:observed_result:obs:scb:arbetsloshet:2001",
+          "claim:observed_result:obs:scb:arbetsloshet:2002",
+          "claim:observed_result:obs:scb:arbetsloshet:2003"
+        ],
+        "evidence_refs": []
+      },
+      "valfard": {
+        "score": 3.684,
+        "ci": [
+          3.234,
+          4.134
+        ],
+        "components": {
+          "A": 2.857,
+          "B": 4.375,
+          "C": 4.286,
+          "D": 3.668
+        },
+        "confidence": {
+          "A": "high",
+          "B": "medium",
+          "C": "medium",
+          "D": "medium"
+        },
+        "flags": [
+          "B_coverage_3/4"
+        ],
+        "claim_refs": [
+          "claim:action:MP:valfard:motioner",
+          "claim:responsibility:MP:national:2014-10-03/2019-01-21:government",
+          "claim:responsibility:MP:national:2019-01-21/2021-11-30:government",
+          "claim:observed_result:obs:kolada:N15507:0000:2015",
+          "claim:observed_result:obs:kolada:N15507:0000:2016",
+          "claim:observed_result:obs:kolada:N15507:0000:2017"
+        ],
+        "evidence_refs": []
+      },
+      "trygghet": {
+        "score": 2.415,
+        "ci": [
+          1.965,
+          2.865
+        ],
+        "components": {
+          "A": 0.0,
+          "B": 4.375,
+          "C": 4.286,
+          "D": 2.414
+        },
+        "confidence": {
+          "A": "high",
+          "B": "medium",
+          "C": "medium",
+          "D": "medium"
+        },
+        "flags": [
+          "B_coverage_3/4"
+        ],
+        "claim_refs": [
+          "claim:action:MP:trygghet:motioner",
+          "claim:responsibility:MP:national:2014-10-03/2019-01-21:government",
+          "claim:responsibility:MP:national:2019-01-21/2021-11-30:government",
+          "claim:observed_result:obs:bra:dodligt_vald:2002",
+          "claim:observed_result:obs:bra:dodligt_vald:2003",
+          "claim:observed_result:obs:bra:dodligt_vald:2004"
+        ],
+        "evidence_refs": []
+      },
+      "forsvar": {
+        "score": 2.911,
+        "ci": [
+          2.314,
+          3.507
+        ],
+        "components": {
+          "A": 2.857,
+          "B": 2.5,
+          "C": 4.286,
+          "D": 2.5
+        },
+        "confidence": {
+          "A": "high",
+          "B": "low",
+          "C": "high",
+          "D": "low"
+        },
+        "flags": [
+          "B_no_party_evidence",
+          "D_not_applicable"
+        ],
+        "claim_refs": [
+          "claim:action:MP:forsvar:motioner",
+          "claim:responsibility:MP:national:2014-10-03/2019-01-21:government",
+          "claim:responsibility:MP:national:2019-01-21/2021-11-30:government"
+        ],
+        "evidence_refs": []
+      },
+      "klimat": {
+        "score": 3.789,
+        "ci": [
+          3.339,
+          4.239
+        ],
+        "components": {
+          "A": 4.286,
+          "B": 3.214,
+          "C": 4.286,
+          "D": 3.067
+        },
+        "confidence": {
+          "A": "high",
+          "B": "medium",
+          "C": "medium",
+          "D": "medium"
+        },
+        "flags": [
+          "B_coverage_3/3"
+        ],
+        "claim_refs": [
+          "claim:action:MP:klimat:motioner",
+          "claim:responsibility:MP:national:2014-10-03/2019-01-21:government",
+          "claim:responsibility:MP:national:2019-01-21/2021-11-30:government",
+          "claim:observed_result:obs:scb:territoriella_utslapp:1990",
+          "claim:observed_result:obs:scb:territoriella_utslapp:1991",
+          "claim:observed_result:obs:scb:territoriella_utslapp:1992"
+        ],
+        "evidence_refs": []
+      },
+      "integration": {
+        "score": 3.802,
+        "ci": [
+          3.194,
+          4.409
+        ],
+        "components": {
+          "A": 4.286,
+          "B": 3.125,
+          "C": 4.286,
+          "D": 3.509
+        },
+        "confidence": {
+          "A": "high",
+          "B": "low",
+          "C": "medium",
+          "D": "medium"
+        },
+        "flags": [
+          "B_coverage_1/4",
+          "B_thin_coverage"
+        ],
+        "claim_refs": [
+          "claim:action:MP:integration:motioner",
+          "claim:responsibility:MP:national:2014-10-03/2019-01-21:government",
+          "claim:responsibility:MP:national:2019-01-21/2021-11-30:government",
+          "claim:observed_result:obs:scb:trangboddhet:1988-1989",
+          "claim:observed_result:obs:scb:trangboddhet:2002-2003",
+          "claim:observed_result:obs:scb:trangboddhet:2004-2005"
+        ],
+        "evidence_refs": []
+      },
+      "demokrati": {
+        "score": 3.78,
+        "ci": [
+          3.285,
+          4.275
+        ],
+        "components": {
+          "A": 3.571,
+          "B": 4.167,
+          "C": 4.286,
+          "D": 2.5
+        },
+        "confidence": {
+          "A": "high",
+          "B": "medium",
+          "C": "medium",
+          "D": "low"
+        },
+        "flags": [
+          "B_coverage_2/3",
+          "D_not_applicable"
+        ],
+        "claim_refs": [
+          "claim:action:MP:demokrati:motioner",
+          "claim:responsibility:MP:national:2014-10-03/2019-01-21:government",
+          "claim:responsibility:MP:national:2019-01-21/2021-11-30:government"
+        ],
+        "evidence_refs": []
+      }
+    }
+  }
+}

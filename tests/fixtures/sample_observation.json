@@ -1,0 +1,11 @@
+{
+  "id": "obs:scb:arbetsloshet:2024",
+  "category": "ekonomi",
+  "submeasure": "sysselsattning_arbetsloshet",
+  "indicator": "arbetsloshet",
+  "period": "2024",
+  "value": 8.1,
+  "unit": "procent",
+  "geography": "Riket",
+  "source_ref": "scb:AM0401:2024"
+}

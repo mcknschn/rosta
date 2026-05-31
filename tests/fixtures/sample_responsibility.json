@@ -1,0 +1,10 @@
+{
+  "id": "resp:S:national:2014-2018",
+  "party": "S",
+  "level": "national",
+  "geography": "Riket",
+  "period": "2014-2018",
+  "role": "government",
+  "strength": 1.0,
+  "source_ref": "regeringskansliet:lofven-i"
+}

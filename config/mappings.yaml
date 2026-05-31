@@ -1,0 +1,85 @@
+# Rösta — mappningar mellan rådata och modellens kategorier
+#
+# Detta är editerbar config, inte handsatta betyg. Versionen nedan är en första
+# kodifiering att förfina i Fas 1 (särskilt UO-mappning och region/kommun-styren).
+
+version: 1
+window: { start: 2014, end: 2026 }   # 3 mandatperioder
+
+elections:        # riksdagsval i fönstret
+  - 2014-09-14
+  - 2018-09-09
+  - 2022-09-11
+  - 2026-09-13    # kommande
+
+# Nationella regeringsperioder (för ansvar/attribution, delpoäng C och D).
+# parties = regeringspartier; support_parties = budget-/stödpartier (lägre attribution).
+government_periods:
+  - { start: 2014-10-03, end: 2019-01-21, name: "Löfven I",      parties: [S, MP], support_parties: [] }
+  - { start: 2019-01-21, end: 2021-11-30, name: "Löfven II",     parties: [S, MP], support_parties: [C, L] }
+  - { start: 2021-11-30, end: 2022-10-18, name: "Andersson",     parties: [S],     support_parties: [] }
+  - { start: 2022-10-18, end: null,       name: "Kristersson",   parties: [M, KD, L], support_parties: [SD] }
+
+# Utgiftsområden (statsbudgeten) -> kategori. Primär koppling för delpoäng A
+# (budgetprioritering) och C (finansiering). Ett UO kan bidra till flera kategorier;
+# vikten anger andelen av UO:t som tillskrivs kategorin.
+expenditure_areas:
+  UO1:  { name: "Rikets styrelse",                               map: { demokrati: 1.0 } }
+  UO2:  { name: "Samhällsekonomi och finansförvaltning",         map: { ekonomi: 1.0 } }
+  UO3:  { name: "Skatt, tull och exekution",                     map: { ekonomi: 1.0 } }
+  UO4:  { name: "Rättsväsendet",                                 map: { trygghet: 1.0 } }
+  UO5:  { name: "Internationell samverkan",                      map: { forsvar: 1.0 } }
+  UO6:  { name: "Försvar och samhällets krisberedskap",          map: { forsvar: 1.0 } }
+  UO7:  { name: "Internationellt bistånd",                       map: { forsvar: 0.5, demokrati: 0.5 } }
+  UO8:  { name: "Migration",                                     map: { integration: 1.0 } }
+  UO9:  { name: "Hälsovård, sjukvård och social omsorg",         map: { valfard: 1.0 } }
+  UO10: { name: "Ekonomisk trygghet vid sjukdom",                map: { valfard: 0.5, ekonomi: 0.5 } }
+  UO11: { name: "Ekonomisk trygghet vid ålderdom",               map: { valfard: 0.5, ekonomi: 0.5 } }
+  UO12: { name: "Ekonomisk trygghet för familjer och barn",      map: { valfard: 0.7, ekonomi: 0.3 } }
+  UO13: { name: "Jämställdhet och nyanlända invandrares etablering", map: { integration: 1.0 } }
+  UO14: { name: "Arbetsmarknad och arbetsliv",                   map: { ekonomi: 0.7, integration: 0.3 } }
+  UO15: { name: "Studiestöd",                                    map: { valfard: 1.0 } }
+  UO16: { name: "Utbildning och universitetsforskning",          map: { valfard: 1.0 } }
+  UO17: { name: "Kultur, medier, trossamfund och fritid",        map: { demokrati: 1.0 } }
+  UO18: { name: "Samhällsplanering, bostadsförsörjning och byggande", map: { integration: 0.5, ekonomi: 0.5 } }
+  UO19: { name: "Regional utveckling",                           map: { ekonomi: 1.0 } }
+  UO20: { name: "Allmän miljö- och naturvård",                   map: { klimat: 1.0 } }
+  UO21: { name: "Energi",                                        map: { klimat: 1.0 } }
+  UO22: { name: "Kommunikationer",                               map: { klimat: 0.4, ekonomi: 0.6 } }
+  UO23: { name: "Areella näringar, landsbygd och livsmedel",     map: { klimat: 0.6, ekonomi: 0.4 } }
+  UO24: { name: "Näringsliv",                                    map: { ekonomi: 1.0 } }
+  UO25: { name: "Allmänna bidrag till kommuner",                 map: { valfard: 1.0 } }
+  UO26: { name: "Statsskuldsräntor m.m.",                        map: { ekonomi: 1.0 } }
+  UO27: { name: "Avgiften till Europeiska unionen",              map: {} }
+
+# Riksdagsutskott (organ-kod) -> kategori. För delpoäng A (lagstiftningsaktivitet):
+# antal motioner per (parti, utskott) i fönstret räknas via Riksdagens dokumentlista.
+# Primär kategori per utskott (ett utskott kan röra flera, men vi väljer den dominerande).
+committee_to_category:
+  FiU: ekonomi        # Finansutskottet
+  SkU: ekonomi        # Skatteutskottet
+  NU:  ekonomi        # Näringsutskottet
+  AU:  ekonomi        # Arbetsmarknadsutskottet (jobb)
+  TU:  ekonomi        # Trafikutskottet (kommunikationer)
+  SoU: valfard        # Socialutskottet (vård/omsorg)
+  UbU: valfard        # Utbildningsutskottet (skola)
+  JuU: trygghet       # Justitieutskottet
+  FöU: forsvar        # Försvarsutskottet
+  UU:  forsvar        # Utrikesutskottet
+  MJU: klimat         # Miljö- och jordbruksutskottet
+  SfU: integration    # Socialförsäkringsutskottet (migration m.m.)
+  CU:  integration    # Civilutskottet (bostad)
+  KU:  demokrati      # Konstitutionsutskottet
+  KrU: demokrati      # Kulturutskottet
+
+# Region- och kommunstyren (för regionalt/kommunalt ansvar, delpoäng C/D).
+# Källa: SKR "Styren i kommuner och regioner" efter varje val. Fylls i Fas 1.
+# Struktur (exempel):
+#   regions:
+#     "Region Stockholm":
+#       - { term: 2014-2018, leading_parties: [...] }
+subnational_governance:
+  status: pending_fas1
+  source: "SKR – Styren i kommuner och regioner"
+  regions: {}
+  municipalities: {}

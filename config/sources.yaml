@@ -1,0 +1,458 @@
+# Rösta — källregister (maskinläsbar version av DATA.md sektion 3)
+#
+# Endast officiella svenska myndigheter + svensk akademi (CLAUDE.md).
+# feeds: "A"|"C" = genomgående; "D:<kat>" = resultatindikator; "B:<kat>" = evidens/utvärdering.
+# access: api | bulk_file | web      verified: endpoint bekräftad via faktisk request.
+#
+# Riksdagen, SCB och Kolada verifierades live 2026-05-29 (HTTP 200). Övriga är
+# kartlagda men endpoint/dataset-id pinnas slutgiltigt i Fas 1-3.
+
+version: 2
+verified_date: 2026-05-29
+
+defaults:
+  user_agent: "rosta-datapipeline/0.1 (civic-tech; kontakt i repo)"
+  cache: data/raw
+  politeness_delay_seconds: 1
+
+sources:
+
+  # --- Genomgående: agerande (A) och ansvar (C) ---------------------------------
+  riksdagen:
+    name: Riksdagens öppna data
+    base_url: https://data.riksdagen.se
+    access: api
+    formats: [json, xml, csv]
+    license: "Fri vidarespridning med källangivelse (källa: Sveriges riksdag). Inget formellt SPDX-namn."
+    auth: none
+    rate_limits: "Inga publicerade. Var hövlig; tungt paginerat (voteringar = en rad per ledamot)."
+    feeds: [A]
+    datasets:
+      - { id: dokumentlista, query: "?doktyp=mot|prop|bet&utformat=json&from=YYYY-MM-DD&tom=YYYY-MM-DD&sz=500&p=N", note: "Motioner/propositioner/betänkanden. Paginera via @nasta_sida." }
+      - { id: voteringlista, query: "?rm=YYYY%2FYY&utformat=json&sz=100&gruppering=votering", note: "Röster per ledamot+votering. Aggregera till parti via dok_id/votering_id." }
+      - { id: votering, query: "/{votering_id}/json", note: "Enskild votering." }
+      - { id: dokument, query: "/{dok_id}.json", note: "Enskilt dokument (metadata/fulltext)." }
+      - { id: fiu1_rambeslut, query: "/dokument/{dok_id}.html", note: "FiU1 'Statens budget – Rambeslutet' (t.ex. HC01FiU1 = 2024/25). Tabellen 'Utgiftsram per UO' (Regeringens förslag + avvikelse S/V/C/MP) matar a1 budgetprioritering -> config/budget_ramar.yaml. INGEN runtime-parser: belopp finns bara i fulltext, transkriberas manuellt+verifierat (förslagspunkts-endpointen saknar belopp-fält)." }
+    gotchas:
+      - "JSON är XML-konvertering: attribut prefixas med @ och tal levereras som strängar ('277')."
+      - "Riksmöte (rm) URL-kodas: 2024/25 -> 2024%2F25."
+      - "Stora träffmängder ger @varning i st.f. lista — filtrera (doktyp, rm, from/tom)."
+    coverage: "Fullständig 2014-2026 (voteringar dokumenterade från 1993/94)."
+    verified: true
+    confidence: high
+
+  statsbudget_esv:
+    name: Statsbudget / utgiftsområden (ESV, regeringen, finansutskottet)
+    base_url: https://www.esv.se/
+    access: bulk_file
+    formats: [xlsx, csv]
+    license: "Öppna data (ESV)"
+    feeds: [A, C]
+    datasets:
+      - { id: anslag_per_uo, note: "Anslag per utgiftsområde + partiernas budgetmotioner" }
+      - { id: statens_saldo, note: "Budgetsaldo/finansiering" }
+    verified: false
+    confidence: low
+
+  valmyndigheten:
+    name: Valmyndigheten
+    base_url: https://www.val.se/valresultat-och-statistik/statistik-och-data/radata-fran-val-2006-2022
+    access: bulk_file
+    formats: [csv, xlsx, zip]
+    license: "Fri med källangivelse (Valmyndigheten)"
+    feeds: [C]
+    datasets:
+      - { id: riksdagsval_2022, note: "Valresultat 2022 (rådata, CSV semikolonseparerad)" }
+      - { id: riksdagsval_2014_2018, note: "OBS: 2014 och 2018 ligger på historik.val.se, ej huvudsidan" }
+    gotchas:
+      - "Inget API — ladda ZIP/CSV/XLSX. CSV är semikolonseparerad."
+    verified: false
+    confidence: medium
+
+  regeringskansliet:
+    name: Regeringskansliet
+    base_url: https://www.regeringen.se/
+    access: web
+    formats: [html]
+    license: "Offentlig"
+    feeds: [C]
+    datasets:
+      - { id: regeringar, note: "Regeringssammansättning per period (kodas i mappings.yaml)" }
+    verified: false
+    confidence: low
+
+  skr_styren:
+    name: SKR – Styren i kommuner och regioner
+    base_url: https://skr.se/
+    access: bulk_file
+    formats: [xlsx, pdf]
+    license: "Öppna data (SKR)"
+    feeds: [C]
+    datasets:
+      - { id: styren_kommuner_regioner, note: "Politiskt styre per kommun/region efter val" }
+    verified: false
+    confidence: low
+
+  # --- Resultatindikatorer (D) --------------------------------------------------
+  scb:
+    name: SCB
+    base_url: https://api.scb.se/OV0104/v1/doris/sv/ssd
+    base_url_v2: https://api.scb.se/OV0104/v2beta/api/v2
+    access: api
+    formats: [json-stat2, px, csv]
+    license: "CC0 1.0 (deklarerad av v2 /config). Källangivelse: SCB."
+    auth: none
+    rate_limits: "30 anrop / 10 s per IP. Max 150 000 dataceller per fråga."
+    feeds: [D:ekonomi, D:integration, D:klimat]
+    datasets:
+      - { id: AM0401, note: "AKU – arbetslöshet/sysselsättning (POST px-query)" }
+      - { id: NR0103, alt_id: TAB676, note: "Nationalräkenskaper – BNP, BNP per capita, produktivitet" }
+      - { id: TAB3610, indicator: "produktivitet (täljare)", verified: true,
+          note: "BNP från användningssidan (ENS2010), år 1980–2024. Anvandningstyp=BNPM (BNP till marknadspris), ContentsCode=000000RN (fasta priser ref. 2020, mnkr). Täljare i härledd produktivitet (pipeline.derived)." }
+      - { id: TAB5622, indicator: "produktivitet (nämnare)", verified: true,
+          note: "Arbetskraftsinsats (ENS2010) efter näringsgren, år 1980–2024. SNI2007=0002 (hela ekonomin, totalt), ContentsCode=000004C1 (arbetade timmar, faktiska, 10 000-tal). Nämnare i härledd produktivitet." }
+      - { id: TAB6529, indicators: [sjalvforsorjningsgrad, sysselsattningsgap_inrikes_utrikes], verified: true,
+          note: "AKU sysselsättningsgrad (SYSP) efter inrikes/utrikes född. =23 utrikes (sjalvforsorjningsgrad); 13−23 = härlett sysselsättningsgap (pipeline.derived)." }
+      - { id: PR0101, alt_id: TAB6746, note: "KPI/KPIF månadsvis (1987M01– ). Årsmedeltal: TAB4352 (KPI fastställda årsmedeltal, 1980=100) — deflator om en reallöneserie byggs." }
+      - { id: MI0107, note: "Territoriella växthusgasutsläpp (1990–) — den officiella nationella utsläppsstatistiken bor HÄR, inte hos Naturvårdsverket" }
+    gotchas:
+      - "Data hämtas via POST med px-query-body; GET ger bara navigation/metadata."
+      - "v2 defaultformat är 'px' — skicka outputFormat=json-stat2 explicit."
+      - "v1-tabellsökvägar kan flytta vid omstrukturering; v2 TAB-id är stabila."
+      - "Eliminerbara dimensioner utelämnas ur default-vyn och summeras tyst till totalen om de inte begärs explicit -> fixera ALLA icke-Tid-dimensioner (pipeline.sources.scb gör detta)."
+      - "ENHETER kan bytas vid omräkning: TAB5622:s arbetade timmar gick från '1 000 000-tal' till '10 000-tal' 2026-05-29. Härledda serier med fast skala har därför en rimlighetsgrind på nivån (pipeline.derived) som failar högt vid ett framtida enhetsbyte i stället för att tyst ge en 100x fel nivå."
+    coverage: "Mycket god, alla relevanta serier täcker långt bortom 2014-2026."
+    verified: true
+    confidence: high
+
+  riksbanken:
+    name: Riksbanken
+    base_url: https://api.riksbank.se/
+    access: api
+    formats: [json]
+    license: "Öppna data"
+    feeds: [D:ekonomi]
+    datasets:
+      - { id: inflationsmal_ranta, note: "KPIF-mål, styrränta" }
+    verified: false
+    confidence: low
+
+  bra:
+    name: Brå (Brottsförebyggande rådet)
+    base_url: https://bra.se
+    access: bulk_file
+    formats: [xlsx, csv, html]
+    license: "Sveriges officiella statistik (SOS) – fri vidareutnyttjning med källangivelse (källa: Brå)"
+    feeds: [D:trygghet, B:trygghet]
+    datasets:
+      - { id: dodligt_vald_tabell20, indicator: dodligt_vald, verified: true,
+          note: "Konstaterade fall av dödligt våld per 100 000 inv. (Tabell 20, blad 'Statistik'), 2002–2025." }
+      - { id: ntu_tabellsamling, indicators: [brottsutsatthet, upplevd_otrygghet], verified: true,
+          note: "NTU Tabellsamling 2007–2025. Blad 3A 'Brott mot enskild person/Samtliga 16–84 år' -> brottsutsatthet (2016–2024). Blad 4A:1 'Samtliga 16–84 år' -> upplevd_otrygghet (2017–2025)." }
+      - { id: uppklaring, indicator: uppklaringsgrad, verified: false, note: "Handlagda brott — adapter ej byggd." }
+      - { id: aterfall, indicator: aterfall_i_brott, verified: false, note: "Återfall i brott — adapter ej byggd." }
+    gotchas:
+      - "Inget publikt API — skriptad Excel-nedladdning. download-id i URL:en ändras vid ny publicering -> HTTP-fel höjs (raise_for_status), aldrig tyst gammal data."
+      - "SOS markerar saknad data med '..'/'.'; float('.') skulle krascha -> icke-numeriska celler hoppas som saknade."
+      - "NTU: tabellen har år i KOLUMNER (header-rad), inte rader. De två högra kolumnerna är 95 %-konfidensintervall (rubrik 'Konfidensintervall ...'), inte år -> uteslutna (header ≠ 4 siffror)."
+      - "NTU metodbryt: utsatthetsaggregatet finns bara fr.o.m. 2016; otrygghet 2007–2016 är omräknat med annan metod (asterisk i källan) -> endast nuvarande-metod-fönster tas med."
+    verified: true
+    confidence: high
+
+  kolada:
+    name: Kolada (RKA)
+    base_url: https://api.kolada.se/v3
+    access: api
+    formats: [json]
+    license: "Öppen och kostnadsfri (RKA)"
+    auth: none
+    rate_limits: "Inga publicerade. Paginera via next_url (~5000 poster/svar)."
+    feeds: [D:valfard, C]
+    datasets:
+      - { id: kpi, query: "/kpi", note: "KPI-metadata/sök" }
+      - { id: municipality, query: "/municipality", note: "Kommuner OCH regioner (type K=kommun, L=region)" }
+      - { id: data, query: "/data/kpi/{kpi_id}/municipality/{id}/year/{period}", note: "Tidsserie per kommun/region" }
+    gotchas:
+      - "v2 är NEDLAGT (HTTP 410). All integration måste använda /v3."
+      - "Regioner ligger i SAMMA municipality-endpoint (skilj via type-fältet K/L)."
+      - "Gruppvärden är OVÄGT medelvärde av medlemskommuner — ej befolkningsviktat."
+    coverage: "God; KPI årsvis, långa tidsserier."
+    verified: true
+    confidence: high
+
+  socialstyrelsen:
+    name: Socialstyrelsen
+    base_url: https://sdb.socialstyrelsen.se/api/v1
+    access: api
+    formats: [json, csv]
+    license: "Fri med källangivelse"
+    feeds: [D:valfard]
+    datasets:
+      - { id: statistikdatabas, query: "/sv/{amne}", note: "Väntetider och vårdresultat (paginerat)" }
+    verified: false
+    confidence: medium
+
+  skolverket:
+    name: Skolverket
+    base_url: https://api.skolverket.se
+    base_url_siris: https://siris.skolverket.se/siris/reports/export_api/runexport/
+    access: api
+    formats: [json, csv]
+    license: "Öppna data"
+    feeds: [D:valfard, D:integration]
+    datasets:
+      - { id: skolenhetsregistret, query: "/skolenhetsregistret/v1/skolenhet", note: "Skolenheter" }
+      - { id: siris_export, note: "Betyg/behörighet/resultat. Långsamt (~30s); vissa exporter kräver pToken." }
+      - { id: sfi, note: "SFI/komvux-resultat" }
+    verified: false
+    confidence: low
+
+  naturvardsverket:
+    name: Naturvårdsverket (utsläpp i siffror)
+    base_url: https://utslappisiffror.naturvardsverket.se/
+    access: web
+    formats: [html, xlsx]
+    license: "Öppna data"
+    feeds: [D:klimat]
+    datasets:
+      - { id: utslapp_visualisering, note: "Visualisering/regional fördelning" }
+    gotchas:
+      - "Den officiella nationella utsläppstidsserien hämtas via SCB PxWeb (MI0107), inte ett eget Naturvårdsverket-API."
+    verified: false
+    confidence: low
+
+  energimyndigheten:
+    name: Energimyndigheten
+    base_url: https://pxexternal.energimyndigheten.se/api/v1/sv/Energimyndighetens_statistikdatabas
+    access: api
+    formats: [json-stat2, px]
+    license: "Sveriges officiella statistik – fri vidareutnyttjning med källangivelse (Energimyndigheten)"
+    feeds: [D:klimat]
+    datasets:
+      - { id: EN0202_8, path: "Officiell_energistatistik/Arlig_energibalans/Total_slutlig_energianvandning/EN0202_8.px", note: "Slutlig energianvändning per energivara (TWh, fr.o.m. 1970). fossil_energianvandning = Σ Kol och koks + Petroleumprodukter + Natur- och stadsgas. PxWeb v1: POST json-stat2-query; tidsdim 'År' (koderna är index, årtal i category.label)." }
+    gotchas:
+      - "PxWeb v1 (inte SCB v2): data via POST med json-query; GET på tabell-id ger metadata."
+      - "Energivara-koder slås upp via valueText (Kol och koks/Petroleumprodukter/Natur- och stadsgas) så en omnumrering inte tyst byter serie."
+    verified: true
+    confidence: high
+
+  svenska_kraftnat:
+    name: Svenska kraftnät
+    base_url: https://mimer.svk.se
+    base_url_esett: https://api.opendata.esett.com
+    access: api
+    formats: [json, csv]
+    license: "Öppna data"
+    feeds: [D:klimat]
+    datasets:
+      - { id: mimer, note: "Effektbalans/elpriser historiskt t.o.m. ~2025-03-18" }
+      - { id: esett_opendata, note: "Från 2025-03-18 och framåt (eSett Open Data)" }
+    gotchas:
+      - "Tidslinjen är DELAD: en enda källa täcker inte hela 2014-2026 — kombinera Mimer + eSett."
+    verified: false
+    confidence: low
+
+  forsvarsmakten:
+    name: Försvarsmakten
+    base_url: https://www.forsvarsmakten.se/
+    access: bulk_file
+    formats: [pdf]
+    license: "Offentlig (årsredovisning)"
+    feeds: [D:forsvar]
+    datasets:
+      - { id: arsredovisning, note: "Personal, värnpliktiga, materiel (proxy för operativ förmåga)" }
+    verified: false
+    confidence: low
+
+  msb:
+    name: MSB
+    base_url: https://www.msb.se/
+    access: web
+    formats: [pdf, html]
+    license: "Offentlig"
+    feeds: [D:forsvar]
+    datasets:
+      - { id: civil_beredskap, note: "Civil beredskap inom vård, energi, mat, transporter" }
+    verified: false
+    confidence: low
+
+  boverket:
+    name: Boverket
+    base_url: https://www.boverket.se/
+    access: bulk_file
+    formats: [xlsx, csv]
+    license: "Öppna data"
+    feeds: [D:integration]
+    datasets:
+      - { id: boendesegregation, note: "Trångboddhet, boendesegregation" }
+    verified: false
+    confidence: low
+
+  statskontoret:
+    name: Statskontoret
+    base_url: https://www.statskontoret.se/
+    access: web
+    formats: [pdf, html]
+    license: "Offentlig"
+    feeds: [D:demokrati, B:demokrati]
+    datasets:
+      - { id: forvaltningspolitik, note: "Förvaltningsstyrning, myndighetsanalys" }
+    verified: false
+    confidence: low
+
+  riksrevisionen:
+    name: Riksrevisionen
+    base_url: https://www.riksrevisionen.se/
+    access: web
+    formats: [pdf, html]
+    license: "Offentlig"
+    feeds: [D:demokrati, B:demokrati, B:forsvar]
+    datasets:
+      - { id: granskningsrapporter, note: "Effektivitet och måluppfyllelse i statlig verksamhet" }
+    verified: false
+    confidence: low
+
+  som_institutet:
+    name: SOM-institutet (Göteborgs universitet)
+    base_url: https://www.gu.se/som-institutet
+    access: bulk_file
+    formats: [xlsx, csv]
+    license: "Akademisk (attribution)"
+    feeds: [D:demokrati, D:integration, B:demokrati]
+    datasets:
+      - { id: som_undersokningen, note: "Myndighetstillit, medieförtroende, mellanmänsklig tillit" }
+    verified: false
+    confidence: low
+
+  # --- Evidens-/utvärderingskällor (B) ------------------------------------------
+  ifau:
+    name: IFAU
+    base_url: https://www.ifau.se/
+    access: web
+    formats: [pdf]
+    license: "Offentlig"
+    feeds: [B:ekonomi, B:valfard, B:integration]
+    datasets:
+      - { id: utvarderingar, note: "Arbetsmarknads- och utbildningspolitikens effekter" }
+    verified: false
+    confidence: low
+
+  sbu:
+    name: SBU
+    base_url: https://www.sbu.se/
+    access: web
+    formats: [pdf, html]
+    license: "Offentlig"
+    feeds: [B:valfard]
+    datasets:
+      - { id: systematiska_oversikter, note: "Medicinsk och social metodutvärdering" }
+    verified: false
+    confidence: low
+
+  vardanalys:
+    name: Myndigheten för vård- och omsorgsanalys
+    base_url: https://www.vardanalys.se/
+    access: web
+    formats: [pdf]
+    license: "Offentlig"
+    feeds: [B:valfard]
+    datasets:
+      - { id: rapporter, note: "Vård- och omsorgsreformers effekter" }
+    verified: false
+    confidence: low
+
+  skolforskningsinstitutet:
+    name: Skolforskningsinstitutet
+    base_url: https://www.skolfi.se/
+    access: web
+    formats: [pdf]
+    license: "Offentlig"
+    feeds: [B:valfard]
+    datasets:
+      - { id: forskningssammanstallningar, note: "Skolinsatsers effekt" }
+    verified: false
+    confidence: low
+
+  foi:
+    name: FOI (Totalförsvarets forskningsinstitut)
+    base_url: https://www.foi.se/
+    access: web
+    formats: [pdf]
+    license: "Offentlig"
+    feeds: [B:forsvar]
+    datasets:
+      - { id: analyser, note: "Försvars- och säkerhetspolitisk analys" }
+    verified: false
+    confidence: low
+
+  klimatpolitiska_radet:
+    name: Klimatpolitiska rådet
+    base_url: https://www.klimatpolitiskaradet.se/
+    access: web
+    formats: [pdf]
+    license: "Offentlig"
+    feeds: [B:klimat]
+    datasets:
+      - { id: arsrapport, note: "Om klimatpolitiken når beslutade mål" }
+    verified: false
+    confidence: low
+
+  tillvaxtanalys:
+    name: Tillväxtanalys
+    base_url: https://www.tillvaxtanalys.se/
+    access: web
+    formats: [pdf]
+    license: "Offentlig"
+    feeds: [B:ekonomi, B:klimat]
+    datasets:
+      - { id: utvarderingar, note: "Närings- och tillväxtpolitik" }
+    verified: false
+    confidence: low
+
+  finanspolitiska_radet:
+    name: Finanspolitiska rådet
+    base_url: https://www.fpr.se/
+    access: web
+    formats: [pdf]
+    license: "Offentlig"
+    feeds: [B:ekonomi]
+    datasets:
+      - { id: arsrapport, note: "Finanspolitikens hållbarhet och effekt" }
+    verified: false
+    confidence: low
+
+  konjunkturinstitutet:
+    name: Konjunkturinstitutet
+    base_url: https://www.konj.se/
+    access: bulk_file
+    formats: [xlsx, csv, pdf]
+    license: "Öppna data"
+    feeds: [D:ekonomi, B:ekonomi, B:klimat]
+    datasets:
+      - { id: prognoser, note: "Makro- och miljöekonomisk analys" }
+    verified: false
+    confidence: low
+
+  eso:
+    name: ESO (Expertgruppen för studier i offentlig ekonomi)
+    base_url: https://eso.expertgrupp.se/
+    access: web
+    formats: [pdf]
+    license: "Offentlig"
+    feeds: [B:ekonomi, B:valfard, B:integration]
+    datasets:
+      - { id: rapporter, note: "Studier i offentlig ekonomi (brett)" }
+    verified: false
+    confidence: low
+
+  vetenskapsradet:
+    name: Vetenskapsrådet
+    base_url: https://www.vr.se/
+    access: web
+    formats: [pdf]
+    license: "Offentlig"
+    feeds: [B:demokrati]
+    datasets:
+      - { id: forskningsoversikter, note: "Akademiskt kunskapsläge (tvärgående)" }
+    verified: false
+    confidence: low

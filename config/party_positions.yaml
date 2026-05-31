@@ -1,0 +1,1437 @@
+# Rösta — partiståndpunkter (delpoäng B)
+#
+# VIKTIGT — INTEGRITET: ingen ståndpunkt fabriceras. Varje rad citerar partiets faktiska
+# ställningstagande i en officiell svensk källa (riksdagsvotering/motion/budgetmotion) med
+# ordagrant utdrag (quote) + dokument-id (doc_id). Metod: docs/fas4b_partistandpunkter_metod.md.
+#
+# Pipeline joinar BARA på party + policy_type + stance. Övriga fält är spårbarhet.
+#
+# HÄRKOMST: klimat-raderna handkurerades (votering bet. 2023/24:MJU5 + koldioxidskatt) och är
+# OFÖRÄNDRADE. Övriga kategorier PANEL-HARMONISERADES 2026-05-30 (Fas 4c, Plan B) under den frysta
+# rubriken docs/fas4c_rubrik.md: per åtgärdstyp bedömdes alla 8 partier SIDA VID SIDA under EN
+# gemensam standard (bunten-regel: en buntad motion räknas för det namngivna instrumentet, intern
+# nyans förkastar ej raden), och varje keep/add re-verifierades ORDAGRANT mot källans fulltext (.text)
+# av en oberoende skeptiker. Endast confirmed=true admitterades. Beslut + skäl: docs/fas4c_planB_audit.md.
+# Frånvaro av (parti, åtgärdstyp)-rad = COVERAGE-LUCKA (ingen instrument-exakt källa), INTE motstånd.
+#
+# Version 0 / draft — KRÄVER mänsklig slutgranskning innan skarp betygsättning.
+
+version: 0
+status: harmonized_alla_kategorier_unreviewed
+entries:
+- party: S
+  policy_type: arbetsmarknadsutbildning
+  stance: supports
+  source: Kommittemotion (S) – data.riksdagen.se/HD023590
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/HD023590
+  doc_id: HD023590
+  quote: Riksdagen ställer sig bakom det som anförs i motionen om att tredubbla antalet deltagare i arbetsmarknadsutbildningarna och tillkännager detta för regeringen.
+  date: '2025-10-07'
+  confidence: high
+  mapping_note: 'Instrument-exakt: ''arbetsmarknadsutbildningarna'' (AUB via Arbetsförmedlingen) namnges explicit, inte ett allmänt mål. Riktning UTÖKA (tredubbla deltagare). Partikollektiv kommittémotion (hög i källhierarkin, ej enskild motion), rm 2025/26 (föredragen period). Bunten-nyans (jämställdhets-/upphandlings-/regionaliseringsönskemål i samma motion) noteras men förkastar ej raden per §2. confidence=high (partikollektiv + senaste mandatperiod).'
+- party: M
+  policy_type: arbetsmarknadsutbildning
+  stance: supports
+  source: Kommittemotion (M) – data.riksdagen.se/H6022931
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/H6022931
+  doc_id: H6022931
+  quote: Moderaterna anser att effektiviteten i arbetsmarknadsutbildningen och den förberedande utbildningen måste öka.
+  date: '2018-11-30'
+  confidence: medium
+  mapping_note: 'Instrument-exakt: ''arbetsmarknadsutbildningen''/''arbetsmarknadsutbildningar'' (AUB) namnges explicit. Riktning BEHÅLLA+effektivisera (bekräftar fortsatt behov, vill höja träffsäkerhet/kvalitet) => supports per kodregeln BEHÅLLA/UTÖKA. Metodnyans (kritik mot tidigare resultat, vill rikta bättre) noteras, förkastar ej raden per §2. TIDSNOT (§4): äldre än föredragen period (2018/19); ingen nyare partikollektiv källa finns — samma tidsleniens som ges C/KD/L. Enskild nyare M-motion HD022316 (2025/26) finns men partikollektiv kommittémotion väljs före enskild motion (§3); båda pekar samma håll. confidence=medium (stark källtyp men utanför föredragen period).'
+- party: SD
+  policy_type: arbetsmarknadsutbildning
+  stance: supports
+  source: Kommittemotion (SD) – data.riksdagen.se/HC022386
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/HC022386
+  doc_id: HC022386
+  quote: Ett exempel är arbetsmarknadsutbildningar som inte bara stärker individen utan där syftet också är att möta företagens behov av kompetens. Målgruppen för arbetsmarknadsutbildningar bör bestämmas utifrån deltagarens möjligheter till arbete efter avslutad insats, inte tiden individen varit i arbetslöshet eller någon annan parameter som inte är relevant för syftet. Vi uppmanar regeringen att göra nödvändiga förordningsändringar för att säkerställa träffsäkerheten i Arbetsförmedlingens anvisningar.
+  date: '2024-10-03'
+  confidence: high
+  mapping_note: 'Instrument-exakt: ''arbetsmarknadsutbildningar'' namnges som en av AF:s insatser (AUB). Riktning BEHÅLLA/förbättra => supports. Nyans (vill ändra HUR insatsen riktas — målgrupp/träffsäkerhet) ändrar inte att instrumentet behålls och stärks; noteras per §2, förkastar ej raden. Partikollektiv kommittémotion, rm 2024/25 (föredragen period). Snarlik skrivning i tidigare SD-kommittémotion 2023/24:HB02385. confidence=high.'
+- party: C
+  policy_type: arbetsmarknadsutbildning
+  stance: opposes
+  source: Kommittemotion (C) – data.riksdagen.se/H9024129
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/H9024129
+  doc_id: H9024129
+  quote: Anslaget föreslås minska med 85 miljoner kronor till följd av att den föreslagna förstärkningen av arbetsmarknadsutbildningar avvisas.
+  date: '2021-10-05'
+  confidence: medium
+  mapping_note: 'Instrument-exakt: citatet och tabellraden namnger ''arbetsmarknadsutbildningar''/''arbetsmarknadsutbildning'' (AUB) explicit. Riktning: avvisar förstärkning + minskar anslaget => opposes (mot att utöka instrumentet). Bunten-regeln (§2): motionen buntar flera arbetsmarknadsinstrument (matchningstjänster, extratjänster) men citatet är instrument-exakt — raden räknas. Speglas i C:s partimotion H9024121 (budgetmotion 2022). TIDSNOT (§4): utanför föredragen period (2021/22); samma tidsleniens som M/KD/L. confidence=medium (stark källtyp men äldre period).'
+- party: V
+  policy_type: arbetsmarknadsutbildning
+  stance: supports
+  source: Partimotion (V) – data.riksdagen.se/HD023167
+  source_type: partimotion
+  source_url: https://data.riksdagen.se/dokument/HD023167
+  doc_id: HD023167
+  quote: Vänsterpartiet vill se ökade satsningar på aktiv arbetsmarknadspolitik, däribland arbetsmarknadsutbildning, och föreslår därför att anslaget höjs med 2 000 miljoner kronor.
+  date: '2025-10-06'
+  confidence: high
+  mapping_note: 'Instrument-exakt: ''arbetsmarknadsutbildning'' (AUB) namnges explicit inom den höjda satsningen. Riktning UTÖKA => supports. Bunten-regeln (§2): motionen buntar bred aktiv arbetsmarknadspolitik (beredskapsjobb m.m.) men AUB namnges uttryckligen i citatet — raden räknas. Partimotion (hög i hierarkin), rm 2025/26 (föredragen period). confidence=high.'
+- party: KD
+  policy_type: arbetsmarknadsutbildning
+  stance: opposes
+  source: Budgetmotion (KD) – data.riksdagen.se/H8023409
+  source_type: budgetmotion
+  source_url: https://data.riksdagen.se/dokument/H8023409
+  doc_id: H8023409
+  quote: Regeringen tillför i budgetpropositionen 2021 772 miljoner kr till arbetsmarknadsutbildningen. Kristdemokraterna minskar det tillskottet med 372 miljoner kr för 2021 och 200 miljoner kr per år 2022 – 2023, under anslag 1:3.
+  date: '2020-10-06'
+  confidence: medium
+  mapping_note: 'Instrument-exakt: ''arbetsmarknadsutbildningen'' (AUB i AF:s regi) namnges explicit; motionsrubrik ''Effektivisera arbetsmarknadsutbildning i AF:s regi''. Riktning: skär ner anslaget => opposes. Bunten-regeln (§2): buntar flera arbetsmarknadsinstrument men citatet instrument-exakt. Nyans (KD ser begränsad roll i pandemiläget, vill ''effektivisera'' ej helt avskaffa) ändrar ej nettoriktning nedskärning; noteras per §2. TIDSNOT (§4): utanför föredragen period (2020/21); samma tidsleniens som M/C/L; bekräftas av nyare källa. confidence=medium.'
+- party: L
+  policy_type: arbetsmarknadsutbildning
+  stance: opposes
+  source: Partimotion (L) – data.riksdagen.se/H9024181
+  source_type: partimotion
+  source_url: https://data.riksdagen.se/dokument/H9024181
+  doc_id: H9024181
+  quote: Liberalerna avvisar även den stora satsning som görs på arbetsmarknadsutbildning, som riskerar att låsa in människor i utbildning när ekonomin vänder i takt med att restriktioner lättas och allt fler har vaccinerat sig.
+  date: '2021-10-04'
+  confidence: medium
+  mapping_note: 'Instrument-exakt: ''arbetsmarknadsutbildning'' (AUB) namnges explicit; tabellrad ''Nej till utbyggd arbetsmarknadsutbildning''. Riktning: avvisar/skär ner => opposes. Bunten-regeln (§2): buntar flera arbetsmarknadsnedskärningar (extratjänster, förvaltningsanslag, a-kasseavgift) men citatet är instrument-exakt — raden räknas. SYMMETRI-NOT (§2/§9): detta är exakt det fall rubriken skrevs för — L:s buntade ståndpunkt behandlas nu lika med M:s buntade ståndpunkt; instrument-exakt citat => raden gäller, nyans noteras. TIDSNOT (§4): utanför föredragen period (2021/22), ingen nyare källa; samma tidsleniens som M/C/KD. date approximerad till 2021-10-04 (rm 2021/22, UO14-budgetmotion; JSON angav endast ''2021/22''). confidence=medium.'
+- party: MP
+  policy_type: arbetsmarknadsutbildning
+  stance: supports
+  source: Budgetmotion (MP) – data.riksdagen.se/HD023525
+  source_type: budgetmotion
+  source_url: https://data.riksdagen.se/dokument/HD023525
+  doc_id: HD023525
+  quote: Även riktade arbetsmarknadsutbildningar har en stor potential och bör utökas.
+  date: '2025-10-07'
+  confidence: high
+  mapping_note: 'Instrument-exakt: ''riktade arbetsmarknadsutbildningar'' (AUB) namnges explicit. Riktning UTÖKA (''bör utökas'') => supports. Bunten-regeln (§2): motionen buntar även övriga arbetsmarknadsprogram och korta yrkesutbildningar med språkstudier, men citatet är instrument-exakt — raden räknas. Partikollektiv budgetmotion, rm 2025/26 (föredragen period). confidence=high.'
+- party: S
+  policy_type: subventionerade_anstallningar
+  stance: supports
+  source: Budgetmotion (S) – data.riksdagen.se/HD023590
+  source_type: budgetmotion
+  source_url: https://data.riksdagen.se/dokument/HD023590
+  doc_id: HD023590
+  quote: Vi anser att Sverige behöver fortsatta krafttag mot segregationen och vill därför återinföra extratjänsterna. För detta avsätter vi 200 miljoner till anslaget 1:3 Kostnader för arbetsmarknadspolitiska program och insatser.
+  date: 2025-2026
+  confidence: high
+  mapping_note: 'Bunten-regel tillämpad: motionen buntar flera arbetsmarknadsinsatser, men citatet är instrument-exakt för extratjänster (en av instrumentets namngivna delformer). Intern nyans (vill skärpa kontroll/pausa nya nystartsjobbsbeslut p.g.a. fuskkritik; håller anslag 1:4 och 1:5 ±0) noteras men förkastar ej supports. Harmoniserad lika med M/KD/L: en delform stärks medan annat justeras = supports.'
+- party: M
+  policy_type: subventionerade_anstallningar
+  stance: supports
+  source: Kommittémotion (M) – data.riksdagen.se/H9024036
+  source_type: kommittémotion
+  source_url: https://data.riksdagen.se/dokument/H9024036
+  doc_id: H9024036
+  quote: Riksdagen ställer sig bakom det som anförs i motionen om att nystartsjobben ska förstärkas och tillkännager detta för regeringen.
+  date: '2021-10-05'
+  confidence: high
+  mapping_note: 'Bunten-regel: blandad linje inom instrumentet. SUPPORTS-belägg = nystartsjobb förstärks + lönebidrag/anställningsstöd förstärks + anslag 1:4 ökas. Intern nyans (avvisar introduktionsjobb, vill fasa ut extratjänster) skrivs här och förkastar EJ raden. Tidsnotering: 2021/22 (näst senaste mandatperiod); ingen nyare instrument-exakt M-källa funnen. Behandlas LIKA med S/KD/L: en delform stärks medan annan fasas ut = supports.'
+- party: SD
+  policy_type: subventionerade_anstallningar
+  stance: opposes
+  source: Kommittémotion (SD) – data.riksdagen.se/HC022386
+  source_type: kommittémotion
+  source_url: https://data.riksdagen.se/dokument/HC022386
+  doc_id: HC022386
+  quote: Subventionerade anställningar har under decennier varit det instrument både höger- och vänsterregeringar använt sig av och de vill gärna fortsätta med det men vi anser att det är att göra individen en björntjänst samtidigt som det kostar miljarder.
+  date: '2024-10-03'
+  confidence: high
+  mapping_note: 'Bunten-regel: motionen täcker hela arbetsmarknadsområdet; instrument-exakt citat på umbrella-termen belägger opposes. Intern nyans (positiv till delvarianten lönebidrag: yrkande om löneindexkoppling av lönebidragstaket samt utökad rätt att bevilja lönebidrag) noteras men förkastar EJ opposes på instrumentet generellt. Behandlas LIKA med C: bundlad motion, instrument-exakt umbrella-citat mot instrumentet, lönebidrag-undantag som intern nyans = opposes.'
+- party: C
+  policy_type: subventionerade_anstallningar
+  stance: opposes
+  source: Kommittémotion (C) – data.riksdagen.se/HD023191
+  source_type: kommittémotion
+  source_url: https://data.riksdagen.se/dokument/HD023191
+  doc_id: HD023191
+  quote: Trots flera reformer har staten fortfarande en bred flora av anställningsstöd varav flera, i utvärderingar, visat sig mycket ineffektiva. För att effektivisera systemet bör antalet stödformer minska och reglerna för de individuella stödformerna förenklas, med fokus på att den mest effektiva formen av stöd, nystartsjobben, utvecklas och ersätter andra mindre effektiva stöd, med undantag för de stöd som berör personer med funktionsvariation. På sikt bör andelen anställningar med subventionerade medel minska.
+  date: '2025-10-06'
+  confidence: high
+  mapping_note: 'Bunten-regel: motionen buntar flera instrument; instrument-exakt citat belägger opposes. Intern nyans (vill UTVECKLA/behålla nystartsjobben och undanta stöd för personer med funktionsvariation) noteras men förkastar EJ den namngivna instrumentlinjen att minska andelen subventionerade anställningar. Behandlas LIKA med SD: instrument-exakt umbrella-citat mot instrumentet med positiv del-nyans = opposes.'
+- party: V
+  policy_type: subventionerade_anstallningar
+  stance: supports
+  source: Kommittémotion (V) – data.riksdagen.se/HB02441
+  source_type: kommittémotion
+  source_url: https://data.riksdagen.se/dokument/HB02441
+  doc_id: HB02441
+  quote: Vänsterpartiet anser att subventionerade anställningar är en bra och nödvändig åtgärd för att hjälpa nyanlända, långtidsarbetslösa eller personer med funktionsnedsättning att få en fastare anknytning till den reguljära arbetsmarknaden.
+  date: '2023-09-29'
+  confidence: high
+  mapping_note: 'Bunten-regel: hela motionen syftar till att behålla och förbättra instrumentet (arbetsintyg, insyn, återinför kollektivavtalsenliga villkor för nystartsjobb, omfattas av LAS). Intern nyans (vill villkora stödet p.g.a. undanträngning/fusk/oseriösa arbetsgivare) noteras men förkastar EJ supports. Soft-hyphen-artefakter borttagna; citatet annars ordagrant.'
+- party: KD
+  policy_type: subventionerade_anstallningar
+  stance: supports
+  source: Budgetmotion (KD) – data.riksdagen.se/H9024198
+  source_type: budgetmotion
+  source_url: https://data.riksdagen.se/dokument/H9024198
+  doc_id: H9024198
+  quote: Riksdagen ställer sig bakom det som anförs i motionen om att tillfälligt höja subventionsgraden i förordningen (2018:43) om stöd för nystartsjobb och tillkännager detta för regeringen.
+  date: '2021-10-05'
+  confidence: high
+  mapping_note: 'Bunten-regel: motionen buntar flera UO14-instrument; citatet är instrument-exakt för nystartsjobb. Intern nyans (vill avveckla introduktionsjobben och färre dyra extratjänster) noteras men förkastar EJ supports. Tidsnotering: 2021/22 (KD i regering fr.o.m. 2022, ingen nyare instrument-exakt partikollektiv KD-källa funnen). Behandlas LIKA med S/M/L: en kärnvariant stärks medan andra delvarianter avvecklas = supports.'
+- party: L
+  policy_type: subventionerade_anstallningar
+  stance: supports
+  source: Kommittémotion (L) – data.riksdagen.se/H9023952
+  source_type: kommittémotion
+  source_url: https://data.riksdagen.se/dokument/H9023952
+  doc_id: H9023952
+  quote: Liberalerna ökar anslag 1:13 med 650 miljoner kronor per år 2022–2024 för en utbyggnad av antalet nystartsjobb.
+  date: '2021-10-05'
+  confidence: high
+  mapping_note: 'Bunten-regel: citatet är instrument-exakt för nystartsjobb. Intern nyans (avvisar regeringens extratjänster) noteras men förkastar EJ supports. Tidsnotering: 2021/22 (strax före senaste mandatperioden; L satt i regering 2022-2024, ingen nyare oppositions-kommittémotion på instrumentet). Källans .text-endpoint returnerar HTML-escaped span-taggar runt citatet; verbatim-strängen är ''Liberalerna ökar anslag 1:13 med 650 miljoner kronor per år 2022 – 2024 för en utbyggnad av antalet nystartsjobb.'' efter avkodning. source_url normaliserad till dokumentbasen (HTML/.text-endpoint samma dokument). Behandlas LIKA med S/M/KD: en delform stärks medan annan avvisas = supports.'
+- party: MP
+  policy_type: subventionerade_anstallningar
+  stance: supports
+  source: Kommittémotion (MP) – data.riksdagen.se/HB022698
+  source_type: kommittémotion
+  source_url: https://data.riksdagen.se/dokument/HB022698
+  doc_id: HB022698
+  quote: Vi anser att det är angeläget att anslaget för lönebidrag bibehålls och kommer till användning.
+  date: '2023-10-05'
+  confidence: high
+  mapping_note: 'Termen ''subventionerade anställningar'' saknas i dokumentet, men delformen lönebidrag (en av instrumentets namngivna former) namnges explicit och är instrument-exakt. Bunten-regel: budget-/kommittémotion som buntar flera anslag; lönebidrag-citatet bär stancen. Andra belägg: ''Fel att finansiera Samhalls underskott med lönebidrag ... Vi anser att det är djupt olyckligt''. Anslagsrubriken 1:13 i budgettabellen är ej MP:s ställningstagande och används ej. Behandlas LIKA med M/L: stance via namngiven delform (där M/L använder nystartsjobb, MP använder lönebidrag) = giltigt instrument-exakt belägg.'
+- party: S
+  policy_type: kompetensutveckling_larare
+  stance: supports
+  source: Kommittemotion (S) – data.riksdagen.se/HB022687
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/HB022687
+  doc_id: HB022687
+  quote: Genom de nationella skolutvecklingsprogrammen med bland annat Läslyftet, Matematiklyftet och Specialpedagogik för lärande har staten de senaste åren stärkt sitt ansvarstagande för lärares kompetensutveckling, och det arbetet måste fortsätta.
+  date: '2023-10-05'
+  confidence: high
+  mapping_note: 'Instrument-exakt: citatet gäller "lärares kompetensutveckling" via de statliga skolutvecklingsprogrammen, dvs samma policyinstrument som rubriken. Bunten-nyans: motionen tar även upp annat (omställningsstudiestöd, professionsprogram); nyansen noteras men förkastar ej raden (§2). Den nyare S-budgetmotionen 2025/26 namnger samma anslag 1:10 men endast som budgettabell utan instrument-exakt prosa, så 2023/24-källan ger renast verbatim-belägg.'
+- party: M
+  policy_type: kompetensutveckling_larare
+  stance: supports
+  source: Kommittemotion (M) – data.riksdagen.se/H9023988
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/H9023988
+  doc_id: H9023988
+  quote: Riksdagen ställer sig bakom det som anförs i motionen om ett övertagande av fortbildning och kompetensutveckling för lärare, till högskolor och universitet, och detta tillkännager riksdagen för regeringen.
+  date: '2021-10-05'
+  confidence: high
+  mapping_note: 'Instrument-exakt. Bunten-nyans: förslaget gäller ett ''övertagande'' av lärarfortbildning till högskolor/universitet samt motionen tar upp lärarutbildning m.m.; per §2 påverkar utformningsnyansen inte stance. Äldre mandatperiod (2021/22) noterat enligt §4; ingen nyare partikollektiv M-källa krävs då raden håller. Ordet ''lärarlyftet'' förekommer ej men instrumentet är samma (rubrikens ''t.ex. Lärarlyftet'').'
+- party: SD
+  policy_type: kompetensutveckling_larare
+  stance: supports
+  source: Kommittemotion (SD) – data.riksdagen.se/H9022542
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/H9022542
+  doc_id: H9022542
+  quote: Vi vill se ett fortbildningssystem som synkroniserar med vårt karriärlärarsystem. Skolverkets Lärportalen kan användas som plattform för detta ändamål där varje anställd loggar in och följer sin egen utveckling.
+  date: '2021-10-01'
+  confidence: high
+  mapping_note: 'Instrument-exakt: ett fortbildningssystem för lärare/skolpersonal motsvarar instrumentet kompetensutveckling/fortbildning för lärare. Det är inte specifikt Lärarlyftet utan en egen SD-modell synkroniserad med karriärlärarsystemet — utformningsnyans som per §2 noteras men ej förkastar raden. Äldre mandatperiod (2021/22) noterat per §4. Sökorden ''kompetensutveckling''/''lärarlyftet'' saknas men ''fortbildning''/''fortbildningssystem'' förekommer ordagrant.'
+- party: C
+  policy_type: kompetensutveckling_larare
+  stance: supports
+  source: Partimotion (C) – data.riksdagen.se/HD023186
+  source_type: partimotion
+  source_url: https://data.riksdagen.se/dokument/HD023186
+  doc_id: HD023186
+  quote: Riksdagen ställer sig bakom det som anförs i motionen om att lärare och skolledare återkommande ska få kompetensutveckling i att använda och undervisa med hjälp av digitala verktyg och AI och tillkännager detta för regeringen.
+  date: '2025-10-06'
+  confidence: high
+  mapping_note: 'Instrument-exakt. Bunten-/instrument-nyans: kompetensutvecklingen är i motionen avgränsad till digitala verktyg och AI; per §2 påverkar avgränsningen inte stance eftersom citatet namnger det exakta instrumentet. Subtyp Partimotion, 2025/26 — starkaste och nyaste källtypen i panelen tillsammans med MP.'
+- party: V
+  policy_type: kompetensutveckling_larare
+  stance: supports
+  source: Budgetmotion (V) – data.riksdagen.se/HC021924
+  source_type: budgetmotion
+  source_url: https://data.riksdagen.se/dokument/HC021924
+  doc_id: HC021924
+  quote: 1:10 Fortbildning av lärare och förskolepersonal 250 500 500
+  date: '2024-10-03'
+  confidence: medium
+  mapping_note: 'Verbatim-rättelse (§10): den ursprungliga komposit-citaten höll ej kravet på ordagrann sammanhängande text. Den verifierade sammanhängande verbatim-strängen är anslagsetiketten ''Fortbildning av lärare och förskolepersonal'' (anslag 1:10), vilket är instrument-exakt för åtgärdstypen. Avvikelsesiffrorna (+250/+500 mkr) ligger i separata tabellceller och kan ej citeras sammanhängande, men den positiva riktningen (utökning gentemot regeringen) framgår av tabellen och belägger supports; confidence sänks till medium eftersom beläggets riktning vilar på tabellstrukturen snarare än prosa. Behandlas med SAMMA standard som KD (anslag 1:10-belägg) och L (budgettabell) — alla tre räknas som instrument-exakta budgetbelägg. Bunten-nyans: anslaget buntar ''lärare och förskolepersonal'' men instrumentet (fortbildning av lärare) är namngivet (§2). Lärarlyftet nämns separat (att folkhögskolan ej ingått i Lärarlyftet) — ej använt som stance-belägg.'
+- party: KD
+  policy_type: kompetensutveckling_larare
+  stance: supports
+  source: Kommittemotion (KD) – data.riksdagen.se/H9024163
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/H9024163
+  doc_id: H9024163
+  quote: Kristdemokraterna föreslår därför rätt till fortbildning för lärare. Vi avsätter medel för detta i anslag 1:10 och avsätter mer än regeringen, 100 miljoner 2022, 200 miljoner 2023 och 200 miljoner 2024.
+  date: '2021-10-05'
+  confidence: high
+  mapping_note: 'Instrument-exakt (prosa + anslag 1:10 ''Fortbildning av lärare och förskolepersonal''). Äldre mandatperiod (2021/22) noterat per §4. Bunten-nyans: motionen buntar bredare skolpolitik (lärarutbildning, behörighet, speciallärarlyft) men citatet är instrument-exakt (§2). Detta är det starkaste budget-/prosabelägget i panelen och sätter standarden för hur V:s och L:s anslag-1:10-belägg bedöms (alla tre lika).'
+- party: L
+  policy_type: kompetensutveckling_larare
+  stance: supports
+  source: Budgetmotion (L) – data.riksdagen.se/H9024181
+  source_type: budgetmotion
+  source_url: https://data.riksdagen.se/dokument/H9024181
+  doc_id: H9024181
+  quote: Liberalerna menar att legitimerade lärare själva borde få mandat att välja och styra över sin fortbildning. Det ska exempelvis vara möjligt att läsa kurser i de ämnen läraren undervisar i eller i ämnesmetodik.
+  date: '2021-10-05'
+  confidence: high
+  mapping_note: 'Instrument-exakt prosa valt som citat (renare än tabellraden). Källan är L:s partibudgetmotion för 2022 (rm 2021/22), äldre än senaste mandatperioden — noterat per §4. Bunten-/utformningsnyans: L vill att lärarna själva ska styra fortbildningen (flexibilitet) snarare än enbart statligt styrda dagar; per §2 påverkar utformningsnyansen inte supports. Detta är just det historiska M/L-asymmetri-fallet (§2-rutan): L:s buntade/utformningsnyanserade ståndpunkt behandlas nu LIKA med M:s — instrument-exakt citat => raden gäller, nyansen noteras. ''Lärarlyftet'' saknas men är bara ett exempel i rubriken; fortbildning av lärare är samma instrument.'
+- party: MP
+  policy_type: kompetensutveckling_larare
+  stance: supports
+  source: Kommittemotion (MP) – data.riksdagen.se/HD023364
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/HD023364
+  doc_id: HD023364
+  quote: Riksdagen ställer sig bakom det som anförs i motionen om att ge lärare och rektorer tillgång till kontinuerlig kompetensutveckling genom hela arbetslivet och tillkännager detta för regeringen.
+  date: '2025-10-06'
+  confidence: high
+  mapping_note: 'Instrument-exakt. Bunten-nyans: motionen buntar flera skolyrkanden (bl.a. ett separat fortbildningsstycke om utomhuspedagogik/Lgr 22) men det citerade yrkandet är instrument-exakt (§2). 6 undertecknare => is_single_member=false, ingen confidence-sänkning. ''Lärarlyftet'' förekommer ej; instrumentet beläggs via ''kompetensutveckling ... för lärare''.'
+- party: M
+  policy_type: kontroller_och_informationsutbyte_mot_valfardsbrott
+  stance: supports
+  source: Enskild motion (M) – data.riksdagen.se/HC023146
+  source_type: enskild motion
+  source_url: https://data.riksdagen.se/dokument/HC023146
+  doc_id: HC023146
+  quote: Riksdagen ställer sig bakom det som anförs i motionen om att se över möjligheten till en underrättelseplikt för socialtjänsten vid misstanke om bidragsbrott och en möjlighet att samverka med relevanta myndigheter och tillkännager detta för regeringen.
+  date: '2024-10-04'
+  confidence: low
+  mapping_note: 'Bunten-regeln tillämpad symmetriskt: motionen buntar flera yrkanden men det citerade är instrument-exakt => raden gäller, intern nyans förkastar ej. Termerna ''välfärdsbrott''/''informationsutbyte''/''direktåtkomst'' saknas ordagrant; belägg vilar på ''bidragsbrott'' + ''samverka med relevanta myndigheter'' + ''felaktiga utbetalningar''. Single-member => confidence sänkt till low per rubriken §3 (samma standard som tillämpas på alla; M är den enda enskilda motionen i panelen).'
+- party: SD
+  policy_type: kontroller_och_informationsutbyte_mot_valfardsbrott
+  stance: supports
+  source: Kommittemotion (SD) – data.riksdagen.se/HA021147
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/HA021147
+  doc_id: HA021147
+  quote: Riksdagen ställer sig bakom det som anförs i motionen om en översyn av offentlighets- och sekretesslagen för en bättre samverkan mellan myndigheter och tillkännager detta för regeringen.
+  date: '2022-11-22'
+  confidence: high
+  mapping_note: 'Bunten-regeln tillämpad: motionen buntar även andra instrument (skärpta konsekvenser vid grova bidragsbrott, utvidgad underrättelseskyldighet vid felaktiga utbetalningar enligt lag 2008:206 till regioner) — påverkar ej stance eftersom citatet är instrument-exakt. Termerna ''informationsutbyte''/''direktåtkomst'' förekommer ej ordagrant, men sekretess-/samverkansyrkandet täcker instrumentet (OSL är grunden för informationsutbyte mellan myndigheter).'
+- party: C
+  policy_type: kontroller_och_informationsutbyte_mot_valfardsbrott
+  stance: supports
+  source: Kommittemotion (C) – data.riksdagen.se/HC023249
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/HC023249
+  doc_id: HC023249
+  quote: Centerpartiet ser i stället att de berörda myndigheterna bättre skulle kunna granska de data de redan har, genom att dela data mellan myndigheter för att kunna upptäcka felaktiga utbetalningar och för att kunna beivra detta.
+  date: '2024-10-30'
+  confidence: medium
+  mapping_note: 'Intern nyans noterad men förkastar EJ raden (bunten-/nyansregeln §2): C yrkar avslag på regeringens SPECIFIKA kontrollvariant (Försäkringskassans åtkomst till uppgifter i arbetsgivardeklarationen) p.g.a. regelbörda för företag — men förespråkar i SAMMA motion uttryckligen det kodade instrumentet (myndigheter delar data för att upptäcka felaktiga utbetalningar). Detta är exakt det fall där nyansen skrivs i mapping_note och inte används som skäl att förkasta. Confidence=medium då stödet uttrycks i prosa/motivering snarare än ett tillkännagivande-yrkande på exakt instrumentet.'
+- party: V
+  policy_type: kontroller_och_informationsutbyte_mot_valfardsbrott
+  stance: opposes
+  source: Kommittemotion (V) – data.riksdagen.se/HC023445
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/HC023445
+  doc_id: HC023445
+  quote: Riksdagen avslår proposition 2024/25:180.
+  date: '2025-06-17'
+  confidence: high
+  mapping_note: 'Instrument-exakt: avslag på just den lagstiftning som inför utökat informationsutbyte mellan myndigheter mot felaktiga utbetalningar/välfärdsbrott. Bunten-/nyansregeln tillämpad symmetriskt: V skriver att ''vissa ändringar i sekretesslagstiftningen'' kan behövas och vill (yrkande 2) ett ''mer begränsat, proportionellt och rättssäkert förslag'' — denna integritets-/proportionalitetsnyans noteras men förkastar EJ raden, eftersom den konkreta lagstiftningsåtgärden mot just denna instrument-utökning är avslag. Asymmetrin (V som enda opposes) bevaras — ingen utjämning mot fördelningsmål (§8).'
+- party: KD
+  policy_type: kontroller_och_informationsutbyte_mot_valfardsbrott
+  stance: supports
+  source: Kommittemotion (KD) – data.riksdagen.se/H9024184
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/H9024184
+  doc_id: H9024184
+  quote: Riksdagen ställer sig bakom det som anförs i motionen om en total översyn av sekretessreglerna i syfte att ge högre del direktåtkomst än i dag och tillkännager detta för regeringen.
+  date: '2021-10-05'
+  confidence: high
+  mapping_note: 'Bunten-regeln tillämpad: motionen buntar många instrument (egen myndighet mot välfärdsbrott, transaktionskonto, AI-analys, kontoutdrag, underrättelseverksamhet mot bidragsbrott) — raden räknas för det namngivna kontroll/informationsutbytesinstrumentet eftersom citatet är instrument-exakt. Tidsregeln (§4): källa från 2021/22, utanför föredragen senaste period; noteras symmetriskt, godtagbar då ingen nyare instrument-exakt KD-kollektiv källa krävdes för att bekräfta raden. Behåller high då det är ett uttryckligt tillkännagivande-yrkande i en motion explicit om välfärdsbrottslighet.'
+- party: L
+  policy_type: kontroller_och_informationsutbyte_mot_valfardsbrott
+  stance: supports
+  source: Partimotion (L) – data.riksdagen.se/H9023974
+  source_type: partimotion
+  source_url: https://data.riksdagen.se/dokument/H9023974
+  doc_id: H9023974
+  quote: Vi är också öppna för att utbytet av uppgifter ska kunna ske mellan fler myndigheter än i dag, något som regeringen äger makt att avgöra. Det räcker inte med att granska utbetalningar från statliga system, utan även felaktiga utbetalningar som går till kriminella personer via kommunala system måste granskas.
+  date: '2021-10-05'
+  confidence: high
+  mapping_note: 'Stödjande yrkanden i samma motion (verifierade ordagrant): ''sekretessregler vid myndighetssamverkan mot brott'' och ''samordnad utbetalning från statliga och kommunala trygghetssystem''. Bunten-regeln tillämpad symmetriskt med M/KD: buntning med gängbrottslighet/penningtvätt påverkar ej instrument-exaktheten. Tidsregeln (§4): 2021/22, utanför föredragen period; noteras symmetriskt med KD. Termen ''välfärdsbrott'' saknas ordagrant men ''felaktiga utbetalningar'' + ''utbyte av uppgifter mellan myndigheter'' + ''sekretess'' belägger instrumentet.'
+- party: MP
+  policy_type: kontroller_och_informationsutbyte_mot_valfardsbrott
+  stance: supports
+  source: Partimotion (MP) – data.riksdagen.se/HB022669
+  source_type: partimotion
+  source_url: https://data.riksdagen.se/dokument/HB022669
+  doc_id: HB022669
+  quote: Öka informationsutbytet mellan myndigheter och lätta på sekretessregler
+  date: '2023-10-05'
+  confidence: high
+  mapping_note: 'Bunten-regeln tillämpad symmetriskt: punkten ingår i en bunt åtgärder mot välfärdsbrott (förverka brottsvinster, kontantförbud m.m.) — raden räknas för det namngivna informationsutbytesinstrumentet eftersom citatet är instrument-exakt och står under sektionen ''Förstärkt arbete mot välfärdsbrottslighet'' (där välfärdsbrott definieras som bidragsbrott/bedrägerier mot välfärdssystemen). Det ordagranna yrkande-citatet (yrkande 51) finns även som tillkännagivande; den citerade prosa-punkten är verifierad verbatim.'
+- party: S
+  policy_type: minskad_klasstorlek
+  stance: supports
+  source: Budgetmotion (kommittémotion) (S) – data.riksdagen.se/HD023810
+  source_type: budgetmotion (kommittémotion)
+  source_url: https://data.riksdagen.se/dokument/HD023810
+  doc_id: HD023810
+  quote: Riksdagen ställer sig bakom det som anförs i motionen om att införa bindande regler för det som är viktigast för att höja kvaliteten i skolan, såsom lärartäthet, klassernas storlek och elevhälsa, och tillkännager detta för regeringen.
+  date: '2025-10-07'
+  confidence: high
+  mapping_note: 'Instrument-exakt: yrkande/tillkännagivande om bindande regler för lärartäthet och klassernas storlek. Bunten-motion (buntar elevhälsa och bredare skolsatsningar) men citatet namnger instrumentet exakt => raden räknas per bunten-regeln; nyansen påverkar ej kodningen. Källhierarki nivå 2 (parti-/kommittémotion); ingen votering för exakt instrumentet hittad. Citat verifierat ordagrant i .text.'
+- party: M
+  policy_type: minskad_klasstorlek
+  stance: supports
+  source: Partimotion (budgetmotion) (M) – data.riksdagen.se/H2023002
+  source_type: partimotion (budgetmotion)
+  source_url: https://data.riksdagen.se/dokument/H2023002
+  doc_id: H2023002
+  quote: Vi föreslår satsningar på fler utbildade lärare, satsningar på fler karriärtjänster i skolan–särskilda satsningar görs i utanförskapsområden, satsningar på fler speciallärare, minskad klasstorlek i lågstadiet, satsningar på ett fortsatt mattelyft, satsningar på ett fortsatt läslyft.
+  date: '2014-11-11'
+  confidence: medium
+  mapping_note: 'HARMONISERING: research-citatet återgav .text-endpointens rå-span-artefakter ("min skad klasstorlek", "satsn ingar"). Vid hämtning och HTML-avkodning av .text är den faktiskt RENDERADE/serverade texten ren: "...satsningar på fler speciallärare, minskad klasstorlek i lågstadiet, satsningar på ett fortsatt mattelyft". Citatet normaliserat till den renderade lydelsen så att H2023002 behandlas IDENTISKT för M, KD och L (samma dokument, samma instrument-exakta passage). Bunten-motion (klasstorlek buntas med fler lärare, karriärtjänster, speciallärare, mattelyft); intern nyans (begränsat till lågstadiet) noteras men förkastar ALDRIG raden per bunten-regeln. Källhierarki nivå 2; ingen votering. Den starkare yrkandeformuleringen i H2022839 är Flerpartimotion (Allians), ej renodlad M-linje, så H2023002 behålls.'
+- party: SD
+  policy_type: minskad_klasstorlek
+  stance: opposes
+  source: Partimotion (budgetmotion) (SD) – data.riksdagen.se/H302761
+  source_type: partimotion (budgetmotion)
+  source_url: https://data.riksdagen.se/dokument/H302761
+  doc_id: H302761
+  quote: Istället för att minska klasserna vill vi i Sverigedemokraterna prioritera reformer som frigör tid för lärarna.
+  date: '2015-10-02'
+  confidence: high
+  mapping_note: 'INSTRUMENT-regeln uppfylld: SD adresserar exakt klasstorlek-instrumentet i ett eget avsnitt och avvisar att minska klasserna. Detta är legitimt asymmetriskt utfall (enda opposes i panelen) och får INTE jämnas ut — verkligheten är asymmetrisk. Äldre källa (2015/16) men ingen nyare SD-källa berör instrumentet (H9023892 2021/22 kommittémotion och H9023938 2021/22 partibudget saknar omnämnande); behålls per recency-regeln. Två citat verifierade ordagranna i .text.'
+- party: C
+  policy_type: minskad_klasstorlek
+  stance: supports
+  source: Partimotion (C) – data.riksdagen.se/HD023186
+  source_type: partimotion
+  source_url: https://data.riksdagen.se/dokument/HD023186
+  doc_id: HD023186
+  quote: Centerpartiet vill att klasstorlekarna minskar, i den takt det går, med särskilt fokus på lågstadiet och där förutsättningarna är som tuffast.
+  date: '2025-10-06'
+  confidence: high
+  mapping_note: 'Instrument-exakt: "Centerpartiet vill att klasstorlekarna minskar...med särskilt fokus på lågstadiet". Yrkande 28 ("reglera klasstorlekarna efter elevernas behov") bekräftar formellt drivande; avsnitt 8 klargör riktningen (minska). Bunten-motion (Teach for Sweden, medarbetare per rektor, minskad administration m.m.) men citatet är instrument-exakt => raden räknas per bunten-regeln. Källhierarki nivå 2; ingen votering. Citat verifierat ordagrant i .text.'
+- party: V
+  policy_type: minskad_klasstorlek
+  stance: supports
+  source: Kommittémotion (V) – data.riksdagen.se/HD022791
+  source_type: kommittémotion
+  source_url: https://data.riksdagen.se/dokument/HD022791
+  doc_id: HD022791
+  quote: För att läraren ska ha en rimlig chans att kunna hjälpa och stödja varje elev utifrån elevens egna förutsättningar måste klasstorleken radikalt minskas.
+  date: '2025-10-06'
+  confidence: high
+  mapping_note: 'Instrument-exakt: "måste klasstorleken radikalt minskas". Bunten-motion (jämlik förskola/skola/vuxenutbildning) men citatet är instrument-exakt => raden räknas per bunten-regeln. Källhierarki nivå 2 (kommittémotion). Citat verifierat ordagrant i .text.'
+- party: KD
+  policy_type: minskad_klasstorlek
+  stance: supports
+  source: Partimotion (budgetmotion) (KD) – data.riksdagen.se/H2023002
+  source_type: partimotion (budgetmotion)
+  source_url: https://data.riksdagen.se/dokument/H2023002
+  doc_id: H2023002
+  quote: Vi föreslår satsningar på fler utbildade lärare, satsningar på fler karriärtjänster i skolan–särskilda satsningar görs i utanförskapsområden, satsningar på fler speciallärare, minskad klasstorlek i lågstadiet, satsningar på ett fortsatt mattelyft, satsningar på ett fortsatt läslyft.
+  date: '2014-11-11'
+  confidence: medium
+  mapping_note: 'HARMONISERING: samma dokument och samma passage som M och L. Citatet normaliserat till den renderade .text-lydelsen (KD-researchens form var redan ren) — IDENTISK behandling för M/KD/L. Bunten-motion; instrumentet "minskad klasstorlek i lågstadiet" namnges exakt => raden räknas per bunten-regeln. Flerparti-alliansmotion med M som förste undertecknare men KD-partiledare medundertecknar; räknas som KD-partikollektiv källa. Källhierarki nivå 2; ingen votering.'
+- party: L
+  policy_type: minskad_klasstorlek
+  stance: supports
+  source: Partimotion (budgetmotion) (L) – data.riksdagen.se/H2023002
+  source_type: partimotion (budgetmotion)
+  source_url: https://data.riksdagen.se/dokument/H2023002
+  doc_id: H2023002
+  quote: Vi föreslår satsningar på fler utbildade lärare, satsningar på fler karriärtjänster i skolan–särskilda satsningar görs i utanförskapsområden, satsningar på fler speciallärare, minskad klasstorlek i lågstadiet, satsningar på ett fortsatt mattelyft, satsningar på ett fortsatt läslyft.
+  date: '2014-11-11'
+  confidence: medium
+  mapping_note: 'HARMONISERING: identisk källa och passage som M och KD. Research-citatet återgav span-artefakten "min skad klasstorlek"; normaliserat till den renderade .text-lydelsen så att M/KD/L behandlas IDENTISKT (samma dokument, samma instrument-exakta passage, samma citat). Bunten-motion; instrumentet namnges exakt => raden räknas per bunten-regeln. FP/L medundertecknar => partikollektiv L-källa, ej enskild ledamot. Källhierarki nivå 2; ingen votering. H9024002 styrker stance men behålls ej som primärbelägg p.g.a. tvetydigare instrument-koppling.'
+- party: S
+  policy_type: tidiga_insatser_lagstadiet
+  stance: supports
+  source: Budgetmotion (S) – data.riksdagen.se/HD023810
+  source_type: budgetmotion
+  source_url: https://data.riksdagen.se/dokument/HD023810
+  doc_id: HD023810
+  quote: Kraven på huvudmännen ska skärpas att sätta in stöd tidigt för att alla elever ska uppnå kunskapsmålen för att läsa, skriva och räkna i varje årskurs i lågstadiet.
+  date: 2025/26
+  confidence: high
+  mapping_note: 'BUNTEN-REGELN tillämpad: budgetmotionen buntar flera instrument (resursskolor, bindande regler om lärartäthet/elevhälsa, riktade resurser), men det citerade yrkandet är instrument-exakt för tidiga stödinsatser i lågstadiet kopplat till läsa-skriva-räkna-garantin => raden gäller, intern nyans noteras endast här. Citatet och ''läsa, skriva och räkna – garantin'' samt ''Skolinspektionens granskning av läsa, skriva och räkna – garantin'' bekräftade ordagrant i .text (561 KB-fil; WebFetch truncerade men curl+grep verifierade). date angiven som riksmöte 2025/26 (exakt datum ej extraherat); inom föredragen period.'
+- party: M
+  policy_type: tidiga_insatser_lagstadiet
+  stance: supports
+  source: Kommittémotion (M) – data.riksdagen.se/H5024117
+  source_type: kommittémotion
+  source_url: https://data.riksdagen.se/dokument/H5024117
+  doc_id: H5024117
+  quote: Vi delar uppfattningen att det är bra att elevernas kunskapsnivå kartläggs tidigt. [...] Fram till att en tioårig grundskola med skolstart vid sex års ålder kan införas står Alliansen därmed bakom införandet av ett nationellt kartläggningsmaterial i förskoleklassen.
+  date: '2018-04-11'
+  confidence: medium
+  mapping_note: 'Instrument-exakt följdmotion till prop. 2017/18:195 (just det förslag som införde garantin). Partikollektiv kommittémotion (Christer Nylander m.fl., L/M/C/KD; M:s utbildningstalesperson Erik Bengtzboe medundertecknare) => is_single_member=false. BUNTEN/intern nyans (förkastar EJ raden): M vill hellre ersätta förskoleklassen med tioårig grundskola och begär utvärdering/översyn — uppföljnings-/förbättringskrav, inte avstyrkande. ÅLDERSCAVEAT: 2017/18 är utanför föredragen period (2022/23–2025/26); används enligt §4 då ingen nyare instrument-exakt M-källa finns. Bekräftat via WebFetch att ingen avslagsformulering förekommer.'
+- party: SD
+  policy_type: tidiga_insatser_lagstadiet
+  stance: opposes
+  source: Votering+reservation (betänkande 2017/18:UbU10) (SD) – data.riksdagen.se/H501UbU10
+  source_type: votering+reservation (betänkande 2017/18:UbU10)
+  source_url: https://data.riksdagen.se/dokument/H501UbU10
+  doc_id: H501UbU10
+  quote: 'Vi anser att förslaget till riksdagsbeslut under punkt 1 borde ha följande lydelse: Riksdagen avslår regeringens förslag. Därmed bifaller riksdagen motion 2017/18:4074 av Stefan Jakobsson och Robert Stenkvist (båda SD) och avslår proposition 2017/18:195.'
+  date: '2018-05-30'
+  confidence: high
+  mapping_note: 'Instrument-exakt: betänkandet rör direkt läsa-skriva-räkna-garantin. Kammarens vinnande beslut var ''Därmed bifaller riksdagen proposition 2017/18:195 och avslår motion 2017/18:4074'' (propositionen ANTOGS); det citerade är RESERVATION 1 (SD):s alternativa förslag (''Riksdagen avslår regeringens förslag...avslår proposition 2017/18:195''), verifierat ordagrant. SD:s linje = avslag på garanti-instrumentet => opposes. is_single_member=false: reservation i SD:s namn (den bakomliggande följdmotionen H5024074 var metadatamärkt enskild, men reservationen höjer den till partilinje). Intern nyans (noteras ej som skäl): SD ansåg befintlig lagstiftning tillräcklig och pekade på specialpedagogbrist/dubbelreglering. ÅLDERSCAVEAT: 2017/18, utanför föredragen period; enda instrument-exakta SD-källan (nyare SD-motioner nämner endast ''tidiga stödinsatser'' generiskt, för vagt enligt §1).'
+- party: C
+  policy_type: tidiga_insatser_lagstadiet
+  stance: opposes
+  source: Kommittémotion (C) – data.riksdagen.se/H5023910
+  source_type: kommittémotion
+  source_url: https://data.riksdagen.se/dokument/H5023910
+  doc_id: H5023910
+  quote: Riksdagen avslår regeringens proposition 2017/18:18 Läsa, skriva, räkna – en åtgärdsgaranti.
+  date: '2017-10-12'
+  confidence: medium
+  mapping_note: 'Instrument-exakt: prop. 2017/18:18 ''Läsa, skriva, räkna – en åtgärdsgaranti'' är den tidiga varianten av samma policyinstrument (tidiga stödinsatser i lågstadiet). Partikollektiv kommittémotion (C formell undertecknare via Ulrika Carlsson) => is_single_member=false. BUNTEN/intern nyans (förkastar EJ raden): C menar att tidigt stöd kan åstadkommas inom befintlig lagstiftning (motsätter sig dubbelreglering) — det är skäl-för-avslag av instrumentet, inte ett annat instrument. ÅLDERSCAVEAT: 2017/18, utanför föredragen period; sökning i nyare C-källor (2024/25–2025/26) gav ingen instrument-exakt referens (endast allmänna mål, uteslutna av §1), så den äldre används enligt §4.'
+- party: KD
+  policy_type: tidiga_insatser_lagstadiet
+  stance: supports
+  source: Kommittémotion (KD) – data.riksdagen.se/H5024117
+  source_type: kommittémotion
+  source_url: https://data.riksdagen.se/dokument/H5024117
+  doc_id: H5024117
+  quote: Riksdagen ställer sig bakom det som anförs i motionen om en utvärdering av resultatet av införandet av garantin för tidiga stödinsatser som ska vara riksdagen till handa senast den 30 december 2020 och tillkännager detta för regeringen.
+  date: '2018-04-11'
+  confidence: medium
+  mapping_note: 'Instrument-exakt följdmotion till prop. 2017/18:195. Partikollektiv kommittémotion (KD medundertecknare, normalt för kommittémotion) => is_single_member=false. BUNTEN/intern nyans (förkastar EJ raden): Alliansen vill samtidigt avveckla förskoleklassen och införa tioårig grundskola — påverkar inte stödet för instrumentet. Citatet uttrycker stöd via begäran om utvärdering av införandet, inte avslag; ytterligare stödbelägg i motiveringen (''Vi delar uppfattningen att det är bra att elevernas kunskapsnivå kartläggs tidigt'', ''står Alliansen därmed bakom införandet av ett nationellt kartläggningsmaterial''). ÅLDERSCAVEAT: 2017/18, utanför föredragen period; används enligt §4. Notera: WebFetch återgav formuleringen ''utvärdering av effekterna ... senast den 30 december 2020'' i ett av yrkandena; KD-citatet om ''utvärdering av resultatet av införandet av garantin för tidiga stödinsatser'' togs ur samma motion av research och är konsistent med motionens flera utvärderingsyrkanden.'
+- party: MP
+  policy_type: tidiga_insatser_lagstadiet
+  stance: supports
+  source: Kommittémotion (MP) – data.riksdagen.se/HD023364
+  source_type: kommittémotion
+  source_url: https://data.riksdagen.se/dokument/HD023364
+  doc_id: HD023364
+  quote: Vi införde en läsa-skriva-räkna-garanti för att säkra att inget barn går igenom lågstadiet utan att skolan vidtagit åtgärder om problem med läsningen finns. ... Regeringen avvecklar nu läsa-skriva-räkna-garantin till förmån för ett nytt digitalt screeningsystem i lågstadiet. Miljöpartiet ser med oro på att lärares bedömningar om att elever behöver mer undervisning eller stöd i läsinlärningen ännu inte tillmäts tillräckligt stor vikt.
+  date: '2025-10-06'
+  confidence: high
+  mapping_note: 'Instrument-exakt: namnger ''läsa-skriva-räkna-garanti(n)'' och MP:s ställningstagande gäller att behålla den mot regeringens avveckling. Partikollektiv kommittémotion (m.fl.) => is_single_member=false. Inom föredragen period (2025/26). Ersätter HD024048 som re-verifierades till reverify_ok=false (endast neutral beskrivning + allmänt mål). Detta är ett drop+add inom samma parti: gamla raden droppas (icke-instrument-exakt belägg), nya raden adderas (instrument-exakt). Stance oförändrad (supports) men belägget bytt till den starkare källan. Citatet bekräftat ordagrant ur .text.'
+- party: S
+  policy_type: behandlingsprogram_kriminalvard
+  stance: supports
+  source: Kommittemotion (S) – data.riksdagen.se/HC023264
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/HC023264
+  doc_id: HC023264
+  quote: Riksdagen ställer sig bakom det som anförs i motionen om att införa ett nytt mål för Kriminalvården enligt vilket 90 procent av klienterna med en strafftid överstigande ett år ska påbörja ett behandlingsprogram under sin verkställighet, och detta tillkännager riksdagen för regeringen.
+  date: '2024-11-20'
+  confidence: high
+  mapping_note: 'Bunten-regel §2: motionen är svar på skr. 2024/25:29 (Riksrevisionens rapport om Kriminalvårdens behandlingsverksamhet) och buntar flera yrkanden (bl.a. förbättrad tillgång till återfallsförebyggande vård för ökad mottaglighet för behandlingsprogrammen); det namngivna instrumentet beläggs ordagrant, intern nyans förkastar aldrig raden. Källhierarki: kommittémotion (ingen votering på just detta instrument funnen). Undertecknare verifierade: Carvalho, Strandhäll, Löberg, Wallentheim, Vepsä, Backeskog, Isacsson (alla S).'
+- party: M
+  policy_type: behandlingsprogram_kriminalvard
+  stance: supports
+  source: Kommittemotion (M) – data.riksdagen.se/H9023779
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/H9023779
+  doc_id: H9023779
+  quote: Riksdagen ställer sig bakom det som anförs i motionen om att det ska övervägas om det vore lämpligt att påbörja behandlingsprogram under häktestiden och tillkännager detta för regeringen.
+  date: '2021-09-30'
+  confidence: high
+  mapping_note: 'Tidsregel §4: källan är från 2021/22 (utanför föredragen period 2022/23–2025/26); noteras eftersom ingen nyare PARTIKOLLEKTIV M-källa på exakt detta instrument hittades (2025/26-träffar är enskilda motioner). Bunten-regel §2: motionen ''En effektiv kriminalvård med hög säkerhet och meningsfull verksamhet'' buntar flera kriminalvårdsåtgärder; intern nyans (''under häktestiden'') påverkar inte instrument-exaktheten. Symmetrisk behandling: M får samma äldre-källa-tolerans som C/V/L.'
+- party: C
+  policy_type: behandlingsprogram_kriminalvard
+  stance: supports
+  source: Kommittemotion (C) – data.riksdagen.se/H6023062
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/H6023062
+  doc_id: H6023062
+  quote: Centerpartiet vill att målet ska vara att alla intagna som är i behov av behandling för kriminalitet, missbruk, aggressioner eller våldsamt beteende ska genomgå Kriminalvårdens behandlingsprogram.
+  date: '2019-04-10'
+  confidence: high
+  mapping_note: 'Tidsregel §4: 2018/19 (utanför föredragen period); noteras eftersom ingen starkare/nyare partikollektiv C-källa på exakt detta instrument finns (HB022484 2023/24 nämner behandlingsprogram endast som motiv för annat instrument; HD022770 2025/26 är enskild + generell missbruksvård). Bunten-regel §2: motionen rör prop. 2018/19:77 och buntar villkorlig frigivning m.m.; det namngivna instrumentet beläggs ordagrant. Symmetrisk äldre-källa-tolerans som M/V/L.'
+- party: V
+  policy_type: behandlingsprogram_kriminalvard
+  stance: supports
+  source: Kommittemotion (V) – data.riksdagen.se/H902916
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/H902916
+  doc_id: H902916
+  quote: Riksdagen ställer sig bakom det som anförs i motionen om att regeringen bör ge Kriminalvården i uppdrag att ta fram ett särskilt behandlingsprogram för personer som begått hedersrelaterade brott, och detta tillkännager riksdagen för regeringen.
+  date: '2021-09-29'
+  confidence: high
+  mapping_note: 'Tidsregel §4: 2021/22 (utanför föredragen period); noteras eftersom nyare V-motion HB02436 (2023/24) inte längre har behandlingsprogram-kapitlet (termen där endast villkor för villkorlig frigivning = annat instrument). Bunten-/kapitelmotion §2: ''En kriminalvårdspolitik för framtiden'' har eget kapitel ''Behandlingsprogram'' med flera instrument-exakta yrkanden (även program på andra språk, återinföra 12-stegsprogrammet); valt citat = hedersbrott-programmet. Intern reservation mot att koppla deltagande till villkorlig frigivning rör kopplingsmekanismen, ej programmen — förkastar enligt §2 aldrig raden.'
+- party: KD
+  policy_type: behandlingsprogram_kriminalvard
+  stance: supports
+  source: Motion (KD) – data.riksdagen.se/HD021560
+  source_type: motion
+  source_url: https://data.riksdagen.se/dokument/HD021560
+  doc_id: HD021560
+  quote: Tolvstegsmetoden är ett väl dokumenterat behandlingsprogram för personer med drog- eller alkoholmissbruk. Det har framgångsrikt använts i Kriminalvården och borde införas som en generell och obligatorisk behandlingsmetod för intagna med drog- eller alkoholberoende.
+  date: '2025-10-02'
+  confidence: low
+  mapping_note: 'Enskild-motion-regel §3 tillämpad symmetriskt: KD är det enda partiet vars enda instrument-exakta belägg är en enskild motion => confidence sänkt till low (ej unknown, eftersom belägget ÄR instrument-exakt och verifierat). Senaste mandatperioden (2025/26). Bunten-regel §2: motionen föreslår även annat (evidensbaserade metoder generellt); det namngivna instrumentet beläggs ordagrant.'
+- party: L
+  policy_type: behandlingsprogram_kriminalvard
+  stance: supports
+  source: Kommittemotion (L) – data.riksdagen.se/H9023974
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/H9023974
+  doc_id: H9023974
+  quote: Det behövs mer resurser till behandlingsprogram för att hantera aggressionsmönster eller bryta med missbruk och bättre möjligheter att lära sig ett yrke eller läsa in grundskole- eller gymnasiekompetens i fängelset.
+  date: '2021-10-05'
+  confidence: high
+  mapping_note: 'Tidsregel §4: 2021/22 (utanför föredragen period); noteras eftersom ingen nyare L-källa på detta specifika instrument hittades. Bunten-regel §2: citatet buntar yrkesutbildning/utbildning med behandlingsprogram i samma mening, men det namngivna instrumentet (behandlingsprogram) beläggs instrument-exakt; bunten förkastar aldrig raden. Symmetrisk äldre-källa-tolerans som M/C/V.'
+- party: MP
+  policy_type: behandlingsprogram_kriminalvard
+  stance: supports
+  source: Kommittemotion (MP) – data.riksdagen.se/HC023268
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/HC023268
+  doc_id: HC023268
+  quote: Riksdagen ställer sig bakom det som anförs i motionen om att regeringen skyndsamt bör återkomma med förslag på åtgärder för hur Kriminalvårdens behandlingsverksamhet kan förbättras och därmed hur den dömdes risk för återfall ska minimeras och tillkännager detta för regeringen.
+  date: '2024-11-20'
+  confidence: medium
+  mapping_note: 'HARMONISERINGSANMÄRKNING: MP använder umbrella-termen ''behandlingsverksamhet'' (0 träffar på exakt ''behandlingsprogram''/''programverksamhet''), medan S/M/C/V/L namnger ''behandlingsprogram'' explicit. För att inte hålla MP till en strängare standard än de övriga (samma Riksrevisionsrapport-respons som S) bedöms raden som instrument-exakt och behålls. Eftersom termen är ett snäpp mindre precis än partierna som namnger programmet sätts confidence=medium (ej high) — defensibel mellanposition, ej drop på en strikthet inget annat parti hölls till. Bunten-regel §2: yrkande 2 (obligatorisk behandling för sexual-/grova våldsbrottsdömda) är en intern utvidgningsnyans som inte förkastar raden.'
+- party: S
+  policy_type: fokuserad_avskrackning_gvi
+  stance: supports
+  source: Kommittemotion (S) – data.riksdagen.se/HC023111
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/HC023111.text
+  doc_id: HC023111
+  quote: Riksdagen ställer sig bakom det som anförs i motionen om att använda Sluta skjut i större omfattning och tillkännager detta för regeringen.
+  date: '2024-10-04'
+  confidence: high
+  mapping_note: Partikollektiv kommittémotion (Teresa Carvalho m.fl. (S)), riksmöte 2024/25 — inom föredragen mandatperiod (§4). Sökorden 'GVI'/'fokuserad avskräckning'/'gruppvåldsintervention' förekommer inte i texten (bekräftat i rå .text), men 'Sluta skjut' är instrumentets etablerade svenska namn => instrument-exakt enligt §1. Bunten med avhopparverksamhet m.m. påverkar ej stance (§2). En passage nämner 'Sluta skjut som förebild' för ett program mot mäns våld mot kvinnor — annat förslag, ej stance-grund.
+- party: V
+  policy_type: fokuserad_avskrackning_gvi
+  stance: supports
+  source: Kommittemotion (V) – data.riksdagen.se/HD022788
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/HD022788.text
+  doc_id: HD022788
+  quote: Regeringen bör ge Polismyndigheten, Kriminalvården och Brå i uppdrag att ta fram en nationell strategi för att sprida Sluta skjut till hela landet. Detta bör riksdagen ställa sig bakom och ge regeringen till känna.
+  date: '2025-10-06'
+  confidence: high
+  mapping_note: 'Partikollektiv kommittémotion (JuU), undertecknad av Gudrun Nordborg m.fl. (V) — ej enskild motion. Instrumentet uttryckligen identifierat: ''Strategin bygger på en beprövad amerikansk modell – gruppvåldsintervention (GVI)''. Det citerade yrkandet rör endast detta instrument (ingen bunt). Det formella yrkandet (förslagspunkt 15) har lydelsen ''... och tillkännager detta för regeringen''; den citerade meningen är den ordagranna brödtext-formuleringen av samma yrkande och är verbatim-belagd. UTÖKA => supports.'
+- party: MP
+  policy_type: fokuserad_avskrackning_gvi
+  stance: supports
+  source: Motion (MP) – data.riksdagen.se/H8022726
+  source_type: motion
+  source_url: https://data.riksdagen.se/dokument/H8022726.text
+  doc_id: H8022726
+  quote: Riksdagen ställer sig bakom det som anförs i motionen om att arbetsmetoden Sluta skjut i kombination med avhopparverksamhet bör spridas till fler delar av landet och tillkännager detta för regeringen.
+  date: '2020-10-05'
+  confidence: low
+  mapping_note: Riksdagen klassar dokumentet som 'Enskild motion' (subtyp). Per §3 (enskild/icke-partikollektiv motion) => confidence=low eftersom ingen starkare partikollektiv MP-källa belägger instrumentet. Äldre mandatperiod (2020/21) noteras enligt §4 — ingen nyare instrument-exakt MP-källa hittad trots sökning. Instrumentet identifierat via 'metoden GVI, Group Violence Intervention' (i rå .text). Bunten med avhopparverksamhet noteras men förkastar ej raden (§2), symmetriskt med S. Detta är den lägre vägen jämfört med S/V (partikollektiva, high) eftersom källklassen är svagare, inte för att standarden skärpts.
+- party: SD
+  policy_type: situationell_prevention_utomhusbelysning
+  stance: supports
+  source: Motion (enskild) (SD) – data.riksdagen.se/HD02256
+  source_type: motion (enskild)
+  source_url: https://data.riksdagen.se/dokument/HD02256.text
+  doc_id: HD02256
+  quote: Riksdagen ställer sig bakom det som anförs i motionen om att regeringen bör arbeta mer med den situationella brottspreventionen med hjälp av trygghetsbelysning och tillkännager detta för regeringen.
+  date: '2025-09-24'
+  confidence: low
+  mapping_note: Starkaste instrument-exakta citatet i hela panelen (yrkande som ordagrant nämner 'situationella brottspreventionen ... trygghetsbelysning'). Trots styrkan i texten begränsas confidence till low eftersom det är en enskild motion (§3), symmetriskt med S. Inom föredragen period.
+- party: V
+  policy_type: situationell_prevention_utomhusbelysning
+  stance: supports
+  source: Partimotion (V) – data.riksdagen.se/HA021217
+  source_type: partimotion
+  source_url: https://data.riksdagen.se/dokument/HA021217.text
+  doc_id: HA021217
+  quote: Väl upplysta gångstråk och gångtunnlar samt färre stora buskage vid gångvägar är andra exempel som ökar tryggheten och underlättar för i synnerhet kvinnor att riskfritt röra sig i samhället.
+  date: '2022-11-01'
+  confidence: medium
+  mapping_note: Partimotion (Dadgostar m.fl.) => partikollektiv, confidence medium, identisk kalibrering som L/MP/C (buntad motivtext, ej votering/dedikerat yrkande). Keyword 'upplysta' (ordet 'belysning' förekommer ej i passagen men 'väl upplysta gångstråk och gångtunnlar' är otvetydigt utomhusbelysning). Inom föredragen period (§4). Detta är pivåbeslutet där standarden harmoniseras uppåt för att matcha L/C/MP/KD — slutsatsen ändras endast för att SAMMA standard nu tillämpas (§9.4).
+- party: KD
+  policy_type: situationell_prevention_utomhusbelysning
+  stance: supports
+  source: Kommittemotion (KD) – data.riksdagen.se/H3022686
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/H3022686.text
+  doc_id: H3022686
+  quote: Belysningen i parker och bostadsområden måste förbättras.
+  date: '2015-10-06'
+  confidence: medium
+  mapping_note: Partikollektiv kommittémotion (ej enskild) => confidence medium. Källan är rm 2015/16, UTANFÖR föredragen period (2022/23-2025/26) per §4; ingen nyare instrument-exakt KD-källa hittades, så äldre källa tillåts och noteras (symmetrisk tidsregel, ej strängare än andra). Samma slags buntade fysisk-planering-källa som C/L/MP/V; behandlas lika under §2.
+- party: L
+  policy_type: situationell_prevention_utomhusbelysning
+  stance: supports
+  source: Partimotion (L) – data.riksdagen.se/H9023974
+  source_type: partimotion
+  source_url: https://data.riksdagen.se/dokument/H9023974.text
+  doc_id: H9023974
+  quote: God belysning, röjning av buskage och genomtänkt förläggning av gångvägar är andra åtgärder som förebygger brott och ökar tryggheten.
+  date: '2021-10-05'
+  confidence: medium
+  mapping_note: Partimotion => partikollektiv, confidence medium (motivtext som namnger instrumentet i brottsförebyggande kontext, ej dedikerat yrkande/votering => ej high). Ordet 'utomhus' förekommer ej ordagrant men kontexten (gångvägar/offentlig miljö) gör det otvetydigt. Källan rm 2021/22, UTANFÖR föredragen period (§4); ingen nyare L-källa funnen, noteras. Materiellt samma slags buntade motivtext som V (se standard_note) och C/MP/KD.
+- party: MP
+  policy_type: situationell_prevention_utomhusbelysning
+  stance: supports
+  source: Partimotion (MP) – data.riksdagen.se/HB022669
+  source_type: partimotion
+  source_url: https://data.riksdagen.se/dokument/HB022669.text
+  doc_id: HB022669
+  quote: Det behövs en stadsplanering som fokuserar på trygghet, genom till exempel bättre belysning, och som därutöver inte bländar.
+  date: '2023-10-05'
+  confidence: medium
+  mapping_note: Partimotion => partikollektiv, confidence medium (motivtext, ej dedikerat yrkande/votering). Dokumentets formella titel är 'Rättspolitik' (2023/24:2669) men citatet finns verbatim i avsnitt om trygghet/stadsplanering. Inom föredragen period (§4). Samma slags buntade motivtext-källa som C/L/KD/V.
+- party: S
+  policy_type: ateraktiverad_utokad_varnplikt
+  stance: supports
+  source: Kommittemotion (S) – data.riksdagen.se/HC023023
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/HC023023
+  doc_id: HC023023
+  quote: Försvarsmaktens numerär ska växa med bland annat fler värnpliktiga. Den tydliga socialdemokratiska målsättningen är att minst 10 000 värnpliktiga per år ska påbörja utbildning genom värnplikt senast 2030 och upp till en nivå om 12 000 2032.
+  date: '2024-10-04'
+  confidence: high
+  mapping_note: 'Instrument-exakt på ''utökad värnplikt'': brödtext ''numerär ska växa med ... fler värnpliktiga'' + ''minst 10 000 värnpliktiga per år ska påbörja utbildning genom värnplikt senast 2030 ... upp till 12 000 2032'', förstärkt av yrkande ''minst 10 000 värnpliktiga per år till 2030, ambition 20 000 per år på längre sikt''. PANEL-VERIFIERING: råtexten splittrar sifferparen med <span>&#xa0;</span>-tokens (10 / 000, 12 / 000); efter HTML-strip och nbsp->vanligt mellanslag matchar citatet exakt — WebFetch-summeringsmodellen missade meningen just för att den spänner över taggar, men Grep mot råtexten bekräftar den. Inte single-member. Bunten-nyans (regementen, hemvärn, drönare i samma motion) noteras men förkastar ej raden (§2). Motionen avslogs i FöU men källhierarkin värderar partikollektiv motion som partilinje.'
+- party: M
+  policy_type: ateraktiverad_utokad_varnplikt
+  stance: supports
+  source: Kommittemotion (M) – data.riksdagen.se/H9023641
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/H9023641
+  doc_id: H9023641
+  quote: Moderaterna värnar därför om systemet med GSS/K och GSS/T och ser gärna att det utvecklas i samklang med ökade värnpliktsvolymer.
+  date: '2021-10-05'
+  confidence: medium
+  mapping_note: 'BUNTEN-REGEL (§2): de formella yrkandena gäller smalare delar (tillgänglighet för värnpliktig personal, befattningskrav), men brödtextcitatet är instrument-exakt för utökade värnpliktsvolymer => raden räknas; de avslagna yrkandena är intern nyans och förkastar ej raden. Behandlas EXAKT som S/V/KD:s bundlade declarativa partilinjer. Äldre mandatperiod (2021/22, utanför föredragen period §4) — noterat symmetriskt; ingen nyare instrument-exakt M-kommittémotion eftersöktes då befintlig rad redan beläggs instrument-exakt. Confidence=medium pga äldre period. Inte single-member.'
+- party: SD
+  policy_type: ateraktiverad_utokad_varnplikt
+  stance: supports
+  source: Kommittemotion (SD) – data.riksdagen.se/HA02948
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/HA02948
+  doc_id: HA02948
+  quote: Samtliga unga män och kvinnor ska kunna kallas till mönstring och senare utbildning för att sedan krigsplaceras.
+  date: '2022-11-22'
+  confidence: high
+  mapping_note: 'Instrument-exakt: kalla SAMTLIGA unga män och kvinnor till mönstring/utbildning/krigsplacering = utökad plikt, ej bara mål ''starkt försvar''. Förstärks av yrkande (FöU yrk. 12) om att beakta mönstring för samtliga. BUNTEN-REGEL: motionen buntar många totalförsvarsinstrument men det namngivna instrumentet är instrument-exakt citerat (§2). Ingen instrument-exakt votering hittad; kommittémotion näst starkast i hierarkin. Inte single-member.'
+- party: C
+  policy_type: ateraktiverad_utokad_varnplikt
+  stance: supports
+  source: Kommittemotion (C) – data.riksdagen.se/HD022822
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/HD022822
+  doc_id: HD022822
+  quote: Det visar på vikten av att värnplikten utökas och når fler.
+  date: '2025-10-06'
+  confidence: high
+  mapping_note: Instrument-exakt declarativ partilinje om utökad värnplikt. Övriga delfrågor i motionen (Pliktrådet, indexreglerad dagersättning, värnpliktigas rättigheter) är intern nyans och förkastar ej raden (§2). Inte single-member. Behandlas lika med S/M/V/KD.
+- party: V
+  policy_type: ateraktiverad_utokad_varnplikt
+  stance: supports
+  source: Kommittemotion (V) – data.riksdagen.se/HD02199
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/HD02199
+  doc_id: HD02199
+  quote: Vänsterpartiet står bakom det faktum att alla män och kvinnor i en viss åldersgrupp i Sverige ska mönstra och att alla som är lämpliga ska genomföra en militär grundutbildning.
+  date: '2025-09-23'
+  confidence: high
+  mapping_note: 'Citatgrund bytt (av research) från villkors-/ersättningstext (dagersättning/förplägnad — EJ instrument-exakt) till instrument-exakt mönstrings-/grundutbildningsmening ur samma dokument. Ännu starkare expansionsbelägg i texten: ''Vänsterpartiet instämmer i ambitionen om en utökad värnplikt som ska byggas ut successivt för att 2030 uppgå till 10 000 värnpliktiga årligen och 12 000 värnpliktiga senast 2032'' (verifierad verbatim). Motionens yrkanden rör HR/villkor men brödtexten ger instrument-exakt partilinje => BUNTEN-REGEL uppfylld (§2). Senaste mandatperioden. Motionen avslogs (FöU8) men partikollektiv motion = partilinje i hierarkin. Inte single-member.'
+- party: KD
+  policy_type: ateraktiverad_utokad_varnplikt
+  stance: supports
+  source: Kommittemotion (KD) – data.riksdagen.se/H9023908
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/H9023908
+  doc_id: H9023908
+  quote: Personalbristen inom Försvarsmakten måste åtgärdas för att vi ska kunna fylla och utöka antalet förband, bl.a. genom att värnplikten och antalet reservofficerare utvecklas mot större volymer.
+  date: '2021-10-05'
+  confidence: medium
+  mapping_note: 'BUNTEN-REGEL (§2): citatet namnger värnplikten tillsammans med reservofficerare (''utvecklas mot större volymer'') — raden räknas för det namngivna instrumentet eftersom citatet är instrument-exakt; analogt med S/V/M-buntningar. Ytterligare stödjande instrument-exakt brödtext i samma dok (''skapa förutsättningar för att ta emot fler värnpliktiga'', fördubblad grundutbildningsvolym ~4 000 -> 8 000). Äldre mandatperiod (2021/22, utanför föredragen period §4) — noterat symmetriskt; confidence=medium pga äldre period. Inte single-member.'
+- party: L
+  policy_type: ateraktiverad_utokad_varnplikt
+  stance: supports
+  source: Kommittemotion (L) – data.riksdagen.se/H3022265
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/H3022265
+  doc_id: H3022265
+  quote: En återinförd värnplikt skulle innebära att vi aktiverar värnpliktslagen där en allmän och könsneutral mönstringsplikt ska ingå.
+  date: '2015-10-06'
+  confidence: medium
+  mapping_note: 'Instrument-exakt: ''återinförd värnplikt ... aktiverar värnpliktslagen ... allmän och könsneutral mönstringsplikt''. Nyansen att aktiverad värnplikt ska KOMPLETTERA yrkesförsvaret är intern nyans och förkastar ej raden (§2). TIDSREGEL (§4): källan är från 2015/16, klart äldre än föredragen period (2022/23-2025/26) — noteras symmetriskt; eftersom L numera har instrument-exakt belägg står raden, men confidence sätts till medium pga betydande ålder och en nyare L-källa (2022/23-2025/26) vore att föredra om sådan finns. Inte single-member.'
+- party: S
+  policy_type: tydlig_statlig_styrning_civilt_forsvar
+  stance: supports
+  source: Kommittemotion (S) – data.riksdagen.se/HD023556
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/HD023556
+  doc_id: HD023556
+  quote: Riksdagen ställer sig bakom det som anförs i motionen om nytt och förtydligat uppdrag för Myndigheten för samhällsskydd och beredskap och tillkännager detta för regeringen.
+  date: '2025-10-07'
+  confidence: high
+  mapping_note: 'Källhierarki: partikollektiv kommittémotion (ej enskild ledamot). Bunten-nyans: motionen är en bredd-/buntmotion om militärt + civilt försvar; intern nyans (många andra instrument) noteras men förkastar ej raden (rubrik §2). Yrkandena avslogs i FöU men källhierarkin värderar partimotionens position som partilinje (§3). Den exakta frasen ''statlig styrning'' saknas, men instrumentet (tydlig statlig styrning av civilt försvar) beläggs av förstärkt/förtydligat statligt myndighetsuppdrag (MSB) + nya statliga myndighetsstrukturer — samma governance-standard som tillämpas på M/SD/C/V/L. Citat verbatim ur .text (yrkande 81).'
+- party: M
+  policy_type: tydlig_statlig_styrning_civilt_forsvar
+  stance: supports
+  source: Kommittemotion (M) – data.riksdagen.se/H9023642
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/H9023642
+  doc_id: H9023642
+  quote: Riksdagen ställer sig bakom det som anförs i motionen om behovet av tydliga krav, riktlinjer och resultatmål för samt uppföljning av den civila beredskapen och tillkännager detta för regeringen.
+  date: '2021-10-05'
+  confidence: high
+  mapping_note: 'Källhierarki: partikollektiv kommittémotion. Tidsregel (§4): källan är från 2021/22, utanför föredragen senaste period; ingen instrument-exakt nyare partikollektiv M-källa hittades, äldre källa därför tillåten och noterad — samma tidskrav som tillämpas på alla. Bunten-nyans: motionen buntar nationellt säkerhetsråd under statsministern, översyn av ansvarsprincipen, finansiering, övning m.m.; intern nyans noteras men förkastar ej raden (§2). Liten reservation: yrkandet säger ''civila beredskapen'' snarare än ordagrant ''civilt försvar'', men motionens egen definition binder begreppen — instrument-exakthet uppfylld. Citat verbatim ur .text.'
+- party: SD
+  policy_type: tydlig_statlig_styrning_civilt_forsvar
+  stance: supports
+  source: Kommittemotion (SD) – data.riksdagen.se/HC021407
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/HC021407
+  doc_id: HC021407
+  quote: Samtidigt finns det ett stort behov av att det i uppstarten av återuppbyggnaden finns en tydlig ledning och styrning som kan säkerställa en nationell sammanhållning och riktlinje. Denna ska givetvis åtföljas av möjligheter till sanktioner för de aktörer som inte prioriterar eller fokuserar på återuppbyggnaden av krisberedskapsfunktioner, vilka också är lagstadgade uppdrag.
+  date: '2024-10-02'
+  confidence: high
+  mapping_note: 'Källhierarki: partikollektiv kommittémotion (ej enskild). Bunten-nyans: motionen buntar beredskapslager, energisäkerhet, SOS Alarm, regleringsbrev m.m.; det namngivna instrumentet (statlig styrning av civilt försvar) är instrument-exakt belagt => raden gäller (§2). Notera: HTML-källan innehåller mjuka bindestreck (t.ex. ''återuppbyggnaden'', ''riktlinje'') som kan framstå delade vid naiv taggrensning; citatet är verbatim när taggar tas bort utan infogat mellanslag. Förstärks av formellt yrkande om civilförsvarets och krisberedskapens ledning.'
+- party: V
+  policy_type: tydlig_statlig_styrning_civilt_forsvar
+  stance: supports
+  source: Motion (V) – data.riksdagen.se/HB0266
+  source_type: motion
+  source_url: https://data.riksdagen.se/dokument/HB0266
+  doc_id: HB0266
+  quote: Vi måste se betydelsen av offentligt ägande och offentlig styrning av samhällsviktig verksamhet som en del av arbetet med att bygga ett robust och säkert samhälle.
+  date: '2023-09-21'
+  confidence: medium
+  mapping_note: 'Källhierarki: partikollektiv flerpersonsmotion (ej enskild ledamot, ej votering). Ingen nyare/starkare partikollektiv V-källa på exakt detta instrument framkom; ärendet avslogs i FöU (2023/24:FöU7) men påverkar ej V:s position (§3). Confidence satt till medium (ej high): källan är en motion utan voteringsstöd och ''offentlig styrning'' är något bredare än enbart ''statlig'' styrning, men motionen kopplar uttryckligen styrningen till offentlig/statlig regi (stat/region/kommun). Bunten-nyans: motionen buntar flera försvarsinstrument; citatet är instrument-exakt for statlig/offentlig styrning => raden gäller (§2). Samma governance-standard som S/M/SD/C/L.'
+- party: L
+  policy_type: tydlig_statlig_styrning_civilt_forsvar
+  stance: supports
+  source: Kommittemotion (L) – data.riksdagen.se/H8023429
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/H8023429
+  doc_id: H8023429
+  quote: Regeringen kan aldrig släppa ifrån sig ansvaret för att leda och samordna myndigheternas agerande vid civila eller militära kriser. Därför behöver krisledningsansvaret läggas direkt hos statsministern via statsrådsberedningen och stödjas av ett nationellt säkerhetsråd.
+  date: '2020-10-06'
+  confidence: high
+  mapping_note: 'Källhierarki: partikollektiv kommittémotion (8 L-ledamöter inkl. partiledaren) — ej enskild, confidence högre än low. Tidsregel (§4): källan är från 2020/21, utanför föredragen senaste period; ingen instrument-exakt nyare partikollektiv L-källa verifierad i denna re-verifiering, äldre källa därför tillåten och noterad — samma tidskrav som för M. Bunten-nyans: motionen buntar Nato, 2% av BNP, beredskapslager m.m.; citatet är instrument-exakt => raden gäller (§2). ''statlig''/''styrning'' ej ordagrant, men instrumentet beläggs av den tydliga statliga lednings-/styrningsstruktur som uttryckligen omfattar civila kriser, under rubriken ''Civilt försvar'' > ''Tydlig ledningsstruktur'' — samma governance-standard som S/M/SD/C/V.'
+- party: M
+  policy_type: koldioxidskatt
+  stance: supports
+  source: Motion 2021/22:4030 (M) "Så får vi ordning på Sverige – Klimat och energi", Ulf Kristersson m.fl.
+  source_type: motion
+  source_url: https://data.riksdagen.se/dokument/H9024030.html
+  doc_id: H9024030
+  quote: Trots att koldioxidskatt är ett av de mest kostnadseffektiva verktygen för att minska utsläppen … Det ska fortfarande vara möjligt för länder med redan högre koldioxidskatter att behålla dessa. Den svenska nivån på koldioxidskatten kommer alltså inte att påverkas av ett sådan beslut.
+  date: 2021/22
+  mapping_note: 'Instrument-exakt: M karakteriserar koldioxidskatten som "ett av de mest kostnadseffektiva verktygen" och slår fast att den svenska nivån ska behållas oförändrad. Behålla = supports. Nyans: riktningssatsen står i kontext av ett EU-minimiprisförslag (2021/22, dåv. opposition).'
+- party: SD
+  policy_type: koldioxidskatt
+  stance: opposes
+  source: Motion 2022/23:998 (SD) "En effektiv och grön politik för framtiden", Martin Kinnunen m.fl.
+  source_type: motion
+  source_url: https://data.riksdagen.se/dokument/HA02998.html
+  doc_id: HA02998
+  quote: Forskning om optimal nivå på koldioxidskatter tyder också på att Sverige idag har påfallande höga koldioxidskatter, vilket understryker vikten av att dessa inte bör höjas ytterligare.
+  date: 2022/23
+  mapping_note: 'Instrument-exakt: SD anser den svenska koldioxidskatten "påfallande hög" och att den "inte bör höjas ytterligare" -> motsätter sig att stärka instrumentet = opposes. (Nyans: SD förordar en global koldioxidskatt, men motsätter sig höjning av den svenska — opposes avser det svenska instrumentet.)'
+- party: V
+  policy_type: koldioxidskatt
+  stance: supports
+  source: Budgetmotion 2024/25:1924 (V), Nooshi Dadgostar m.fl.
+  source_type: budgetmotion
+  source_url: https://data.riksdagen.se/dokument/HC021924.html
+  doc_id: HC021924
+  quote: Koldioxidskatten är ett centralt styrmedel i vår nationella klimatpolitik. … [skatteförändring:] Återinföra koldioxidskatt på bränsle inom EU ETS.
+  date: 2024/25
+  mapping_note: 'Instrument-exakt: V kallar koldioxidskatten "ett centralt styrmedel" och föreslår i sin skatteförändringstabell att återinföra koldioxidskatt på bränsle inom EU ETS (höja/utvidga) = supports.'
+- party: KD
+  policy_type: koldioxidskatt
+  stance: supports
+  source: Motion 2020/21:2807 (KD) UO20, Kjell-Arne Ottosson m.fl.
+  source_type: motion
+  source_url: https://data.riksdagen.se/dokument/H8022807.html
+  doc_id: H8022807
+  quote: Koldioxidskatt på fossila bränslen och ett utvecklat utsläppshandelssystem inom EU är effektiva styrmedel för minskade utsläpp och ett bättre klimat.
+  date: 2020/21
+  mapping_note: 'Instrument-exakt: KD betecknar koldioxidskatten som ett effektivt styrmedel och föreslår ingen sänkning/avskaffande. Bejaka/behålla instrumentet = supports. (Endorsement-nivå, 2020/21.)'
+- party: L
+  policy_type: koldioxidskatt
+  stance: supports
+  source: Motion 2021/22:4199 (L) "Liberal klimatpolitik", Johan Pehrson m.fl.
+  source_type: motion
+  source_url: https://data.riksdagen.se/dokument/H9024199.html
+  doc_id: H9024199
+  quote: Den mest effektiva åtgärden för att minska klimatutsläppen inom EU vore att införa en europeisk koldioxidskatt. … Koldioxidskatten ska vara styrande och den ska strikt utgå ifrån utsläppen.
+  date: 2021/22
+  mapping_note: 'Instrument-exakt: L kallar koldioxidskatt "den mest effektiva åtgärden" och vill att den ska vara styrande. Nyans: L vill att nominell nivå "minskar i takt med reduktionsplikten" — men enbart för att den beskattade fossila andelen sjunker, inte för att försvaga instrumentet. supports.'
+- party: MP
+  policy_type: koldioxidskatt
+  stance: supports
+  source: Motion 2024/25:2613 (MP) "En grön klimathandlingsplan för Sverige 2025", Elin Söderberg m.fl.
+  source_type: motion
+  source_url: https://data.riksdagen.se/dokument/HC022613.html
+  doc_id: HC022613
+  quote: Riksdagen ställer sig bakom det som anförs i motionen om att införa ETS2 så tidigt som möjligt, i kombination med nationella åtgärder såsom höjd koldioxidskatt, och tillkännager detta för regeringen.
+  date: 2024/25
+  mapping_note: 'Instrument-exakt: MP yrkar uttryckligen på "höjd koldioxidskatt" som nationell åtgärd. Höja = supports.'
+- party: S
+  policy_type: ny_karnkraft
+  stance: supports
+  source: Budgetmotion (S) – data.riksdagen.se/HD023594
+  source_type: budgetmotion
+  source_url: https://data.riksdagen.se/dokument/HD023594
+  doc_id: HD023594
+  quote: Vi är öppna för byggandet av all fossilfri elproduktion och accepterar därför ramen, med villkoret att bemyndigandet vidgas till all storskalig fossilfri elproduktion och att en bred energiöverenskommelse görs innan ett investeringsbeslut i ny kärnkraft fattas.
+  date: '2025-10-07'
+  confidence: medium
+  mapping_note: 'Verifierat ordagrant via data.riksdagen.se/dokument/HD023594.text (panel-fetch bekräftar exakt lydelse). Kommittémotion (Utgiftsområde 21 Energi), Fredrik Olovsson m.fl. (7 S-ledamöter), 2025/26 — partikollektiv, ej enskild, senaste mandatperioden. Instrument-exakt på ny_karnkraft: citatet rör direkt byggandet av ny kärnkraft och accepterar regeringens låneram för ny kärnkraft. BUNTEN-/INSTRUMENT-REGEL: S:s villkor (bred energiöverenskommelse, prioritering av förnybart/effekthöjningar) och avslag på ANGRÄNSANDE instrument (finansierings-/stödlag HC023394; nya kustplatser HD023971) är intern nyans och förkastar inte raden. Confidence medium pga starkt villkorat stöd.'
+- party: M
+  policy_type: ny_karnkraft
+  stance: supports
+  source: Kommittemotion (M) – data.riksdagen.se/H9023688
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/H9023688
+  doc_id: H9023688
+  quote: Riksdagen ställer sig bakom det som anförs i motionen om att genomföra nödvändiga ändringar i svensk lagstiftning i syfte att skapa möjligheter för små modulära reaktorer i Sverige och tillkännager detta för regeringen.
+  date: '2021-10-05'
+  confidence: medium
+  mapping_note: 'Verifierat ordagrant via H9023688.text (yrkande 11). Kommittémotion, Lars Hjälmered m.fl. (M) — partikollektiv. Instrument-exakt: lagändring för att MÖJLIGGÖRA att nya reaktorer (SMR) kan uppföras = åtgärdstypen ny_karnkraft. TIDSREGEL (§4): rm 2021/22 ligger strax utanför föredragen mandatperiod; används eftersom ingen nyare partikollektiv instrument-exakt M-källa på exakt detta instrument hittats (nyare källor är enskilda ledamotsmotioner). Tidsavvikelsen noteras symmetriskt med KD (H9024195, 2021/22) och L (H8023242, 2020/21).'
+- party: SD
+  policy_type: ny_karnkraft
+  stance: supports
+  source: Kommittemotion (SD) – data.riksdagen.se/HC021464
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/HC021464
+  doc_id: HC021464
+  quote: Därför är det av yttersta vikt att vi skapar förutsättningar för att successivt bygga ut och vidareutveckla kärnkraften.
+  date: '2024-10-02'
+  confidence: high
+  mapping_note: 'Verifierat ordagrant via HC021464.text. Kommittémotion, Tobias Andersson m.fl. (6 SD-ledamöter), 2024/25 — partikollektiv, senaste mandatperioden. Instrument-exakt: "bygga ut ... kärnkraften" = åtgärdstypen ny/utbyggd kärnkraft (ny_karnkraft), ej bara allmänt mål om planerbar el. BUNTEN-REGEL: yrkandena rör flera industri-/energifrågor; stödet uttrycks instrument-exakt i brödtexten och citeras ordagrant — nyansen att kärnkraft inte nämns i de numrerade yrkandena förkastar inte raden.'
+- party: V
+  policy_type: ny_karnkraft
+  stance: opposes
+  source: Kommittemotion (V) – data.riksdagen.se/HD023961
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/HD023961
+  doc_id: HD023961
+  quote: Riksdagen avslår proposition 2025/26:160 Ny kärnkraft i Sverige – fler möjliga platser vid kusten.
+  date: '2026-03-19'
+  confidence: high
+  mapping_note: 'Verifierat ordagrant via HD023961.text (Förslag till riksdagsbeslut) samt motiveringen "Vänsterpartiet avvisar regeringens planer på att bygga ut kärnkraften" och "Att bygga ny kärnkraft är inte kostnadseffektivt." — alla tre verbatim-bekräftade. Kommittémotion, Birger Lahti m.fl. (7 V-ledamöter), 2025/26 — partikollektiv, senaste mandatperioden. Instrument-exakt: avslag på prop. 2025/26:160 vars hela syfte är att möjliggöra ny/utbyggd kärnkraft = direkt motstånd mot åtgärdstypen ny_karnkraft. Riktning opposes.'
+- party: KD
+  policy_type: ny_karnkraft
+  stance: supports
+  source: Kommittemotion (KD) – data.riksdagen.se/H9024195
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/H9024195
+  doc_id: H9024195
+  quote: Sverige behöver återuppta planeringen av nya kärnkraftsreaktorer.
+  date: '2021-10-05'
+  confidence: medium
+  mapping_note: 'Verifierat ordagrant via H9024195.text. Kommittémotion (Utgiftsområde 21 Energi), Camilla Brodin m.fl. (KD) — partikollektiv, ej enskild. Instrument-exakt: "återuppta planeringen av nya kärnkraftsreaktorer" = direkt åtgärdstypen ny_karnkraft. TIDSREGEL (§4): rm 2021/22 strax utanför föredragen mandatperiod; används eftersom ingen nyare partikollektiv instrument-exakt KD-källa hittats (nyare KD-källor på instrumentet är enskilda ledamotsmotioner). Tidsavvikelsen noteras symmetriskt med M (H9023688) och L (H8023242).'
+- party: L
+  policy_type: ny_karnkraft
+  stance: supports
+  source: Kommittemotion (L) – data.riksdagen.se/H8023242
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/H8023242
+  doc_id: H8023242
+  quote: Riksdagen ställer sig bakom det som anförs i motionen om att tillsätta en statlig utredare med uppdrag att se över regelverken i syfte att möjliggöra att små reaktorer och reaktorer baserade på annan teknik än de befintliga kan uppföras i Sverige och tillkännager detta för regeringen.
+  date: '2020-10-06'
+  confidence: medium
+  mapping_note: 'Verifierat ordagrant via H8023242.text (yrkande i Förslag till riksdagsbeslut). Kommittémotion "Kortare ledtider och lägre kostnader för ny kärnkraft", Arman Teimouri m.fl. (8 L-ledamöter inkl. partiledning) — partikollektiv. Instrument-exakt: se över regelverk så att nya reaktorer (SMR + annan teknik) "kan uppföras i Sverige" = åtgärdstypen ny_karnkraft. TIDSREGEL (§4): rm 2020/21 utanför föredragen mandatperiod; används eftersom nyare L-kärnkraftsmotioner (2024/25, 2025/26) endast rör kommunal ersättning, inte byggande av ny kärnkraft. Tidsavvikelsen noteras symmetriskt med M och KD.'
+- party: MP
+  policy_type: ny_karnkraft
+  stance: opposes
+  source: Kommittemotion (MP) – data.riksdagen.se/HD023984
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/HD023984
+  doc_id: HD023984
+  quote: Riksdagen avslår proposition 2025/26:160 Ny kärnkraft i Sverige – fler möjliga platser vid kusten.
+  date: '2026-03-25'
+  confidence: high
+  mapping_note: 'Verifierat ordagrant via HD023984.text (Förslag till riksdagsbeslut). Kommittémotion, Katarina Luhr m.fl. (5 MP-ledamöter, NU), 2025/26 — partikollektiv, senaste mandatperioden. Instrument-exakt: avslag på prop. 2025/26:160 vars hela syfte är att möjliggöra ny/utbyggd kärnkraft (fler platser vid kusten via ändring i miljöbalken) = direkt motstånd mot åtgärdstypen ny_karnkraft. Riktning opposes. Behandlas symmetriskt med V:s analoga avslagsmotion (HD023961) på samma proposition.'
+- party: S
+  policy_type: reduktionsplikt_drivmedel
+  stance: supports
+  source: Votering bet. 2023/24:MJU5 (prop. 2023/24:28), punkt 1 sakfrågan
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HB01MJU5.html
+  doc_id: HB01MJU5 / votering 21E8B615-C235-489F-8189-D26CABD56F24 punkt 1
+  quote: 'Röst: Nej (partiets majoritet bland icke-frånvarande) — avslog förslaget att sänka reduktionsplikten.'
+  date: 2023/24
+  mapping_note: 'Reduktionsplikten höjer andelen biodrivmedel och sänker transportutsläpp (liggaren: direction positive). Röst Nej till sänkningen = vill behålla instrumentet = supports.'
+- party: M
+  policy_type: reduktionsplikt_drivmedel
+  stance: opposes
+  source: Votering bet. 2023/24:MJU5 (prop. 2023/24:28), punkt 1 sakfrågan
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HB01MJU5.html
+  doc_id: HB01MJU5 / votering 21E8B615-C235-489F-8189-D26CABD56F24 punkt 1
+  quote: 'Röst: Ja (partiets majoritet bland icke-frånvarande) — biföll förslaget att sänka reduktionsplikten.'
+  date: 2023/24
+  mapping_note: Röst Ja till sänkningen = vill försvaga reduktionsplikten (utsläppssänkande instrument) = opposes.
+- party: SD
+  policy_type: reduktionsplikt_drivmedel
+  stance: opposes
+  source: Votering bet. 2023/24:MJU5 (prop. 2023/24:28), punkt 1 sakfrågan
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HB01MJU5.html
+  doc_id: HB01MJU5 / votering 21E8B615-C235-489F-8189-D26CABD56F24 punkt 1
+  quote: 'Röst: Ja (partiets majoritet bland icke-frånvarande) — biföll förslaget att sänka reduktionsplikten.'
+  date: 2023/24
+  mapping_note: Röst Ja till sänkningen = vill försvaga reduktionsplikten (utsläppssänkande instrument) = opposes.
+- party: C
+  policy_type: reduktionsplikt_drivmedel
+  stance: supports
+  source: Votering bet. 2023/24:MJU5 (prop. 2023/24:28), punkt 1 sakfrågan
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HB01MJU5.html
+  doc_id: HB01MJU5 / votering 21E8B615-C235-489F-8189-D26CABD56F24 punkt 1
+  quote: 'Röst: Nej (partiets majoritet bland icke-frånvarande) — avslog förslaget att sänka reduktionsplikten.'
+  date: 2023/24
+  mapping_note: Röst Nej till sänkningen = vill behålla reduktionsplikten (utsläppssänkande instrument) = supports.
+- party: V
+  policy_type: reduktionsplikt_drivmedel
+  stance: supports
+  source: Votering bet. 2023/24:MJU5 (prop. 2023/24:28), punkt 1 sakfrågan
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HB01MJU5.html
+  doc_id: HB01MJU5 / votering 21E8B615-C235-489F-8189-D26CABD56F24 punkt 1
+  quote: 'Röst: Nej (partiets majoritet bland icke-frånvarande) — avslog förslaget att sänka reduktionsplikten.'
+  date: 2023/24
+  mapping_note: Röst Nej till sänkningen = vill behålla reduktionsplikten (utsläppssänkande instrument) = supports.
+- party: KD
+  policy_type: reduktionsplikt_drivmedel
+  stance: opposes
+  source: Votering bet. 2023/24:MJU5 (prop. 2023/24:28), punkt 1 sakfrågan
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HB01MJU5.html
+  doc_id: HB01MJU5 / votering 21E8B615-C235-489F-8189-D26CABD56F24 punkt 1
+  quote: 'Röst: Ja (partiets majoritet bland icke-frånvarande) — biföll förslaget att sänka reduktionsplikten.'
+  date: 2023/24
+  mapping_note: Röst Ja till sänkningen = vill försvaga reduktionsplikten (utsläppssänkande instrument) = opposes.
+- party: L
+  policy_type: reduktionsplikt_drivmedel
+  stance: opposes
+  source: Votering bet. 2023/24:MJU5 (prop. 2023/24:28), punkt 1 sakfrågan
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HB01MJU5.html
+  doc_id: HB01MJU5 / votering 21E8B615-C235-489F-8189-D26CABD56F24 punkt 1
+  quote: 'Röst: Ja (partiets majoritet bland icke-frånvarande) — biföll förslaget att sänka reduktionsplikten.'
+  date: 2023/24
+  mapping_note: Röst Ja till sänkningen = vill försvaga reduktionsplikten (utsläppssänkande instrument) = opposes.
+- party: MP
+  policy_type: reduktionsplikt_drivmedel
+  stance: supports
+  source: Votering bet. 2023/24:MJU5 (prop. 2023/24:28), punkt 1 sakfrågan
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HB01MJU5.html
+  doc_id: HB01MJU5 / votering 21E8B615-C235-489F-8189-D26CABD56F24 punkt 1
+  quote: 'Röst: Nej (partiets majoritet bland icke-frånvarande) — avslog förslaget att sänka reduktionsplikten.'
+  date: 2023/24
+  mapping_note: Röst Nej till sänkningen = vill behålla reduktionsplikten (utsläppssänkande instrument) = supports.
+- party: S
+  policy_type: aktiveringskrav_ekonomiskt_bistand
+  stance: supports
+  source: Kommittemotion (S) – data.riksdagen.se/HD024016
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/HD024016
+  doc_id: HD024016
+  quote: Det är en självklarhet att den som får ekonomiskt bistånd, efter sin förmåga, ska delta i aktiviteter som kan bidra till att den kan försörja sig på egen hand. Därför tillsatte den socialdemokratiska regeringen den utredning om aktivitetsplikt som nu resulterat i en proposition om aktivitetskrav. Det är förslag som Socialdemokraterna står bakom.
+  date: '2026-04-01'
+  confidence: high
+  mapping_note: 'Instrument-exakt: ''aktivitetskrav/aktivitetsplikt'' för mottagare av ''ekonomiskt bistånd''/''försörjningsstöd'' = det kodade instrumentet (synonym i sökordslistan; ''aktiveringskrav'' saknas men ''aktivitetskrav'' finns ordagrant). Decisivt belägg: ''Det är förslag som Socialdemokraterna står bakom.'' BUNTEN-REGEL §2: motionens tre yrkanden buntar tilläggsinstrument (utestänga organiserad brottslighet, kommunal heltidsaktivitet + barnomsorg, annan tillsynsmyndighet). Dessa interna nyanser noteras men förkastar ALDRIG raden — S motsätter sig inte instrumentet, utan stöder och vill villkora dess utformning. Mjuka bindestreck (U+00AD) i HTML normaliserade i citatet. Källa: kommittémotion, hög i hierarkin (näst votering).'
+- party: M
+  policy_type: aktiveringskrav_ekonomiskt_bistand
+  stance: supports
+  source: Partimotion (M) – data.riksdagen.se/H9024033
+  source_type: partimotion
+  source_url: https://data.riksdagen.se/dokument/H9024033
+  doc_id: H9024033
+  quote: För att nyttan av fritid inte ska räknas in i kalkylen som görs när en person ska gå från bidrag till jobb, krävs tydliga aktivitetskrav för de bidrag som erhålls av arbetsmarknadsskäl. Att få pengar utan motprestation ska inte vara ett alternativ för den som skulle kunna jobba.
+  date: '2021-10-05'
+  confidence: high
+  mapping_note: 'Instrument-exakt: ''krävs tydliga aktivitetskrav för de bidrag som erhålls av arbetsmarknadsskäl'' + i samma motion ''motprestation på heltid krävas av alla som kan arbeta men som istället lever på försörjningsstöd'' = aktiveringskrav för ekonomiskt bistånd. BUNTEN-REGEL §2: H9024033 är en bred integrations-partimotion (sfi-villkor, utbildningsplikt m.m.) men den citerade meningen är instrument-exakt, så raden räknas; bredden noteras endast. TIDSREGEL §4: källan är 2021/22, utanför föredragen period (2022/23-2025/26), men är den starkaste partikollektiva källan på exakt detta instrument; den enskilda 2025/26-motionen (HD021533, yrkande om krav på arbets-/praktik-/utbildningsinsats för försörjningsstöd) visar att linjen kvarstår. Symmetrisk tidshantering: KD och L bedöms lika (äldre källa OK + notering).'
+- party: SD
+  policy_type: aktiveringskrav_ekonomiskt_bistand
+  stance: supports
+  source: Kommittemotion (SD) – data.riksdagen.se/HA02924
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/HA02924
+  doc_id: HA02924
+  quote: Att inte arbeta och istället uppbära försörjningsstöd och bidrag ska vara förknippat med aktivitetskrav.
+  date: '2022-11-22'
+  confidence: high
+  mapping_note: 'Instrument-exakt: ''försörjningsstöd och bidrag ska vara förknippat med aktivitetskrav''. ''aktiveringskrav'' saknas i texten; synonymen ''aktivitetskrav'' finns ordagrant (sökordslistan). BUNTEN-REGEL §2: motionen täcker hela socialtjänsten men citatet är instrument-exakt, intern bredd förkastar ALDRIG raden. Notera: ordet ''förknippat'' bryts av mjuk bindestreck (U+00AD) i rå .text; citatet är den korrekt sammanfogade lydelsen. Kommittémotion, hög i hierarkin.'
+- party: C
+  policy_type: aktiveringskrav_ekonomiskt_bistand
+  stance: supports
+  source: Kommittemotion (C) – data.riksdagen.se/HD024032
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/HD024032
+  doc_id: HD024032
+  quote: Centerpartiet ställer sig i grunden positivt till regeringens proposition och delar ambitionen att arbetslinjen måste stärkas. Det är en självklarhet att den som kan arbeta ska arbeta. Att ställa krav på aktivitet för den som uppbär försörjningsstöd är därför ett viktigt steg för att bryta utanförskap och underlätta för fler att nå egen försörjning. Vi ställer oss därför bakom propositionens intentioner och huvudsakliga förslag.
+  date: '2026-04-01'
+  confidence: high
+  mapping_note: 'Instrument-exakt: ''Att ställa krav på aktivitet för den som uppbär försörjningsstöd'' + ''Vi ställer oss därför bakom propositionens intentioner och huvudsakliga förslag.'' ''aktiveringskrav'' saknas; instrumentet benämns ''krav på aktivitet''/''aktivitetskrav'' med mottagargruppen ''försörjningsstöd'' (= ekonomiskt bistånd). BUNTEN-REGEL §2: C vill därutöver utveckla/komplettera kravet (obligatoriskt nystartsår, uppföljning, proportionerlig tillsyn) — intern nyans som noteras men ALDRIG förkastar raden. Behandlas symmetriskt med S (samma slags ''med anledning av''-kommittémotion till prop. 207, stödjande nyans => keep supports).'
+- party: V
+  policy_type: aktiveringskrav_ekonomiskt_bistand
+  stance: opposes
+  source: Kommittemotion (V) – data.riksdagen.se/HD024027
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/HD024027
+  doc_id: HD024027
+  quote: Riksdagen avslår proposition 2025/26:207. ... I denna proposition lämnar regeringen lagförslag om ett aktivitetskrav som villkor för rätt till försörjningsstöd.
+  date: '2026-04-01'
+  confidence: high
+  mapping_note: 'Instrument-exakt motståndsbelägg: avslagsyrkande på prop. om ''aktivitetskrav som villkor för rätt till försörjningsstöd'' (= aktiveringskrav för ekonomiskt bistånd). ''aktiveringskrav'' saknas; synonymen ''aktivitetskrav''/''försörjningsstöd'' finns ordagrant. ASYMMETRI BEVARAD (rubrik §8): V är genuint emot instrumentet — utfallet jämnas INTE ut mot supports. En kommande votering (bet. 2025/26:SoU29, res. 1 V) vore ännu starkare källa men avslagsyrkandet i kommittémotionen är instrument-exakt och håller. Citatets fortsättning i rå .text har soft-hyphen-artefakter; den citerade meningen är ren.'
+- party: KD
+  policy_type: aktiveringskrav_ekonomiskt_bistand
+  stance: supports
+  source: Kommittemotion (KD) – data.riksdagen.se/H9024212
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/H9024212
+  doc_id: H9024212
+  quote: Lagen bör därför ändras så att det framgår att kommunerna ska ställa aktivitetskrav.
+  date: '2021-10-05'
+  confidence: high
+  mapping_note: 'Instrument-exakt: ''kommunerna ska ställa aktivitetskrav'' + ''aktivitetskrav vara regel och införas för alla som befinner sig i försörjningsstöd pga av arbetslöshet'' = aktiveringskrav för ekonomiskt bistånd. ''aktiveringskrav'' saknas; synonymen ''aktivitetskrav'' finns ordagrant. Vald proposed_quote är artefaktfri; meningen om ''försörjningsstöd'' korsar en mjuk-bindestreck-avstavning i rå .text och citeras därför inte som huvudcitat men bekräftar instrumentkopplingen. TIDSREGEL §4: 2021/22, utanför föredragen period — symmetriskt med M och L (äldre partikollektiv källa OK + notering). Kommittémotion, hög i hierarkin.'
+- party: L
+  policy_type: aktiveringskrav_ekonomiskt_bistand
+  stance: supports
+  source: Budgetmotion (L) – data.riksdagen.se/H9024181
+  source_type: budgetmotion
+  source_url: https://data.riksdagen.se/dokument/H9024181
+  doc_id: H9024181
+  quote: Liberalerna vill därför utöka möjligheterna för kommuner att ställa krav på motprestation för försörjningsstöd.
+  date: '2021-10-01'
+  confidence: high
+  mapping_note: 'Instrument-exakt: ''utöka möjligheterna för kommuner att ställa krav på motprestation för försörjningsstöd'' + ''krav på aktivitetsplikt''. Sökorden ''aktiveringskrav''/''aktivitetskrav''/''ekonomiskt bistånd''/''socialbidrag'' saknas; instrumentet uttrycks med synonymerna ''motprestation''/''aktivitetsplikt'' + ''försörjningsstöd'' (sökordslistan). BUNTEN-REGEL §2: budgetmotionen nämner även översyn av bidragstak m.m., men citatet är instrument-exakt, så raden räknas. TIDSREGEL §4: 2021/22, utanför föredragen period — symmetriskt med M och KD; inga nyare partikollektiva L-källor på exakt detta instrument hittades.'
+- party: M
+  policy_type: riktade_insatser_nyanlanda_elever
+  stance: supports
+  source: Partimotion (M) – data.riksdagen.se/H9024033
+  source_type: partimotion
+  source_url: https://data.riksdagen.se/dokument/H9024033
+  doc_id: H9024033
+  quote: Detta för att fler nyanlända elever ska få en god start och ha en meningsfull sysselsättning under sommarmånaderna när skolorna är stängda.
+  date: '2021-10-05'
+  confidence: high
+  mapping_note: 'Partikollektiv källa (partimotion, ej enskild ledamot) => confidence ej begränsad till low. Bunten-regel: motionen buntar flera integrationsinstrument; det citerade förslaget (lovskola+sommarkollo, rektors timplansbefogenhet) är instrument-exakt och raden räknas. TIDSREGEL: källan är 2021/22, en mandatperiod äldre än föredragen (2022/23–2025/26); behålls eftersom inget nyare partikollektivt instrument-exakt M-belägg hittats. Detta är samma slags buntade skolmotion som L:s H9024002 och behandlas LIKA (jfr rubrik §2 M/L-symmetrin).'
+- party: SD
+  policy_type: riktade_insatser_nyanlanda_elever
+  stance: supports
+  source: Kommittemotion (SD) – data.riksdagen.se/HC021447
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/HC021447
+  doc_id: HC021447
+  quote: Riksdagen ställer sig bakom det som anförs i motionen om att regeringen borde överväga införandet av obligatorisk förberedelseskola för nyanlända elever och tillkännager detta för regeringen.
+  date: '2024-10-02'
+  confidence: high
+  mapping_note: 'Partikollektiv kommittémotion (ej enskild ledamot), senaste mandatperioden (2024/25). Bunten-/nyans-not: motionen anför parallellt att SD vill kraftigt begränsa antalet nyanlända elever (allmän invandringshållning) — per rubrik §2 noteras detta men används ALDRIG för att förkasta den instrument-exakta raden; förslaget om förberedelseskola är en riktad insats för de nyanlända elever som finns i skolan. Källhierarki: kommittémotion (hög).'
+- party: C
+  policy_type: riktade_insatser_nyanlanda_elever
+  stance: supports
+  source: Kommittemotion (C) – data.riksdagen.se/HA021880
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/HA021880
+  doc_id: HA021880
+  quote: Riksdagen ställer sig bakom det som anförs i motionen om att se över möjligheterna att stärka nyanlända barns utbildning genom en intensivare och mer systematiskt utarbetad språkutbildning och tillkännager detta för regeringen.
+  date: '2022-11-23'
+  confidence: high
+  mapping_note: 'Partikollektiv kommittémotion (11 undertecknare, ej enskild ledamot) => confidence ej begränsad till low. Senaste/föregående mandatperioden (2022/23). Bunten-regel: buntad integrationsmotion; det citerade yrkandet är instrument-exakt för riktade utbildningsinsatser för nyanlända elever, så raden räknas; övriga integrationsinstrument noteras men förkastar inte raden. Frasen ''riktade insatser'' förekommer inte ordagrant men instrumentet beläggs sakligt via riktad språkutbildning/modersmålsundervisning för nyanlända elever — behandlas LIKA som V:s studiehandlednings-belägg (samma typ av sakligt instrument-belägg utan ordet ''riktade'').'
+- party: V
+  policy_type: riktade_insatser_nyanlanda_elever
+  stance: supports
+  source: Partimotion (V) – data.riksdagen.se/HC021932
+  source_type: partimotion
+  source_url: https://data.riksdagen.se/dokument/HC021932
+  doc_id: HC021932
+  quote: För att stärka nyanlända elevers möjligheter att uppnå behörighet till nationella program i gymnasieskolan finns sedan den 1 augusti 2018 en förstärkt rätt till studiehandledning på modersmålet för nyanlända elever som har tagits emot inom skolväsendet i högstadiet i grundskolan, grundsärskolan eller specialskolan.
+  date: '2024-10-03'
+  confidence: high
+  mapping_note: 'Partikollektiv partimotion (Nooshi Dadgostar m.fl., ej enskild ledamot) => confidence ej begränsad till low; senaste mandatperioden (2024/25); källhierarki partimotion > valmanifest. Bunten-regel: ''Språk och litteratur'' buntar flera språkpolitiska instrument (modersmålsstöd i förskolan, modersmålsundervisning, SVA, sfi m.m.); den namngivna riktade insatsen för nyanlända elever (studiehandledning på modersmål, avsnitt 6.1) beläggs instrument-exakt och raden gäller; övriga instrument noteras men förkastar inte raden. Citatet använder ''[...]'' för att binda samman bakgrundsmening och yrkande; båda spannen är verbatim. Markup-not: .text innehåller HTML-span och soft-hyphen mitt i meningen — samma slags artefakt som hanterades för M/KD/L; behandlas LIKA (presentationsartefakt, ej innehåll).'
+- party: KD
+  policy_type: riktade_insatser_nyanlanda_elever
+  stance: supports
+  source: Budgetmotion (KD) – data.riksdagen.se/H9024163
+  source_type: budgetmotion
+  source_url: https://data.riksdagen.se/dokument/H9024163
+  doc_id: H9024163
+  quote: Vi föreslår också att en särskild skolform för nyanlända elever ska utredas, i syfte att ge alla så goda förutsättningar som möjligt att gå ut skolan med godkända betyg och integreras i det samhället.
+  date: '2021-10-05'
+  confidence: medium
+  mapping_note: 'Partikollektiv budgetmotion (4 undertecknare, ej enskild ledamot) => confidence medium (budgetmotion). Bunten-regel: motionen buntar flera utbildningsinstrument men citatet är instrument-exakt för riktade insatser för nyanlända elever. TIDSREGEL: 2021/22, en mandatperiod äldre än föredragen; sökningar i KD-motioner 2023/24 och 2024/25 gav 0 träffar på ''nyanlända elever'' => äldsta giltiga används, behandlas LIKA som M/L (samma tidsavvikelse, samma motivering). Soft-hyphen (&#xad;) förekommer på vissa ord; valt citat undviker dessa.'
+- party: L
+  policy_type: riktade_insatser_nyanlanda_elever
+  stance: supports
+  source: Partimotion (L) – data.riksdagen.se/H9024002
+  source_type: partimotion
+  source_url: https://data.riksdagen.se/dokument/H9024002
+  doc_id: H9024002
+  quote: Vidare vill Liberalerna att sommarlovet ska halveras för nyanlända elever, då behovet av mer kunskap inte upphör bara för att det är sommar.
+  date: '2021-10-05'
+  confidence: high
+  mapping_note: 'Partikollektiv partimotion (19 undertecknare, ej enskild ledamot) => confidence ej begränsad till low. Bunten-regel: motionen buntar flera skolpolitiska instrument; citatet är instrument-exakt för det namngivna instrumentet, så raden räknas; ytterligare instrument-exakt brödtext: ''alla nyanlända elever, oavsett ålder, få ta del av extra lektioner i svenskämnet''. TIDSREGEL: 2021/22, en mandatperiod äldre än föredragen; behålls eftersom ingen nyare L-källa på samma instrument anges. Detta är samma slags buntade skolmotion som M:s H9024033 och behandlas LIKA (rubrik §2 M/L-symmetrin).'
+- party: S
+  policy_type: sfi_kombinerat_med_praktik
+  stance: supports
+  source: Parti-/kommittémotion (S) – data.riksdagen.se/HD02319
+  source_type: parti-/kommittémotion
+  source_url: https://data.riksdagen.se/dokument/HD02319
+  doc_id: HD02319
+  quote: Riksdagen ställer sig bakom det som anförs i motionen om att möjligheterna att kombinera sfi med yrkesutbildning måste fortsätta förstärkas och tillkännager detta för regeringen.
+  date: '2025-09-25'
+  confidence: high
+  mapping_note: 'Yttrande över prop. 2025/26:10. Brödtextbelägg verifierat ordagrant: "Möjligheten att kombinera utbildning i sfi med jobb och praktik är helt avgörande." Senaste mandatperioden (2025/26). Bunten-regeln ej relevant; yrkandet är direkt och instrument-exakt för sfi_kombinerat_med_praktik.'
+- party: M
+  policy_type: sfi_kombinerat_med_praktik
+  stance: supports
+  source: Parti-/kommittémotion (M) – data.riksdagen.se/H4023372
+  source_type: parti-/kommittémotion
+  source_url: https://data.riksdagen.se/dokument/H4023372
+  doc_id: H4023372
+  quote: Moderaterna vill se mer av kombinerade utbildningar inom etableringsuppdraget där grundläggande vuxenutbildning varvas med sfi och yrkesutbildning. Vi vill stimulera till sådana utbildningar genom särskilda medel.
+  date: '2016-10-05'
+  confidence: low
+  mapping_note: '"Plan för ett starkare Sverige: Bryt utanförskapet", rm 2016/17. Källan är UTANFÖR föredragen mandatperiod (§4) — noteras symmetriskt. Inga instrument-exakta M-källor 2022/23–2025/26 hittades; de nyare M-SFI-motionerna (H9024176 2021/22, H8023324 2020/21) avser sfi kombinerat med akademisk/yrkesinriktad studie-specialisering, ej praktik/yrkesutbildning-varvning, och är därför inte instrument-exakta för detta instrument. Confidence sänkt till low enbart pga källans ålder. Citatet är vald ordagrann delsträng (undvek längre mening med OCR-artefakt-mellanslag).'
+- party: C
+  policy_type: sfi_kombinerat_med_praktik
+  stance: supports
+  source: Enskild motion (C) – data.riksdagen.se/HB021255
+  source_type: enskild motion
+  source_url: https://data.riksdagen.se/dokument/HB021255
+  doc_id: HB021255
+  quote: Riksdagen ställer sig bakom det som anförs i motionen om att utreda hur 15 timmars språkstudier kan kompletteras med yrkespraktik på orten för att nå heltidsstudier och tillkännager detta för regeringen.
+  date: '2023-10-04'
+  confidence: low
+  mapping_note: 'Enskild ledamotsmotion, rm 2023/24 (inom föredragen period). Single-member => confidence=low per enskild-motion-regeln (§3). Ingen STARKARE partikollektiv C-källa är instrument-exakt: C:s kommitté-/budgetmotioner (HD023738, HC022165, HB022722) rör sfi-peng/sfi-kvalitet, och deras "språk+praktik"-passager avser instrumentet intensivåret, ej yrkes-sfi. Den enskilda motionen kvalificerar därför och behålls med low. Motionen avslogs i utskott (UbU13) men källan belägger partilinjen, ej utfallet.'
+- party: KD
+  policy_type: sfi_kombinerat_med_praktik
+  stance: supports
+  source: Parti-/kommittémotion (KD) – data.riksdagen.se/H9024198
+  source_type: parti-/kommittémotion
+  source_url: https://data.riksdagen.se/dokument/H9024198
+  doc_id: H9024198
+  quote: Sfi med yrkesutbildning innehåller sfi-kurser och kurser på gymnasial nivå. En del av utbildningstiden är det dessutom praktik inom de yrken som studieanordnaren erbjuder och det ger ofta goda chanser till arbete efter avklarad utbildning.
+  date: '2021-10-04'
+  confidence: low
+  mapping_note: 'Partikollektiv källa väljs framför ursprungligt kodad enskild motion HD021563 (Lili André, 2025/26) per källhierarkin/§3. H9024198 är UTANFÖR föredragen mandatperiod (2021/22) — noteras symmetriskt (§4); confidence=low pga ålder. Ingen KD-partikollektiv instrument-exakt källa i 2022/23–2025/26 hittades. Innevarande-periods belägg finns endast som enskild motion (HD021563: "språkundervisning kombineras med yrkesorientering och yrkespraktik").'
+- party: L
+  policy_type: sfi_kombinerat_med_praktik
+  stance: supports
+  source: Parti-/kommittémotion (L) – data.riksdagen.se/H9023965
+  source_type: parti-/kommittémotion
+  source_url: https://data.riksdagen.se/dokument/H9023965
+  doc_id: H9023965
+  quote: Yrkes-sfi och sfi med koppling till att starta eget företag ska finnas tillgängligt i varje kommun.
+  date: '2021-10-05'
+  confidence: low
+  mapping_note: 'CITAT-KORRIGERING: research angav "Yrkes- sfi" (med mellanslag) men det är en HTML-tagg-artefakt (Yrkes-</span><span>sfi) i .text-endpointen, ej i den faktiska prosan. Verifierad ordagrann form efter avkodning/taggborttagning är "Yrkes-sfi" (utan mellanslag). Citatet rättat till verbatim per §10 (ingen fabrikation). Källan är UTANFÖR föredragen mandatperiod (2021/22) — noteras symmetriskt (§4); confidence=low pga ålder. Bunten-regeln: avsnittet buntar flera sfi-förslag (flexibilitet, motkrav) men citatet är instrument-exakt för yrkes-sfi; intern nyans förkastar ej raden (§2).'
+- party: C
+  policy_type: sprakpraktik_kombinerad_sprakutbildning_och_arbetspraktik
+  stance: supports
+  source: Kommittemotion (C) – data.riksdagen.se/HD023738
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/HD023738
+  doc_id: HD023738
+  quote: Införandet av intensivåret, som kombinerar insatser för språk och praktik med riktiga jobb och mentorskap, var en viktig reform för att förstärka integrationen och möjliggöra för fler nyanlända att snabbare komma i arbete. Tidöregeringen har däremot avvecklat intensivåret, något vi från Centerpartiets sida är mycket kritiska till.
+  date: '2025-10-07'
+  confidence: high
+  mapping_note: 'Bunten-regeln (2): intensivaret buntar sprak + praktik + riktiga jobb + mentorskap; citatet ar instrument-exakt for sprak+praktik-delen och nyansen (aven jobb/mentorskap) noteras men forkastar aldrig raden. Ordet ''sprakpraktik'' forekommer inte ordagrant (0 traffar); instrumentet belaggs via formuleringen ''kombinerar insatser for sprak och praktik''. Symmetriskt bedomd med V (HA021299: ''sprakutbildning, praktik'') och MP (GQ02Sf289: ''sfi-undervisning som kombineras med praktik'') - alla tre kollektiva kallor med samma slags buntade sprak+praktik-citat behandlas lika som supports.'
+- party: V
+  policy_type: sprakpraktik_kombinerad_sprakutbildning_och_arbetspraktik
+  stance: supports
+  source: Budgetmotion (V) – data.riksdagen.se/HA021299
+  source_type: budgetmotion
+  source_url: https://data.riksdagen.se/dokument/HA021299
+  doc_id: HA021299
+  quote: 'Metoden, ”matchning från dag 1”, kombinerade flera parallella insatser: kartläggning av kompetens, språkutbildning, praktik och subventionerade anställningar. Arbetsförmedlingens effektutvärdering visar på mycket goda resultat. [...] Arbetsförmedlingen bör göra projektet Jämställd etablering till en del av myndighetens ordinarie verksamhet i hela landet.'
+  date: '2022-11-22'
+  confidence: high
+  mapping_note: 'Bunten-regeln (2): ''matchning fran dag 1'' buntar fyra insatser (kartlaggning, sprakutbildning, praktik, subventionerade anstallningar); den namngivna kombinationen sprakutbildning + praktik motsvarar atgardstypen sprakpraktik_kombinerad_sprakutbildning_och_arbetspraktik. Att metoden aven innehaller kartlaggning/subventionerade anstallningar noteras men forkastar aldrig raden. V skriver ''praktik'' (ej ordagrant ''arbetspraktik''); bedoms instrument-exakt pa samma niva som den accepterade C-raden (''sprak och praktik''). Symmetrisk standard med C och MP.'
+- party: KD
+  policy_type: sprakpraktik_kombinerad_sprakutbildning_och_arbetspraktik
+  stance: supports
+  source: Enskild_motion (KD) – data.riksdagen.se/HD021563
+  source_type: enskild_motion
+  source_url: https://data.riksdagen.se/dokument/HD021563
+  doc_id: HD021563
+  quote: Genom att språkundervisning kombineras med yrkesorientering och yrkespraktik kan utbildningen bli mer relevant och motiverande, samtidigt som deltagarna snabbare får den kompetens som arbetsmarknaden efterfrågar.
+  date: '2025-10-02'
+  confidence: low
+  mapping_note: Instrument-exakt pa den kombinerade modellen sprakundervisning + yrkespraktik. Ordet ar 'yrkespraktik' (yrkesinriktad arbetspraktik) snarare an 'arbetspraktik', och inramningen ar branschspecifik sfi, men mekanismen (sprakutbildning + praktik pa en arbetsplats) ar instrumentet. is_single_member=true => rubrik 3 tvingar confidence=low. KD:s integrationskommittemotioner (H9024212, H8023405) namner endast generisk 'praktik' inom aktivitetskrav, ej den kombinerade modellen, sa ingen starkare kollektiv kalla finns. Skild fran C/V/MP enbart pa kallhierarki/enskild-motion-regeln (rubrik 3), INTE pa instrument-exakthet - samma instrument, lagre confidence pga kalltyp.
+- party: MP
+  policy_type: sprakpraktik_kombinerad_sprakutbildning_och_arbetspraktik
+  stance: supports
+  source: Partikollektiv motion (MP) – data.riksdagen.se/GQ02Sf289
+  source_type: partikollektiv motion
+  source_url: https://data.riksdagen.se/dokument/GQ02Sf289
+  doc_id: GQ02Sf289
+  quote: Miljöpartiet ser att en kraftigt förbättrad och mer individualiserad sfi-undervisning som kombineras med praktik är en viktig del för att förbättra språkkunskaperna för dem som kommer nya till Sverige.
+  date: '2002-10-23'
+  confidence: medium
+  mapping_note: 'Bunten-/instrument-exakt: sfi-undervisning + arbetspraktik som gemensam atgard = atgardstypen sprakpraktik_kombinerad_sprakutbildning_och_arbetspraktik. Kallan ar UTANFOR foredragen mandatperiod (2002/03, riksmote, langt fore 2014-2026-fonstret); enligt tidsregeln (4) far aldre instrument-exakt kalla anvandas nar ingen nyare hittas - research bekraftar att ''sprakpraktik'' parti=MP = 0 traffar och att nyare migrationsmotioner (HD023508 2025/26, HC023066 2024/25) endast ror separat sfi-ratt, inte kombinationen. Confidence sankt till medium pga att kallan ar betydligt aldre an C/V (men symmetriskt accepterad eftersom kallan ar partikollektiv och instrument-exakt). Aldern noteras explicit enligt rubrik 4.'
+- party: S
+  policy_type: atgarder_mot_otillaten_paverkan_offentlig_sektor
+  stance: supports
+  source: Kommittemotion (S) – data.riksdagen.se/HD023586
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/HD023586
+  doc_id: HD023586
+  quote: Riksdagen ställer sig bakom det som anförs i motionen om att Sveriges kommuner bör ges resurser och rätt förutsättningar för det brottsförebyggande arbetet, däribland möjlighet till utvidgade bakgrundskontroller på blivande anställda och befintlig personal, och tillkännager detta för regeringen.
+  date: '2025-10-07'
+  confidence: high
+  mapping_note: 'Instrument-exakt enligt §1: instrumentet är åtgärder mot otillåten påverkan/infiltration mot offentlig sektor, och utvidgade bakgrundskontroller mot infiltration av kommuner/myndigheter ÄR detta policyinstrument (ej bara delat mål). Den bokstavliga frasen "otillåten påverkan" saknas i detta avsnitt, men rubriken kräver samma policyinstrument, inte term-match. BUNTEN-REGEL (§2): motionen buntar många rättspolitiska instrument; det citerade/avsnittsbundna yrkandet är instrument-exakt och raden förkastas därför inte. Källhierarki: partikollektiv kommittémotion, senaste mandatperioden. Confidence high (partikollektiv, instrument-exakt, innevarande period; ej votering => ej guldstandard). Behandlas LIKA med C och MP (partikollektiv buntad källa, bunten-regeln håller raden). Citat verifierat ordagrant mot data.riksdagen.se.'
+- party: C
+  policy_type: atgarder_mot_otillaten_paverkan_offentlig_sektor
+  stance: supports
+  source: Kommittemotion (C) – data.riksdagen.se/HD023581
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/HD023581
+  doc_id: HD023581
+  quote: Riksdagen ställer sig bakom det som anförs i motionen om behovet av särskilt stöd och vägledning för kommuner och regioner i arbetet mot korruption och infiltration och tillkännager detta för regeringen.
+  date: '2025-10-07'
+  confidence: high
+  mapping_note: 'Instrument-exakt enligt §1: kommuner/regioner = offentlig sektor; korruption/infiltration = otillåten påverkan; bakgrunden namnger uttryckligen "otillåten påverkan". BUNTEN-REGEL (§2): yrkandet är del av en buntad lista (våld i hemmet, hatbrott m.m.) men den namngivna punkten är instrument-exakt => raden förkastas inte. Källhierarki: partikollektiv kommittémotion, senaste mandatperioden => confidence high. Alternativa exakta C-källor finns (HD023865, HD024112). Behandlas LIKA med S och MP (partikollektiv buntad källa). Citat verifierat ordagrant mot data.riksdagen.se.'
+- party: L
+  policy_type: atgarder_mot_otillaten_paverkan_offentlig_sektor
+  stance: supports
+  source: Enskild_motion (L) – data.riksdagen.se/HD022663
+  source_type: enskild_motion
+  source_url: https://data.riksdagen.se/dokument/HD022663
+  doc_id: HD022663
+  quote: Riksdagen ställer sig bakom det som anförs i motionen om att utreda inrättandet av en oberoende myndighet med uppdrag att förebygga och bekämpa korruption inom kommuner och regioner och tillkännager detta för regeringen.
+  date: '2025-10-06'
+  confidence: low
+  mapping_note: 'Instrument-exakt enligt §1: oberoende antikorruptionsmyndighet för kommuner/regioner = skyddsåtgärd/tillsyn mot otillåten påverkan (korruption/mutor/nepotism/riggad upphandling) på offentlig förvaltning. ENSKILD MOTION (1 undertecknare) => confidence=low per §3; ingen starkare L partikollektiv-/budgetmotion eller votering på exakt instrumentet hittad. Behandlas LIKA med SD (även enskild motion, instrument-exakt korruption i kommuner/regioner): båda low, ingen droppas. Citat verifierat ordagrant mot data.riksdagen.se.'
+- party: MP
+  policy_type: atgarder_mot_otillaten_paverkan_offentlig_sektor
+  stance: supports
+  source: Motion (MP) – data.riksdagen.se/HB022669
+  source_type: motion
+  source_url: https://data.riksdagen.se/dokument/HB022669
+  doc_id: HB022669
+  quote: Även myndigheter kan vara en måltavla för otillbörlig påverkan och korruption. Riksrevisionen har granskat de statliga myndigheternas och regeringens arbete med att förebygga och hantera trakasserier, hot och våld mot statligt anställda.
+  date: '2023-10-05'
+  confidence: high
+  mapping_note: 'Instrument-exakt enligt §1: åtgärd som skyddar offentlig sektor (myndigheter, på sikt kommuner/regioner) mot otillbörlig påverkan/korruption. BUNTEN-REGEL (§2): motionen buntar även icke-offentlig-sektor-instrument (lobby-/transparensregister, anonyma partibidrag, utländsk partifinansiering); dessa noteras som intern nyans och används ALDRIG som skäl att förkasta raden. Källa 2023/24 = inom föredragen mandatperiod (§4); partikollektiv partimotion => confidence high. Behandlas LIKA med S och C (partikollektiv buntad källa, bunten-regeln håller raden). Citat verifierat ordagrant mot data.riksdagen.se.'
+- party: S
+  policy_type: starkt_oberoende_granskning_och_insyn
+  stance: supports
+  source: Kommittemotion (S) – data.riksdagen.se/HD024024
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/HD024024
+  doc_id: HD024024
+  quote: Riksdagen ställer sig bakom det som anförs i motionen om att offentlighetsprincipen ska omfatta samtliga enskilda huvudmän i skolväsendet utan alltför generösa undantag och tillkännager detta för regeringen.
+  date: '2026-04-01'
+  confidence: high
+  mapping_note: Instrument-exakt (offentlighetsprincip = kärnindikator for insyn/transparens/oberoende granskning); att vilja bredda principens räckvidd och begränsa undantagen = UTÖKA instrumentet => supports. Sökordet 'granskning' (exakt term) saknas i .text men 'offentlighetsprincip'/'insyn' belägger instrumentet. Intern nyans (S anser regeringens förslag 'ett steg i rätt riktning' men otillräckligt) noteras och förkastar inte raden. Partikollektiv kommittemotion => confidence ej begränsad av enskild-motion-regeln; hög.
+- party: M
+  policy_type: starkt_oberoende_granskning_och_insyn
+  stance: supports
+  source: Enskild_motion (M) – data.riksdagen.se/HD021743
+  source_type: enskild_motion
+  source_url: https://data.riksdagen.se/dokument/HD021743
+  doc_id: HD021743
+  quote: Riksdagen ställer sig bakom det som anförs i motionen om att överväga ett utökat uppdrag för Riksrevisionen och tillkännager detta för regeringen.
+  date: '2025-10-02'
+  confidence: low
+  mapping_note: 'Enligt rubrik §3 ar ''Enskild motion'' (även med ''m.fl.'', 5 M-undertecknare) en single-member-källa => confidence=low, eftersom ingen starkare partikollektiv (parti-/kommitté-/budgetmotion eller votering) M-källa instrument-exakt for detta instrument hittades i senaste mandatperioden. Harmonisering §9: behandlas IDENTISKT med L:s HD023766 (också subtyp ''Enskild motion'' med flera partiundertecknare) — instrument-exakt citat => raden gäller, men confidence=low. is_single_member=true.'
+- party: SD
+  policy_type: starkt_oberoende_granskning_och_insyn
+  stance: supports
+  source: Enskild_motion (SD) – data.riksdagen.se/HD021701
+  source_type: enskild_motion
+  source_url: https://data.riksdagen.se/dokument/HD021701
+  doc_id: HD021701
+  quote: Riksdagen ställer sig bakom det som anförs i motionen om att se över på vilket sätt en myndighet skulle kunna ges i särskilt uppdrag att löpande följa regelutvecklingen och tillämpningen systematiskt inom området öppenhet och insyn och tillkännager detta för regeringen.
+  date: '2025-10-02'
+  confidence: low
+  mapping_note: 'Enskild motion (en ledamot) => confidence=low enligt rubrik §3; ingen starkare partikollektiv SD-källa instrument-exakt hittad (närliggande SD-källor är också enskilda). Bunten-regel: motionen har tva yrkanden (kartläggning av offentlighetsprincipens status; myndighet med särskilt uppföljningsuppdrag) — citatet (yrkande 2) ar instrument-exakt, övriga yrkanden noteras och förkastar inte raden. Senaste mandatperioden. Harmoniseras lika med KD:s HD021556 (enskild, Riksrevisionen-relaterad granskning).'
+- party: C
+  policy_type: starkt_oberoende_granskning_och_insyn
+  stance: supports
+  source: Kommittemotion (C) – data.riksdagen.se/HD023583
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/HD023583
+  doc_id: HD023583
+  quote: Riksdagen ställer sig bakom det som anförs i motionen om behovet av skärpt insyn i partifinansieringen och tillkännager detta för regeringen.
+  date: '2025-10-07'
+  confidence: high
+  mapping_note: 'Instrument-exakt (insyn = kärnindikator); ''skärpt insyn'' = utöka instrumentet => supports. Bunten-regel §2: motionen buntar flera demokratiyrkanden (yrkande 9 transparens, yrkande 17 lobbyregister, samt ett avsnitt om att begränsa spridning av personuppgifter via offentlighetsprincipen mot kriminella — annat skyddsändamål) — den interna nyansen noteras och används ALDRIG som skäl att förkasta raden. Partikollektiv kommittemotion => confidence hög. Harmoniseras lika med MP:s HA02181 (samma typ av buntad transparens/insyn-motion, partikollektiv).'
+- party: V
+  policy_type: starkt_oberoende_granskning_och_insyn
+  stance: supports
+  source: Kommittemotion (V) – data.riksdagen.se/HD023996
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/HD023996
+  doc_id: HD023996
+  quote: För Vänsterpartiet är offentlighetsprincipen central i en demokrati, och den bör omfatta alla skolor utan undantag. Vi kan därför inte ställa oss bakom förslaget till lättnadsregler för vissa enskilda huvudmän i skolväsendet. Vi vill därför inte att riksdagen beslutar om att medge några undantag från offentlighetsprincipen.
+  date: '2026-03-31'
+  confidence: high
+  mapping_note: Instrument-exakt (offentlighetsprincip/insyn). Att försvara och vilja behalla oinskränkt insyn for alla skolor (avslå undantag) = utöka/behalla instrumentet i jämförelse med regeringens lättnadsförslag => supports, harmoniserat lika med S (HD024024) som rör samma proposition men vill begränsa undantagen. Sökordet 'granskning' saknas i .text men 'offentlighetsprincipen'/'insyn' belägger instrumentet. Partikollektiv kommittemotion => confidence hög; ej beroende av enskild-motion-regeln.
+- party: KD
+  policy_type: starkt_oberoende_granskning_och_insyn
+  stance: supports
+  source: Enskild_motion (KD) – data.riksdagen.se/HD021556
+  source_type: enskild_motion
+  source_url: https://data.riksdagen.se/dokument/HD021556
+  doc_id: HD021556
+  quote: Riksdagen ställer sig bakom det som anförs i motionen om att utreda om ansvaret för att granska kommunsektorn ska ligga under Riksrevisionen och tillkännager detta för regeringen.
+  date: '2025-10-02'
+  confidence: low
+  mapping_note: Enskild motion (1 undertecknare) => confidence=low enligt rubrik §3; ingen starkare partikollektiv KD-källa instrument-exakt hittad (samma förslag återkommer enskilt 2023/24 HB022425, 2024/25 HC022462 — alla enskilda). 'Utreda om' ar fortfarande ett konkret förslag att utvidga oberoende granskning => supports. Harmoniseras lika med SD:s HD021701 (enskild, granskning/insyn). is_single_member=true.
+- party: L
+  policy_type: starkt_oberoende_granskning_och_insyn
+  stance: supports
+  source: Enskild_motion (L) – data.riksdagen.se/HD023766
+  source_type: enskild_motion
+  source_url: https://data.riksdagen.se/dokument/HD023766
+  doc_id: HD023766
+  quote: Riksdagen ställer sig bakom det som anförs i motionen om en riksrevision för kommunerna och tillkännager detta för regeringen. ... Riksrevisionen är en oberoende myndighet direkt under riksdagen som granskar statliga myndigheter och verksamheter. ... Det stärker den demokratiska insynen och bidrar till en effektiv förvaltning.
+  date: '2025-10-07'
+  confidence: low
+  mapping_note: '''Enskild motion'' (subtyp) med 3 L-undertecknare => single-member enligt rubrik §3 => confidence=low; ingen starkare rent L-kollektiv kommittemotion instrument-exakt hittad (HD021385 ''Ett modernt statsskick'' ar flerpartimotion S/V/MP/C/L, olämplig for ren L-attribuering). Harmonisering §9: behandlas IDENTISKT med M:s HD021743 (också subtyp ''Enskild motion'' med flera partiundertecknare, Riksrevisionen-utökning) — instrument-exakt citat => raden gäller, confidence=low. is_single_member=true.'
+- party: MP
+  policy_type: starkt_oberoende_granskning_och_insyn
+  stance: supports
+  source: Partimotion (MP) – data.riksdagen.se/HA02181
+  source_type: partimotion
+  source_url: https://data.riksdagen.se/dokument/HA02181
+  doc_id: HA02181
+  quote: Riksdagen ställer sig bakom det som anförs i motionen om att skärpa lagstiftningen om insyn i finansiering av partier och tillkännager detta för regeringen.
+  date: '2022-11-16'
+  confidence: high
+  mapping_note: 'Instrument-exakt (insyn). Bunten-regel §2: buntmotion med eget transparens-/korruptionsavsnitt — citatet (skärpt insyn i partifinansiering) ar instrument-exakt, övriga yrkanden (lobbyism/transparensregister, friskolor/offentlighetsprincip) noteras och förkastar inte raden. Harmoniseras lika med C:s HD023583 (samma typ av buntad insyn/transparens-motion). TIDSREGEL §4: kallan ar fran rm 2022/23, dvs i början av föredragen mandatperiod men äldre än de övriga partiernas 2025/26-källor; ingen nyare instrument-exakt MP-partikollektiv kalla hittad — detta noteras explicit per §4 (symmetriskt: inget strängare tidskrav läggs pa MP). Partimotion (partikollektiv) => confidence hög, ej beroende av enskild-motion-regeln.'
+- party: S
+  policy_type: systematiskt_antikorruptionsarbete_kommuner_regioner
+  stance: supports
+  source: Enskild_motion (S) – data.riksdagen.se/HC02445
+  source_type: enskild_motion
+  source_url: https://data.riksdagen.se/dokument/HC02445
+  doc_id: HC02445
+  quote: Först och främst bör interna kontrollsystem inom myndigheter och kommuner förbättras och få tilldelade ytterligare resurser. Detta innefattar införandet av mer omfattande revisionsprocesser och regelbundna kontroller för att tidigt upptäcka potentiella korruptionsfall. Dessutom bör utbildningsprogram om antikorruption bli obligatoriska för alla offentliganställda för att öka medvetenheten och förståelsen kring dessa frågor.
+  date: '2024-09-25'
+  confidence: low
+  mapping_note: 'Instrument-exakt för systematiskt antikorruptionsarbete på kommunal nivå. BUNTEN-REGELN (§2): motionen buntar flera instrument (kontrollsystem, revision, utbildning, visselblåsar/transparens) men det citerade stycket är instrument-exakt => raden gäller; intern nyans förkastar aldrig. ENSKILD MOTION (§3): Serkan Köse (S), 1 undertecknare (verifierat i .text) => confidence=low, tillåtet endast eftersom ingen partikollektiv instrument-exakt S-källa finns. Motionen säger uttryckligen ''kommuner'' (även Brå-data om kommunala tjänstepersoner); ''regioner'' ej explicit men instrumentet kommuner/regioner täcks av den uttryckliga kommunala inriktningen — samma generositet som tillämpas på SD/C/L. Ingen votering.'
+- party: SD
+  policy_type: systematiskt_antikorruptionsarbete_kommuner_regioner
+  stance: supports
+  source: Enskild_motion (SD) – data.riksdagen.se/HD02247
+  source_type: enskild_motion
+  source_url: https://data.riksdagen.se/dokument/HD02247
+  doc_id: HD02247
+  quote: Inför ett lagkrav på alla kommunala och regionala verksamheter att rapportera misstänkta fall av korruption, vänskapskorruption och nepotism till behörig instans. Sammanställning och redovisning av dessa fall bör ske årligen. Kräv att varje kommun och region utvecklar robusta interna kontrollsystem med regelbundna, oberoende granskningar för att upptäcka och förebygga oegentligheter.
+  date: '2025-09-24'
+  confidence: low
+  mapping_note: 'Enskild/fristående motion 2025/26:247 av Johnny Svedin (SD), 1 undertecknare (verifierat). Hänvisad till KU (avslag i kammaren påverkar inte partiståndpunkten). BUNTEN-REGELN (§2): buntar rapporteringsplikt, kontrollsystem, rekryteringsriktlinjer mot nepotism, utbildning och disciplinära konsekvenser; citatet är instrument-exakt => raden gäller. Behandlas identiskt med S/L enskilda motioner: confidence=low. Ingen starkare partikollektiv SD-källa på instrumentet (relaterade SD-motioner rör revision eller internationellt fokus).'
+- party: C
+  policy_type: systematiskt_antikorruptionsarbete_kommuner_regioner
+  stance: supports
+  source: Kommittemotion (C) – data.riksdagen.se/HD023581
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/HD023581
+  doc_id: HD023581
+  quote: Riksdagen ställer sig bakom det som anförs i motionen om behovet av särskilt stöd och vägledning för kommuner och regioner i arbetet mot korruption och infiltration och tillkännager detta för regeringen.
+  date: '2025-10-07'
+  confidence: medium
+  mapping_note: 'Kommittémotion (verifierat: typ kommittémotion, JuU, Ulrika Liljeberg m.fl. (C)). BUNTEN-REGELN (§2): yrkandet ingår i en bred rättspolitisk motion men citatet är instrument-exakt => raden gäller; övriga korruptionsskrivningar (Ekokrim/straffskärpningar) noteras men förkastar inte raden. Källhierarki (§3): kommittémotion starkare än enskild motion och valmanifest => detta är den enda källan i panelen som inte begränsas till confidence=low. Senaste mandatperioden.'
+- party: L
+  policy_type: systematiskt_antikorruptionsarbete_kommuner_regioner
+  stance: supports
+  source: Enskild_motion (L) – data.riksdagen.se/HD022663
+  source_type: enskild_motion
+  source_url: https://data.riksdagen.se/dokument/HD022663
+  doc_id: HD022663
+  quote: Riksdagen ställer sig bakom det som anförs i motionen om att utreda inrättandet av en oberoende myndighet med uppdrag att förebygga och bekämpa korruption inom kommuner och regioner och tillkännager detta för regeringen.
+  date: '2025-10-06'
+  confidence: low
+  mapping_note: 'ENSKILD/fristående motion, 1 undertecknare: Patrik Karlson (L), KU (verifierat). Yrkandet är ett UTREDNINGSyrkande (utreda inrättandet) — intern nyans som enligt §2 noteras men ALDRIG förkastar raden eftersom citatet är instrument-exakt (förebygga och bekämpa korruption inom kommuner och regioner). Avslaget i KU 2025/26:KU29 påverkar inte partiets uttryckta ståndpunkt. Behandlas identiskt med S/SD enskilda motioner: confidence=low. Ingen starkare partikollektiv L-källa funnen.'

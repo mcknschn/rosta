@@ -1,0 +1,130 @@
+# Rösta — scoringregler (helt automatisk betygssättning)
+#
+# All betygssättning är deterministisk. Inget partibetyg sätts för hand.
+# Mänskligt omdöme får bara finnas här (versionsstyrd config) och i config/claims.yaml.
+#
+# Kedja:  observations + actions + responsibility + indicator_effects
+#         -> A/B/C/D per (parti, kategori)  -> kategoribetyg 0-5 (+ osäkerhetsintervall)
+#
+# Kategoribetyg = 0.40*A + 0.35*B + 0.15*C + 0.10*D     (A,B,C,D i [0,5])
+
+version: 2
+
+subscore_weights:        # speglar categories.yaml subscore_weights (0-1)
+  A: 0.40
+  B: 0.35
+  C: 0.15
+  D: 0.10
+
+# Skalsemantik (modelldokumentation, läses inte av kod men styr tolkning):
+#   relativa delpoäng rangordnas över de 8 partierna (A=5 = "mest av alla", ej "absolut bra")
+#   absoluta delpoäng är oberoende av andra partier (net_support=0 -> 2.5; uppmätt förändring)
+scale_semantics:
+  relative: [A, C]
+  absolute: [B, D]
+
+# Normalisering till 0-5. A och C-makt har få datapunkter (8 partier) och tunga svansar
+# -> rank (outlier-robust). B och D är redan absoluta och normaliseras inte.
+normalization:
+  default: { method: minmax, min: 0, max: 5, neutral: 2.5 }
+  per_subscore:
+    A: rank
+    C: rank
+
+# A — Faktiskt agerande (relativ prioritering). Direktionsneutralt, rank-normaliserat.
+A_agerande:
+  components:
+    a1_budgetprioritering: 0.6      # andel av föreslagna anslag till kategorins UO (Fas 1b)
+    a2_lagstiftningsprioritering: 0.4  # ANDEL av partiets egna motioner som rör kategorin
+  # a2 mäter andel (motioner i kategorins utskott / partiets totala motioner), INTE rå volym
+  # -> stora partier blir inte höga i varje kategori.
+  # a1 (Fas 1b, byggd): andel av partiets föreslagna utgiftsramar (Σ kategorins UO / Σ alla UO) ur
+  # officiella källor (config/budget_ramar.yaml, version 0). HÅRD GRIND (pipeline/budget.py): a1 vägs
+  # in för en (budgetår, kategori) endast när alla 8 partier har verifierad ram för varje kategori-UO;
+  # annars A = a2 (flagga A_a2_only). Saknad/ogiltig cell -> hård fail, aldrig tyst 0. Se
+  # docs/fas1b_budget_metod.md. A = a1*0.6 + a2*0.4 där a1 aktiv, annars A = a2.
+  notes: Mäter prioritering relativt partiets storlek, inte om politiken är rätt. Rättheten fångas av B och D.
+
+# B — Evidens/träffsäkerhet. Har förslagen källstöd för påstådd indikatoreffekt?
+# Bygger på indicator_effects (config/claims.yaml).
+B_evidens:
+  # B per (parti, kategori) = submåttsviktat medel av indikatorernas net_support_to_score.
+  rollup: submeasure_weighted_mean
+  per_indicator: net_support_to_score      # net_support[-1,1] -> [0,5]: 5*(net_support+1)/2
+  missing_indicator: skip                  # indikator utan effekt utelämnas ur medlet (inte 2.5)
+  missing_all_score: 2.5                   # HELA kategorin saknar effekter -> neutral
+  missing_all_confidence: low
+  # B:s confidence per kategori härleds ur indicator_effects-aggregatets confidence
+  # (claims.yaml aggregation: viktat medel + min_claims_for_high_confidence).
+  # Coverage-viktning (Fas 4b'): B_just = 2.5 + (B_raw - 2.5) * coverage, där
+  # coverage = kodade åtgärdstyper / kategorins kodbara åtgärdstyper. Frånvaro av ståndpunkt =
+  # "vet ej" och drar B mot neutral (straffar ej, belönar ej tom täckning); ett ensamt
+  # supports-claim ger alltså inte längre maxbetyg. Tunn täckning -> låg säkerhet + B_thin_coverage.
+  thin_coverage_threshold: 0.5
+  # Åtgärdstyper som lyfts ur coverage-nämnaren. GENERALISERAD regel (docs/fas4c_rubrik.md §7):
+  # en policy_type får exkluderas ENDAST på en principiell grund, som måste anges i
+  # coverage_exclude_reasons nedan. Inga ad hoc-undantag. Grunder:
+  #   E1 = sidoeffekt-negativ (direction:negative men evidensen avser en sidoeffekt, inte
+  #        instrumentets kärnvärde -> stance-kodning ger missvisande B-sign; faller på negativ-grinden §5.3)
+  #   E2 = inert per konstruktion (mixed/unclear -> signed_direction 0 -> kan aldrig ge B-effekt)
+  coverage_exclude: [internationella_materielsamarbeten]
+  coverage_exclude_reasons:
+    internationella_materielsamarbeten: "E1: RiR 2011:13 mäter leveranstidsrisk (sidoeffekt), inte om materielsamarbete i sig är sämre försvarspolitik; negativ B-sign skulle bli missvisande."
+
+# C — Genomförbarhet/ansvar. Makt + realistisk finansiering.
+C_ansvar:
+  components:
+    c1_makt: 0.7
+    c2_finansiering: 0.3
+  # Nationellt vs regionalt/kommunalt ansvar vägs per kategori.
+  level_weights_default:
+    national: 0.7
+    regional_municipal: 0.3
+  level_weights_overrides:
+    valfard:   { national: 0.4, regional_municipal: 0.6 }
+    trygghet:  { national: 0.8, regional_municipal: 0.2 }
+    forsvar:   { national: 1.0, regional_municipal: 0.0 }
+  # Fallback när subnationell data SAKNAS (ej samma sak som vikt=0 per design, t.ex. forsvar):
+  #   omvikta level_weights till 100 % national OCH sänk C:s confidence ett steg.
+  missing_subnational:
+    reweight_to_national: true
+    confidence_penalty_steps: 1            # high->medium->low
+
+# D — Resultat. Förbättrades indikatorerna där partiet hade ansvar?
+# Metod (v0, Fas 5b): för varje nationell årsindikator (up/down; 'target' hoppas över) tar
+# vi TECKNET på den riktningsjusterade årsförändringen (förbättring +1 / försämring -1 /
+# oförändrat 0 inom en relativ dödzon). Varje förändring (år y-1 -> y) tillskrivs regeringen
+# som satt år (y - attribution_lag_years), viktad med dess maktvikt (regering 1.0, stöd 0.5).
+# Per (parti, kategori): viktat teckenmedel per indikator -> submåttsviktat medel -> net i
+# [-1,1] -> betyg via net_support_to_score (samma 0->2.5-skala som B). Tecken (inte magnitud)
+# håller måttet robust och ödmjukt — i linje med IDEA.md-brasklappen om att inte ge ett parti
+# hela äran/skulden för konjunkturen. Magnitudviktning är en framtida förfining.
+D_resultat:
+  attribution_lag_years: 1     # utfallsförändring år y tillskrivs den som styrde år y-1
+  # min_responsibility och thin_basis_threshold mäts på SAMMA storhet: kategorins
+  # ansvarsunderlag = Σ maktvikt över de år partiet faktiskt attribueras (per kategori).
+  # Stege:  < min_responsibility = ej tillämplig · [min, thin) = uppmätt men tunt (D_thin_basis)
+  #         >= thin_basis_threshold = uppmätt.
+  min_responsibility: 0.15     # kategorins ansvarsunderlag (Σ maktvikt) under detta -> ej tillämplig
+  change_dead_zone: 0.005      # |relativ årsförändring| <= 0.5 % räknas som oförändrad (brus)
+  thin_basis_threshold: 1.0    # ansvarsunderlag (Σ maktvikt) under detta -> flagga D_thin_basis
+  not_applicable_score: 2.5    # rättvisa: opposition straffas inte för utfall den ej rådde över
+  not_applicable_confidence: low   # ej-tillämplig D -> BRED osäkerhet (markeras som flagga i utdata)
+  measured_confidence: medium      # uppmätt D med faktiskt ansvar -> smalare
+  # not_applicable markeras i scores.json (flags: D_not_applicable) så neutral 2.5
+  # aldrig förväxlas med ett uppmätt resultat på 2.5.
+
+# Osäkerhet. Varje delpoäng har en DEFAULT-säkerhetsnivå som kan ÖVERSKRIDAS per
+# (parti, kategori) av datan (B från effekter, C vid saknad subnational, D vid not_applicable).
+# Halvbredd per kategori = max_halfwidth * Σ(subscore_weight * (1 - confidence_numeric[nivå])).
+uncertainty:
+  confidence_numeric:
+    high: 0.85
+    medium: 0.60
+    low: 0.30
+  default_subscore_certainty:
+    A: high      # voteringar, budgetbelopp
+    B: medium    # evidenssammanvägning, förväntade effekter
+    C: high      # makt, finansiering
+    D: low       # attribution av utfall
+  max_interval_halfwidth: 1.5

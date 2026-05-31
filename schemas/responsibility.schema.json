@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "responsibility.schema.json",
+  "title": "Responsibility",
+  "description": "Att ett parti hade ansvar (makt) på en nivå under en period.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "party", "level", "period", "strength", "source_ref"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^resp:" },
+    "party": { "type": "string" },
+    "level": { "type": "string", "enum": ["national", "regional", "municipal"] },
+    "geography": { "type": "string", "description": "Riket, regionkod eller kommunkod." },
+    "period": { "type": "string" },
+    "role": { "type": "string", "enum": ["government", "support", "opposition"] },
+    "strength": { "type": "number", "minimum": 0, "maximum": 1, "description": "Styrkegrad av ansvaret (0-1)." },
+    "source_ref": { "type": "string" }
+  }
+}

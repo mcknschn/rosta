@@ -1,0 +1,360 @@
+# Rösta — evidensliggare (delpoäng B)
+#
+# VIKTIGT — INTEGRITET:
+# GENERELL policy-evidens (åtgärdstyp -> indikatoreffekt), citerad till officiella svenska
+# utvärderingsorgan / svensk akademi. Medvetet INTE partikopplad — inga påståenden om enskilda
+# partier fabriceras. Partispecifik B kräver att partiers faktiska förslag klassificeras mot
+# dessa åtgärdstyper i config/party_positions.yaml (Fas 4b), vilket levereras TOMT. Tills dess
+# faller B tillbaka på neutral (2.5, låg säkerhet) per (parti, kategori).
+#
+# HÄRKOMST: posterna under `seed:` är den ursprungliga handskissade startliggaren. Posterna
+# under `verified_draft:` lades till 2026-05-30 av en research-workflow där varje källa
+# URL-bekräftades live (ett stickprov dubbelkollades manuellt: IFAU 2025:17, SBU rapport 369).
+# Båda grupperna är version 0 och KRÄVER EXPERTGRANSKNING innan B aktiveras för skarp betygsättning.
+#
+# Fält: category, indicator (ur categories.yaml), policy_type (åtgärdstyp), direction (relativt
+# indikatorns positiva riktning: positive = åtgärden rör indikatorn ÅT RÄTT HÅLL), evidence_level,
+# effect_strength, confidence, source (+ source_url/note för spårbarhet i verified_draft).
+
+version: 0          # 0 = seed/utkast, ej produktionsklar
+status: seed_requires_curation
+
+# Slås ihop till en lista av config.evidence_ledger()["entries"] nedan.
+entries:
+  # ---------------------------------------------------------------------------
+  # seed (ursprunglig handskiss, generell, ej partispecifik)
+  # ---------------------------------------------------------------------------
+  - category: ekonomi
+    indicator: arbetsloshet
+    policy_type: subventionerade_anstallningar
+    direction: positive
+    evidence_level: authority_evaluation
+    effect_strength: medium
+    confidence: medium
+    source: "IFAU – utvärderingar av arbetsmarknadspolitik (generell, ej partispecifik)"
+
+  - category: valfard
+    indicator: skolresultat
+    policy_type: tidiga_insatser_lagstadiet
+    direction: positive
+    evidence_level: systematic_review
+    effect_strength: medium
+    confidence: medium
+    source: "Skolforskningsinstitutet / SBU – forskningsöversikter (generell)"
+
+  - category: trygghet
+    indicator: aterfall_i_brott
+    policy_type: behandlingsprogram_kriminalvard
+    direction: positive
+    evidence_level: authority_evaluation
+    effect_strength: medium
+    confidence: medium
+    source: "Brå / Kriminalvården – utvärderingar (generell)"
+
+  - category: klimat
+    indicator: territoriella_utslapp
+    policy_type: koldioxidskatt
+    direction: positive
+    evidence_level: authority_evaluation
+    effect_strength: high
+    confidence: medium
+    source: "Konjunkturinstitutet (miljöekonomi) / Klimatpolitiska rådet (generell)"
+
+  - category: integration
+    indicator: sysselsattningsgap_inrikes_utrikes
+    policy_type: sfi_kombinerat_med_praktik
+    direction: positive
+    evidence_level: authority_evaluation
+    effect_strength: medium
+    confidence: low
+    source: "IFAU / ESO – utvärderingar (generell)"
+
+  # ---------------------------------------------------------------------------
+  # verified_draft (2026-05-30, research-workflow, källor URL-bekräftade)
+  # ---------------------------------------------------------------------------
+  # --- ekonomi ---
+  - category: ekonomi
+    indicator: sysselsattning
+    policy_type: subventionerade_anstallningar
+    direction: positive
+    evidence_level: systematic_review
+    effect_strength: medium
+    confidence: medium
+    source: "IFAU Rapport 2018:14, Subventionerade anställningar – avvägningar och empirisk evidens (Forslund)"
+    source_url: "https://www.ifau.se/Press/Meddelanden/subventionerade-anstallningar--avvagningar-och-empirisk-evidens/"
+    note: "Högre sysselsättning för deltagare, men betydande undanträngning dämpar nettoeffekten."
+
+  - category: ekonomi
+    indicator: sysselsattning
+    policy_type: arbetsmarknadsutbildning
+    direction: positive
+    evidence_level: authority_evaluation
+    effect_strength: medium
+    confidence: high
+    source: "IFAU Rapport 2017:17, Långsiktiga effekter av arbetsmarknadsutbildning (Vikström & van den Berg)"
+    source_url: "https://www.ifau.se/Forskning/Publikationer/Rapporter/2017/langsiktiga-effekter-av-arbetsmarknadsutbildning/"
+    note: "Högre arbetsinkomst och sysselsättning för deltagare, effekt kvarstår länge."
+
+  - category: ekonomi
+    indicator: sysselsattning
+    policy_type: jobbskatteavdrag
+    direction: unclear
+    evidence_level: authority_evaluation
+    effect_strength: unknown
+    confidence: low
+    source: "IFAU, forskningssammanfattning Jobbskatteavdrag"
+    source_url: "https://www.ifau.se/Press/Forskningssammanfattningar/Jobbskatteavdrag/"
+    note: "Effekten svår att utvärdera (kontrollgrupp saknas); inga säkra slutsatser."
+
+  # --- valfard ---
+  - category: valfard
+    indicator: skolresultat
+    policy_type: minskad_klasstorlek
+    direction: positive
+    evidence_level: authority_evaluation
+    effect_strength: medium
+    confidence: high
+    source: "IFAU Rapport 2012:5, Långsiktiga effekter av mindre klasser (Fredriksson, Oosterbeek, Öckert)"
+    source_url: "https://www.ifau.se/Forskning/Publikationer/Rapporter/2012/Langsiktiga-effekter-av-mindre-klasser/"
+    note: "Mindre klasser åk 4-6 förbättrade provresultat och långsiktiga utfall (linje med STAR)."
+
+  - category: valfard
+    indicator: skolresultat
+    policy_type: kompetensutveckling_larare
+    direction: positive
+    evidence_level: authority_evaluation
+    effect_strength: low
+    confidence: medium
+    source: "IFAU Rapport 2015:23, Satsningar på lärare i skolor med låga elevresultat (Hall, Lundin, Sibbmark)"
+    source_url: "https://www.ifau.se/globalassets/pdf/se/2015/r-2015-23-erfarenheter-och-effekter-av-satsningar-pa-larare-i-skolor-med-laga-elevresultat.pdf"
+    note: "Förbättrade betyg i eng/sva åk 9, men svårt att isolera enskild komponent."
+
+  - category: valfard
+    indicator: skolresultat
+    policy_type: riktat_likvardighetsbidrag
+    direction: unclear
+    evidence_level: authority_evaluation
+    effect_strength: low
+    confidence: medium
+    source: "IFAU Rapport 2025:17, Effekter av kompensatorisk resursfördelning i grundskolan (Rosenqvist, Sauermann)"
+    source_url: "https://www.ifau.se/Press/Pressmeddelanden/kunskapsbidraget-gav-fler-larare-men-inte-battre-resultat-pa-nationella-proven/"
+    note: "Ökade lärartätheten men förbättrade i snitt INTE nationella provresultat (nollresultat)."
+
+  - category: valfard
+    indicator: valfardsbrottslighet
+    policy_type: kontroller_och_informationsutbyte_mot_valfardsbrott
+    direction: positive
+    evidence_level: authority_evaluation
+    effect_strength: low
+    confidence: medium
+    source: "Brå Rapport 2022:1, Välfärdsbrott mot kommuner och regioner"
+    source_url: "https://bra.se/rapporter/arkiv/2022-03-25-valfardsbrott-mot-kommuner-och-regioner"
+    note: "Tillståndsplikt, kontroll och informationsutbyte bedöms verksamt; nuvarande system missar mycket."
+
+  # --- trygghet ---
+  - category: trygghet
+    indicator: skjutningar_sprangningar
+    policy_type: fokuserad_avskrackning_gvi
+    direction: positive
+    evidence_level: systematic_review
+    effect_strength: medium
+    confidence: medium
+    source: "SBU Rapport 369 (2023), Psykosociala insatser mot gängkriminalitet"
+    source_url: "https://www.sbu.se/369"
+    note: "Fokuserad avskräckning (GVI) minskar skjutvapenvåld ~26 % (IRR 0,74), måttlig tillförlitlighet."
+
+  - category: trygghet
+    indicator: aterfall_i_brott
+    policy_type: psykosociala_insatser_frivard
+    direction: positive
+    evidence_level: systematic_review
+    effect_strength: low
+    confidence: low
+    source: "SBU Rapport 369 (2023), Psykosociala insatser mot gängkriminalitet"
+    source_url: "https://www.sbu.se/369"
+    note: "Psykosociala insatser i frivård kan minska återfall ~1 år (OR 0,56), låg tillförlitlighet."
+
+  - category: trygghet
+    indicator: brottsutsatthet
+    policy_type: situationell_prevention_utomhusbelysning
+    direction: positive
+    evidence_level: systematic_review
+    effect_strength: low
+    confidence: medium
+    source: "Brå Rapport 2007:28, Förbättrad utomhusbelysning och brottsprevention (Welsh & Farrington)"
+    source_url: "https://bra.se/rapporter/arkiv/2023-02-28-gar-det-att-forebygga-brott-genom-att-forandra-utomhusbelysningen"
+    note: "Bättre belysning minskar brott ~14 % (främst egendomsbrott); ingen säkerställd effekt på våldsbrott."
+
+  - category: trygghet
+    indicator: brottsutsatthet
+    policy_type: situationell_prevention_kamerabevakning
+    direction: mixed
+    evidence_level: systematic_review
+    effect_strength: low
+    confidence: medium
+    source: "Brå, kunskapssammanställning Kamerabevakning och belysning (Welsh & Farrington-meta)"
+    source_url: "https://bra.se/amnen/kamerabevakning-och-belysning"
+    note: "Effektiv mot planerade egendomsbrott, ingen påtaglig effekt mot våldsbrott (platsspecifikt)."
+
+  # --- forsvar ---
+  - category: forsvar
+    indicator: personal_varnpliktiga
+    policy_type: ateraktiverad_utokad_varnplikt
+    direction: positive
+    evidence_level: authority_evaluation
+    effect_strength: medium
+    confidence: high
+    source: "Riksrevisionen RiR 2022:19, Expansion utan prioritet – personalförsörjningen"
+    source_url: "https://www.riksrevisionen.se/granskningar/granskningsrapporter/2022/expansion-utan-prioritet---personalforsorjningen-av-kontinuerligt-tjanstgorande-gruppbefal-soldater-och-sjoman.html"
+    note: "Återinförd värnplikt vidgade rekryteringsbasen och ökade antalet grundutbildade."
+
+  - category: forsvar
+    indicator: leveranstid_materiel
+    policy_type: internationella_materielsamarbeten
+    direction: negative
+    evidence_level: authority_evaluation
+    effect_strength: medium
+    confidence: medium
+    source: "Riksrevisionen RiR 2011:13, Leverans på utsatt tid? Försvarets internationella materielsamarbeten"
+    source_url: "https://www.riksrevisionen.se/granskningar/granskningsrapporter/2011/leverans-pa-utsatt-tid-en-granskning-av-forsvarets-internationella-materielsamarbeten.html"
+    note: "Materielsamarbeten leder inte tillförlitligt till leverans på utsatt tid (förseningar vanliga)."
+
+  - category: forsvar
+    indicator: civil_beredskap_niva
+    policy_type: tydlig_statlig_styrning_civilt_forsvar
+    direction: positive
+    evidence_level: authority_evaluation
+    effect_strength: low
+    confidence: low
+    source: "Riksrevisionen RiR 2025:4, Den statliga styrningen av det civila försvarets uppbyggnad"
+    source_url: "https://www.riksrevisionen.se/granskningar/granskningsrapporter/2025/den-statliga-styrningen-av-det-civila-forsvarets-uppbyggnad.html"
+    note: "Otydliga mandat och svag finansiering bromsade uppbyggnaden -> tydligare styrning behövs."
+
+  # --- klimat ---
+  - category: klimat
+    indicator: territoriella_utslapp
+    policy_type: reduktionsplikt_drivmedel
+    direction: positive
+    evidence_level: authority_evaluation
+    effect_strength: high
+    # confidence medel (ej hög): enskild myndighetsattribution för ETT år, en källa —
+    # ska inte väga tyngst i liggaren som en långsiktig IFAU-kausalutvärdering.
+    confidence: medium
+    source: "Naturvårdsverket, officiell klimatstatistik / pressmeddelande om 2024 års utsläpp (2025)"
+    source_url: "https://www.naturvardsverket.se/om-oss/aktuellt/nyheter-och-pressmeddelanden/2025/juni/sveriges-klimatutslapp-okade-med-7-procent-under-2024/"
+    note: "Naturvårdsverket tillskriver 2024 års utsläppsökning (~7 %) sänkt reduktionsplikt -> högre plikt sänker transportutsläpp."
+
+  - category: klimat
+    indicator: territoriella_utslapp
+    policy_type: koldioxidskatt
+    direction: positive
+    evidence_level: authority_evaluation
+    effect_strength: medium
+    confidence: medium
+    source: "Riksrevisionen RiR 2012:1, Klimatrelaterade skatter – Vem betalar?"
+    source_url: "https://www.riksdagen.se/sv/dokument-och-lagar/dokument/riksrevisionens-granskningsrapport/klimatrelaterade-skatter-vem-betalar_h0b51/html/"
+    note: "Koldioxidskatt centralt styrmedel; prissättning av utsläpp minskar utsläpp i icke-handlande sektorn."
+
+  - category: klimat
+    indicator: utslappsminskning_per_krona
+    policy_type: koldioxidskatt
+    direction: positive
+    evidence_level: authority_evaluation
+    effect_strength: medium
+    confidence: medium
+    source: "Riksrevisionen RiR 2012:1, Klimatrelaterade skatter – Vem betalar?"
+    source_url: "https://www.riksdagen.se/sv/dokument-och-lagar/dokument/riksrevisionens-granskningsrapport/klimatrelaterade-skatter-vem-betalar_h0b51/html/"
+    note: "Enhetlig koldioxidskatt kostnadseffektiv (utsläppsminskning till lägre samhällskostnad); ojämn tillämpning sänker effektiviteten."
+
+  # Fas 4c Plan A (2026-05-30): enda kandidat som passerade evidens-/negativ-grinden av 8 systematiskt
+  # skannade omstridda instrument (övriga 7 hade blandad/svag officiell evidens -> inerta, se
+  # docs/fas4c_planA_kandidatregister.md). KRÄVER mänsklig granskning (laddad energifråga).
+  - category: klimat
+    indicator: effektbrist
+    policy_type: ny_karnkraft
+    direction: positive
+    evidence_level: authority_evaluation
+    effect_strength: high
+    confidence: high
+    source: "Svenska kraftnät, Kraftbalansen på den svenska elmarknaden – rapport 2025 (lagstadgad rapport till regeringen, 3 § förordn. 2007:1119)"
+    source_url: "https://www.svk.se/49bb53/siteassets/om-oss/rapporter/2025/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2025.pdf"
+    note: "Exakt på indikatorn effektbrist (effektbalans vid topplasttimmen). Planerbar baskraft har tillgänglighetsfaktor ~90 % vid topplast (vindkraft 9 %, solkraft 0 %, Tabell 13 s.45), så ny/utbyggd planerbar kärnkraft ökar tillgänglig effekt vid topplast och drar effektbrist-risken nedåt. POSITIV riktning (negativ-grinden ej tillämplig). Källan fastställer riktningsmekanismen via tillgänglighetsfaktorer, ej nybyggnadskostnad/ledtid; ett parti som motsätter sig instrumentet (opposes) får negativt B-bidrag på effektbrist — flaggat för mänsklig granskning."
+
+  # --- integration ---
+  - category: integration
+    indicator: bidragsberoende
+    policy_type: aktiveringskrav_ekonomiskt_bistand
+    direction: positive
+    evidence_level: authority_evaluation
+    effect_strength: medium
+    confidence: high
+    source: "IFAU, utvärdering av aktiveringskrav för socialbidragstagare (Stockholms stadsdelar)"
+    source_url: "https://www.ifau.se/Press/Pressmeddelanden/Krav-pa-aktivering-av-socialbidragstagare-ger-fler-sysselsatta/"
+    note: "Aktiveringskrav minskade bidragstagande ~5,6 % och ökade sysselsättning, starkast för utomvästligt födda."
+
+  - category: integration
+    indicator: sysselsattningsgap_inrikes_utrikes
+    policy_type: aktiveringskrav_ekonomiskt_bistand
+    direction: positive
+    evidence_level: authority_evaluation
+    effect_strength: medium
+    confidence: medium
+    source: "IFAU, utvärdering av aktiveringskrav för socialbidragstagare"
+    source_url: "https://www.ifau.se/Press/Pressmeddelanden/Krav-pa-aktivering-av-socialbidragstagare-ger-fler-sysselsatta/"
+    note: "Störst sysselsättningseffekt för utomvästligt födda -> talar för minskat gap för utrikes födda."
+
+  - category: integration
+    indicator: sysselsattningsgap_inrikes_utrikes
+    policy_type: sprakpraktik_kombinerad_sprakutbildning_och_arbetspraktik
+    direction: positive
+    evidence_level: authority_evaluation
+    effect_strength: medium
+    confidence: medium
+    source: "IFAU, utvärdering av språkpraktik med modersmålsstöd"
+    source_url: "https://www.ifau.se/Press/Pressmeddelanden/sprakpraktik-med-stod-pa-modersmal-gav-fler-kvinnor-jobb/"
+    note: "Språkpraktik höjde sysselsättning för utrikes födda, tydligt för kvinnor, ingen mätbar effekt för män."
+
+  - category: integration
+    indicator: skolresultat_utsatta_omraden
+    policy_type: riktade_insatser_nyanlanda_elever
+    direction: positive
+    evidence_level: authority_evaluation
+    effect_strength: medium
+    confidence: high
+    source: "Skolverket (2026), referat av IFAU-utvärdering av riktade insatser 2016–2019"
+    source_url: "https://www.skolverket.se/om-skolverket/nyheter-och-pressmeddelanden/nyheter/nyheter/2026-01-30-riktade-insatser-forbattrade-utrikesfodda-elevers-kunskapsresultat"
+    note: "Riktade insatser i kommuner med många nyanlända gav bestående bättre provresultat, störst för utrikes födda."
+
+  # --- demokrati (rekommendations-/expertnivå: åtgärder rekommenderas, ej uppmätt kausal effekt) ---
+  - category: demokrati
+    indicator: korruption
+    policy_type: systematiskt_antikorruptionsarbete_kommuner_regioner
+    direction: positive
+    evidence_level: expert_opinion
+    effect_strength: low
+    confidence: low
+    source: "Statskontoret 2023:13, Nya utmaningar och gamla problem – om korruption i kommuner och regioner"
+    source_url: "https://www.statskontoret.se/uppdrag-och-rapporter/rapporter/2023/nya-utmaningar-och-gamla-problem--om-korruption-i-kommuner-och-regioner/lasrapporten"
+    note: "Rekommenderar systematiskt riskbaserat antikorruptionsarbete; inget uppmätt kausalsamband (expertbedömning)."
+
+  - category: demokrati
+    indicator: korruption
+    policy_type: atgarder_mot_otillaten_paverkan_offentlig_sektor
+    direction: positive
+    evidence_level: expert_opinion
+    effect_strength: low
+    confidence: low
+    source: "Brå, kunskaps-/vägledningsmaterial om otillåten påverkan mot offentlig sektor"
+    source_url: "https://bra.se/amnen/otillaten-paverkan"
+    note: "Rekommenderar systematiskt förebyggande arbete; kvantifierar inte riskminskningen (expertbedömning)."
+
+  - category: demokrati
+    indicator: korruption
+    policy_type: starkt_oberoende_granskning_och_insyn
+    direction: positive
+    evidence_level: expert_opinion
+    effect_strength: low
+    confidence: low
+    source: "ESO 2013:2, Allmän nytta eller egen vinning? (Bergh, Erlingsson, Sjölin, Öhrvall)"
+    source_url: "https://eso.expertgrupp.se/rapporter/20132-allman-nytta-eller-egen-vinning/"
+    note: "Brister i granskning av kommuner/bolag = korruptionssårbarhet -> stärkt insyn motverkar; ej effektutvärdering."

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "observation.schema.json",
+  "title": "Observation",
+  "description": "En uppmätt objektiv datapunkt från en officiell källa.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "category", "indicator", "period", "value", "source_ref"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^obs:" },
+    "category": { "type": "string" },
+    "submeasure": { "type": "string" },
+    "indicator": { "type": "string" },
+    "period": { "type": "string", "description": "Årtal 'YYYY' eller intervall 'YYYY-YYYY'." },
+    "value": { "type": "number" },
+    "unit": { "type": "string" },
+    "geography": { "type": "string", "description": "Riket, regionkod eller kommunkod." },
+    "source_ref": { "type": "string" }
+  }
+}

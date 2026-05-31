@@ -1,0 +1,107 @@
+:root {
+  --bg: #0f1115; --panel: #181c24; --ink: #e8eaed; --muted: #9aa3b2;
+  --accent: #4f8cff; --line: #2a3140; --good: #46c08a; --warn: #e0a23a;
+  --bar: #2f3a4f;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg); color: var(--ink); padding-bottom: 3rem;
+}
+header { padding: 1.6rem 1.2rem 0.6rem; max-width: 980px; margin: 0 auto; }
+h1 { margin: 0; font-size: 1.9rem; letter-spacing: -0.02em; }
+.tagline { color: var(--muted); margin: 0.3rem 0 0; }
+.banner {
+  max-width: 980px; margin: 0.8rem auto; padding: 0.7rem 1rem; border-radius: 10px;
+  background: var(--panel); border: 1px solid var(--line); color: var(--muted);
+  font-size: 0.9rem;
+}
+.banner.warn { background: rgba(224,162,58,0.12); border-color: var(--warn); color: #f0d9a8; }
+.banner.err  { background: rgba(224,80,80,0.14); border-color: #e05050; color: #f3c0c0; }
+main { max-width: 980px; margin: 0 auto; padding: 0 1.2rem;
+  display: grid; grid-template-columns: 320px 1fr; gap: 1.5rem; }
+@media (max-width: 760px) { main { grid-template-columns: 1fr; } }
+/* min-width:0 låter grid-spalten stanna på 1fr; annars tvingar tabellens min-width
+   (i ett expanderat kort) hela spalten bredare → sidoscroll vid 320px (WCAG 1.4.10). */
+section { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 1.1rem; min-width: 0; }
+h2 { margin: 0 0 0.4rem; font-size: 1.05rem; }
+.hint { color: var(--muted); font-size: 0.85rem; margin: 0 0 0.9rem; }
+.slider { margin-bottom: 0.7rem; }
+.slider label { display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 0.15rem; }
+.slider label b { color: var(--accent); font-variant-numeric: tabular-nums; }
+.slider input[type=range] { width: 100%; accent-color: var(--accent); }
+button {
+  margin-top: 0.4rem; background: transparent; color: var(--accent);
+  border: 1px solid var(--accent); border-radius: 8px; padding: 0.4rem 0.7rem; cursor: pointer;
+}
+button:hover { background: rgba(79,140,255,0.12); }
+#parties { list-style: none; margin: 0; padding: 0; }
+.party { border: 1px solid var(--line); border-radius: 12px; margin-bottom: 0.7rem; overflow: hidden; }
+.party-head { display: grid; grid-template-columns: 2.2rem 1fr auto; gap: 0.6rem;
+  align-items: center; padding: 0.7rem 0.9rem; cursor: pointer; }
+.party-head:hover { background: #1d2330; }
+.rank { color: var(--muted); font-variant-numeric: tabular-nums; }
+.pname { font-weight: 600; }
+.score { font-variant-numeric: tabular-nums; font-weight: 600; }
+.barwrap { grid-column: 1 / -1; position: relative; height: 12px; background: var(--bar);
+  border-radius: 6px; margin-top: 0.3rem; }
+.barfill { position: absolute; height: 100%; background: linear-gradient(90deg,#3a6fd8,#4f8cff);
+  border-radius: 6px; }
+.ci { position: absolute; height: 100%; background: rgba(255,255,255,0.18); }
+.detail { padding: 0 0.9rem 0.9rem; }
+.tablewrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+.tablewrap table { min-width: 30rem; }
+th, td { text-align: left; padding: 0.3rem 0.4rem; border-bottom: 1px solid var(--line); }
+th { color: var(--muted); font-weight: 500; }
+td.num { text-align: right; font-variant-numeric: tabular-nums; }
+.tag { font-size: 0.72rem; padding: 0.05rem 0.4rem; border-radius: 999px;
+  background: #233; color: var(--muted); border: 1px solid var(--line); }
+.conf-low { color: var(--warn); }
+footer { max-width: 980px; margin: 1.5rem auto 0; padding: 0 1.2rem; color: var(--muted); font-size: 0.8rem; }
+code { background: #11141b; padding: 0.05rem 0.3rem; border-radius: 4px; }
+
+/* actions + share */
+.actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.empty { color: var(--muted); padding: 0.6rem; }
+
+/* CI-överlapp-markör */
+.overlap { grid-column: 1 / -1; color: var(--warn); font-size: 0.78rem; margin-top: 0.2rem; }
+
+/* bevisspår */
+.party-head { grid-template-columns: 2.2rem 1fr auto; }
+details.evidence { margin-top: 0.7rem; border-top: 1px dashed var(--line); padding-top: 0.5rem; }
+details.evidence summary { cursor: pointer; color: var(--accent); font-size: 0.85rem; }
+details.evidence ul { margin: 0.5rem 0 0; padding-left: 1.1rem; font-size: 0.8rem; }
+details.evidence li { margin-bottom: 0.3rem; color: var(--ink); }
+details.evidence li.missing { color: var(--warn); }
+.src { color: var(--muted); }
+.evidence a { color: var(--accent); }
+
+/* metod */
+#method summary { cursor: pointer; list-style: none; }
+#method summary h2 { display: inline; }
+#method .warn { color: var(--warn); }
+#method-body ul { padding-left: 1.1rem; }
+
+/* hjälpklasser */
+.muted { color: var(--muted); }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+main:focus { outline: none; }
+
+/* skip-link: dold tills den får fokus med tangentbord */
+.skip-link {
+  position: absolute; left: 0.5rem; top: -3rem; z-index: 10;
+  background: var(--accent); color: #06122b; padding: 0.5rem 0.9rem;
+  border-radius: 8px; text-decoration: none; font-weight: 600;
+  transition: top 0.12s ease;
+}
+.skip-link:focus { top: 0.5rem; }
+
+/* smala skärmar: låt poängen falla till egen rad så partinamnet inte kläms (1.4.10) */
+@media (max-width: 420px) {
+  .party-head { grid-template-columns: 2.2rem 1fr; }
+  .score { grid-column: 1 / -1; }
+}

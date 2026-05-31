@@ -1,0 +1,15 @@
+{
+  "name": "rosta-web",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Rösta statisk frontend — viktning client-side av förberäknade betyg. Inga runtime-beroenden.",
+  "scripts": {
+    "test:unit": "node --test tests/score.test.mjs",
+    "test:e2e": "playwright test",
+    "serve": "python -m http.server 8000"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.60.0"
+  }
+}

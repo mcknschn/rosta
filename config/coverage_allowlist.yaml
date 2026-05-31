@@ -1,0 +1,58 @@
+# Rösta — täckningsallowlist (Fas 3 coverage-gate)
+#
+# Kanoniska indikatorer (categories.yaml) som ÄNNU saknar en officiell svensk ÅRSSERIE som
+# matar delpoäng D — listade EXPLICIT med skäl, så att gapet är synligt och inte tyst.
+# Invariant (tests/test_fas3_gate.py): varje indikator är ANTINGEN inläst (build_fas2 SCB/Kolada/Brå)
+# ELLER med här. Listan krymper när nya källor tillkommer (flytta indikatorn ur allowlist då).
+#
+# Skälkategorier: target (ej D-duglig, ingen riktning up/down) · derived (kräver flera serier/
+# beräkning som loadern ej stöder) · no_api (officiell/akademisk källa utan maskinläsbar serie)
+# · international (ej officiell svensk källa, otillåtet enligt CLAUDE.md) · qualitative
+# (saknar kvantitativ officiell mätserie) · future (källa finns men adaptern är inte byggd än).
+
+version: 1
+
+allowlist:
+  # --- ekonomi (produktivitet härleds nu: BNP fasta priser / arbetade timmar, pipeline.derived) ---
+  - { category: ekonomi, indicator: realloner,            reason: "future: kräver Medlingsinstitutets konjunkturlönestatistik (helekonomi-löneindex) som egen adapter — SCB:s API saknar en ren, kontinuerlig helekonomi-löneserie (allt är privat sektor, sektoruppdelat/brutet vid SSYK-revisionen 2014, eller dött). Sonderat 2026-05-31." }
+  - { category: ekonomi, indicator: inflation,            reason: "target: nära mål (~2 %), ej up/down -> ej D-duglig (kvarstår för B/visning)." }
+  - { category: ekonomi, indicator: statsskuld_underskott, reason: "target: hållbar nivå, ej up/down -> ej D-duglig." }
+  # --- valfard ---
+  - { category: valfard, indicator: vard_i_tid,                reason: "future: up-polaritets-KPI (andel inom vårdgaranti) ej fastställd; vardkoer täcker submåttet." }
+  - { category: valfard, indicator: overlevnad_svar_sjukdom,   reason: "future: Socialstyrelsens statistikdatabas, adapter ej byggd." }
+  - { category: valfard, indicator: skillnader_mellan_skolor,  reason: "no_api: ingen nationell spridnings-/likvärdighetsserie i Kolada/SCB (Skolverkets rapporter ej maskinläsbara)." }
+  - { category: valfard, indicator: personalomsattning_omsorg, reason: "no_api: ingen omsorgsspecifik nationell personalomsättningsserie (Kolada saknar KPI)." }
+  - { category: valfard, indicator: valfardsbrottslighet,      reason: "no_api: ingen ren officiell årsserie för välfärdsbrottslighet." }
+  # --- trygghet (dodligt_vald + NTU brottsutsatthet/upplevd_otrygghet inlästa via Brå) ---
+  # brottsutsatthet (NTU 3A) + upplevd_otrygghet (NTU 4A:1) inlästa via build_fas2 -> ej allowlistade.
+  - { category: trygghet, indicator: skjutningar_sprangningar, reason: "future: Polisens statistik (ej Brå); semantik ≠ Brå dödligt våld med skjutvapen." }
+  - { category: trygghet, indicator: uppklaringsgrad,          reason: "future: Brå handlagda brott, separat tabell." }
+  - { category: trygghet, indicator: handlaggningstid,         reason: "future: Brå/Åklagarmyndigheten, separat tabell." }
+  - { category: trygghet, indicator: aterfall_i_brott,         reason: "future: Brå/Kriminalvården återfallsstatistik, separat tabell." }
+  # --- forsvar (till stor del kvalitativt/sekretess) ---
+  - { category: forsvar, indicator: forsvarsanslag_andel_bnp, reason: "target: upp till beslutad målnivå, ej up/down -> ej D-duglig." }
+  - { category: forsvar, indicator: personal_varnpliktiga,    reason: "no_api: Försvarsmaktens ÅR, ingen ren maskinläsbar årsserie." }
+  - { category: forsvar, indicator: materiel_formaga,         reason: "qualitative: sekretess/operativ förmåga, ingen öppen mätserie." }
+  - { category: forsvar, indicator: civil_beredskap_niva,     reason: "qualitative: MSB-bedömning, ingen kvantitativ årsserie." }
+  - { category: forsvar, indicator: ukraina_stod,             reason: "qualitative: politiskt/ad hoc, ingen objektiv årsindikator." }
+  - { category: forsvar, indicator: nato_interoperabilitet,   reason: "qualitative: ingen öppen mätserie." }
+  - { category: forsvar, indicator: leveranstid_materiel,     reason: "qualitative: sekretess, ingen öppen serie." }
+  # --- klimat (territoriella + konsumtionsbaserade + fossil energianvändning inlästa) ---
+  # fossil_energianvandning inläst via Energimyndigheten EN0202_8 (build_fas3) -> ej längre allowlistad.
+  - { category: klimat, indicator: elprisvolatilitet,          reason: "derived: härleds ur Svk/spotpriser, ingen färdig officiell årsserie." }
+  - { category: klimat, indicator: effektbrist,                reason: "derived: härleds ur Svk effektdata, ingen färdig årsserie." }
+  - { category: klimat, indicator: utslappsminskning_per_krona, reason: "derived: kräver utsläpp/kostnad-kvot, flera serier." }
+  - { category: klimat, indicator: hotade_arter_naturforlust,  reason: "no_api: SLU Artdatabanken (rödlistan), ingen årlig maskinläsbar serie." }
+  # --- integration (bidragsberoende, trangboddhet, sjalvforsorjningsgrad, sysselsattningsgap inlästa) ---
+  # sysselsattningsgap_inrikes_utrikes härleds nu (pipeline.derived, SCB TAB6529 SYSP 13−23) -> ej allowlistad.
+  - { category: integration, indicator: sfi_sprakkunskaper,           reason: "future: Skolverket är statistikansvarig (SCB producent, undersökning 'Komvux i sfi'); andel godkända betyg/genomströmning finns men publiceras via Skolverkets statistikportal (ej ren PxWeb), och semantikval (godkäntandel vs progression) kräver beslut. Egen adapter ej byggd." }
+  - { category: integration, indicator: skolresultat_utsatta_omraden, reason: "no_api: ingen ren nationell årsserie för utsatta områden." }
+  - { category: integration, indicator: segregation,                 reason: "no_api: ingen ren officiell segregationsårsserie." }
+  - { category: integration, indicator: tillit_valdeltagande,        reason: "no_api/sparse: valdeltagande bara valår (glest); SOM-tillit ej API." }
+  # --- demokrati (helt kvalitativt/internationellt) ---
+  - { category: demokrati, indicator: korruption,                       reason: "international/qualitative: ingen officiell svensk kvantitativ korruptionsårsserie (TI:s CPI ej officiell svensk källa)." }
+  - { category: demokrati, indicator: fortroende_domstolar_myndigheter, reason: "no_api: SOM-institutet (akademisk, tillåten) publicerar ej maskinläsbar årsserie." }
+  - { category: demokrati, indicator: mediefrihet,                      reason: "international: RSF:s index är ej officiell svensk källa." }
+  - { category: demokrati, indicator: politisk_transparens,             reason: "qualitative: ingen kvantitativ officiell årsserie." }
+  - { category: demokrati, indicator: otillborlig_politisering,         reason: "qualitative: ingen objektiv mätserie." }
+  - { category: demokrati, indicator: overvakning_utan_rattssakerhet,   reason: "qualitative: ingen objektiv mätserie." }

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "action.schema.json",
+  "title": "Action",
+  "description": "Ett konkret partiagerande: votering, motion, budgetrad eller regeringsbeslut.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "party", "kind", "category", "period", "source_ref"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^action:" },
+    "party": { "type": "string" },
+    "kind": { "type": "string", "enum": ["votering", "motion", "proposition", "betankande", "budgetrad", "regeringsbeslut"] },
+    "category": { "type": "string" },
+    "submeasure": { "type": "string" },
+    "period": { "type": "string" },
+    "expenditure_area": { "type": "string", "description": "UO-kod, t.ex. 'UO6', för budgetrelaterade actions." },
+    "amount_sek": { "type": "number", "description": "Föreslaget belopp (budgetrad), om tillämpligt." },
+    "vote": { "type": "string", "enum": ["ja", "nej", "avstar", "franvarande"], "description": "För voteringar." },
+    "outcome": { "type": "string", "enum": ["bifall", "avslag", "unknown"], "description": "Riksdagens beslut." },
+    "document_ref": { "type": "string", "description": "Dokument-id i Riksdagens öppna data." },
+    "source_ref": { "type": "string" }
+  }
+}
