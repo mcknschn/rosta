@@ -41,6 +41,11 @@ def mappings() -> dict[str, Any]:
 
 
 @cache
+def subnational_municipalities() -> dict[str, Any]:
+    return _load("subnational_municipalities.yaml")
+
+
+@cache
 def sources() -> dict[str, Any]:
     return _load("sources.yaml")
 

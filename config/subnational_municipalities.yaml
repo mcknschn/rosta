@@ -1,0 +1,308 @@
+# Rösta — kommunala styren per mandatperiod (delpoäng C, subnationell makt).
+#
+# GENERERAD config ur SKR:s officiella öppna data "Styren i kommuner 1994-2022"
+# (catalog.skl.se, CSV resource/127) via pipeline/tools/skr_municipalities_transcribe.py.
+# Källan till sanning; ingen runtime-parser. Endast de 8 riksdagspartierna; lokala partier
+# (ÖP) räknas ej. terms = [2014-2018, 2018-2022, 2022-2026] (post-val-styre per period).
+# kod = SCB:s 4-siffriga kommunkod (Kolada-format). Se docs/fas1c_subnational_metod.md.
+#
+# Kontrollsummor (antal kommuner med partiet i styret per valår; ±2 mot SKR:s
+# halvtidsuppföljnings-PDF "efter valet 2022" pga ögonblicksvariation mellan SKR-produkter):
+#   2014: S=194  M=113  SD=0  C=144  V=102  KD=100  L=110  MP=124
+#   2018: S=147  M=161  SD=4  C=201  V=60  KD=153  L=148  MP=69
+#   2022: S=162  M=175  SD=39  C=149  V=58  KD=138  L=107  MP=48
+version: 1
+source: "SKR – Styren i kommuner 1994-2022 (öppna data, catalog.skl.se resource/127)"
+source_url: "https://catalog.skl.se/store/1/resource/127"
+retrieved: 2026-05-31
+municipalities:
+  "0114": { name: "Upplands väsby", terms: [[S, V, MP], [M, C, KD, L], [S, L]] }
+  "0115": { name: "Vallentuna", terms: [[M, C, KD, L], [M, C, KD, L], [M, C, KD, L]] }
+  "0117": { name: "Österåker", terms: [[M, C, KD, L], [M, C, KD, L], [M, C, KD, L]] }
+  "0120": { name: "Värmdö", terms: [[M, C, KD, L], [M, C, KD, L, MP], [S, C, L, MP]] }
+  "0123": { name: "Järfälla", terms: [[S, C, MP], [M, C, KD, L], [S, C]] }
+  "0125": { name: "Ekerö", terms: [[M, C, KD, L], [M, C, KD], [M, C, KD, L]] }
+  "0126": { name: "Huddinge", terms: [[M, C, KD, L], [M, C, KD, L], [S, C, MP]] }
+  "0127": { name: "Botkyrka", terms: [[S, V, MP], [S, C, KD, L, MP], [S, C, KD, L, MP]] }
+  "0128": { name: "Salem", terms: [[M, C, KD, L], [M, C, KD, L], [M, C, KD, L]] }
+  "0136": { name: "Haninge", terms: [[S, C, MP], [S, C, KD, L], [M, KD, L]] }
+  "0138": { name: "Tyresö", terms: [[M, C, KD, L], [S, L, MP], [S, L, MP]] }
+  "0139": { name: "Upplands-Bro", terms: [[S, C, KD, MP], [M, C, KD, L], [M, C, KD, L]] }
+  "0140": { name: "Nykvarn", terms: [[M, C], [M, MP], [S, C, MP]] }
+  "0160": { name: "Täby", terms: [[M, C, KD, L], [M, C, KD, L], [M, C, KD, L]] }
+  "0162": { name: "Danderyd", terms: [[M, KD, L], [M, KD, L], [M, KD, L]] }
+  "0163": { name: "Sollentuna", terms: [[M, C, KD, L], [M, C, KD, L], [M, C, KD, L]] }
+  "0180": { name: "Stockholm", terms: [[S, V, MP], [M, C, KD, L, MP], [S, V, MP]] }
+  "0181": { name: "Södertälje", terms: [[S, V, MP], [S, C, KD, MP], [S, M, MP]] }
+  "0182": { name: "Nacka", terms: [[M, C, KD, L], [M, C, KD, L], [M, C, KD, L]] }
+  "0183": { name: "Sundbyberg", terms: [[S, C, V, KD], [S, C, L], [S, C, V, MP]] }
+  "0184": { name: "Solna", terms: [[M, KD, L], [M, C, KD, L, MP], [S, C, V, MP]] }
+  "0186": { name: "Lidingö", terms: [[M, KD], [M, KD, L], [M]] }
+  "0187": { name: "Vaxholm", terms: [[M, C, L], [S, C, L], [S, M, V, KD, L]] }
+  "0188": { name: "Norrtälje", terms: [[S, C, MP], [M, C, KD, L], [M, SD, KD, L]] }
+  "0191": { name: "Sigtuna", terms: [[S, L, MP], [M, C, KD, L], [M, C, KD, L]] }
+  "0192": { name: "Nynäshamn", terms: [[S, L, MP], [M, C, KD, L], [M, C, KD, L]] }
+  "0305": { name: "Håbo", terms: [[M, C, KD, L, MP], [M, C, KD, L, MP], [M, C, KD]] }
+  "0319": { name: "Älvkarleby", terms: [[S, V, MP], [S, C, V, MP], [S, C, V, MP]] }
+  "0330": { name: "Knivsta", terms: [[M, C, KD, L], [S, M, C, V, MP], [SD, KD]] }
+  "0331": { name: "Heby", terms: [[M, C, KD, L, MP], [S, C], [S, C, V, MP]] }
+  "0360": { name: "Tierp", terms: [[S, MP], [M, C, KD, L, MP], [M, C, KD, L]] }
+  "0380": { name: "Uppsala", terms: [[S, V, MP], [S, L, MP], [S, V, MP]] }
+  "0381": { name: "Enköping", terms: [[S], [M, C, KD, L, MP], [M, C, KD, L, MP]] }
+  "0382": { name: "Östhammar", terms: [[S, C], [S, C, V], [M, SD, KD]] }
+  "0428": { name: "Vingåker", terms: [[S, V, MP], [S, C, KD, MP], [M, C, KD]] }
+  "0461": { name: "Gnesta", terms: [[S, M], [S, M], [S, M]] }
+  "0480": { name: "Nyköping", terms: [[S, V, MP], [S, C, MP], [S, M]] }
+  "0481": { name: "Oxelösund", terms: [[S, V], [S, V], [M, SD, KD, L]] }
+  "0482": { name: "Flen", terms: [[S, C, KD, MP], [S, V, MP], [S, C]] }
+  "0483": { name: "Katrineholm", terms: [[S, M], [S, M], [S, M]] }
+  "0484": { name: "Eskilstuna", terms: [[S, M, C], [S, M, C], [S, M]] }
+  "0486": { name: "Strängnäs", terms: [[S, M], [S, M], [S, M]] }
+  "0488": { name: "Trosa", terms: [[M, C, KD, L], [M, C, KD, L], [M, C, KD, L]] }
+  "0509": { name: "Ödeshög", terms: [[M, C, KD], [S, C, KD], [S, M, C]] }
+  "0512": { name: "Ydre", terms: [[S, M, C, KD, MP], [S, M, C], [M, C]] }
+  "0513": { name: "Kinda", terms: [[S, M, KD], [S, C, L], [S, M, KD]] }
+  "0560": { name: "Boxholm", terms: [[S], [S], [S]] }
+  "0561": { name: "Åtvidaberg", terms: [[S, M], [S, C, V, L], [S, C, V, L, MP]] }
+  "0562": { name: "Finspång", terms: [[S, V, MP], [S, C, KD], [S, C, L]] }
+  "0563": { name: "Valdemarsvik", terms: [[S, V, MP], [S, C, V], [M, SD, KD]] }
+  "0580": { name: "Linköping", terms: [[S, L, MP], [M, C, KD, L], [S, M]] }
+  "0581": { name: "Norrköping", terms: [[S, C, KD, L], [S, C, KD, L], [M, KD, L]] }
+  "0582": { name: "Söderköping", terms: [[S, M, MP], [M, C, KD, L], [S, M, KD]] }
+  "0583": { name: "Motala", terms: [[S, V, MP], [M, C, KD, L], [M, SD, KD]] }
+  "0584": { name: "Vadstena", terms: [[S], [S, M, MP], [S, M]] }
+  "0586": { name: "Mjölby", terms: [[S, C, KD, MP], [S, C, KD, L, MP], [S, C, KD, L, MP]] }
+  "0604": { name: "Aneby", terms: [[M, C, KD, L], [M, C, KD, L], [S, C, KD]] }
+  "0617": { name: "Gnosjö", terms: [[M, C, KD, L], [M, C, KD], [M, C, KD]] }
+  "0642": { name: "Mullsjö", terms: [[S, V, MP], [S, C, KD, L], [S, C, KD, L]] }
+  "0643": { name: "Habo", terms: [[S, C, KD, MP], [M, C, KD, L], [M, C, KD, L]] }
+  "0662": { name: "Gislaved", terms: [[S, M, MP], [M, C, KD, L], [S, M, C, L]] }
+  "0665": { name: "Vaggeryd", terms: [[M, C, KD, L, MP], [M, C, KD, L, MP], [S, M]] }
+  "0680": { name: "Jönköping", terms: [[M, C, KD, L], [S, C, L, MP], [S, C, L]] }
+  "0682": { name: "Nässjö", terms: [[S, M, C, V, L], [S, C, KD], [S, C, V, KD]] }
+  "0683": { name: "Värnamo", terms: [[M, KD, L, MP], [M, C, KD, L], [M, C, KD, L]] }
+  "0684": { name: "Sävsjö", terms: [[S, C, KD], [S, C, KD], [S, C, KD]] }
+  "0685": { name: "Vetlanda", terms: [[S], [S, M, C], [M, SD]] }
+  "0686": { name: "Eksjö", terms: [[M, C], [M, C, KD, L], [S, M]] }
+  "0687": { name: "Tranås", terms: [[M, C, KD, L], [M, C, KD, L], [M, SD, KD, L]] }
+  "0760": { name: "Uppvidinge", terms: [[C, KD], [S, M, V], [SD, C, KD]] }
+  "0761": { name: "Lessebo", terms: [[S], [S], [S, C, V]] }
+  "0763": { name: "Tingsryd", terms: [[S, M], [S, M, KD], [M, C, KD]] }
+  "0764": { name: "Alvesta", terms: [[S, C, MP], [S, C, V], [S, C, KD]] }
+  "0765": { name: "Älmhult", terms: [[S, V, MP], [M, C, KD, L], [S, C]] }
+  "0767": { name: "Markaryd", terms: [[M, C, KD], [M, C, KD], [M, C, KD]] }
+  "0780": { name: "Växjö", terms: [[M, C, KD, L, MP], [M, C, KD, L, MP], [S, V, MP]] }
+  "0781": { name: "Ljungby", terms: [[M, C, L], [M, C, KD, L], [M, C, KD]] }
+  "0821": { name: "Högsby", terms: [[M, C, KD], [M, C, KD], [S, C, V]] }
+  "0834": { name: "Torsås", terms: [[S, M, V, KD, L, MP], [S, M, V, KD, L], [S, M, C, V]] }
+  "0840": { name: "Mörbylånga", terms: [[M, C, KD, L, MP], [S, C, V], [S, C]] }
+  "0860": { name: "Hultsfred", terms: [[M, C, KD, L, MP], [M, C, KD], [M, C, KD]] }
+  "0861": { name: "Mönsterås", terms: [[M, C, KD, L], [M, C, KD, L], [M, C, KD, L]] }
+  "0862": { name: "Emmaboda", terms: [[S, V, MP], [M, C, KD], [M, C, KD]] }
+  "0880": { name: "Kalmar", terms: [[S, C, V], [S, C, V], [S, C, V]] }
+  "0881": { name: "Nybro", terms: [[M, C, KD, L], [M, C, KD, L], [S, C]] }
+  "0882": { name: "Oskarshamn", terms: [[S, C, V, MP], [S, M], [S, M]] }
+  "0883": { name: "Västervik", terms: [[S, C], [S, C, MP], [M, KD, L]] }
+  "0884": { name: "Vimmerby", terms: [[S, M], [M, C, KD], [S, C, V]] }
+  "0885": { name: "Borgholm", terms: [[S], [S, C, V], [S, C, V]] }
+  "0980": { name: "Gotland", terms: [[S, V, MP], [M, C, KD, L], [S, M]] }
+  "1060": { name: "Olofström", terms: [[S], [S, V, KD], [S, C]] }
+  "1080": { name: "Karlskrona", terms: [[S, C, L], [S, C, L], [M, SD, KD, L]] }
+  "1081": { name: "Ronneby", terms: [[M, C, KD, L], [M, C, KD, L], [M, SD, KD, L]] }
+  "1082": { name: "Karlshamn", terms: [[S, C, L], [S, C, MP], [M, SD, KD]] }
+  "1083": { name: "Sölvesborg", terms: [[S, V, MP], [M, SD, KD], [S, M, C]] }
+  "1214": { name: "Svalöv", terms: [[S, M, MP], [M, C, KD, L], [M, SD, KD]] }
+  "1230": { name: "Staffanstorp", terms: [[M, C, KD, L], [M, SD], [M, SD]] }
+  "1231": { name: "Burlöv", terms: [[S, C, V, MP], [M, C, L], [M, C, L]] }
+  "1233": { name: "Vellinge", terms: [[M], [M], [M]] }
+  "1256": { name: "Östra Göinge", terms: [[M, C, KD, L, MP], [M, C, KD], [M, C, KD]] }
+  "1257": { name: "Örkelljunga", terms: [[M, C, KD, L], [M, C, KD], [M, SD]] }
+  "1260": { name: "Bjuv", terms: [[S, C, V, L], [S, C, V, KD, L], [M, SD]] }
+  "1261": { name: "Kävlinge", terms: [[M, C, KD, L, MP], [M, C, KD, L], [M, SD, KD]] }
+  "1262": { name: "Lomma", terms: [[M, C, KD, L], [M, C, KD, L], [M, C, KD, L]] }
+  "1263": { name: "Svedala", terms: [[M, C, L], [M, C, KD, L], [M, C, KD, L]] }
+  "1264": { name: "Skurup", terms: [[S, V, MP], [M, C], [M, SD, KD]] }
+  "1265": { name: "Sjöbo", terms: [[M, C, KD, L], [M, C, L, MP], [S, M, C, L]] }
+  "1266": { name: "Hörby", terms: [[S, C, KD, L, MP], [SD], [M, SD]] }
+  "1267": { name: "Höör", terms: [[M, C, KD, L], [M, C, KD, L], [M, C, KD, L]] }
+  "1270": { name: "Tomelilla", terms: [[M, C, KD, L, MP], [M, C, KD, L], [M, C, KD, L]] }
+  "1272": { name: "Bromölla", terms: [[S], [SD], [S, V]] }
+  "1273": { name: "Osby", terms: [[S, V], [M, C, KD, L], [M, C, KD]] }
+  "1275": { name: "Perstorp", terms: [[S, M, C, KD], [M, C, KD, MP], [S, M, C, KD]] }
+  "1276": { name: "Klippan", terms: [[S, C, V, MP], [S, M, C], [SD, KD]] }
+  "1277": { name: "Åstorp", terms: [[S, C, KD, MP], [S, C], [M, SD, KD]] }
+  "1278": { name: "Båstad", terms: [[C], [S, M, KD, L], [S, M, KD, L]] }
+  "1280": { name: "Malmö stad", terms: [[S, V, MP], [S, L], [S, L, MP]] }
+  "1281": { name: "Lund", terms: [[S, V, MP], [M, C, KD, L], [S, M, KD]] }
+  "1282": { name: "Landskrona", terms: [[M, L, MP], [M, L, MP], [M, L, MP]] }
+  "1283": { name: "Helsingborg", terms: [[M, C, KD, L, MP], [M, C, KD, L], [M, KD, L]] }
+  "1284": { name: "Höganäs", terms: [[M, C, KD, L], [M, C, KD], [M, C, KD, MP]] }
+  "1285": { name: "Eslöv", terms: [[S, M], [S, M, L], [S, M, L]] }
+  "1286": { name: "Ystad", terms: [[S, C], [M, KD, L], [M, KD, L]] }
+  "1287": { name: "Trelleborg", terms: [[S, C, MP], [M, KD], [M, SD, KD, L]] }
+  "1290": { name: "Kristianstad", terms: [[S, C, L], [M, C, KD, L], [M, SD, KD]] }
+  "1291": { name: "Simrishamn", terms: [[S, C, L, MP], [M, C, KD, L], [M, C, KD, L]] }
+  "1292": { name: "Ängelholm", terms: [[S, L], [M, C, KD, L, MP], [M, C, KD, L]] }
+  "1293": { name: "Hässleholm", terms: [[S, C, V, MP], [M, KD, L], [M, SD, KD]] }
+  "1315": { name: "Hylte", terms: [[S, V, L, MP], [S, V, L], [S, V, L]] }
+  "1380": { name: "Halmstad", terms: [[M, C, KD, L, MP], [M, C, KD, L], [S, M, KD]] }
+  "1381": { name: "Laholm", terms: [[M, C, KD, L, MP], [M, C, KD, L, MP], [M, C, KD, L]] }
+  "1382": { name: "Falkenberg", terms: [[M, C, KD, L, MP], [S, KD, L, MP], [S, V, KD, L, MP]] }
+  "1383": { name: "Varberg", terms: [[M, C, KD, L], [M, C, KD, L], [M, SD, KD, L]] }
+  "1384": { name: "Kungsbacka", terms: [[M, C, KD, MP], [M, C, KD, L], [M, C, KD, L]] }
+  "1401": { name: "Härryda", terms: [[M, C, KD, L], [M, C, KD, L], [M, C, KD, L]] }
+  "1402": { name: "Partille", terms: [[M, C, KD, L], [M, C, KD, L], [M, KD, L]] }
+  "1407": { name: "Öckerö", terms: [[M, KD, L], [M, KD, L], [M, KD, L]] }
+  "1415": { name: "Stenungsund", terms: [[M, C, KD, L], [S, C, V, MP], [S, M]] }
+  "1419": { name: "Tjörn", terms: [[M, C, KD, L], [M, C, KD, L, MP], [M, SD, C, L]] }
+  "1421": { name: "Orust", terms: [[S, C, V, MP], [S, M, L], [S, M, L]] }
+  "1427": { name: "Sotenäs", terms: [[M, C, KD, L], [M, C, KD, L], [S]] }
+  "1430": { name: "Munkedals", terms: [[S, C, MP], [M, L], [M, SD, KD]] }
+  "1435": { name: "Tanum", terms: [[M, C, KD, L], [M, C, KD, L], [M, C, KD, L]] }
+  "1438": { name: "Dals-Ed", terms: [[M, C, KD, L], [M, C, KD, L], [M, C, KD, L]] }
+  "1439": { name: "Färgelanda", terms: [[S, V, L], [M, C, L], [S, M, L]] }
+  "1440": { name: "Ale", terms: [[S, V, MP], [M, C, KD, L, MP], [M, SD, KD]] }
+  "1441": { name: "Lerum", terms: [[S, C, L, MP], [M, C, KD, L], [S, M]] }
+  "1442": { name: "Vårgårda", terms: [[M, C, KD, L], [M, C, KD, L], [M, C, KD, L]] }
+  "1443": { name: "Bollebygd", terms: [[S, V, MP], [M, C, KD, L], [S, M, V, MP]] }
+  "1444": { name: "Grästorp", terms: [[M, C, L], [M, C], [M, C]] }
+  "1445": { name: "Essunga", terms: [[M, C, KD, L, MP], [M, C, KD, MP], [M, C, KD, MP]] }
+  "1446": { name: "Karlsborg", terms: [[S, M], [M, C, KD, L], [M, C, KD, L]] }
+  "1447": { name: "Gullspång", terms: [[S, C], [S, C], [M, V, KD]] }
+  "1452": { name: "Tranemo", terms: [[S, M, C, KD, L], [S, V, KD, L, MP], [S, C, L]] }
+  "1460": { name: "Bengtsfors", terms: [[S, L, MP], [M, C, KD], [M, C, KD, L]] }
+  "1461": { name: "Mellerud", terms: [[S, C], [M, C, KD, L, MP], [M, KD]] }
+  "1462": { name: "Lilla Edet", terms: [[S, V, L], [M, C, KD, L, MP], [S, M, C]] }
+  "1463": { name: "Mark", terms: [[M, C, KD, L, MP], [S, C, L], [S, C]] }
+  "1465": { name: "Svenljunga", terms: [[S, L], [S, V, L], [M, SD, KD]] }
+  "1466": { name: "Herrljunga", terms: [[S, L, MP], [M, C, KD], [S, C, V, L]] }
+  "1470": { name: "Vara", terms: [[S], [M, C, L], [M, SD, KD, L]] }
+  "1471": { name: "Götene", terms: [[S], [M, C, KD, L, MP], [M, C, KD, L, MP]] }
+  "1472": { name: "Tibro", terms: [[S, C, V, MP], [S, C, L], [S, C, L]] }
+  "1473": { name: "Töreboda", terms: [[M, C, L, MP], [M, C, L], [M, L]] }
+  "1480": { name: "Göteborg", terms: [[S, V, MP], [M, C, KD, L], [S, V, MP]] }
+  "1481": { name: "Mölndal", terms: [[S, V, KD, MP], [M, C, KD, L, MP], [S, M]] }
+  "1482": { name: "Kungälv", terms: [[S, V, L, MP], [S, M, C], [S, M, MP]] }
+  "1484": { name: "Lysekil", terms: [[S, M, C, L], [S, C, L, MP], [S, MP]] }
+  "1485": { name: "Uddevalla", terms: [[S, V, MP], [M, C, KD, L, MP], [M, SD, KD]] }
+  "1486": { name: "Strömstad", terms: [[C, KD, L, MP], [S, V, KD], [S, M, V, KD]] }
+  "1487": { name: "Vänersborg", terms: [[S, C, MP], [S, C, MP], [S, C, KD, MP]] }
+  "1488": { name: "Trollhättan", terms: [[S, V, MP], [S, V, MP], [M, C, KD]] }
+  "1489": { name: "Alingsås", terms: [[S, V, MP], [M, C, KD, L], [M, C, L]] }
+  "1490": { name: "Borås", terms: [[S, V, MP], [S, C, L, MP], [S, C, L, MP]] }
+  "1491": { name: "Ulricehamn", terms: [[S, V], [C], [M, C, KD, L]] }
+  "1492": { name: "Åmål", terms: [[S, V, MP], [S, V, MP], [M, C, KD, L]] }
+  "1493": { name: "Mariestad", terms: [[M, C, KD, L], [M, C, KD, L], [M, C, KD]] }
+  "1494": { name: "Lidköping", terms: [[S, V, MP], [S, C, KD, MP], [M, V, KD, L]] }
+  "1495": { name: "Skara", terms: [[S, V, L, MP], [M, C, KD, L], [S, C, L, MP]] }
+  "1496": { name: "Skövde", terms: [[M, C, KD, L], [M, C, KD, L], [S, M, KD]] }
+  "1497": { name: "Hjo", terms: [[M, C, KD, L], [M, C, KD, L], [M, C, KD, L]] }
+  "1498": { name: "Tidaholm", terms: [[S], [S, V, MP], [M, SD, KD, L]] }
+  "1499": { name: "Falköping", terms: [[S, C, KD], [S, C, KD], [M, C, V, KD, L, MP]] }
+  "1715": { name: "Kil", terms: [[S, C], [S, C], [S, C, MP]] }
+  "1730": { name: "Eda", terms: [[C, V, KD], [C, V, KD], [M, C, V, KD, L]] }
+  "1737": { name: "Torsby", terms: [[S, C, L], [S, C, L], [S]] }
+  "1760": { name: "Storfors", terms: [[S, V], [S, V], [S]] }
+  "1761": { name: "Hammarö", terms: [[S, C, V], [M, C, KD, L, MP], [S, C, V, MP]] }
+  "1762": { name: "Munkfors", terms: [[S], [S], [S]] }
+  "1763": { name: "Forshaga", terms: [[S], [S, C], [S, C]] }
+  "1764": { name: "Grums", terms: [[S], [S], [S, V]] }
+  "1765": { name: "Årjäng", terms: [[S, M, KD, L], [S, C, MP], [M, KD, L]] }
+  "1766": { name: "Sunne", terms: [[S, V, MP], [S, C], [M, L]] }
+  "1780": { name: "Karlstad", terms: [[M, C, KD, L, MP], [M, C, KD, L, MP], [S, C, MP]] }
+  "1781": { name: "Kristinehamn", terms: [[S, V, MP], [M, C, KD, L, MP], [S, C, V, MP]] }
+  "1782": { name: "Filipstad", terms: [[S, V, KD, MP], [S, V], [M, SD, C, L]] }
+  "1783": { name: "Hagfors", terms: [[S], [], []] }
+  "1784": { name: "Arvika", terms: [[S], [S, V, MP], [S, C, V, MP]] }
+  "1785": { name: "Säffle", terms: [[M, C, KD, L, MP], [M, C, KD, L], [M, C, KD, L, MP]] }
+  "1814": { name: "Lekeberg", terms: [[M, C, KD, L, MP], [S, C], [M, V, KD, L]] }
+  "1860": { name: "Laxå", terms: [[M, C, KD, L, MP], [C, KD, MP], [C, V, KD]] }
+  "1861": { name: "Hallsberg", terms: [[S, MP], [S], [S, C, KD, L]] }
+  "1862": { name: "Degerfors", terms: [[V, MP], [S, M, C, L], [M, V, MP]] }
+  "1863": { name: "Hällefors", terms: [[S, M], [S, V], [S]] }
+  "1864": { name: "Ljusnarsberg", terms: [[S, V, MP], [S, V, L, MP], [S, V]] }
+  "1880": { name: "Örebro", terms: [[S, C, KD], [S, C, KD], [S, M, C]] }
+  "1881": { name: "Kumla", terms: [[S, M], [S, M], [S, M]] }
+  "1882": { name: "Askersund", terms: [[S, V, MP], [M, KD, L], [M, KD, L]] }
+  "1883": { name: "Karlskoga", terms: [[S, V, L], [M, C, KD, L], [M, C, KD, L]] }
+  "1884": { name: "Nora", terms: [[S, V], [S, M, C, KD, L], [S, M, KD]] }
+  "1885": { name: "Lindesberg", terms: [[S, C, V], [S, C, V], [M, SD]] }
+  "1904": { name: "Skinnskatteberg", terms: [[M, C, L], [S], [SD, C]] }
+  "1907": { name: "Surahammar", terms: [[S, C], [S, C, V], [S, M, C, KD]] }
+  "1960": { name: "Kungsör", terms: [[S, V, L, MP], [S, V, L], [S, C, V]] }
+  "1961": { name: "Hallstahammar", terms: [[S, V, MP], [S, C, L], [S, V, L, MP]] }
+  "1962": { name: "Norberg", terms: [[S], [S, V], [S]] }
+  "1980": { name: "Västerås", terms: [[S, C, KD, MP], [S, C, L, MP], [S, C, V, KD]] }
+  "1981": { name: "Sala", terms: [[M, C, KD, L], [M, C, KD, L], [S, C, V, MP]] }
+  "1982": { name: "Fagersta", terms: [[S, V], [S, M, L], [S, M, C, L]] }
+  "1983": { name: "Köping", terms: [[S, V, MP], [S, M, V, L], [S, C, V, KD]] }
+  "1984": { name: "Arboga", terms: [[S, C, V], [M, C, V, KD, L, MP], [M, SD, KD, L]] }
+  "2021": { name: "Vansbro", terms: [[S, C], [M, C, KD], [S, M]] }
+  "2023": { name: "Malung- Sälen", terms: [[S, C, V], [S, C, L], [S, M]] }
+  "2026": { name: "Gagnef", terms: [[S], [S, M, C], [S, M, C]] }
+  "2029": { name: "Leksand", terms: [[M, C, KD, L], [M, C, KD, L], [S, M, C, L]] }
+  "2031": { name: "Rättvik", terms: [[M, C, KD, L], [M, C, KD], [M, C, KD]] }
+  "2034": { name: "Orsa", terms: [[M, C, KD, L, MP], [C, KD, MP], [S, C]] }
+  "2039": { name: "Älvdalen", terms: [[S, MP], [S, C, L], [S, C]] }
+  "2061": { name: "Smedjebacken", terms: [[S, V, MP], [S, V, MP], [S, V]] }
+  "2062": { name: "Mora", terms: [[M, C, KD, L], [M, C, KD], [M, C, KD]] }
+  "2080": { name: "Falun", terms: [[S, C, MP], [M, C, KD, L], [S, M]] }
+  "2081": { name: "Borlänge", terms: [[S, V, MP], [S, C, L, MP], [S, M]] }
+  "2082": { name: "Säter", terms: [[S, C], [S, C], [S, C, KD]] }
+  "2083": { name: "Hedemora", terms: [[S, C, V], [S, C, V], [S, M, MP]] }
+  "2084": { name: "Avesta", terms: [[S, V, MP], [S, V], [S, C]] }
+  "2085": { name: "Ludvika", terms: [[S, V, MP], [S, M, KD, L], [S, M, KD]] }
+  "2101": { name: "Ockelbo", terms: [[S, C], [S, C], [S]] }
+  "2104": { name: "Hofors", terms: [[S, V], [S, C, L], [S, C, L]] }
+  "2121": { name: "Ovanåker", terms: [[S, M, L, MP], [S, M, L], [S, C]] }
+  "2132": { name: "Nordanstig", terms: [[S, C, MP], [S, C], [S, M, L]] }
+  "2161": { name: "Ljusdal", terms: [[M, C, V, KD, L], [S, L, MP], [M, SD, KD, L]] }
+  "2180": { name: "Gävle", terms: [[S, V, MP], [S, C, L, MP], [S, C, KD, L, MP]] }
+  "2181": { name: "Sandviken", terms: [[S, C, MP], [S, C, L], [S, C, L]] }
+  "2182": { name: "Söderhamn", terms: [[S, V, MP], [M, C, KD, L], [M, C, KD, L]] }
+  "2183": { name: "Bollnäs", terms: [[S, V, L, MP], [S, M, MP], [S, M, C]] }
+  "2184": { name: "Hudiksvall", terms: [[S, V], [S, M, MP], [S, M, MP]] }
+  "2260": { name: "Ånge", terms: [[S], [S, V], [S, M, C, KD]] }
+  "2262": { name: "Timrå", terms: [[S, V], [S, V], [S, M]] }
+  "2280": { name: "Härnösand", terms: [[S, V, MP], [S, V, KD, MP], [S, V, KD, MP]] }
+  "2281": { name: "Sundsvall", terms: [[S, C, V], [S, C, V], [S, C, V]] }
+  "2282": { name: "Kramfors", terms: [[S, V, MP], [S, V], [S, V]] }
+  "2283": { name: "Sollefteå", terms: [[S, V], [C, V], [C, V]] }
+  "2284": { name: "Örnsköldsvik", terms: [[S, V], [S], [M, C, KD]] }
+  "2303": { name: "Ragunda", terms: [[S], [C, KD], [M, C, KD]] }
+  "2305": { name: "Bräcke", terms: [[S, V, L], [S, M, V], [S, C]] }
+  "2309": { name: "Krokom", terms: [[M, C, KD, MP], [M, C, KD, MP], [S, M, KD]] }
+  "2313": { name: "Strömsund", terms: [[S], [S, V], [S, C]] }
+  "2321": { name: "Åre", terms: [[S, M, MP], [C, KD], [S, V]] }
+  "2326": { name: "Berg", terms: [[S, MP], [S, C], [S, C]] }
+  "2361": { name: "Härjedalen", terms: [[S, V], [S, M, C], [S, M, C]] }
+  "2380": { name: "Östersund", terms: [[S, V, MP], [M, C, KD, L], [S, C]] }
+  "2401": { name: "Nordmaling", terms: [[C], [M, C, KD], [M, C, KD, L]] }
+  "2403": { name: "Bjurholm", terms: [[M, C, KD, L], [M, C, KD, L], [M, SD, KD, L]] }
+  "2404": { name: "Vindeln", terms: [[S, V], [S, V, KD], [S, KD]] }
+  "2409": { name: "Robertsfors", terms: [[S], [S, V], [S, V]] }
+  "2417": { name: "Norsjö", terms: [[S], [S, V], [S, V]] }
+  "2418": { name: "Malå", terms: [[S, V], [S, V], [V]] }
+  "2421": { name: "Storuman", terms: [[M, C, KD, L], [M, C, KD, L], [S, C, KD]] }
+  "2422": { name: "Sorsele", terms: [[M, C, V, KD], [C, V], [S, V]] }
+  "2425": { name: "Dorotea", terms: [[], [S, C, V, KD, L], [S, C, V, KD, L]] }
+  "2460": { name: "Vännäs", terms: [[S, V, MP], [S, M, V, MP], [S, M, V]] }
+  "2462": { name: "Vilhelmina", terms: [[S, V], [M, C, KD], [S]] }
+  "2463": { name: "Åsele", terms: [[C, L], [S], [S]] }
+  "2480": { name: "Umeå", terms: [[S], [S], [S, MP]] }
+  "2481": { name: "Lycksele", terms: [[S, V], [M, C, KD, L], [M, C, KD, L]] }
+  "2482": { name: "Skellefteå", terms: [[S], [S, V], [S, V]] }
+  "2505": { name: "Arvidsjaur", terms: [[S, V], [S, V], [S]] }
+  "2506": { name: "Arjeplog", terms: [[S], [S], [S, L]] }
+  "2510": { name: "Jokkmokk", terms: [[S, V], [S, V], [V, MP]] }
+  "2513": { name: "Överkalix", terms: [[M, C, V, L, MP], [S], [S]] }
+  "2514": { name: "Kalix", terms: [[S, V, MP], [S, V, MP], [S, C, MP]] }
+  "2518": { name: "Övertorneå", terms: [[M, C, KD], [C, V, KD], [C, V, KD]] }
+  "2521": { name: "Pajala", terms: [[S, V], [S, KD], [S, M, C, KD]] }
+  "2523": { name: "Gällivare", terms: [[M, V, MP], [S, V, MP], [S, MP]] }
+  "2560": { name: "Älvsbyn", terms: [[S, V], [S], [M, SD, KD, L]] }
+  "2580": { name: "Luleå", terms: [[S], [S], [S, V, MP]] }
+  "2581": { name: "Piteå", terms: [[S, V, MP], [S, V, MP], [S, C]] }
+  "2582": { name: "Boden", terms: [[S, KD, L, MP], [S, C, MP], [S]] }
+  "2583": { name: "Haparanda", terms: [[S, V], [M, C, KD], [S, V]] }
+  "2584": { name: "Kiruna", terms: [[S, M, V], [M, C, KD], [S, V]] }

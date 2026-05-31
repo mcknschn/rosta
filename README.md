@@ -72,7 +72,10 @@ och loggad**: **A = 0,6·a1 + 0,4·a2** — a2 (motionsprioritering, andel av eg
 täckning, och **a1 (budgetprioritering) är nu byggd och gated**: partiernas föreslagna utgiftsramar
 per UO ur officiella källor (budget 2025, bet. 2024/25:FiU1; troget transkriberade, ingen runtime-
 parser; [metod](docs/fas1b_budget_metod.md)) — a1 vägs in bara när alla 8 partier har verifierad ram
-för kategorins UO, annars faller A på a2. C (regeringsmakt) har full täckning; **D (resultat)
+för kategorins UO, annars faller A på a2. **C (ansvar/makt) blandar nu nationell regeringsmakt med
+subnationell makt** (SKR-styren: 21 regioner + 290 kommuner × 3 mandatperioder, Fas 1c) per kategori
+via en region/kommun-split efter lagstadgat ansvar — full täckning, hög säkerhet (c2 finansiering
+uppskjutet, ej neutralt byggbart → C = c1; [metod](docs/fas1c_subnational_metod.md)); **D (resultat)
 attribueras** från 17 officiella årsserier (15 direkta + 2 härledda) i ekonomi/välfärd/klimat/integration/trygghet
 där partiet haft nationell makt (klimat har 3 D-serier inkl. fossil energianvändning från Energimyndigheten,
 trygghet 3: dödligt våld + NTU-utsatthet + NTU-otrygghet från Brå, och två härledda SCB-serier:

@@ -1,63 +1,283 @@
 {
-  "claim:responsibility:S:national:2014-10-03/2019-01-21:government": {
-    "kind": "claim",
-    "statement": "S hade government (national) under 2014-10-03/2019-01-21.",
-    "source_name": "Regeringskansliet"
-  },
-  "claim:responsibility:MP:national:2014-10-03/2019-01-21:government": {
-    "kind": "claim",
-    "statement": "MP hade government (national) under 2014-10-03/2019-01-21.",
-    "source_name": "Regeringskansliet"
-  },
   "claim:responsibility:S:national:2019-01-21/2021-11-30:government": {
     "kind": "claim",
-    "statement": "S hade government (national) under 2019-01-21/2021-11-30.",
+    "statement": "S hade government (nationellt) under 2019-01-21/2021-11-30.",
     "source_name": "Regeringskansliet"
+  },
+  "claim:responsibility:M:regional:2022-2026:government": {
+    "kind": "claim",
+    "statement": "M ingick i det ledande styret i 11 regioner (regional) under 2022-2026.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:C:municipal:2018-2022:government": {
+    "kind": "claim",
+    "statement": "C ingick i det ledande styret i 201 regioner (municipal) under 2018-2022.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:M:national:2022-10-18/pagaende:government": {
+    "kind": "claim",
+    "statement": "M hade government (nationellt) under 2022-10-18/pagaende.",
+    "source_name": "Regeringskansliet"
+  },
+  "claim:responsibility:C:regional:2022-2026:government": {
+    "kind": "claim",
+    "statement": "C ingick i det ledande styret i 12 regioner (regional) under 2022-2026.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:S:regional:2018-2022:government": {
+    "kind": "claim",
+    "statement": "S ingick i det ledande styret i 9 regioner (regional) under 2018-2022.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:V:municipal:2014-2018:government": {
+    "kind": "claim",
+    "statement": "V ingick i det ledande styret i 102 regioner (municipal) under 2014-2018.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:KD:municipal:2018-2022:government": {
+    "kind": "claim",
+    "statement": "KD ingick i det ledande styret i 153 regioner (municipal) under 2018-2022.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:V:regional:2022-2026:government": {
+    "kind": "claim",
+    "statement": "V ingick i det ledande styret i 6 regioner (regional) under 2022-2026.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:L:municipal:2022-2026:government": {
+    "kind": "claim",
+    "statement": "L ingick i det ledande styret i 107 regioner (municipal) under 2022-2026.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:MP:municipal:2018-2022:government": {
+    "kind": "claim",
+    "statement": "MP ingick i det ledande styret i 69 regioner (municipal) under 2018-2022.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:S:municipal:2018-2022:government": {
+    "kind": "claim",
+    "statement": "S ingick i det ledande styret i 147 regioner (municipal) under 2018-2022.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:L:national:2022-10-18/pagaende:government": {
+    "kind": "claim",
+    "statement": "L hade government (nationellt) under 2022-10-18/pagaende.",
+    "source_name": "Regeringskansliet"
+  },
+  "claim:responsibility:M:regional:2014-2018:government": {
+    "kind": "claim",
+    "statement": "M ingick i det ledande styret i 5 regioner (regional) under 2014-2018.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:C:regional:2014-2018:government": {
+    "kind": "claim",
+    "statement": "C ingick i det ledande styret i 8 regioner (regional) under 2014-2018.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:M:regional:2018-2022:government": {
+    "kind": "claim",
+    "statement": "M ingick i det ledande styret i 13 regioner (regional) under 2018-2022.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:MP:regional:2022-2026:government": {
+    "kind": "claim",
+    "statement": "MP ingick i det ledande styret i 3 regioner (regional) under 2022-2026.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:C:municipal:2022-2026:government": {
+    "kind": "claim",
+    "statement": "C ingick i det ledande styret i 149 regioner (municipal) under 2022-2026.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:KD:municipal:2022-2026:government": {
+    "kind": "claim",
+    "statement": "KD ingick i det ledande styret i 138 regioner (municipal) under 2022-2026.",
+    "source_name": "skr"
   },
   "claim:responsibility:MP:national:2019-01-21/2021-11-30:government": {
     "kind": "claim",
-    "statement": "MP hade government (national) under 2019-01-21/2021-11-30.",
+    "statement": "MP hade government (nationellt) under 2019-01-21/2021-11-30.",
     "source_name": "Regeringskansliet"
   },
   "claim:responsibility:C:national:2019-01-21/2021-11-30:support": {
     "kind": "claim",
-    "statement": "C hade support (national) under 2019-01-21/2021-11-30.",
+    "statement": "C hade support (nationellt) under 2019-01-21/2021-11-30.",
     "source_name": "Regeringskansliet"
+  },
+  "claim:responsibility:S:regional:2022-2026:government": {
+    "kind": "claim",
+    "statement": "S ingick i det ledande styret i 13 regioner (regional) under 2022-2026.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:L:regional:2018-2022:government": {
+    "kind": "claim",
+    "statement": "L ingick i det ledande styret i 16 regioner (regional) under 2018-2022.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:V:regional:2018-2022:government": {
+    "kind": "claim",
+    "statement": "V ingick i det ledande styret i 2 regioner (regional) under 2018-2022.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:S:municipal:2014-2018:government": {
+    "kind": "claim",
+    "statement": "S ingick i det ledande styret i 194 regioner (municipal) under 2014-2018.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:M:municipal:2014-2018:government": {
+    "kind": "claim",
+    "statement": "M ingick i det ledande styret i 113 regioner (municipal) under 2014-2018.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:C:municipal:2014-2018:government": {
+    "kind": "claim",
+    "statement": "C ingick i det ledande styret i 144 regioner (municipal) under 2014-2018.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:SD:municipal:2022-2026:government": {
+    "kind": "claim",
+    "statement": "SD ingick i det ledande styret i 39 regioner (municipal) under 2022-2026.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:MP:national:2014-10-03/2019-01-21:government": {
+    "kind": "claim",
+    "statement": "MP hade government (nationellt) under 2014-10-03/2019-01-21.",
+    "source_name": "Regeringskansliet"
+  },
+  "claim:responsibility:V:regional:2014-2018:government": {
+    "kind": "claim",
+    "statement": "V ingick i det ledande styret i 13 regioner (regional) under 2014-2018.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:M:municipal:2018-2022:government": {
+    "kind": "claim",
+    "statement": "M ingick i det ledande styret i 161 regioner (municipal) under 2018-2022.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:L:municipal:2018-2022:government": {
+    "kind": "claim",
+    "statement": "L ingick i det ledande styret i 148 regioner (municipal) under 2018-2022.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:V:municipal:2018-2022:government": {
+    "kind": "claim",
+    "statement": "V ingick i det ledande styret i 60 regioner (municipal) under 2018-2022.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:SD:national:2022-10-18/pagaende:support": {
+    "kind": "claim",
+    "statement": "SD hade support (nationellt) under 2022-10-18/pagaende.",
+    "source_name": "Regeringskansliet"
+  },
+  "claim:responsibility:L:regional:2022-2026:government": {
+    "kind": "claim",
+    "statement": "L ingick i det ledande styret i 6 regioner (regional) under 2022-2026.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:S:regional:2014-2018:government": {
+    "kind": "claim",
+    "statement": "S ingick i det ledande styret i 16 regioner (regional) under 2014-2018.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:MP:municipal:2014-2018:government": {
+    "kind": "claim",
+    "statement": "MP ingick i det ledande styret i 124 regioner (municipal) under 2014-2018.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:L:municipal:2014-2018:government": {
+    "kind": "claim",
+    "statement": "L ingick i det ledande styret i 110 regioner (municipal) under 2014-2018.",
+    "source_name": "skr"
   },
   "claim:responsibility:L:national:2019-01-21/2021-11-30:support": {
     "kind": "claim",
-    "statement": "L hade support (national) under 2019-01-21/2021-11-30.",
+    "statement": "L hade support (nationellt) under 2019-01-21/2021-11-30.",
     "source_name": "Regeringskansliet"
   },
   "claim:responsibility:S:national:2021-11-30/2022-10-18:government": {
     "kind": "claim",
-    "statement": "S hade government (national) under 2021-11-30/2022-10-18.",
-    "source_name": "Regeringskansliet"
-  },
-  "claim:responsibility:M:national:2022-10-18/pagaende:government": {
-    "kind": "claim",
-    "statement": "M hade government (national) under 2022-10-18/pagaende.",
+    "statement": "S hade government (nationellt) under 2021-11-30/2022-10-18.",
     "source_name": "Regeringskansliet"
   },
   "claim:responsibility:KD:national:2022-10-18/pagaende:government": {
     "kind": "claim",
-    "statement": "KD hade government (national) under 2022-10-18/pagaende.",
+    "statement": "KD hade government (nationellt) under 2022-10-18/pagaende.",
     "source_name": "Regeringskansliet"
   },
-  "claim:responsibility:L:national:2022-10-18/pagaende:government": {
+  "claim:responsibility:MP:regional:2018-2022:government": {
     "kind": "claim",
-    "statement": "L hade government (national) under 2022-10-18/pagaende.",
+    "statement": "MP ingick i det ledande styret i 10 regioner (regional) under 2018-2022.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:KD:regional:2022-2026:government": {
+    "kind": "claim",
+    "statement": "KD ingick i det ledande styret i 12 regioner (regional) under 2022-2026.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:M:municipal:2022-2026:government": {
+    "kind": "claim",
+    "statement": "M ingick i det ledande styret i 175 regioner (municipal) under 2022-2026.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:MP:municipal:2022-2026:government": {
+    "kind": "claim",
+    "statement": "MP ingick i det ledande styret i 48 regioner (municipal) under 2022-2026.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:V:municipal:2022-2026:government": {
+    "kind": "claim",
+    "statement": "V ingick i det ledande styret i 58 regioner (municipal) under 2022-2026.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:S:national:2014-10-03/2019-01-21:government": {
+    "kind": "claim",
+    "statement": "S hade government (nationellt) under 2014-10-03/2019-01-21.",
     "source_name": "Regeringskansliet"
   },
-  "claim:responsibility:SD:national:2022-10-18/pagaende:support": {
+  "claim:responsibility:C:regional:2018-2022:government": {
     "kind": "claim",
-    "statement": "SD hade support (national) under 2022-10-18/pagaende.",
-    "source_name": "Regeringskansliet"
+    "statement": "C ingick i det ledande styret i 19 regioner (regional) under 2018-2022.",
+    "source_name": "skr"
   },
-  "claim:action:C:valfard:motioner": {
+  "claim:responsibility:KD:regional:2018-2022:government": {
     "kind": "claim",
-    "statement": "C lämnade 744 motioner i utskott kopplade till valfard.",
-    "source_name": "Riksdagen"
+    "statement": "KD ingick i det ledande styret i 13 regioner (regional) under 2018-2022.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:KD:regional:2014-2018:government": {
+    "kind": "claim",
+    "statement": "KD ingick i det ledande styret i 5 regioner (regional) under 2014-2018.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:S:municipal:2022-2026:government": {
+    "kind": "claim",
+    "statement": "S ingick i det ledande styret i 162 regioner (municipal) under 2022-2026.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:KD:municipal:2014-2018:government": {
+    "kind": "claim",
+    "statement": "KD ingick i det ledande styret i 100 regioner (municipal) under 2014-2018.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:MP:regional:2014-2018:government": {
+    "kind": "claim",
+    "statement": "MP ingick i det ledande styret i 19 regioner (regional) under 2014-2018.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:L:regional:2014-2018:government": {
+    "kind": "claim",
+    "statement": "L ingick i det ledande styret i 7 regioner (regional) under 2014-2018.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:SD:regional:2022-2026:government": {
+    "kind": "claim",
+    "statement": "SD ingick i det ledande styret i 1 region (regional) under 2022-2026.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:SD:municipal:2018-2022:government": {
+    "kind": "claim",
+    "statement": "SD ingick i det ledande styret i 4 regioner (municipal) under 2018-2022.",
+    "source_name": "skr"
   },
   "claim:action:C:ekonomi:motioner": {
     "kind": "claim",
@@ -82,6 +302,221 @@
   "claim:action:MP:forsvar:motioner": {
     "kind": "claim",
     "statement": "MP lämnade 147 motioner i utskott kopplade till forsvar.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:S:ekonomi:motioner": {
+    "kind": "claim",
+    "statement": "S lämnade 2660 motioner i utskott kopplade till ekonomi.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:S:integration:motioner": {
+    "kind": "claim",
+    "statement": "S lämnade 1135 motioner i utskott kopplade till integration.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:M:demokrati:motioner": {
+    "kind": "claim",
+    "statement": "M lämnade 1174 motioner i utskott kopplade till demokrati.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:SD:demokrati:motioner": {
+    "kind": "claim",
+    "statement": "SD lämnade 1248 motioner i utskott kopplade till demokrati.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:V:ekonomi:motioner": {
+    "kind": "claim",
+    "statement": "V lämnade 407 motioner i utskott kopplade till ekonomi.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:V:integration:motioner": {
+    "kind": "claim",
+    "statement": "V lämnade 254 motioner i utskott kopplade till integration.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:S:trygghet:motioner": {
+    "kind": "claim",
+    "statement": "S lämnade 440 motioner i utskott kopplade till trygghet.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:M:forsvar:motioner": {
+    "kind": "claim",
+    "statement": "M lämnade 660 motioner i utskott kopplade till forsvar.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:SD:forsvar:motioner": {
+    "kind": "claim",
+    "statement": "SD lämnade 616 motioner i utskott kopplade till forsvar.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:V:trygghet:motioner": {
+    "kind": "claim",
+    "statement": "V lämnade 156 motioner i utskott kopplade till trygghet.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:M:klimat:motioner": {
+    "kind": "claim",
+    "statement": "M lämnade 1612 motioner i utskott kopplade till klimat.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:SD:klimat:motioner": {
+    "kind": "claim",
+    "statement": "SD lämnade 672 motioner i utskott kopplade till klimat.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:C:klimat:motioner": {
+    "kind": "claim",
+    "statement": "C lämnade 631 motioner i utskott kopplade till klimat.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:L:ekonomi:motioner": {
+    "kind": "claim",
+    "statement": "L lämnade 735 motioner i utskott kopplade till ekonomi.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:L:integration:motioner": {
+    "kind": "claim",
+    "statement": "L lämnade 295 motioner i utskott kopplade till integration.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:S:valfard:motioner": {
+    "kind": "claim",
+    "statement": "S lämnade 1986 motioner i utskott kopplade till valfard.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:V:valfard:motioner": {
+    "kind": "claim",
+    "statement": "V lämnade 277 motioner i utskott kopplade till valfard.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:L:forsvar:motioner": {
+    "kind": "claim",
+    "statement": "L lämnade 223 motioner i utskott kopplade till forsvar.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:MP:klimat:motioner": {
+    "kind": "claim",
+    "statement": "MP lämnade 250 motioner i utskott kopplade till klimat.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:S:forsvar:motioner": {
+    "kind": "claim",
+    "statement": "S lämnade 429 motioner i utskott kopplade till forsvar.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:M:trygghet:motioner": {
+    "kind": "claim",
+    "statement": "M lämnade 1569 motioner i utskott kopplade till trygghet.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:SD:trygghet:motioner": {
+    "kind": "claim",
+    "statement": "SD lämnade 808 motioner i utskott kopplade till trygghet.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:V:forsvar:motioner": {
+    "kind": "claim",
+    "statement": "V lämnade 183 motioner i utskott kopplade till forsvar.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:L:valfard:motioner": {
+    "kind": "claim",
+    "statement": "L lämnade 514 motioner i utskott kopplade till valfard.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:C:valfard:motioner": {
+    "kind": "claim",
+    "statement": "C lämnade 744 motioner i utskott kopplade till valfard.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:C:trygghet:motioner": {
+    "kind": "claim",
+    "statement": "C lämnade 340 motioner i utskott kopplade till trygghet.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:KD:forsvar:motioner": {
+    "kind": "claim",
+    "statement": "KD lämnade 435 motioner i utskott kopplade till forsvar.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:MP:demokrati:motioner": {
+    "kind": "claim",
+    "statement": "MP lämnade 200 motioner i utskott kopplade till demokrati.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:KD:valfard:motioner": {
+    "kind": "claim",
+    "statement": "KD lämnade 534 motioner i utskott kopplade till valfard.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:C:forsvar:motioner": {
+    "kind": "claim",
+    "statement": "C lämnade 233 motioner i utskott kopplade till forsvar.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:KD:trygghet:motioner": {
+    "kind": "claim",
+    "statement": "KD lämnade 322 motioner i utskott kopplade till trygghet.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:MP:ekonomi:motioner": {
+    "kind": "claim",
+    "statement": "MP lämnade 509 motioner i utskott kopplade till ekonomi.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:MP:integration:motioner": {
+    "kind": "claim",
+    "statement": "MP lämnade 268 motioner i utskott kopplade till integration.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:S:klimat:motioner": {
+    "kind": "claim",
+    "statement": "S lämnade 600 motioner i utskott kopplade till klimat.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:V:klimat:motioner": {
+    "kind": "claim",
+    "statement": "V lämnade 84 motioner i utskott kopplade till klimat.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:MP:valfard:motioner": {
+    "kind": "claim",
+    "statement": "MP lämnade 373 motioner i utskott kopplade till valfard.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:C:demokrati:motioner": {
+    "kind": "claim",
+    "statement": "C lämnade 402 motioner i utskott kopplade till demokrati.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:KD:ekonomi:motioner": {
+    "kind": "claim",
+    "statement": "KD lämnade 1009 motioner i utskott kopplade till ekonomi.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:KD:integration:motioner": {
+    "kind": "claim",
+    "statement": "KD lämnade 339 motioner i utskott kopplade till integration.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:MP:trygghet:motioner": {
+    "kind": "claim",
+    "statement": "MP lämnade 100 motioner i utskott kopplade till trygghet.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:M:valfard:motioner": {
+    "kind": "claim",
+    "statement": "M lämnade 2939 motioner i utskott kopplade till valfard.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:SD:valfard:motioner": {
+    "kind": "claim",
+    "statement": "SD lämnade 1530 motioner i utskott kopplade till valfard.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:L:trygghet:motioner": {
+    "kind": "claim",
+    "statement": "L lämnade 226 motioner i utskott kopplade till trygghet.",
     "source_name": "Riksdagen"
   },
   "claim:action:S:demokrati:motioner": {
@@ -122,216 +557,6 @@
   "claim:action:L:demokrati:motioner": {
     "kind": "claim",
     "statement": "L lämnade 316 motioner i utskott kopplade till demokrati.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:M:valfard:motioner": {
-    "kind": "claim",
-    "statement": "M lämnade 2939 motioner i utskott kopplade till valfard.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:SD:valfard:motioner": {
-    "kind": "claim",
-    "statement": "SD lämnade 1530 motioner i utskott kopplade till valfard.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:L:trygghet:motioner": {
-    "kind": "claim",
-    "statement": "L lämnade 226 motioner i utskott kopplade till trygghet.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:KD:valfard:motioner": {
-    "kind": "claim",
-    "statement": "KD lämnade 534 motioner i utskott kopplade till valfard.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:S:forsvar:motioner": {
-    "kind": "claim",
-    "statement": "S lämnade 429 motioner i utskott kopplade till forsvar.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:M:trygghet:motioner": {
-    "kind": "claim",
-    "statement": "M lämnade 1569 motioner i utskott kopplade till trygghet.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:SD:trygghet:motioner": {
-    "kind": "claim",
-    "statement": "SD lämnade 808 motioner i utskott kopplade till trygghet.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:V:forsvar:motioner": {
-    "kind": "claim",
-    "statement": "V lämnade 183 motioner i utskott kopplade till forsvar.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:L:valfard:motioner": {
-    "kind": "claim",
-    "statement": "L lämnade 514 motioner i utskott kopplade till valfard.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:S:klimat:motioner": {
-    "kind": "claim",
-    "statement": "S lämnade 600 motioner i utskott kopplade till klimat.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:V:klimat:motioner": {
-    "kind": "claim",
-    "statement": "V lämnade 84 motioner i utskott kopplade till klimat.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:MP:valfard:motioner": {
-    "kind": "claim",
-    "statement": "MP lämnade 373 motioner i utskott kopplade till valfard.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:M:klimat:motioner": {
-    "kind": "claim",
-    "statement": "M lämnade 1612 motioner i utskott kopplade till klimat.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:SD:klimat:motioner": {
-    "kind": "claim",
-    "statement": "SD lämnade 672 motioner i utskott kopplade till klimat.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:S:trygghet:motioner": {
-    "kind": "claim",
-    "statement": "S lämnade 440 motioner i utskott kopplade till trygghet.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:M:forsvar:motioner": {
-    "kind": "claim",
-    "statement": "M lämnade 660 motioner i utskott kopplade till forsvar.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:SD:forsvar:motioner": {
-    "kind": "claim",
-    "statement": "SD lämnade 616 motioner i utskott kopplade till forsvar.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:V:trygghet:motioner": {
-    "kind": "claim",
-    "statement": "V lämnade 156 motioner i utskott kopplade till trygghet.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:C:klimat:motioner": {
-    "kind": "claim",
-    "statement": "C lämnade 631 motioner i utskott kopplade till klimat.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:L:ekonomi:motioner": {
-    "kind": "claim",
-    "statement": "L lämnade 735 motioner i utskott kopplade till ekonomi.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:L:integration:motioner": {
-    "kind": "claim",
-    "statement": "L lämnade 295 motioner i utskott kopplade till integration.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:S:valfard:motioner": {
-    "kind": "claim",
-    "statement": "S lämnade 1986 motioner i utskott kopplade till valfard.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:V:valfard:motioner": {
-    "kind": "claim",
-    "statement": "V lämnade 277 motioner i utskott kopplade till valfard.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:L:forsvar:motioner": {
-    "kind": "claim",
-    "statement": "L lämnade 223 motioner i utskott kopplade till forsvar.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:MP:klimat:motioner": {
-    "kind": "claim",
-    "statement": "MP lämnade 250 motioner i utskott kopplade till klimat.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:C:demokrati:motioner": {
-    "kind": "claim",
-    "statement": "C lämnade 402 motioner i utskott kopplade till demokrati.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:KD:ekonomi:motioner": {
-    "kind": "claim",
-    "statement": "KD lämnade 1009 motioner i utskott kopplade till ekonomi.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:KD:integration:motioner": {
-    "kind": "claim",
-    "statement": "KD lämnade 339 motioner i utskott kopplade till integration.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:MP:trygghet:motioner": {
-    "kind": "claim",
-    "statement": "MP lämnade 100 motioner i utskott kopplade till trygghet.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:S:ekonomi:motioner": {
-    "kind": "claim",
-    "statement": "S lämnade 2660 motioner i utskott kopplade till ekonomi.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:S:integration:motioner": {
-    "kind": "claim",
-    "statement": "S lämnade 1135 motioner i utskott kopplade till integration.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:M:demokrati:motioner": {
-    "kind": "claim",
-    "statement": "M lämnade 1174 motioner i utskott kopplade till demokrati.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:SD:demokrati:motioner": {
-    "kind": "claim",
-    "statement": "SD lämnade 1248 motioner i utskott kopplade till demokrati.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:V:ekonomi:motioner": {
-    "kind": "claim",
-    "statement": "V lämnade 407 motioner i utskott kopplade till ekonomi.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:V:integration:motioner": {
-    "kind": "claim",
-    "statement": "V lämnade 254 motioner i utskott kopplade till integration.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:C:trygghet:motioner": {
-    "kind": "claim",
-    "statement": "C lämnade 340 motioner i utskott kopplade till trygghet.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:KD:forsvar:motioner": {
-    "kind": "claim",
-    "statement": "KD lämnade 435 motioner i utskott kopplade till forsvar.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:MP:demokrati:motioner": {
-    "kind": "claim",
-    "statement": "MP lämnade 200 motioner i utskott kopplade till demokrati.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:C:forsvar:motioner": {
-    "kind": "claim",
-    "statement": "C lämnade 233 motioner i utskott kopplade till forsvar.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:KD:trygghet:motioner": {
-    "kind": "claim",
-    "statement": "KD lämnade 322 motioner i utskott kopplade till trygghet.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:MP:ekonomi:motioner": {
-    "kind": "claim",
-    "statement": "MP lämnade 509 motioner i utskott kopplade till ekonomi.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:MP:integration:motioner": {
-    "kind": "claim",
-    "statement": "MP lämnade 268 motioner i utskott kopplade till integration.",
     "source_name": "Riksdagen"
   },
   "claim:observed_result:obs:scb:arbetsloshet:2001": {

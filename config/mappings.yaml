@@ -72,14 +72,185 @@ committee_to_category:
   KU:  demokrati      # Konstitutionsutskottet
   KrU: demokrati      # Kulturutskottet
 
-# Region- och kommunstyren (för regionalt/kommunalt ansvar, delpoäng C/D).
-# Källa: SKR "Styren i kommuner och regioner" efter varje val. Fylls i Fas 1.
-# Struktur (exempel):
-#   regions:
-#     "Region Stockholm":
-#       - { term: 2014-2018, leading_parties: [...] }
+# Region- och kommunstyren (för regionalt/kommunalt ansvar, delpoäng C). Detta är
+# strukturering av en officiell källa i config, inte handsatta betyg.
+#
+# REGIONER: alla 21 regioner × 3 mandatperioder (post-val-styret efter valen 2014/2018/
+# 2022), troget transkriberade ur SKR:s officiella öppna-data-sammanställning "Styren i
+# regioner 1994-2022" (catalog.skl.se dataset 80) via pipeline/tools/skr_regions_transcribe.py.
+# 2022-perioden korsverifierad mot SKR:s separata fil "Styren i regioner efter valet 2022"
+# (matchar 1994-2022-filen exakt, 21/21 regioner) och kontrollsummorna nedan matchar SKR:s
+# halvtidsuppföljnings-PDF (2024-11-30) "efter valet"-tal exakt. Ingen runtime-parser —
+# config är källan till sanning (jfr config/budget_ramar.yaml). Metod: docs/fas1c_subnational_metod.md.
+#
+# leading_parties = de av de 8 riksdagspartierna (S,M,SD,C,V,KD,L,MP) som ingår i styret.
+# Lokala partier (ÖP/"Övrigt parti", t.ex. Sjukvårdspartiet) noteras i local_parties men
+# poängsätts ALDRIG — modellen bedömer bara de 8. Mandatperiod-skiften mitt i perioden
+# modelleras ej (SKR:s primära sammanställning är post-val; jfr nationella government_periods).
+# strength per parti i ett styre sätts av skr.py (1/antal leading_parties, 1.0 vid enpartistyre).
 subnational_governance:
-  status: pending_fas1
-  source: "SKR – Styren i kommuner och regioner"
-  regions: {}
-  municipalities: {}
+  status: regions_complete           # 21/21 regioner × 3 perioder; kommuner = pending (se nedan)
+  sources:
+    skr_styren_regioner_1994_2022:
+      title: "SKR – Styren i regioner 1994-2022 (öppna data)"
+      url: "https://catalog.skl.se/catalog/1/datasets/80"
+      retrieved: 2026-05-31
+      note: "Officiell SKR-sammanställning (CSV/Excel/JSON). Post-val-styre per region och mandatperiod."
+    skr_styre_regioner_valet_2022:
+      title: "SKR – Styren i regioner efter valet 2022"
+      url: "https://skr.se/skr/demokratiledningstyrning/valmaktfordelning/valresultatstyren.4696.html"
+      retrieved: 2026-05-31
+      note: "Korsverifiering av 2022-perioden; matchar 1994-2022-filen exakt (21/21 regioner)."
+  # Mandatperioder för kommun-/regionfullmäktige (kommunallagen: tillträde 15 oktober valåret).
+  # Sista periodens slut klipps mot fönstrets slut (nästa val 2026-09-13) i scoringen.
+  terms:
+    - { id: "2014-2018", start: 2014-10-15, end: 2018-10-15 }
+    - { id: "2018-2022", start: 2018-10-15, end: 2022-10-15 }
+    - { id: "2022-2026", start: 2022-10-15, end: 2026-10-15 }
+  # Vilken/vilka källor varje mandatperiod är hämtad ur (källa per styre uppfylls genom att
+  # varje (region, period) ärver periodens källor; skr.py bygger source_ref per rad).
+  term_source:
+    "2014-2018": [skr_styren_regioner_1994_2022]
+    "2018-2022": [skr_styren_regioner_1994_2022]
+    "2022-2026": [skr_styren_regioner_1994_2022, skr_styre_regioner_valet_2022]
+  regions:
+    "01":
+      name: "Region Stockholm"
+      terms:
+        "2014-2018": { leading_parties: [M, C, KD, L] }
+        "2018-2022": { leading_parties: [M, C, KD, L, MP] }
+        "2022-2026": { leading_parties: [S, C, MP] }
+    "03":
+      name: "Region Uppsala"
+      terms:
+        "2014-2018": { leading_parties: [S, V, MP] }
+        "2018-2022": { leading_parties: [M, C, KD, L, MP] }
+        "2022-2026": { leading_parties: [M, C, KD, L] }
+    "04":
+      name: "Region Sörmland"
+      terms:
+        "2014-2018": { leading_parties: [S, C, L, MP] }
+        "2018-2022": { leading_parties: [S, C], local_parties: "Vård för Pengarna" }
+        "2022-2026": { leading_parties: [M, C, KD], local_parties: "Vård för pengarna" }
+    "05":
+      name: "Region Östergötland"
+      terms:
+        "2014-2018": { leading_parties: [S, C, L, MP] }
+        "2018-2022": { leading_parties: [S, C, L, MP] }
+        "2022-2026": { leading_parties: [M, KD, L] }
+    "06":
+      name: "Region Jönköpings län"
+      terms:
+        "2014-2018": { leading_parties: [M, C, KD, L] }
+        "2018-2022": { leading_parties: [S, C, KD, L, MP], local_parties: "Bevara Akutsjukhusen - BA" }
+        "2022-2026": { leading_parties: [S, M], local_parties: "Bevara Akutsjukhusen" }
+    "07":
+      name: "Region Kronoberg"
+      terms:
+        "2014-2018": { leading_parties: [S, V, MP] }
+        "2018-2022": { leading_parties: [M, C, KD, L] }
+        "2022-2026": { leading_parties: [M, C, KD, L] }
+    "08":
+      name: "Region Kalmar län"
+      terms:
+        "2014-2018": { leading_parties: [S, V, MP] }
+        "2018-2022": { leading_parties: [S, C, L] }
+        "2022-2026": { leading_parties: [S, C, V] }
+    "09":
+      name: "Region Gotland"          # län 09 / kommun 0980 (kommun som fullgör regionuppgifter)
+      terms:
+        "2014-2018": { leading_parties: [S, V, MP] }
+        "2018-2022": { leading_parties: [M, C, KD, L] }
+        "2022-2026": { leading_parties: [S, M] }
+    "10":
+      name: "Region Blekinge"
+      terms:
+        "2014-2018": { leading_parties: [S, V, MP] }
+        "2018-2022": { leading_parties: [M, C, KD, L] }
+        "2022-2026": { leading_parties: [S, C, KD] }
+    "12":
+      name: "Region Skåne"
+      terms:
+        "2014-2018": { leading_parties: [S, MP] }
+        "2018-2022": { leading_parties: [M, C, KD, L] }
+        "2022-2026": { leading_parties: [M, KD, L] }
+    "13":
+      name: "Region Halland"
+      terms:
+        "2014-2018": { leading_parties: [M, C, KD, L, MP] }
+        "2018-2022": { leading_parties: [M, C, KD, L] }
+        "2022-2026": { leading_parties: [M, C, KD, L] }
+    "14":
+      name: "Västra Götalandsregionen"
+      terms:
+        "2014-2018": { leading_parties: [M, C, KD, L, MP] }
+        "2018-2022": { leading_parties: [M, C, KD, L, MP] }
+        "2022-2026": { leading_parties: [S, V, MP] }
+    "17":
+      name: "Region Värmland"
+      terms:
+        "2014-2018": { leading_parties: [M, C, KD, L, MP], local_parties: "Sjukvårdspartiet i Värmland" }
+        "2018-2022": { leading_parties: [M, C, KD, L, MP], local_parties: "Sjukvårdspartiet i Värmland" }
+        "2022-2026": { leading_parties: [S, C, V] }
+    "18":
+      name: "Region Örebro län"
+      terms:
+        "2014-2018": { leading_parties: [S, V, MP] }
+        "2018-2022": { leading_parties: [S, C, KD] }
+        "2022-2026": { leading_parties: [S, C, KD] }
+    "19":
+      name: "Region Västmanland"
+      terms:
+        "2014-2018": { leading_parties: [S, V, MP] }
+        "2018-2022": { leading_parties: [S, C, L] }
+        "2022-2026": { leading_parties: [M, KD, L] }
+    "20":
+      name: "Region Dalarna"
+      terms:
+        "2014-2018": { leading_parties: [S, V, MP] }
+        "2018-2022": { leading_parties: [M, C, KD, L, MP], local_parties: "DSP" }
+        "2022-2026": { leading_parties: [S, C, KD], local_parties: "DSP" }
+    "21":
+      name: "Region Gävleborg"
+      terms:
+        "2014-2018": { leading_parties: [S, C, V, MP] }
+        "2018-2022": { leading_parties: [S, C, V, MP] }
+        "2022-2026": { leading_parties: [M, SD, KD], local_parties: "Sjukvårdspartiet Gävleborg" }
+    "22":
+      name: "Region Västernorrland"
+      terms:
+        "2014-2018": { leading_parties: [S, V, MP] }
+        "2018-2022": { leading_parties: [S, M, L] }
+        "2022-2026": { leading_parties: [S, M, C] }
+    "23":
+      name: "Region Jämtland Härjedalen"
+      terms:
+        "2014-2018": { leading_parties: [S, V, MP] }
+        "2018-2022": { leading_parties: [M, C, KD, L, MP] }
+        "2022-2026": { leading_parties: [S, V, KD] }
+    "24":
+      name: "Region Västerbotten"
+      terms:
+        "2014-2018": { leading_parties: [S, V, MP] }
+        "2018-2022": { leading_parties: [S, V, MP] }
+        "2022-2026": { leading_parties: [S, V, MP] }
+    "25":
+      name: "Region Norrbotten"
+      terms:
+        "2014-2018": { leading_parties: [S, V, MP] }
+        "2018-2022": { leading_parties: [M, C], local_parties: "Sjukvårdspartiet" }
+        "2022-2026": { leading_parties: [S, C, V] }
+  # Kontrollsummor (antal regioner med partiet i styret per valår) — matchar SKR:s
+  # halvtidsuppföljnings-PDF 2024-11-30 ("efter valet"-talen) för 2022 exakt:
+  #   2014: S=16  M=5   SD=0  C=8   V=13  KD=5   L=7   MP=19
+  #   2018: S=9   M=13  SD=0  C=19  V=2   KD=13  L=16  MP=10
+  #   2022: S=13  M=11  SD=1  C=12  V=6   KD=12  L=6   MP=3   (+ 4 lokala styren: Övriga=4)
+  municipalities:
+    status: complete                   # alla 290 kommuner × 3 mandatperioder inlästa
+    source: "SKR – Styren i kommuner 1994-2022 (öppna data, catalog.skl.se resource/127)"
+    source_url: "https://catalog.skl.se/store/1/resource/127"
+    # Datan ligger i en EGEN fil (290 poster) för att hålla mappings.yaml läsbar; genereras ur
+    # den officiella CSV:n av pipeline/tools/skr_municipalities_transcribe.py. Subnationell C bärs
+    # nu av BÅDE regioner och kommuner (per-kategori region/kommun-split i scoring.yaml:C_ansvar).
+    # Se docs/fas1c_subnational_metod.md.
+    file: config/subnational_municipalities.yaml

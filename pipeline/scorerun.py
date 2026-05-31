@@ -46,6 +46,61 @@ def government_fractions() -> dict[str, float]:
     return {p: min(1.0, v) for p, v in frac.items()}
 
 
+def regional_fractions() -> dict[str, float]:
+    """Andel av regionalt styre varje parti haft över fönstret (subnationell makt för C).
+
+    Varje (region, mandatperiod)-cell väger LIKA (mandatperioderna är jämnstora 4-årscykler;
+    jfr national som dagväger eftersom regeringsperioder är oregelbundna). I en cell delas
+    makten jämnt mellan de ledande riksdagspartierna (1/antal; lokala partier räknas ej).
+    Resultat i [0,1] per parti. Tom dict om regiondata saknas -> C faller på nationell makt.
+    """
+    sg = config.mappings().get("subnational_governance", {})
+    regions = sg.get("regions") or {}
+    if not regions:
+        return {}
+    frac = {p: 0.0 for p in config.party_codes()}
+    cells = 0
+    for region in regions.values():
+        for styre in region.get("terms", {}).values():
+            cells += 1
+            leading = styre.get("leading_parties", [])
+            if not leading:
+                continue
+            share = 1.0 / len(leading)
+            for p in leading:
+                if p in frac:
+                    frac[p] += share
+    if cells == 0:
+        return {}
+    return {p: v / cells for p, v in frac.items()}
+
+
+def municipal_fractions() -> dict[str, float]:
+    """Andel av kommunalt styre varje parti haft över fönstret (subnationell makt för C).
+
+    Samma metod som regional_fractions: varje (kommun, mandatperiod)-cell väger lika; i en cell
+    delas makten jämnt mellan de ledande riksdagspartierna (lokala partier räknas ej). Läser
+    config/subnational_municipalities.yaml (terms = lista per mandatperiod). Tom dict om data saknas.
+    """
+    data = config.subnational_municipalities().get("municipalities") or {}
+    if not data:
+        return {}
+    frac = {p: 0.0 for p in config.party_codes()}
+    cells = 0
+    for entry in data.values():
+        for leading in entry.get("terms", []):
+            cells += 1
+            if not leading:
+                continue
+            share = 1.0 / len(leading)
+            for p in leading:
+                if p in frac:
+                    frac[p] += share
+    if cells == 0:
+        return {}
+    return {p: v / cells for p, v in frac.items()}
+
+
 def _parsed_periods() -> list[tuple[date, date, list[str], list[str]]]:
     out = []
     for gp in config.mappings()["government_periods"]:
@@ -170,12 +225,66 @@ def category_d(
     return out
 
 
-def _c_confidence(category: str) -> str:
-    """C-säkerhet: hög där subnationell vikt är 0 per design (forsvar), annars medel (lucka)."""
-    ca = config.scoring()["C_ansvar"]
-    ov = ca["level_weights_overrides"].get(category)
-    reg = ov["regional_municipal"] if ov else ca["level_weights_default"]["regional_municipal"]
-    return "high" if reg == 0 else "medium"
+_CONF_ORDER = ["high", "medium", "low"]
+
+
+def _step_down_confidence(level: str, steps: int) -> str:
+    """Sänker en säkerhetsnivå 'steps' steg (high->medium->low), klampat i botten."""
+    i = min(len(_CONF_ORDER) - 1, _CONF_ORDER.index(level) + max(0, steps))
+    return _CONF_ORDER[i]
+
+
+def category_c(
+    nat_frac: dict[str, float], reg_frac: dict[str, float], mun_frac: dict[str, float],
+    parties: list[str], cats: list[str],
+) -> tuple[dict[str, dict[str, float]], dict[str, str], dict[str, list[str]]]:
+    """C (genomförbarhet/ansvar) per kategori: rank-normaliserad c1-makt + säkerhet + flaggor.
+
+    c1 = makt. Subnationell makt = per-kategori region/kommun-split av (reg_frac, mun_frac) enligt
+    scoring.subnational_split; den blandas sedan med nationell makt enligt level_weights. Alla
+    fraktioner är "andel av tillgänglig makt" i [0,1] -> linjär blandning, rank-normaliseras EN
+    gång per kategori (relativ delpoäng). c2 (finansiering) är ännu ej byggd -> C = c1 (ingen
+    0.7-multiplikation). Tre fall:
+      * forsvar (regional_municipal=0): ren nationell makt, säkerhet oförändrad (hög, per design).
+      * subnationell data finns (regioner+kommuner): blanda nat + (region/kommun-split per kategori);
+        full täckning -> C:s default-säkerhet (hög), ingen caveat-flagga.
+      * subnationell data SAKNAS (guard, t.ex. fil borta): missing_subnational-fallback -> omvikta
+        till 100 % nationellt, sänk säkerhet, flagga C_missing_subnational.
+    """
+    sc = config.scoring()
+    ca = sc["C_ansvar"]
+    lw_default = ca["level_weights_default"]
+    lw_over = ca.get("level_weights_overrides", {})
+    split_default = ca["subnational_split_default"]
+    split_over = ca.get("subnational_split_overrides", {})
+    penalty = int(ca.get("missing_subnational", {}).get("confidence_penalty_steps", 1))
+    default_c = sc["uncertainty"]["default_subscore_certainty"]["C"]
+    have_subnational = bool(reg_frac) and bool(mun_frac)
+
+    by_cat: dict[str, dict[str, float]] = {}
+    conf_by_cat: dict[str, str] = {}
+    flags_by_cat: dict[str, list[str]] = {}
+    for c in cats:
+        lw = lw_over.get(c, lw_default)
+        w_reg = float(lw["regional_municipal"])
+        if w_reg == 0:
+            blended = nat_frac
+            conf_by_cat[c] = default_c
+            flags_by_cat[c] = ["C_national_only_by_design"]
+        elif have_subnational:
+            split = split_over.get(c, split_default)
+            sr, sm = float(split["region"]), float(split["municipal"])
+            w_nat = float(lw["national"])
+            subnat = {p: sr * reg_frac.get(p, 0.0) + sm * mun_frac.get(p, 0.0) for p in parties}
+            blended = {p: w_nat * nat_frac[p] + w_reg * subnat[p] for p in parties}
+            conf_by_cat[c] = default_c       # full region+kommun-täckning -> ingen sänkning
+            flags_by_cat[c] = []
+        else:
+            blended = nat_frac               # guard: subnationell data saknas
+            conf_by_cat[c] = _step_down_confidence(default_c, penalty)
+            flags_by_cat[c] = ["C_missing_subnational"]
+        by_cat[c] = score.rank_normalize(blended)
+    return by_cat, conf_by_cat, flags_by_cat
 
 
 def _source_name(ref: str) -> str:
@@ -229,8 +338,12 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
             a_by_cat[c] = a2_by_cat[c]
             a_flag_by_cat[c] = "A_a2_only"
 
-    # C: rank-normaliserad regeringsmakt (nationell andel).
-    c_score = score.rank_normalize(government_fractions())
+    # C: per-kategori c1-makt = nationell + subnationell maktandel, blandad enligt level_weights
+    # och rank-normaliserad. Subnationell makt = per-kategori region/kommun-split av SKR-styren
+    # (21 regioner + 290 kommuner × 3 mandatperioder, Fas 1c); forsvar = nationellt. Se category_c.
+    c_by_cat, c_conf_by_cat, c_flags_by_cat = category_c(
+        government_fractions(), regional_fractions(), municipal_fractions(), parties, cats
+    )
 
     # D: resultatattribution (Fas 5b) per (parti, kategori).
     d_res = category_d(con, parties, cats)
@@ -309,10 +422,11 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
                 b_flags.append("B_no_party_evidence")
 
             d_score, d_measured, d_thin = d_res[(p, c)]
-            comps = {"A": a_by_cat[c][p], "B": b_val, "C": c_score[p], "D": d_score}
-            overrides = {"B": b_conf, "C": _c_confidence(c)}
+            comps = {"A": a_by_cat[c][p], "B": b_val, "C": c_by_cat[c][p], "D": d_score}
+            overrides = {"B": b_conf, "C": c_conf_by_cat[c]}
             flags = list(b_flags)
             flags.append(a_flag_by_cat[c])
+            flags += c_flags_by_cat[c]
             if d_measured:
                 overrides["D"] = d_measured_conf
                 if d_thin:
@@ -344,7 +458,11 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
                          f"motioner, full; a1 budgetprioritering gated — aktiv för "
                          f"{len(a1_active)}/{len(cats)} kategorier ur officiella utgiftsramar, "
                          "version 0, annars a2-fallback); "
-                         "C=regeringsmakt (full); D=resultatattribution från officiella "
+                         "C=makt per kategori: nationell regeringsmakt blandad med subnationell "
+                         "makt (SKR-styren, 21 regioner + 290 kommuner × 3 mandatperioder) via en "
+                         "per-kategori region/kommun-split efter lagstadgat ansvar; forsvar "
+                         "nationellt per design; c2 finansiering ännu ej byggd (C=c1 makt); "
+                         "D=resultatattribution från officiella "
                          "årsserier för ekonomi/välfärd/klimat/integration där partiet haft "
                          "nationell makt (medel säkerhet, ej tillämplig för partier utan makt "
                          "och för trygghet/försvar/demokrati som saknar D-data). B är AKTIVERAD "

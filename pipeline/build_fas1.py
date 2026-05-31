@@ -11,7 +11,7 @@ import sys
 from datetime import date
 
 from . import warehouse
-from .sources import government, riksdagen
+from .sources import government, riksdagen, skr
 
 # Riksmöten i fönstret (3 mandatperioder). Voteringsprovet spänner hela fönstret (Fas 1b),
 # sampelt per riksmöte (max_pages) eftersom full per-ledamot-votering är ~miljonskala.
@@ -32,6 +32,14 @@ def main(votes_pages: int = 2) -> None:
     resp_rows = government.build_national_responsibility()
     n_resp = warehouse.upsert(con, "responsibility", resp_rows)
     print(f"responsibility (national): {n_resp} rader")
+
+    # 1b. Subnationellt ansvar (deterministiskt ur SKR-styren): regioner + kommuner.
+    reg_rows = skr.build_regional_responsibility()
+    n_reg = warehouse.upsert(con, "responsibility", reg_rows)
+    print(f"responsibility (regional): {n_reg} rader ({len({r['geography'] for r in reg_rows})} regioner)")
+    mun_rows = skr.build_municipal_responsibility()
+    n_mun = warehouse.upsert(con, "responsibility", mun_rows)
+    print(f"responsibility (municipal): {n_mun} rader ({len({r['geography'] for r in mun_rows})} kommuner)")
 
     # 2. Motionsaktivitet per (parti, utskott), hela fönstret -> party_activity.
     print("hämtar motionsräkning per parti×utskott (full täckning, ~120 anrop) ...")
@@ -74,7 +82,7 @@ def main(votes_pages: int = 2) -> None:
     print("   a1 budgetprioritering: kräver robust parsning av budgetmotioners anslag per UO.")
     print("       Medvetet uppskjuten — A:s tyngsta vikt; en bräcklig parser får inte korrumpera A.")
     print("   actions(votering): prov per riksmöte (max_pages), ej uttömmande; matar ännu inget betyg.")
-    print("   responsibility regional/kommunal: väntar på SKR-styren (mappings.subnational_governance).")
+    print("   responsibility subnationell: 21 regioner + 290 kommuner × 3 mandatperioder (SKR-styren) -> C.")
     con.close()
 
 

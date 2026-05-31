@@ -17,14 +17,22 @@ def build_claims(con: duckdb.DuckDBPyConnection) -> list[dict[str, Any]]:
     """Provenance-claims ur warehouse. Varje claim har minst en source_ref."""
     claims: list[dict[str, Any]] = []
 
-    # Ansvar (C): en claim per responsibility-rad.
-    for party, level, period, role, src in con.execute(
-        "SELECT party, level, period, role, source_ref FROM responsibility"
+    # Ansvar (C): en claim per (parti, nivå, period, roll). Regionala rader aggregeras
+    # (en rad per region × period) till en summerande claim med regionantal — annars
+    # kolliderar id:n och evidensindexet sväller. national: "Riket"; regional: antal regioner.
+    for party, level, period, role, n, src in con.execute(
+        "SELECT party, level, period, role, count(*), max(source_ref) FROM responsibility "
+        "GROUP BY party, level, period, role"
     ).fetchall():
+        if level == "national":
+            statement = f"{party} hade {role} (nationellt) under {period}."
+        else:
+            unit = "region" if n == 1 else "regioner"
+            statement = f"{party} ingick i det ledande styret i {n} {unit} ({level}) under {period}."
         claims.append({
             "id": f"claim:responsibility:{party}:{level}:{period}:{role}",
             "type": "responsibility", "party": party, "period": period,
-            "statement": f"{party} hade {role} ({level}) under {period}.",
+            "statement": statement,
             "source_refs": [src],
         })
 

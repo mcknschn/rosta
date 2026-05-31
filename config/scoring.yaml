@@ -76,6 +76,14 @@ C_ansvar:
   components:
     c1_makt: 0.7
     c2_finansiering: 0.3
+  # c2 (finansiering) är UPPSKJUTET (beslut Fas 1c) -> C = c1 (makt) tills vidare; koden väger
+  # inte in c2 (category_c returnerar c1). Skäl: ett objektivt, RIKTNINGSNEUTRALT och
+  # differentierande finansieringsmått går inte att bygga ur officiell svensk data — alla
+  # partibudgetar är formellt fullt finansierade (rambeslutsmodellen) => likformigt; ett
+  # saldo-/ramverksmått skulle gynna åtstramning => bryter neutraliteten (CLAUDE.md); och
+  # "driver de det de lovar" fångas redan distribuerat av A (prioritering) + B (källbelagda
+  # ståndpunkter) + D (resultat under makt). Komponentvikterna behålls som dokumenterad
+  # avsikt om en neutral källa skulle uppstå. Se docs/fas1c_subnational_metod.md §c2.
   # Nationellt vs regionalt/kommunalt ansvar vägs per kategori.
   level_weights_default:
     national: 0.7
@@ -84,8 +92,20 @@ C_ansvar:
     valfard:   { national: 0.4, regional_municipal: 0.6 }
     trygghet:  { national: 0.8, regional_municipal: 0.2 }
     forsvar:   { national: 1.0, regional_municipal: 0.0 }
-  # Fallback när subnationell data SAKNAS (ej samma sak som vikt=0 per design, t.ex. forsvar):
-  #   omvikta level_weights till 100 % national OCH sänk C:s confidence ett steg.
+  # Inom den KOMBINERADE regional_municipal-bucketen: hur mycket bärs av REGION resp. KOMMUN
+  # per kategori (vikterna summerar till 1). Bestäms av den lagstadgade ansvarsfördelningen —
+  # vilken nivå som faktiskt driver verksamheten — INTE av ideologi. Båda nivåerna har nu full
+  # datatäckning (21 regioner + 290 kommuner × 3 mandatperioder, SKR-styren, Fas 1c).
+  subnational_split_default: { region: 0.30, municipal: 0.70 }   # kommuner är fler/tyngre lokal utförare
+  subnational_split_overrides:
+    valfard:     { region: 0.45, municipal: 0.55 }   # region=hälso/sjukvård; kommun=skola, äldreomsorg, IFO
+    trygghet:    { region: 0.0,  municipal: 1.0 }    # regioner saknar lagstadgat trygghetsansvar (polis=nat, brottsförebyggande/socialtjänst=kommun)
+    integration: { region: 0.0,  municipal: 1.0 }    # mottagande/SFI/ekonomiskt bistånd = kommunalt
+    klimat:      { region: 0.40, municipal: 0.60 }   # region=kollektivtrafik; kommun=fysisk planering/energi/avfall
+    # ekonomi, demokrati -> default (region: regional utveckling/kultur; kommun: mark/näringsliv/lokal demokrati)
+  # Fallback när subnationell data saknas/ej är en giltig proxy (ej samma sak som vikt=0 per
+  # design, t.ex. forsvar): omvikta level_weights till 100 % national OCH sänk C:s confidence.
+  # Med full region+kommun-täckning triggas detta i praktiken bara om en datafil saknas (guard).
   missing_subnational:
     reweight_to_national: true
     confidence_penalty_steps: 1            # high->medium->low
