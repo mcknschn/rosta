@@ -52,6 +52,30 @@ högre coverage → mindre B-krympning → B får faktiskt genomslag.
   auditerbart via [skjutningar_transcribe.py](../pipeline/tools/skjutningar_transcribe.py) (alla 8 år,
   båda serierna). Reader [polisen.py](../pipeline/sources/polisen.py) + golden-test + ur allowlisten.
   Preliminär (Polisens källnotis). Trygghets-D mäts nu även via grov brottslighet.
+- ✅ **O2 — dist-snapshot/diff** ([score_diff.py](../pipeline/tools/score_diff.py)): reducerar
+  scores.json till en kompakt baslinje (`dist/scores.snapshot.json`) och diffar ranking/betyg/flaggor
+  mot den, så tysta betygsändringar mellan datauppdateringar syns. Golden-testat.
+- ✅ **O3 — live smoke-test** ([test_sources_live.py](../tests/test_sources_live.py)): kontrollerar att
+  SCB/Kolada/Energimyndigheten/Brå-endpoints svarar med förväntad form (fångar käll-/hash-drift).
+  Opt-in (`ROSTA_LIVE=1`); CI kör plain pytest → skippas, förblir grön. **Spår O komplett (O1–O3).**
+
+### Status per spår efter nattkörning 2026-06-04
+
+| Spår | Status |
+|------|--------|
+| **D** (datatäckning) | uppklaringsgrad + skjutningar/sprängningar **levererade**. Återstående D-källor **uttömda/blockerade** (se [coverage_allowlist](../config/coverage_allowlist.yaml) med precisa skäl): återfall (PDF prel/slutlig + metodbrott), handläggning (interaktiv DB), overlevnad (Kolada N79196 finns men **kvinkennial** → inkompatibel med D:s konsekutiva-år-krav), reallöner/sfi (portal/ej ren serie), Svk-derived klimat (operativ/timdata + Nord Pool-pris = gränsfall mot officiell-källa-regeln, lågt mervärde då klimat har 3 D-serier), demokrati (internationella index förbjudna), försvar (sekretess/kvalitativt). **De rena SCB/Kolada-årsserierna skördades i Fas 2–3; den hårda taljen kräver expertbedömd transkribering, modellutvidgning, eller är otillåten.** |
+| **B** (evidens) | B1-paketet **byggt + regenererat + aktuellt** ([expertgranskning/](expertgranskning/)); väntar **mänsklig sign-off** (jag bumpar aldrig version 0→1). B2/B3 (bredda liggaren) kräver samma expertgranskning → meningslöst att stapla fler version-0-rader innan B1 är gjord. |
+| **A** (agerande) | **A1 (fler budgetår) DEFERRAD med plan** — se nedan; för hög korruptionsrisk i tyngsta delpoängen för solo-transkribering övernatten. A2 (votering→A) är en designfråga (viktning utan dubbelräkning av a2) → kräver beslut, deferrad. |
+| **C** (ansvar) | c2 finansiering uppskjutet (designbeslut, ej neutralt byggbart). C2 (mandatperiodskiften) + C3 (subnationell D) är modellutvidgningar utanför ren databredd → deferrade. |
+| **F** (frontend) | F1 (extern hosting) **blockerad** — kräver dina credentials/hosting-beslut (utåtriktad publicering gör jag inte autonomt). F2 (manuell skärmläsartest) kan bara göras av människa. |
+| **O** (drift/ops) | ✅ **Komplett** (O1 drift-skydd, O2 snapshot-diff, O3 live-smoke-test). |
+
+**A1-plan (körklar, för en session med adversariell verifiering):** transkribera partiernas utgiftsramar
+per UO för budget **2024** (bet. 2023/24:FiU1) och **2023** (bet. 2022/23:FiU1) — samma tabell-/källrads­mönster
+som budget 2025 ([fas1b_budget_metod.md](fas1b_budget_metod.md), bet. 2024/25:FiU1 tabell 35). Verifiera varje
+år med samma **interna invariant** (partiernas avvikelser summerar till källans totaler på kronan) + en oberoende
+adversariell cell-för-cell-kontroll (Codex/människa) **innan** det matar A. Då blir a1 ett snitt över 3 budgetår
+i stället för en mätpunkt och fångar mandatperiodskiftet. *Görs inte solo övernatten p.g.a. korruptionsrisken i A.*
 
 ---
 
