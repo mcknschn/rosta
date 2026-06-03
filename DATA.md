@@ -252,7 +252,9 @@ Intervallets halvbredd per kategori = `max_halfwidth × Σ(delpoängvikt × (1 �
 ## 6. Insamlingsordning (roadmap)
 
 Detaljerad, körbar exekveringsplan per fas (mål, tasks, filer, verifiering, exit-kriterier):
-**[docs/ROADMAP.md](docs/ROADMAP.md)**.
+**[docs/ROADMAP.md](docs/ROADMAP.md)** (fryst historik, faser 0–6).
+Framåtblickande arbete (ny datatäckning, evidenskvalitet, drift) ligger i
+**[docs/BACKLOG.md](docs/BACKLOG.md)**, organiserat efter arbetsspår.
 
 Status nedan: ✅ byggd & verifierad · 🟡 byggd, avgränsad täckning (loggas). Hela
 pipelinen körs lokalt med `python -m pipeline.build_all`.

@@ -1,5 +1,10 @@
 # Rösta — Exekverings-roadmap (Fas 0–6)
 
+> **📌 Status (2026-06-03): Faser 0–6 + b-faser levererade och verifierade. Detta dokument är fryst som historik.**
+> Hur de byggdes står kvar nedan oförändrat. **Framåtblickande arbete (ny datatäckning, evidens­kvalitet,
+> drift, publicering) flyttat till [BACKLOG.md](BACKLOG.md)**, organiserat efter arbetsspår i stället för faser.
+> Den maskinläsbara listan över ännu icke-täckta D-indikatorer ligger i [../config/coverage_allowlist.yaml](../config/coverage_allowlist.yaml).
+
 > Sammanslagen, körbar roadmap för det svenska civic-tech-projektet **Rösta**: en automatisk, källbackad och granskningsbar partibetygsmotor som omvandlar officiell svensk statistik och riksdagsdata till kategoribetyg (0–5) per parti, med användarstyrd viktning i en statisk frontend.
 >
 > **Bärande princip:** Inget mänskligt omdöme och inga partibetyg får finnas i kod — endast i versionsstyrd config (`config/*.yaml`). All data är spårbar till en officiell källa via `source_refs` och manifest. Endast `dist/scores.json` + `dist/evidence.json` + metodbeskrivning deployas; rådata och warehouse stannar lokalt.

@@ -6,7 +6,8 @@ sakfrågor; appen rangordnar partierna utifrån faktiskt data från officiella s
 
 - **Modellen:** [IDEA.md](IDEA.md)
 - **Datainsamling & arkitektur:** [DATA.md](DATA.md)
-- **Exekveringsplan (faser 0–6):** [docs/ROADMAP.md](docs/ROADMAP.md)
+- **Exekveringsplan (faser 0–6, fryst historik):** [docs/ROADMAP.md](docs/ROADMAP.md)
+- **Framåtblickande backlog (data, evidens, drift):** [docs/BACKLOG.md](docs/BACKLOG.md)
 - **Grundregler:** [CLAUDE.md](CLAUDE.md) — endast officiella svenska källor.
 
 ## Princip: rådata lokalt, betyg i deploy
