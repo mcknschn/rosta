@@ -15,7 +15,7 @@ import sys
 from datetime import date
 
 from . import derived, expectations, warehouse
-from .sources import energimyndigheten
+from .sources import energimyndigheten, polisen
 
 
 def main() -> None:
@@ -54,6 +54,21 @@ def main() -> None:
         sub = [r for r in drows if r["indicator"] == spec["indicator"]]
         span = f"{sub[0]['period']}..{sub[-1]['period']}" if sub else "-"
         print(f"Härledd (SCB)  -> {spec['category']:11} {spec['indicator']:30}: {len(sub):4} obs ({span})")
+
+    # Polisen: bekräftade skjutningar (trygghet, delpoäng D) — transkriberad config, ingen
+    # runtime-PDF-parser (config/skjutningar.yaml; reproducerbar via tools/skjutningar_transcribe).
+    # source_ref 'polisen:' ligger utanför build_fas2:s scb/kolada-purge-scope.
+    prows = polisen.build_skjutningar_observations()
+    unlisted = {r["indicator"] for r in prows} - set(polisen.INDICATORS)
+    if unlisted:
+        raise ValueError(f"Polisen emitterar indikatorer utanför polisen.INDICATORS: {sorted(unlisted)}")
+    for ind in polisen.INDICATORS:
+        expectations.check_series(
+            [r for r in prows if r["indicator"] == ind], polisen.EXPECT.get(ind), f"Polisen {ind}"
+        )
+    n = warehouse.upsert(con, "observations", prows)
+    span = f"{prows[0]['period']}..{prows[-1]['period']}" if prows else "-"
+    print(f"Polisen (transkr.) -> trygghet    skjutningar_sprangningar: {n:4} obs ({span})")
 
     print("\n-- täckning (klimat, observations) --")
     for cat, ind, n, lo, hi in con.execute(

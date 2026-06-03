@@ -126,15 +126,15 @@
         ],
         "claim_refs": [
           "claim:action:S:ekonomi:motioner",
-          "claim:responsibility:S:national:2019-01-21/2021-11-30:government",
-          "claim:responsibility:S:municipal:2018-2022:government",
-          "claim:responsibility:S:national:2021-11-30/2022-10-18:government",
-          "claim:responsibility:S:national:2014-10-03/2019-01-21:government",
-          "claim:responsibility:S:regional:2022-2026:government",
-          "claim:responsibility:S:municipal:2014-2018:government",
           "claim:responsibility:S:regional:2018-2022:government",
           "claim:responsibility:S:regional:2014-2018:government",
+          "claim:responsibility:S:national:2019-01-21/2021-11-30:government",
+          "claim:responsibility:S:national:2021-11-30/2022-10-18:government",
+          "claim:responsibility:S:national:2014-10-03/2019-01-21:government",
           "claim:responsibility:S:municipal:2022-2026:government",
+          "claim:responsibility:S:regional:2022-2026:government",
+          "claim:responsibility:S:municipal:2018-2022:government",
+          "claim:responsibility:S:municipal:2014-2018:government",
           "claim:observed_result:obs:scb:arbetsloshet:2001",
           "claim:observed_result:obs:scb:arbetsloshet:2002",
           "claim:observed_result:obs:scb:arbetsloshet:2003"
@@ -165,15 +165,15 @@
         ],
         "claim_refs": [
           "claim:action:S:valfard:motioner",
-          "claim:responsibility:S:national:2019-01-21/2021-11-30:government",
-          "claim:responsibility:S:municipal:2018-2022:government",
-          "claim:responsibility:S:national:2021-11-30/2022-10-18:government",
-          "claim:responsibility:S:national:2014-10-03/2019-01-21:government",
-          "claim:responsibility:S:regional:2022-2026:government",
-          "claim:responsibility:S:municipal:2014-2018:government",
           "claim:responsibility:S:regional:2018-2022:government",
           "claim:responsibility:S:regional:2014-2018:government",
+          "claim:responsibility:S:national:2019-01-21/2021-11-30:government",
+          "claim:responsibility:S:national:2021-11-30/2022-10-18:government",
+          "claim:responsibility:S:national:2014-10-03/2019-01-21:government",
           "claim:responsibility:S:municipal:2022-2026:government",
+          "claim:responsibility:S:regional:2022-2026:government",
+          "claim:responsibility:S:municipal:2018-2022:government",
+          "claim:responsibility:S:municipal:2014-2018:government",
           "claim:observed_result:obs:kolada:N15507:0000:2015",
           "claim:observed_result:obs:kolada:N15507:0000:2016",
           "claim:observed_result:obs:kolada:N15507:0000:2017"
@@ -181,16 +181,16 @@
         "evidence_refs": []
       },
       "trygghet": {
-        "score": 2.78,
+        "score": 2.761,
         "ci": [
-          2.386,
-          3.173
+          2.367,
+          3.155
         ],
         "components": {
           "A": 1.143,
           "B": 3.75,
           "C": 5.0,
-          "D": 2.599
+          "D": 2.412
         },
         "confidence": {
           "A": "high",
@@ -204,15 +204,15 @@
         ],
         "claim_refs": [
           "claim:action:S:trygghet:motioner",
-          "claim:responsibility:S:national:2019-01-21/2021-11-30:government",
-          "claim:responsibility:S:municipal:2018-2022:government",
-          "claim:responsibility:S:national:2021-11-30/2022-10-18:government",
-          "claim:responsibility:S:national:2014-10-03/2019-01-21:government",
-          "claim:responsibility:S:regional:2022-2026:government",
-          "claim:responsibility:S:municipal:2014-2018:government",
           "claim:responsibility:S:regional:2018-2022:government",
           "claim:responsibility:S:regional:2014-2018:government",
+          "claim:responsibility:S:national:2019-01-21/2021-11-30:government",
+          "claim:responsibility:S:national:2021-11-30/2022-10-18:government",
+          "claim:responsibility:S:national:2014-10-03/2019-01-21:government",
           "claim:responsibility:S:municipal:2022-2026:government",
+          "claim:responsibility:S:regional:2022-2026:government",
+          "claim:responsibility:S:municipal:2018-2022:government",
+          "claim:responsibility:S:municipal:2014-2018:government",
           "claim:observed_result:obs:bra:dodligt_vald:2002",
           "claim:observed_result:obs:bra:dodligt_vald:2003",
           "claim:observed_result:obs:bra:dodligt_vald:2004"
@@ -245,15 +245,15 @@
         ],
         "claim_refs": [
           "claim:action:S:forsvar:motioner",
-          "claim:responsibility:S:national:2019-01-21/2021-11-30:government",
-          "claim:responsibility:S:municipal:2018-2022:government",
-          "claim:responsibility:S:national:2021-11-30/2022-10-18:government",
-          "claim:responsibility:S:national:2014-10-03/2019-01-21:government",
-          "claim:responsibility:S:regional:2022-2026:government",
-          "claim:responsibility:S:municipal:2014-2018:government",
           "claim:responsibility:S:regional:2018-2022:government",
           "claim:responsibility:S:regional:2014-2018:government",
-          "claim:responsibility:S:municipal:2022-2026:government"
+          "claim:responsibility:S:national:2019-01-21/2021-11-30:government",
+          "claim:responsibility:S:national:2021-11-30/2022-10-18:government",
+          "claim:responsibility:S:national:2014-10-03/2019-01-21:government",
+          "claim:responsibility:S:municipal:2022-2026:government",
+          "claim:responsibility:S:regional:2022-2026:government",
+          "claim:responsibility:S:municipal:2018-2022:government",
+          "claim:responsibility:S:municipal:2014-2018:government"
         ],
         "evidence_refs": []
       },
@@ -281,15 +281,15 @@
         ],
         "claim_refs": [
           "claim:action:S:klimat:motioner",
-          "claim:responsibility:S:national:2019-01-21/2021-11-30:government",
-          "claim:responsibility:S:municipal:2018-2022:government",
-          "claim:responsibility:S:national:2021-11-30/2022-10-18:government",
-          "claim:responsibility:S:national:2014-10-03/2019-01-21:government",
-          "claim:responsibility:S:regional:2022-2026:government",
-          "claim:responsibility:S:municipal:2014-2018:government",
           "claim:responsibility:S:regional:2018-2022:government",
           "claim:responsibility:S:regional:2014-2018:government",
+          "claim:responsibility:S:national:2019-01-21/2021-11-30:government",
+          "claim:responsibility:S:national:2021-11-30/2022-10-18:government",
+          "claim:responsibility:S:national:2014-10-03/2019-01-21:government",
           "claim:responsibility:S:municipal:2022-2026:government",
+          "claim:responsibility:S:regional:2022-2026:government",
+          "claim:responsibility:S:municipal:2018-2022:government",
+          "claim:responsibility:S:municipal:2014-2018:government",
           "claim:observed_result:obs:scb:territoriella_utslapp:1990",
           "claim:observed_result:obs:scb:territoriella_utslapp:1991",
           "claim:observed_result:obs:scb:territoriella_utslapp:1992"
@@ -320,15 +320,15 @@
         ],
         "claim_refs": [
           "claim:action:S:integration:motioner",
-          "claim:responsibility:S:national:2019-01-21/2021-11-30:government",
-          "claim:responsibility:S:municipal:2018-2022:government",
-          "claim:responsibility:S:national:2021-11-30/2022-10-18:government",
-          "claim:responsibility:S:national:2014-10-03/2019-01-21:government",
-          "claim:responsibility:S:regional:2022-2026:government",
-          "claim:responsibility:S:municipal:2014-2018:government",
           "claim:responsibility:S:regional:2018-2022:government",
           "claim:responsibility:S:regional:2014-2018:government",
+          "claim:responsibility:S:national:2019-01-21/2021-11-30:government",
+          "claim:responsibility:S:national:2021-11-30/2022-10-18:government",
+          "claim:responsibility:S:national:2014-10-03/2019-01-21:government",
           "claim:responsibility:S:municipal:2022-2026:government",
+          "claim:responsibility:S:regional:2022-2026:government",
+          "claim:responsibility:S:municipal:2018-2022:government",
+          "claim:responsibility:S:municipal:2014-2018:government",
           "claim:observed_result:obs:scb:trangboddhet:1988-1989",
           "claim:observed_result:obs:scb:trangboddhet:2002-2003",
           "claim:observed_result:obs:scb:trangboddhet:2004-2005"
@@ -360,15 +360,15 @@
         ],
         "claim_refs": [
           "claim:action:S:demokrati:motioner",
-          "claim:responsibility:S:national:2019-01-21/2021-11-30:government",
-          "claim:responsibility:S:municipal:2018-2022:government",
-          "claim:responsibility:S:national:2021-11-30/2022-10-18:government",
-          "claim:responsibility:S:national:2014-10-03/2019-01-21:government",
-          "claim:responsibility:S:regional:2022-2026:government",
-          "claim:responsibility:S:municipal:2014-2018:government",
           "claim:responsibility:S:regional:2018-2022:government",
           "claim:responsibility:S:regional:2014-2018:government",
-          "claim:responsibility:S:municipal:2022-2026:government"
+          "claim:responsibility:S:national:2019-01-21/2021-11-30:government",
+          "claim:responsibility:S:national:2021-11-30/2022-10-18:government",
+          "claim:responsibility:S:national:2014-10-03/2019-01-21:government",
+          "claim:responsibility:S:municipal:2022-2026:government",
+          "claim:responsibility:S:regional:2022-2026:government",
+          "claim:responsibility:S:municipal:2018-2022:government",
+          "claim:responsibility:S:municipal:2014-2018:government"
         ],
         "evidence_refs": []
       }
@@ -398,11 +398,11 @@
         ],
         "claim_refs": [
           "claim:action:M:ekonomi:motioner",
-          "claim:responsibility:M:regional:2022-2026:government",
-          "claim:responsibility:M:municipal:2018-2022:government",
-          "claim:responsibility:M:municipal:2022-2026:government",
-          "claim:responsibility:M:municipal:2014-2018:government",
           "claim:responsibility:M:national:2022-10-18/pagaende:government",
+          "claim:responsibility:M:regional:2022-2026:government",
+          "claim:responsibility:M:municipal:2022-2026:government",
+          "claim:responsibility:M:municipal:2018-2022:government",
+          "claim:responsibility:M:municipal:2014-2018:government",
           "claim:responsibility:M:regional:2014-2018:government",
           "claim:responsibility:M:regional:2018-2022:government",
           "claim:observed_result:obs:scb:arbetsloshet:2001",
@@ -435,11 +435,11 @@
         ],
         "claim_refs": [
           "claim:action:M:valfard:motioner",
-          "claim:responsibility:M:regional:2022-2026:government",
-          "claim:responsibility:M:municipal:2018-2022:government",
-          "claim:responsibility:M:municipal:2022-2026:government",
-          "claim:responsibility:M:municipal:2014-2018:government",
           "claim:responsibility:M:national:2022-10-18/pagaende:government",
+          "claim:responsibility:M:regional:2022-2026:government",
+          "claim:responsibility:M:municipal:2022-2026:government",
+          "claim:responsibility:M:municipal:2018-2022:government",
+          "claim:responsibility:M:municipal:2014-2018:government",
           "claim:responsibility:M:regional:2014-2018:government",
           "claim:responsibility:M:regional:2018-2022:government",
           "claim:observed_result:obs:kolada:N15507:0000:2015",
@@ -449,16 +449,16 @@
         "evidence_refs": []
       },
       "trygghet": {
-        "score": 3.532,
+        "score": 3.537,
         "ci": [
-          2.981,
-          4.083
+          2.986,
+          4.088
         ],
         "components": {
           "A": 3.929,
           "B": 3.125,
           "C": 2.857,
-          "D": 4.382
+          "D": 4.432
         },
         "confidence": {
           "A": "high",
@@ -473,11 +473,11 @@
         ],
         "claim_refs": [
           "claim:action:M:trygghet:motioner",
-          "claim:responsibility:M:regional:2022-2026:government",
-          "claim:responsibility:M:municipal:2018-2022:government",
-          "claim:responsibility:M:municipal:2022-2026:government",
-          "claim:responsibility:M:municipal:2014-2018:government",
           "claim:responsibility:M:national:2022-10-18/pagaende:government",
+          "claim:responsibility:M:regional:2022-2026:government",
+          "claim:responsibility:M:municipal:2022-2026:government",
+          "claim:responsibility:M:municipal:2018-2022:government",
+          "claim:responsibility:M:municipal:2014-2018:government",
           "claim:responsibility:M:regional:2014-2018:government",
           "claim:responsibility:M:regional:2018-2022:government",
           "claim:observed_result:obs:bra:dodligt_vald:2002",
@@ -512,11 +512,11 @@
         ],
         "claim_refs": [
           "claim:action:M:forsvar:motioner",
-          "claim:responsibility:M:regional:2022-2026:government",
-          "claim:responsibility:M:municipal:2018-2022:government",
-          "claim:responsibility:M:municipal:2022-2026:government",
-          "claim:responsibility:M:municipal:2014-2018:government",
           "claim:responsibility:M:national:2022-10-18/pagaende:government",
+          "claim:responsibility:M:regional:2022-2026:government",
+          "claim:responsibility:M:municipal:2022-2026:government",
+          "claim:responsibility:M:municipal:2018-2022:government",
+          "claim:responsibility:M:municipal:2014-2018:government",
           "claim:responsibility:M:regional:2014-2018:government",
           "claim:responsibility:M:regional:2018-2022:government"
         ],
@@ -546,11 +546,11 @@
         ],
         "claim_refs": [
           "claim:action:M:klimat:motioner",
-          "claim:responsibility:M:regional:2022-2026:government",
-          "claim:responsibility:M:municipal:2018-2022:government",
-          "claim:responsibility:M:municipal:2022-2026:government",
-          "claim:responsibility:M:municipal:2014-2018:government",
           "claim:responsibility:M:national:2022-10-18/pagaende:government",
+          "claim:responsibility:M:regional:2022-2026:government",
+          "claim:responsibility:M:municipal:2022-2026:government",
+          "claim:responsibility:M:municipal:2018-2022:government",
+          "claim:responsibility:M:municipal:2014-2018:government",
           "claim:responsibility:M:regional:2014-2018:government",
           "claim:responsibility:M:regional:2018-2022:government",
           "claim:observed_result:obs:scb:territoriella_utslapp:1990",
@@ -583,11 +583,11 @@
         ],
         "claim_refs": [
           "claim:action:M:integration:motioner",
-          "claim:responsibility:M:regional:2022-2026:government",
-          "claim:responsibility:M:municipal:2018-2022:government",
-          "claim:responsibility:M:municipal:2022-2026:government",
-          "claim:responsibility:M:municipal:2014-2018:government",
           "claim:responsibility:M:national:2022-10-18/pagaende:government",
+          "claim:responsibility:M:regional:2022-2026:government",
+          "claim:responsibility:M:municipal:2022-2026:government",
+          "claim:responsibility:M:municipal:2018-2022:government",
+          "claim:responsibility:M:municipal:2014-2018:government",
           "claim:responsibility:M:regional:2014-2018:government",
           "claim:responsibility:M:regional:2018-2022:government",
           "claim:observed_result:obs:scb:trangboddhet:1988-1989",
@@ -622,11 +622,11 @@
         ],
         "claim_refs": [
           "claim:action:M:demokrati:motioner",
-          "claim:responsibility:M:regional:2022-2026:government",
-          "claim:responsibility:M:municipal:2018-2022:government",
-          "claim:responsibility:M:municipal:2022-2026:government",
-          "claim:responsibility:M:municipal:2014-2018:government",
           "claim:responsibility:M:national:2022-10-18/pagaende:government",
+          "claim:responsibility:M:regional:2022-2026:government",
+          "claim:responsibility:M:municipal:2022-2026:government",
+          "claim:responsibility:M:municipal:2018-2022:government",
+          "claim:responsibility:M:municipal:2014-2018:government",
           "claim:responsibility:M:regional:2014-2018:government",
           "claim:responsibility:M:regional:2018-2022:government"
         ],
@@ -658,10 +658,10 @@
         ],
         "claim_refs": [
           "claim:action:SD:ekonomi:motioner",
+          "claim:responsibility:SD:national:2022-10-18/pagaende:support",
           "claim:responsibility:SD:municipal:2022-2026:government",
           "claim:responsibility:SD:regional:2022-2026:government",
           "claim:responsibility:SD:municipal:2018-2022:government",
-          "claim:responsibility:SD:national:2022-10-18/pagaende:support",
           "claim:observed_result:obs:scb:arbetsloshet:2001",
           "claim:observed_result:obs:scb:arbetsloshet:2002",
           "claim:observed_result:obs:scb:arbetsloshet:2003"
@@ -692,10 +692,10 @@
         ],
         "claim_refs": [
           "claim:action:SD:valfard:motioner",
+          "claim:responsibility:SD:national:2022-10-18/pagaende:support",
           "claim:responsibility:SD:municipal:2022-2026:government",
           "claim:responsibility:SD:regional:2022-2026:government",
           "claim:responsibility:SD:municipal:2018-2022:government",
-          "claim:responsibility:SD:national:2022-10-18/pagaende:support",
           "claim:observed_result:obs:kolada:N15507:0000:2015",
           "claim:observed_result:obs:kolada:N15507:0000:2016",
           "claim:observed_result:obs:kolada:N15507:0000:2017"
@@ -703,16 +703,16 @@
         "evidence_refs": []
       },
       "trygghet": {
-        "score": 3.089,
+        "score": 3.094,
         "ci": [
-          2.538,
-          3.64
+          2.543,
+          3.645
         ],
         "components": {
           "A": 3.357,
           "B": 3.125,
           "C": 1.429,
-          "D": 4.382
+          "D": 4.432
         },
         "confidence": {
           "A": "high",
@@ -727,10 +727,10 @@
         ],
         "claim_refs": [
           "claim:action:SD:trygghet:motioner",
+          "claim:responsibility:SD:national:2022-10-18/pagaende:support",
           "claim:responsibility:SD:municipal:2022-2026:government",
           "claim:responsibility:SD:regional:2022-2026:government",
           "claim:responsibility:SD:municipal:2018-2022:government",
-          "claim:responsibility:SD:national:2022-10-18/pagaende:support",
           "claim:observed_result:obs:bra:dodligt_vald:2002",
           "claim:observed_result:obs:bra:dodligt_vald:2003",
           "claim:observed_result:obs:bra:dodligt_vald:2004"
@@ -763,10 +763,10 @@
         ],
         "claim_refs": [
           "claim:action:SD:forsvar:motioner",
+          "claim:responsibility:SD:national:2022-10-18/pagaende:support",
           "claim:responsibility:SD:municipal:2022-2026:government",
           "claim:responsibility:SD:regional:2022-2026:government",
-          "claim:responsibility:SD:municipal:2018-2022:government",
-          "claim:responsibility:SD:national:2022-10-18/pagaende:support"
+          "claim:responsibility:SD:municipal:2018-2022:government"
         ],
         "evidence_refs": []
       },
@@ -794,10 +794,10 @@
         ],
         "claim_refs": [
           "claim:action:SD:klimat:motioner",
+          "claim:responsibility:SD:national:2022-10-18/pagaende:support",
           "claim:responsibility:SD:municipal:2022-2026:government",
           "claim:responsibility:SD:regional:2022-2026:government",
           "claim:responsibility:SD:municipal:2018-2022:government",
-          "claim:responsibility:SD:national:2022-10-18/pagaende:support",
           "claim:observed_result:obs:scb:territoriella_utslapp:1990",
           "claim:observed_result:obs:scb:territoriella_utslapp:1991",
           "claim:observed_result:obs:scb:territoriella_utslapp:1992"
@@ -828,10 +828,10 @@
         ],
         "claim_refs": [
           "claim:action:SD:integration:motioner",
+          "claim:responsibility:SD:national:2022-10-18/pagaende:support",
           "claim:responsibility:SD:municipal:2022-2026:government",
           "claim:responsibility:SD:regional:2022-2026:government",
           "claim:responsibility:SD:municipal:2018-2022:government",
-          "claim:responsibility:SD:national:2022-10-18/pagaende:support",
           "claim:observed_result:obs:scb:trangboddhet:1988-1989",
           "claim:observed_result:obs:scb:trangboddhet:2002-2003",
           "claim:observed_result:obs:scb:trangboddhet:2004-2005"
@@ -863,10 +863,10 @@
         ],
         "claim_refs": [
           "claim:action:SD:demokrati:motioner",
+          "claim:responsibility:SD:national:2022-10-18/pagaende:support",
           "claim:responsibility:SD:municipal:2022-2026:government",
           "claim:responsibility:SD:regional:2022-2026:government",
-          "claim:responsibility:SD:municipal:2018-2022:government",
-          "claim:responsibility:SD:national:2022-10-18/pagaende:support"
+          "claim:responsibility:SD:municipal:2018-2022:government"
         ],
         "evidence_refs": []
       }
@@ -896,13 +896,13 @@
         ],
         "claim_refs": [
           "claim:action:C:ekonomi:motioner",
+          "claim:responsibility:C:regional:2022-2026:government",
           "claim:responsibility:C:municipal:2018-2022:government",
           "claim:responsibility:C:regional:2018-2022:government",
+          "claim:responsibility:C:municipal:2022-2026:government",
           "claim:responsibility:C:national:2019-01-21/2021-11-30:support",
           "claim:responsibility:C:municipal:2014-2018:government",
-          "claim:responsibility:C:regional:2022-2026:government",
           "claim:responsibility:C:regional:2014-2018:government",
-          "claim:responsibility:C:municipal:2022-2026:government",
           "claim:observed_result:obs:scb:arbetsloshet:2001",
           "claim:observed_result:obs:scb:arbetsloshet:2002",
           "claim:observed_result:obs:scb:arbetsloshet:2003"
@@ -933,13 +933,13 @@
         ],
         "claim_refs": [
           "claim:action:C:valfard:motioner",
+          "claim:responsibility:C:regional:2022-2026:government",
           "claim:responsibility:C:municipal:2018-2022:government",
           "claim:responsibility:C:regional:2018-2022:government",
+          "claim:responsibility:C:municipal:2022-2026:government",
           "claim:responsibility:C:national:2019-01-21/2021-11-30:support",
           "claim:responsibility:C:municipal:2014-2018:government",
-          "claim:responsibility:C:regional:2022-2026:government",
           "claim:responsibility:C:regional:2014-2018:government",
-          "claim:responsibility:C:municipal:2022-2026:government",
           "claim:observed_result:obs:kolada:N15507:0000:2015",
           "claim:observed_result:obs:kolada:N15507:0000:2016",
           "claim:observed_result:obs:kolada:N15507:0000:2017"
@@ -947,16 +947,16 @@
         "evidence_refs": []
       },
       "trygghet": {
-        "score": 2.882,
+        "score": 2.865,
         "ci": [
-          2.331,
-          3.434
+          2.314,
+          3.416
         ],
         "components": {
           "A": 3.571,
           "B": 3.125,
           "C": 0.714,
-          "D": 2.529
+          "D": 2.358
         },
         "confidence": {
           "A": "high",
@@ -971,13 +971,13 @@
         ],
         "claim_refs": [
           "claim:action:C:trygghet:motioner",
+          "claim:responsibility:C:regional:2022-2026:government",
           "claim:responsibility:C:municipal:2018-2022:government",
           "claim:responsibility:C:regional:2018-2022:government",
+          "claim:responsibility:C:municipal:2022-2026:government",
           "claim:responsibility:C:national:2019-01-21/2021-11-30:support",
           "claim:responsibility:C:municipal:2014-2018:government",
-          "claim:responsibility:C:regional:2022-2026:government",
           "claim:responsibility:C:regional:2014-2018:government",
-          "claim:responsibility:C:municipal:2022-2026:government",
           "claim:observed_result:obs:bra:dodligt_vald:2002",
           "claim:observed_result:obs:bra:dodligt_vald:2003",
           "claim:observed_result:obs:bra:dodligt_vald:2004"
@@ -1010,13 +1010,13 @@
         ],
         "claim_refs": [
           "claim:action:C:forsvar:motioner",
+          "claim:responsibility:C:regional:2022-2026:government",
           "claim:responsibility:C:municipal:2018-2022:government",
           "claim:responsibility:C:regional:2018-2022:government",
+          "claim:responsibility:C:municipal:2022-2026:government",
           "claim:responsibility:C:national:2019-01-21/2021-11-30:support",
           "claim:responsibility:C:municipal:2014-2018:government",
-          "claim:responsibility:C:regional:2022-2026:government",
-          "claim:responsibility:C:regional:2014-2018:government",
-          "claim:responsibility:C:municipal:2022-2026:government"
+          "claim:responsibility:C:regional:2014-2018:government"
         ],
         "evidence_refs": []
       },
@@ -1045,13 +1045,13 @@
         ],
         "claim_refs": [
           "claim:action:C:klimat:motioner",
+          "claim:responsibility:C:regional:2022-2026:government",
           "claim:responsibility:C:municipal:2018-2022:government",
           "claim:responsibility:C:regional:2018-2022:government",
+          "claim:responsibility:C:municipal:2022-2026:government",
           "claim:responsibility:C:national:2019-01-21/2021-11-30:support",
           "claim:responsibility:C:municipal:2014-2018:government",
-          "claim:responsibility:C:regional:2022-2026:government",
           "claim:responsibility:C:regional:2014-2018:government",
-          "claim:responsibility:C:municipal:2022-2026:government",
           "claim:observed_result:obs:scb:territoriella_utslapp:1990",
           "claim:observed_result:obs:scb:territoriella_utslapp:1991",
           "claim:observed_result:obs:scb:territoriella_utslapp:1992"
@@ -1082,13 +1082,13 @@
         ],
         "claim_refs": [
           "claim:action:C:integration:motioner",
+          "claim:responsibility:C:regional:2022-2026:government",
           "claim:responsibility:C:municipal:2018-2022:government",
           "claim:responsibility:C:regional:2018-2022:government",
+          "claim:responsibility:C:municipal:2022-2026:government",
           "claim:responsibility:C:national:2019-01-21/2021-11-30:support",
           "claim:responsibility:C:municipal:2014-2018:government",
-          "claim:responsibility:C:regional:2022-2026:government",
           "claim:responsibility:C:regional:2014-2018:government",
-          "claim:responsibility:C:municipal:2022-2026:government",
           "claim:observed_result:obs:scb:trangboddhet:1988-1989",
           "claim:observed_result:obs:scb:trangboddhet:2002-2003",
           "claim:observed_result:obs:scb:trangboddhet:2004-2005"
@@ -1120,13 +1120,13 @@
         ],
         "claim_refs": [
           "claim:action:C:demokrati:motioner",
+          "claim:responsibility:C:regional:2022-2026:government",
           "claim:responsibility:C:municipal:2018-2022:government",
           "claim:responsibility:C:regional:2018-2022:government",
+          "claim:responsibility:C:municipal:2022-2026:government",
           "claim:responsibility:C:national:2019-01-21/2021-11-30:support",
           "claim:responsibility:C:municipal:2014-2018:government",
-          "claim:responsibility:C:regional:2022-2026:government",
-          "claim:responsibility:C:regional:2014-2018:government",
-          "claim:responsibility:C:municipal:2022-2026:government"
+          "claim:responsibility:C:regional:2014-2018:government"
         ],
         "evidence_refs": []
       }
@@ -1157,12 +1157,12 @@
         ],
         "claim_refs": [
           "claim:action:V:ekonomi:motioner",
-          "claim:responsibility:V:regional:2022-2026:government",
+          "claim:responsibility:V:municipal:2014-2018:government",
+          "claim:responsibility:V:municipal:2022-2026:government",
           "claim:responsibility:V:regional:2014-2018:government",
           "claim:responsibility:V:municipal:2018-2022:government",
-          "claim:responsibility:V:municipal:2022-2026:government",
+          "claim:responsibility:V:regional:2022-2026:government",
           "claim:responsibility:V:regional:2018-2022:government",
-          "claim:responsibility:V:municipal:2014-2018:government",
           "claim:observed_result:obs:scb:arbetsloshet:2001",
           "claim:observed_result:obs:scb:arbetsloshet:2002",
           "claim:observed_result:obs:scb:arbetsloshet:2003"
@@ -1194,12 +1194,12 @@
         ],
         "claim_refs": [
           "claim:action:V:valfard:motioner",
-          "claim:responsibility:V:regional:2022-2026:government",
+          "claim:responsibility:V:municipal:2014-2018:government",
+          "claim:responsibility:V:municipal:2022-2026:government",
           "claim:responsibility:V:regional:2014-2018:government",
           "claim:responsibility:V:municipal:2018-2022:government",
-          "claim:responsibility:V:municipal:2022-2026:government",
+          "claim:responsibility:V:regional:2022-2026:government",
           "claim:responsibility:V:regional:2018-2022:government",
-          "claim:responsibility:V:municipal:2014-2018:government",
           "claim:observed_result:obs:kolada:N15507:0000:2015",
           "claim:observed_result:obs:kolada:N15507:0000:2016",
           "claim:observed_result:obs:kolada:N15507:0000:2017"
@@ -1231,12 +1231,12 @@
         ],
         "claim_refs": [
           "claim:action:V:trygghet:motioner",
-          "claim:responsibility:V:regional:2022-2026:government",
+          "claim:responsibility:V:municipal:2014-2018:government",
+          "claim:responsibility:V:municipal:2022-2026:government",
           "claim:responsibility:V:regional:2014-2018:government",
           "claim:responsibility:V:municipal:2018-2022:government",
-          "claim:responsibility:V:municipal:2022-2026:government",
+          "claim:responsibility:V:regional:2022-2026:government",
           "claim:responsibility:V:regional:2018-2022:government",
-          "claim:responsibility:V:municipal:2014-2018:government",
           "claim:observed_result:obs:bra:dodligt_vald:2002",
           "claim:observed_result:obs:bra:dodligt_vald:2003",
           "claim:observed_result:obs:bra:dodligt_vald:2004"
@@ -1269,12 +1269,12 @@
         ],
         "claim_refs": [
           "claim:action:V:forsvar:motioner",
-          "claim:responsibility:V:regional:2022-2026:government",
+          "claim:responsibility:V:municipal:2014-2018:government",
+          "claim:responsibility:V:municipal:2022-2026:government",
           "claim:responsibility:V:regional:2014-2018:government",
           "claim:responsibility:V:municipal:2018-2022:government",
-          "claim:responsibility:V:municipal:2022-2026:government",
-          "claim:responsibility:V:regional:2018-2022:government",
-          "claim:responsibility:V:municipal:2014-2018:government"
+          "claim:responsibility:V:regional:2022-2026:government",
+          "claim:responsibility:V:regional:2018-2022:government"
         ],
         "evidence_refs": []
       },
@@ -1303,12 +1303,12 @@
         ],
         "claim_refs": [
           "claim:action:V:klimat:motioner",
-          "claim:responsibility:V:regional:2022-2026:government",
+          "claim:responsibility:V:municipal:2014-2018:government",
+          "claim:responsibility:V:municipal:2022-2026:government",
           "claim:responsibility:V:regional:2014-2018:government",
           "claim:responsibility:V:municipal:2018-2022:government",
-          "claim:responsibility:V:municipal:2022-2026:government",
+          "claim:responsibility:V:regional:2022-2026:government",
           "claim:responsibility:V:regional:2018-2022:government",
-          "claim:responsibility:V:municipal:2014-2018:government",
           "claim:observed_result:obs:scb:territoriella_utslapp:1990",
           "claim:observed_result:obs:scb:territoriella_utslapp:1991",
           "claim:observed_result:obs:scb:territoriella_utslapp:1992"
@@ -1340,12 +1340,12 @@
         ],
         "claim_refs": [
           "claim:action:V:integration:motioner",
-          "claim:responsibility:V:regional:2022-2026:government",
+          "claim:responsibility:V:municipal:2014-2018:government",
+          "claim:responsibility:V:municipal:2022-2026:government",
           "claim:responsibility:V:regional:2014-2018:government",
           "claim:responsibility:V:municipal:2018-2022:government",
-          "claim:responsibility:V:municipal:2022-2026:government",
+          "claim:responsibility:V:regional:2022-2026:government",
           "claim:responsibility:V:regional:2018-2022:government",
-          "claim:responsibility:V:municipal:2014-2018:government",
           "claim:observed_result:obs:scb:trangboddhet:1988-1989",
           "claim:observed_result:obs:scb:trangboddhet:2002-2003",
           "claim:observed_result:obs:scb:trangboddhet:2004-2005"
@@ -1378,12 +1378,12 @@
         ],
         "claim_refs": [
           "claim:action:V:demokrati:motioner",
-          "claim:responsibility:V:regional:2022-2026:government",
+          "claim:responsibility:V:municipal:2014-2018:government",
+          "claim:responsibility:V:municipal:2022-2026:government",
           "claim:responsibility:V:regional:2014-2018:government",
           "claim:responsibility:V:municipal:2018-2022:government",
-          "claim:responsibility:V:municipal:2022-2026:government",
-          "claim:responsibility:V:regional:2018-2022:government",
-          "claim:responsibility:V:municipal:2014-2018:government"
+          "claim:responsibility:V:regional:2022-2026:government",
+          "claim:responsibility:V:regional:2018-2022:government"
         ],
         "evidence_refs": []
       }
@@ -1413,11 +1413,11 @@
         ],
         "claim_refs": [
           "claim:action:KD:ekonomi:motioner",
+          "claim:responsibility:KD:municipal:2018-2022:government",
+          "claim:responsibility:KD:municipal:2022-2026:government",
           "claim:responsibility:KD:national:2022-10-18/pagaende:government",
           "claim:responsibility:KD:regional:2022-2026:government",
           "claim:responsibility:KD:regional:2018-2022:government",
-          "claim:responsibility:KD:municipal:2022-2026:government",
-          "claim:responsibility:KD:municipal:2018-2022:government",
           "claim:responsibility:KD:regional:2014-2018:government",
           "claim:responsibility:KD:municipal:2014-2018:government",
           "claim:observed_result:obs:scb:arbetsloshet:2001",
@@ -1450,11 +1450,11 @@
         ],
         "claim_refs": [
           "claim:action:KD:valfard:motioner",
+          "claim:responsibility:KD:municipal:2018-2022:government",
+          "claim:responsibility:KD:municipal:2022-2026:government",
           "claim:responsibility:KD:national:2022-10-18/pagaende:government",
           "claim:responsibility:KD:regional:2022-2026:government",
           "claim:responsibility:KD:regional:2018-2022:government",
-          "claim:responsibility:KD:municipal:2022-2026:government",
-          "claim:responsibility:KD:municipal:2018-2022:government",
           "claim:responsibility:KD:regional:2014-2018:government",
           "claim:responsibility:KD:municipal:2014-2018:government",
           "claim:observed_result:obs:kolada:N15507:0000:2015",
@@ -1464,16 +1464,16 @@
         "evidence_refs": []
       },
       "trygghet": {
-        "score": 3.301,
+        "score": 3.306,
         "ci": [
-          2.907,
-          3.694
+          2.912,
+          3.699
         ],
         "components": {
           "A": 3.071,
           "B": 3.75,
           "C": 2.143,
-          "D": 4.382
+          "D": 4.432
         },
         "confidence": {
           "A": "high",
@@ -1487,11 +1487,11 @@
         ],
         "claim_refs": [
           "claim:action:KD:trygghet:motioner",
+          "claim:responsibility:KD:municipal:2018-2022:government",
+          "claim:responsibility:KD:municipal:2022-2026:government",
           "claim:responsibility:KD:national:2022-10-18/pagaende:government",
           "claim:responsibility:KD:regional:2022-2026:government",
           "claim:responsibility:KD:regional:2018-2022:government",
-          "claim:responsibility:KD:municipal:2022-2026:government",
-          "claim:responsibility:KD:municipal:2018-2022:government",
           "claim:responsibility:KD:regional:2014-2018:government",
           "claim:responsibility:KD:municipal:2014-2018:government",
           "claim:observed_result:obs:bra:dodligt_vald:2002",
@@ -1526,11 +1526,11 @@
         ],
         "claim_refs": [
           "claim:action:KD:forsvar:motioner",
+          "claim:responsibility:KD:municipal:2018-2022:government",
+          "claim:responsibility:KD:municipal:2022-2026:government",
           "claim:responsibility:KD:national:2022-10-18/pagaende:government",
           "claim:responsibility:KD:regional:2022-2026:government",
           "claim:responsibility:KD:regional:2018-2022:government",
-          "claim:responsibility:KD:municipal:2022-2026:government",
-          "claim:responsibility:KD:municipal:2018-2022:government",
           "claim:responsibility:KD:regional:2014-2018:government",
           "claim:responsibility:KD:municipal:2014-2018:government"
         ],
@@ -1560,11 +1560,11 @@
         ],
         "claim_refs": [
           "claim:action:KD:klimat:motioner",
+          "claim:responsibility:KD:municipal:2018-2022:government",
+          "claim:responsibility:KD:municipal:2022-2026:government",
           "claim:responsibility:KD:national:2022-10-18/pagaende:government",
           "claim:responsibility:KD:regional:2022-2026:government",
           "claim:responsibility:KD:regional:2018-2022:government",
-          "claim:responsibility:KD:municipal:2022-2026:government",
-          "claim:responsibility:KD:municipal:2018-2022:government",
           "claim:responsibility:KD:regional:2014-2018:government",
           "claim:responsibility:KD:municipal:2014-2018:government",
           "claim:observed_result:obs:scb:territoriella_utslapp:1990",
@@ -1597,11 +1597,11 @@
         ],
         "claim_refs": [
           "claim:action:KD:integration:motioner",
+          "claim:responsibility:KD:municipal:2018-2022:government",
+          "claim:responsibility:KD:municipal:2022-2026:government",
           "claim:responsibility:KD:national:2022-10-18/pagaende:government",
           "claim:responsibility:KD:regional:2022-2026:government",
           "claim:responsibility:KD:regional:2018-2022:government",
-          "claim:responsibility:KD:municipal:2022-2026:government",
-          "claim:responsibility:KD:municipal:2018-2022:government",
           "claim:responsibility:KD:regional:2014-2018:government",
           "claim:responsibility:KD:municipal:2014-2018:government",
           "claim:observed_result:obs:scb:trangboddhet:1988-1989",
@@ -1636,11 +1636,11 @@
         ],
         "claim_refs": [
           "claim:action:KD:demokrati:motioner",
+          "claim:responsibility:KD:municipal:2018-2022:government",
+          "claim:responsibility:KD:municipal:2022-2026:government",
           "claim:responsibility:KD:national:2022-10-18/pagaende:government",
           "claim:responsibility:KD:regional:2022-2026:government",
           "claim:responsibility:KD:regional:2018-2022:government",
-          "claim:responsibility:KD:municipal:2022-2026:government",
-          "claim:responsibility:KD:municipal:2018-2022:government",
           "claim:responsibility:KD:regional:2014-2018:government",
           "claim:responsibility:KD:municipal:2014-2018:government"
         ],
@@ -1672,14 +1672,14 @@
         ],
         "claim_refs": [
           "claim:action:L:ekonomi:motioner",
-          "claim:responsibility:L:municipal:2022-2026:government",
-          "claim:responsibility:L:municipal:2018-2022:government",
+          "claim:responsibility:L:municipal:2014-2018:government",
           "claim:responsibility:L:national:2019-01-21/2021-11-30:support",
+          "claim:responsibility:L:municipal:2018-2022:government",
+          "claim:responsibility:L:municipal:2022-2026:government",
+          "claim:responsibility:L:regional:2022-2026:government",
           "claim:responsibility:L:regional:2018-2022:government",
           "claim:responsibility:L:national:2022-10-18/pagaende:government",
           "claim:responsibility:L:regional:2014-2018:government",
-          "claim:responsibility:L:regional:2022-2026:government",
-          "claim:responsibility:L:municipal:2014-2018:government",
           "claim:observed_result:obs:scb:arbetsloshet:2001",
           "claim:observed_result:obs:scb:arbetsloshet:2002",
           "claim:observed_result:obs:scb:arbetsloshet:2003"
@@ -1710,14 +1710,14 @@
         ],
         "claim_refs": [
           "claim:action:L:valfard:motioner",
-          "claim:responsibility:L:municipal:2022-2026:government",
-          "claim:responsibility:L:municipal:2018-2022:government",
+          "claim:responsibility:L:municipal:2014-2018:government",
           "claim:responsibility:L:national:2019-01-21/2021-11-30:support",
+          "claim:responsibility:L:municipal:2018-2022:government",
+          "claim:responsibility:L:municipal:2022-2026:government",
+          "claim:responsibility:L:regional:2022-2026:government",
           "claim:responsibility:L:regional:2018-2022:government",
           "claim:responsibility:L:national:2022-10-18/pagaende:government",
           "claim:responsibility:L:regional:2014-2018:government",
-          "claim:responsibility:L:regional:2022-2026:government",
-          "claim:responsibility:L:municipal:2014-2018:government",
           "claim:observed_result:obs:kolada:N15507:0000:2015",
           "claim:observed_result:obs:kolada:N15507:0000:2016",
           "claim:observed_result:obs:kolada:N15507:0000:2017"
@@ -1725,16 +1725,16 @@
         "evidence_refs": []
       },
       "trygghet": {
-        "score": 3.325,
+        "score": 3.322,
         "ci": [
-          2.932,
-          3.719
+          2.928,
+          3.715
         ],
         "components": {
           "A": 2.786,
           "B": 3.75,
           "C": 3.571,
-          "D": 3.629
+          "D": 3.592
         },
         "confidence": {
           "A": "high",
@@ -1748,14 +1748,14 @@
         ],
         "claim_refs": [
           "claim:action:L:trygghet:motioner",
-          "claim:responsibility:L:municipal:2022-2026:government",
-          "claim:responsibility:L:municipal:2018-2022:government",
+          "claim:responsibility:L:municipal:2014-2018:government",
           "claim:responsibility:L:national:2019-01-21/2021-11-30:support",
+          "claim:responsibility:L:municipal:2018-2022:government",
+          "claim:responsibility:L:municipal:2022-2026:government",
+          "claim:responsibility:L:regional:2022-2026:government",
           "claim:responsibility:L:regional:2018-2022:government",
           "claim:responsibility:L:national:2022-10-18/pagaende:government",
           "claim:responsibility:L:regional:2014-2018:government",
-          "claim:responsibility:L:regional:2022-2026:government",
-          "claim:responsibility:L:municipal:2014-2018:government",
           "claim:observed_result:obs:bra:dodligt_vald:2002",
           "claim:observed_result:obs:bra:dodligt_vald:2003",
           "claim:observed_result:obs:bra:dodligt_vald:2004"
@@ -1788,14 +1788,14 @@
         ],
         "claim_refs": [
           "claim:action:L:forsvar:motioner",
-          "claim:responsibility:L:municipal:2022-2026:government",
-          "claim:responsibility:L:municipal:2018-2022:government",
+          "claim:responsibility:L:municipal:2014-2018:government",
           "claim:responsibility:L:national:2019-01-21/2021-11-30:support",
+          "claim:responsibility:L:municipal:2018-2022:government",
+          "claim:responsibility:L:municipal:2022-2026:government",
+          "claim:responsibility:L:regional:2022-2026:government",
           "claim:responsibility:L:regional:2018-2022:government",
           "claim:responsibility:L:national:2022-10-18/pagaende:government",
-          "claim:responsibility:L:regional:2014-2018:government",
-          "claim:responsibility:L:regional:2022-2026:government",
-          "claim:responsibility:L:municipal:2014-2018:government"
+          "claim:responsibility:L:regional:2014-2018:government"
         ],
         "evidence_refs": []
       },
@@ -1823,14 +1823,14 @@
         ],
         "claim_refs": [
           "claim:action:L:klimat:motioner",
-          "claim:responsibility:L:municipal:2022-2026:government",
-          "claim:responsibility:L:municipal:2018-2022:government",
+          "claim:responsibility:L:municipal:2014-2018:government",
           "claim:responsibility:L:national:2019-01-21/2021-11-30:support",
+          "claim:responsibility:L:municipal:2018-2022:government",
+          "claim:responsibility:L:municipal:2022-2026:government",
+          "claim:responsibility:L:regional:2022-2026:government",
           "claim:responsibility:L:regional:2018-2022:government",
           "claim:responsibility:L:national:2022-10-18/pagaende:government",
           "claim:responsibility:L:regional:2014-2018:government",
-          "claim:responsibility:L:regional:2022-2026:government",
-          "claim:responsibility:L:municipal:2014-2018:government",
           "claim:observed_result:obs:scb:territoriella_utslapp:1990",
           "claim:observed_result:obs:scb:territoriella_utslapp:1991",
           "claim:observed_result:obs:scb:territoriella_utslapp:1992"
@@ -1861,14 +1861,14 @@
         ],
         "claim_refs": [
           "claim:action:L:integration:motioner",
-          "claim:responsibility:L:municipal:2022-2026:government",
-          "claim:responsibility:L:municipal:2018-2022:government",
+          "claim:responsibility:L:municipal:2014-2018:government",
           "claim:responsibility:L:national:2019-01-21/2021-11-30:support",
+          "claim:responsibility:L:municipal:2018-2022:government",
+          "claim:responsibility:L:municipal:2022-2026:government",
+          "claim:responsibility:L:regional:2022-2026:government",
           "claim:responsibility:L:regional:2018-2022:government",
           "claim:responsibility:L:national:2022-10-18/pagaende:government",
           "claim:responsibility:L:regional:2014-2018:government",
-          "claim:responsibility:L:regional:2022-2026:government",
-          "claim:responsibility:L:municipal:2014-2018:government",
           "claim:observed_result:obs:scb:trangboddhet:1988-1989",
           "claim:observed_result:obs:scb:trangboddhet:2002-2003",
           "claim:observed_result:obs:scb:trangboddhet:2004-2005"
@@ -1900,14 +1900,14 @@
         ],
         "claim_refs": [
           "claim:action:L:demokrati:motioner",
-          "claim:responsibility:L:municipal:2022-2026:government",
-          "claim:responsibility:L:municipal:2018-2022:government",
+          "claim:responsibility:L:municipal:2014-2018:government",
           "claim:responsibility:L:national:2019-01-21/2021-11-30:support",
+          "claim:responsibility:L:municipal:2018-2022:government",
+          "claim:responsibility:L:municipal:2022-2026:government",
+          "claim:responsibility:L:regional:2022-2026:government",
           "claim:responsibility:L:regional:2018-2022:government",
           "claim:responsibility:L:national:2022-10-18/pagaende:government",
-          "claim:responsibility:L:regional:2014-2018:government",
-          "claim:responsibility:L:regional:2022-2026:government",
-          "claim:responsibility:L:municipal:2014-2018:government"
+          "claim:responsibility:L:regional:2014-2018:government"
         ],
         "evidence_refs": []
       }
@@ -1937,14 +1937,14 @@
         ],
         "claim_refs": [
           "claim:action:MP:ekonomi:motioner",
-          "claim:responsibility:MP:municipal:2018-2022:government",
+          "claim:responsibility:MP:municipal:2014-2018:government",
           "claim:responsibility:MP:regional:2014-2018:government",
-          "claim:responsibility:MP:national:2014-10-03/2019-01-21:government",
           "claim:responsibility:MP:regional:2018-2022:government",
           "claim:responsibility:MP:municipal:2022-2026:government",
-          "claim:responsibility:MP:national:2019-01-21/2021-11-30:government",
           "claim:responsibility:MP:regional:2022-2026:government",
-          "claim:responsibility:MP:municipal:2014-2018:government",
+          "claim:responsibility:MP:national:2014-10-03/2019-01-21:government",
+          "claim:responsibility:MP:national:2019-01-21/2021-11-30:government",
+          "claim:responsibility:MP:municipal:2018-2022:government",
           "claim:observed_result:obs:scb:arbetsloshet:2001",
           "claim:observed_result:obs:scb:arbetsloshet:2002",
           "claim:observed_result:obs:scb:arbetsloshet:2003"
@@ -1975,14 +1975,14 @@
         ],
         "claim_refs": [
           "claim:action:MP:valfard:motioner",
-          "claim:responsibility:MP:municipal:2018-2022:government",
+          "claim:responsibility:MP:municipal:2014-2018:government",
           "claim:responsibility:MP:regional:2014-2018:government",
-          "claim:responsibility:MP:national:2014-10-03/2019-01-21:government",
           "claim:responsibility:MP:regional:2018-2022:government",
           "claim:responsibility:MP:municipal:2022-2026:government",
-          "claim:responsibility:MP:national:2019-01-21/2021-11-30:government",
           "claim:responsibility:MP:regional:2022-2026:government",
-          "claim:responsibility:MP:municipal:2014-2018:government",
+          "claim:responsibility:MP:national:2014-10-03/2019-01-21:government",
+          "claim:responsibility:MP:national:2019-01-21/2021-11-30:government",
+          "claim:responsibility:MP:municipal:2018-2022:government",
           "claim:observed_result:obs:kolada:N15507:0000:2015",
           "claim:observed_result:obs:kolada:N15507:0000:2016",
           "claim:observed_result:obs:kolada:N15507:0000:2017"
@@ -1990,16 +1990,16 @@
         "evidence_refs": []
       },
       "trygghet": {
-        "score": 2.612,
+        "score": 2.582,
         "ci": [
-          2.218,
-          3.006
+          2.188,
+          2.976
         ],
         "components": {
           "A": 0.429,
           "B": 4.375,
           "C": 4.286,
-          "D": 2.666
+          "D": 2.367
         },
         "confidence": {
           "A": "high",
@@ -2013,14 +2013,14 @@
         ],
         "claim_refs": [
           "claim:action:MP:trygghet:motioner",
-          "claim:responsibility:MP:municipal:2018-2022:government",
+          "claim:responsibility:MP:municipal:2014-2018:government",
           "claim:responsibility:MP:regional:2014-2018:government",
-          "claim:responsibility:MP:national:2014-10-03/2019-01-21:government",
           "claim:responsibility:MP:regional:2018-2022:government",
           "claim:responsibility:MP:municipal:2022-2026:government",
-          "claim:responsibility:MP:national:2019-01-21/2021-11-30:government",
           "claim:responsibility:MP:regional:2022-2026:government",
-          "claim:responsibility:MP:municipal:2014-2018:government",
+          "claim:responsibility:MP:national:2014-10-03/2019-01-21:government",
+          "claim:responsibility:MP:national:2019-01-21/2021-11-30:government",
+          "claim:responsibility:MP:municipal:2018-2022:government",
           "claim:observed_result:obs:bra:dodligt_vald:2002",
           "claim:observed_result:obs:bra:dodligt_vald:2003",
           "claim:observed_result:obs:bra:dodligt_vald:2004"
@@ -2053,14 +2053,14 @@
         ],
         "claim_refs": [
           "claim:action:MP:forsvar:motioner",
-          "claim:responsibility:MP:municipal:2018-2022:government",
+          "claim:responsibility:MP:municipal:2014-2018:government",
           "claim:responsibility:MP:regional:2014-2018:government",
-          "claim:responsibility:MP:national:2014-10-03/2019-01-21:government",
           "claim:responsibility:MP:regional:2018-2022:government",
           "claim:responsibility:MP:municipal:2022-2026:government",
-          "claim:responsibility:MP:national:2019-01-21/2021-11-30:government",
           "claim:responsibility:MP:regional:2022-2026:government",
-          "claim:responsibility:MP:municipal:2014-2018:government"
+          "claim:responsibility:MP:national:2014-10-03/2019-01-21:government",
+          "claim:responsibility:MP:national:2019-01-21/2021-11-30:government",
+          "claim:responsibility:MP:municipal:2018-2022:government"
         ],
         "evidence_refs": []
       },
@@ -2088,14 +2088,14 @@
         ],
         "claim_refs": [
           "claim:action:MP:klimat:motioner",
-          "claim:responsibility:MP:municipal:2018-2022:government",
+          "claim:responsibility:MP:municipal:2014-2018:government",
           "claim:responsibility:MP:regional:2014-2018:government",
-          "claim:responsibility:MP:national:2014-10-03/2019-01-21:government",
           "claim:responsibility:MP:regional:2018-2022:government",
           "claim:responsibility:MP:municipal:2022-2026:government",
-          "claim:responsibility:MP:national:2019-01-21/2021-11-30:government",
           "claim:responsibility:MP:regional:2022-2026:government",
-          "claim:responsibility:MP:municipal:2014-2018:government",
+          "claim:responsibility:MP:national:2014-10-03/2019-01-21:government",
+          "claim:responsibility:MP:national:2019-01-21/2021-11-30:government",
+          "claim:responsibility:MP:municipal:2018-2022:government",
           "claim:observed_result:obs:scb:territoriella_utslapp:1990",
           "claim:observed_result:obs:scb:territoriella_utslapp:1991",
           "claim:observed_result:obs:scb:territoriella_utslapp:1992"
@@ -2127,14 +2127,14 @@
         ],
         "claim_refs": [
           "claim:action:MP:integration:motioner",
-          "claim:responsibility:MP:municipal:2018-2022:government",
+          "claim:responsibility:MP:municipal:2014-2018:government",
           "claim:responsibility:MP:regional:2014-2018:government",
-          "claim:responsibility:MP:national:2014-10-03/2019-01-21:government",
           "claim:responsibility:MP:regional:2018-2022:government",
           "claim:responsibility:MP:municipal:2022-2026:government",
-          "claim:responsibility:MP:national:2019-01-21/2021-11-30:government",
           "claim:responsibility:MP:regional:2022-2026:government",
-          "claim:responsibility:MP:municipal:2014-2018:government",
+          "claim:responsibility:MP:national:2014-10-03/2019-01-21:government",
+          "claim:responsibility:MP:national:2019-01-21/2021-11-30:government",
+          "claim:responsibility:MP:municipal:2018-2022:government",
           "claim:observed_result:obs:scb:trangboddhet:1988-1989",
           "claim:observed_result:obs:scb:trangboddhet:2002-2003",
           "claim:observed_result:obs:scb:trangboddhet:2004-2005"
@@ -2166,14 +2166,14 @@
         ],
         "claim_refs": [
           "claim:action:MP:demokrati:motioner",
-          "claim:responsibility:MP:municipal:2018-2022:government",
+          "claim:responsibility:MP:municipal:2014-2018:government",
           "claim:responsibility:MP:regional:2014-2018:government",
-          "claim:responsibility:MP:national:2014-10-03/2019-01-21:government",
           "claim:responsibility:MP:regional:2018-2022:government",
           "claim:responsibility:MP:municipal:2022-2026:government",
-          "claim:responsibility:MP:national:2019-01-21/2021-11-30:government",
           "claim:responsibility:MP:regional:2022-2026:government",
-          "claim:responsibility:MP:municipal:2014-2018:government"
+          "claim:responsibility:MP:national:2014-10-03/2019-01-21:government",
+          "claim:responsibility:MP:national:2019-01-21/2021-11-30:government",
+          "claim:responsibility:MP:municipal:2018-2022:government"
         ],
         "evidence_refs": []
       }

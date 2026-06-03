@@ -70,6 +70,11 @@ def budget_ramar() -> dict[str, Any]:
     return _load("budget_ramar.yaml")
 
 
+@cache
+def skjutningar() -> dict[str, Any]:
+    return _load("skjutningar.yaml")
+
+
 def party_codes() -> list[str]:
     return [p["code"] for p in categories()["parties"]]
 

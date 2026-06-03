@@ -15,7 +15,7 @@ from pipeline import build_fas2
 from pipeline.derived import DERIVED
 from pipeline.derived import INDICATORS as DERIVED_INDICATORS
 from pipeline.expectations import SeriesDriftError, _end_year, check_series
-from pipeline.sources import bra, energimyndigheten
+from pipeline.sources import bra, energimyndigheten, polisen
 
 
 def _rows(pairs: list[tuple[str, float]]) -> list[dict[str, object]]:
@@ -89,7 +89,7 @@ def _repo_specs() -> list[tuple[str, dict[str, object]]]:
         out.append((f"SCB {s['table']}", s["expect"]))
     for k in build_fas2.KOLADA_KPIS:
         out.append((f"Kolada {k['kpi']}", k["expect"]))
-    for ind, spec in {**bra.EXPECT, **energimyndigheten.EXPECT}.items():
+    for ind, spec in {**bra.EXPECT, **energimyndigheten.EXPECT, **polisen.EXPECT}.items():
         out.append((ind, spec))
     for d in DERIVED:
         out.append((d["indicator"], d["expect"]))
@@ -101,13 +101,14 @@ def _ingested_indicators() -> set[str]:
     inds = {s["indicator"] for s in build_fas2.SCB_SERIES}
     inds |= {k["indicator"] for k in build_fas2.KOLADA_KPIS}
     inds |= set(bra.INDICATORS) | set(energimyndigheten.INDICATORS) | set(DERIVED_INDICATORS)
+    inds |= set(polisen.INDICATORS)
     return inds
 
 
 def _indicators_with_expect() -> set[str]:
     inds = {s["indicator"] for s in build_fas2.SCB_SERIES if s.get("expect")}
     inds |= {k["indicator"] for k in build_fas2.KOLADA_KPIS if k.get("expect")}
-    inds |= set(bra.EXPECT) | set(energimyndigheten.EXPECT)
+    inds |= set(bra.EXPECT) | set(energimyndigheten.EXPECT) | set(polisen.EXPECT)
     inds |= {d["indicator"] for d in DERIVED if d.get("expect")}
     return inds
 

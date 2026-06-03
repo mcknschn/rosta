@@ -1,0 +1,34 @@
+# Konstaterade (bekräftade) skjutningar i Sverige per år — Polisen.
+#
+# DELPOÄNG D, kategori trygghet, kanonisk indikator skjutningar_sprangningar (riktning down,
+# färre = bättre). Polisen för på regeringens uppdrag (sedan nov 2016) officiell statistik över
+# bekräftade skjutningar, men den publiceras ENDAST som PDF per polisregion och år — ingen
+# maskinläsbar tabell. Den nationella årstotalen är därför TROGET TRANSKRIBERAD ur respektive
+# års-PDF (samma mönster som config/budget_ramar.yaml och SKR-styrena; ingen runtime-PDF-parser
+# som kan korrumpera D tyst). Varje årsvärde är KORSVERIFIERAT vid transkribering: summan av de
+# 7 polisregionernas årstotaler == PDF:ens nationella "Totalt"-rad. Reproducerbart via
+# pipeline/tools/skjutningar_transcribe.py.
+#
+# SEMANTIK: indikatorn heter skjutningar_sprangningar, men endast SKJUTNINGAR transkriberas —
+# det är den etablerade, jämförbara serien (helår fr.o.m. 2017). Polisens sprängningsstatistik
+# är en separat, kortare serie; skjutningar används som proxy för indikatorn (grov vapenvåld).
+# Dokumenterat val (jfr personuppklaring för uppklaringsgrad). Värdet = ANTAL bekräftade
+# skjutningar (ej döda/skadade, som finns i samma PDF men inte används här).
+#
+# PRELIMINÄR: Polisens källnotis anger att statistiken är preliminär och kan ändras i efterhand.
+# Jämförbar fr.o.m. 2017 (första helår under uppdraget). Version 0 — transkriberad 2026-06-03.
+version: 0
+indicator: skjutningar_sprangningar
+category: trygghet
+submeasure: grov_brottslighet
+unit: "antal bekräftade skjutningar (hela landet)"
+years:
+  2017: { value: 281, source: "https://polisen.se/46cb5257d765487b24a8ea5134501036/contentassets/5fe3039dff9745e39999f5ff4e67e27f/skjutningar-per-polisregion-2017.pdf" }
+  2018: { value: 325, source: "https://polisen.se/0e0f73ef70caf0b2a47ca55252fc36e2/contentassets/5fe3039dff9745e39999f5ff4e67e27f/skjutningar-per-polisregion-2018.pdf" }
+  2019: { value: 360, source: "https://polisen.se/eb1d659e125ed9e31ec26965edc8e28b/contentassets/5fe3039dff9745e39999f5ff4e67e27f/skjutningar-per-polisregion-2019.pdf" }
+  2020: { value: 379, source: "https://polisen.se/aa77c886c802659201044204de4c4542/contentassets/5fe3039dff9745e39999f5ff4e67e27f/skjutningar-per-polisregion-2020.pdf" }
+  2021: { value: 344, source: "https://polisen.se/9f7e0fcabcd7277e657976dbe10bb010/contentassets/5fe3039dff9745e39999f5ff4e67e27f/skjutningar-per-polisregion-2021.pdf" }
+  2022: { value: 391, source: "https://polisen.se/b1c395330762ccc2b7e7884e6531dc40/contentassets/5fe3039dff9745e39999f5ff4e67e27f/skjutningar-per-polisregion-2022.pdf" }
+  2023: { value: 368, source: "https://polisen.se/a666154837bb5e75618a41fbb0b0e4af/contentassets/5fe3039dff9745e39999f5ff4e67e27f/skjutningar-per-polisregion-2023.pdf" }
+  2024: { value: 296, source: "https://polisen.se/d0ed5dc12358dd04fbba3409f0fe8c65/contentassets/5fe3039dff9745e39999f5ff4e67e27f/skjutningar-per-polisregion-2024.pdf" }
+  2025: { value: 158, source: "https://polisen.se/0d1a7c7e948c5fab1d5b783f2750bb82/contentassets/5fe3039dff9745e39999f5ff4e67e27f/skjutningar-per-polisregion-2025.pdf" }
