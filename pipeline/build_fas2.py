@@ -14,47 +14,70 @@ from __future__ import annotations
 import sys
 from datetime import date
 
-from . import warehouse
+from . import expectations, warehouse
 from .sources import bra, kolada, scb
 
 # SCB PxWeb-tabeller. 'fixed' fixerar varje icke-Tid-dimension till rätt kodvärde
 # (annars väljer loadern dimensionens första index, vilket ofta är fel serie).
+# 'expect' = serie-drift-förväntan (pipeline.expectations), grov med flit: fångar fel/tom/stale
+# serie, inte exakta tal. Ankare = stabila publicerade värden (slutår, ±rel_tol) som pinnar seriens
+# identitet — fångar en fel-men-rimlig dimension som value_range ensamt släpper igenom.
 SCB_SERIES = [
     {"table": "TAB2891", "indicator": "arbetsloshet", "category": "ekonomi",
      "submeasure": "sysselsattning_arbetsloshet", "unit": "%",
      "fixed": {"Arbetskraftstillh": "ALÖS", "Kon": "1+2", "Alder": "tot15-74",
-               "ContentsCode": "AM04011Q"}},
+               "ContentsCode": "AM04011Q"},
+     "expect": {"min_points": 15, "value_range": [3, 15], "min_latest_year": 2024,
+                "anchors": {"2020": 8.5}}},
     {"table": "TAB6514", "indicator": "sysselsattning", "category": "ekonomi",
      "submeasure": "sysselsattning_arbetsloshet", "unit": "%",
-     "fixed": {"Arbetskraftstillh": "SYSP", "TypData": "O_DATA"}},
+     "fixed": {"Arbetskraftstillh": "SYSP", "TypData": "O_DATA"},
+     "expect": {"min_points": 15, "value_range": [55, 80], "min_latest_year": 2024,
+                "anchors": {"2020": 66.8}}},
     {"table": "TAB6728", "indicator": "bnp_per_capita", "category": "ekonomi",
      "submeasure": "bnp_produktivitet", "unit": "kr (fasta priser, ref 2020)",
-     "fixed": {"ContentsCode": "000008DW"}},
+     "fixed": {"ContentsCode": "000008DW"},
+     "expect": {"min_points": 20, "value_range": [200000, 700000], "min_latest_year": 2023,
+                "anchors": {"2020": 484000}}},
     {"table": "TAB4698", "indicator": "territoriella_utslapp", "category": "klimat",
      "submeasure": "utslappsminskningar", "unit": "kt CO2-ekv.",
-     "fixed": {"Vaxthusgaser": "CO2-ekv.", "Sektor": "0.1", "ContentsCode": "0000018Q"}},
+     "fixed": {"Vaxthusgaser": "CO2-ekv.", "Sektor": "0.1", "ContentsCode": "0000018Q"},
+     "expect": {"min_points": 20, "value_range": [20000, 100000], "min_latest_year": 2022,
+                "anchors": {"2020": 45968.6}}},
     {"table": "TAB6439", "indicator": "trangboddhet", "category": "integration",
      "submeasure": "boendesegregation", "unit": "%",
-     "fixed": {"Indikator": "B035", "Alder": "16+", "Kon": "00", "ContentsCode": "000007OV"}},
+     "fixed": {"Indikator": "B035", "Alder": "16+", "Kon": "00", "ContentsCode": "000007OV"},
+     "expect": {"min_points": 8, "value_range": [1, 12], "min_latest_year": 2023}},
     {"table": "TAB5637", "indicator": "konsumtionsbaserade_utslapp", "category": "klimat",
      "submeasure": "utslappsminskningar", "unit": "ton CO2-ekv.",
-     "fixed": {"AmneMiljo": "GHG", "Anvandningstyp": "999"}},
+     "fixed": {"AmneMiljo": "GHG", "Anvandningstyp": "999"},
+     "expect": {"min_points": 10, "value_range": [50000000, 150000000], "min_latest_year": 2021,
+                "anchors": {"2018": 95274815}}},
     {"table": "TAB6529", "indicator": "sjalvforsorjningsgrad", "category": "integration",
      "submeasure": "arbete_sjalvforsorjning", "unit": "%",
      "fixed": {"Arbetskraftstillh": "SYSP", "InrikesUtrikes": "23", "TypData": "O_DATA",
-               "Kon": "1+2", "Alder": "tot15-74", "ContentsCode": "000007VG"}},
+               "Kon": "1+2", "Alder": "tot15-74", "ContentsCode": "000007VG"},
+     "expect": {"min_points": 12, "value_range": [40, 80], "min_latest_year": 2024,
+                "anchors": {"2020": 59.2}}},
 ]
 
 # Kolada-KPI:er (Riket = kommun 0000, kön T = totalt via fetch_kpi_series-defaults).
 KOLADA_KPIS = [
     {"kpi": "N15507", "indicator": "skolresultat", "category": "valfard",
-     "submeasure": "skola_kunskap", "unit": "meritvärdespoäng"},
+     "submeasure": "skola_kunskap", "unit": "meritvärdespoäng",
+     "expect": {"min_points": 8, "value_range": [200, 250], "min_latest_year": 2024,
+                "anchors": {"2018": 230.0}}},
     {"kpi": "N15813", "indicator": "behoriga_larare", "category": "valfard",
-     "submeasure": "skola_kunskap", "unit": "%"},
+     "submeasure": "skola_kunskap", "unit": "%",
+     "expect": {"min_points": 8, "value_range": [60, 85], "min_latest_year": 2024,
+                "anchors": {"2018": 70.54}}},
     {"kpi": "N31825", "indicator": "bidragsberoende", "category": "integration",
-     "submeasure": "arbete_sjalvforsorjning", "unit": "%"},
+     "submeasure": "arbete_sjalvforsorjning", "unit": "%",
+     "expect": {"min_points": 10, "value_range": [1, 6], "min_latest_year": 2023}},
     {"kpi": "N79242", "indicator": "vardkoer", "category": "valfard",
-     "submeasure": "vard_tillganglighet", "unit": "antal dagar (median)"},
+     "submeasure": "vard_tillganglighet", "unit": "antal dagar (median)",
+     "expect": {"min_points": 3, "value_range": [20, 200], "min_latest_year": 2023,
+                "anchors": {"2022": 65.0}}},
 ]
 
 
@@ -93,6 +116,7 @@ def main() -> None:
             s["table"], s["indicator"], s["category"], s["submeasure"], ra,
             fixed=s["fixed"], unit=s["unit"],
         )
+        expectations.check_series(rows, s.get("expect"), f"SCB {s['table']} {s['indicator']}")
         n = warehouse.upsert(con, "observations", rows)
         span = f"{rows[0]['period']}..{rows[-1]['period']}" if rows else "-"
         print(f"SCB {s['table']:8} -> {s['category']:11} {s['indicator']:22}: {n:4} obs ({span})")
@@ -103,18 +127,23 @@ def main() -> None:
             k["kpi"], k["indicator"], k["category"], k["submeasure"], ra, municipality="0000",
             unit=k["unit"],
         )
+        expectations.check_series(rows, k.get("expect"), f"Kolada {k['kpi']} {k['indicator']}")
         n = warehouse.upsert(con, "observations", rows)
         print(f"Kolada {k['kpi']:7} -> {k['category']:11} {k['indicator']:22}: {n:4} obs  ('{title}')")
 
     # Brå (trygghet, delpoäng D) — Excel, inget API. source_ref 'bra:' ligger utanför
     # _purge_unmanaged-scopet (scb:/kolada:), så raderna rensas aldrig av SCB/Kolada-bygget.
-    # Dödligt våld (Tabell 20) + NTU (utsatthet 3A, otrygghet 4A:1).
-    bra_rows = bra.fetch_dodligt_vald(ra) + bra.fetch_ntu(ra)
+    # Dödligt våld (Tabell 20) + NTU (utsatthet 3A, otrygghet 4A:1) + personuppklaring (10La).
+    bra_rows = bra.fetch_dodligt_vald(ra) + bra.fetch_ntu(ra) + bra.fetch_personuppklaring(ra)
     # Håll bra.INDICATORS (som coverage-gaten läser) i synk med vad som faktiskt skrivs:
     # en framtida Brå-fetch som emitterar en oannonserad indikator ska falla högt här.
     unlisted = {r["indicator"] for r in bra_rows} - set(bra.INDICATORS)
     if unlisted:
         raise ValueError(f"Brå emitterar indikatorer utanför bra.INDICATORS: {sorted(unlisted)}")
+    for ind in bra.INDICATORS:
+        expectations.check_series(
+            [r for r in bra_rows if r["indicator"] == ind], bra.EXPECT.get(ind), f"Brå {ind}"
+        )
     n = warehouse.upsert(con, "observations", bra_rows)
     for ind in bra.INDICATORS:
         sub = [r for r in bra_rows if r["indicator"] == ind]
@@ -129,8 +158,9 @@ def main() -> None:
         print(f"   {cat:12} {ind:22} {n:4}  {lo}..{hi}")
 
     print("\n-- kända luckor (loggas, ej tysta; se docs/fas3_coverage.md) --")
-    print("   trygghet: dödligt våld (Tabell 20) + NTU utsatthet/otrygghet inlästa (Brå).")
-    print("       Uppklaring/handläggning och återfall återstår (separata Brå-tabeller).")
+    print("   trygghet: dödligt våld (Tabell 20) + NTU utsatthet/otrygghet + personuppklaring "
+          "(10La) inlästa (Brå).")
+    print("       Handläggningstid/genomströmning och återfall återstår (separata Brå-tabeller).")
     print("   forsvar/demokrati: till stor del kvalitativa/internationella indikatorer")
     print("       -> ingen officiell svensk årsserie matar D (D = ej tillämplig, allowlistad).")
     con.close()

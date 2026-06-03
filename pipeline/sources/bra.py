@@ -18,9 +18,13 @@ Implementerat:
       NTU-metod tas med (brottsutsatthet: aggregatkategorin finns bara fr.o.m. 2016 enligt
       källfotnot; otrygghet: 2007-2016 är omräknade med ANNAN metod -> exkluderas, fr.o.m.
       2017 är nuvarande metod). Tidsbrytningen är källflaggad (asterisk i tabellen).
+  * Personuppklaringsprocent, samtliga brott, hela landet (Handlagda brott, tidsserie 10La)
+      -> trygghet / rattsvasendets_effektivitet / uppklaringsgrad (riktning up). Headline-raden
+      "SAMTLIGA BROTT". Personuppklaring = Brås officiella huvudmått för uppklaring sedan 2014;
+      pre-2014-data är inte jämförbart (handlagda-brott-reformen) men 10La-serien är post-reform.
 
-Återstår (separata Brå-produkter/tabeller, se docs/fas3_coverage.md): uppklaring/
-handläggningstid, återfall i brott.
+Återstår (separata Brå-produkter/tabeller, se docs/fas3_coverage.md): handläggningstid/
+genomströmningstid, återfall i brott.
 """
 
 from __future__ import annotations
@@ -53,6 +57,19 @@ NTU_URL = (
     "Tabellsamling%20NTU%202007-2025.xlsx"
 )
 
+# Personuppklaringsprocent, hela landet, senaste 10 åren (Handlagda brott, tidsserietabell 10La).
+# Download-id verifierat 2026-06-03; ändras vid ny publicering -> HTTP-fel höjs (raise_for_status).
+# Val av mått: PERSONuppklaringsprocent (andel av samtliga handlagda brott som personuppklarats:
+# åtal, strafföreläggande eller åtalsunderlåtelse) är Brås officiella huvudmått för uppklaring
+# sedan handlagda-brott-reformen 2014. Bladet rymmer även lagföringsprocent (annan nämnare,
+# utredda brott) — vi tar personuppklaring eftersom det är det vedertagna "uppklaringsgrad"-måttet
+# i svensk kriminalpolitisk statistik. Headline-raden "SAMTLIGA BROTT" (kol A=B) -> en årsserie.
+PERSONUPPKL_URL = (
+    f"{BASE}/download/18.285e1e6d19d8b8951142d6f/1776235268270/10La_uppklbr_10_ar.xlsx"
+)
+# Excel kapar bladnamn vid 31 tecken: "Statistik personuppklaringsprocent" -> ...proc.
+_PERSONUPPKL_SHEET = "Statistik personuppklaringsproc"
+
 # NTU-serier vi tar in. Varje serie pekar ut EN rad i ETT blad via dess radetikett (kol A[/B]).
 # min_year skär bort de år som inte är jämförbara under nuvarande NTU-metod (källflaggat med *):
 #   3A  brottsutsatthet: aggregatet "Brott mot enskild person" finns bara fr.o.m. 2016 (fotnot 2).
@@ -69,7 +86,20 @@ _NTU_SERIES = (
 )
 
 # Kanoniska indikatorer denna modul levererar (för täcknings-gaten i tests/test_fas3_gate.py).
-INDICATORS = ("dodligt_vald", "brottsutsatthet", "upplevd_otrygghet")
+INDICATORS = ("dodligt_vald", "brottsutsatthet", "upplevd_otrygghet", "uppklaringsgrad")
+
+# Serie-drift-förväntan per indikator (pipeline.expectations). Ankare = stabila publicerade
+# värden (slutår, ±rel_tol). Grov med flit — fångar fel/tom/stale serie, ej exakta tal.
+EXPECT = {
+    "dodligt_vald": {"min_points": 15, "value_range": [0.3, 2.5], "min_latest_year": 2024,
+                     "anchors": {"2020": 1.2}},
+    "brottsutsatthet": {"min_points": 6, "value_range": [10, 35], "min_latest_year": 2023,
+                        "anchors": {"2020": 20.24}},
+    "upplevd_otrygghet": {"min_points": 6, "value_range": [10, 40], "min_latest_year": 2023,
+                          "anchors": {"2018": 27.89}},
+    "uppklaringsgrad": {"min_points": 8, "value_range": [5, 25], "min_latest_year": 2024,
+                        "anchors": {"2020": 13.87}},
+}
 
 
 def _norm(s: Any) -> str:
@@ -235,4 +265,38 @@ def fetch_dodligt_vald(retrieved_at: str) -> list[dict[str, Any]]:
     wb = openpyxl.load_workbook(io.BytesIO(content), data_only=True)
     rows = _dodligt_rows_from_workbook(wb)
     _cache("dodligt_vald", retrieved_at, DODLIGT_VALD_URL, content, {"rows": len(rows)}, len(rows))
+    return rows
+
+
+def _personuppklaring_rows_from_workbook(wb: Any) -> list[dict[str, Any]]:
+    """Parsar 10La-arbetsboken -> personuppklaringsprocent (SAMTLIGA BROTT) per år. Nätverksfri.
+
+    Återanvänder de generiska SOS-tabellhjälparna (_ntu_header/_ntu_find_row/_ntu_headline_series):
+    de hittar års-headern och plockar EXAKT headline-raden (kol A=kol B='SAMTLIGA BROTT'), så en
+    omflyttning av rader/kolumner i källan failar högt i stället för att tyst ge en delseries värde.
+    """
+    ws = wb[_PERSONUPPKL_SHEET]
+    series = _ntu_headline_series(ws, "SAMTLIGA BROTT", "SAMTLIGA BROTT", min_year=2000)
+    return [
+        {
+            "id": f"obs:bra:uppklaringsgrad:{year}",
+            "category": "trygghet", "submeasure": "rattsvasendets_effektivitet",
+            "indicator": "uppklaringsgrad", "period": str(year),
+            "value": val, "unit": "% (personuppklaringsprocent, samtliga brott)",
+            "geography": "Riket", "source_ref": f"bra:personuppklaring_10la:{year}",
+        }
+        for year, val in sorted(series.items())
+    ]
+
+
+def fetch_personuppklaring(retrieved_at: str) -> list[dict[str, Any]]:
+    """10La: personuppklaringsprocent (samtliga brott), hela landet -> observations (Riket)."""
+    with _client() as c:
+        resp = c.get(PERSONUPPKL_URL)
+        resp.raise_for_status()
+        content = resp.content
+    wb = openpyxl.load_workbook(io.BytesIO(content), data_only=True)
+    rows = _personuppklaring_rows_from_workbook(wb)
+    _cache("personuppklaring_10la", retrieved_at, PERSONUPPKL_URL, content,
+           {"rows": len(rows)}, len(rows))
     return rows

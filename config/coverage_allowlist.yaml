@@ -25,8 +25,8 @@ allowlist:
   - { category: valfard, indicator: valfardsbrottslighet,      reason: "no_api: ingen ren officiell årsserie för välfärdsbrottslighet." }
   # --- trygghet (dodligt_vald + NTU brottsutsatthet/upplevd_otrygghet inlästa via Brå) ---
   # brottsutsatthet (NTU 3A) + upplevd_otrygghet (NTU 4A:1) inlästa via build_fas2 -> ej allowlistade.
+  # uppklaringsgrad (personuppklaringsprocent, Handlagda brott 10La) inläst via build_fas2 -> ej allowlistad.
   - { category: trygghet, indicator: skjutningar_sprangningar, reason: "future: Polisens statistik (ej Brå); semantik ≠ Brå dödligt våld med skjutvapen." }
-  - { category: trygghet, indicator: uppklaringsgrad,          reason: "future: Brå handlagda brott, separat tabell." }
   - { category: trygghet, indicator: handlaggningstid,         reason: "future: Brå/Åklagarmyndigheten, separat tabell." }
   - { category: trygghet, indicator: aterfall_i_brott,         reason: "future: Brå/Kriminalvården återfallsstatistik, separat tabell." }
   # --- forsvar (till stor del kvalitativt/sekretess) ---

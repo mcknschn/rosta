@@ -46,6 +46,8 @@ DERIVED = (
               "Kon": "1+2", "Alder": "tot15-74", "ContentsCode": "000007VG",
               "InrikesUtrikes": "23"}},  # utrikes födda
         "ref_tag": "scb:TAB6529:SYSP(13-23)",
+        "expect": {"min_points": 12, "value_range": [0, 20], "min_latest_year": 2024,
+                   "anchors": {"2020": 9.9}},
     },
     {
         "indicator": "produktivitet",
@@ -58,6 +60,8 @@ DERIVED = (
         "a": {"table": "TAB3610", "fixed": {"Anvandningstyp": "BNPM", "ContentsCode": "000000RN"}},
         "b": {"table": "TAB5622", "fixed": {"SNI2007": "0002", "ContentsCode": "000004C1"}},
         "ref_tag": "scb:TAB3610(BNPM,fast2020)/TAB5622(hela_ekonomin,timmar)",
+        "expect": {"min_points": 20, "value_range": [200, 800], "min_latest_year": 2022,
+                   "anchors": {"2020": 619.94}},
     },
 )
 

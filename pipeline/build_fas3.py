@@ -14,7 +14,7 @@ from __future__ import annotations
 import sys
 from datetime import date
 
-from . import derived, warehouse
+from . import derived, expectations, warehouse
 from .sources import energimyndigheten
 
 
@@ -29,6 +29,11 @@ def main() -> None:
     unlisted = {r["indicator"] for r in rows} - set(energimyndigheten.INDICATORS)
     if unlisted:
         raise ValueError(f"Energimyndigheten emitterar indikatorer utanför INDICATORS: {sorted(unlisted)}")
+    for ind in energimyndigheten.INDICATORS:
+        expectations.check_series(
+            [r for r in rows if r["indicator"] == ind], energimyndigheten.EXPECT.get(ind),
+            f"Energimyndigheten {ind}",
+        )
     n = warehouse.upsert(con, "observations", rows)
     span = f"{rows[0]['period']}..{rows[-1]['period']}" if rows else "-"
     print(f"Energimyndigheten EN0202_8 -> klimat       fossil_energianvandning: {n:4} obs ({span})")
@@ -39,6 +44,11 @@ def main() -> None:
     unlisted = {r["indicator"] for r in drows} - set(derived.INDICATORS)
     if unlisted:
         raise ValueError(f"Härledda emitterar indikatorer utanför derived.INDICATORS: {sorted(unlisted)}")
+    for spec in derived.DERIVED:
+        expectations.check_series(
+            [r for r in drows if r["indicator"] == spec["indicator"]], spec.get("expect"),
+            f"Härledd {spec['indicator']}",
+        )
     n = warehouse.upsert(con, "observations", drows)
     for spec in derived.DERIVED:
         sub = [r for r in drows if r["indicator"] == spec["indicator"]]

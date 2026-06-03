@@ -40,6 +40,12 @@ FOSSIL_CARRIERS = ("Kol och koks", "Petroleumprodukter", "Natur- och stadsgas")
 # Kanoniska indikatorer denna modul levererar (för täcknings-gaten i tests/test_fas3_gate.py).
 INDICATORS = ("fossil_energianvandning",)
 
+# Serie-drift-förväntan (pipeline.expectations). Slutlig fossil energianvändning, TWh.
+EXPECT = {
+    "fossil_energianvandning": {"min_points": 30, "value_range": [50, 350], "min_latest_year": 2022,
+                                "anchors": {"2020": 95.21}},
+}
+
 
 def _client() -> httpx.Client:
     return httpx.Client(timeout=90, headers=_UA, follow_redirects=True)

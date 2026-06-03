@@ -1,73 +1,283 @@
 {
-  "claim:responsibility:S:national:2014-10-03/2019-01-21:government": {
+  "claim:responsibility:S:national:2019-01-21/2021-11-30:government": {
     "kind": "claim",
-    "statement": "S hade government (national) under 2014-10-03/2019-01-21.",
+    "statement": "S hade government (nationellt) under 2019-01-21/2021-11-30.",
     "source_name": "Regeringskansliet"
+  },
+  "claim:responsibility:M:regional:2022-2026:government": {
+    "kind": "claim",
+    "statement": "M ingick i det ledande styret i 11 regioner (regional) under 2022-2026.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:C:municipal:2018-2022:government": {
+    "kind": "claim",
+    "statement": "C ingick i det ledande styret i 201 regioner (municipal) under 2018-2022.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:V:regional:2022-2026:government": {
+    "kind": "claim",
+    "statement": "V ingick i det ledande styret i 6 regioner (regional) under 2022-2026.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:L:municipal:2022-2026:government": {
+    "kind": "claim",
+    "statement": "L ingick i det ledande styret i 107 regioner (municipal) under 2022-2026.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:MP:municipal:2018-2022:government": {
+    "kind": "claim",
+    "statement": "MP ingick i det ledande styret i 69 regioner (municipal) under 2018-2022.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:S:municipal:2018-2022:government": {
+    "kind": "claim",
+    "statement": "S ingick i det ledande styret i 147 regioner (municipal) under 2018-2022.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:MP:regional:2014-2018:government": {
+    "kind": "claim",
+    "statement": "MP ingick i det ledande styret i 19 regioner (regional) under 2014-2018.",
+    "source_name": "skr"
   },
   "claim:responsibility:MP:national:2014-10-03/2019-01-21:government": {
     "kind": "claim",
-    "statement": "MP hade government (national) under 2014-10-03/2019-01-21.",
+    "statement": "MP hade government (nationellt) under 2014-10-03/2019-01-21.",
     "source_name": "Regeringskansliet"
   },
-  "claim:responsibility:S:national:2019-01-21/2021-11-30:government": {
+  "claim:responsibility:V:regional:2014-2018:government": {
     "kind": "claim",
-    "statement": "S hade government (national) under 2019-01-21/2021-11-30.",
-    "source_name": "Regeringskansliet"
+    "statement": "V ingick i det ledande styret i 13 regioner (regional) under 2014-2018.",
+    "source_name": "skr"
   },
-  "claim:responsibility:MP:national:2019-01-21/2021-11-30:government": {
+  "claim:responsibility:M:municipal:2018-2022:government": {
     "kind": "claim",
-    "statement": "MP hade government (national) under 2019-01-21/2021-11-30.",
-    "source_name": "Regeringskansliet"
+    "statement": "M ingick i det ledande styret i 161 regioner (municipal) under 2018-2022.",
+    "source_name": "skr"
   },
-  "claim:responsibility:C:national:2019-01-21/2021-11-30:support": {
+  "claim:responsibility:L:municipal:2018-2022:government": {
     "kind": "claim",
-    "statement": "C hade support (national) under 2019-01-21/2021-11-30.",
-    "source_name": "Regeringskansliet"
+    "statement": "L ingick i det ledande styret i 148 regioner (municipal) under 2018-2022.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:V:municipal:2018-2022:government": {
+    "kind": "claim",
+    "statement": "V ingick i det ledande styret i 60 regioner (municipal) under 2018-2022.",
+    "source_name": "skr"
   },
   "claim:responsibility:L:national:2019-01-21/2021-11-30:support": {
     "kind": "claim",
-    "statement": "L hade support (national) under 2019-01-21/2021-11-30.",
+    "statement": "L hade support (nationellt) under 2019-01-21/2021-11-30.",
     "source_name": "Regeringskansliet"
   },
   "claim:responsibility:S:national:2021-11-30/2022-10-18:government": {
     "kind": "claim",
-    "statement": "S hade government (national) under 2021-11-30/2022-10-18.",
-    "source_name": "Regeringskansliet"
-  },
-  "claim:responsibility:M:national:2022-10-18/pagaende:government": {
-    "kind": "claim",
-    "statement": "M hade government (national) under 2022-10-18/pagaende.",
+    "statement": "S hade government (nationellt) under 2021-11-30/2022-10-18.",
     "source_name": "Regeringskansliet"
   },
   "claim:responsibility:KD:national:2022-10-18/pagaende:government": {
     "kind": "claim",
-    "statement": "KD hade government (national) under 2022-10-18/pagaende.",
+    "statement": "KD hade government (nationellt) under 2022-10-18/pagaende.",
     "source_name": "Regeringskansliet"
+  },
+  "claim:responsibility:MP:regional:2018-2022:government": {
+    "kind": "claim",
+    "statement": "MP ingick i det ledande styret i 10 regioner (regional) under 2018-2022.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:KD:regional:2022-2026:government": {
+    "kind": "claim",
+    "statement": "KD ingick i det ledande styret i 12 regioner (regional) under 2022-2026.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:M:municipal:2022-2026:government": {
+    "kind": "claim",
+    "statement": "M ingick i det ledande styret i 175 regioner (municipal) under 2022-2026.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:MP:municipal:2022-2026:government": {
+    "kind": "claim",
+    "statement": "MP ingick i det ledande styret i 48 regioner (municipal) under 2022-2026.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:V:municipal:2022-2026:government": {
+    "kind": "claim",
+    "statement": "V ingick i det ledande styret i 58 regioner (municipal) under 2022-2026.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:S:national:2014-10-03/2019-01-21:government": {
+    "kind": "claim",
+    "statement": "S hade government (nationellt) under 2014-10-03/2019-01-21.",
+    "source_name": "Regeringskansliet"
+  },
+  "claim:responsibility:C:regional:2018-2022:government": {
+    "kind": "claim",
+    "statement": "C ingick i det ledande styret i 19 regioner (regional) under 2018-2022.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:KD:regional:2018-2022:government": {
+    "kind": "claim",
+    "statement": "KD ingick i det ledande styret i 13 regioner (regional) under 2018-2022.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:MP:national:2019-01-21/2021-11-30:government": {
+    "kind": "claim",
+    "statement": "MP hade government (nationellt) under 2019-01-21/2021-11-30.",
+    "source_name": "Regeringskansliet"
+  },
+  "claim:responsibility:C:national:2019-01-21/2021-11-30:support": {
+    "kind": "claim",
+    "statement": "C hade support (nationellt) under 2019-01-21/2021-11-30.",
+    "source_name": "Regeringskansliet"
+  },
+  "claim:responsibility:S:regional:2022-2026:government": {
+    "kind": "claim",
+    "statement": "S ingick i det ledande styret i 13 regioner (regional) under 2022-2026.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:L:regional:2018-2022:government": {
+    "kind": "claim",
+    "statement": "L ingick i det ledande styret i 16 regioner (regional) under 2018-2022.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:V:regional:2018-2022:government": {
+    "kind": "claim",
+    "statement": "V ingick i det ledande styret i 2 regioner (regional) under 2018-2022.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:S:municipal:2014-2018:government": {
+    "kind": "claim",
+    "statement": "S ingick i det ledande styret i 194 regioner (municipal) under 2014-2018.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:M:municipal:2014-2018:government": {
+    "kind": "claim",
+    "statement": "M ingick i det ledande styret i 113 regioner (municipal) under 2014-2018.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:C:municipal:2014-2018:government": {
+    "kind": "claim",
+    "statement": "C ingick i det ledande styret i 144 regioner (municipal) under 2014-2018.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:SD:municipal:2022-2026:government": {
+    "kind": "claim",
+    "statement": "SD ingick i det ledande styret i 39 regioner (municipal) under 2022-2026.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:KD:municipal:2022-2026:government": {
+    "kind": "claim",
+    "statement": "KD ingick i det ledande styret i 138 regioner (municipal) under 2022-2026.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:M:national:2022-10-18/pagaende:government": {
+    "kind": "claim",
+    "statement": "M hade government (nationellt) under 2022-10-18/pagaende.",
+    "source_name": "Regeringskansliet"
+  },
+  "claim:responsibility:C:regional:2022-2026:government": {
+    "kind": "claim",
+    "statement": "C ingick i det ledande styret i 12 regioner (regional) under 2022-2026.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:S:regional:2018-2022:government": {
+    "kind": "claim",
+    "statement": "S ingick i det ledande styret i 9 regioner (regional) under 2018-2022.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:V:municipal:2014-2018:government": {
+    "kind": "claim",
+    "statement": "V ingick i det ledande styret i 102 regioner (municipal) under 2014-2018.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:KD:municipal:2018-2022:government": {
+    "kind": "claim",
+    "statement": "KD ingick i det ledande styret i 153 regioner (municipal) under 2018-2022.",
+    "source_name": "skr"
   },
   "claim:responsibility:L:national:2022-10-18/pagaende:government": {
     "kind": "claim",
-    "statement": "L hade government (national) under 2022-10-18/pagaende.",
+    "statement": "L hade government (nationellt) under 2022-10-18/pagaende.",
     "source_name": "Regeringskansliet"
+  },
+  "claim:responsibility:M:regional:2014-2018:government": {
+    "kind": "claim",
+    "statement": "M ingick i det ledande styret i 5 regioner (regional) under 2014-2018.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:C:regional:2014-2018:government": {
+    "kind": "claim",
+    "statement": "C ingick i det ledande styret i 8 regioner (regional) under 2014-2018.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:M:regional:2018-2022:government": {
+    "kind": "claim",
+    "statement": "M ingick i det ledande styret i 13 regioner (regional) under 2018-2022.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:MP:regional:2022-2026:government": {
+    "kind": "claim",
+    "statement": "MP ingick i det ledande styret i 3 regioner (regional) under 2022-2026.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:C:municipal:2022-2026:government": {
+    "kind": "claim",
+    "statement": "C ingick i det ledande styret i 149 regioner (municipal) under 2022-2026.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:L:regional:2014-2018:government": {
+    "kind": "claim",
+    "statement": "L ingick i det ledande styret i 7 regioner (regional) under 2014-2018.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:SD:regional:2022-2026:government": {
+    "kind": "claim",
+    "statement": "SD ingick i det ledande styret i 1 region (regional) under 2022-2026.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:SD:municipal:2018-2022:government": {
+    "kind": "claim",
+    "statement": "SD ingick i det ledande styret i 4 regioner (municipal) under 2018-2022.",
+    "source_name": "skr"
   },
   "claim:responsibility:SD:national:2022-10-18/pagaende:support": {
     "kind": "claim",
-    "statement": "SD hade support (national) under 2022-10-18/pagaende.",
+    "statement": "SD hade support (nationellt) under 2022-10-18/pagaende.",
     "source_name": "Regeringskansliet"
   },
-  "claim:action:C:trygghet:motioner": {
+  "claim:responsibility:L:regional:2022-2026:government": {
     "kind": "claim",
-    "statement": "C lämnade 340 motioner i utskott kopplade till trygghet.",
-    "source_name": "Riksdagen"
+    "statement": "L ingick i det ledande styret i 6 regioner (regional) under 2022-2026.",
+    "source_name": "skr"
   },
-  "claim:action:KD:forsvar:motioner": {
+  "claim:responsibility:S:regional:2014-2018:government": {
     "kind": "claim",
-    "statement": "KD lämnade 435 motioner i utskott kopplade till forsvar.",
-    "source_name": "Riksdagen"
+    "statement": "S ingick i det ledande styret i 16 regioner (regional) under 2014-2018.",
+    "source_name": "skr"
   },
-  "claim:action:MP:demokrati:motioner": {
+  "claim:responsibility:MP:municipal:2014-2018:government": {
     "kind": "claim",
-    "statement": "MP lämnade 200 motioner i utskott kopplade till demokrati.",
-    "source_name": "Riksdagen"
+    "statement": "MP ingick i det ledande styret i 124 regioner (municipal) under 2014-2018.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:L:municipal:2014-2018:government": {
+    "kind": "claim",
+    "statement": "L ingick i det ledande styret i 110 regioner (municipal) under 2014-2018.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:KD:regional:2014-2018:government": {
+    "kind": "claim",
+    "statement": "KD ingick i det ledande styret i 5 regioner (regional) under 2014-2018.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:S:municipal:2022-2026:government": {
+    "kind": "claim",
+    "statement": "S ingick i det ledande styret i 162 regioner (municipal) under 2022-2026.",
+    "source_name": "skr"
+  },
+  "claim:responsibility:KD:municipal:2014-2018:government": {
+    "kind": "claim",
+    "statement": "KD ingick i det ledande styret i 100 regioner (municipal) under 2014-2018.",
+    "source_name": "skr"
   },
   "claim:action:C:ekonomi:motioner": {
     "kind": "claim",
@@ -94,29 +304,19 @@
     "statement": "MP lämnade 147 motioner i utskott kopplade till forsvar.",
     "source_name": "Riksdagen"
   },
-  "claim:action:KD:klimat:motioner": {
+  "claim:action:C:trygghet:motioner": {
     "kind": "claim",
-    "statement": "KD lämnade 246 motioner i utskott kopplade till klimat.",
+    "statement": "C lämnade 340 motioner i utskott kopplade till trygghet.",
     "source_name": "Riksdagen"
   },
-  "claim:action:L:demokrati:motioner": {
+  "claim:action:KD:forsvar:motioner": {
     "kind": "claim",
-    "statement": "L lämnade 316 motioner i utskott kopplade till demokrati.",
+    "statement": "KD lämnade 435 motioner i utskott kopplade till forsvar.",
     "source_name": "Riksdagen"
   },
-  "claim:action:C:klimat:motioner": {
+  "claim:action:MP:demokrati:motioner": {
     "kind": "claim",
-    "statement": "C lämnade 631 motioner i utskott kopplade till klimat.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:L:ekonomi:motioner": {
-    "kind": "claim",
-    "statement": "L lämnade 735 motioner i utskott kopplade till ekonomi.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:L:integration:motioner": {
-    "kind": "claim",
-    "statement": "L lämnade 295 motioner i utskott kopplade till integration.",
+    "statement": "MP lämnade 200 motioner i utskott kopplade till demokrati.",
     "source_name": "Riksdagen"
   },
   "claim:action:S:trygghet:motioner": {
@@ -139,76 +339,6 @@
     "statement": "V lämnade 156 motioner i utskott kopplade till trygghet.",
     "source_name": "Riksdagen"
   },
-  "claim:action:C:demokrati:motioner": {
-    "kind": "claim",
-    "statement": "C lämnade 402 motioner i utskott kopplade till demokrati.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:KD:ekonomi:motioner": {
-    "kind": "claim",
-    "statement": "KD lämnade 1009 motioner i utskott kopplade till ekonomi.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:KD:integration:motioner": {
-    "kind": "claim",
-    "statement": "KD lämnade 339 motioner i utskott kopplade till integration.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:MP:trygghet:motioner": {
-    "kind": "claim",
-    "statement": "MP lämnade 100 motioner i utskott kopplade till trygghet.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:C:valfard:motioner": {
-    "kind": "claim",
-    "statement": "C lämnade 744 motioner i utskott kopplade till valfard.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:C:forsvar:motioner": {
-    "kind": "claim",
-    "statement": "C lämnade 233 motioner i utskott kopplade till forsvar.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:KD:trygghet:motioner": {
-    "kind": "claim",
-    "statement": "KD lämnade 322 motioner i utskott kopplade till trygghet.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:MP:ekonomi:motioner": {
-    "kind": "claim",
-    "statement": "MP lämnade 509 motioner i utskott kopplade till ekonomi.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:MP:integration:motioner": {
-    "kind": "claim",
-    "statement": "MP lämnade 268 motioner i utskott kopplade till integration.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:S:valfard:motioner": {
-    "kind": "claim",
-    "statement": "S lämnade 1986 motioner i utskott kopplade till valfard.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:V:valfard:motioner": {
-    "kind": "claim",
-    "statement": "V lämnade 277 motioner i utskott kopplade till valfard.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:L:forsvar:motioner": {
-    "kind": "claim",
-    "statement": "L lämnade 223 motioner i utskott kopplade till forsvar.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:MP:klimat:motioner": {
-    "kind": "claim",
-    "statement": "MP lämnade 250 motioner i utskott kopplade till klimat.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:KD:valfard:motioner": {
-    "kind": "claim",
-    "statement": "KD lämnade 534 motioner i utskott kopplade till valfard.",
-    "source_name": "Riksdagen"
-  },
   "claim:action:M:valfard:motioner": {
     "kind": "claim",
     "statement": "M lämnade 2939 motioner i utskott kopplade till valfard.",
@@ -222,41 +352,6 @@
   "claim:action:L:trygghet:motioner": {
     "kind": "claim",
     "statement": "L lämnade 226 motioner i utskott kopplade till trygghet.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:S:forsvar:motioner": {
-    "kind": "claim",
-    "statement": "S lämnade 429 motioner i utskott kopplade till forsvar.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:M:trygghet:motioner": {
-    "kind": "claim",
-    "statement": "M lämnade 1569 motioner i utskott kopplade till trygghet.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:SD:trygghet:motioner": {
-    "kind": "claim",
-    "statement": "SD lämnade 808 motioner i utskott kopplade till trygghet.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:V:forsvar:motioner": {
-    "kind": "claim",
-    "statement": "V lämnade 183 motioner i utskott kopplade till forsvar.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:L:valfard:motioner": {
-    "kind": "claim",
-    "statement": "L lämnade 514 motioner i utskott kopplade till valfard.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:M:klimat:motioner": {
-    "kind": "claim",
-    "statement": "M lämnade 1612 motioner i utskott kopplade till klimat.",
-    "source_name": "Riksdagen"
-  },
-  "claim:action:SD:klimat:motioner": {
-    "kind": "claim",
-    "statement": "SD lämnade 672 motioner i utskott kopplade till klimat.",
     "source_name": "Riksdagen"
   },
   "claim:action:S:demokrati:motioner": {
@@ -289,6 +384,91 @@
     "statement": "V lämnade 146 motioner i utskott kopplade till demokrati.",
     "source_name": "Riksdagen"
   },
+  "claim:action:M:klimat:motioner": {
+    "kind": "claim",
+    "statement": "M lämnade 1612 motioner i utskott kopplade till klimat.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:SD:klimat:motioner": {
+    "kind": "claim",
+    "statement": "SD lämnade 672 motioner i utskott kopplade till klimat.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:S:valfard:motioner": {
+    "kind": "claim",
+    "statement": "S lämnade 1986 motioner i utskott kopplade till valfard.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:V:valfard:motioner": {
+    "kind": "claim",
+    "statement": "V lämnade 277 motioner i utskott kopplade till valfard.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:L:forsvar:motioner": {
+    "kind": "claim",
+    "statement": "L lämnade 223 motioner i utskott kopplade till forsvar.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:MP:klimat:motioner": {
+    "kind": "claim",
+    "statement": "MP lämnade 250 motioner i utskott kopplade till klimat.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:KD:klimat:motioner": {
+    "kind": "claim",
+    "statement": "KD lämnade 246 motioner i utskott kopplade till klimat.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:L:demokrati:motioner": {
+    "kind": "claim",
+    "statement": "L lämnade 316 motioner i utskott kopplade till demokrati.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:S:klimat:motioner": {
+    "kind": "claim",
+    "statement": "S lämnade 600 motioner i utskott kopplade till klimat.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:V:klimat:motioner": {
+    "kind": "claim",
+    "statement": "V lämnade 84 motioner i utskott kopplade till klimat.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:MP:valfard:motioner": {
+    "kind": "claim",
+    "statement": "MP lämnade 373 motioner i utskott kopplade till valfard.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:C:valfard:motioner": {
+    "kind": "claim",
+    "statement": "C lämnade 744 motioner i utskott kopplade till valfard.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:KD:valfard:motioner": {
+    "kind": "claim",
+    "statement": "KD lämnade 534 motioner i utskott kopplade till valfard.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:C:demokrati:motioner": {
+    "kind": "claim",
+    "statement": "C lämnade 402 motioner i utskott kopplade till demokrati.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:KD:ekonomi:motioner": {
+    "kind": "claim",
+    "statement": "KD lämnade 1009 motioner i utskott kopplade till ekonomi.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:KD:integration:motioner": {
+    "kind": "claim",
+    "statement": "KD lämnade 339 motioner i utskott kopplade till integration.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:MP:trygghet:motioner": {
+    "kind": "claim",
+    "statement": "MP lämnade 100 motioner i utskott kopplade till trygghet.",
+    "source_name": "Riksdagen"
+  },
   "claim:action:S:ekonomi:motioner": {
     "kind": "claim",
     "statement": "S lämnade 2660 motioner i utskott kopplade till ekonomi.",
@@ -319,19 +499,64 @@
     "statement": "V lämnade 254 motioner i utskott kopplade till integration.",
     "source_name": "Riksdagen"
   },
-  "claim:action:S:klimat:motioner": {
+  "claim:action:C:klimat:motioner": {
     "kind": "claim",
-    "statement": "S lämnade 600 motioner i utskott kopplade till klimat.",
+    "statement": "C lämnade 631 motioner i utskott kopplade till klimat.",
     "source_name": "Riksdagen"
   },
-  "claim:action:V:klimat:motioner": {
+  "claim:action:L:ekonomi:motioner": {
     "kind": "claim",
-    "statement": "V lämnade 84 motioner i utskott kopplade till klimat.",
+    "statement": "L lämnade 735 motioner i utskott kopplade till ekonomi.",
     "source_name": "Riksdagen"
   },
-  "claim:action:MP:valfard:motioner": {
+  "claim:action:L:integration:motioner": {
     "kind": "claim",
-    "statement": "MP lämnade 373 motioner i utskott kopplade till valfard.",
+    "statement": "L lämnade 295 motioner i utskott kopplade till integration.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:S:forsvar:motioner": {
+    "kind": "claim",
+    "statement": "S lämnade 429 motioner i utskott kopplade till forsvar.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:M:trygghet:motioner": {
+    "kind": "claim",
+    "statement": "M lämnade 1569 motioner i utskott kopplade till trygghet.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:SD:trygghet:motioner": {
+    "kind": "claim",
+    "statement": "SD lämnade 808 motioner i utskott kopplade till trygghet.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:V:forsvar:motioner": {
+    "kind": "claim",
+    "statement": "V lämnade 183 motioner i utskott kopplade till forsvar.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:L:valfard:motioner": {
+    "kind": "claim",
+    "statement": "L lämnade 514 motioner i utskott kopplade till valfard.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:C:forsvar:motioner": {
+    "kind": "claim",
+    "statement": "C lämnade 233 motioner i utskott kopplade till forsvar.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:KD:trygghet:motioner": {
+    "kind": "claim",
+    "statement": "KD lämnade 322 motioner i utskott kopplade till trygghet.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:MP:ekonomi:motioner": {
+    "kind": "claim",
+    "statement": "MP lämnade 509 motioner i utskott kopplade till ekonomi.",
+    "source_name": "Riksdagen"
+  },
+  "claim:action:MP:integration:motioner": {
+    "kind": "claim",
+    "statement": "MP lämnade 268 motioner i utskott kopplade till integration.",
     "source_name": "Riksdagen"
   },
   "claim:observed_result:obs:scb:arbetsloshet:2001": {
@@ -1567,6 +1792,751 @@
   "claim:observed_result:obs:bra:dodligt_vald:2025": {
     "kind": "claim",
     "statement": "dodligt_vald = 0.8 (trygghet, 2025).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1970": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 261.3 (klimat, 1970).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1971": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 252.8 (klimat, 1971).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1972": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 253.0 (klimat, 1972).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1973": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 264.4 (klimat, 1973).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1974": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 234.3 (klimat, 1974).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1975": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 242.2 (klimat, 1975).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1976": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 252.2 (klimat, 1976).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1977": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 240.5 (klimat, 1977).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1978": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 239.1 (klimat, 1978).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1979": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 244.6 (klimat, 1979).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1980": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 222.7 (klimat, 1980).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1981": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 205.1 (klimat, 1981).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1982": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 187.4 (klimat, 1982).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1983": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 173.618 (klimat, 1983).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1984": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 170.278 (klimat, 1984).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1985": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 170.805 (klimat, 1985).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1986": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 167.96 (klimat, 1986).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1987": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 172.494 (klimat, 1987).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1988": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 171.381 (klimat, 1988).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1989": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 168.319 (klimat, 1989).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1990": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 157.91 (klimat, 1990).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1991": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 151.722 (klimat, 1991).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1992": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 148.957 (klimat, 1992).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1993": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 147.14 (klimat, 1993).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1994": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 151.596 (klimat, 1994).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1995": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 153.428 (klimat, 1995).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1996": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 155.446 (klimat, 1996).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1997": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 152.763 (klimat, 1997).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1998": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 152.845 (klimat, 1998).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1999": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 151.692 (klimat, 1999).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:2000": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 148.43 (klimat, 2000).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:2001": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 149.111 (klimat, 2001).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:2002": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 150.507 (klimat, 2002).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:2003": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 152.942 (klimat, 2003).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:2004": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 151.177 (klimat, 2004).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:2005": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 143.346 (klimat, 2005).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:2006": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 141.513 (klimat, 2006).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:2007": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 141.371 (klimat, 2007).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:2008": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 135.663 (klimat, 2008).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:2009": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 123.492 (klimat, 2009).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:2010": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 132.68 (klimat, 2010).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:2011": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 128.467 (klimat, 2011).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:2012": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 121.31 (klimat, 2012).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:2013": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 116.665 (klimat, 2013).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:2014": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 113.446 (klimat, 2014).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:2015": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 112.157 (klimat, 2015).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:2016": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 108.536 (klimat, 2016).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:2017": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 108.035 (klimat, 2017).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:2018": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 102.886 (klimat, 2018).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:2019": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 103.235 (klimat, 2019).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:2020": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 95.21 (klimat, 2020).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:2021": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 97.708 (klimat, 2021).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:2022": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 88.042 (klimat, 2022).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:2023": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 87.755 (klimat, 2023).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:2024": {
+    "kind": "claim",
+    "statement": "fossil_energianvandning = 101.607 (klimat, 2024).",
+    "source_name": "energimyndigheten"
+  },
+  "claim:observed_result:obs:bra:brottsutsatthet:2016": {
+    "kind": "claim",
+    "statement": "brottsutsatthet = 20.76 (trygghet, 2016).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:brottsutsatthet:2017": {
+    "kind": "claim",
+    "statement": "brottsutsatthet = 22.44 (trygghet, 2017).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:brottsutsatthet:2018": {
+    "kind": "claim",
+    "statement": "brottsutsatthet = 23.07 (trygghet, 2018).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:brottsutsatthet:2019": {
+    "kind": "claim",
+    "statement": "brottsutsatthet = 22.59 (trygghet, 2019).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:brottsutsatthet:2020": {
+    "kind": "claim",
+    "statement": "brottsutsatthet = 20.24 (trygghet, 2020).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:brottsutsatthet:2021": {
+    "kind": "claim",
+    "statement": "brottsutsatthet = 19.46 (trygghet, 2021).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:brottsutsatthet:2022": {
+    "kind": "claim",
+    "statement": "brottsutsatthet = 20.11 (trygghet, 2022).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:brottsutsatthet:2023": {
+    "kind": "claim",
+    "statement": "brottsutsatthet = 20.07 (trygghet, 2023).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:brottsutsatthet:2024": {
+    "kind": "claim",
+    "statement": "brottsutsatthet = 19.96 (trygghet, 2024).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:upplevd_otrygghet:2017": {
+    "kind": "claim",
+    "statement": "upplevd_otrygghet = 27.72 (trygghet, 2017).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:upplevd_otrygghet:2018": {
+    "kind": "claim",
+    "statement": "upplevd_otrygghet = 27.89 (trygghet, 2018).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:upplevd_otrygghet:2019": {
+    "kind": "claim",
+    "statement": "upplevd_otrygghet = 27.64 (trygghet, 2019).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:upplevd_otrygghet:2020": {
+    "kind": "claim",
+    "statement": "upplevd_otrygghet = 29.85 (trygghet, 2020).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:upplevd_otrygghet:2021": {
+    "kind": "claim",
+    "statement": "upplevd_otrygghet = 27.94 (trygghet, 2021).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:upplevd_otrygghet:2022": {
+    "kind": "claim",
+    "statement": "upplevd_otrygghet = 26.67 (trygghet, 2022).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:upplevd_otrygghet:2023": {
+    "kind": "claim",
+    "statement": "upplevd_otrygghet = 26.46 (trygghet, 2023).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:upplevd_otrygghet:2024": {
+    "kind": "claim",
+    "statement": "upplevd_otrygghet = 24.23 (trygghet, 2024).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:upplevd_otrygghet:2025": {
+    "kind": "claim",
+    "statement": "upplevd_otrygghet = 24.99 (trygghet, 2025).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:derived:sysselsattningsgap_inrikes_utrikes:2005": {
+    "kind": "claim",
+    "statement": "sysselsattningsgap_inrikes_utrikes = 11.1 (integration, 2005).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:sysselsattningsgap_inrikes_utrikes:2006": {
+    "kind": "claim",
+    "statement": "sysselsattningsgap_inrikes_utrikes = 11.5 (integration, 2006).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:sysselsattningsgap_inrikes_utrikes:2007": {
+    "kind": "claim",
+    "statement": "sysselsattningsgap_inrikes_utrikes = 11.4 (integration, 2007).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:sysselsattningsgap_inrikes_utrikes:2008": {
+    "kind": "claim",
+    "statement": "sysselsattningsgap_inrikes_utrikes = 10.5 (integration, 2008).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:sysselsattningsgap_inrikes_utrikes:2009": {
+    "kind": "claim",
+    "statement": "sysselsattningsgap_inrikes_utrikes = 10.3 (integration, 2009).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:sysselsattningsgap_inrikes_utrikes:2010": {
+    "kind": "claim",
+    "statement": "sysselsattningsgap_inrikes_utrikes = 10.9 (integration, 2010).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:sysselsattningsgap_inrikes_utrikes:2011": {
+    "kind": "claim",
+    "statement": "sysselsattningsgap_inrikes_utrikes = 10.6 (integration, 2011).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:sysselsattningsgap_inrikes_utrikes:2012": {
+    "kind": "claim",
+    "statement": "sysselsattningsgap_inrikes_utrikes = 10.1 (integration, 2012).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:sysselsattningsgap_inrikes_utrikes:2013": {
+    "kind": "claim",
+    "statement": "sysselsattningsgap_inrikes_utrikes = 9.8 (integration, 2013).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:sysselsattningsgap_inrikes_utrikes:2014": {
+    "kind": "claim",
+    "statement": "sysselsattningsgap_inrikes_utrikes = 9.3 (integration, 2014).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:sysselsattningsgap_inrikes_utrikes:2015": {
+    "kind": "claim",
+    "statement": "sysselsattningsgap_inrikes_utrikes = 9.0 (integration, 2015).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:sysselsattningsgap_inrikes_utrikes:2016": {
+    "kind": "claim",
+    "statement": "sysselsattningsgap_inrikes_utrikes = 8.7 (integration, 2016).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:sysselsattningsgap_inrikes_utrikes:2017": {
+    "kind": "claim",
+    "statement": "sysselsattningsgap_inrikes_utrikes = 7.9 (integration, 2017).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:sysselsattningsgap_inrikes_utrikes:2018": {
+    "kind": "claim",
+    "statement": "sysselsattningsgap_inrikes_utrikes = 8.6 (integration, 2018).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:sysselsattningsgap_inrikes_utrikes:2019": {
+    "kind": "claim",
+    "statement": "sysselsattningsgap_inrikes_utrikes = 8.7 (integration, 2019).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:sysselsattningsgap_inrikes_utrikes:2020": {
+    "kind": "claim",
+    "statement": "sysselsattningsgap_inrikes_utrikes = 9.9 (integration, 2020).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:sysselsattningsgap_inrikes_utrikes:2021": {
+    "kind": "claim",
+    "statement": "sysselsattningsgap_inrikes_utrikes = 8.8 (integration, 2021).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:sysselsattningsgap_inrikes_utrikes:2022": {
+    "kind": "claim",
+    "statement": "sysselsattningsgap_inrikes_utrikes = 6.1 (integration, 2022).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:sysselsattningsgap_inrikes_utrikes:2023": {
+    "kind": "claim",
+    "statement": "sysselsattningsgap_inrikes_utrikes = 3.1 (integration, 2023).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:sysselsattningsgap_inrikes_utrikes:2024": {
+    "kind": "claim",
+    "statement": "sysselsattningsgap_inrikes_utrikes = 4.2 (integration, 2024).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:sysselsattningsgap_inrikes_utrikes:2025": {
+    "kind": "claim",
+    "statement": "sysselsattningsgap_inrikes_utrikes = 3.6 (integration, 2025).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:produktivitet:1980": {
+    "kind": "claim",
+    "statement": "produktivitet = 341.31 (ekonomi, 1980).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:produktivitet:1981": {
+    "kind": "claim",
+    "statement": "produktivitet = 341.66 (ekonomi, 1981).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:produktivitet:1982": {
+    "kind": "claim",
+    "statement": "produktivitet = 343.85 (ekonomi, 1982).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:produktivitet:1983": {
+    "kind": "claim",
+    "statement": "produktivitet = 347.58 (ekonomi, 1983).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:produktivitet:1984": {
+    "kind": "claim",
+    "statement": "produktivitet = 359.06 (ekonomi, 1984).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:produktivitet:1985": {
+    "kind": "claim",
+    "statement": "produktivitet = 362.69 (ekonomi, 1985).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:produktivitet:1986": {
+    "kind": "claim",
+    "statement": "produktivitet = 372.14 (ekonomi, 1986).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:produktivitet:1987": {
+    "kind": "claim",
+    "statement": "produktivitet = 379.44 (ekonomi, 1987).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:produktivitet:1988": {
+    "kind": "claim",
+    "statement": "produktivitet = 379.04 (ekonomi, 1988).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:produktivitet:1989": {
+    "kind": "claim",
+    "statement": "produktivitet = 383.42 (ekonomi, 1989).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:produktivitet:1990": {
+    "kind": "claim",
+    "statement": "produktivitet = 382.61 (ekonomi, 1990).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:produktivitet:1991": {
+    "kind": "claim",
+    "statement": "produktivitet = 387.31 (ekonomi, 1991).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:produktivitet:1992": {
+    "kind": "claim",
+    "statement": "produktivitet = 396.54 (ekonomi, 1992).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:produktivitet:1993": {
+    "kind": "claim",
+    "statement": "produktivitet = 406.05 (ekonomi, 1993).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:produktivitet:1994": {
+    "kind": "claim",
+    "statement": "produktivitet = 416.43 (ekonomi, 1994).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:produktivitet:1995": {
+    "kind": "claim",
+    "statement": "produktivitet = 425.17 (ekonomi, 1995).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:produktivitet:1996": {
+    "kind": "claim",
+    "statement": "produktivitet = 432.55 (ekonomi, 1996).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:produktivitet:1997": {
+    "kind": "claim",
+    "statement": "produktivitet = 450.32 (ekonomi, 1997).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:produktivitet:1998": {
+    "kind": "claim",
+    "statement": "produktivitet = 461.97 (ekonomi, 1998).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:produktivitet:1999": {
+    "kind": "claim",
+    "statement": "produktivitet = 468.65 (ekonomi, 1999).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:produktivitet:2000": {
+    "kind": "claim",
+    "statement": "produktivitet = 484.19 (ekonomi, 2000).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:produktivitet:2001": {
+    "kind": "claim",
+    "statement": "produktivitet = 487.57 (ekonomi, 2001).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:produktivitet:2002": {
+    "kind": "claim",
+    "statement": "produktivitet = 505.63 (ekonomi, 2002).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:produktivitet:2003": {
+    "kind": "claim",
+    "statement": "produktivitet = 522.44 (ekonomi, 2003).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:produktivitet:2004": {
+    "kind": "claim",
+    "statement": "produktivitet = 539.33 (ekonomi, 2004).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:produktivitet:2005": {
+    "kind": "claim",
+    "statement": "produktivitet = 554.93 (ekonomi, 2005).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:produktivitet:2006": {
+    "kind": "claim",
+    "statement": "produktivitet = 570.65 (ekonomi, 2006).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:produktivitet:2007": {
+    "kind": "claim",
+    "statement": "produktivitet = 571.27 (ekonomi, 2007).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:produktivitet:2008": {
+    "kind": "claim",
+    "statement": "produktivitet = 558.29 (ekonomi, 2008).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:produktivitet:2009": {
+    "kind": "claim",
+    "statement": "produktivitet = 550.81 (ekonomi, 2009).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:produktivitet:2010": {
+    "kind": "claim",
+    "statement": "produktivitet = 568.88 (ekonomi, 2010).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:produktivitet:2011": {
+    "kind": "claim",
+    "statement": "produktivitet = 573.32 (ekonomi, 2011).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:produktivitet:2012": {
+    "kind": "claim",
+    "statement": "produktivitet = 571.6 (ekonomi, 2012).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:produktivitet:2013": {
+    "kind": "claim",
+    "statement": "produktivitet = 575.66 (ekonomi, 2013).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:produktivitet:2014": {
+    "kind": "claim",
+    "statement": "produktivitet = 580.06 (ekonomi, 2014).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:produktivitet:2015": {
+    "kind": "claim",
+    "statement": "produktivitet = 595.91 (ekonomi, 2015).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:produktivitet:2016": {
+    "kind": "claim",
+    "statement": "produktivitet = 592.28 (ekonomi, 2016).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:produktivitet:2017": {
+    "kind": "claim",
+    "statement": "produktivitet = 593.56 (ekonomi, 2017).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:produktivitet:2018": {
+    "kind": "claim",
+    "statement": "produktivitet = 594.44 (ekonomi, 2018).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:produktivitet:2019": {
+    "kind": "claim",
+    "statement": "produktivitet = 611.71 (ekonomi, 2019).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:produktivitet:2020": {
+    "kind": "claim",
+    "statement": "produktivitet = 619.94 (ekonomi, 2020).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:produktivitet:2021": {
+    "kind": "claim",
+    "statement": "produktivitet = 635.8 (ekonomi, 2021).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:produktivitet:2022": {
+    "kind": "claim",
+    "statement": "produktivitet = 624.35 (ekonomi, 2022).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:produktivitet:2023": {
+    "kind": "claim",
+    "statement": "produktivitet = 616.57 (ekonomi, 2023).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:derived:produktivitet:2024": {
+    "kind": "claim",
+    "statement": "produktivitet = 632.29 (ekonomi, 2024).",
+    "source_name": "SCB"
+  },
+  "claim:observed_result:obs:bra:uppklaringsgrad:2016": {
+    "kind": "claim",
+    "statement": "uppklaringsgrad = 13.23 (trygghet, 2016).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:uppklaringsgrad:2017": {
+    "kind": "claim",
+    "statement": "uppklaringsgrad = 13.34 (trygghet, 2017).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:uppklaringsgrad:2018": {
+    "kind": "claim",
+    "statement": "uppklaringsgrad = 13.56 (trygghet, 2018).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:uppklaringsgrad:2019": {
+    "kind": "claim",
+    "statement": "uppklaringsgrad = 13.52 (trygghet, 2019).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:uppklaringsgrad:2020": {
+    "kind": "claim",
+    "statement": "uppklaringsgrad = 13.87 (trygghet, 2020).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:uppklaringsgrad:2021": {
+    "kind": "claim",
+    "statement": "uppklaringsgrad = 13.29 (trygghet, 2021).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:uppklaringsgrad:2022": {
+    "kind": "claim",
+    "statement": "uppklaringsgrad = 12.5 (trygghet, 2022).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:uppklaringsgrad:2023": {
+    "kind": "claim",
+    "statement": "uppklaringsgrad = 12.11 (trygghet, 2023).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:uppklaringsgrad:2024": {
+    "kind": "claim",
+    "statement": "uppklaringsgrad = 12.43 (trygghet, 2024).",
+    "source_name": "bra"
+  },
+  "claim:observed_result:obs:bra:uppklaringsgrad:2025": {
+    "kind": "claim",
+    "statement": "uppklaringsgrad = 12.95 (trygghet, 2025).",
     "source_name": "bra"
   },
   "claim:evidence_effect:S:arbetsmarknadsutbildning:ekonomi:sysselsattning": {
