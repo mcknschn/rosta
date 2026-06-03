@@ -24,6 +24,9 @@ dev = [
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-q"
+markers = [
+    "network: live smoke-test mot officiella API:er (opt-in; körs bara med ROSTA_LIVE=1 satt)",
+]
 
 [tool.ruff]
 line-length = 110
