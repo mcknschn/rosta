@@ -112,10 +112,12 @@ Polisen/Socialstyrelsen återanvänder Brå-Excel-mönstret som redan finns.
 Störst hävstång på trovärdighet. B väger 35 % men vilar i dag på **30 evidensposter + 130
 ståndpunkter, alla "version 0, AI-utkast"**.
 
-- **B1 — Expertgranska version-0-config** 🔵 — kör igenom granskningspaketet i
-  [expertgranskning/](expertgranskning/) (evidensliggare + partiståndpunkter + budgetramar).
-  Output: signerad granskning → bumpa `version: 0 → 1` i `evidence_ledger.yaml` /
-  `party_positions.yaml`. **Detta är förutsättningen för "skarp" betygsättning.**
+- **B1 — Expertgranska version-0-config** 🔵 *(prep klar, väntar mänsklig sign-off)* — gransknings­paketet
+  i [expertgranskning/](expertgranskning/) är byggt, prioriterat (79 högrisk-rader + 4 SUSPECT-fynd) och
+  **regenererat mot aktuell config 2026-06-03** (oförändrat av nattens D-/verktygsarbete). Återstår: din
+  genomgång → bumpa `version: 0 → 1` i `evidence_ledger.yaml` / `party_positions.yaml` enligt
+  sign-off-protokollet. **Detta är förutsättningen för "skarp" betygsättning** och kan bara göras av en
+  människa (jag bumpar aldrig version själv). **Notera granskningsbeslutet här under B1.**
 - **B2 — Bredda evidensliggaren** ⚪ — i dag ≥3 åtgärdstyper/kategori. Fler källbelagda
   åtgärdstyper per kategori → högre `coverage` → mindre B-krympning mot neutral. Det är den
   enskilt största åtgärden för att B faktiskt ska differentiera partier.

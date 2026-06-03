@@ -19,6 +19,12 @@ Allt under `docs/expertgranskning/` (utom denna README + [adversariell_verifieri
 python -m pipeline.tools.review_packet
 ```
 
+> **Status (2026-06-03):** Datatäckningen och driftrobustheten har byggts ut sedan paketet skapades
+> (nya D-serier: trygghet uppklaringsgrad + skjutningar/sprängningar; serie-drift-skydd, snapshot-diff
+> och live-smoke-test — se [BACKLOG.md](../BACKLOG.md)). **De tre version-0-configfilerna nedan är
+> oförändrade** av det arbetet och är fortfarande den faktiska granskningsgrinden. Paketet är
+> regenererat mot aktuell config (inga ändringar i de granskade raderna).
+
 ## Vad granskningen redan vet (deterministiskt härlett)
 
 - **Alla 130 ståndpunkter är "aktiva"** — var och en har en `policy_type` som finns i
@@ -58,8 +64,8 @@ När en fil är granskad och eventuella rättelser införda:
    väntat; uppdatera `meta.coverage`-strängen (ta bort "version 0 – kräver mänsklig slutgranskning").
 4. Kör `python -m pytest` (ska vara grönt) och `python -m pipeline.tools.review_packet` (regenererar
    paketet mot den granskade configen).
-5. Notera granskningsbeslutet i [ROADMAP.md](../ROADMAP.md) (Fas 4b/4c/1b-raderna nämner att
-   expertgranskning återstår).
+5. Notera granskningsbeslutet i [BACKLOG.md](../BACKLOG.md) under **Spår B (B1)** — ROADMAP.md är
+   fryst historik och uppdateras inte längre.
 
 > **Princip:** detta paket *ändrar ingen config* — det är beslutsunderlag. De fyra SUSPECT-fynden
 > i adversariell_verifiering.md är medvetet INTE rättade i koden; det är expertens beslut om de ska

@@ -2,7 +2,7 @@
 
 > Oberoende skeptisk granskning (2026-05-31) av den högsta-risk-delmängden i
 > `config/party_positions.yaml`: de **propositionsavslags-opposes** och **`ny_karnkraft`**-rader
-> som ROADMAP/DATA flaggar. Varje rad hämtades live mot riksdagens fulltext (`data.riksdagen.se`)
+> som DATA.md/BACKLOG flaggar. Varje rad hämtades live mot riksdagens fulltext (`data.riksdagen.se`)
 > och bedömdes på tre frågor: (a) är citatet ordagrant? (b) ÄR den avslagna propositionen
 > verkligen den kodade åtgärdstypen? (c) följer `stance`?
 >
