@@ -44,6 +44,13 @@ högre coverage → mindre B-krympning → B får faktiskt genomslag.
   driftgrindad + golden-testad ([test_source_bra_uppklaring](../tests/test_source_bra_uppklaring.py)),
   ur allowlisten, omräknad i `dist/`. Trygghets-D nu uppmätt och differentierat. *(Codex-granskning
   av måttvalet pågår.)*
+- ✅ **D-bredd: `skjutningar_sprangningar`** (trygghet → grov brottslighet, riktning down): Polisens
+  bekräftade skjutningar, nationell årstotal **2017–2025**. Polisen publicerar bara PDF per
+  polisregion/år, så årstotalen är **transkriberad** ([config/skjutningar.yaml](../config/skjutningar.yaml))
+  enligt budget/SKR-mönstret — varje år korsverifierat (regionsumma == PDF:ens Totalt-rad) och
+  auditerbart via [skjutningar_transcribe.py](../pipeline/tools/skjutningar_transcribe.py) (alla 9 år
+  matchar live-PDF). Reader [polisen.py](../pipeline/sources/polisen.py) + golden-test + ur allowlisten.
+  Preliminär (Polisens källnotis). Trygghets-D mäts nu även via grov brottslighet.
 
 ---
 
