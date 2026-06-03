@@ -71,8 +71,8 @@ def budget_ramar() -> dict[str, Any]:
 
 
 @cache
-def skjutningar() -> dict[str, Any]:
-    return _load("skjutningar.yaml")
+def skjutningar_sprangningar() -> dict[str, Any]:
+    return _load("skjutningar_sprangningar.yaml")
 
 
 def party_codes() -> list[str]:

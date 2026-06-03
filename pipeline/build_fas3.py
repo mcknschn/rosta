@@ -55,10 +55,10 @@ def main() -> None:
         span = f"{sub[0]['period']}..{sub[-1]['period']}" if sub else "-"
         print(f"Härledd (SCB)  -> {spec['category']:11} {spec['indicator']:30}: {len(sub):4} obs ({span})")
 
-    # Polisen: bekräftade skjutningar (trygghet, delpoäng D) — transkriberad config, ingen
-    # runtime-PDF-parser (config/skjutningar.yaml; reproducerbar via tools/skjutningar_transcribe).
-    # source_ref 'polisen:' ligger utanför build_fas2:s scb/kolada-purge-scope.
-    prows = polisen.build_skjutningar_observations()
+    # Polisen: bekräftade skjutningar + sprängningar (trygghet, delpoäng D) — transkriberad config,
+    # ingen runtime-PDF-parser (config/skjutningar_sprangningar.yaml; reproducerbar via
+    # tools/skjutningar_transcribe). source_ref 'polisen:' ligger utanför scb/kolada-purge-scope.
+    prows = polisen.build_skjutningar_sprangningar_observations()
     unlisted = {r["indicator"] for r in prows} - set(polisen.INDICATORS)
     if unlisted:
         raise ValueError(f"Polisen emitterar indikatorer utanför polisen.INDICATORS: {sorted(unlisted)}")
@@ -66,6 +66,9 @@ def main() -> None:
         expectations.check_series(
             [r for r in prows if r["indicator"] == ind], polisen.EXPECT.get(ind), f"Polisen {ind}"
         )
+    # Full-replace av polisen-rader (transkriberad, komplett serie): tar bort ev. föråldrade rader
+    # om årsuppsättning/source_ref ändrats (t.ex. när sprängningar slogs in och 2017 utgick).
+    con.execute("DELETE FROM observations WHERE source_ref LIKE 'polisen:%'")
     n = warehouse.upsert(con, "observations", prows)
     span = f"{prows[0]['period']}..{prows[-1]['period']}" if prows else "-"
     print(f"Polisen (transkr.) -> trygghet    skjutningar_sprangningar: {n:4} obs ({span})")

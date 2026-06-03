@@ -1,0 +1,65 @@
+# Konstaterade skjutningar OCH sprängningar i Sverige per år — Polisen.
+#
+# DELPOÄNG D, kategori trygghet, kanonisk indikator skjutningar_sprangningar (riktning down,
+# färre = bättre). Indikatorns VÄRDE = SUMMAN av bekräftade skjutningar + bekräftade sprängningar
+# (detonationer) per år — så datan matchar indikatornamnet (grov skjut-/sprängbrottslighet).
+#
+# Polisen för officiell statistik över båda (skjutningar: regeringsuppdrag nov 2016; sprängningar:
+# fr.o.m. 2018), men publicerar dem ENDAST som PDF per polisregion och år (ingen maskinläsbar
+# tabell). Båda komponenterna är därför TROGET TRANSKRIBERADE ur respektive års-PDF (samma mönster
+# som budget_ramar/SKR; ingen runtime-PDF-parser). Varje komponent och år är KORSVERIFIERAT vid
+# transkribering: summan av de 7 polisregionernas årstotaler == PDF:ens nationella Totalt-rad.
+# Reproducerbart/auditerbart via pipeline/tools/skjutningar_transcribe.py.
+#
+# SERIE FR.O.M. 2018: sprängningsstatistiken börjar 2018. 2017 (som bara har skjutningar, 281)
+# utelämnas medvetet — annars skulle 2017->2018 bli ett falskt hopp när sprängningskomponenten
+# tillkommer. Både skjutningar och sprängningar finns alltså för varje år i serien.
+#
+# PRELIMINÄR: Polisens källnotis anger att statistiken är preliminär och kan ändras i efterhand.
+# Version 0 — transkriberad 2026-06-03.
+version: 0
+indicator: skjutningar_sprangningar
+category: trygghet
+submeasure: grov_brottslighet
+unit: "antal bekräftade skjutningar + sprängningar (hela landet)"
+years:
+  2018:
+    skjutningar: 325
+    sprangningar: 90
+    skjutningar_source: "https://polisen.se/0e0f73ef70caf0b2a47ca55252fc36e2/contentassets/5fe3039dff9745e39999f5ff4e67e27f/skjutningar-per-polisregion-2018.pdf"
+    sprangningar_source: "https://polisen.se/8a4cbf672bc2bbb7a5569928a83c0879/contentassets/5fe3039dff9745e39999f5ff4e67e27f/sprangningar-per-polisregion-2018.pdf"
+  2019:
+    skjutningar: 360
+    sprangningar: 133
+    skjutningar_source: "https://polisen.se/eb1d659e125ed9e31ec26965edc8e28b/contentassets/5fe3039dff9745e39999f5ff4e67e27f/skjutningar-per-polisregion-2019.pdf"
+    sprangningar_source: "https://polisen.se/5bb5a1b07bbc4db7e757cc809bbcbfd5/contentassets/5fe3039dff9745e39999f5ff4e67e27f/sprangningar-per-polisregion-2019.pdf"
+  2020:
+    skjutningar: 379
+    sprangningar: 107
+    skjutningar_source: "https://polisen.se/aa77c886c802659201044204de4c4542/contentassets/5fe3039dff9745e39999f5ff4e67e27f/skjutningar-per-polisregion-2020.pdf"
+    sprangningar_source: "https://polisen.se/cc4bf5575f27b40b283be9d7c93ea855/contentassets/5fe3039dff9745e39999f5ff4e67e27f/sprangningar-per-polisregion-2020.pdf"
+  2021:
+    skjutningar: 344
+    sprangningar: 79
+    skjutningar_source: "https://polisen.se/9f7e0fcabcd7277e657976dbe10bb010/contentassets/5fe3039dff9745e39999f5ff4e67e27f/skjutningar-per-polisregion-2021.pdf"
+    sprangningar_source: "https://polisen.se/f0257c56e5a979b06ac6795028c53b5c/contentassets/5fe3039dff9745e39999f5ff4e67e27f/sprangningar-per-polisregion-2021.pdf"
+  2022:
+    skjutningar: 391
+    sprangningar: 90
+    skjutningar_source: "https://polisen.se/b1c395330762ccc2b7e7884e6531dc40/contentassets/5fe3039dff9745e39999f5ff4e67e27f/skjutningar-per-polisregion-2022.pdf"
+    sprangningar_source: "https://polisen.se/ed70967e5f944a5d0cc28595453732d6/contentassets/5fe3039dff9745e39999f5ff4e67e27f/sprangningar-per-polisregion-2022.pdf"
+  2023:
+    skjutningar: 368
+    sprangningar: 159
+    skjutningar_source: "https://polisen.se/a666154837bb5e75618a41fbb0b0e4af/contentassets/5fe3039dff9745e39999f5ff4e67e27f/skjutningar-per-polisregion-2023.pdf"
+    sprangningar_source: "https://polisen.se/6909b75867d41d1c0824c5018b3789a8/contentassets/5fe3039dff9745e39999f5ff4e67e27f/sprangningar-per-polisregion-2023.pdf"
+  2024:
+    skjutningar: 296
+    sprangningar: 139
+    skjutningar_source: "https://polisen.se/d0ed5dc12358dd04fbba3409f0fe8c65/contentassets/5fe3039dff9745e39999f5ff4e67e27f/skjutningar-per-polisregion-2024.pdf"
+    sprangningar_source: "https://polisen.se/1a8edbf4255e01a052b1cc011400ab34/contentassets/5fe3039dff9745e39999f5ff4e67e27f/sprangningar-per-polisregion-2024.pdf"
+  2025:
+    skjutningar: 158
+    sprangningar: 194
+    skjutningar_source: "https://polisen.se/0d1a7c7e948c5fab1d5b783f2750bb82/contentassets/5fe3039dff9745e39999f5ff4e67e27f/skjutningar-per-polisregion-2025.pdf"
+    sprangningar_source: "https://polisen.se/96edf5437e1017b04b2c3818f8896dc8/contentassets/5fe3039dff9745e39999f5ff4e67e27f/sprangningar-per-polisregion-2025.pdf"
