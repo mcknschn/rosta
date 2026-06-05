@@ -14,10 +14,12 @@
 # av en oberoende skeptiker. Endast confirmed=true admitterades. Beslut + skäl: docs/fas4c_planB_audit.md.
 # Frånvaro av (parti, åtgärdstyp)-rad = COVERAGE-LUCKA (ingen instrument-exakt källa), INTE motstånd.
 #
-# Version 0 / draft — KRÄVER mänsklig slutgranskning innan skarp betygsättning.
+# Version 1 — EXPERTGRANSKAD + mänsklig sign-off 2026-06-05 (4 SUSPECT-fynd avgjorda, 79-raders
+# högrisk-screening: inga fabrikat). Skarp betygsättning aktiverad. Metod oförändrad; rättelser
+# i denna fil dokumenterade per rad (mapping_note "EXPERTBESLUT 2026-06-05").
 
-version: 0
-status: harmonized_alla_kategorier_unreviewed
+version: 1
+status: expert_reviewed
 entries:
 - party: S
   policy_type: arbetsmarknadsutbildning
@@ -318,15 +320,15 @@ entries:
   mapping_note: 'Intern nyans noterad men förkastar EJ raden (bunten-/nyansregeln §2): C yrkar avslag på regeringens SPECIFIKA kontrollvariant (Försäkringskassans åtkomst till uppgifter i arbetsgivardeklarationen) p.g.a. regelbörda för företag — men förespråkar i SAMMA motion uttryckligen det kodade instrumentet (myndigheter delar data för att upptäcka felaktiga utbetalningar). Detta är exakt det fall där nyansen skrivs i mapping_note och inte används som skäl att förkasta. Confidence=medium då stödet uttrycks i prosa/motivering snarare än ett tillkännagivande-yrkande på exakt instrumentet.'
 - party: V
   policy_type: kontroller_och_informationsutbyte_mot_valfardsbrott
-  stance: opposes
+  stance: supports
   source: Kommittemotion (V) – data.riksdagen.se/HC023445
   source_type: kommittemotion
   source_url: https://data.riksdagen.se/dokument/HC023445
   doc_id: HC023445
-  quote: Riksdagen avslår proposition 2024/25:180.
+  quote: Riksdagen ställer sig bakom det som anförs i motionen om att regeringen bör återkomma till riksdagen med ett mer begränsat, proportionellt och rättssäkert förslag till ändring av offentlighets- och sekretesslagstiftningen i syfte att förebygga och utreda fusk och brott riktade mot välfärdssystemen.
   date: '2025-06-17'
-  confidence: high
-  mapping_note: 'Instrument-exakt: avslag på just den lagstiftning som inför utökat informationsutbyte mellan myndigheter mot felaktiga utbetalningar/välfärdsbrott. Bunten-/nyansregeln tillämpad symmetriskt: V skriver att ''vissa ändringar i sekretesslagstiftningen'' kan behövas och vill (yrkande 2) ett ''mer begränsat, proportionellt och rättssäkert förslag'' — denna integritets-/proportionalitetsnyans noteras men förkastar EJ raden, eftersom den konkreta lagstiftningsåtgärden mot just denna instrument-utökning är avslag. Asymmetrin (V som enda opposes) bevaras — ingen utjämning mot fördelningsmål (§8).'
+  confidence: medium
+  mapping_note: 'EXPERTBESLUT 2026-06-05 (omkodad opposes->supports/förbehåll): V:s yrkande 1 var avslag på prop 2024/25:180, men granskningen fann att (1) propositionen ("Ökat informationsutbyte mellan myndigheter – en ny sekretessbrytande bestämmelse") är BREDARE än åtgärdstypen och rör informationsutbyte generellt, och (2) V stödjer åtgärder mot välfärdsbrott i sak: yrkande 2 (verbatim, citerat ovan) begär att regeringen återkommer med ett "mer begränsat, proportionellt och rättssäkert förslag" mot fusk/brott riktade mot välfärdssystemen, och brödtexten säger "Därför kan vissa ändringar i sekretesslagstiftningen behöva göras" + "Vi är inte heller emot att göra relevanta ändringar". Raden ankras nu till yrkande 2 (stöd för instrumentet med rättssäkerhets-/proportionalitetsförbehåll); avslaget gällde den breda lagens UTFORMNING och vänder ej längre evidensriktningen. confidence sänkt high->medium (villkorat stöd; den konkreta lagstiftningsåtgärden var avslag). Partikollektiv V (Jessica Wetterling m.fl.).'
 - party: KD
   policy_type: kontroller_och_informationsutbyte_mot_valfardsbrott
   stance: supports
@@ -472,15 +474,15 @@ entries:
   mapping_note: 'Instrument-exakt: betänkandet rör direkt läsa-skriva-räkna-garantin. Kammarens vinnande beslut var ''Därmed bifaller riksdagen proposition 2017/18:195 och avslår motion 2017/18:4074'' (propositionen ANTOGS); det citerade är RESERVATION 1 (SD):s alternativa förslag (''Riksdagen avslår regeringens förslag...avslår proposition 2017/18:195''), verifierat ordagrant. SD:s linje = avslag på garanti-instrumentet => opposes. is_single_member=false: reservation i SD:s namn (den bakomliggande följdmotionen H5024074 var metadatamärkt enskild, men reservationen höjer den till partilinje). Intern nyans (noteras ej som skäl): SD ansåg befintlig lagstiftning tillräcklig och pekade på specialpedagogbrist/dubbelreglering. ÅLDERSCAVEAT: 2017/18, utanför föredragen period; enda instrument-exakta SD-källan (nyare SD-motioner nämner endast ''tidiga stödinsatser'' generiskt, för vagt enligt §1).'
 - party: C
   policy_type: tidiga_insatser_lagstadiet
-  stance: opposes
-  source: Kommittémotion (C) – data.riksdagen.se/H5023910
+  stance: supports
+  source: Kommittémotion (C) – data.riksdagen.se/H5024117
   source_type: kommittémotion
-  source_url: https://data.riksdagen.se/dokument/H5023910
-  doc_id: H5023910
-  quote: Riksdagen avslår regeringens proposition 2017/18:18 Läsa, skriva, räkna – en åtgärdsgaranti.
-  date: '2017-10-12'
+  source_url: https://data.riksdagen.se/dokument/H5024117
+  doc_id: H5024117
+  quote: Vi delar uppfattningen att det är bra att elevernas kunskapsnivå kartläggs tidigt. [...] Fram till att en tioårig grundskola med skolstart vid sex års ålder kan införas står Alliansen därmed bakom införandet av ett nationellt kartläggningsmaterial i förskoleklassen.
+  date: '2018-04-11'
   confidence: medium
-  mapping_note: 'Instrument-exakt: prop. 2017/18:18 ''Läsa, skriva, räkna – en åtgärdsgaranti'' är den tidiga varianten av samma policyinstrument (tidiga stödinsatser i lågstadiet). Partikollektiv kommittémotion (C formell undertecknare via Ulrika Carlsson) => is_single_member=false. BUNTEN/intern nyans (förkastar EJ raden): C menar att tidigt stöd kan åstadkommas inom befintlig lagstiftning (motsätter sig dubbelreglering) — det är skäl-för-avslag av instrumentet, inte ett annat instrument. ÅLDERSCAVEAT: 2017/18, utanför föredragen period; sökning i nyare C-källor (2024/25–2025/26) gav ingen instrument-exakt referens (endast allmänna mål, uteslutna av §1), så den äldre används enligt §4.'
+  mapping_note: 'EXPERTBESLUT 2026-06-05 (omkodad opposes->supports): C kodades tidigare opposes via H5023910 ("Riksdagen avslår regeringens proposition 2017/18:18"), men granskningen fann att (1) H5023910 är en L-LEDD allianskommittémotion (Christer Nylander m.fl. L/M/C/KD; C = 3:e undertecknare via Ulrika Carlsson, verifierat mot dokintressent) riktad mot den TILLBAKADRAGNA tidiga varianten prop 2017/18:18 — inte den antagna garantin; (2) på det ANTAGNA instrumentet (prop 2017/18:195) står samma allians (inkl. C, undertecknare ordning 3 i H5024117) bakom införandet och begär utvärdering — stöd med uppföljningskrav, ej avslag. C kodas nu IDENTISKT med M/KD via samma allians-följdmotion H5024117. ÅLDERSCAVEAT: 2017/18, utanför föredragen period; används enligt §4 (ingen nyare instrument-exakt C-källa). SD:s opposes mot den antagna 195 (H501UbU10) står kvar som korrekt och är nu enda opposes i panelen.'
 - party: KD
   policy_type: tidiga_insatser_lagstadiet
   stance: supports
@@ -1435,3 +1437,481 @@ entries:
   date: '2025-10-06'
   confidence: low
   mapping_note: 'ENSKILD/fristående motion, 1 undertecknare: Patrik Karlson (L), KU (verifierat). Yrkandet är ett UTREDNINGSyrkande (utreda inrättandet) — intern nyans som enligt §2 noteras men ALDRIG förkastar raden eftersom citatet är instrument-exakt (förebygga och bekämpa korruption inom kommuner och regioner). Avslaget i KU 2025/26:KU29 påverkar inte partiets uttryckta ståndpunkt. Behandlas identiskt med S/SD enskilda motioner: confidence=low. Ingen starkare partikollektiv L-källa funnen.'
+# ---------------------------------------------------------------------------------------------------
+# ekonomi -> produktivitet: FoU-avdraget (skatteincitament för forskning och utveckling).
+# TILLAGD 2026-06-05 (BACKLOG B2, anti-binär). Alla 8 partier votering-belagda (roll-call, samma
+# provenans-tyngd som reduktionsplikt): bet. 2022/23:SfU19 (prop. 2022/23:79 "höjt tak för
+# FoU-avdraget", 600 000 -> 1,5 mkr/mån), votering i kammaren 2023-05-31. 7 Ja (supports), V Nej
+# (opposes, reservation + motion 2022/23:2365). Evidens: evidence_ledger fou_avdrag_skatteincitament
+# -> produktivitet (Produktivitetskommissionen SOU 2025:96 + SOU 2025:3). Förslag granskat + mänsklig
+# sign-off 2026-06-05.
+# ---------------------------------------------------------------------------------------------------
+- party: S
+  policy_type: fou_avdrag_skatteincitament
+  stance: supports
+  source: 'Votering bet. 2022/23:SfU19 (prop. 2022/23:79), sakfrågan'
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HA01SfU19.html
+  doc_id: 'HA01SfU19 / votering 198C0FEC-86BA-4075-8020-9D85FE07E2AF'
+  quote: 'Röst: Ja (partiets majoritet bland icke-frånvarande) — biföll höjt tak för FoU-avdraget och avslog avslagsyrkandet.'
+  date: '2023-05-31'
+  confidence: high
+  mapping_note: 'FoU-avdraget (nedsatt arbetsgivaravgift för FoU-personal) driver företagens FoU-investeringar och därmed produktivitet (liggaren: direction positive; Produktivitetskommissionen SOU 2025:96 + SOU 2025:3). Röst Ja till höjt tak = stödjer instrumentet = supports. Votering 2023-05-31: S 94 Ja / 0 Nej.'
+- party: M
+  policy_type: fou_avdrag_skatteincitament
+  stance: supports
+  source: 'Votering bet. 2022/23:SfU19 (prop. 2022/23:79), sakfrågan'
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HA01SfU19.html
+  doc_id: 'HA01SfU19 / votering 198C0FEC-86BA-4075-8020-9D85FE07E2AF'
+  quote: 'Röst: Ja (partiets majoritet bland icke-frånvarande) — biföll höjt tak för FoU-avdraget och avslog avslagsyrkandet.'
+  date: '2023-05-31'
+  confidence: high
+  mapping_note: 'Regeringsparti (M) som lade fram prop. 2022/23:79 om höjt tak (600 000 -> 1,5 mkr/mån). FoU-avdraget driver företags-FoU och produktivitet (liggaren: positive). Röst Ja = supports. Votering 2023-05-31: M 60 Ja / 0 Nej.'
+- party: SD
+  policy_type: fou_avdrag_skatteincitament
+  stance: supports
+  source: 'Votering bet. 2022/23:SfU19 (prop. 2022/23:79), sakfrågan'
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HA01SfU19.html
+  doc_id: 'HA01SfU19 / votering 198C0FEC-86BA-4075-8020-9D85FE07E2AF'
+  quote: 'Röst: Ja (partiets majoritet bland icke-frånvarande) — biföll höjt tak för FoU-avdraget och avslog avslagsyrkandet.'
+  date: '2023-05-31'
+  confidence: high
+  mapping_note: 'Förstärkningen bygger på en överenskommelse mellan regeringen och SD (regeringens egen källnotis). FoU-avdraget driver företags-FoU och produktivitet (liggaren: positive). Röst Ja = supports. Votering 2023-05-31: SD 62 Ja / 0 Nej.'
+- party: C
+  policy_type: fou_avdrag_skatteincitament
+  stance: supports
+  source: 'Votering bet. 2022/23:SfU19 (prop. 2022/23:79), sakfrågan'
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HA01SfU19.html
+  doc_id: 'HA01SfU19 / votering 198C0FEC-86BA-4075-8020-9D85FE07E2AF'
+  quote: 'Röst: Ja (partiets majoritet bland icke-frånvarande) — biföll höjt tak för FoU-avdraget och avslog avslagsyrkandet.'
+  date: '2023-05-31'
+  confidence: high
+  mapping_note: 'FoU-avdraget driver företags-FoU och produktivitet (liggaren: positive). Röst Ja till höjt tak = stödjer instrumentet = supports. Votering 2023-05-31: C 20 Ja / 0 Nej.'
+- party: V
+  policy_type: fou_avdrag_skatteincitament
+  stance: opposes
+  source: 'Votering bet. 2022/23:SfU19 (prop. 2022/23:79), sakfrågan + reservation/motion 2022/23:2365'
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HA01SfU19.html
+  doc_id: 'HA01SfU19 / votering 198C0FEC-86BA-4075-8020-9D85FE07E2AF'
+  quote: 'Röst: Nej (partiets majoritet bland icke-frånvarande) — yrkade avslag på förstärkningen av FoU-avdraget.'
+  date: '2023-05-31'
+  confidence: high
+  mapping_note: 'Röst Nej = motsätter sig det produktivitetshöjande instrumentet = opposes (vänder evidensriktningen till negative). Reservation + kommittémotion 2022/23:2365 (Ida Gabrielsson m.fl.): "Stöd till verksamheter och politikområden är mest effektivt på utgiftssidan av statens budget" — arbetsgivaravgifter ska finansiera offentlig verksamhet, inte subventionera stora företag, och FoU-avdraget har aldrig utvärderats. Votering 2023-05-31: V 0 Ja / 20 Nej.'
+- party: KD
+  policy_type: fou_avdrag_skatteincitament
+  stance: supports
+  source: 'Votering bet. 2022/23:SfU19 (prop. 2022/23:79), sakfrågan'
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HA01SfU19.html
+  doc_id: 'HA01SfU19 / votering 198C0FEC-86BA-4075-8020-9D85FE07E2AF'
+  quote: 'Röst: Ja (partiets majoritet bland icke-frånvarande) — biföll höjt tak för FoU-avdraget och avslog avslagsyrkandet.'
+  date: '2023-05-31'
+  confidence: high
+  mapping_note: 'Regeringsparti (KD) bakom prop. 2022/23:79. FoU-avdraget driver företags-FoU och produktivitet (liggaren: positive). Röst Ja = supports. Votering 2023-05-31: KD 17 Ja / 0 Nej.'
+- party: L
+  policy_type: fou_avdrag_skatteincitament
+  stance: supports
+  source: 'Votering bet. 2022/23:SfU19 (prop. 2022/23:79), sakfrågan'
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HA01SfU19.html
+  doc_id: 'HA01SfU19 / votering 198C0FEC-86BA-4075-8020-9D85FE07E2AF'
+  quote: 'Röst: Ja (partiets majoritet bland icke-frånvarande) — biföll höjt tak för FoU-avdraget och avslog avslagsyrkandet.'
+  date: '2023-05-31'
+  confidence: high
+  mapping_note: 'Regeringsparti (L) bakom prop. 2022/23:79; L har även separat förordat ett höjt tak i FoU-avdraget. FoU-avdraget driver företags-FoU och produktivitet (liggaren: positive). Röst Ja = supports. Votering 2023-05-31: L 13 Ja / 0 Nej.'
+- party: MP
+  policy_type: fou_avdrag_skatteincitament
+  stance: supports
+  source: 'Votering bet. 2022/23:SfU19 (prop. 2022/23:79), sakfrågan'
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HA01SfU19.html
+  doc_id: 'HA01SfU19 / votering 198C0FEC-86BA-4075-8020-9D85FE07E2AF'
+  quote: 'Röst: Ja (partiets majoritet bland icke-frånvarande) — biföll höjt tak för FoU-avdraget och avslog avslagsyrkandet.'
+  date: '2023-05-31'
+  confidence: high
+  mapping_note: 'FoU-avdraget driver företags-FoU och produktivitet (liggaren: positive). Röst Ja till höjt tak = stödjer instrumentet = supports. Votering 2023-05-31: MP 16 Ja / 0 Nej.'
+# ---------------------------------------------------------------------------------------------------
+# ekonomi -> näringslivets investeringar (nytt submått foretagande_investeringar).
+# TILLAGD 2026-06-05 (BACKLOG B2). BRED ram: konkurrenskraftig/lägre beskattning av företag OCH
+# ägare/kapital -> mer investeringar. 5 supports (M/SD/C/KD/L: lägre bolags-/ägarskatt) / 3 opposes
+# (S/V/MP: höja kapital-/företagsvinstskatt). Evidens: evidence_ledger
+# konkurrenskraftig_foretags_och_agarbeskattning (Företagsskattekommittén SOU 2014:40). Ordagranna
+# citat verifierade mot fulltext (.text). Forskning -> förslag -> mänsklig sign-off 2026-06-05.
+# ---------------------------------------------------------------------------------------------------
+- party: S
+  policy_type: konkurrenskraftig_foretags_och_agarbeskattning
+  stance: opposes
+  source: 'Partimotion 2025/26:3553 "Skattepolitik" (S), Niklas Karlsson m.fl.'
+  source_type: partimotion
+  source_url: https://data.riksdagen.se/dokument/HD023553
+  doc_id: HD023553
+  quote: 'Vi anser att det är angeläget att en översyn av beskattningen av kapital genomförs i syfte att öka beskattningen. Fokus ska ligga på att höja beskattningen av stora, men lågt beskattade kapitalinkomster.'
+  date: '2025-10-07'
+  confidence: high
+  mapping_note: 'BRED ram (företags- och ägar-/kapitalbeskattning). S vill ÖKA beskattningen av kapital -> motsätter sig lägre/konkurrenskraftig ägar-/kapitalbeskattning = opposes (vänder evidensriktningen till negative). Bolagsskatt-specifikt är S neutralt (sänkte den i regering), men under bred ram väger ägarskatte-höjningen tyngst.'
+- party: M
+  policy_type: konkurrenskraftig_foretags_och_agarbeskattning
+  stance: supports
+  source: 'Kommittémotion 2021/22 (M), Niklas Wykman m.fl. – data.riksdagen.se/H9023638'
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/H9023638
+  doc_id: H9023638
+  quote: 'Riksdagen ställer sig bakom det som anförs i motionen om att sänka bolagsskatten och tillkännager detta för regeringen.'
+  date: '2021-10-05'
+  confidence: high
+  mapping_note: 'Vill SÄNKA bolagsskatten (företagets vinstskatt) = lägre företagsbeskattning -> supports. Partikollektiv kommittémotion (SkU).'
+- party: SD
+  policy_type: konkurrenskraftig_foretags_och_agarbeskattning
+  stance: supports
+  source: 'Kommittémotion 2024/25:1353 "Inkomstbeskattning" (SD), Per Söderlund m.fl.'
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/HC021353
+  doc_id: HC021353
+  quote: 'Det är Sverigedemokraternas uppfattning att man på sikt och med bibehållen budgetbalans bör eftersträva skattesatser som underlättar rekrytering av internationell spetskompetens och på ett generellt plan stärker det svenska näringslivets konkurrenskraft.'
+  date: '2024-10-02'
+  confidence: medium
+  mapping_note: 'Vill eftersträva skattesatser som stärker näringslivets konkurrenskraft (lägre/konkurrenskraftig företags-/ägarbeskattning) -> supports. Partikollektiv kommittémotion (SkU).'
+- party: C
+  policy_type: konkurrenskraftig_foretags_och_agarbeskattning
+  stance: supports
+  source: 'Kommittémotion 2025/26 "Skatter för företagande och tillväxt" (C), Anders Ådahl m.fl.'
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/HD022835
+  doc_id: HD022835
+  quote: 'De s.k. 3:12-reglerna behöver därför fortsatt ses över i syfte att sänka skatten och förenkla för de ägarledda små företagen.'
+  date: '2025-10-06'
+  confidence: high
+  mapping_note: 'Vill SÄNKA skatten på ägarledda företag (3:12) -> lägre ägarbeskattning för företagande -> supports. Partikollektiv kommittémotion (SkU); samma motion vill även sänka arbetsgivaravgifter.'
+- party: V
+  policy_type: konkurrenskraftig_foretags_och_agarbeskattning
+  stance: opposes
+  source: 'Kommittémotion 2017/18:4186 (V) med anledning av prop. 2017/18:245, Momodou Jallow m.fl.'
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/H5024186
+  doc_id: H5024186
+  quote: 'Vänsterpartiet avvisar förslaget om sänkt bolagsskatt då vi menar att den svenska bolagsskatten är konkurrenskraftig. Vinsterna i bolagssektorn är därtill höga, och har varit så under lång tid.'
+  date: '2018-05-17'
+  confidence: high
+  mapping_note: 'Avvisar SÄNKT bolagsskatt (motsätter sig lägre företagsbeskattning) -> opposes (vänder evidensriktningen till negative). V vill även höja kapital-/bankskatt.'
+- party: KD
+  policy_type: konkurrenskraftig_foretags_och_agarbeskattning
+  stance: supports
+  source: 'Motion 2025/26:3474 "Skattereformer för företagande och tillväxt" (KD), Christian Carlsson'
+  source_type: enskild_motion
+  source_url: https://data.riksdagen.se/dokument/HD023474
+  doc_id: HD023474
+  quote: 'Ett tredje förslag för att stärka Sveriges konkurrenskraft vore att sänka bolagsskatten så att vi successivt närmar oss EU:s miniminivå.'
+  date: '2025-10-07'
+  confidence: medium
+  mapping_note: 'Vill SÄNKA bolagsskatten mot EU:s miniminivå -> lägre företagsbeskattning -> supports. Enskild motion av KD:s ekonomisk-politiske talesperson (samma linje 2023/24 HB022393, 2024/25 HC021476); confidence=medium pga enskild källtyp.'
+- party: L
+  policy_type: konkurrenskraftig_foretags_och_agarbeskattning
+  stance: supports
+  source: 'Partimotion 2018/19:2030 (L), Jan Björklund m.fl.'
+  source_type: partimotion
+  source_url: https://data.riksdagen.se/dokument/H6022030
+  doc_id: H6022030
+  quote: 'En skattereform bör därför dels sänka bolagsskatten, och dels inkludera reformer för att underlätta företagande, finansiering och rekrytering.'
+  date: '2018-11-29'
+  confidence: medium
+  mapping_note: 'Vill SÄNKA bolagsskatten under rubriken konkurrenskraftiga villkor för företag -> supports. Äldre partimotion (2018/19); ingen nyare ren L-källa om nivån funnen -> confidence=medium.'
+- party: MP
+  policy_type: konkurrenskraftig_foretags_och_agarbeskattning
+  stance: opposes
+  source: 'Budgetmotion 2024/25 (MP), Amanda Lind m.fl. – data.riksdagen.se/HC023220'
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/HC023220
+  doc_id: HC023220
+  quote: 'Vi vill därför se en tillfällig skatt på bankernas övervinster. Skatten ska tas ut på räntenettot och väntas inbringa 16 miljarder kronor under 2025.'
+  date: '2024-10-04'
+  confidence: medium
+  mapping_note: 'MP höjer beskattningen av företagsvinster (bankövervinstskatt, bokförd under inkomsttiteln Skatt på företagsvinster) och vill höja kapitalbeskattning + exitskatt -> motsätter sig lägre företags-/ägarbeskattning = opposes. confidence=medium (åtgärden är sektor-specifik bank, men riktningen entydig).'
+# ---------------------------------------------------------------------------------------------------
+# ekonomi -> hushållens reala disponibla inkomst (submått realloner_hushall, den arbetande B-indikatorn).
+# TILLAGD 2026-06-05 (BACKLOG B2). VÄRDENEUTRAL familj-åtgärdstyp inkomststarkande_hushallspolitik:
+# skatte- och/eller transfereringsreformer som höjer hushållens disponibla inkomst. BÅDA blocken
+# kodas supports via sitt instrument (höger: sänkt skatt på arbete; vänster: höjda transfereringar)
+# -> 8 supports, ingen höger-/vänstertilt. Evidens: evidence_ledger inkomststarkande_hushallspolitik
+# (Fördelningspolitisk redogörelse). Ordagranna citat verifierade mot fulltext (.text/.html).
+# Forskning -> förslag -> mänsklig sign-off 2026-06-05.
+# ---------------------------------------------------------------------------------------------------
+- party: S
+  policy_type: inkomststarkande_hushallspolitik
+  stance: supports
+  source: 'Kommittémotion 2025/26 UO12 "Ekonomisk trygghet för familjer och barn" (S)'
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/HD023589
+  doc_id: HD023589
+  quote: 'Därför föreslår Socialdemokraterna att barnbidraget höjs med 200 kr per månad'
+  date: '2025-10-07'
+  confidence: high
+  mapping_note: 'Värdeneutral familj-åtgärdstyp (höjd disponibel inkomst). S:s instrument = höjda transfereringar (höjt barnbidrag +200 kr/mån + förstärkt bostadsbidrag) -> höjer hushållens disponibla inkomst = supports. Vänsterns väg till samma mål som högerns skattesänkningar; båda supports = ingen tilt.'
+- party: M
+  policy_type: inkomststarkande_hushallspolitik
+  stance: supports
+  source: 'Kommittémotion 2021/22 (M), Elisabeth Svantesson m.fl.'
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/H9024253
+  doc_id: H9024253
+  quote: 'Moderaterna vill sänka skatten för dem som arbetar genom att förstärka jobbskatteavdraget.'
+  date: '2021-10-29'
+  confidence: medium
+  mapping_note: 'M:s instrument = sänkt skatt på arbete (förstärkt jobbskatteavdrag, fokus låga/medelstora inkomster) -> mer kvar för löntagare = höjd disponibel inkomst = supports. Partikollektiv kommittémotion (FiU); confidence=medium (äldre period 2021/22, M:s aktuella linje går via regeringens budget).'
+- party: SD
+  policy_type: inkomststarkande_hushallspolitik
+  stance: supports
+  source: 'Motion 2025/26 (SD), Anders Alftberg – data.riksdagen.se/HD02522'
+  source_type: enskild_motion
+  source_url: https://data.riksdagen.se/dokument/HD02522
+  doc_id: HD02522
+  quote: 'Att slopa skatten skulle ge dem ökad köpkraft och minska risken för ekonomisk utsatthet.'
+  date: '2025-09-30'
+  confidence: low
+  mapping_note: 'SD:s instrument = slopad/sänkt skatt på pension -> uttryckligen ökad köpkraft för pensionärer = höjd disponibel inkomst = supports. Enskild motion (Anders Alftberg, SD); confidence=low — SD lägger ingen egen oppositionsbudget (regeringsstödjande) så ren partikollektiv köpkrafts-källa saknas, men riktningen är entydig.'
+- party: C
+  policy_type: inkomststarkande_hushallspolitik
+  stance: supports
+  source: 'Budgetmotion 2025/26 (C), Elisabeth Thand Ringqvist m.fl.'
+  source_type: budgetmotion
+  source_url: https://data.riksdagen.se/dokument/HD023811
+  doc_id: HD023811
+  quote: 'Inkomstskatterna sänks i ett första steg med ett nytt jobbskatteavdrag som förstärks för de med låga och medelstora inkomster.'
+  date: '2025-10-07'
+  confidence: high
+  mapping_note: 'C:s instrument = sänkt skatt på arbete (nytt jobbskatteavdrag, riktat låg/medel) -> höjd disponibel inkomst = supports. Partikollektiv budgetmotion (rm 2025/26); samma motion har fler hushållsstärkande åtgärder (halverad matmoms m.m.).'
+- party: V
+  policy_type: inkomststarkande_hushallspolitik
+  stance: supports
+  source: 'Kommittémotion 2025/26 (V), SfU – data.riksdagen.se/HD022781'
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/HD022781
+  doc_id: HD022781
+  quote: 'Vänsterpartiet anser därför att barnbidraget bör höjas med 400 kronor per månad för att komma upp på en nivå så att barnbidraget återigen kan bidra till att täcka hushållens basala utgifter och därefter bör barnbidraget prisindexeras så att inte dess värde på nytt urholkas i takt med inflationen.'
+  date: '2025-10-06'
+  confidence: high
+  mapping_note: 'V:s instrument = höjda transfereringar (höjt barnbidrag +400 kr/mån, prisindexerat) -> täcker hushållens basala utgifter = höjd disponibel inkomst = supports. Partikollektiv kommittémotion (SfU, rm 2025/26).'
+- party: KD
+  policy_type: inkomststarkande_hushallspolitik
+  stance: supports
+  source: 'Motion 2025/26:3474 (KD), Christian Carlsson'
+  source_type: enskild_motion
+  source_url: https://data.riksdagen.se/dokument/HD023474
+  doc_id: HD023474
+  quote: 'Ett steg för att komma till rätta med detta är att sänka den statliga inkomstskatten och att låta färre betala den med målet om att alla som jobbar alltid ska ha minst hälften kvar när skatten är betald.'
+  date: '2025-10-07'
+  confidence: medium
+  mapping_note: 'KD:s instrument = sänkt statlig inkomstskatt (alla som jobbar ska ha minst hälften kvar efter skatt) -> höjd disponibel inkomst = supports. Enskild motion av KD:s ekonomisk-politiske talesperson (KD lägger ingen egen oppositionsbudget i regeringsställning); confidence=medium.'
+- party: L
+  policy_type: inkomststarkande_hushallspolitik
+  stance: supports
+  source: 'Kommittémotion 2021/22 (L), Mats Persson, Johan Pehrson m.fl.'
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/H9024240
+  doc_id: H9024240
+  quote: 'Sänkt skatt på arbete gör det lättare att genom flit och arbete bygga upp en egen ekonomisk buffert.'
+  date: '2021-10-27'
+  confidence: medium
+  mapping_note: 'L:s instrument = sänkt skatt på arbete -> mer kvar för löntagare/egen ekonomisk buffert = höjd disponibel inkomst = supports. Partikollektiv kommittémotion (hela L-ledningen); confidence=medium (äldre period 2021/22).'
+- party: MP
+  policy_type: inkomststarkande_hushallspolitik
+  stance: supports
+  source: 'Kommittémotion 2025/26 "Ett Sverige utan barnfattigdom" (MP)'
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/HD023538
+  doc_id: HD023538
+  quote: 'Detta motsvarar en höjning av barnbidraget med 350 kronor till 1600 kronor i månaden per barn.'
+  date: '2025-10-07'
+  confidence: high
+  mapping_note: 'MP:s instrument = höjda transfereringar (höjt barnbidrag +350 kr/mån + höjt bostadsbidrag) för hushåll med små marginaler -> höjd disponibel inkomst = supports. Partikollektiv kommittémotion (rm 2025/26).'
+
+# ---------------------------------------------------------------------------------------------------
+# demokrati / rattsstat_maktdelning — policy_type grundlagsskydd_domstolarnas_oberoende (B2 2026-06-05)
+# Votering bet. 2025/26:KU2 (prop. 2024/25:165) punkt 1, votering 3C8070DF-2ECB-405A-83AD-A14CF2A79C61.
+# Per-parti verifierat direkt mot data.riksdagen.se: 7 partier Ja (S 92, M 59, C 21, V 18, KD 16,
+# L 13, MP 15), SD Nej. SD:s Nej gällde ENBART grundlagsändrings-PROCEDUREN (RF 8 kap. 14/17/18 §§);
+# reservationen avslår "i de delar den avser formerna för ändringar i grundlagarna" och antar
+# domstolsoberoendet "som vilande ... i övrigt" (bifaller delvis prop. 2024/25:165) => SD kodas none,
+# EJ opposes (frånvaro av rad = coverage-lucka, ej motstånd mot sakinnehållet). VILANDE beslut;
+# slutligt beslut efter val 2026.
+# ---------------------------------------------------------------------------------------------------
+- party: S
+  policy_type: grundlagsskydd_domstolarnas_oberoende
+  stance: supports
+  source: "Votering bet. 2025/26:KU2 (prop. 2024/25:165), punkt 1"
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HD01KU2.html
+  doc_id: "HD01KU2 / votering 3C8070DF-2ECB-405A-83AD-A14CF2A79C61 punkt 1"
+  quote: "Röst: Ja — biföll utskottets förslag att anta som vilande regeringens RF/RO-ändringar som stärker domstolarnas oberoende."
+  date: '2025-09-29'
+  confidence: high
+  mapping_note: "S röstade Ja (92 av icke-frånvarande). Stärkt grundlagsfäst domstolsoberoende (oberoende domstolsadministration; regeringsmyndigheter får ej utöva tillsyn över rättskipningen) driver otillborlig_politisering NER => supports. Votering punkt 1 (hela RF/RO-paketet). VILANDE grundlagsbeslut; slutligt efter val 2026."
+- party: M
+  policy_type: grundlagsskydd_domstolarnas_oberoende
+  stance: supports
+  source: "Votering bet. 2025/26:KU2 (prop. 2024/25:165), punkt 1"
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HD01KU2.html
+  doc_id: "HD01KU2 / votering 3C8070DF-2ECB-405A-83AD-A14CF2A79C61 punkt 1"
+  quote: "Röst: Ja — biföll utskottets förslag att anta som vilande regeringens RF/RO-ändringar som stärker domstolarnas oberoende."
+  date: '2025-09-29'
+  confidence: high
+  mapping_note: "M röstade Ja (59). Stärkt domstolsoberoende -> otillborlig_politisering NER => supports. Votering punkt 1. Vilande grundlagsbeslut."
+- party: C
+  policy_type: grundlagsskydd_domstolarnas_oberoende
+  stance: supports
+  source: "Votering bet. 2025/26:KU2 (prop. 2024/25:165), punkt 1"
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HD01KU2.html
+  doc_id: "HD01KU2 / votering 3C8070DF-2ECB-405A-83AD-A14CF2A79C61 punkt 1"
+  quote: "Röst: Ja — biföll utskottets förslag att anta som vilande regeringens RF/RO-ändringar som stärker domstolarnas oberoende."
+  date: '2025-09-29'
+  confidence: high
+  mapping_note: "C röstade Ja (21). Stärkt domstolsoberoende -> otillborlig_politisering NER => supports. Votering punkt 1. Vilande grundlagsbeslut."
+- party: V
+  policy_type: grundlagsskydd_domstolarnas_oberoende
+  stance: supports
+  source: "Votering bet. 2025/26:KU2 (prop. 2024/25:165), punkt 1"
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HD01KU2.html
+  doc_id: "HD01KU2 / votering 3C8070DF-2ECB-405A-83AD-A14CF2A79C61 punkt 1"
+  quote: "Röst: Ja — biföll utskottets förslag att anta som vilande regeringens RF/RO-ändringar som stärker domstolarnas oberoende."
+  date: '2025-09-29'
+  confidence: high
+  mapping_note: "V röstade Ja (18) och hade egen motion (HC021934 yrk. 3) som ville ha hela kommittéförslaget i SOU 2023:12 -> stärkt stöd. otillborlig_politisering NER => supports. Votering punkt 1. Vilande grundlagsbeslut."
+- party: KD
+  policy_type: grundlagsskydd_domstolarnas_oberoende
+  stance: supports
+  source: "Votering bet. 2025/26:KU2 (prop. 2024/25:165), punkt 1"
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HD01KU2.html
+  doc_id: "HD01KU2 / votering 3C8070DF-2ECB-405A-83AD-A14CF2A79C61 punkt 1"
+  quote: "Röst: Ja — biföll utskottets förslag att anta som vilande regeringens RF/RO-ändringar som stärker domstolarnas oberoende."
+  date: '2025-09-29'
+  confidence: high
+  mapping_note: "KD röstade Ja (16). Stärkt domstolsoberoende -> otillborlig_politisering NER => supports. Votering punkt 1. Vilande grundlagsbeslut."
+- party: L
+  policy_type: grundlagsskydd_domstolarnas_oberoende
+  stance: supports
+  source: "Votering bet. 2025/26:KU2 (prop. 2024/25:165), punkt 1"
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HD01KU2.html
+  doc_id: "HD01KU2 / votering 3C8070DF-2ECB-405A-83AD-A14CF2A79C61 punkt 1"
+  quote: "Röst: Ja — biföll utskottets förslag att anta som vilande regeringens RF/RO-ändringar som stärker domstolarnas oberoende."
+  date: '2025-09-29'
+  confidence: high
+  mapping_note: "L röstade Ja (13). Stärkt domstolsoberoende -> otillborlig_politisering NER => supports. Votering punkt 1. Vilande grundlagsbeslut."
+- party: MP
+  policy_type: grundlagsskydd_domstolarnas_oberoende
+  stance: supports
+  source: "Votering bet. 2025/26:KU2 (prop. 2024/25:165), punkt 1"
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HD01KU2.html
+  doc_id: "HD01KU2 / votering 3C8070DF-2ECB-405A-83AD-A14CF2A79C61 punkt 1"
+  quote: "Röst: Ja — biföll utskottets förslag att anta som vilande regeringens RF/RO-ändringar som stärker domstolarnas oberoende."
+  date: '2025-09-29'
+  confidence: high
+  mapping_note: "MP röstade Ja (15). Stärkt domstolsoberoende -> otillborlig_politisering NER => supports. Votering punkt 1. Vilande grundlagsbeslut."
+
+# ---------------------------------------------------------------------------------------------------
+# demokrati / personlig_frihet — policy_type begransa_biometrisk_realtidsovervakning_rattssakerhet (B2 2026-06-05)
+# Votering bet. 2025/26:JuU28 (prop. 2025/26:150, Polisens AI-ansiktsigenkänning i realtid). Codex-granskad.
+# NEUTRALT ANKARE = Lagrådet ("står i strid med grundlag"), EJ partiretorik. BLOCKÖVERSKRIDANDE split
+# (S ligger med M/SD/KD/L = ej vänster-höger, ej regering-vs-opposition). Policyfamilj = begränsa ELLER
+# villkora övervakning med rättssäkerhet. Verifierat per parti mot data.riksdagen.se:
+#   punkt 1 (anta lagen): C Nej (avslag); S/M/SD/V/KD/L/MP Ja.  punkt 2 (garanti-reservation): V/MP Nej; övriga Ja.
+# Kodregel: supports = tog NÅGON registrerad åtgärd för att begränsa/villkora oskyddad övervakning
+# (C: avslag punkt 1; V/MP: garanti-reservation punkt 2). opposes = röstade för lagen OCH mot garantierna.
+# confidence=medium (codex: C/V/MP belägger via olika beslutspunkter -> instrument-nyans, ej high).
+# ---------------------------------------------------------------------------------------------------
+- party: C
+  policy_type: begransa_biometrisk_realtidsovervakning_rattssakerhet
+  stance: supports
+  source: "Votering bet. 2025/26:JuU28 (prop. 2025/26:150), punkt 1 (reservation 1, C: avslag)"
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HD01JuU28.html
+  doc_id: "HD01JuU28 / votering E6B9D4D1-D69A-492F-ADBB-82345B549240 punkt 1"
+  quote: "Röst: Nej (punkt 1) — yrkade avslag på hela lagen: 'detta är en lagstiftning som innebär omfattande ingrepp i enskildas personliga integritet. Den kan därför inte accepteras. Regeringens förslag bör därmed avslås.'"
+  date: '2026-05-26'
+  confidence: medium
+  mapping_note: "C röstade Nej på punkt 1 (24 ledamöter) = avslag på hela lagen av integritets-/Lagrådsskäl -> supports policyfamiljen 'begränsa övervakning utan rättssäkerhet' (starkaste formen). NYANS (codex): C röstade Ja på punkt 2 (V/MP:s SPECIFIKA garantireservation) eftersom C ville avslå HELA lagen, inte behålla den med garantier — C stödjer alltså samma indikatormål men ej V/MP:s specifika instrument. Neutralt ankare = Lagrådet ('strid med grundlag')."
+- party: V
+  policy_type: begransa_biometrisk_realtidsovervakning_rattssakerhet
+  stance: supports
+  source: "Votering bet. 2025/26:JuU28 (prop. 2025/26:150), punkt 2 (reservation 2, V+MP: rättssäkerhetsgarantier)"
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HD01JuU28.html
+  doc_id: "HD01JuU28 / votering A6B8E0C7-CFEE-4359-ABB7-6554F05B22E0 punkt 2"
+  quote: "Röst: Nej (punkt 2) — biföll reservation om domstolsprövning, underrättelseskyldighet, offentligt ombud och överklagande innan biometrisk realtidsövervakning får användas."
+  date: '2026-05-26'
+  confidence: medium
+  mapping_note: "V röstade Ja på punkt 1 (lät lagen passera) men Nej på punkt 2 (21 ledamöter) = biföll reservationen om de rättssäkerhetsgarantier Lagrådet efterlyste -> supports policyfamiljen 'villkora övervakning med rättssäkerhet'. Instrument: punkt 2."
+- party: MP
+  policy_type: begransa_biometrisk_realtidsovervakning_rattssakerhet
+  stance: supports
+  source: "Votering bet. 2025/26:JuU28 (prop. 2025/26:150), punkt 2 + punkt 3 (reservation 2/3, MP)"
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HD01JuU28.html
+  doc_id: "HD01JuU28 / votering A6B8E0C7 punkt 2 + BC189AC8 punkt 3"
+  quote: "Röst: Nej (punkt 2 + punkt 3) — biföll reservationer om rättssäkerhetsgarantier (domstolsprövning m.m.) samt höjd misstankegrad för biometrisk realtidsövervakning."
+  date: '2026-05-26'
+  confidence: medium
+  mapping_note: "MP röstade Ja på punkt 1 men Nej på punkt 2 (18) + punkt 3 (höjd misstankegrad) = krävde rättssäkerhetsgarantier Lagrådet efterlyste -> supports policyfamiljen 'villkora övervakning med rättssäkerhet'. Instrument: punkt 2/3."
+- party: S
+  policy_type: begransa_biometrisk_realtidsovervakning_rattssakerhet
+  stance: opposes
+  source: "Votering bet. 2025/26:JuU28 (prop. 2025/26:150), punkt 1 (anta lagen) + punkt 2 (avslog garantier)"
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HD01JuU28.html
+  doc_id: "HD01JuU28 / votering E6B9D4D1 punkt 1 + A6B8E0C7 punkt 2"
+  quote: "Röst: Ja (punkt 1, anta lagen) + Ja (punkt 2, avslog rättssäkerhetsgaranti-reservationen) — röstade för biometrisk realtidsövervakning utan de garantier Lagrådet efterlyste."
+  date: '2026-05-26'
+  confidence: medium
+  mapping_note: "S röstade Ja till lagen (punkt 1, 106) och Ja på punkt 2 (avslog garanti-reservationen) -> motsätter sig att begränsa/villkora övervakningen med rättssäkerhet (Lagrådet: 'strid med grundlag') => opposes (_FLIP -> negativt B-bidrag). S ligger med M/SD/KD/L => BLOCKÖVERSKRIDANDE split, ej vänster-höger. Neutralt ankare = Lagrådet."
+- party: M
+  policy_type: begransa_biometrisk_realtidsovervakning_rattssakerhet
+  stance: opposes
+  source: "Votering bet. 2025/26:JuU28 (prop. 2025/26:150), punkt 1 (anta lagen) + punkt 2 (avslog garantier)"
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HD01JuU28.html
+  doc_id: "HD01JuU28 / votering E6B9D4D1 punkt 1 + A6B8E0C7 punkt 2"
+  quote: "Röst: Ja (punkt 1, anta lagen) + Ja (punkt 2, avslog rättssäkerhetsgaranti-reservationen) — röstade för biometrisk realtidsövervakning utan de garantier Lagrådet efterlyste."
+  date: '2026-05-26'
+  confidence: medium
+  mapping_note: "M (regeringsparti) röstade Ja till lagen (punkt 1, 64-65) och Ja på punkt 2 -> motsätter sig att villkora övervakningen med rättssäkerhet (Lagrådet: 'strid med grundlag') => opposes (_FLIP). Neutralt ankare = Lagrådet."
+- party: SD
+  policy_type: begransa_biometrisk_realtidsovervakning_rattssakerhet
+  stance: opposes
+  source: "Votering bet. 2025/26:JuU28 (prop. 2025/26:150), punkt 1 (anta lagen) + punkt 2 (avslog garantier)"
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HD01JuU28.html
+  doc_id: "HD01JuU28 / votering E6B9D4D1 punkt 1 + A6B8E0C7 punkt 2"
+  quote: "Röst: Ja (punkt 1, anta lagen) + Ja (punkt 2, avslog rättssäkerhetsgaranti-reservationen) — röstade för biometrisk realtidsövervakning utan de garantier Lagrådet efterlyste."
+  date: '2026-05-26'
+  confidence: medium
+  mapping_note: "SD (regeringsunderlag) röstade Ja till lagen (punkt 1, 69) och Ja på punkt 2 -> motsätter sig att villkora övervakningen med rättssäkerhet => opposes (_FLIP). Neutralt ankare = Lagrådet."
+- party: KD
+  policy_type: begransa_biometrisk_realtidsovervakning_rattssakerhet
+  stance: opposes
+  source: "Votering bet. 2025/26:JuU28 (prop. 2025/26:150), punkt 1 (anta lagen) + punkt 2 (avslog garantier)"
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HD01JuU28.html
+  doc_id: "HD01JuU28 / votering E6B9D4D1 punkt 1 + A6B8E0C7 punkt 2"
+  quote: "Röst: Ja (punkt 1, anta lagen) + Ja (punkt 2, avslog rättssäkerhetsgaranti-reservationen) — röstade för biometrisk realtidsövervakning utan de garantier Lagrådet efterlyste."
+  date: '2026-05-26'
+  confidence: medium
+  mapping_note: "KD (regeringsparti) röstade Ja till lagen (punkt 1, 19) och Ja på punkt 2 -> opposes (_FLIP). Neutralt ankare = Lagrådet."
+- party: L
+  policy_type: begransa_biometrisk_realtidsovervakning_rattssakerhet
+  stance: opposes
+  source: "Votering bet. 2025/26:JuU28 (prop. 2025/26:150), punkt 1 (anta lagen) + punkt 2 (avslog garantier)"
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HD01JuU28.html
+  doc_id: "HD01JuU28 / votering E6B9D4D1 punkt 1 + A6B8E0C7 punkt 2"
+  quote: "Röst: Ja (punkt 1, anta lagen) + Ja (punkt 2, avslog rättssäkerhetsgaranti-reservationen) — röstade för biometrisk realtidsövervakning utan de garantier Lagrådet efterlyste."
+  date: '2026-05-26'
+  confidence: medium
+  mapping_note: "L (regeringsparti) röstade Ja till lagen (punkt 1, 16) och Ja på punkt 2 -> opposes (_FLIP). NOTERA: L är liberalt men bröt INTE ut här (till skillnad från C). Neutralt ankare = Lagrådet."

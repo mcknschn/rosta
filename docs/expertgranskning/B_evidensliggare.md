@@ -2,7 +2,7 @@
 
 > AUTOGENERERAD av `pipeline/tools/review_packet.py` — ändra inte för hand.
 
-**30 poster** (åtgärdstyp → indikatoreffekt). Generell policy-evidens, medvetet **inte** partikopplad. Varje post sätter riktningen för ALLA partier som driver åtgärdstypen — granska källan noga (blast-radius anges per post).
+**33 poster** (åtgärdstyp → indikatoreffekt). Generell policy-evidens, medvetet **inte** partikopplad. Varje post sätter riktningen för ALLA partier som driver åtgärdstypen — granska källan noga (blast-radius anges per post).
 
 ## Så granskar du
 
@@ -44,14 +44,25 @@
 - ⚠ expert_opinion (ej uppmätt kausalitet) · ⚠ låg konfidens
 - **OK?** ⬜ (✅/✏️/❌): 
 
-## ekonomi
-
-### `subventionerade_anstallningar` → arbetsloshet
+### `grundlagsskydd_domstolarnas_oberoende` → otillborlig_politisering
 
 - **Riktning:** positive · **evidensnivå:** authority_evaluation · **styrka:** medium · **konfidens:** medium
-- **Källa:** IFAU – utvärderingar av arbetsmarknadspolitik (generell, ej partispecifik)
-- **Påverkar partier:** C(−), KD(+), L(+), M(+), MP(+), S(+), SD(−), V(+)
+- **Källa:** Prop. 2024/25:165 'Stärkt skydd för demokratin och domstolarnas oberoende' (bygger på SOU 2023:12, 2020 års grundlagskommitté), bet. 2025/26:KU2. Internationell bekräftelse: EU-kommissionens rättsstatsrapport 2024, Sverige-kapitlet.
+- **URL:** https://data.riksdagen.se/dokument/HD01KU2.html
+- **Not:** Förslaget tydliggör i regeringsformen att 'rättskipande verksamhet utövas av oberoende domstolar' och syftar till att 'minska risken för politisk styrning av den centrala domstolsadministrationen' (domstolsadministrationen leds av styrelse med domarmajoritet; regeringsmyndigheter får ej längre utöva tillsyn över domstolarnas rättskipande verksamhet) -> driver otillborlig_politisering NER. Institutionellt/normativt designargument (prop+SOU+EU-bedömning), ingen uppmätt kausaleffekt -> effect_strength/confidence medium. INTERNATIONELL KÄLLA endast som BEKRÄFTELSE (EU:s rättsstatsrapport), ej primärkälla, ej index — per DATA.md-undantag 2026-06-05.
+- **Påverkar partier:** C(+), KD(+), L(+), M(+), MP(+), S(+), V(+)
 - **OK?** ⬜ (✅/✏️/❌): 
+
+### `begransa_biometrisk_realtidsovervakning_rattssakerhet` → overvakning_utan_rattssakerhet
+
+- **Riktning:** positive · **evidensnivå:** authority_evaluation · **styrka:** medium · **konfidens:** medium
+- **Källa:** Lagrådets yttrande över prop. 2025/26:150 (Polisens användning av AI för ansiktsigenkänning i realtid), återgivet ordagrant i bet. 2025/26:JuU28. Officiellt svenskt granskningsorgan.
+- **URL:** https://data.riksdagen.se/dokument/HD01JuU28.html
+- **Not:** NEUTRALT ANKARE = Lagrådet (officiellt svenskt granskningsorgan), EJ partiretorik: Lagrådet fann att förslaget 'går avsevärt längre än nödvändigt' och 'står därmed i strid med grundlag', att beslut flyttas från riksdag till åklagare/domstol och att det 'saknas reella överklagandemöjligheter' samt kraftigt begränsad tillsyn. Åtgärdstypen = att BEGRÄNSA eller VILLKORA biometrisk realtidsövervakning med rättssäkerhetsgarantier (domstolsprövning, proportionalitet, oberoende tillsyn, överklagande) -> driver overvakning_utan_rattssakerhet NER (positiv riktning; partier som motsätter sig vänds till negativt B via _FLIP, som klimat-reduktionsplikt). Institutionellt/normativt (Lagrådets proportionalitetsbedömning), ingen uppmätt kausaleffekt -> effect_strength/confidence medium.
+- **Påverkar partier:** C(+), KD(−), L(−), M(−), MP(+), S(−), SD(−), V(+)
+- **OK?** ⬜ (✅/✏️/❌): 
+
+## ekonomi
 
 ### `subventionerade_anstallningar` → sysselsattning
 
@@ -79,6 +90,33 @@
 - **Not:** Effekten svår att utvärdera (kontrollgrupp saknas); inga säkra slutsatser.
 - **Påverkar partier:** —(ingen ståndpunkt)
 - ⚠ unclear → ≈neutral B · ⚠ låg konfidens
+- **OK?** ⬜ (✅/✏️/❌): 
+
+### `fou_avdrag_skatteincitament` → produktivitet
+
+- **Riktning:** positive · **evidensnivå:** authority_evaluation · **styrka:** medium · **konfidens:** medium
+- **Källa:** Produktivitetskommissionen, slutbetänkande SOU 2025:96 'Fler möjligheter till ökat välstånd' + SOU 2025:3 'Skatteincitament för forskning och utveckling'
+- **URL:** https://www.regeringen.se/rattsliga-dokument/statens-offentliga-utredningar/2025/10/sou-202596/
+- **Not:** TILLAGD 2026-06-05 (BACKLOG B2, anti-binär): ger ekonomi B-evidens i submåttet bnp_produktivitet (1/5 -> 2/5, ej längre nära-binär). Produktivitetskommissionen lyfter FoU som produktivitetslever ('Kommissionen bedömer att företagsfrämjande åtgärder bör förbättras och FoU-avdraget förenklas'); SOU 2025:3 ser över FoU-avdraget för att öka företagens FoU-investeringar; utskottet (bet. 2022/23:SfU19) konstaterar att FoU 'bidrar till högre produktivitet och tillväxt'. KAVEAT (därför effect_strength/confidence=medium, ej high): riktningen FoU->produktivitet är väletablerad (kommission + ekonomisk forskning), men själva avdragets marginaleffekt är ALDRIG kausalutvärderad — exakt skälet bakom SOU 2025:3 och V:s avslagsmotivering. Riktning säker, magnitud osäker. Partiståndpunkter: party_positions fou_avdrag_skatteincitament (votering bet. 2022/23:SfU19, 7 supports / V opposes).
+- **Påverkar partier:** C(+), KD(+), L(+), M(+), MP(+), S(+), SD(+), V(−)
+- **OK?** ⬜ (✅/✏️/❌): 
+
+### `konkurrenskraftig_foretags_och_agarbeskattning` → naringslivets_investeringar
+
+- **Riktning:** positive · **evidensnivå:** authority_evaluation · **styrka:** medium · **konfidens:** medium
+- **Källa:** Företagsskattekommittén, SOU 2014:40 'Neutral bolagsskatt – för ökad effektivitet och stabilitet'
+- **URL:** https://www.regeringen.se/rattsliga-dokument/statens-offentliga-utredningar/2014/06/sou-201440/
+- **Not:** TILLAGD 2026-06-05 (BACKLOG B2): nytt submått foretagande_investeringar (ekonomi 2/6 -> 3/6 täckta). BRED ram: konkurrenskraftig/lägre beskattning av företag OCH ägare/kapital -> högre avkastning efter skatt -> mer investeringar (positive på naringslivets_investeringar). Företagsskattekommitténs uppdrag var att utforma företagsbeskattningen så att 'investeringar som är lönsamma före skatt också ska vara lönsamma efter skatt' och främja investeringar/företagande. KAVEAT (effect_strength/confidence=medium, ej high): (1) investeringars elasticitet mot skatt är empiriskt omtvistad i magnitud; (2) bred ram -> supports-sidan belägger främst SÄNKT BOLAGSSKATT (direkt koppling till företagsinvestering) medan opposes-sidan belägger HÖJD KAPITAL-/ÄGARSKATT (mer indirekt koppling). Riktning rimlig, magnitud osäker. Partiståndpunkter: party_positions konkurrenskraftig_foretags_och_agarbeskattning (5 supports M/SD/C/KD/L, 3 opposes S/V/MP).
+- **Påverkar partier:** C(+), KD(+), L(+), M(+), MP(−), S(−), SD(+), V(−)
+- **OK?** ⬜ (✅/✏️/❌): 
+
+### `inkomststarkande_hushallspolitik` → hushallens_reala_disponibla_inkomst
+
+- **Riktning:** positive · **evidensnivå:** descriptive_statistic · **styrka:** medium · **konfidens:** high
+- **Källa:** Fördelningspolitisk redogörelse april 2025 (bilaga till 2025 års ekonomiska vårproposition, Finansdepartementet)
+- **URL:** https://www.regeringen.se/informationsmaterial/2025/04/fordelningspolitisk-redogorelse-april-2025/
+- **Not:** TILLAGD 2026-06-05 (BACKLOG B2): gör submåttet 'Reallöner och hushållens ekonomi' B-bart (ekonomi 3/6 -> 4/6) via den ARBETANDE indikatorn hushallens_reala_disponibla_inkomst (realloner förblir vilande kontext, ej partistyrbar). VÄRDENEUTRAL åtgärdstyp-FAMILJ: skatte- OCH/ELLER transfereringsreformer som höjer hushållens disponibla inkomst. Fördelningspolitiska redogörelsen definierar disponibel inkomst (arbets-/kapital-/näringsinkomst + transfereringar − direkta skatter) och analyserar hur skatte- och transfereringsreformer påverkar den -> både SÄNKT SKATT (höger) och HÖJDA TRANSFERERINGAR (vänster) höjer disponibel inkomst. Därför kodas BÅDA blocken som supports via sitt instrument = ingen höger-/vänstertilt (till skillnad från skatt/reglering där bara 'mindre stat' räknas). evidence_level descriptive_statistic (accounting/beskrivande, ej kausal välfärdsutvärdering) -> modest vikt; riktning definitionsmässigt säker -> confidence high. Partiståndpunkter: inkomststarkande_hushallspolitik (8 supports, instrument per parti i mapping_note).
+- **Påverkar partier:** C(+), KD(+), L(+), M(+), MP(+), S(+), SD(+), V(+)
 - **OK?** ⬜ (✅/✏️/❌): 
 
 ## forsvar
@@ -116,10 +154,11 @@
 
 ### `sfi_kombinerat_med_praktik` → sysselsattningsgap_inrikes_utrikes
 
-- **Riktning:** positive · **evidensnivå:** authority_evaluation · **styrka:** medium · **konfidens:** low
-- **Källa:** IFAU / ESO – utvärderingar (generell)
+- **Riktning:** positive · **evidensnivå:** authority_evaluation · **styrka:** medium · **konfidens:** medium
+- **Källa:** IFAU, forskningssammanfattning 'Utrikes föddas etablering på arbetsmarknaden' (refererar Dahlberg m.fl. 2020)
+- **URL:** https://www.ifau.se/Press/Forskningssammanfattningar/Utrikes-foddas-eta-pa-arbetsmarknaden-/
+- **Not:** EXPERTUPPGRADERING 2026-06-05 (ersätter generisk seed-källa): IFAU sammanfattar att 'Genom intensiv språkutbildning, arbetspraktik samt sök- och matchningshjälp dubblerades sysselsättningen bland lågutbildade nyanlända' (Dahlberg m.fl. 2020) -> kombinerad sfi + praktik höjer sysselsättningen för utrikes födda (minskar gapet). confidence höjd low->medium (konkret kvantifierad effekt, men vilar på en pilot i Göteborg).
 - **Påverkar partier:** C(+), KD(+), L(+), M(+), S(+)
-- ⚠ låg konfidens
 - **OK?** ⬜ (✅/✏️/❌): 
 
 ### `aktiveringskrav_ekonomiskt_bistand` → bidragsberoende
@@ -160,16 +199,9 @@
 
 ## klimat
 
-### `koldioxidskatt` → territoriella_utslapp
-
-- **Riktning:** positive · **evidensnivå:** authority_evaluation · **styrka:** high · **konfidens:** medium
-- **Källa:** Konjunkturinstitutet (miljöekonomi) / Klimatpolitiska rådet (generell)
-- **Påverkar partier:** KD(+), L(+), M(+), MP(+), SD(−), V(+)
-- **OK?** ⬜ (✅/✏️/❌): 
-
 ### `reduktionsplikt_drivmedel` → territoriella_utslapp
 
-- **Riktning:** positive · **evidensnivå:** authority_evaluation · **styrka:** high · **konfidens:** medium
+- **Riktning:** positive · **evidensnivå:** authority_evaluation · **styrka:** medium · **konfidens:** medium
 - **Källa:** Naturvårdsverket, officiell klimatstatistik / pressmeddelande om 2024 års utsläpp (2025)
 - **URL:** https://www.naturvardsverket.se/om-oss/aktuellt/nyheter-och-pressmeddelanden/2025/juni/sveriges-klimatutslapp-okade-med-7-procent-under-2024/
 - **Not:** Naturvårdsverket tillskriver 2024 års utsläppsökning (~7 %) sänkt reduktionsplikt -> högre plikt sänker transportutsläpp.
@@ -199,7 +231,7 @@
 - **Riktning:** positive · **evidensnivå:** authority_evaluation · **styrka:** high · **konfidens:** high
 - **Källa:** Svenska kraftnät, Kraftbalansen på den svenska elmarknaden – rapport 2025 (lagstadgad rapport till regeringen, 3 § förordn. 2007:1119)
 - **URL:** https://www.svk.se/49bb53/siteassets/om-oss/rapporter/2025/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2025.pdf
-- **Not:** Exakt på indikatorn effektbrist (effektbalans vid topplasttimmen). Planerbar baskraft har tillgänglighetsfaktor ~90 % vid topplast (vindkraft 9 %, solkraft 0 %, Tabell 13 s.45), så ny/utbyggd planerbar kärnkraft ökar tillgänglig effekt vid topplast och drar effektbrist-risken nedåt. POSITIV riktning (negativ-grinden ej tillämplig). Källan fastställer riktningsmekanismen via tillgänglighetsfaktorer, ej nybyggnadskostnad/ledtid; ett parti som motsätter sig instrumentet (opposes) får negativt B-bidrag på effektbrist — flaggat för mänsklig granskning.
+- **Not:** Exakt på indikatorn effektbrist (effektbalans vid topplasttimmen). Planerbar baskraft har tillgänglighetsfaktor ~90 % vid topplast (vindkraft 9 %, solkraft 0 %, Tabell 13 s.45), så ny/utbyggd planerbar kärnkraft ökar tillgänglig effekt vid topplast och drar effektbrist-risken nedåt. POSITIV riktning (negativ-grinden ej tillämplig). Källan fastställer riktningsmekanismen via tillgänglighetsfaktorer, ej nybyggnadskostnad/ledtid; ett parti som motsätter sig instrumentet (opposes) får negativt B-bidrag på effektbrist — flaggat för mänsklig granskning. KÄLLTYPS-ASYMMETRI (expertgranskning 2026-06-05, SUSPECT 4): ny_karnkraft kodar partiets GENERELLA hållning till ny/utbyggd kärnkraft. supports-raderna (M/SD/KD/L) är generella partimotioner från olika riksmöten (2020/21–2024/25); opposes-raderna (V/MP) är följdmotioner mot prop 2025/26:160. Jämförelsen avser alltså för/emot ny kärnkraft generellt — inte en röst om just prop 160. Bekräftat ordagrant + rätt riktade i adversariell omverifiering.
 - **Påverkar partier:** KD(+), L(+), M(+), MP(−), S(+), SD(+), V(−)
 - **OK?** ⬜ (✅/✏️/❌): 
 
@@ -208,7 +240,9 @@
 ### `behandlingsprogram_kriminalvard` → aterfall_i_brott
 
 - **Riktning:** positive · **evidensnivå:** authority_evaluation · **styrka:** medium · **konfidens:** medium
-- **Källa:** Brå / Kriminalvården – utvärderingar (generell)
+- **Källa:** Kriminalvården, Behandling inom Kriminalvården (ackrediterade behandlingsprogram, KBT-baserade)
+- **URL:** https://www.kriminalvarden.se/kriminalvard/behandling-inom-kriminalvarden/
+- **Not:** EXPERTUPPGRADERING 2026-06-05 (ersätter generisk seed-källa): Kriminalvården anger att behandling är 'en viktig del i Kriminalvårdens arbete med att minska risken för återfall i brott' och att programmen är ackrediterade via vetenskaplig prövning med forskningsstöd för att de 'kan minska risken för återfall'. NYANS (program-nivå blandad): ETS ~9 % och Brotts-Brytet ~8 % riskminskning ej statistiskt säkerställda, medan PRISM gav signifikant lägre återfall -> riktning positive säker, effect_strength/confidence medium.
 - **Påverkar partier:** C(+), KD(+), L(+), M(+), MP(+), S(+), V(+)
 - **OK?** ⬜ (✅/✏️/❌): 
 
@@ -255,8 +289,10 @@
 ### `tidiga_insatser_lagstadiet` → skolresultat
 
 - **Riktning:** positive · **evidensnivå:** systematic_review · **styrka:** medium · **konfidens:** medium
-- **Källa:** Skolforskningsinstitutet / SBU – forskningsöversikter (generell)
-- **Påverkar partier:** C(−), KD(+), M(+), MP(+), S(+), SD(−)
+- **Källa:** Skolforskningsinstitutet, systematisk forskningssammanställning 'Läsförståelse och undervisning om lässtrategier' (2019)
+- **URL:** https://www.skolfi.se/forskningssammanstallningar/systematiska-forskningssammanstallningar/lasforstaelse-och-undervisning-om-lasstrategier/
+- **Not:** EXPERTUPPGRADERING 2026-06-05 (ersätter generisk seed-källa): systematisk översikt finner POSITIV effekt — 'det är möjligt att förbättra elevers läsförståelse med explicit strategiundervisning', och effekten är STÖRST för svaga läsare (= målgruppen för tidiga stödinsatser). Mekanism-nivå (strukturerad tidig läsundervisning förbättrar resultat); en direkt kausalutvärdering av själva läsa-skriva-räkna-garantin saknas ännu -> confidence medium.
+- **Påverkar partier:** C(+), KD(+), M(+), MP(+), S(+), SD(−)
 - **OK?** ⬜ (✅/✏️/❌): 
 
 ### `minskad_klasstorlek` → skolresultat
@@ -293,5 +329,5 @@
 - **Källa:** Brå Rapport 2022:1, Välfärdsbrott mot kommuner och regioner
 - **URL:** https://bra.se/rapporter/arkiv/2022-03-25-valfardsbrott-mot-kommuner-och-regioner
 - **Not:** Tillståndsplikt, kontroll och informationsutbyte bedöms verksamt; nuvarande system missar mycket.
-- **Påverkar partier:** C(+), KD(+), L(+), M(+), MP(+), SD(+), V(−)
+- **Påverkar partier:** C(+), KD(+), L(+), M(+), MP(+), SD(+), V(+)
 - **OK?** ⬜ (✅/✏️/❌): 

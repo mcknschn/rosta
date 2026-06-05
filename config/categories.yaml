@@ -40,20 +40,27 @@ categories:
   - id: ekonomi
     name: Ekonomi och jobb
     standard_weight: 20
-    description: Tillväxt, inflation, arbetslöshet, reallöner, statsfinanser
+    description: Tillväxt, inflation, arbetslöshet, reallöner, statsfinanser, företagande och investeringar
     caveat: Ett parti ska inte få hela äran eller skulden för konjunkturen.
     submeasures:
-      - { id: sysselsattning_arbetsloshet, name: Sysselsättning och arbetslöshet, weight: 25 }
-      - { id: bnp_produktivitet,           name: BNP per capita och produktivitet, weight: 20 }
-      - { id: realloner_hushall,           name: Reallöner och hushållens ekonomi, weight: 20 }
-      - { id: inflation_prisstabilitet,    name: Inflation och prisstabilitet, weight: 15 }
-      - { id: offentliga_finanser,         name: Offentliga finanser och långsiktig hållbarhet, weight: 20 }
+      # Omviktade 2026-06-05 (B2): nytt submått foretagande_investeringar tillagt (vikt 15);
+      # de täckta submåttens inbördes balans (jobb/produktivitet/investeringar) = 22/18/15.
+      # inflation + offentliga finanser (target-indikatorer, ej B-/D-bara) trimmade — de är
+      # vilande i betygsräkningen (renormaliseras bort) så trimningen påverkar inte betygen.
+      - { id: sysselsattning_arbetsloshet, name: Sysselsättning och arbetslöshet, weight: 22 }
+      - { id: bnp_produktivitet,           name: BNP per capita och produktivitet, weight: 18 }
+      - { id: realloner_hushall,           name: Reallöner och hushållens ekonomi, weight: 18 }
+      - { id: foretagande_investeringar,   name: Företagande och investeringar, weight: 15 }
+      - { id: inflation_prisstabilitet,    name: Inflation och prisstabilitet, weight: 12 }
+      - { id: offentliga_finanser,         name: Offentliga finanser och långsiktig hållbarhet, weight: 15 }
     indicators:
       - { id: sysselsattning,       submeasure: sysselsattning_arbetsloshet, direction: up }
       - { id: arbetsloshet,         submeasure: sysselsattning_arbetsloshet, direction: down }
       - { id: bnp_per_capita,       submeasure: bnp_produktivitet, direction: up }
       - { id: produktivitet,        submeasure: bnp_produktivitet, direction: up }
       - { id: realloner,            submeasure: realloner_hushall, direction: up }
+      - { id: hushallens_reala_disponibla_inkomst, submeasure: realloner_hushall, direction: up, note: "Hushållens reala disponibla inkomst/köpkraft (SCB nationalräkenskaper); partistyrbar via skatt på arbete + transfereringar — den arbetande B-indikatorn i submåttet (realloner är vilande kontext)" }
+      - { id: naringslivets_investeringar, submeasure: foretagande_investeringar, direction: up, note: "Näringslivets fasta bruttoinvesteringar (SCB nationalräkenskaper); konjunkturkänslig" }
       - { id: inflation,            submeasure: inflation_prisstabilitet, direction: target, note: "Nära målet (~2 %), inte bara lägst" }
       - { id: statsskuld_underskott, submeasure: offentliga_finanser, direction: target, note: "Hållbar nivå" }
 

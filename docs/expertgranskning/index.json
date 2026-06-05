@@ -1,19 +1,19 @@
 {
   "counts": {
-    "positions_total": 130,
-    "ledger_entries": 30,
-    "claims_produced": 157,
+    "positions_total": 169,
+    "ledger_entries": 33,
+    "claims_produced": 182,
     "stance": {
-      "supports": 113,
-      "opposes": 17
+      "supports": 145,
+      "opposes": 24
     },
     "confidence": {
-      "high": 71,
-      "medium": 28,
-      "low": 17,
+      "high": 93,
+      "medium": 44,
+      "low": 18,
       "None": 14
     },
-    "priority_count": 79
+    "priority_count": 92
   },
   "priority_doc_ids": [
     "GQ02Sf289",
@@ -23,8 +23,9 @@
     "H302761",
     "H4023372",
     "H501UbU10",
-    "H5023910",
     "H5024117",
+    "H5024186",
+    "H6022030",
     "H6022931",
     "H6023062",
     "H8022726",
@@ -33,6 +34,7 @@
     "H8023409",
     "H8023429",
     "H9022542",
+    "H9023638",
     "H9023641",
     "H9023642",
     "H9023688",
@@ -54,7 +56,10 @@
     "H9024198",
     "H9024199",
     "H9024212",
+    "H9024240",
+    "H9024253",
     "H902916",
+    "HA01SfU19 / votering 198C0FEC-86BA-4075-8020-9D85FE07E2AF",
     "HA02948",
     "HA02998",
     "HB01MJU5 / votering 21E8B615-C235-489F-8189-D26CABD56F24 punkt 1",
@@ -63,8 +68,9 @@
     "HC022386",
     "HC023023",
     "HC023146",
-    "HC023445",
+    "HC023220",
     "HC02445",
+    "HD01JuU28 / votering E6B9D4D1 punkt 1 + A6B8E0C7 punkt 2",
     "HD021556",
     "HD021560",
     "HD021563",
@@ -76,11 +82,13 @@
     "HD022663",
     "HD022822",
     "HD023191",
+    "HD023553",
     "HD023594",
     "HD023766",
     "HD023961",
     "HD023984",
-    "HD024027"
+    "HD024027",
+    "HD02522"
   ],
   "files": [
     "B_partistandpunkter.md",

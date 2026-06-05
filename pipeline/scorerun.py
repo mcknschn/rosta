@@ -459,8 +459,8 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
             "parties": parties, "model_version": 1,
             "coverage": (f"Preliminär: A=agerande (a2 motionsprioritering, andel av egna "
                          f"motioner, full; a1 budgetprioritering gated — aktiv för "
-                         f"{len(a1_active)}/{len(cats)} kategorier ur officiella utgiftsramar, "
-                         "version 0, annars a2-fallback); "
+                         f"{len(a1_active)}/{len(cats)} kategorier ur officiella utgiftsramar "
+                         "(2023–2025), expertgranskad v1 2026-06-05, annars a2-fallback); "
                          "C=makt per kategori: nationell regeringsmakt blandad med subnationell "
                          "makt (SKR-styren, 21 regioner + 290 kommuner × 3 mandatperioder) via en "
                          "per-kategori region/kommun-split efter lagstadgat ansvar; forsvar "
@@ -472,8 +472,8 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
                          f"för ALLA 7 kategorier via {n_positions} källbelagda, adversariellt "
                          "verifierade + panel-harmoniserade partiståndpunkter (riksdagsvotering/"
                          "motion, Fas 4c); coverage-viktad (B krymps mot neutral efter andel kodade "
-                         "åtgärdstyper, B_thin_coverage-flagga vid tunn täckning). party_positions "
-                         "version 0 — kräver mänsklig slutgranskning."),
+                         "åtgärdstyper, B_thin_coverage-flagga vid tunn täckning). party_positions + "
+                         "evidence_ledger expertgranskade v1 (mänsklig sign-off 2026-06-05)."),
         },
         "categories": catinfo,
         "scores": scores,
@@ -515,7 +515,7 @@ def main() -> None:
     for p, t in sorted(ranking, key=lambda x: -x[1]):
         print(f"   {p:4} {t:.2f}")
     print("\n   OBS: preliminär ranking: A (aktivitet) + B (coverage-viktade partiståndpunkter,")
-    print("   alla kategorier) + C (makt) + D (resultat där makt funnits). Version 0. Ej röstråd.")
+    print("   alla kategorier) + C (makt) + D (resultat där makt funnits). v1 expertgranskad. Ej röstråd.")
 
 
 if __name__ == "__main__":

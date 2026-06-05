@@ -12,7 +12,7 @@ Jag skulle använda sju kategorier:
 
 | Nr | Kategori | Beskrivning |
 |----|----------|-------------|
-| 1 | Ekonomi och jobb | Tillväxt, inflation, arbetslöshet, reallöner, statsfinanser |
+| 1 | Ekonomi och jobb | Tillväxt, inflation, arbetslöshet, reallöner, statsfinanser, företagande och investeringar |
 | 2 | Välfärd | Vård, skola, omsorg, kommuner, regioner |
 | 3 | Lag och trygghet | Brott, rättsväsende, trygghet, återfall, utsatthet |
 | 4 | Försvar och beredskap | Militärt försvar, Nato, Ukraina, civilförsvar, krisberedskap |
@@ -141,11 +141,14 @@ På så sätt kan en användare se vilka påståenden som ligger bakom varje po�
 
 | Undermått | Vikt inom kategorin |
 |-----------|---------------------|
-| Sysselsättning och arbetslöshet | 25 % |
-| BNP per capita och produktivitet | 20 % |
-| Reallöner och hushållens ekonomi | 20 % |
-| Inflation och prisstabilitet | 15 % |
-| Offentliga finanser och långsiktig hållbarhet | 20 % |
+| Sysselsättning och arbetslöshet | 22 % |
+| BNP per capita och produktivitet | 18 % |
+| Reallöner och hushållens ekonomi | 18 % |
+| Företagande och investeringar | 15 % |
+| Inflation och prisstabilitet | 12 % |
+| Offentliga finanser och långsiktig hållbarhet | 15 % |
+
+*(Submåttet "Företagande och investeringar" tillagt 2026-06-05 i B2-täckningsarbetet; övriga vikter omfördelade så summan förblir 100 % — se docs/BACKLOG.md. Trimningen av inflation/offentliga finanser påverkar inte betygen eftersom target-submått utan B-/D-data renormaliseras bort.)*
 
 **Positiv riktning:**
 
@@ -156,6 +159,8 @@ På så sätt kan en användare se vilka påståenden som ligger bakom varje po�
 | BNP per capita | Upp |
 | Produktivitet | Upp |
 | Reallöner | Upp |
+| Hushållens disponibla inkomst | Upp |
+| Näringslivets investeringar | Upp |
 | Inflation | Nära målet, inte bara lägst |
 | Statsskuld/underskott | Hållbar nivå |
 

@@ -15,6 +15,8 @@ version: 1
 allowlist:
   # --- ekonomi (produktivitet härleds nu: BNP fasta priser / arbetade timmar, pipeline.derived) ---
   - { category: ekonomi, indicator: realloner,            reason: "future: kräver Medlingsinstitutets konjunkturlönestatistik (helekonomi-löneindex) som egen adapter — SCB:s API saknar en ren, kontinuerlig helekonomi-löneserie (allt är privat sektor, sektoruppdelat/brutet vid SSYK-revisionen 2014, eller dött). Sonderat 2026-05-31." }
+  - { category: ekonomi, indicator: naringslivets_investeringar, reason: "future: SCB nationalräkenskaper (fasta bruttoinvesteringar, näringslivet) finns men adaptern är inte byggd; indikatorn tillagd 2026-06-05 (B2) för delpoäng B (företags-/ägarbeskattning → investeringar). Dessutom starkt konjunkturkänslig → D-attribution till sittande regering brusig (jfr ekonomi-caveat). B-only tills vidare." }
+  - { category: ekonomi, indicator: hushallens_reala_disponibla_inkomst, reason: "future: SCB nationalräkenskaper (hushållens reala disponibla inkomst) finns men adaptern är inte byggd; indikatorn tillagd 2026-06-05 (B2) som den arbetande B-indikatorn i submåttet 'Reallöner och hushållens ekonomi' (partistyrbar via skatt + transfereringar, värdeneutral). D-bar i framtiden (värdeneutralt utfall), men konjunktur-/ränte-känslig → attribution brusig. B-only tills vidare." }
   - { category: ekonomi, indicator: inflation,            reason: "target: nära mål (~2 %), ej up/down -> ej D-duglig (kvarstår för B/visning)." }
   - { category: ekonomi, indicator: statsskuld_underskott, reason: "target: hållbar nivå, ej up/down -> ej D-duglig." }
   # --- valfard ---
@@ -56,3 +58,28 @@ allowlist:
   - { category: demokrati, indicator: politisk_transparens,             reason: "qualitative: ingen kvantitativ officiell årsserie." }
   - { category: demokrati, indicator: otillborlig_politisering,         reason: "qualitative: ingen objektiv mätserie." }
   - { category: demokrati, indicator: overvakning_utan_rattssakerhet,   reason: "qualitative: ingen objektiv mätserie." }
+
+# ---------------------------------------------------------------------------------------------------
+# B-TÄCKNING — nära-binära kategorier (BACKLOG B4, anti-binär garanti)
+# ---------------------------------------------------------------------------------------------------
+# Kategorier vars partikopplade B-evidens vilar på <=1 distinkt submått. Eftersom score.aggregate_B
+# är submåttsviktat kan en enda ståndpunkt då svinga b_raw mellan ytterlägen (0/2.5/5). Listas
+# EXPLICIT med skäl tills evidensliggaren breddats (B2), precis som D-luckorna ovan.
+# Invariant (tests/test_fas4b_coverage.py, mätare pipeline.tools.coverage_report.b_submeasure_spread):
+#   - varje nära-binär kategori MÅSTE stå här (annars tyst regression), OCH
+#   - varje post här MÅSTE fortfarande vara nära-binär (listan krymper när B2 levererar).
+# "Aktiv evidens" = åtgärdstyp med signed_direction != 0 (ej mixed/unclear), ej coverage_exclude,
+# som har minst en partiståndpunkt (= modellens kodbara mängd, jfr scorerun cov_den).
+b_near_binary_accepted:
+  # ekonomi LÖST 2026-06-05 (B2): fou_avdrag_skatteincitament -> produktivitet (submått
+  # bnp_produktivitet) tillagd -> ekonomi 1/5 -> 2/5, ej längre nära-binär. Posten borttagen
+  # (grinden test_b_near_binary_allowlist_shrinks kräver att inaktuella poster tas bort).
+  # Kvar för ekonomi: realloner_hushall (target-submåtten inflation/offentliga finanser tar
+  # inget riktat B-bidrag och är inte nära-binär-blockerare).
+  # demokrati LÖST 2026-06-05 (B2): grundlagsskydd_domstolarnas_oberoende -> otillborlig_politisering
+  # (submått rattsstat_maktdelning) tillagd via votering bet. 2025/26:KU2 -> demokrati 1/5 -> 2/5,
+  # ej längre nära-binär. Posten borttagen (test_b_near_binary_allowlist_shrinks kräver att inaktuella
+  # poster tas bort). Kvarstående otäckta submått (yttrandefrihet_medier, personlig_frihet,
+  # transparens_ansvar) är coverage-luckor men EJ nära-binär-blockerare (>=2 submått aktiva).
+  # Status/skäl för varför de hålls: docs/BACKLOG.md (B2 demokrati).
+  []

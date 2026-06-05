@@ -78,6 +78,86 @@ högre coverage → mindre B-krympning → B får faktiskt genomslag.
   *Ny ranking (standardvikter): S 3,73 · L 3,33 · M 3,28 · MP 3,11 · KD 3,05 · C 2,66 · V 2,65 · SD 2,38.*
   *Caveat: ekonomi-a1 är nära oavgjort (alla ~23 %) → rang-noise; treårssnittet dämpar men löser ej
   modellegenskapen (se metoddok).*
+- ✅ **B4-verktyg — anti-binär täckningsgrind** ([coverage_report.py](../pipeline/tools/coverage_report.py)
+  `b_submeasure_spread()` + [test_fas4b_coverage.py](../tests/test_fas4b_coverage.py)): mäter hur många
+  **distinkta submått** som har AKTIV partikopplad B-evidens per kategori (åtgärdstyp med
+  signed_direction≠0, ej coverage_exclude, **och** minst en partiståndpunkt → indikator → submått) och
+  flaggar **nära-binär** kategori (≤1 submått). Speglar att `score.aggregate_B` är submåttsviktat:
+  vilar all aktiv evidens på ett submått kan en enda ståndpunkt svinga b_raw mellan ytterlägen.
+  Reproducerar BACKLOG-tabellen exakt (ekonomi 1/5, demokrati 1/5, valfard 2/4, forsvar 2/5,
+  integration 2/5, trygghet 3/5, klimat 3/5). Grinden följer coverage_allowlist-mönstret: varje
+  nära-binär kategori måste stå i nya `coverage_allowlist.b_near_binary_accepted` med skäl (annars tyst
+  regression), och listan kan inte bära inaktuella poster (krymper när B2 levererar). **Fynd:** ekonomis
+  realistiska B-mål är `bnp_produktivitet` + `realloner_hushall` (up-indikatorer) — inte
+  inflation/offentliga finanser, som är **target-indikatorer utan B-bär riktning** (samma skäl som de
+  uteslöts ur D). Hela sviten grön (167 passed). Återstår (=B2): faktiskt bredda liggaren.
+- ✅ **B2 (första leveransen) — ekonomi/produktivitet via FoU-avdraget** ([evidence_ledger](../config/evidence_ledger.yaml)
+  + [party_positions](../config/party_positions.yaml)): ny åtgärdstyp `fou_avdrag_skatteincitament` → indikator
+  `produktivitet` (submått bnp_produktivitet). Evidens: **Produktivitetskommissionen SOU 2025:96** + **SOU 2025:3**
+  (authority_evaluation, medium/medium — riktningen FoU→produktivitet säker, men avdragets marginaleffekt ej
+  kausalutvärderad). **8 partiståndpunkter votering-belagda** (bet. 2022/23:SfU19, prop. 2022/23:79 "höjt tak för
+  FoU-avdraget" 600 000→1,5 mkr/mån, kammaren 2023-05-31): 7 Ja = **supports**, **V Nej = opposes** (reservation +
+  kommittémotion 2022/23:2365). **Ekonomi 1/5 → 2/5 submått med B-evidens — ej längre nära-binär** (ekonomi borttagen
+  ur `b_near_binary_accepted`; B4-grinden tvingade fram det). Betygseffekt (förklarbar): V faller på ekonomi
+  3,31→2,54 (dess tidigare topplacering var en nära-binär artefakt — ekonomi vilade på jobb-submåttet där V var max),
+  C stiger 1,26→2,04 (jobbsubventions-skeptisk men FoU-positiv). **Ny ranking: S > L > M > MP > KD > C > V > SD.**
+  dist omräknat, snapshot re-baselinad, paket regenererat (priority 79), 167 tester gröna. Forskning→förslag→mänsklig
+  sign-off 2026-06-05.
+- ✅ **B2 (andra leveransen) — nytt ekonomi-submått "Företagande och investeringar"** (modellutvidgning:
+  [categories.yaml](../config/categories.yaml) + [IDEA.md](../IDEA.md) + [evidence_ledger](../config/evidence_ledger.yaml)
+  + [party_positions](../config/party_positions.yaml) + [coverage_allowlist](../config/coverage_allowlist.yaml)):
+  reallöner visade sig **ej B-bart** (Medlingsinstitutet: reallön sätts av parterna via Industriavtalet, drivs av
+  produktivitet + Riksbankens inflationsmål → inget partistyrt icke-dubbelräknande instrument). I stället tillagt ett
+  **6:e submått** `foretagande_investeringar` (vikt 15; ekonomi-vikterna omfördelade 22/18/18/15/12/15) med indikator
+  `naringslivets_investeringar` (up, SCB; allowlistad för D — konjunkturkänslig). Åtgärdstyp
+  `konkurrenskraftig_foretags_och_agarbeskattning` → investeringar, evidens **Företagsskattekommittén SOU 2014:40**
+  (authority_evaluation, medium/medium — investeringars skatteelasticitet empiriskt omtvistad). **BRED ram** (efter att
+  smal bolagsskatts-ram visade sig gles, 4/1/3): 8 partiståndpunkter, ordagrant källbelagda via 8+3 parallella
+  researchagenter mot fulltext — **5 supports** (M/SD/C/KD/L: lägre bolags-/ägarskatt) / **3 opposes** (S/V/MP: höja
+  kapital-/företagsvinstskatt). **Ekonomi 2/6 → 3/6 täckta submått** (av 4 B-möjliga: jobb, produktivitet, investeringar
+  täckta; reallöner ej B-bart, inflation/offentliga finanser target). Betygseffekt: vänstern ner på ekonomi (S/MP
+  −0,48, V −0,27), högern upp (C +0,27, KD/L +0,15). **Ny ranking: S > L > M > KD > MP > C > SD > V.** dist/snapshot/paket
+  (priority 84) + 167 tester gröna. Forskning→förslag→mänsklig sign-off 2026-06-05.
+- ✅ **B2 (tredje leveransen) — 4:e ekonomi-måttet: hushållens disponibla inkomst (värdeneutralt)** ([categories.yaml](../config/categories.yaml)
+  + [evidence_ledger](../config/evidence_ledger.yaml) + [party_positions](../config/party_positions.yaml)): submåttet **"Reallöner och
+  hushållens ekonomi"** gjordes B-bart genom en ny ARBETANDE indikator `hushallens_reala_disponibla_inkomst` (up, SCB; `realloner`
+  förblir vilande kontext/framtida D). **Ingen ny hink, ingen omviktning** — bara en indikator i befintligt submått. Värdeneutral
+  familj-åtgärdstyp `inkomststarkande_hushallspolitik` (skatte- och/eller transfereringsreformer som höjer disponibel inkomst),
+  evidens **Fördelningspolitisk redogörelse april 2025** (descriptive_statistic/medium/high). **8 partiståndpunkter, alla supports**
+  via sitt block-instrument (höger M/SD/C/KD/L: sänkt skatt på arbete; vänster S/V/MP: höjda transfereringar) — ordagrant källbelagda
+  via 8 parallella agenter mot fulltext. **Löser tilt-problemet:** eftersom båda blocken kodas supports (en åtgärдstyp, coverage 4/4→5/5,
+  ingen straff) får alla ett positivt köpkraftsbidrag, **störst lyft för dem investeringar-submåttet tryckte ner** (V +0,26, C +0,17,
+  MP/S +0,12) → späder ut högertilten. **Ekonomi 3/6 → 4/6 täckta submått = "4 bra mått" nått, värdeneutralt.** Ny ranking:
+  **S > L > M > KD > MP > C > V > SD.** dist/snapshot/paket (priority 87) + 167 tester gröna. Forskning→förslag→mänsklig sign-off 2026-06-05.
+  *(Sparande/sparkvot avfärdat: target-likt + svag attribuering; reallöner kvar som vilande kontext.)*
+- ✅ **B2 (fjärde leveransen) — demokrati: rättsstat/domstolarnas oberoende** ([evidence_ledger](../config/evidence_ledger.yaml)
+  + [party_positions](../config/party_positions.yaml) + [coverage_allowlist](../config/coverage_allowlist.yaml) + [DATA.md](../DATA.md)):
+  submåttet **rattsstat_maktdelning** gjordes B-bart via åtgärdstyp `grundlagsskydd_domstolarnas_oberoende` → indikator
+  `otillborlig_politisering` (down). Svensk primärkälla **prop. 2024/25:165 / SOU 2023:12 / bet. 2025/26:KU2**
+  (authority_evaluation, medium/medium); **EU:s rättsstatsrapport 2024 endast som BEKRÄFTELSE** — dokumenterat
+  KÄLLUNDANTAG i DATA.md (mellanstatliga Sverige-utvärderingar tillåtna som bekräftelse, ej primär, ej index; beslut 2026-06-05).
+  **7 partiståndpunkter votering-belagda** (KU2 punkt 1, votering 3C8070DF, verifierat per parti mot data.riksdagen.se:
+  S/M/C/V/KD/L/MP Ja = supports). **SD = none, EJ opposes** (SD:s Nej gällde enbart grundlagsändrings-PROCEDUREN
+  RF 8 kap. 14/17/18 §§; reservationen avslår "i de delar den avser formerna för ändringar i grundlagarna" och antar
+  domstolsoberoendet "som vilande … i övrigt"). **Demokrati 1/5 → 2/5 — ej längre nära-binär** (demokrati borttagen ur
+  `b_near_binary_accepted`; listan nu tom). Betygseffekt: KD/M/V **+0,146**, MP +0,073 på demokrati; **SD −0,146** (ensam
+  utanför → täckningsutspädning 2/3→2/4). Totalt KD/M +0,011, V +0,010, SD −0,011. **Ranking oförändrad: S > L > M > KD > MP > C > V > SD.**
+  167 tester gröna, ruff rent. Forskning→verifiering→sign-off 2026-06-05.
+  *(medier UNDERKÄNT: EMFA-medielagen togs med acklamation, enda voteringen (KU12 p2) gällde SD:s grundlagsreservation om
+  TF/YGL-företräde — ej mediefrihet → ej differentierbart. transparens + personlig frihet HÅLLS: vänster-tilt resp. hög
+  tilt; jakt på fler värdeneutrala demokrati-mått pågår, se B2 nedan.)*
+- ✅ **B2 (femte leveransen) — demokrati: personlig frihet (blocköverskridande, Lagrådet-ankrat, codex-granskat)** ([evidence_ledger](../config/evidence_ledger.yaml)
+  + [party_positions](../config/party_positions.yaml)): submåttet **personlig_frihet** gjordes B-bart via åtgärdstyp `begransa_biometrisk_realtidsovervakning_rattssakerhet` → indikator
+  `overvakning_utan_rattssakerhet` (down). Källa: **Lagrådets yttrande över prop. 2025/26:150** (Polisens AI-ansiktsigenkänning i realtid),
+  ordagrant i bet. 2025/26:JuU28 — Lagrådet: förslaget "går avsevärt längre än nödvändigt" och "står därmed i strid med grundlag"
+  (helsvensk källa, inget int. undantag behövs). **8 partiståndpunkter votering-belagda** (JuU28, verifierat per parti): **supports = C**
+  (avslog hela lagen, punkt 1), **V + MP** (krävde rättssäkerhetsgarantier, punkt 2/3); **opposes = S, M, SD, KD, L** (röstade för lagen
+  + mot garantierna → `_FLIP` → negativt B). **BLOCKÖVERSKRIDANDE split** (S ligger med högern → ej vänster-höger, ej regering-vs-opposition;
+  den frihetliga dissidenten är mittenpartiet C). **Detta är det första DIFFERENTIERANDE demokrati-måttet.** Förkastade alternativ:
+  transparens/offentlighetsprincip (codex: dubbelräkning mot befintlig `starkt_oberoende_granskning_och_insyn`-bunt), medier (acklamation/
+  regeringslägesartefakt). Betygseffekt (demokrati): C/V/MP upp (V +0,23, MP +0,12), S/M/SD/KD/L ner (S/L/SD −0,5…−0,6). **Totalt ±0,04,
+  ranking oförändrad: S > L > M > KD > MP > C > V > SD.** Demokrati **2/5 → 3/5**. 167 tester gröna, ruff rent. codex-rescue-granskad ("BYGG
+  med ändring": bred policyfamilj, Lagrådet som huvudankare, C egen mapping_note, confidence=medium). Forskning→codex→sign-off pågår 2026-06-05.
 - ✅ **O4 — reproducerbar dist** ([pipeline/scorerun.py](../pipeline/scorerun.py)): `dist/scores.json`
   + `dist/evidence.json` var **icke-deterministiska mellan körningar** — claims byggdes i hash-
   randomiserad ordning, så `claim_refs` (provenanspekare) bytte ordning *och* `obs_by_cat[:3]`-urvalet
@@ -91,7 +171,7 @@ högre coverage → mindre B-krympning → B får faktiskt genomslag.
 | Spår | Status |
 |------|--------|
 | **D** (datatäckning) | uppklaringsgrad + skjutningar/sprängningar **levererade**. Återstående D-källor **uttömda/blockerade** (se [coverage_allowlist](../config/coverage_allowlist.yaml) med precisa skäl): återfall (PDF prel/slutlig + metodbrott), handläggning (interaktiv DB), overlevnad (Kolada N79196 finns men **kvinkennial** → inkompatibel med D:s konsekutiva-år-krav), reallöner/sfi (portal/ej ren serie), Svk-derived klimat (operativ/timdata + Nord Pool-pris = gränsfall mot officiell-källa-regeln, lågt mervärde då klimat har 3 D-serier), demokrati (internationella index förbjudna), försvar (sekretess/kvalitativt). **De rena SCB/Kolada-årsserierna skördades i Fas 2–3; den hårda taljen kräver expertbedömd transkribering, modellutvidgning, eller är otillåten.** |
-| **B** (evidens) | B1-paketet **byggt + regenererat + aktuellt** ([expertgranskning/](expertgranskning/)); väntar **mänsklig sign-off** (jag bumpar aldrig version 0→1). B2/B3 (bredda liggaren) kräver samma expertgranskning → meningslöst att stapla fler version-0-rader innan B1 är gjord. |
+| **B** (evidens) | ✅ **B1 expertgranskad + sign-off 2026-06-05 → `version 1`** (se B1 nedan): party_positions (4 SUSPECT + 79-raders screening) och evidence_ledger (30 poster triade, 6 fixar) genomgångna; skarp betygsättning aktiverad. **B4-verktyg/grind ✅** + **B2 ekonomi ✅** (4/6) + **B2 demokrati ✅** (rättsstat: grundlagsskydd domstolarnas oberoende, votering KU2; personlig frihet: begränsa biometrisk realtidsövervakning, votering JuU28/Lagrådet, codex-granskat) levererade 2026-06-05 → demokrati **1/5 → 3/5**, **inga nära-binära kategorier kvar** (`b_near_binary_accepted` tom). Återstår otäckta (ej blockerare): transparens_ansvar (offentlighetsprincip = dubbelräkning, skippat) + yttrandefrihet_medier (acklamation/regeringslägesartefakt) — inget värdeneutralt mått funnet utan tilt/dubbelräkning. |
 | **A** (agerande) | **A1 (fler budgetår) ✅ LEVERERAD 2026-06-05** — budget 2023 + 2024 tillagda (snitt över 3 år), fyrlagrigt adversariellt verifierat (invariant + pandas + Codex + roll-call); se Levererat ovan. Korruptionsrisken som blockerade solo-körningen löstes via den oberoende cell-för-cell-kontrollen. A2 (votering→A) är en designfråga (viktning utan dubbelräkning av a2) → kräver beslut, deferrad. |
 | **C** (ansvar) | c2 finansiering uppskjutet (designbeslut, ej neutralt byggbart). C2 (mandatperiodskiften) + C3 (subnationell D) är modellutvidgningar utanför ren databredd → deferrade. |
 | **F** (frontend) | F1 (extern hosting) **blockerad** — kräver dina credentials/hosting-beslut (utåtriktad publicering gör jag inte autonomt). F2 (manuell skärmläsartest) kan bara göras av människa. |
@@ -162,20 +242,76 @@ Polisen/Socialstyrelsen återanvänder Brå-Excel-mönstret som redan finns.
 
 ## Spår B — Evidens & trovärdighet (delpoäng B)
 
-Störst hävstång på trovärdighet. B väger 35 % men vilar i dag på **30 evidensposter + 130
-ståndpunkter, alla "version 0, AI-utkast"**.
+Störst hävstång på trovärdighet. B väger 35 % och vilar på **33 evidensposter + 169 ståndpunkter,
+expertgranskade och bumpade till `version 1` (mänsklig sign-off 2026-06-05); B2 samma dag: FoU-avdrag, submåttet
+företagande/investeringar samt hushållens disponibla inkomst → ekonomi 4/6 täckta submått**.
 
-- **B1 — Expertgranska version-0-config** 🔵 *(prep klar, väntar mänsklig sign-off)* — gransknings­paketet
-  i [expertgranskning/](expertgranskning/) är byggt, prioriterat (79 högrisk-rader + 4 SUSPECT-fynd) och
-  **regenererat mot aktuell config 2026-06-03** (oförändrat av nattens D-/verktygsarbete). Återstår: din
-  genomgång → bumpa `version: 0 → 1` i `evidence_ledger.yaml` / `party_positions.yaml` enligt
-  sign-off-protokollet. **Detta är förutsättningen för "skarp" betygsättning** och kan bara göras av en
-  människa (jag bumpar aldrig version själv). **Notera granskningsbeslutet här under B1.**
-- **B2 — Bredda evidensliggaren** ⚪ — i dag ≥3 åtgärdstyper/kategori. Fler källbelagda
-  åtgärdstyper per kategori → högre `coverage` → mindre B-krympning mot neutral. Det är den
-  enskilt största åtgärden för att B faktiskt ska differentiera partier.
+- **B1 — Expertgranska version-0-config** ✅ *(mänsklig sign-off 2026-06-05 — `version 0 → 1`)* —
+  gransknings­paketet i [expertgranskning/](expertgranskning/) genomgånget; `party_positions.yaml`,
+  `evidence_ledger.yaml` (+ `budget_ramar.yaml`) är nu `version: 1` / `status: expert_reviewed`, coverage-
+  strängen uppdaterad (version-0-varningen borttagen), `dist/` ombyggt, snapshot re-baselinad, testsviten
+  grön. **Skarp betygsättning aktiverad.** Granskningsbesluten (vad som ändrades och varför) nedan:
+  - **Granskningssession 2026-06-05 (beslut införda i config, version kvar 0):**
+    - *party_positions — 4 SUSPECT-fynd avgjorda:* V `kontroller_..._mot_valfardsbrott` opposes→**supports/förbehåll**
+      (ankrad till yrkande 2: stöd för åtgärder mot välfärdsbrott med rättssäkerhetsförbehåll); C `tidiga_insatser`
+      opposes→**supports** (omattribuerad — H5023910 är en L-ledd allians­motion mot *tillbakadragna* prop 2017/18:18;
+      kodas nu som M/KD via H5024117 mot antagna 195); S `ny_karnkraft` **behållen supports** (noten dokumenterar
+      villkoret); M/SD/KD/L `ny_karnkraft` **behållna + källtyps-asymmetri dokumenterad** i liggaren.
+    - *evidence_ledger — alla 30 poster triade (blast-radius-mätt), 6 åtgärder införda:* koldioxidskatt→territoriella_utslapp-
+      **dubblett borttagen** (löste bekräftad double-count), **redundant** subventionerade→arbetslöshet borttagen (D4;
+      undviker dubbelvikt av jobbeffekten i samma submått), `tidiga_insatser`/`behandlingsprogram_kriminalvard`/
+      `sfi_kombinerat_med_praktik` **uppgraderade** från generiska seed-källor till URL-verifierade officiella källor
+      (Skolforskningsinst. 2019 / Kriminalvården / IFAU Dahlberg m.fl. 2020), `reduktionsplikt_drivmedel` effect_strength
+      **HIGH→medium** (vilade på en-års-attribution i pressmeddelande). 5 inerta poster identifierade (unclear/mixed/
+      0 ståndpunkter → ingen B-effekt). De 3 demokrati-posterna (expert_opinion) **behållna** (bästa tillgängliga). Liggaren nu **28 poster**.
+    - *party_positions — 79-raders panelscreening klar 2026-06-05:* **inga fabrikat**. De 11 kvarvarande
+      `opposes` granskade — 7 sunda (4 voteringsbelagda reduktionsplikt + SD subventionerade + SD minskad_klasstorlek
+      [äldre 2015/16] + redan klara), 5 av typen "motsätter sig *expansion/höjning*" (C/KD/L arbetsmarknadsutbildning,
+      C subventionerade, SD koldioxidskatt) **behållna som opposes** per expertbeslut: riktningsregeln hålls objektiv
+      (observerbar handling, ingen avsiktstolkning); magnituden adresseras via täckning (B2/B4), inte omkodning.
+      12 enskild-motion-rader + 17 lågkonfidens-supports identifierade (riktningsbevarande, svag provenans, koncentrerade
+      till demokrati — se B4).
+    - *✅ Sign-off + version-bump 0→1 genomförd 2026-06-05.* Screeningdjup (det sign-offen vilar på): högrisk-
+      klasserna (alla opposes, enskild-motion, lågkonfidens) är genomgångna; övriga supports-rader är riktnings-
+      bevarande och instrument-exakta enligt sina mapping_notes men har inte var för sig återhämtats mot källa.
+      *Kvarstående B-arbete flyttat till B2/B4 (täckning) — ej en blockerare för v1.*
+- **B2 — Bredda evidensliggaren (anti-binär)** 🟡 *(ekonomi ✅ 4/6 täckta = alla 4 B-möjliga, 2026-06-05: FoU→produktivitet + företagande/investeringar + hushållens disponibla inkomst; kvar: demokrati)* — flera
+  kategoriers B vilar på för få submått (se B4). **Ekonomi är värst: 1/5 submått (25 % av kat-vikten), bara
+  2 aktiva åtgärdstyper som båda matar `sysselsattning`** → B blir nästan binär (5,0 / ~2,5 / 0,0 efter två
+  jobbpolitiska ställningstaganden; BNP/produktivitet + reallöner + inflation + offentliga finanser = 75 % har
+  **noll** B-evidens). Demokrati lika illa (1/5, 20 %, dessutom enbart `expert_opinion`). Åtgärd: källbelagda
+  åtgärdstyper för de otäckta submåtten — **ekonomi först**, och då **produktivitet** (`bnp_produktivitet`)
+  och **reallöner** (`realloner_hushall`) — de enda up-indikatorerna. (Inflation + offentliga finanser är
+  target-indikatorer → tar inget riktat B-bidrag; B4-grinden bekräftar detta.) Fler åtgärdstyper/kategori
+  → fler täckta submått → mindre binäritet (och högre `coverage` → mindre B-krympning).
 - **B3 — Fler omstridda/differentierande åtgärdstyper** ⚪ — återanvänd Plan A-mönstret
   (Fas 4c): kandidatregister → endast intersektionen *omstridd ∧ evidensbelagd* → negativ-grind.
+- **B4 — Kategori-täckningsaudit (anti-binär garanti)** ⚪ *(ny 2026-06-05)* — säkerställ att **ingen
+  kategoris B vilar på ett enda submått**. Täckningsaudit 2026-06-05 (aktiva åtgärdstyper × submått de matar):
+
+  | Kategori | Submått m. B-evidens | Andel kat-vikt | Status |
+  |---|---|---|---|
+  | ekonomi | ~~1/5~~ **4/6** | ~~25 %~~ **73 %** | ✅ åtgärdad 2026-06-05 (FoU→produktivitet + företagande/investeringar + hushållens disponibla inkomst). 4 av 4 B-möjliga täckta; inflation/off.finanser = target (vilande) |
+  | demokrati | ~~1/5~~ **3/5** | ~~20 %~~ **60 %** | ✅ åtgärdad 2026-06-05: (1) grundlagsskydd domstolarnas oberoende → otillborlig_politisering (votering KU2, neutralt/odifferentierande), (2) begränsa biometrisk realtidsövervakning m. rättssäkerhet → overvakning_utan_rattssakerhet (votering JuU28, **blocköverskridande/differentierande**, Lagrådet-ankrat, codex-granskat). Kvar otäckta: transparens_ansvar (offentlighetsprincip = dubbelräkning mot bunt, skippat) + yttrandefrihet_medier (acklamation/regeringslägesartefakt) — inget värdeneutralt mått funnet |
+  | valfard | 2/4 | 50 % | tunn |
+  | forsvar | 2/5 | 55 % | tunn (mest sekretess/kvalitativt) |
+  | integration | 2/5 | 55 % | tunn |
+  | trygghet | 3/5 | 65 % | ok |
+  | klimat | 3/5 | 70 % | bäst |
+
+  Mål: ≥2–3 submått med evidens per kategori; ingen kategori där en enda åtgärdstyp (eller ett submått) kan
+  svänga betyget mellan ytterlägen. **Verktyg/grind ✅ levererad 2026-06-05** (se B4-verktyg under Levererat):
+  [coverage_report.py](../pipeline/tools/coverage_report.py) `b_submeasure_spread()` flaggar nära-binär
+  kategori (≤1 submått) och [test_fas4b_coverage.py](../tests/test_fas4b_coverage.py) + nya
+  `coverage_allowlist.b_near_binary_accepted` gör regressionen synlig. **Kvar (=B2):** faktiskt höja
+  spridningen till ≥2 submått för ekonomi och demokrati. **VIKTIGT fynd från grinden:** inflation och
+  offentliga finanser (ekonomi) är target-indikatorer → kan inte få riktat B-bidrag; ekonomis enda
+  realistiska B-mål är produktivitet och reallöner (up-indikatorer). Knyter an till B2 (ekonomi/demokrati först).
+  - **Demokrati är trippel-svag** (fynd vid 79-screeningen 2026-06-05): (1) nära-binär (1/5 submått), (2) liggaren
+    är enbart `expert_opinion` (rekommendationer, ej uppmätt effekt), och (3) partiståndpunkterna bygger till stor del
+    på **enskilda ledamotsmotioner** (4 av `starkt_oberoende_granskning`-raderna M/SD/KD/L + flera antikorruptionsrader
+    är `enskild_motion`). Riktningen är låg-risk (alla stödjer antikorruption), men demokrati-B vilar på den svagaste
+    provenansen i hela modellen → bör antingen få bredare/bättre källor eller redovisas med uttryckligt lågt förtroende.
 
 ---
 

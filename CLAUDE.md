@@ -10,3 +10,4 @@ Det här är en app som på ett så objektivt sätt som möjligt ska hjälpa anv
 - Läs IDEA.md för en fullständig beskrivning.
 - Läs DATA.md för beskrivning av datamodellen.
 - Läs ROADMAP.md för en beskrivning av projektplanen.
+- BACKLOG.md beskriver nästa steg i projektet.

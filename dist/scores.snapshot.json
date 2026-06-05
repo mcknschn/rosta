@@ -1,20 +1,20 @@
 {
   "totals": {
-    "C": 2.659,
-    "KD": 3.052,
-    "L": 3.333,
-    "M": 3.276,
-    "MP": 3.108,
-    "S": 3.728,
-    "SD": 2.382,
-    "V": 2.651
+    "C": 2.986,
+    "KD": 3.079,
+    "L": 3.359,
+    "M": 3.265,
+    "MP": 3.037,
+    "S": 3.657,
+    "SD": 2.59,
+    "V": 2.598
   },
   "ranking": [
     "S",
     "L",
     "M",
-    "MP",
     "KD",
+    "MP",
     "C",
     "V",
     "SD"
@@ -29,10 +29,10 @@
       ]
     },
     "C/ekonomi": {
-      "score": 1.26,
+      "score": 2.483,
       "flags": [
         "A_a1_active",
-        "B_coverage_2/2"
+        "B_coverage_5/5"
       ]
     },
     "C/forsvar": {
@@ -68,7 +68,7 @@
       ]
     },
     "C/valfard": {
-      "score": 2.975,
+      "score": 3.389,
       "flags": [
         "A_a1_active",
         "B_coverage_4/4"
@@ -84,10 +84,10 @@
       ]
     },
     "KD/ekonomi": {
-      "score": 2.892,
+      "score": 3.079,
       "flags": [
         "A_a1_active",
-        "B_coverage_2/2"
+        "B_coverage_5/5"
       ]
     },
     "KD/forsvar": {
@@ -107,7 +107,7 @@
       ]
     },
     "KD/klimat": {
-      "score": 2.733,
+      "score": 2.647,
       "flags": [
         "A_a1_active",
         "B_coverage_3/3"
@@ -136,10 +136,10 @@
       ]
     },
     "L/ekonomi": {
-      "score": 2.991,
+      "score": 3.177,
       "flags": [
         "A_a1_active",
-        "B_coverage_2/2"
+        "B_coverage_5/5"
       ]
     },
     "L/forsvar": {
@@ -159,7 +159,7 @@
       ]
     },
     "L/klimat": {
-      "score": 2.63,
+      "score": 2.544,
       "flags": [
         "A_a1_active",
         "B_coverage_3/3"
@@ -189,10 +189,10 @@
       ]
     },
     "M/ekonomi": {
-      "score": 3.579,
+      "score": 3.581,
       "flags": [
         "A_a1_active",
-        "B_coverage_2/2"
+        "B_coverage_5/5"
       ]
     },
     "M/forsvar": {
@@ -212,7 +212,7 @@
       ]
     },
     "M/klimat": {
-      "score": 3.069,
+      "score": 2.983,
       "flags": [
         "A_a1_active",
         "B_coverage_3/3"
@@ -242,10 +242,10 @@
       ]
     },
     "MP/ekonomi": {
-      "score": 3.118,
+      "score": 2.759,
       "flags": [
         "A_a1_active",
-        "B_coverage_2/2"
+        "B_coverage_5/5"
       ]
     },
     "MP/forsvar": {
@@ -295,10 +295,10 @@
       ]
     },
     "S/ekonomi": {
-      "score": 4.521,
+      "score": 4.162,
       "flags": [
         "A_a1_active",
-        "B_coverage_2/2"
+        "B_coverage_5/5"
       ]
     },
     "S/forsvar": {
@@ -347,10 +347,10 @@
       ]
     },
     "SD/ekonomi": {
-      "score": 1.401,
+      "score": 2.441,
       "flags": [
         "A_a1_active",
-        "B_coverage_2/2"
+        "B_coverage_5/5"
       ]
     },
     "SD/forsvar": {
@@ -401,10 +401,10 @@
       ]
     },
     "V/ekonomi": {
-      "score": 3.314,
+      "score": 2.523,
       "flags": [
         "A_a1_active",
-        "B_coverage_2/2",
+        "B_coverage_5/5",
         "D_not_applicable"
       ]
     },
@@ -442,7 +442,7 @@
       ]
     },
     "V/valfard": {
-      "score": 1.656,
+      "score": 2.181,
       "flags": [
         "A_a1_active",
         "B_coverage_3/4",

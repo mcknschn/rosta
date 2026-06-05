@@ -8,7 +8,7 @@ Bygger på [IDEA.md](IDEA.md) (modellen) och [CLAUDE.md](CLAUDE.md) (mål + käl
 | Fråga | Val | Konsekvens |
 |-------|-----|------------|
 | Betygssättning | **Helt automatisk via claims** | Alla delpoäng (A/B/C/D) beräknas deterministiskt från observationer, claims och regler. Mänskligt omdöme får bara finnas i *konfiguration*, aldrig i handsatta partibetyg. |
-| Källor | **Myndigheter + svensk akademi** | Statliga myndigheter + etablerade svenska forskningskällor (SOM-institutet, universitet) där myndighetsdata saknas. Inga internationella index. |
+| Källor | **Myndigheter + svensk akademi** | Statliga myndigheter + etablerade svenska forskningskällor (SOM-institutet, universitet) där myndighetsdata saknas. Inga internationella index. **Undantag (2026-06-05, demokrati):** mellanstatliga Sverige-utvärderingar där Sverige är medlem (EU:s rättsstatsrapport, GRECO, OECD) får användas som *bekräftelse* av en svensk primärkälla — aldrig som primärkälla, aldrig som index. |
 | Styrnivå | **Nationellt + region/kommun** | Ansvarskoppling sker både via regering (nationellt) och Kolada/SKR (region/kommun). |
 | Teknik | **Python-pipeline + webb-frontend** | DuckDB/pandas lokalt, kompakt `scores.json` + `evidence.json` till frontend. |
 
@@ -109,7 +109,7 @@ Per kategori (försörjer objektiva kategoriutfall och D resultat, samt behovsbi
 | 6 | Integration och sammanhållning | SCB, Skolverket, Boverket, SOM-institutet | Sysselsättningsgap in-/utrikes födda, självförsörjning, SFI-resultat, trångboddhet, segregation, valdeltagande |
 | 7 | Frihet, demokrati, institutioner | Statskontoret, Riksrevisionen, SOM-institutet, MPRT/Nordicom, JO/JK | Myndighetstillit, mediemångfald, förvaltningsstyrning, rättssäkerhet, ansvarsutkrävande |
 
-Evidens-/utvärderingskällor (försörjer **B** — `evidence_effect`-claims om huruvida en åtgärdstyp rimligen påverkar indikatorerna). Dessa svenska utvärderingsorgan utgör den citerade evidensliggaren; inga internationella index:
+Evidens-/utvärderingskällor (försörjer **B** — `evidence_effect`-claims om huruvida en åtgärdstyp rimligen påverkar indikatorerna). Dessa svenska utvärderingsorgan utgör den citerade evidensliggaren; inga internationella index (undantag: mellanstatliga Sverige-utvärderingar som *bekräftelse*, se beslutstabellen ovan):
 
 | Källa | Vad den utvärderar | Försörjer B i kategori |
 |-------|--------------------|------------------------|
@@ -127,6 +127,7 @@ Evidens-/utvärderingskällor (försörjer **B** — `evidence_effect`-claims om
 | Riksrevisionen | Statliga insatsers effektivitet och måluppfyllelse | tvärgående (särskilt 4, 7) |
 | Statskontoret | Förvaltnings- och styrningsutvärdering | 7, tvärgående |
 | Vetenskapsrådet / svenska forskningsöversikter | Akademiskt kunskapsläge | tvärgående |
+| Mellanstatliga Sverige-utvärderingar (EU:s rättsstatsrapport, GRECO, OECD) — endast som *bekräftelse* | Landsspecifika utvärderingar av Sverige (ej index) | 7 (demokrati), undantag 2026-06-05 |
 
 **Exakta endpoints/dataset-id pinnas i `config/sources.yaml` vid första hämtningen (Fas 1)** — de verifieras live, inte gissas.
 
@@ -165,7 +166,7 @@ Väljaren viktar kategorier, inte ideologiska metoder. Scoringen ska därför in
 - `B` blir hög när partiets förslag har starkt källstöd för positiv påverkan på kategorins indikatorer.
 - `B` blir lägre när källor saknas, effekten är oklar, effekten går emot den positiva indikatorriktningen, eller förslaget har tydliga negativa sidoeffekter inom samma kategori.
 - Detta motverkar A:s "mer aktivitet eller mer pengar = bättre"-problem. A mäter vad partiet gör; B mäter om det partiet gör sannolikt hjälper mot de objektiva indikatorerna.
-- **Maskineri (Fas 4b, byggt):** `config/party_positions.yaml` (källbelagda partiståndpunkter per åtgärdstyp) joinas mot `config/evidence_ledger.yaml` (åtgärdstyp → indikatoreffekt) → `indicator_effects` → B (`pipeline/positions.py` + `pipeline/effects.py`). Stödjer partiet åtgärdstypen behålls evidensens riktning; motsätter det sig vänds den. Ståndpunktsfilen innehåller **130 panel-harmoniserade, källbelagda ståndpunkter** (Fas 4c, version 0); saknas rad för (parti, kategori) är B coverage-viktad mot neutral (flaggor `B_thin_coverage`/`B_no_party_evidence`). Inga ståndpunkter fabriceras.
+- **Maskineri (Fas 4b, byggt):** `config/party_positions.yaml` (källbelagda partiståndpunkter per åtgärdstyp) joinas mot `config/evidence_ledger.yaml` (åtgärdstyp → indikatoreffekt) → `indicator_effects` → B (`pipeline/positions.py` + `pipeline/effects.py`). Stödjer partiet åtgärdstypen behålls evidensens riktning; motsätter det sig vänds den. Ståndpunktsfilen innehåller **169 källbelagda ståndpunkter** (130 panel-harmoniserade Fas 4c + 8 FoU-avdrag + 8 företags-/ägarbeskattning + 8 hushållens disponibla inkomst + 7 grundlagsskydd domstolarnas oberoende + 8 begränsa biometrisk realtidsövervakning, B2 2026-06-05; version 1, expertgranskad); saknas rad för (parti, kategori) är B coverage-viktad mot neutral (flaggor `B_thin_coverage`/`B_no_party_evidence`). Inga ståndpunkter fabriceras.
 
 **C — Genomförbarhet/ansvar** (makt + realistisk finansiering):
 - `c1` makt **(byggd, nationell + regional + kommunal, Fas 1c):** per kategori blandas andel av 2014–2026 partiet satt i nationell regering (stöd vägs 0,5) med subnationell makt (SKR-styren: 21 regioner + 290 kommuner × 3 mandatperioder), via en per-kategori region/kommun-split efter lagstadgat ansvar och rank-normaliserat (`level_weights` + `subnational_split`). Full subnationell täckning → C:s säkerhet hög; forsvar nationellt per design ([metod](docs/fas1c_subnational_metod.md)).

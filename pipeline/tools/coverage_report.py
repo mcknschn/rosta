@@ -101,6 +101,67 @@ def coverage(con: Any | None = None) -> dict[str, Any]:
     }
 
 
+def b_submeasure_spread() -> dict[str, Any]:
+    """BACKLOG B4 — anti-binär audit: hur många DISTINKTA submått har AKTIV B-evidens per kategori?
+
+    Bakgrund: score.aggregate_B är submåttsviktat (b_raw = submåttsviktat medel över de
+    indikatorer som har en effekt). Vilar all aktiv evidens i en kategori på ETT submått kan
+    en enda ståndpunkt svinga b_raw mellan ytterlägen (0/2.5/5) — kategorin blir "nära-binär".
+    Coverage-krympningen (scorerun: num/den på åtgärdstyps-nivå) dämpar tunn täckning men löser
+    inte detta: även vid full täckning av ett enda submått är B binär. Den här mätaren är därför
+    en KOMPLETTERANDE lins till num/den och reproducerar BACKLOG-tabellen.
+
+    Aktiv B-evidens i ett submått = en åtgärdstyp som
+      (1) har en evidensliggar-post med signed_direction != 0 (ej mixed/unclear) och
+          inte ligger i B_evidens.coverage_exclude  (= modellens "kodbara" mängd, cov_den),
+      (2) refereras av minst en partiståndpunkt (annars genereras ingen indicator_effect),
+      (3) vars indikator hör till submåttet.
+    Endast config läses (offline, ingen warehouse).
+    """
+    signed = config.claims()["aggregation"]["signed_direction"]
+    b_exclude = set(config.scoring()["B_evidens"].get("coverage_exclude", []))
+    ind_sub: dict[tuple[str, str], str] = {}
+    for cat in config.categories()["categories"]:
+        for ind in cat.get("indicators", []):
+            ind_sub[(cat["id"], ind["id"])] = ind["submeasure"]
+    covered_policies = {
+        p["policy_type"] for p in (config.party_positions().get("entries") or [])
+    }
+
+    # Per kategori: kodbara åtgärdstyper, partitäckta dito, och submått med aktiv evidens.
+    codable: dict[str, set[str]] = {}
+    party_covered: dict[str, set[str]] = {}
+    active_subs: dict[str, set[str]] = {}
+    for e in config.evidence_ledger()["entries"]:
+        if signed.get(e["direction"], 0) == 0 or e["policy_type"] in b_exclude:
+            continue  # inert (mixed/unclear) eller medvetet coverage-exkluderad
+        cat = e["category"]
+        codable.setdefault(cat, set()).add(e["policy_type"])
+        if e["policy_type"] in covered_policies:
+            party_covered.setdefault(cat, set()).add(e["policy_type"])
+            sub = ind_sub.get((cat, e["indicator"]))
+            if sub:
+                active_subs.setdefault(cat, set()).add(sub)
+
+    cats_out: list[dict[str, Any]] = []
+    for cat in config.categories()["categories"]:
+        cid = cat["id"]
+        all_subs = [s["id"] for s in cat["submeasures"]]
+        covered = active_subs.get(cid, set())
+        n_active = len(covered)
+        cats_out.append({
+            "id": cid,
+            "submeasures_total": len(all_subs),
+            "submeasures_with_evidence": n_active,
+            "covered_submeasures": sorted(covered),
+            "uncovered_submeasures": [s for s in all_subs if s not in covered],
+            "codable_policy_types": sorted(codable.get(cid, set())),
+            "party_covered_policy_types": sorted(party_covered.get(cid, set())),
+            "near_binary": n_active <= 1,
+        })
+    return {"categories": cats_out}
+
+
 def main() -> None:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     rep = coverage()
@@ -130,6 +191,32 @@ def main() -> None:
     missing_ev = [c["id"] for c in rep["categories"] if not c["evidence_ok"]]
     print(f"Evidensliggaren: {t['evidence_entries']} poster totalt; "
           f"kategorier under målet ({t['evidence_target_per_cat']}/kat): {', '.join(missing_ev) or 'inga'}")
+
+    # --- B-anti-binär audit (BACKLOG B4): submåttsspridning i partikopplad evidens ---
+    accepted = {
+        e["category"]: e.get("reason", "")
+        for e in (config.coverage_allowlist().get("b_near_binary_accepted") or [])
+    }
+    bsp = b_submeasure_spread()
+    print("\n== B-submåttsspridning (B4: anti-binär) ==")
+    print("  Distinkta submått med AKTIV partikopplad evidens / antal submått."
+          " ⚠ = nära-binär (≤1).\n")
+    for c in sorted(bsp["categories"], key=lambda x: x["submeasures_with_evidence"]):
+        n, tot = c["submeasures_with_evidence"], c["submeasures_total"]
+        flag = " ⚠ NÄRA-BINÄR" if c["near_binary"] else ""
+        acc = "  [accepterad: B2]" if c["near_binary"] and c["id"] in accepted else ""
+        print(f"  {n}/{tot}  {c['id']:12}{flag}{acc}")
+        if c["covered_submeasures"]:
+            print(f"        täckta: {', '.join(c['covered_submeasures'])}")
+        if c["near_binary"] and c["uncovered_submeasures"]:
+            print(f"        otäckta: {', '.join(c['uncovered_submeasures'])}")
+    near = [c["id"] for c in bsp["categories"] if c["near_binary"]]
+    unaccounted = [c for c in near if c not in accepted]
+    print(f"\nNära-binära kategorier: {', '.join(near) or 'inga'}"
+          f"{'  (alla accepterade i allowlist)' if near and not unaccounted else ''}")
+    if unaccounted:
+        print(f"  ⚠ EJ ACCEPTERADE (regression — lägg i allowlist eller bredda liggaren): "
+              f"{', '.join(unaccounted)}")
 
 
 if __name__ == "__main__":

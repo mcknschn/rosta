@@ -1,8 +1,10 @@
 # Rösta — föreslagna utgiftsramar per utgiftsområde (UO), per parti, per budgetår.
 # Matar delpoäng A:s a1 (budgetprioritering). Se pipeline/budget.py + docs/fas1b_budget_metod.md.
 #
-# VERSION 0 — kräver mänsklig slutgranskning (som config/party_positions.yaml). Beloppen är
-# MANUELLT transkriberade ur officiella källor (FiU1 rambeslut + partiernas budgetmotioner) och
+# VERSION 1 — expertgranskad + mänsklig sign-off 2026-06-05 (budgetår 2023–2025; fyrlagrigt
+# adversariellt verifierad: intern invariant + pandas + Codex + roll-call). Beloppen är transkriberade
+# ur officiella källor (FiU1 rambeslut + partiernas budgetmotioner) — 2025 manuellt, 2023/24 genererade
+# programmatiskt ur officiell HTML-källa — och
 # adversariellt verifierade mot källtexten. INGEN runtime-parser av budgetdokument finns: en
 # bräcklig parser får aldrig korrumpera A (tyngsta delpoängen). Inga belopp imputeras eller
 # jämkas; varje frame citerar exakt sin källrad. Saknad/ogiltig cell -> hård fail i a1_shares.

@@ -8,6 +8,7 @@
         "sysselsattning_arbetsloshet",
         "bnp_produktivitet",
         "realloner_hushall",
+        "foretagande_investeringar",
         "inflation_prisstabilitet",
         "offentliga_finanser"
       ]
@@ -85,7 +86,7 @@
     }
   ],
   "meta": {
-    "coverage": "Preliminär: A=agerande (a2 motionsprioritering, andel av egna motioner, full; a1 budgetprioritering gated — aktiv för 7/7 kategorier ur officiella utgiftsramar, version 0, annars a2-fallback); C=makt per kategori: nationell regeringsmakt blandad med subnationell makt (SKR-styren, 21 regioner + 290 kommuner × 3 mandatperioder) via en per-kategori region/kommun-split efter lagstadgat ansvar; forsvar nationellt per design; c2 finansiering ännu ej byggd (C=c1 makt); D=resultatattribution från officiella årsserier för ekonomi/välfärd/klimat/integration där partiet haft nationell makt (medel säkerhet, ej tillämplig för partier utan makt och för trygghet/försvar/demokrati som saknar D-data). B är AKTIVERAD för ALLA 7 kategorier via 130 källbelagda, adversariellt verifierade + panel-harmoniserade partiståndpunkter (riksdagsvotering/motion, Fas 4c); coverage-viktad (B krymps mot neutral efter andel kodade åtgärdstyper, B_thin_coverage-flagga vid tunn täckning). party_positions version 0 — kräver mänsklig slutgranskning.",
+    "coverage": "Preliminär: A=agerande (a2 motionsprioritering, andel av egna motioner, full; a1 budgetprioritering gated — aktiv för 7/7 kategorier ur officiella utgiftsramar (2023–2025), expertgranskad v1 2026-06-05, annars a2-fallback); C=makt per kategori: nationell regeringsmakt blandad med subnationell makt (SKR-styren, 21 regioner + 290 kommuner × 3 mandatperioder) via en per-kategori region/kommun-split efter lagstadgat ansvar; forsvar nationellt per design; c2 finansiering ännu ej byggd (C=c1 makt); D=resultatattribution från officiella årsserier för ekonomi/välfärd/klimat/integration där partiet haft nationell makt (medel säkerhet, ej tillämplig för partier utan makt och för trygghet/försvar/demokrati som saknar D-data). B är AKTIVERAD för ALLA 7 kategorier via 169 källbelagda, adversariellt verifierade + panel-harmoniserade partiståndpunkter (riksdagsvotering/motion, Fas 4c); coverage-viktad (B krymps mot neutral efter andel kodade åtgärdstyper, B_thin_coverage-flagga vid tunn täckning). party_positions + evidence_ledger expertgranskade v1 (mänsklig sign-off 2026-06-05).",
     "generated": "2026-06-05",
     "model_version": 1,
     "parties": [
@@ -131,7 +132,7 @@
         },
         "evidence_refs": [],
         "flags": [
-          "B_coverage_3/3",
+          "B_coverage_5/5",
           "A_a1_active",
           "D_not_applicable"
         ],
@@ -139,8 +140,8 @@
       },
       "ekonomi": {
         "ci": [
-          0.866,
-          1.653
+          2.089,
+          2.876
         ],
         "claim_refs": [
           "claim:action:C:ekonomi:motioner",
@@ -157,9 +158,9 @@
         ],
         "components": {
           "A": 2.0,
-          "B": 0.0,
+          "B": 3.493,
           "C": 1.429,
-          "D": 2.452
+          "D": 2.458
         },
         "confidence": {
           "A": "high",
@@ -169,10 +170,10 @@
         },
         "evidence_refs": [],
         "flags": [
-          "B_coverage_2/2",
+          "B_coverage_5/5",
           "A_a1_active"
         ],
-        "score": 1.26
+        "score": 2.483
       },
       "forsvar": {
         "ci": [
@@ -325,8 +326,8 @@
       },
       "valfard": {
         "ci": [
-          2.581,
-          3.369
+          2.995,
+          3.783
         ],
         "claim_refs": [
           "claim:action:C:valfard:motioner",
@@ -343,7 +344,7 @@
         ],
         "components": {
           "A": 2.571,
-          "B": 3.816,
+          "B": 5.0,
           "C": 1.429,
           "D": 3.964
         },
@@ -358,14 +359,14 @@
           "B_coverage_4/4",
           "A_a1_active"
         ],
-        "score": 2.975
+        "score": 3.389
       }
     },
     "KD": {
       "demokrati": {
         "ci": [
-          1.856,
-          3.049
+          1.924,
+          2.801
         ],
         "claim_refs": [
           "claim:action:KD:demokrati:motioner",
@@ -379,29 +380,28 @@
         ],
         "components": {
           "A": 1.786,
-          "B": 3.333,
+          "B": 3.077,
           "C": 2.143,
           "D": 2.5
         },
         "confidence": {
           "A": "high",
-          "B": "low",
+          "B": "medium",
           "C": "high",
           "D": "low"
         },
         "evidence_refs": [],
         "flags": [
-          "B_coverage_1/3",
-          "B_thin_coverage",
+          "B_coverage_3/5",
           "A_a1_active",
           "D_not_applicable"
         ],
-        "score": 2.452
+        "score": 2.363
       },
       "ekonomi": {
         "ci": [
-          2.499,
-          3.286
+          2.685,
+          3.473
         ],
         "claim_refs": [
           "claim:action:KD:ekonomi:motioner",
@@ -418,9 +418,9 @@
         ],
         "components": {
           "A": 2.643,
-          "B": 3.672,
+          "B": 4.199,
           "C": 2.143,
-          "D": 2.288
+          "D": 2.306
         },
         "confidence": {
           "A": "high",
@@ -430,10 +430,10 @@
         },
         "evidence_refs": [],
         "flags": [
-          "B_coverage_2/2",
+          "B_coverage_5/5",
           "A_a1_active"
         ],
-        "score": 2.892
+        "score": 3.079
       },
       "forsvar": {
         "ci": [
@@ -510,8 +510,8 @@
       },
       "klimat": {
         "ci": [
-          2.34,
-          3.127
+          2.253,
+          3.041
         ],
         "claim_refs": [
           "claim:action:KD:klimat:motioner",
@@ -528,7 +528,7 @@
         ],
         "components": {
           "A": 1.929,
-          "B": 4.176,
+          "B": 3.929,
           "C": 2.143,
           "D": 1.79
         },
@@ -543,7 +543,7 @@
           "B_coverage_3/3",
           "A_a1_active"
         ],
-        "score": 2.733
+        "score": 2.647
       },
       "trygghet": {
         "ci": [
@@ -623,8 +623,8 @@
     "L": {
       "demokrati": {
         "ci": [
-          3.04,
-          3.917
+          2.501,
+          3.379
         ],
         "claim_refs": [
           "claim:action:L:demokrati:motioner",
@@ -639,7 +639,7 @@
         ],
         "components": {
           "A": 2.357,
-          "B": 5.0,
+          "B": 3.462,
           "C": 3.571,
           "D": 2.5
         },
@@ -651,16 +651,16 @@
         },
         "evidence_refs": [],
         "flags": [
-          "B_coverage_3/3",
+          "B_coverage_5/5",
           "A_a1_active",
           "D_not_applicable"
         ],
-        "score": 3.479
+        "score": 2.94
       },
       "ekonomi": {
         "ci": [
-          2.597,
-          3.385
+          2.783,
+          3.571
         ],
         "claim_refs": [
           "claim:action:L:ekonomi:motioner",
@@ -678,9 +678,9 @@
         ],
         "components": {
           "A": 2.357,
-          "B": 3.672,
+          "B": 4.199,
           "C": 3.571,
-          "D": 2.275
+          "D": 2.287
         },
         "confidence": {
           "A": "high",
@@ -690,10 +690,10 @@
         },
         "evidence_refs": [],
         "flags": [
-          "B_coverage_2/2",
+          "B_coverage_5/5",
           "A_a1_active"
         ],
-        "score": 2.991
+        "score": 3.177
       },
       "forsvar": {
         "ci": [
@@ -772,8 +772,8 @@
       },
       "klimat": {
         "ci": [
-          2.236,
-          3.024
+          2.15,
+          2.937
         ],
         "claim_refs": [
           "claim:action:L:klimat:motioner",
@@ -791,7 +791,7 @@
         ],
         "components": {
           "A": 1.071,
-          "B": 4.176,
+          "B": 3.929,
           "C": 3.571,
           "D": 2.043
         },
@@ -806,7 +806,7 @@
           "B_coverage_3/3",
           "A_a1_active"
         ],
-        "score": 2.63
+        "score": 2.544
       },
       "trygghet": {
         "ci": [
@@ -888,8 +888,8 @@
     "M": {
       "demokrati": {
         "ci": [
-          1.506,
-          2.699
+          1.574,
+          2.451
         ],
         "claim_refs": [
           "claim:action:M:demokrati:motioner",
@@ -903,29 +903,28 @@
         ],
         "components": {
           "A": 0.643,
-          "B": 3.333,
+          "B": 3.077,
           "C": 2.857,
           "D": 2.5
         },
         "confidence": {
           "A": "high",
-          "B": "low",
+          "B": "medium",
           "C": "high",
           "D": "low"
         },
         "evidence_refs": [],
         "flags": [
-          "B_coverage_1/3",
-          "B_thin_coverage",
+          "B_coverage_3/5",
           "A_a1_active",
           "D_not_applicable"
         ],
-        "score": 2.102
+        "score": 2.013
       },
       "ekonomi": {
         "ci": [
-          3.185,
-          3.973
+          3.187,
+          3.974
         ],
         "claim_refs": [
           "claim:action:M:ekonomi:motioner",
@@ -944,7 +943,7 @@
           "A": 2.929,
           "B": 5.0,
           "C": 2.857,
-          "D": 2.288
+          "D": 2.306
         },
         "confidence": {
           "A": "high",
@@ -954,10 +953,10 @@
         },
         "evidence_refs": [],
         "flags": [
-          "B_coverage_2/2",
+          "B_coverage_5/5",
           "A_a1_active"
         ],
-        "score": 3.579
+        "score": 3.581
       },
       "forsvar": {
         "ci": [
@@ -1034,8 +1033,8 @@
       },
       "klimat": {
         "ci": [
-          2.675,
-          3.463
+          2.589,
+          3.376
         ],
         "claim_refs": [
           "claim:action:M:klimat:motioner",
@@ -1052,7 +1051,7 @@
         ],
         "components": {
           "A": 2.5,
-          "B": 4.176,
+          "B": 3.929,
           "C": 2.857,
           "D": 1.79
         },
@@ -1067,7 +1066,7 @@
           "B_coverage_3/3",
           "A_a1_active"
         ],
-        "score": 3.069
+        "score": 2.983
       },
       "trygghet": {
         "ci": [
@@ -1148,8 +1147,8 @@
     "MP": {
       "demokrati": {
         "ci": [
-          3.684,
-          4.561
+          3.801,
+          4.678
         ],
         "claim_refs": [
           "claim:action:MP:demokrati:motioner",
@@ -1164,7 +1163,7 @@
         ],
         "components": {
           "A": 4.429,
-          "B": 4.167,
+          "B": 4.5,
           "C": 4.286,
           "D": 2.5
         },
@@ -1176,16 +1175,16 @@
         },
         "evidence_refs": [],
         "flags": [
-          "B_coverage_2/3",
+          "B_coverage_4/5",
           "A_a1_active",
           "D_not_applicable"
         ],
-        "score": 4.123
+        "score": 4.239
       },
       "ekonomi": {
         "ci": [
-          2.725,
-          3.512
+          2.365,
+          3.153
         ],
         "claim_refs": [
           "claim:action:MP:ekonomi:motioner",
@@ -1203,9 +1202,9 @@
         ],
         "components": {
           "A": 1.0,
-          "B": 5.0,
+          "B": 3.973,
           "C": 4.286,
-          "D": 3.255
+          "D": 3.257
         },
         "confidence": {
           "A": "high",
@@ -1215,10 +1214,10 @@
         },
         "evidence_refs": [],
         "flags": [
-          "B_coverage_2/2",
+          "B_coverage_5/5",
           "A_a1_active"
         ],
-        "score": 3.118
+        "score": 2.759
       },
       "forsvar": {
         "ci": [
@@ -1414,8 +1413,8 @@
     "S": {
       "demokrati": {
         "ci": [
-          3.226,
-          4.103
+          2.687,
+          3.565
         ],
         "claim_refs": [
           "claim:action:S:demokrati:motioner",
@@ -1431,7 +1430,7 @@
         ],
         "components": {
           "A": 2.286,
-          "B": 5.0,
+          "B": 3.462,
           "C": 5.0,
           "D": 2.5
         },
@@ -1443,16 +1442,16 @@
         },
         "evidence_refs": [],
         "flags": [
-          "B_coverage_3/3",
+          "B_coverage_5/5",
           "A_a1_active",
           "D_not_applicable"
         ],
-        "score": 3.664
+        "score": 3.126
       },
       "ekonomi": {
         "ci": [
-          4.128,
-          4.915
+          3.768,
+          4.556
         ],
         "claim_refs": [
           "claim:action:S:ekonomi:motioner",
@@ -1471,9 +1470,9 @@
         ],
         "components": {
           "A": 4.286,
-          "B": 5.0,
+          "B": 3.973,
           "C": 5.0,
-          "D": 3.071
+          "D": 3.072
         },
         "confidence": {
           "A": "high",
@@ -1483,10 +1482,10 @@
         },
         "evidence_refs": [],
         "flags": [
-          "B_coverage_2/2",
+          "B_coverage_5/5",
           "A_a1_active"
         ],
-        "score": 4.521
+        "score": 4.162
       },
       "forsvar": {
         "ci": [
@@ -1686,8 +1685,8 @@
     "SD": {
       "demokrati": {
         "ci": [
-          2.434,
-          3.311
+          1.851,
+          2.728
         ],
         "claim_refs": [
           "claim:action:SD:demokrati:motioner",
@@ -1698,7 +1697,7 @@
         ],
         "components": {
           "A": 2.643,
-          "B": 4.167,
+          "B": 2.5,
           "C": 0.714,
           "D": 2.5
         },
@@ -1710,16 +1709,16 @@
         },
         "evidence_refs": [],
         "flags": [
-          "B_coverage_2/3",
+          "B_coverage_3/5",
           "A_a1_active",
           "D_not_applicable"
         ],
-        "score": 2.873
+        "score": 2.289
       },
       "ekonomi": {
         "ci": [
-          1.007,
-          1.795
+          2.047,
+          2.834
         ],
         "claim_refs": [
           "claim:action:SD:ekonomi:motioner",
@@ -1733,9 +1732,9 @@
         ],
         "components": {
           "A": 1.5,
-          "B": 1.328,
+          "B": 4.294,
           "C": 0.714,
-          "D": 2.288
+          "D": 2.306
         },
         "confidence": {
           "A": "high",
@@ -1745,10 +1744,10 @@
         },
         "evidence_refs": [],
         "flags": [
-          "B_coverage_2/2",
+          "B_coverage_5/5",
           "A_a1_active"
         ],
-        "score": 1.401
+        "score": 2.441
       },
       "forsvar": {
         "ci": [
@@ -1924,8 +1923,8 @@
     "V": {
       "demokrati": {
         "ci": [
-          2.192,
-          3.384
+          2.583,
+          3.46
         ],
         "claim_refs": [
           "claim:action:V:demokrati:motioner",
@@ -1938,29 +1937,28 @@
         ],
         "components": {
           "A": 3.429,
-          "B": 3.333,
+          "B": 4.0,
           "C": 0.0,
           "D": 2.5
         },
         "confidence": {
           "A": "high",
-          "B": "low",
+          "B": "medium",
           "C": "high",
           "D": "low"
         },
         "evidence_refs": [],
         "flags": [
-          "B_coverage_1/3",
-          "B_thin_coverage",
+          "B_coverage_3/5",
           "A_a1_active",
           "D_not_applicable"
         ],
-        "score": 2.788
+        "score": 3.021
       },
       "ekonomi": {
         "ci": [
-          2.876,
-          3.753
+          2.084,
+          2.962
         ],
         "claim_refs": [
           "claim:action:V:ekonomi:motioner",
@@ -1976,7 +1974,7 @@
         ],
         "components": {
           "A": 3.286,
-          "B": 5.0,
+          "B": 2.74,
           "C": 0.0,
           "D": 2.5
         },
@@ -1988,11 +1986,11 @@
         },
         "evidence_refs": [],
         "flags": [
-          "B_coverage_2/2",
+          "B_coverage_5/5",
           "A_a1_active",
           "D_not_applicable"
         ],
-        "score": 3.314
+        "score": 2.523
       },
       "forsvar": {
         "ci": [
@@ -2142,8 +2140,8 @@
       },
       "valfard": {
         "ci": [
-          1.217,
-          2.095
+          1.742,
+          2.62
         ],
         "claim_refs": [
           "claim:action:V:valfard:motioner",
@@ -2159,7 +2157,7 @@
         ],
         "components": {
           "A": 1.0,
-          "B": 2.875,
+          "B": 4.375,
           "C": 0.0,
           "D": 2.5
         },
@@ -2175,7 +2173,7 @@
           "A_a1_active",
           "D_not_applicable"
         ],
-        "score": 1.656
+        "score": 2.181
       }
     }
   }
