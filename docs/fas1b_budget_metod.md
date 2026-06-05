@@ -37,31 +37,53 @@ och deterministisk kod ([`pipeline/budget.py`](../pipeline/budget.py)) konsumera
 en **trogen kopia** av officiella tal — inga belopp imputeras, jämkas eller gissas. Det är
 strukturering av en officiell källa, inte fabrikation. **Version 0 — kräver mänsklig slutgranskning.**
 
-## Källa (budgetår 2025)
+## Källor (budgetår 2023–2025)
 
-Allt kommer ur **bet. 2024/25:FiU1 "Statens budget 2025 – Rambeslutet"** (dok_id HC01FiU1),
-tabell 35 "Utgiftsram per utgiftsområde": kolumnen *Regeringens förslag* (absolut, mnkr) plus
-*Avvikelse från regeringen* för S, V, C, MP. Varje oppositionspartis absoluta ram =
-`Regeringens förslag + partiets avvikelse` (mekanisk normalisering ur samma tabell).
+`budget_ramar.yaml` täcker nu **tre budgetår** (2023, 2024, 2025) ur respektive rambeslut. Varje
+år bidrar med en frame-uppsättning; a1 blir ett **snitt över åren** (se grinden nedan), vilket
+fångar mandatperioden bredare och dämpar enårsbrus.
+
+| Budgetår | Källa (rambeslut) | Tabell | dok_id |
+|----------|-------------------|--------|--------|
+| 2025 | bet. 2024/25:FiU1 "Statens budget 2025 – Rambeslutet" | tabell 35 | HC01FiU1 |
+| 2024 | bet. 2023/24:FiU1 "Statens budget 2024 – Rambeslutet" | tabell 2.3 | HB01FiU1 |
+| 2023 | bet. 2022/23:FiU1 "Statens budget 2023 – Rambeslutet" | tabell 2.3 | HA01FiU1 |
+
+Ur varje tabell tas kolumnen *Regeringens förslag* (absolut, mnkr) plus *Avvikelse från regeringen*
+för S, V, C, MP. Varje oppositionspartis absoluta ram = `Regeringens förslag + partiets avvikelse`
+(mekanisk normalisering ur samma tabell). UO13/UO20 hade äldre rubriker 2023 (oförändrade UO-koder).
 
 ### Attribution (Codex P0-risk)
-Ett parti tilldelas regeringens ram endast när en officiell källa stödjer det:
-- **M, KD, L** = regeringspartier (prop. 2024/25:1) → regeringens ram.
-- **SD** = Tidö-stödparti som **röstade Ja till rambeslutet** (votering bet. 2024/25:FiU1 punkt 2;
-  per-ledamot-tally: M/SD/KD/L = Ja) → regeringens ram, citerat till voteringen.
-- **S, V, C, MP** = egen budgetmotion 2024/25 → egen ram (avvikelse i tabell 35).
+Ett parti tilldelas regeringens ram endast när en officiell källa stödjer det. Strukturen är
+**identisk för alla tre åren** (Tidöregeringen M/KD/L + SD-stöd; S/V/C/MP i opposition):
+- **M, KD, L** = regeringspartier (prop. 2024/25:1, 2023/24:1, 2022/23:1) → regeringens ram.
+- **SD** = Tidö-stödparti som **röstade Ja till rambeslutet** (votering FiU1 punkt 2, per-ledamot-
+  tally M/SD/KD/L = Ja: 2025, 2024 *och* 2023) → regeringens ram, citerat till voteringen.
+- **S, V, C, MP** = egen budgetmotion respektive år → egen ram (avvikelse i rambeslutstabellen).
 
 Ett parti utan egen ram **och** utan citerbar uppslutning bakom en gemensam ram skulle utelämnas —
-aldrig gissas. För 2025 är alla 8 partier täckta.
+aldrig gissas. För alla tre åren är alla 8 partier täckta (reservationerna på punkt 1 kommer i båda
+nya åren *enbart* från S/V/C/MP, dvs. M/KD/L/SD står bakom regeringens ram).
 
 ### Verifiering (ingen fabrikation)
-- **Intern invariant:** för varje parti är `Σ(partiets ram) − Σ(regeringens ram)` lika med källans
-  egna avvikelse-totaler i raden "Summa utgiftsområden" (S +30 886, V +132 499, C +2 821,
-  MP +147 384 mnkr) — matchar på kronan.
-- **Oberoende adversariell re-extraktion** (separat agent, lokaliserade tabellen via innehåll,
-  re-deriverade alla 135 celler, jämförde mot configen, bekräftade roll-call) — se changelog nedan.
-- Källans "Summa utgiftsområden" reg-total (1 441 596) avviker 3 mnkr från cellsumman (1 441 593);
-  det är källans egen avrundning av totalraden, inte ett transkriberingsfel (cellerna är troget kopierade).
+Alla tre åren är verifierade med samma flerlagrade kontroll; 2023/2024 transkriberades aldrig för
+hand utan **genererades programmatiskt ur den officiella HTML-källan** och korsverifierades fyra vägar:
+- **Intern invariant:** för varje parti och år är `Σ(partiets ram) − Σ(regeringens ram)` lika med
+  källans egna avvikelse-totaler i raden "Summa utgiftsområden". 2024 + 2025: matchar på kronan för
+  alla fyra oppositionspartier. 2023: S/V/MP på kronan; **C +2 mnkr** — källans egen avrundning av
+  totalraden (regeringens totalrad avviker likaså −1 mnkr 2023 / −4 mnkr 2024 / −3 mnkr 2025 från
+  cellsumman; per-UO-cellerna är troget kopierade och justeras aldrig för att tvinga fram en summa).
+- **Oberoende parser** (`pandas.read_html`, helt annan kodväg än regex-extraktionen) — 0 avvikelser
+  över 270 celler (2 år × 5 ramar × 27 UO).
+- **Oberoende adversariell re-extraktion** (separat Codex-agent, lokaliserade tabellen via innehåll,
+  re-deriverade alla celler, bekräftade roll-call) — 0 avvikelser mot configen; flaggade och
+  bekräftade både C-2023-avrundningen och en split-span-cell (2023 UO13 MP `3|51`→351, korrekt).
+- **Roll-call bekräftad** ur dokumentstatus (förslagspunkt 2, "Rambeslutet"): 2024 M/SD/KD/L = Ja
+  (59/63/16/13), 2023 M/SD/KD/L = Ja (60/61/17/12); S = Nej, V/C/MP = Avstår båda åren.
+
+*(Budget 2025 verifierades tidigare separat: intern invariant på kronan — S +30 886, V +132 499,
+C +2 821, MP +147 384 — och re-extraktion av alla 135 celler; reg-totalen avviker 3 mnkr p.g.a.
+samma avrundning.)*
 
 ## Hård grind (a1 får aldrig korrumpera A)
 
@@ -74,19 +96,29 @@ partier. Tom `budget_years` → a1 inaktiv överallt → A = a2 (ingen regressio
 
 ## Effekt på rangordningen (standardvikter)
 
-Med a1 aktiv för alla 7 kategorier (budget 2025) jämfört med ren a2:
+a1 är aktiv för alla 7 kategorier. Rangordningen med a1 över **tre budgetår** (2023–2025) jämfört
+med tidigare ett år (budget 2025) och ren a2:
 
-| | a2 enbart (innan) | a1+a2 (nu) |
-|---|---|---|
-| Rangordning | S 3,73 · L 3,39 · MP 3,34 · M 3,28 · KD 3,11 · V 2,59 · SD 2,40 · C 2,39 | **S 3,54 · L 3,33 · MP 3,31 · M 3,23 · KD 3,10 · V 2,63 · C 2,61 · SD 2,46** |
+| | a2 enbart | a1+a2, 1 år (2025) | a1+a2, 3 år (2023–2025) |
+|---|---|---|---|
+| Rangordning | S 3,73 · L 3,39 · MP 3,34 · M 3,28 · KD 3,11 · V 2,59 · SD 2,40 · C 2,39 | S 3,54 · L 3,33 · MP 3,31 · M 3,23 · KD 3,10 · V 2,63 · C 2,61 · SD 2,46 | **S 3,73 · L 3,33 · M 3,28 · MP 3,11 · KD 3,05 · C 2,66 · V 2,65 · SD 2,38** |
 
-a1 differentierar A trovärdigt: MP högst på klimat-budgetandel, V högst på integration, S högst på
-välfärd, KD/L/C höga på försvar, M högst på trygghet. Regeringsblocket (M/KD/L/SD) delar samma ram
-→ identiskt a1-bidrag; deras A skiljer sig då bara via a2.
+a1 differentierar A trovärdigt där budgetandelarna är **väl åtskilda**: MP högst på klimat-
+budgetandel (8,3 % vs V 6,4 % vs ~5,3 % för övriga), V högst på integration, KD/L/C höga på försvar.
+Regeringsblocket (M/KD/L/SD) delar samma ram → identiskt a1-bidrag; deras A skiljer sig då bara via a2.
+
+> **Caveat (rank-normalisering på nära oavgjorda andelar):** för *ekonomi* ligger alla 8 partiers
+> a1-andelar inom ~2 procentenheter (22,4–24,6 %), eftersom ekonomi drar från många stora UO som är
+> snarlika för alla. Rang-normaliseringen (DATA.md: A/C rankas, känsligt med 8 datapunkter) förstorar
+> då skillnader på andra–tredje decimalen till hela rangskiften — MP ligger ~23,4 % varje år men
+> dess *rang* pendlar mellan 2:a och 8:a. **Treårssnittet dämpar** detta (medel av tre brusiga
+> rangar) jämfört med ettårsmätningen, men grundkänsligheten kvarstår som en modellegenskap (ej en
+> A1-defekt). Kandidat för framtida förfining: en dödzon/min–max på a1 för nära-oavgjorda kategorier.
 
 ## Begränsningar (version 0)
 
-- **Ett budgetår (2025).** Fler år kan läggas till; grinden kräver fullständig 8-parti-täckning per år.
+- **Tre budgetår (2023–2025).** Fler år kan läggas till; grinden kräver fullständig 8-parti-täckning
+  per år (snitt-skärning), och varje nytt år ska köras genom samma fyrlagriga verifiering.
 - **UO26 (statsskuldsräntor → ekonomi)** och **UO27 (EU-avgift → ingen kategori)** ingår i nämnaren
   (total budget); UO26 är ~lika för alla partier och påverkar den *relativa* a1 marginellt.
 - **Kräver mänsklig slutgranskning** innan skarp betygsättning (som party_positions).

@@ -381,8 +381,11 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
             cov_num.setdefault((pos["party"], cc), set()).add(pt)
     thin_cov = float(b_evidens.get("thin_coverage_threshold", 0.5))
 
-    # Claims (provenance för evidence.json) + index.
-    all_claims = claims_mod.build_claims(con)
+    # Claims (provenance för evidence.json) + index. Sorteras på id så provenansen (claim_refs,
+    # särskilt obs_by_cat[:3]-urvalet) blir REPRODUCERBAR — claims byggs annars i hash-randomiserad
+    # ordning (set-iteration), vilket gjorde dist/ icke-deterministisk mellan körningar och kunde
+    # tyst byta vilka 3 observationsclaims ett betyg pekade på. Betygen påverkas ej av ordningen.
+    all_claims = sorted(claims_mod.build_claims(con), key=lambda c: str(c["id"]))
     resp_by_party: dict[str, list[str]] = {}
     action_by_pc: dict[tuple[str, str], str] = {}
     obs_by_cat: dict[str, list[str]] = {}
@@ -493,10 +496,10 @@ def main() -> None:
     res = build()
     DIST_DIR.mkdir(parents=True, exist_ok=True)
     (DIST_DIR / "scores.json").write_text(
-        json.dumps(res["scores"], ensure_ascii=False, indent=2), encoding="utf-8"
+        json.dumps(res["scores"], ensure_ascii=False, indent=2, sort_keys=True), encoding="utf-8"
     )
     (DIST_DIR / "evidence.json").write_text(
-        json.dumps(res["evidence"], ensure_ascii=False, indent=2), encoding="utf-8"
+        json.dumps(res["evidence"], ensure_ascii=False, indent=2, sort_keys=True), encoding="utf-8"
     )
     n_parties = len(res["scores"]["scores"])
     n_cats = len(res["scores"]["categories"])

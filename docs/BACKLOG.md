@@ -59,23 +59,52 @@ högre coverage → mindre B-krympning → B får faktiskt genomslag.
   SCB/Kolada/Energimyndigheten/Brå-endpoints svarar med förväntad form (fångar käll-/hash-drift).
   Opt-in (`ROSTA_LIVE=1`); CI kör plain pytest → skippas, förblir grön. **Spår O komplett (O1–O3).**
 
-### Status per spår efter nattkörning 2026-06-04
+### Levererat (2026-06-05)
+
+- ✅ **A1 — fler budgetår (2023 + 2024)** ([config/budget_ramar.yaml](../config/budget_ramar.yaml)):
+  `a1` budgetprioritering går från **en mätpunkt (budget 2025) till ett snitt över tre budgetår
+  (2023–2025)**, vilket fångar mandatperioden bredare och dämpar enårsbrus. Ramtalen för budget 2024
+  (bet. 2023/24:FiU1 tabell 2.3) och 2023 (bet. 2022/23:FiU1 tabell 2.3) hämtades ur den officiella
+  HTML-källan och **genererades programmatiskt** (aldrig handknappat) enligt samma transkriberings-/
+  attributionsmönster som 2025. Attributionen är identisk struktur (Tidöregeringen M/KD/L + SD-stöd
+  röstade Ja till rambeslutet, votering FiU1 punkt 2 båda åren; S/V/C/MP egna budgetmotioner) och
+  roll-call-bekräftad. **Fyrlagrig adversariell verifiering** (den deferral-blockerande korruptions-
+  risken i A löst): intern invariant per år (7/8 avvikelsetotaler på kronan; C-2023 +2 = källans egen
+  totalrads-avrundning, jfr reg-totalens −1/−4/−3), oberoende parser (pandas, 0 avvikelser/270 celler),
+  **Codex oberoende re-extraktion** (0 avvikelser, bekräftade roll-call + split-span-cell), samt
+  reservationsstrukturen i källan. a1 aktiv för **7/7 kategorier** (snitt-skärning håller). Hela
+  testsviten grön; `dist/` omräknat + snapshot-baslinjen uppdaterad (`score_diff --write`). Version 0
+  (kräver fortfarande mänsklig slutgranskning som 2025). [Metod uppdaterad](fas1b_budget_metod.md).
+  *Ny ranking (standardvikter): S 3,73 · L 3,33 · M 3,28 · MP 3,11 · KD 3,05 · C 2,66 · V 2,65 · SD 2,38.*
+  *Caveat: ekonomi-a1 är nära oavgjort (alla ~23 %) → rang-noise; treårssnittet dämpar men löser ej
+  modellegenskapen (se metoddok).*
+- ✅ **O4 — reproducerbar dist** ([pipeline/scorerun.py](../pipeline/scorerun.py)): `dist/scores.json`
+  + `dist/evidence.json` var **icke-deterministiska mellan körningar** — claims byggdes i hash-
+  randomiserad ordning, så `claim_refs` (provenanspekare) bytte ordning *och* `obs_by_cat[:3]`-urvalet
+  pekade på olika 3 observationsclaims per process. Betygen var alltid deterministiska; bara
+  provenansen drev. Fixat genom att sortera claims på id + `sort_keys` på JSON-utskriften → dist är nu
+  **byte-identisk över processer** (verifierat med olika `PYTHONHASHSEED`). Upptäckt under A1-omräkningen;
+  stärker O2-snapshot/diff (ingen falsk drift av ordningsbrus).
+
+### Status per spår efter nattkörning 2026-06-04 (A-raden uppdaterad 2026-06-05)
 
 | Spår | Status |
 |------|--------|
 | **D** (datatäckning) | uppklaringsgrad + skjutningar/sprängningar **levererade**. Återstående D-källor **uttömda/blockerade** (se [coverage_allowlist](../config/coverage_allowlist.yaml) med precisa skäl): återfall (PDF prel/slutlig + metodbrott), handläggning (interaktiv DB), overlevnad (Kolada N79196 finns men **kvinkennial** → inkompatibel med D:s konsekutiva-år-krav), reallöner/sfi (portal/ej ren serie), Svk-derived klimat (operativ/timdata + Nord Pool-pris = gränsfall mot officiell-källa-regeln, lågt mervärde då klimat har 3 D-serier), demokrati (internationella index förbjudna), försvar (sekretess/kvalitativt). **De rena SCB/Kolada-årsserierna skördades i Fas 2–3; den hårda taljen kräver expertbedömd transkribering, modellutvidgning, eller är otillåten.** |
 | **B** (evidens) | B1-paketet **byggt + regenererat + aktuellt** ([expertgranskning/](expertgranskning/)); väntar **mänsklig sign-off** (jag bumpar aldrig version 0→1). B2/B3 (bredda liggaren) kräver samma expertgranskning → meningslöst att stapla fler version-0-rader innan B1 är gjord. |
-| **A** (agerande) | **A1 (fler budgetår) DEFERRAD med plan** — se nedan; för hög korruptionsrisk i tyngsta delpoängen för solo-transkribering övernatten. A2 (votering→A) är en designfråga (viktning utan dubbelräkning av a2) → kräver beslut, deferrad. |
+| **A** (agerande) | **A1 (fler budgetår) ✅ LEVERERAD 2026-06-05** — budget 2023 + 2024 tillagda (snitt över 3 år), fyrlagrigt adversariellt verifierat (invariant + pandas + Codex + roll-call); se Levererat ovan. Korruptionsrisken som blockerade solo-körningen löstes via den oberoende cell-för-cell-kontrollen. A2 (votering→A) är en designfråga (viktning utan dubbelräkning av a2) → kräver beslut, deferrad. |
 | **C** (ansvar) | c2 finansiering uppskjutet (designbeslut, ej neutralt byggbart). C2 (mandatperiodskiften) + C3 (subnationell D) är modellutvidgningar utanför ren databredd → deferrade. |
 | **F** (frontend) | F1 (extern hosting) **blockerad** — kräver dina credentials/hosting-beslut (utåtriktad publicering gör jag inte autonomt). F2 (manuell skärmläsartest) kan bara göras av människa. |
-| **O** (drift/ops) | ✅ **Komplett** (O1 drift-skydd, O2 snapshot-diff, O3 live-smoke-test). |
+| **O** (drift/ops) | ✅ **Komplett** (O1 drift-skydd, O2 snapshot-diff, O3 live-smoke-test, **O4 reproducerbar dist** — 2026-06-05). |
 
-**A1-plan (körklar, för en session med adversariell verifiering):** transkribera partiernas utgiftsramar
-per UO för budget **2024** (bet. 2023/24:FiU1) och **2023** (bet. 2022/23:FiU1) — samma tabell-/källrads­mönster
-som budget 2025 ([fas1b_budget_metod.md](fas1b_budget_metod.md), bet. 2024/25:FiU1 tabell 35). Verifiera varje
-år med samma **interna invariant** (partiernas avvikelser summerar till källans totaler på kronan) + en oberoende
-adversariell cell-för-cell-kontroll (Codex/människa) **innan** det matar A. Då blir a1 ett snitt över 3 budgetår
-i stället för en mätpunkt och fångar mandatperiodskiftet. *Görs inte solo övernatten p.g.a. korruptionsrisken i A.*
+**A1-plan — ✅ UTFÖRD 2026-06-05.** Partiernas utgiftsramar per UO för budget **2024** (bet. 2023/24:FiU1
+tabell 2.3) och **2023** (bet. 2022/23:FiU1 tabell 2.3) lades till, samma tabell-/källrads­mönster som
+budget 2025. Den **interna invarianten** (partiernas avvikelser summerar till källans totaler på kronan)
+verifierades per år (7/8 på kronan; C-2023 +2 = källans totalrads-avrundning), tillsammans med en oberoende
+parser (pandas) och en oberoende adversariell cell-för-cell-kontroll via **Codex** (0 avvikelser) **innan**
+det matade A. a1 är nu ett snitt över 3 budgetår i stället för en mätpunkt. *Den ursprungliga deferralen
+("görs inte solo övernatten p.g.a. korruptionsrisken i A") upphävdes eftersom den oberoende verifieringen
+nu utfördes — det var precis det villkoret planen ställde.*
 
 ---
 
@@ -152,9 +181,10 @@ ståndpunkter, alla "version 0, AI-utkast"**.
 
 ## Spår A — Agerande (delpoäng A)
 
-- **A1 — Fler budgetår** ⚪ — `budget_ramar.yaml` har i dag **bara budget 2025**. Lägg 2023 + 2024
-  (samma trogna transkriberingsmönster, källrad per frame) → a1 blir ett snitt över år i stället
-  för en enda mätpunkt, och fångar mandatperiodskiftet.
+- **A1 — Fler budgetår** ✅ *(levererad 2026-06-05)* — `budget_ramar.yaml` täcker nu **budget
+  2023 + 2024 + 2025** (samma trogna transkriberingsmönster, källrad per frame). a1 är ett snitt
+  över åren i stället för en enda mätpunkt. Fyrlagrigt verifierad (invariant + pandas + Codex +
+  roll-call); se Levererat ovan + [metod](fas1b_budget_metod.md).
 - **A2 — Aktivera voteringsprovet** 🟣 — röster hämtas redan (12 riksmöten) men matar inget
   betyg. Designfråga: hur väga faktiskt röstbeteende per kategori in i A utan att dubbelräkna a2.
 
@@ -197,7 +227,7 @@ ståndpunkter, alla "version 0, AI-utkast"**.
 | Sprint | Data (D) | Evidens (B) | Övrigt |
 |--------|----------|-------------|--------|
 | **1** | Våg 1: Brå (uppklaring/handläggning/återfall) + Socialstyrelsen (överlevnad) | **B1: starta expertgranskning** | **O1: drift-skydd** |
-| **2** | Våg 2: Medlingsinstitutet (reallöner) + Skolverket (sfi) + Svk-adapter | B2: bredda liggaren | A1: fler budgetår |
+| **2** | Våg 2: Medlingsinstitutet (reallöner) + Skolverket (sfi) + Svk-adapter | B2: bredda liggaren | ~~A1: fler budgetår~~ ✅ klar |
 | **3** | Våg 3: härledda klimat (elpris/effekt) + demokrati/försvar-design | B3: omstridda åtgärdstyper | A2 votering · C2/C3 · F1/F2 |
 
 > Varje levererat steg: flytta indikatorn ur `coverage_allowlist.yaml`, uppdatera täckningssiffran
