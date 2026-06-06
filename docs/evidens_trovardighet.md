@@ -220,23 +220,32 @@ riktning** i `categories.yaml`, sedan en åtgärdstyp i evidensliggaren. Öppnar
 submått. Ex: trygghet/`forebyggande` via lag (2023) om kommuners brottsförebyggande ansvar + Brå.
 **"L"-arbete** (design + sign-off), inte autonomt.
 
-### 5.8 Sökdjup och zoom-ut — när ett delområde/kategori får kallas "uttömt"
-> Standard fastlagd 2026-06-06 efter att första svepet bara prövade ~1 instrument per otäckt delområde i
-> en enda runda och drog för starka slutsatser. En enskild HOLD-runda räcker **inte** för att avföra ett
-> delområde — än mindre en hel kategori.
+### 5.8 Sökdjup, eskalering och zoom-ut — när ett delområde/kategori får kallas "uttömt"
+> Standard fastlagd 2026-06-06 (skärpt efter diskussion). Första svepet prövade ~1 instrument per otäckt
+> submått i en enda runda och stannade vid "HOLD". Det räcker inte. **Att inte hitta ett instrument är
+> INTE en slutpunkt — det är signalen att eskalera.**
 
-- **Bredd:** pröva **5–7 *genuint olika* instrument** per otäckt delområde — inte ett primärt plus
-  närliggande varianter.
-- **Djup:** **flera rundor** tills två i rad ger noll nytt ("leta tills det är torrt").
-- **Zoom-ut när du kör fast** (kör INTE instrument-för-instrument i blindo). Kör du fast i en kategori —
-  ta ett steg tillbaka:
-  1. **Läs om kategorin i [../IDEA.md](../IDEA.md)** — vad den *ska* fånga, och dess caveat.
-  2. **Bred analys:** vad påverkar *generellt* kategorin positivt enligt officiell svensk kunskap
-     (myndigheter, SOU, forskningsöversikter)? Tänk uppifrån-och-ned, inte instrument-för-instrument.
-  3. **Borra ner igen:** leta **nya submått OCH deras instrument** — inte bara nya instrument för de gamla
-     submåtten. Nya indikatorer (§5.7) är på bordet.
-- **"HOLD" ≠ "uttömt".** HOLD = ingen ren kandidat i *denna* runda. Etiketten "uttömt" får sättas först
-  efter bredd + djup + zoom-ut ovan, och ska då redovisa *vilka* vinklar som prövades.
+**Eskaleringstrappa — deklarera inte "fast" förrän ALLA steg är uttömda:**
+
+1. **Instrument till befintligt submått (bredd + djup).** Pröva **5–7 genuint olika instrument** per otäckt
+   submått, i **flera rundor** tills två i rad ger noll nytt ("leta tills det är torrt"). Inte ett primärt
+   plus närliggande varianter.
+2. **Hittar du inget rent instrument → STANNA INTE. Eskalera till nytt submått.** Kör INTE
+   instrument-för-instrument i blindo. Ta ett steg tillbaka:
+   - **a.** Läs om kategorin i [../IDEA.md](../IDEA.md) — vad den *ska* fånga + dess caveat.
+   - **b.** Bred analys uppifrån-och-ned: vad påverkar *generellt* kategorin positivt enligt officiell svensk
+     kunskap (myndigheter, SOU, forskningsöversikter)?
+   - **c.** Borra ner till ett **NYTT submått** (med ny indikator, jfr §5.2/§5.7) som (i) genuint hör hemma i
+     kategorin enligt IDEA.md, och (ii) har både evidens (steg 1) och neutral positionering (steg 2).
+3. **"Fast"/"uttömt" får sättas FÖRST när både (1) och (2) är uttömda** — och ska då redovisa *vilka*
+   instrument **och** *vilka* submått-vinklar som prövades. "HOLD" ≠ "uttömt": HOLD = ingen ren kandidat i
+   *denna* runda på *detta* spår, inte att kategorin är omöjlig.
+
+**Två spärrar som alltid gäller på steg 2:**
+- **Fuska inte:** lägg inte ett nytt submått bara för att slippa ett svårt — det måste genuint höra hemma i
+  kategorin (IDEA.md), inte vara en genväg till en lätt fyra.
+- **Struktur kräver sign-off:** nytt submått/indikator ändrar `categories.yaml` + viktbalansen → *föreslås*
+  för människan (instrument i befintligt submått byggs autonomt som v0). Default tills annat sägs.
 
 ---
 
@@ -389,3 +398,4 @@ mot snapshot), `review_packet` (granskningspaket). Snapshot re-baselineas **bara
 | 2026-06-06 | **Omstrukturerad kring tvåstegsmodellen** (§2): måttet skilt från positioneringen; "väggen" omklassad till steg-1-väggar (äkta) vs steg-2-källval (lösbart, §4); metodregistret blev "steg 2 — positionering" (§5) med källstege + budget-/kommittémotion (§5.3) + banan (§5.5) + uttryckliga gränser inkl. grad/magnitud-begränsningen (§5.6); differentiering omdefinierad som utfall, inte krav; öppna designfrågor samlade (§8). |
 | 2026-06-06 | **Första leveransen på metoden:** 7 kandidater researchade (codex-2nd-opinion), **2 byggda** (snabbforfarande → trygghet 4/5; invasiva arter → klimat 4/5, FLAGGAD) **+ 5 HOLD**. §3/§6/§7/§8/§9 uppdaterade med utfall; 36 evidensposter / 192 ståndpunkter; 167 tester gröna, ruff rent, inga nära-binära. Enhällighet-som-källa empiriskt bekräftad (löste steg-2-väggen för #1/#2). |
 | 2026-06-06 | **§5.8 sökdjup + zoom-ut tillagt** (5–7 instrument/delområde, flera rundor, läs IDEA.md + bred analys när du kör fast, leta nya submått). §7 markerat som "första svep, ej uttömt". §8.4/§8.5 markerade BESLUTADE (nato OK, invasiva behålls). Dagens arbete committat; fortsättning i fräsch session. |
+| 2026-06-06 | **§5.8 skärpt till eskaleringstrappa:** "inget instrument hittat" är inte slutstation — eskalera då till **nytt submått** (zoom-ut via IDEA.md). "Fast/uttömt" får sättas först när BÅDE instrument- OCH submått-spåret är uttömda. Spärrar kvar: fuska inte med submått, struktur kräver sign-off. |
