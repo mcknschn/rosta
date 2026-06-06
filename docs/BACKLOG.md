@@ -201,6 +201,19 @@ högre coverage → mindre B-krympning → B får faktiskt genomslag.
   **5 andra kandidater HOLD** (vård, omsorg, normer_tillit, boendesegregation, försvar-leverans — steg-1-evidens saknas/mixed eller fel konstrukt; se
   evidens_trovardighet.md §6–§7). 36 evidensposter / 192 ståndpunkter; scorerun + B4 (inga nära-binära) + 167 tester gröna + ruff rent; granskningspaket
   priority 93; **snapshot ej re-baselinad** (kumulativ drift syns). Forskning (4+3 agenter) → codex → bygge 2026-06-06; väntar mänsklig sign-off.
+- ✅ **B2 (nionde leveransen) — demokrati: lagstadgat oberoende public service (enhällighet, codex-granskat)** ([evidence_ledger](../config/evidence_ledger.yaml)
+  + [party_positions](../config/party_positions.yaml) + [evidens_trovardighet.md](evidens_trovardighet.md)): submåttet **yttrandefrihet_medier** (tidigare B-tomt)
+  gjordes B-bart via åtgärdstyp `lagstadgat_oberoende_public_service` → indikator `mediefrihet` (up). Instrument: för första gången regleras
+  public service-uppdraget I LAG (ny lag om public service) med lagstadgat oberoende. Källa **prop. 2024/25:166** (ur 2023 års **parlamentariska**
+  public service-kommitté, **SOU 2024:34** "Ansvar och oberoende") — instrument-mekanism (prop. 5.2.1): public service "ska bedrivas självständigt i
+  förhållande till såväl staten som olika ekonomiska, politiska och andra intressen … oberoende och stark integritet". **8 partiståndpunkter via
+  enhälligt bet. 2025/26:KrU2 punkt 1** (acklamation, votering-API tomt @antal=0, "inte väckts någon motion som går emot att riksdagen antar regeringens
+  lagförslag"; samtliga 15 reservationer gäller punkt 2–14 → ingen mot p1) → **alla 8 supports** (S/M/SD/C/V/KD/L/MP). **Codex: BUILD-WITH-CHANGES**
+  (mekanism-/designflagga; snäv formulering lagstadgat oberoende → mediefrihet; behåll authority_evaluation/**low/low** — ingen ex-post-effektutvärdering).
+  **Demokrati 3/5 → 4/5.** Icke-rankningsdrivande konsensus-mått: isolerad effekt demokrati +0,0…+0,20/parti (alla supports), total +0,0…+0,015,
+  **ranking oförändrad**. 37 evidensposter / 200 ståndpunkter; scorerun + B4 (inga nära-binära) + 167 tester gröna + ruff rent + 0 cyrilliska; paket
+  regenererat. **snapshot ej re-baselinad.** Samma dag: **djupsvep §5.8** på forsvar/valfard/integration (7+11+11 instrument, 4 parallella agenter) →
+  **HOLD ×5 bekräftat** med skärpta återöppningsvillkor (se evidens_trovardighet.md §6); väg till 4 submått där kräver modellutvidgning → sign-off.
 
 ### Status per spår efter nattkörning 2026-06-04 (A-raden uppdaterad 2026-06-05)
 
@@ -329,10 +342,10 @@ företagande/investeringar samt hushållens disponibla inkomst → ekonomi 4/6 t
   | Kategori | Submått m. B-evidens | Andel kat-vikt | Status |
   |---|---|---|---|
   | ekonomi | ~~1/5~~ **4/6** | ~~25 %~~ **73 %** | ✅ åtgärdad 2026-06-05 (FoU→produktivitet + företagande/investeringar + hushållens disponibla inkomst). 4 av 4 B-möjliga täckta; inflation/off.finanser = target (vilande) |
-  | demokrati | ~~1/5~~ **3/5** | ~~20 %~~ **60 %** | ✅ åtgärdad 2026-06-05: (1) grundlagsskydd domstolarnas oberoende → otillborlig_politisering (votering KU2, neutralt/odifferentierande), (2) begränsa biometrisk realtidsövervakning m. rättssäkerhet → overvakning_utan_rattssakerhet (votering JuU28, **blocköverskridande/differentierande**, Lagrådet-ankrat, codex-granskat). Kvar otäckta: transparens_ansvar (offentlighetsprincip = dubbelräkning mot bunt, skippat) + yttrandefrihet_medier (acklamation/regeringslägesartefakt) — inget värdeneutralt mått funnet |
-  | valfard | 2/4 | 50 % | tunn — vard_tillganglighet + omsorg_personal HOLD 2026-06-06 (RiR 2023:12 mixed/vårdförmedling outvärderad; fast omsorgskontakt = fel konstrukt mot personalomsättning) |
-  | forsvar | ~~2/5~~ **3/5** | ~~55 %~~ **60 %** | ✅ nato_ukraina tillagt 2026-06-06 (nato_medlemskap, votering UU16, Försvarsberedningen-källa, codex-granskat: V=opposes, MP=none pga reversering). Kvar: ekonomisk_ambition=target (ej B-bar), genomforbarhet_leverans (acklamation/buntat — kandidatlista) |
-  | integration | 2/5 | 55 % | tunn — normer_tillit + boendesegregation HOLD 2026-06-06 (steg-1-evidens saknas/mixed; högsta bias-risk) |
+  | demokrati | ~~1/5~~ **4/5** | ~~20 %~~ **80 %** | ✅ åtgärdad 2026-06-05/06: (1) grundlagsskydd domstolarnas oberoende → otillborlig_politisering (votering KU2), (2) begränsa biometrisk realtidsövervakning m. rättssäkerhet → overvakning_utan_rattssakerhet (votering JuU28, **blocköverskridande**, Lagrådet-ankrat), **(3) lagstadgat oberoende public service → mediefrihet (enhälligt bet. 2025/26:KrU2 p1, prop. 2024/25:166 ur parlamentarisk kommitté SOU 2024:34 → alla 8 supports; codex BUILD-WITH-CHANGES, mekanism-/designevidens low/low; demokrati 3/5 → 4/5)**. Kvar otäckt: transparens_ansvar (**stark återöppning: prop. 2025/26:258 insyn i politiska processer, bet. KU39, beslut 2026-06-15**) |
+  | valfard | 2/4 | 50 % | tunn — vard_tillganglighet + omsorg_personal HOLD 2026-06-06, **djupsvep §5.8 (11 instrument) bekräftar**: vårdplats-slutrapport 2026:3 föll *nedåt* (villkor konsumerat), cancerscreening klarar steg 1 men faller på neutralitet (avslag/opp-reservationer); omsorg_personal = fel konstrukt (kompetens/heltid/kontinuitet ≠ omsättning). Väg till 4 kräver modellutvidgning → sign-off |
+  | forsvar | ~~2/5~~ **3/5** | ~~55 %~~ **60 %** | ✅ nato_ukraina tillagt 2026-06-06 (nato_medlemskap, votering UU16, Försvarsberedningen-källa, codex-granskat: V=opposes, MP=none pga reversering). Kvar: ekonomisk_ambition=target (ej B-bar), genomforbarhet_leverans (HOLD, **djupsvep §5.8/7 instrument bekräftar äkta steg-1-vägg**: ingen svensk källa kopplar instrument → kortad *leveranstid*, bara kapacitet/kostnad; ev. indikatorbyte FMV leveransindex → sign-off) |
+  | integration | 2/5 | 55 % | tunn — normer_tillit + boendesegregation HOLD 2026-06-06, **djupsvep §5.8 (11 instrument) bekräftar**: boendesegr. = äkta steg-1-vägg (allt beskrivande/mixed), normer_tillit/KU4-tillgänglighet = perfekt steg 2 men fel konstrukt (förmåga att rösta ≠ uppmätt valdeltagande). Högsta bias-risk; väg till 4 kräver modellutvidgning → sign-off |
   | trygghet | ~~3/5~~ **4/5** | ~~65 %~~ **85 %** | ✅ snabbforfarande_lagforing 2026-06-06 (handlaggningstid, Brå 2020:3, enhälligt bet. JuU2 p1 → alla 8 supports, codex BUILD-WITH-CHANGES). Kvar: forebyggande (saknar indikator) |
   | klimat | ~~3/5~~ **4/5** | ~~70 %~~ **85 %** | ✅ atgarder_mot_invasiva_frammande_arter 2026-06-06 (hotade_arter_naturforlust, Naturvårdsverket, enhälligt bet. MJU13 p1 → alla 8 supports). **FLAGGAD: codex förordade HOLD; byggt v0 low/low — sign-off avgör.** Kvar: industriell_konkurrenskraft (saknar indikator) |
 
