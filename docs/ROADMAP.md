@@ -61,7 +61,7 @@ Fas 0 (skelett, config, scheman, tooling, golden-test-stomme)
 **Kritiska blockeringar:**
 
 - **Fas 0 blockerar allt** — den lägger config-scheman, Pydantic/JSON-Schema-bron, golden-test-stommen och tooling (uv/ruff/mypy/pytest/CI).
-- **Fas 2 → Fas 3** via täckningsgap: Fas 3 ska bara fylla submått Fas 1–2 inte redan täckt (coverage_report körs först).
+- **Fas 2 → Fas 3** via täckningsgap: Fas 3 ska bara fylla undermått Fas 1–2 inte redan täckt (coverage_report körs först).
 - **Fas 4, 5, 6 är "fixtur-frikopplade"**: var och en kan slutföras och bevisas mot syntetiska fixturer **innan** uppströmsdata finns. Riktig data kopplas in när Lager 2/3 är fyllt.
 - **Schema-delning Fas 0/5/6**: `scores.schema.json` + `evidence.schema.json` är ETT kontrakt. Fas 5 genererar dem ur Pydantic; Fas 6 konsumerar dem. `gen_schemas`-drift-check i CI hindrar isärglidning.
 
@@ -93,7 +93,7 @@ Fas 0 (skelett, config, scheman, tooling, golden-test-stomme)
 > - **Schemanamn:** singular (`observation.schema.json` …), låst av golden-testet.
 > - **Tooling:** pip + `ruff` + `pytest` (inte `uv`/`mypy`). CI kör ruff + pytest på Python 3.12.
 > - **Config-scheman för YAML-filerna:** ej skapade — invarianterna verifieras i stället direkt i `pipeline/config.validate()` + `tests/test_config.py`.
-> - **Verifierat:** 7 kategorier / standardvikt 100 / 34 submått / 50 indikatorer; A/B/C/D = 40/35/15/10; IDEA.md:s totalpoängexempel (3,8325); schemafixturer + sabotagetest.
+> - **Verifierat:** 7 kategorier / standardvikt 100 / 34 undermått / 50 indikatorer; A/B/C/D = 40/35/15/10; IDEA.md:s totalpoängexempel (3,8325); schemafixturer + sabotagetest.
 > - **Valfri kvarvarande härdning:** `uv`-lockfil, `mypy`, config-scheman, ADR-0001.
 >
 > Task-tabellen nedan är den ursprungliga designen och behålls som referens/checklista.
@@ -113,7 +113,7 @@ Lägg den reproducerbara grunden som Fas 1–6 hänger på: komplett repo-skelet
 | T0.4 | JSON Schema Draft 2020-12 för alla artefakter + config | `schemas/{observations,actions,responsibility,claims,indicator_effects,scores,evidence}.schema.json` + `{categories,sources,mappings,scoring,claims.config}.schema.json` + `schemas/README.md` | Alla 12 scheman: `Draft202012Validator.check_schema` utan fel; claims-enums = `claims.yaml`; party-enum = `[S,M,SD,C,V,KD,L,MP]`; scores kräver `score`,`ci[2]`,`components{A,B,C,D}`; unika `$id` |
 | T0.5 | `config/mappings.yaml` (NY) | `config/mappings.yaml` | YAML validerar mot `mappings.schema.json`; `expenditure_area_to_category` täcker alla 7 kategorier; `government_periods` täcker 2014–2026 utan glapp, varje rad har `source`; ingen vikt-duplicering; `regional_municipal_governance` draft-block |
 | T0.6 | `src/rosta/schema.py` — bro config↔pydantic↔JSON Schema | `src/rosta/schema.py` | `PARTIES`(8)/`CATEGORY_IDS`(7); `get_validator('scores')` OK; `validate_config(...)` tomt för alla fem; `mypy` exit 0; Pydantic avvisar fel enum |
-| T0.7 | Golden-test-stomme | `tests/test_config.py`, `tests/test_schemas.py`, `tests/fixtures/{scores,evidence}.min.json` | `pytest -q` grönt ≥20 fall, 0 fel/skip; medvetet sabotage (submått-vikt≠100) failar exakt ett test; `scores.min.json` validerar grönt, `score=6` rött |
+| T0.7 | Golden-test-stomme | `tests/test_config.py`, `tests/test_schemas.py`, `tests/fixtures/{scores,evidence}.min.json` | `pytest -q` grönt ≥20 fall, 0 fel/skip; medvetet sabotage (undermått-vikt≠100) failar exakt ett test; `scores.min.json` validerar grönt, `score=6` rött |
 | T0.8 | CI-workflow | `.github/workflows/ci.yml`, `README.md` | YAML giltig, refererar uv→ruff→format→mypy→pytest i ordning; pythonpath=src i CI; README dokar `uv sync`+`uv run pytest` |
 | T0.9 | Verifiering, ADR, commit | `docs/ADR-0001-repo-layout.md`, `docs/PHASE-0-DONE.md`, branch `phase-0-skeleton` (1 commit) | Hela verifieringslistan grön i ren shell; ADR motiverar src-layout/uv/schema-dubbelspår; PHASE-0-DONE listar draft-platshållare; commit på branch, ej pushat |
 
@@ -255,7 +255,7 @@ Tre källadaptrar (SCB PxWeb v2, Kolada v3, Brå/NTU fil+SOL) hämtar rådata ti
 | F2-T4 | Brå/NTU-adapter (fil + SOL, ISO-8859-1) | `sources/bra.py` | Excel/CSV-fixtur → `dodligt_vald` rätt period; SOL-HTML dekodas ISO-8859-1 (åäö ej mojibake); 404 = hård fail, ej tyst tom |
 | F2-T5 | Ladda till warehouse (DuckDB via Parquet) | `transform.py` | `count(*) FROM observations > 0`; `DISTINCT source`={scb,kolada,bra}; omkörning oförändrat radantal; inga NULL/okänd indicator; warehouse gitignorad |
 | F2-T6 | Offline-fixturer + `network`-markör | `tests/fixtures/*`, `tests/conftest.py` | `pytest -m 'not network'` grönt utan internet; SOL-fixtur verifierat ISO-8859-1 |
-| F2-T7 | Indikator↔dataset-mappning i config | mappningsfält i `sources.yaml` el. `mappings.yaml:indicator_sources` | grep efter `'arbetsloshet'` i `sources/*.py` → 0 träffar utanför kommentar; varje (kategori,submått,indikator) finns i `categories.yaml` |
+| F2-T7 | Indikator↔dataset-mappning i config | mappningsfält i `sources.yaml` el. `mappings.yaml:indicator_sources` | grep efter `'arbetsloshet'` i `sources/*.py` → 0 träffar utanför kommentar; varje (kategori,undermått,indikator) finns i `categories.yaml` |
 | F2-T8 | Testsvit (schema, config, normalisering, idempotens) | `tests/test_*.py` | `pytest -m 'not network'` grönt, coverage ≥80%; schema-kontraktstest failar vid brott |
 | F2-T9 | End-to-end + metodnotering | `pipeline/fetch_fas2.py`, `docs/fas2.md` | körning fyller warehouse; docs listar ≥1 täckt indikator i ekonomi/valfard/trygghet/integration; SCB+Kolada täcker 2014–2026 för pinnade indikatorer |
 
@@ -283,31 +283,31 @@ python -m pipeline.fetch_fas2
 - Indikator↔dataset bär implicit omdöme → all mappning i config + cross-check-test, proxyval dokumenteras.
 
 ### Exit-kriterium (DoD)
-`sources.yaml` pinnar SCB (v2, CC0, exakta TAB-id), Kolada (v3, attribution), Brå/NTU (file_download/SOL, ISO-8859-1), datasets mappade, inga gissade licenser; tre adaptrar hämtar→cachar→normaliserar till `observations` som alla validerar; inga hårdkodade indicator-namn; `transform.py` laddar idempotent till warehouse; `pytest -m "not network"` grönt ≥80% coverage; live end-to-end fyller warehouse för ekonomi/valfard/trygghet/integration 2014–2026, dokumenterat i `docs/fas2.md` med verifierade endpoints och kända luckor (Brå-filberoende, återstående submått → Fas 3).
+`sources.yaml` pinnar SCB (v2, CC0, exakta TAB-id), Kolada (v3, attribution), Brå/NTU (file_download/SOL, ISO-8859-1), datasets mappade, inga gissade licenser; tre adaptrar hämtar→cachar→normaliserar till `observations` som alla validerar; inga hårdkodade indicator-namn; `transform.py` laddar idempotent till warehouse; `pytest -m "not network"` grönt ≥80% coverage; live end-to-end fyller warehouse för ekonomi/valfard/trygghet/integration 2014–2026, dokumenterat i `docs/fas2.md` med verifierade endpoints och kända luckor (Brå-filberoende, återstående undermått → Fas 3).
 
 ---
 
 ## Fas 3 — Sektorsmyndigheter + evidensliggare: återstående D-indikatorer + B-evidens
 
 ### Mål
-Källmoduler för sektorsmyndigheterna (Socialstyrelsen, Skolverket, Naturvårdsverket via SCB MI0107, Energimyndigheten, Svenska kraftnät/eSett, Försvar via UO6+ÅR-proxy, Statskontoret/Riksrevisionen/SOM) **samt** evidens-/utvärderingskällorna (IFAU, SBU, Vårdanalys, Skolforskningsinstitutet, FOI, Klimatpolitiska rådet m.fl.). Resultat: (1) varje Fas-3-ägt submått får ≥1 observationsserie i warehouse, och (2) `config/evidence_ledger.yaml` fylls med ≥3 källbackade `evidence_effect`-poster per kategori (≥21 totalt). Inga claims/effects/betyg (Fas 4/5).
+Källmoduler för sektorsmyndigheterna (Socialstyrelsen, Skolverket, Naturvårdsverket via SCB MI0107, Energimyndigheten, Svenska kraftnät/eSett, Försvar via UO6+ÅR-proxy, Statskontoret/Riksrevisionen/SOM) **samt** evidens-/utvärderingskällorna (IFAU, SBU, Vårdanalys, Skolforskningsinstitutet, FOI, Klimatpolitiska rådet m.fl.). Resultat: (1) varje Fas-3-ägt undermått får ≥1 observationsserie i warehouse, och (2) `config/evidence_ledger.yaml` fylls med ≥3 källbackade `evidence_effect`-poster per kategori (≥21 totalt). Inga claims/effects/betyg (Fas 4/5).
 
 ### Task-tabell
 
 | id | Task | Deliverable | Acceptanskriterium |
 |----|------|-------------|--------------------|
-| T3.0 | Gap-matris + pinna prerequisites | `pipeline/tools/coverage_report.py`, `sources.yaml` Fas-3-block, `docs/fas3_coverage.md` | coverage_report listar (kategori,submått,indikator,har_observation); varje källa har base_url/datasets/license(verifierad)/api_version/rate_limit; svaga submått flaggade proxy |
+| T3.0 | Gap-matris + pinna prerequisites | `pipeline/tools/coverage_report.py`, `sources.yaml` Fas-3-block, `docs/fas3_coverage.md` | coverage_report listar (kategori,undermått,indikator,har_observation); varje källa har base_url/datasets/license(verifierad)/api_version/rate_limit; svaga undermått flaggade proxy |
 | T3.1 | Återanvändbar PxWeb-klient + json-stat2-parser | `sources/_pxweb.py`, `sources/_jsonstat.py`, test | auto-chunk >150000 celler i flera POST; parse på MI0107-fixtur ger rätt radantal; ingen nätverkstrafik i CI (mockad transport) |
-| T3.2 | Socialstyrelsen → valfard D | `sources/socialstyrelsen.py`, `mappings.yaml:indicator_sources`, fixtur, test | ≥3 valfard-submått har obs; manifest med content_hash + verifierad license; idempotent (0 nätverksanrop omkörning) |
+| T3.2 | Socialstyrelsen → valfard D | `sources/socialstyrelsen.py`, `mappings.yaml:indicator_sources`, fixtur, test | ≥3 valfard-undermått har obs; manifest med content_hash + verifierad license; idempotent (0 nätverksanrop omkörning) |
 | T3.3 | Skolverket (api + SiRiS-fallback) → valfard & integration | `sources/skolverket.py`, mappings, fixturer, test | obs för skolresultat+behoriga_larare+sfi_sprakkunskaper; CSV semikolon+svensk decimal; saknad pToken → WARN+skip, ej krasch |
 | T3.4 | Naturvårdsverket via SCB MI0107 → klimat | `sources/naturvardsverket.py`, mappings, fixtur, test | territoriell utsläppsserie 2014→senaste år (`kalla='naturvardsverket'`); chunkar; senaste år i manifest; konsumtionsbaserade ifyllt el. flaggat svagt |
 | T3.5 | Energimyndigheten (PxWeb) → klimat | `sources/energimyndigheten.py`, mappings, fixtur, test | fossil_energianvandning-serie; tabellväg via `navigate()` pinnad (ej gissad); json-stat2 + celltak + throttle |
 | T3.6 | El: Svk Mimer + eSett (datumdelad) → klimat | `sources/el.py`, mappings (`cutover_date`), fixturer, test | stitchad serie kontinuerlig över 2025-03-18 utan dubbel/lucka; eSett-paths "verifierad via Swagger <datum>"; degraderar+WARN om en källa nere |
-| T3.7 | Försvar (UO6/BNP + ÅR-proxy) → forsvar | `sources/forsvar.py`, `mappings.yaml:forsvar_proxies`, test | andel-av-BNP korrekt mot syntetiskt facit; varje proxy `is_proxy=true`+source_ref; sekretessbegränsade submått flaggade svaga; `level_weights national:1.0` respekteras |
+| T3.7 | Försvar (UO6/BNP + ÅR-proxy) → forsvar | `sources/forsvar.py`, `mappings.yaml:forsvar_proxies`, test | andel-av-BNP korrekt mot syntetiskt facit; varje proxy `is_proxy=true`+source_ref; sekretessbegränsade undermått flaggade svaga; `level_weights national:1.0` respekteras |
 | T3.8 | Institutioner (SOM + Statskontoret) → demokrati & integration | `sources/institutioner.py`, mappings, fixtur, test | fortroende + tillit_valdeltagande har serier; SOM-obs `confidence_hint='low'` + tabellref; svaga demokrati-indikatorer flaggade |
 | T3.9 | **Evidensliggaren (B)** — seed + maskineri (Fas 4b). Utbyggd 2026-05-30 till **30 källverifierade poster, ≥3/kategori (alla 7)** (29 + `ny_karnkraft` via Fas 4c) via research-workflow (URL-bekräftade officiella källor; stickprov manuellt). Version 0, AI-utkast → expertgranskning återstår före B aktiveras | validerar (`tests/test_fas4.py`): kanonisk indikator + källa + giltiga etiketter; ≥3/kategori; endast allowlist-org |
 | T3.10 | Transform-integration + warehouse | `models.py` (Observation/EvidenceEffect), `transform.py`, `run_fas3.py`, test | `run_fas3.py --only socialstyrelsen` laddar utan fel; okänd kategori/indikator avvisas; alla Fas-3-källor i `GROUP BY kalla`; Parquet partitionerat |
-| T3.11 | Fasgrindstest | `tests/test_fas3_gate.py`, `docs/fas3_coverage.md` (allowlist) | coverage-gate + evidence-gate + idempotens-gate gröna; varje Fas-3-submått är `har_observation` ELLER i allowlist; andra körningen 0 nätverksanrop |
+| T3.11 | Fasgrindstest | `tests/test_fas3_gate.py`, `docs/fas3_coverage.md` (allowlist) | coverage-gate + evidence-gate + idempotens-gate gröna; varje Fas-3-undermått är `har_observation` ELLER i allowlist; andra körningen 0 nätverksanrop |
 
 ### Filer
 `config/{sources,mappings,evidence_ledger}.yaml`, `schemas/evidence_ledger.schema.json`, `pipeline/sources/{_pxweb,_jsonstat,socialstyrelsen,skolverket,naturvardsverket,energimyndigheten,el,forsvar,institutioner}.py`, `pipeline/{evidence,models,transform,run_fas3}.py`, `pipeline/tools/coverage_report.py`, `docs/fas3_coverage.md`, `tests/fixtures/*`, `tests/test_*.py`.
@@ -335,7 +335,7 @@ git status                                                   # inga ändringar u
 - Risk att dubblera Fas 2 (Kolada↔välfärd) → T3.0 coverage_report kör först; `personalomsattning_omsorg` dokumenteras Socialstyrelsen **eller** Kolada-komplement, inte båda blint.
 
 ### Exit-kriterium (DoD)
-Varje Fas-3-ägt submått (valfard vård/skola/omsorg, klimat utsläpp/energi/el, forsvar anslag/personal-proxy, integration sfi/skolresultat, demokrati förtroende/medier) har ≥1 observationsserie 2014→senaste år **eller** är explicit i allowlistan (hotade_arter, delar av militär förmåga) — inget tyst gap, bevisat av coverage-gate; `evidence_ledger.yaml` har ≥3 evidence_effect/kategori (≥21), alla med source_ref, validerade; varje källa har fetch/normalize + manifest (verifierad license) + idempotent cache, laddat via transform; ruff/mypy/pytest gröna, offline kräver inget nät; inget rådata/warehouse deployas (`data/` gitignorad).
+Varje Fas-3-ägt undermått (valfard vård/skola/omsorg, klimat utsläpp/energi/el, forsvar anslag/personal-proxy, integration sfi/skolresultat, demokrati förtroende/medier) har ≥1 observationsserie 2014→senaste år **eller** är explicit i allowlistan (hotade_arter, delar av militär förmåga) — inget tyst gap, bevisat av coverage-gate; `evidence_ledger.yaml` har ≥3 evidence_effect/kategori (≥21), alla med source_ref, validerade; varje källa har fetch/normalize + manifest (verifierad license) + idempotent cache, laddat via transform; ruff/mypy/pytest gröna, offline kräver inget nät; inget rådata/warehouse deployas (`data/` gitignorad).
 
 ---
 
@@ -471,7 +471,7 @@ Deterministisk scoringmotor: omvandla Fas 4:s claims + indicator_effects (+ obse
 |----|------|-------------|--------------------|
 | 5.0 | **Frys scoringkontraktet** + två mattbeslut | `docs/scoring-method.md` (utkast), kommentar i `scoring.yaml`, INTERFACE-sektion i `score.py` | input-kontrakt definierat; **A/C = cross-party minmax, B/D = absolut** låst; degenererat fall → neutral 2.5; inga nya trösklar |
 | 5.1 | Körbart skelett (additivt om Fas 0 finns) | `pyproject.toml`, `pipeline/__init__.py`, `tests/__init__.py`, `.gitignore` (dist/ ignoreras men `dist/.gitkeep` behålls) | venv/uv-install OK; `pytest -q` körs; ruff/mypy konfig OK; git status fungerar |
-| 5.2 | Config-loader + Pydantic-modeller (fail-fast) | `pipeline/config.py`, `pipeline/models.py` | `load_config()` utan ValidationError; submåttsvikt≠100 → ValidationError; mypy strict; 7 kat/8 partier; indikator→submått valideras |
+| 5.2 | Config-loader + Pydantic-modeller (fail-fast) | `pipeline/config.py`, `pipeline/models.py` | `load_config()` utan ValidationError; undermåttsvikt≠100 → ValidationError; mypy strict; 7 kat/8 partier; indikator→undermått valideras |
 | 5.3 | Delpoäng A/B/C/D (ren funktionell kärna) | `pipeline/subscores.py`, `pipeline/normalize.py` | varje compute ger value∈[0,5]+confidence; B vänder tecken rätt; C(regering hela fönstret)>C(aldrig styrt); D<min_responsibility=0.15 → 2.5/low; target-närhet; inga magiska tal |
 | 5.4 | Kategoribetyg + osäkerhetsintervall | `pipeline/aggregate.py` | betyg = 0.40A+0.35B+0.15C+0.10D; ci_low≤score≤ci_high∈[0,5]; alla high → halvbredd 0.225; alla low → 1.05; aldrig >max 1.5 |
 | 5.5 | Orkestrering → `dist/scores.json`+`dist/evidence.json` | `pipeline/{score,io}.py`, `dist/.gitkeep` | körning skapar bägge filer; två körningar (fast stämpel) byte-identiska; 8×7 celler, varje med score/ci[2]/components/refs; refintegritet; evidence bantat |

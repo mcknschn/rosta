@@ -137,6 +137,11 @@ På så sätt kan en användare se vilka påståenden som ligger bakom varje po�
 
 ## Kategorier och mätpunkter
 
+> **Begreppsmodell (kanonisk):** Kategori → **Undermått** → **Indikator** (+ **Riktning**). Tabellerna nedan
+> kallar undermått-kolumnen "Undermått" och listar indikatorerna i avsnittet "Positiv riktning". Den
+> auktoritativa ordlistan + en fullständig mätbarhetskarta för samtliga indikatorer finns i
+> [docs/evidens_trovardighet.md §4.3](docs/evidens_trovardighet.md). Sanningskälla för namn/id: `config/categories.yaml`.
+
 ### 1. Ekonomi och jobb
 
 | Undermått | Vikt inom kategorin |
@@ -148,7 +153,7 @@ På så sätt kan en användare se vilka påståenden som ligger bakom varje po�
 | Inflation och prisstabilitet | 12 % |
 | Offentliga finanser och långsiktig hållbarhet | 15 % |
 
-*(Submåttet "Företagande och investeringar" tillagt 2026-06-05 i B2-täckningsarbetet; övriga vikter omfördelade så summan förblir 100 % — se docs/BACKLOG.md. Trimningen av inflation/offentliga finanser påverkar inte betygen eftersom target-submått utan B-/D-data renormaliseras bort.)*
+*(Undermåttet "Företagande och investeringar" tillagt 2026-06-05 i B2-täckningsarbetet; övriga vikter omfördelade så summan förblir 100 % — se docs/BACKLOG.md. Trimningen av inflation/offentliga finanser påverkar inte betygen eftersom target-undermått utan B-/D-data renormaliseras bort.)*
 
 **Positiv riktning:**
 

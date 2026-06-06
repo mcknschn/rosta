@@ -29,7 +29,7 @@ Lager 1  RÅ INSAMLING (endast lokalt)
 Lager 2  TRANSFORM / OBSERVATIONER (endast lokalt)
   Rådata  ->  data/warehouse.duckdb
               tidy-tabeller:
-              - observations: indikator, kategori, submått, år/period, värde, enhet, geografi, källa
+              - observations: indikator, kategori, undermått, år/period, värde, enhet, geografi, källa
               - actions: parti, datum/period, dokument/votering/budgetrad, kategori, källa
               - responsibility: parti, nivå, geografi, period, styrkegrad, källa
 
@@ -66,9 +66,9 @@ Ett claim är ett litet granskningsbart påstående, till exempel:
 ```
 rosta/
   config/
-    categories.yaml      # 7 kategorier, submått, standardvikter, positiv riktning  (från IDEA.md)
+    categories.yaml      # 7 kategorier, undermått, standardvikter, positiv riktning  (från IDEA.md)
     sources.yaml         # endpoints, dataset-id, licens per källa
-    mappings.yaml        # utgiftsområde<->kategori, indikator<->submått,
+    mappings.yaml        # utgiftsområde<->kategori, indikator<->undermått,
                          # partiernas regeringsperioder, region/kommun-styren
     scoring.yaml         # delpoängvikter (40/35/15/10), normaliserings- och osäkerhetsregler
     claims.yaml          # claim-typer, tillåtna effektetiketter, evidensnivåer
@@ -174,7 +174,7 @@ Väljaren viktar kategorier, inte ideologiska metoder. Scoringen ska därför in
 
 **D — Resultat** (förbättrades indikatorerna där partiet hade ansvar):
 - För perioder/områden där partiet styrde (från C): förändring i kategorins indikatorer mot positiv riktning, **tidsförskjuten** och attributionsviktad.
-- **Implementerat (Fas 5b):** för varje nationell årsindikator (`up`/`down`; `target` hoppas över, saknar målnivå) tas *tecknet* på den riktningsjusterade årsförändringen (förbättring +1 / försämring −1 / oförändrat 0 inom en relativ dödzon). Varje årsförändring (år y−1 → y) tillskrivs regeringen som satt år y−1 (`attribution_lag_years = 1`), viktad med maktandel (regering 1,0, stöd 0,5) — koalitionspartier delar därför samma resultat. Per kategori: submåttsviktat medel → `net ∈ [−1,1]` → betyg via samma 0→2,5-skala som B. *Tecken, inte magnitud*, håller måttet robust och ödmjukt (IDEA.md:s konjunktur-caveat). Täckning: ekonomi, välfärd, klimat (territoriella + konsumtionsbaserade utsläpp + **fossil energianvändning**, Energimyndigheten EN0202_8), integration, trygghet (dödligt våld); försvar/demokrati saknar ännu officiell svensk årsserie för D (allowlistade).
+- **Implementerat (Fas 5b):** för varje nationell årsindikator (`up`/`down`; `target` hoppas över, saknar målnivå) tas *tecknet* på den riktningsjusterade årsförändringen (förbättring +1 / försämring −1 / oförändrat 0 inom en relativ dödzon). Varje årsförändring (år y−1 → y) tillskrivs regeringen som satt år y−1 (`attribution_lag_years = 1`), viktad med maktandel (regering 1,0, stöd 0,5) — koalitionspartier delar därför samma resultat. Per kategori: undermåttsviktat medel → `net ∈ [−1,1]` → betyg via samma 0→2,5-skala som B. *Tecken, inte magnitud*, håller måttet robust och ödmjukt (IDEA.md:s konjunktur-caveat). Täckning: ekonomi, välfärd, klimat (territoriella + konsumtionsbaserade utsläpp + **fossil energianvändning**, Energimyndigheten EN0202_8), integration, trygghet (dödligt våld); försvar/demokrati saknar ännu officiell svensk årsserie för D (allowlistade).
 - **Rättvisa:** partier med litet/inget ansvar (maktandel < `min_responsibility`) får D ≈ neutral (2,5) med **bred osäkerhet** och flaggan `D_not_applicable` — de straffas inte för utfall de inte rådde över. Tunt ansvarsunderlag flaggas `D_thin_basis`.
 
 ### Claims-modell
@@ -265,7 +265,7 @@ pipelinen körs lokalt med `python -m pipeline.build_all`.
 | 0 | ✅ | Repo-skelett, `config/*.yaml`, claim-typer, källregister, scheman, scoringmatte, golden tests, CI | Grund |
 | 1 | ✅ | Riksdagen (live): `responsibility` 11 rader + `party_activity` 120 rader (motioner/parti×utskott, hela fönstret) + voteringsprov 190 rader (12 riksmöten) | Definierar A, C och parti/period-ställningen allt annat hänger på |
 | 2 | 🟡 | SCB + Kolada + Brå (live): **386 obs, 17 kanoniska årsindikatorer** (15 direkta + 2 härledda) i 5 kategorier (ekonomi, välfärd, klimat, integration, trygghet) | Bredaste resultatkällorna; täcker flera kategorier |
-| 3 | 🟡 | Täckningsverktyg (`coverage_report`) + allowlist (`coverage_allowlist.yaml`) + coverage-gate (inget tyst gap); evidensliggaren 30 källverifierade poster (≥3/kat, expertgranskning krävs); fler sektorsadaptrar kvarstår | Fyller återstående submått, gör luckor explicita |
+| 3 | 🟡 | Täckningsverktyg (`coverage_report`) + allowlist (`coverage_allowlist.yaml`) + coverage-gate (inget tyst gap); evidensliggaren 30 källverifierade poster (≥3/kat, expertgranskning krävs); fler sektorsadaptrar kvarstår | Fyller återstående undermått, gör luckor explicita |
 | 4 | ✅ | Claims/effects/positions engine (`pipeline/{claims,effects,positions}.py`), aggregering testad; B partikopplas via ståndpunkter | Gör evidens/träffsäkerhet granskningsbar |
 | 5 | ✅ | Scoring engine + **D-resultatattribution** → `dist/scores.json` (8×7) + `dist/evidence.json` (604 claims), golden tests | Producerar deploy-artefakten |
 | 6 | ✅ | Frontend (`web/`): client-side viktning, rankad partilista, osäkerhetsintervall, bevisspår — lokalt verifierad | Användarupplevelse och transparens |

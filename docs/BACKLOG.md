@@ -17,7 +17,7 @@
 | [ROADMAP.md](ROADMAP.md) | **Fryst historik** — hur faser 0–6 + b-faser byggdes och verifierades. Ändras inte. |
 | [../config/coverage_allowlist.yaml](../config/coverage_allowlist.yaml) | **Maskinläsbar sanningskälla** för vilka D-indikatorer som ännu saknas, med skäl-tag. Coverage-gaten (`tests/test_fas3_gate.py`) tvingar varje indikator att vara *inläst* ELLER *allowlistad*. |
 | **BACKLOG.md** (denna) | **Prioritering & plan** — vågordning per arbetsspår. Duplicerar inte allowlisten; pekar på den. När en indikator byggs: flytta ut den ur allowlisten och bocka av här. |
-| [evidens_trovardighet.md](evidens_trovardighet.md) | **B-spårets arbetslogg & metodutveckling** — bärande: **tvåstegsmodellen** (måttet ≠ positioneringen). Skiljer äkta steg-1-väggar (måttet saknas) från steg-2-källval (acklamation slår bara ut voteringskällan). Metodregister för positionering (källstege, enhällighet, budget-/kommittémotion, bana över tid), statustavla + kandidat-pipeline per kategori, öppna designfrågor, beslutslogg. Uppdateras per B-leverans. |
+| [evidens_trovardighet.md](evidens_trovardighet.md) | **B-spårets arbetslogg & metodutveckling** — bärande: **tvåstegsmodellen** (måttet ≠ positioneringen). Skiljer äkta steg-1-väggar (måttet saknas) från steg-2-källval (acklamation slår bara ut voteringskällan). Metodregister för positionering (källstege, enhällighet, budget-/kommittémotion, bana över tid), statustavla + kandidat-pipeline per kategori, öppna designfrågor, beslutslogg. Uppdateras per B-leverans. **§4.3 = kanonisk begreppsmodell (Kategori→Undermått→Indikator→Riktning) + mätbarhetskarta för samtliga 52 indikatorer.** |
 
 ---
 
@@ -81,10 +81,10 @@ högre coverage → mindre B-krympning → B får faktiskt genomslag.
   modellegenskapen (se metoddok).*
 - ✅ **B4-verktyg — anti-binär täckningsgrind** ([coverage_report.py](../pipeline/tools/coverage_report.py)
   `b_submeasure_spread()` + [test_fas4b_coverage.py](../tests/test_fas4b_coverage.py)): mäter hur många
-  **distinkta submått** som har AKTIV partikopplad B-evidens per kategori (åtgärdstyp med
-  signed_direction≠0, ej coverage_exclude, **och** minst en partiståndpunkt → indikator → submått) och
-  flaggar **nära-binär** kategori (≤1 submått). Speglar att `score.aggregate_B` är submåttsviktat:
-  vilar all aktiv evidens på ett submått kan en enda ståndpunkt svinga b_raw mellan ytterlägen.
+  **distinkta undermått** som har AKTIV partikopplad B-evidens per kategori (åtgärdstyp med
+  signed_direction≠0, ej coverage_exclude, **och** minst en partiståndpunkt → indikator → undermått) och
+  flaggar **nära-binär** kategori (≤1 undermått). Speglar att `score.aggregate_B` är undermåttsviktat:
+  vilar all aktiv evidens på ett undermått kan en enda ståndpunkt svinga b_raw mellan ytterlägen.
   Reproducerar BACKLOG-tabellen exakt (ekonomi 1/5, demokrati 1/5, valfard 2/4, forsvar 2/5,
   integration 2/5, trygghet 3/5, klimat 3/5). Grinden följer coverage_allowlist-mönstret: varje
   nära-binär kategori måste stå i nya `coverage_allowlist.b_near_binary_accepted` med skäl (annars tyst
@@ -94,46 +94,46 @@ högre coverage → mindre B-krympning → B får faktiskt genomslag.
   uteslöts ur D). Hela sviten grön (167 passed). Återstår (=B2): faktiskt bredda liggaren.
 - ✅ **B2 (första leveransen) — ekonomi/produktivitet via FoU-avdraget** ([evidence_ledger](../config/evidence_ledger.yaml)
   + [party_positions](../config/party_positions.yaml)): ny åtgärdstyp `fou_avdrag_skatteincitament` → indikator
-  `produktivitet` (submått bnp_produktivitet). Evidens: **Produktivitetskommissionen SOU 2025:96** + **SOU 2025:3**
+  `produktivitet` (undermått bnp_produktivitet). Evidens: **Produktivitetskommissionen SOU 2025:96** + **SOU 2025:3**
   (authority_evaluation, medium/medium — riktningen FoU→produktivitet säker, men avdragets marginaleffekt ej
   kausalutvärderad). **8 partiståndpunkter votering-belagda** (bet. 2022/23:SfU19, prop. 2022/23:79 "höjt tak för
   FoU-avdraget" 600 000→1,5 mkr/mån, kammaren 2023-05-31): 7 Ja = **supports**, **V Nej = opposes** (reservation +
-  kommittémotion 2022/23:2365). **Ekonomi 1/5 → 2/5 submått med B-evidens — ej längre nära-binär** (ekonomi borttagen
+  kommittémotion 2022/23:2365). **Ekonomi 1/5 → 2/5 undermått med B-evidens — ej längre nära-binär** (ekonomi borttagen
   ur `b_near_binary_accepted`; B4-grinden tvingade fram det). Betygseffekt (förklarbar): V faller på ekonomi
-  3,31→2,54 (dess tidigare topplacering var en nära-binär artefakt — ekonomi vilade på jobb-submåttet där V var max),
+  3,31→2,54 (dess tidigare topplacering var en nära-binär artefakt — ekonomi vilade på jobb-undermåttet där V var max),
   C stiger 1,26→2,04 (jobbsubventions-skeptisk men FoU-positiv). **Ny ranking: S > L > M > MP > KD > C > V > SD.**
   dist omräknat, snapshot re-baselinad, paket regenererat (priority 79), 167 tester gröna. Forskning→förslag→mänsklig
   sign-off 2026-06-05.
-- ✅ **B2 (andra leveransen) — nytt ekonomi-submått "Företagande och investeringar"** (modellutvidgning:
+- ✅ **B2 (andra leveransen) — nytt ekonomi-undermått "Företagande och investeringar"** (modellutvidgning:
   [categories.yaml](../config/categories.yaml) + [IDEA.md](../IDEA.md) + [evidence_ledger](../config/evidence_ledger.yaml)
   + [party_positions](../config/party_positions.yaml) + [coverage_allowlist](../config/coverage_allowlist.yaml)):
   reallöner visade sig **ej B-bart** (Medlingsinstitutet: reallön sätts av parterna via Industriavtalet, drivs av
   produktivitet + Riksbankens inflationsmål → inget partistyrt icke-dubbelräknande instrument). I stället tillagt ett
-  **6:e submått** `foretagande_investeringar` (vikt 15; ekonomi-vikterna omfördelade 22/18/18/15/12/15) med indikator
+  **6:e undermått** `foretagande_investeringar` (vikt 15; ekonomi-vikterna omfördelade 22/18/18/15/12/15) med indikator
   `naringslivets_investeringar` (up, SCB; allowlistad för D — konjunkturkänslig). Åtgärdstyp
   `konkurrenskraftig_foretags_och_agarbeskattning` → investeringar, evidens **Företagsskattekommittén SOU 2014:40**
   (authority_evaluation, medium/medium — investeringars skatteelasticitet empiriskt omtvistad). **BRED ram** (efter att
   smal bolagsskatts-ram visade sig gles, 4/1/3): 8 partiståndpunkter, ordagrant källbelagda via 8+3 parallella
   researchagenter mot fulltext — **5 supports** (M/SD/C/KD/L: lägre bolags-/ägarskatt) / **3 opposes** (S/V/MP: höja
-  kapital-/företagsvinstskatt). **Ekonomi 2/6 → 3/6 täckta submått** (av 4 B-möjliga: jobb, produktivitet, investeringar
+  kapital-/företagsvinstskatt). **Ekonomi 2/6 → 3/6 täckta undermått** (av 4 B-möjliga: jobb, produktivitet, investeringar
   täckta; reallöner ej B-bart, inflation/offentliga finanser target). Betygseffekt: vänstern ner på ekonomi (S/MP
   −0,48, V −0,27), högern upp (C +0,27, KD/L +0,15). **Ny ranking: S > L > M > KD > MP > C > SD > V.** dist/snapshot/paket
   (priority 84) + 167 tester gröna. Forskning→förslag→mänsklig sign-off 2026-06-05.
 - ✅ **B2 (tredje leveransen) — 4:e ekonomi-måttet: hushållens disponibla inkomst (värdeneutralt)** ([categories.yaml](../config/categories.yaml)
-  + [evidence_ledger](../config/evidence_ledger.yaml) + [party_positions](../config/party_positions.yaml)): submåttet **"Reallöner och
+  + [evidence_ledger](../config/evidence_ledger.yaml) + [party_positions](../config/party_positions.yaml)): undermåttet **"Reallöner och
   hushållens ekonomi"** gjordes B-bart genom en ny ARBETANDE indikator `hushallens_reala_disponibla_inkomst` (up, SCB; `realloner`
-  förblir vilande kontext/framtida D). **Ingen ny hink, ingen omviktning** — bara en indikator i befintligt submått. Värdeneutral
+  förblir vilande kontext/framtida D). **Ingen ny hink, ingen omviktning** — bara en indikator i befintligt undermått. Värdeneutral
   familj-åtgärdstyp `inkomststarkande_hushallspolitik` (skatte- och/eller transfereringsreformer som höjer disponibel inkomst),
   evidens **Fördelningspolitisk redogörelse april 2025** (descriptive_statistic/medium/high). **8 partiståndpunkter, alla supports**
   via sitt block-instrument (höger M/SD/C/KD/L: sänkt skatt på arbete; vänster S/V/MP: höjda transfereringar) — ordagrant källbelagda
   via 8 parallella agenter mot fulltext. **Löser tilt-problemet:** eftersom båda blocken kodas supports (en åtgärдstyp, coverage 4/4→5/5,
-  ingen straff) får alla ett positivt köpkraftsbidrag, **störst lyft för dem investeringar-submåttet tryckte ner** (V +0,26, C +0,17,
-  MP/S +0,12) → späder ut högertilten. **Ekonomi 3/6 → 4/6 täckta submått = "4 bra mått" nått, värdeneutralt.** Ny ranking:
+  ingen straff) får alla ett positivt köpkraftsbidrag, **störst lyft för dem investeringar-undermåttet tryckte ner** (V +0,26, C +0,17,
+  MP/S +0,12) → späder ut högertilten. **Ekonomi 3/6 → 4/6 täckta undermått = "4 bra mått" nått, värdeneutralt.** Ny ranking:
   **S > L > M > KD > MP > C > V > SD.** dist/snapshot/paket (priority 87) + 167 tester gröna. Forskning→förslag→mänsklig sign-off 2026-06-05.
   *(Sparande/sparkvot avfärdat: target-likt + svag attribuering; reallöner kvar som vilande kontext.)*
 - ✅ **B2 (fjärde leveransen) — demokrati: rättsstat/domstolarnas oberoende** ([evidence_ledger](../config/evidence_ledger.yaml)
   + [party_positions](../config/party_positions.yaml) + [coverage_allowlist](../config/coverage_allowlist.yaml) + [DATA.md](../DATA.md)):
-  submåttet **rattsstat_maktdelning** gjordes B-bart via åtgärdstyp `grundlagsskydd_domstolarnas_oberoende` → indikator
+  undermåttet **rattsstat_maktdelning** gjordes B-bart via åtgärdstyp `grundlagsskydd_domstolarnas_oberoende` → indikator
   `otillborlig_politisering` (down). Svensk primärkälla **prop. 2024/25:165 / SOU 2023:12 / bet. 2025/26:KU2**
   (authority_evaluation, medium/medium); **EU:s rättsstatsrapport 2024 endast som BEKRÄFTELSE** — dokumenterat
   KÄLLUNDANTAG i DATA.md (mellanstatliga Sverige-utvärderingar tillåtna som bekräftelse, ej primär, ej index; beslut 2026-06-05).
@@ -148,7 +148,7 @@ högre coverage → mindre B-krympning → B får faktiskt genomslag.
   TF/YGL-företräde — ej mediefrihet → ej differentierbart. transparens + personlig frihet HÅLLS: vänster-tilt resp. hög
   tilt; jakt på fler värdeneutrala demokrati-mått pågår, se B2 nedan.)*
 - ✅ **B2 (femte leveransen) — demokrati: personlig frihet (blocköverskridande, Lagrådet-ankrat, codex-granskat)** ([evidence_ledger](../config/evidence_ledger.yaml)
-  + [party_positions](../config/party_positions.yaml)): submåttet **personlig_frihet** gjordes B-bart via åtgärdstyp `begransa_biometrisk_realtidsovervakning_rattssakerhet` → indikator
+  + [party_positions](../config/party_positions.yaml)): undermåttet **personlig_frihet** gjordes B-bart via åtgärdstyp `begransa_biometrisk_realtidsovervakning_rattssakerhet` → indikator
   `overvakning_utan_rattssakerhet` (down). Källa: **Lagrådets yttrande över prop. 2025/26:150** (Polisens AI-ansiktsigenkänning i realtid),
   ordagrant i bet. 2025/26:JuU28 — Lagrådet: förslaget "går avsevärt längre än nödvändigt" och "står därmed i strid med grundlag"
   (helsvensk källa, inget int. undantag behövs). **8 partiståndpunkter votering-belagda** (JuU28, verifierat per parti): **supports = C**
@@ -160,7 +160,7 @@ högre coverage → mindre B-krympning → B får faktiskt genomslag.
   ranking oförändrad: S > L > M > KD > MP > C > V > SD.** Demokrati **2/5 → 3/5**. 167 tester gröna, ruff rent. codex-rescue-granskad ("BYGG
   med ändring": bred policyfamilj, Lagrådet som huvudankare, C egen mapping_note, confidence=medium). Forskning→codex→sign-off pågår 2026-06-05.
 - ✅ **B2 (sjätte leveransen) — försvar: Nato-medlemskap** ([evidence_ledger](../config/evidence_ledger.yaml)
-  + [party_positions](../config/party_positions.yaml)): submåttet **nato_ukraina** (tidigare 0 B-täckning) gjordes B-bart via
+  + [party_positions](../config/party_positions.yaml)): undermåttet **nato_ukraina** (tidigare 0 B-täckning) gjordes B-bart via
   åtgärdstyp `nato_medlemskap` → indikator `nato_interoperabilitet` (up). Källa: **Försvarsberedningen Ds 2024:6**
   (authority_evaluation, high/high; "Nato-medlemskap ökar säkerheten … ger interoperabilitet och förmåga att operativt agera
   gemensamt"). **Votering bet. 2022/23:UU16 p1** (Sveriges Nato-anslutning), verifierat per parti: **supports S/M/SD/C/KD/L**,
@@ -168,14 +168,14 @@ högre coverage → mindre B-krympning → B får faktiskt genomslag.
   opposes vore föråldrat/vilseledande). Blocköverskridande (S på Ja-sidan med högern). Effekt: C/KD +0,146 i försvar; V −0,375
   (flippad); MP oförändrat; **ranking oförändrad: S > L > M > KD > MP > C > V > SD**. Försvar **2/5 → 3/5**. 167 tester gröna, ruff rent.
 - 🟡 **B2-natt 2026-06-06 — välfärd/trygghet/klimat/integration: 0 byggda, kandidatlistor för diskussion.** Systematisk research
-  (alla röstsiffror verifierade mot data.riksdagen.se) av de B-bara otäckta submåtten gav **inget värdeneutralt votering-mått** i
+  (alla röstsiffror verifierade mot data.riksdagen.se) av de B-bara otäckta undermåtten gav **inget värdeneutralt votering-mått** i
   fyra kategorier. **Genomgående vägg:** den faktiska sakreformen tas med **acklamation** (brett stöd → ingen namnvotering att
   partikoppla), medan de namnvoteringar som finns gäller "avslå oppositionens mer-krav" → **regering-vs-opposition eller
   vänster-höger-tilt**. Per regeln *neutralitet före 4* byggdes inget. Kandidatlistor (källkollade, med exakt skäl till förkastande)
-  per submått finns i nattens forskningsanteckningar — kondenserat:
+  per undermått finns i nattens forskningsanteckningar — kondenserat:
   - **välfärd/vard_tillganglighet:** `nationell_vardformedling` (alla för, men votering fångar bara C:s utformningsnyans; byggbar bara via 8 motioner = all-supports/låg differentiering). Övriga (vårdplatser, SVF, vårdgaranti) = omnibus-tilt eller mixed svensk evidens (RiR 2023:12).
   - **välfärd/omsorg_personal:** riktnings-ankare klart (Socialstyrelsen), men instrumenten (Äldreomsorgslyftet, kompetensplan) splittrar rakt vänster-höger; konsensuspunkter = acklamation. (D-not: SKR lade ned kontinuitetsstatistiken; nytt mått 2027.)
-  - **trygghet/rattsvasendets_effektivitet:** `snabbforfarande_lagforing` = bäst evidens (Brå 2020:3) men acklamation; `kronvittnen` (JuU35) = bäst votering (7 Ja/V Nej, blocköverskridande) men utanför tidsfönstret + bara prop-källa + fel indikator. (forebyggande-submåttet saknar indikator → ev. modellutvidgning.)
+  - **trygghet/rattsvasendets_effektivitet:** `snabbforfarande_lagforing` = bäst evidens (Brå 2020:3) men acklamation; `kronvittnen` (JuU35) = bäst votering (7 Ja/V Nej, blocköverskridande) men utanför tidsfönstret + bara prop-källa + fel indikator. (forebyggande-undermåttet saknar indikator → ev. modellutvidgning.)
   - **klimat/biologisk_mangfald:** skyddsåtgärder = acklamation; namnvoteringar = "avslå mer-ambition" = grön-axel-tilt. `invasiva_frammande_arter` möjlig motion-baserad all-supports (riktning hårt belagd, Naturvårdsverket) men bunten-problem.
   - **integration/boendesegregation + normer_tillit:** kategorins egen caveat ("stor risk för ideologisk bias") bekräftad i praktiken — värdeneutrala åtgärder (hedersvåld, samhällsorientering, segregationsåtgärder) tas i acklamation; namnvoteringar = bostads-/hyrespolitik eller S-/C-ensam = tilt.
   - **försvar/genomforbarhet_leverans:** riktning klar (SOU 2022:24), men materielpunkter = acklamation; namnvoteringar buntade (Israel-vapenexport, Saab-ägande) eller budgettiltade.
@@ -189,11 +189,11 @@ högre coverage → mindre B-krympning → B får faktiskt genomslag.
 - ✅ **B2 (sjunde+åttonde leveransen) — enhällighet-som-källa: trygghet + klimat → 4/5** ([evidens_trovardighet.md](evidens_trovardighet.md)
   + [evidence_ledger](../config/evidence_ledger.yaml) + [party_positions](../config/party_positions.yaml)): den nya **tvåstegsmetoden**
   (måttet ≠ positioneringen; acklamation slår bara ut *voteringskällan*, ett **enhälligt betänkande** belägger att alla 8 partier står bakom)
-  byggde de två mått som var "väggade" under natten. **(7) `snabbforfarande_lagforing` → `handlaggningstid`** (trygghet, submått
+  byggde de två mått som var "väggade" under natten. **(7) `snabbforfarande_lagforing` → `handlaggningstid`** (trygghet, undermått
   rattsvasendets_effektivitet 3/5 → **4/5**): Brå 2020:3 (handläggningstid i tingsrätt ca −40 %, total "mer än halverats"); enhälligt
   bet. 2022/23:JuU2 punkt 1 (acklamation; enda reservationen V/C/MP gäller punkt 2/påföljd och "välkomnar" snabbförfarandet) → **alla 8 supports**;
   authority_evaluation/medium/medium; **codex BUILD-WITH-CHANGES**. **(8) `atgarder_mot_invasiva_frammande_arter` → `hotade_arter_naturforlust`**
-  (klimat, submått biologisk_mangfald 3/5 → **4/5**): Naturvårdsverket (förteckningen "ett verktyg i arbetet med att förebygga och begränsa
+  (klimat, undermått biologisk_mangfald 3/5 → **4/5**): Naturvårdsverket (förteckningen "ett verktyg i arbetet med att förebygga och begränsa
   spridningen av arter som kan orsaka skador på ... biologisk mångfald"); enhälligt bet. 2025/26:MJU13 punkt 1 (acklamation, "inte väckts någon
   motion som går emot"; tiltade p2 utesluten) → **alla 8 supports**. **⚠️ FLAGGAD:** codex förordade HOLD (instrument-precision på rubrikcitatet) →
   byggt som **version 0 med konservativ kalibrering authority_evaluation/low/low** + instrument-mekanismcitat; **din sign-off avgör om det behålls**.
@@ -202,7 +202,7 @@ högre coverage → mindre B-krympning → B får faktiskt genomslag.
   evidens_trovardighet.md §6–§7). 36 evidensposter / 192 ståndpunkter; scorerun + B4 (inga nära-binära) + 167 tester gröna + ruff rent; granskningspaket
   priority 93; **snapshot ej re-baselinad** (kumulativ drift syns). Forskning (4+3 agenter) → codex → bygge 2026-06-06; väntar mänsklig sign-off.
 - ✅ **B2 (nionde leveransen) — demokrati: lagstadgat oberoende public service (enhällighet, codex-granskat)** ([evidence_ledger](../config/evidence_ledger.yaml)
-  + [party_positions](../config/party_positions.yaml) + [evidens_trovardighet.md](evidens_trovardighet.md)): submåttet **yttrandefrihet_medier** (tidigare B-tomt)
+  + [party_positions](../config/party_positions.yaml) + [evidens_trovardighet.md](evidens_trovardighet.md)): undermåttet **yttrandefrihet_medier** (tidigare B-tomt)
   gjordes B-bart via åtgärdstyp `lagstadgat_oberoende_public_service` → indikator `mediefrihet` (up). Instrument: för första gången regleras
   public service-uppdraget I LAG (ny lag om public service) med lagstadgat oberoende. Källa **prop. 2024/25:166** (ur 2023 års **parlamentariska**
   public service-kommitté, **SOU 2024:34** "Ansvar och oberoende") — instrument-mekanism (prop. 5.2.1): public service "ska bedrivas självständigt i
@@ -213,7 +213,7 @@ högre coverage → mindre B-krympning → B får faktiskt genomslag.
   **Demokrati 3/5 → 4/5.** Icke-rankningsdrivande konsensus-mått: isolerad effekt demokrati +0,0…+0,20/parti (alla supports), total +0,0…+0,015,
   **ranking oförändrad**. 37 evidensposter / 200 ståndpunkter; scorerun + B4 (inga nära-binära) + 167 tester gröna + ruff rent + 0 cyrilliska; paket
   regenererat. **snapshot ej re-baselinad.** Samma dag: **djupsvep §5.8** på forsvar/valfard/integration (7+11+11 instrument, 4 parallella agenter) →
-  **HOLD ×5 bekräftat** med skärpta återöppningsvillkor (se evidens_trovardighet.md §6); väg till 4 submått där kräver modellutvidgning → sign-off.
+  **HOLD ×5 bekräftat** med skärpta återöppningsvillkor (se evidens_trovardighet.md §6); väg till 4 undermått där kräver modellutvidgning → sign-off.
 
 ### Status per spår efter nattkörning 2026-06-04 (A-raden uppdaterad 2026-06-05)
 
@@ -239,13 +239,13 @@ nu utfördes — det var precis det villkoret planen ställde.*
 
 ## Spår D — Datatäckning (utfall, delpoäng D)
 
-Mål: fler kanoniska årsserier som matar D-attributionen, så fler kategorier/submått mäts på
+Mål: fler kanoniska årsserier som matar D-attributionen, så fler kategorier/undermått mäts på
 faktiskt utfall. Alla nya serier ska vara kanoniska (finnas i `categories.yaml` med rätt
 riktning) och annuella, så de matar `category_d` automatiskt.
 
 ### Våg 1 — billig bredd (återanvänder befintliga mönster) 🔵
 
-| Indikator | Kategori → submått | Källa & metod | Återanvänder | Tag |
+| Indikator | Kategori → undermått | Källa & metod | Återanvänder | Tag |
 |-----------|--------------------|---------------|--------------|-----|
 | `uppklaringsgrad` | trygghet → rättsväsendets effektivitet | Brå, handlagda brott (Excel) | `bra.fetch_*`-mönster | future |
 | `handlaggningstid` | trygghet → rättsväsendets effektivitet | Brå / Åklagarmyndigheten (Excel) | `bra.fetch_*` | future |
@@ -256,12 +256,12 @@ riktning) och annuella, så de matar `category_d` automatiskt.
 
 **Varför först:** trygghet har i dag 3 D-serier men bara på *utsatthet/grovt våld* — de fyra
 första lyfter rättsväsende + förebyggande + återfall, så **trygghets-D går från ~halv till
-nästan full submåttstäckning**. Det är en kategori vars betyg i dag drivs av A/C. Allt utom
+nästan full undermåttstäckning**. Det är en kategori vars betyg i dag drivs av A/C. Allt utom
 Polisen/Socialstyrelsen återanvänder Brå-Excel-mönstret som redan finns.
 
 ### Våg 2 — nya adaptrar (källa finns men ej rent öppet API) ⚪
 
-| Indikator | Kategori → submått | Källa & metod | Effort | Tag |
+| Indikator | Kategori → undermått | Källa & metod | Effort | Tag |
 |-----------|--------------------|---------------|--------|-----|
 | `realloner` | ekonomi → reallöner/hushåll | Medlingsinstitutets konjunkturlönestatistik (helekonomi-löneindex; SCB:s API saknar ren serie) | M | future |
 | `sfi_sprakkunskaper` | integration → skola/språk | Skolverkets statistikportal (kräver semantikval: godkäntandel vs progression) | M | future |
@@ -269,7 +269,7 @@ Polisen/Socialstyrelsen återanvänder Brå-Excel-mönstret som redan finns.
 
 ### Våg 3 — härledda + design­krävande ⚪🟣
 
-| Indikator | Kategori → submått | Metod | Effort | Tag |
+| Indikator | Kategori → undermått | Metod | Effort | Tag |
 |-----------|--------------------|-------|--------|-----|
 | `elprisvolatilitet` | klimat → energi/elpriser | härled ur Svk spotpris (`derived.py`-mönster) | S (efter Svk-adapter) | derived |
 | `effektbrist` | klimat → energi/elpriser | härled ur Svk effektbalans | S (efter Svk-adapter) | derived |
@@ -292,8 +292,8 @@ Polisen/Socialstyrelsen återanvänder Brå-Excel-mönstret som redan finns.
 ## Spår B — Evidens & trovärdighet (delpoäng B)
 
 Störst hävstång på trovärdighet. B väger 35 % och vilar på **36 evidensposter + 192 ståndpunkter,
-expertgranskade och bumpade till `version 1` (mänsklig sign-off 2026-06-05); B2 samma dag: FoU-avdrag, submåttet
-företagande/investeringar samt hushållens disponibla inkomst → ekonomi 4/6 täckta submått. 2026-06-06: nato
+expertgranskade och bumpade till `version 1` (mänsklig sign-off 2026-06-05); B2 samma dag: FoU-avdrag, undermåttet
+företagande/investeringar samt hushållens disponibla inkomst → ekonomi 4/6 täckta undermått. 2026-06-06: nato
 (försvar) + snabbförfarande (trygghet 4/5) + invasiva arter (klimat 4/5, FLAGGAD) via enhällighet-som-källa**.
 
 - **B1 — Expertgranska version-0-config** ✅ *(mänsklig sign-off 2026-06-05 — `version 0 → 1`)* —
@@ -309,7 +309,7 @@ företagande/investeringar samt hushållens disponibla inkomst → ekonomi 4/6 t
       villkoret); M/SD/KD/L `ny_karnkraft` **behållna + källtyps-asymmetri dokumenterad** i liggaren.
     - *evidence_ledger — alla 30 poster triade (blast-radius-mätt), 6 åtgärder införda:* koldioxidskatt→territoriella_utslapp-
       **dubblett borttagen** (löste bekräftad double-count), **redundant** subventionerade→arbetslöshet borttagen (D4;
-      undviker dubbelvikt av jobbeffekten i samma submått), `tidiga_insatser`/`behandlingsprogram_kriminalvard`/
+      undviker dubbelvikt av jobbeffekten i samma undermått), `tidiga_insatser`/`behandlingsprogram_kriminalvard`/
       `sfi_kombinerat_med_praktik` **uppgraderade** från generiska seed-källor till URL-verifierade officiella källor
       (Skolforskningsinst. 2019 / Kriminalvården / IFAU Dahlberg m.fl. 2020), `reduktionsplikt_drivmedel` effect_strength
       **HIGH→medium** (vilade på en-års-attribution i pressmeddelande). 5 inerta poster identifierade (unclear/mixed/
@@ -326,20 +326,20 @@ företagande/investeringar samt hushållens disponibla inkomst → ekonomi 4/6 t
       bevarande och instrument-exakta enligt sina mapping_notes men har inte var för sig återhämtats mot källa.
       *Kvarstående B-arbete flyttat till B2/B4 (täckning) — ej en blockerare för v1.*
 - **B2 — Bredda evidensliggaren (anti-binär)** 🟡 *(ekonomi ✅ 4/6 täckta = alla 4 B-möjliga, 2026-06-05: FoU→produktivitet + företagande/investeringar + hushållens disponibla inkomst; kvar: demokrati)* — flera
-  kategoriers B vilar på för få submått (se B4). **Ekonomi är värst: 1/5 submått (25 % av kat-vikten), bara
+  kategoriers B vilar på för få undermått (se B4). **Ekonomi är värst: 1/5 undermått (25 % av kat-vikten), bara
   2 aktiva åtgärdstyper som båda matar `sysselsattning`** → B blir nästan binär (5,0 / ~2,5 / 0,0 efter två
   jobbpolitiska ställningstaganden; BNP/produktivitet + reallöner + inflation + offentliga finanser = 75 % har
   **noll** B-evidens). Demokrati lika illa (1/5, 20 %, dessutom enbart `expert_opinion`). Åtgärd: källbelagda
-  åtgärdstyper för de otäckta submåtten — **ekonomi först**, och då **produktivitet** (`bnp_produktivitet`)
+  åtgärdstyper för de otäckta undermåtten — **ekonomi först**, och då **produktivitet** (`bnp_produktivitet`)
   och **reallöner** (`realloner_hushall`) — de enda up-indikatorerna. (Inflation + offentliga finanser är
   target-indikatorer → tar inget riktat B-bidrag; B4-grinden bekräftar detta.) Fler åtgärdstyper/kategori
-  → fler täckta submått → mindre binäritet (och högre `coverage` → mindre B-krympning).
+  → fler täckta undermått → mindre binäritet (och högre `coverage` → mindre B-krympning).
 - **B3 — Fler omstridda/differentierande åtgärdstyper** ⚪ — återanvänd Plan A-mönstret
   (Fas 4c): kandidatregister → endast intersektionen *omstridd ∧ evidensbelagd* → negativ-grind.
 - **B4 — Kategori-täckningsaudit (anti-binär garanti)** ⚪ *(ny 2026-06-05)* — säkerställ att **ingen
-  kategoris B vilar på ett enda submått**. Täckningsaudit 2026-06-05 (aktiva åtgärdstyper × submått de matar):
+  kategoris B vilar på ett enda undermått**. Täckningsaudit 2026-06-05 (aktiva åtgärdstyper × undermått de matar):
 
-  | Kategori | Submått m. B-evidens | Andel kat-vikt | Status |
+  | Kategori | Undermått m. B-evidens | Andel kat-vikt | Status |
   |---|---|---|---|
   | ekonomi | ~~1/5~~ **4/6** | ~~25 %~~ **73 %** | ✅ åtgärdad 2026-06-05 (FoU→produktivitet + företagande/investeringar + hushållens disponibla inkomst). 4 av 4 B-möjliga täckta; inflation/off.finanser = target (vilande) |
   | demokrati | ~~1/5~~ **4/5** | ~~20 %~~ **80 %** | ✅ åtgärdad 2026-06-05/06: (1) grundlagsskydd domstolarnas oberoende → otillborlig_politisering (votering KU2), (2) begränsa biometrisk realtidsövervakning m. rättssäkerhet → overvakning_utan_rattssakerhet (votering JuU28, **blocköverskridande**, Lagrådet-ankrat), **(3) lagstadgat oberoende public service → mediefrihet (enhälligt bet. 2025/26:KrU2 p1, prop. 2024/25:166 ur parlamentarisk kommitté SOU 2024:34 → alla 8 supports; codex BUILD-WITH-CHANGES, mekanism-/designevidens low/low; demokrati 3/5 → 4/5)**. Kvar otäckt: transparens_ansvar (**stark återöppning: prop. 2025/26:258 insyn i politiska processer, bet. KU39, beslut 2026-06-15**) |
@@ -349,15 +349,15 @@ företagande/investeringar samt hushållens disponibla inkomst → ekonomi 4/6 t
   | trygghet | ~~3/5~~ **4/5** | ~~65 %~~ **85 %** | ✅ snabbforfarande_lagforing 2026-06-06 (handlaggningstid, Brå 2020:3, enhälligt bet. JuU2 p1 → alla 8 supports, codex BUILD-WITH-CHANGES). Kvar: forebyggande (saknar indikator) |
   | klimat | ~~3/5~~ **4/5** | ~~70 %~~ **85 %** | ✅ atgarder_mot_invasiva_frammande_arter 2026-06-06 (hotade_arter_naturforlust, Naturvårdsverket, enhälligt bet. MJU13 p1 → alla 8 supports). **FLAGGAD: codex förordade HOLD; byggt v0 low/low — sign-off avgör.** Kvar: industriell_konkurrenskraft (saknar indikator) |
 
-  Mål: ≥2–3 submått med evidens per kategori; ingen kategori där en enda åtgärdstyp (eller ett submått) kan
+  Mål: ≥2–3 undermått med evidens per kategori; ingen kategori där en enda åtgärdstyp (eller ett undermått) kan
   svänga betyget mellan ytterlägen. **Verktyg/grind ✅ levererad 2026-06-05** (se B4-verktyg under Levererat):
   [coverage_report.py](../pipeline/tools/coverage_report.py) `b_submeasure_spread()` flaggar nära-binär
-  kategori (≤1 submått) och [test_fas4b_coverage.py](../tests/test_fas4b_coverage.py) + nya
+  kategori (≤1 undermått) och [test_fas4b_coverage.py](../tests/test_fas4b_coverage.py) + nya
   `coverage_allowlist.b_near_binary_accepted` gör regressionen synlig. **Kvar (=B2):** faktiskt höja
-  spridningen till ≥2 submått för ekonomi och demokrati. **VIKTIGT fynd från grinden:** inflation och
+  spridningen till ≥2 undermått för ekonomi och demokrati. **VIKTIGT fynd från grinden:** inflation och
   offentliga finanser (ekonomi) är target-indikatorer → kan inte få riktat B-bidrag; ekonomis enda
   realistiska B-mål är produktivitet och reallöner (up-indikatorer). Knyter an till B2 (ekonomi/demokrati först).
-  - **Demokrati är trippel-svag** (fynd vid 79-screeningen 2026-06-05): (1) nära-binär (1/5 submått), (2) liggaren
+  - **Demokrati är trippel-svag** (fynd vid 79-screeningen 2026-06-05): (1) nära-binär (1/5 undermått), (2) liggaren
     är enbart `expert_opinion` (rekommendationer, ej uppmätt effekt), och (3) partiståndpunkterna bygger till stor del
     på **enskilda ledamotsmotioner** (4 av `starkt_oberoende_granskning`-raderna M/SD/KD/L + flera antikorruptionsrader
     är `enskild_motion`). Riktningen är låg-risk (alla stödjer antikorruption), men demokrati-B vilar på den svagaste

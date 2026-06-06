@@ -1,7 +1,7 @@
 # Rösta — Evidens & trovärdighet (B-spåret): arbetslogg & metodutveckling
 
 > **Levande arbetsdokument.** Spårar arbetet med att höja **B** (delpoäng evidens/träffsäkerhet,
-> 0,35 av varje kategoripoäng) — både *täckning* (fler submått med partikopplad evidens) och
+> 0,35 av varje kategoripoäng) — både *täckning* (fler undermått med partikopplad evidens) och
 > *trovärdighet* (källkvalitet, neutralitet, verifierbarhet).
 > Skapad 2026-06-06 efter att natten gav **1 byggt mått** trots research i fem kategorier.
 > Bärande omtag (2026-06-06): **måttet och positioneringen är två skilda steg** (§2). Mycket av
@@ -15,7 +15,7 @@
 
 ## 0. Varför denna fil finns
 
-Natten 2026-06-06 var uppdraget "nå 4 submått i välfärd, försvar, integration, trygghet och
+Natten 2026-06-06 var uppdraget "nå 4 undermått i välfärd, försvar, integration, trygghet och
 klimat". Resultatet blev **1 mått** (försvar/nato_medlemskap) — inte av brist på letande (varje
 röstsiffra verifierades mot data.riksdagen.se) utan för att metoden vi körde, **ren votering + krav
 på differentiering**, blandade ihop två frågor som borde hållas isär (§2). Filen finns för att:
@@ -33,9 +33,9 @@ versionsstyrd config; all data spårbar till en officiell svensk källa; värden
 
 ## 1. Mål & spelregler
 
-**Mål:** varje kategori ska ha **≥4 submått med aktiv partikopplad B-evidens** *där det är möjligt*
-(vissa submått saknar indikator, vissa indikatorer är `target` utan riktning — se §4). Fler täckta
-submått → mindre coverage-krympning mot neutral 2,5 → B får faktiskt genomslag och vilar inte på en
+**Mål:** varje kategori ska ha **≥4 undermått med aktiv partikopplad B-evidens** *där det är möjligt*
+(vissa undermått saknar indikator, vissa indikatorer är `target` utan riktning — se §4). Fler täckta
+undermått → mindre coverage-krympning mot neutral 2,5 → B får faktiskt genomslag och vilar inte på en
 enda rad.
 
 **Spelregler (beslutade med användaren, gäller tills annat sägs):**
@@ -55,7 +55,7 @@ Den bärande insikten (2026-06-06): **ett mått, och hur vi positionerar partier
 steg.** Vi behandlade dem länge som ett — "finns en ren votering?" fick avgöra både om måttet dög
 *och* hur partierna placerades. Det var fel.
 
-- **Steg 1 — Måttet.** Ett submått + en indikator (med riktning) + ett policyinstrument + **officiell
+- **Steg 1 — Måttet.** Ett undermått + en indikator (med riktning) + ett policyinstrument + **officiell
   svensk evidens att instrumentet flyttar indikatorn** åt det håll partiet påstår. Det här avgör om
   måttet *finns* och är trovärdigt. Oberoende av vilka partier som råkar stödja det.
 - **Steg 2 — Positioneringen.** *Var* visar sig varje partis hållning på instrumentet? Votering,
@@ -92,7 +92,7 @@ steg.** Vi behandlade dem länge som ett — "finns en ren votering?" fick avgö
 Aktiv partikopplad B-evidens per kategori (källa: `python -m pipeline.tools.coverage_report`,
 B4-grind `b_submeasure_spread`). **Senast uppdaterad 2026-06-06.**
 
-| Kategori | Submått m. B-evidens | B-möjliga submått¹ | Status |
+| Kategori | Undermått m. B-evidens | B-möjliga undermått¹ | Status |
 |---|---|---|---|
 | ekonomi | **4/6** | 4 | ✅ alla B-möjliga täckta (inflation/off.finanser = target) |
 | trygghet | **4/5** | ~4 | ✅ snabbförfarande byggt 2026-06-06 (enhällighet) → **4 nått** |
@@ -102,8 +102,8 @@ B4-grind `b_submeasure_spread`). **Senast uppdaterad 2026-06-06.**
 | integration | 2/5 | 3–4⁴ | HOLD ×2 **bekräftat djupsvep §5.8** (11 instrument; boendesegr. steg-1-vägg, normer_tillit/KU4 fel konstrukt) |
 | valfard | 2/4 | 3⁵ | HOLD ×2 **bekräftat djupsvep §5.8** (11 instrument; vårdplats-slutrapport 2026:3 föll nedåt, cancerscreening = steg-2-tilt) |
 
-¹ Submått vars indikator har en riktning (≠ `target`) **och** kan kopplas till en åtgärdstyp med
-  evidensbelagd riktning. ² demokrati har submått där neutralt mått ännu inte hittats utan dubbelräkning.
+¹ Undermått vars indikator har en riktning (≠ `target`) **och** kan kopplas till en åtgärdstyp med
+  evidensbelagd riktning. ² demokrati har undermått där neutralt mått ännu inte hittats utan dubbelräkning.
   ³ försvar: `ekonomisk_ambition` = `forsvarsanslag_andel_bnp` är `target`. ⁴ integration:
   `migrationssystem` saknar indikator. ⁵ välfärd: `vard_tillganglighet` + `omsorg_personal` otäckta.
 
@@ -134,7 +134,7 @@ den källan. Sorterat på vad som *verkligen* hindrar:
 Ingen källa i världen hjälper; måttet existerar inte förrän en indikator med svensk auktoritetsbelagd
 riktning läggs till (§5.7).
 
-| Kategori | Submått | Steg-1-hinder |
+| Kategori | Undermått | Steg-1-hinder |
 |---|---|---|
 | trygghet | `forebyggande` | saknar indikator |
 | klimat | `industriell_konkurrenskraft` | saknar indikator |
@@ -146,117 +146,109 @@ riktning läggs till (§5.7).
 
 ---
 
-## 4.3 Mätbarhetskarta per indikator (samtliga mått) ⭐
+## 4.3 Begreppsmodell + mätbarhetskarta per indikator (samtliga mått) ⭐
 
-> Tillagd 2026-06-06 på användarens fråga: *kan varje indikator faktiskt mätas?* En indikator bidrar
-> till betyget om den har **B** (partikopplad evidens att ett instrument flyttar den) **eller** **D**
-> (officiell svensk årsserie). Saknar den båda — och båda vägarna är stängda — är den i praktiken
-> dekoration. Klassningen skiljer **"ej byggt än"** (mätbart, jobb kvarstår) från **"ej mätbart"**
-> (äkta vägg). Genererad ur `categories.yaml` + `evidence_ledger` + `party_positions` + `coverage_allowlist`.
+> Tillagd 2026-06-06 på användarens begäran: (a) en **stringent begreppsmodell** — samma namn i alla
+> dokument, och (b) en **mätbarhetskarta** — kan varje indikator faktiskt mätas? Detta avsnitt är den
+> **auktoritativa ordlistan** för hela projektet; IDEA.md, DATA.md, BACKLOG.md och ROADMAP.md använder
+> samma termer (terminologin normaliserades 2026-06-06: "submått" → **Undermått**).
 
-**Legend.** **B:** ✅ byggt (antal partier) · — tom · `target`. **D:** ✅ årsserie · ○ åtkomlig (adapter/härledning kvarstår) · — ingen användbar serie (skäl) · `target`.
-**Status:** ✅ **mäts** (bidrar nu) · 🟡 **mätbart, ej byggt** (väg finns) · 🔴 **ej mätbart** (B-vägg + ingen D — kandidat för borttagning/omklassning, sign-off) · ⚪ **target** (kontext, betygssätts ej, renormaliseras bort).
+### Begreppsmodell (ordlista) — fyra nivåer, ETT namn var
 
-### ekonomi
-| Submått | Indikator | Riktn. | B | D | Status |
-|---|---|---|---|---|---|
-| sysselsättning/arbetslöshet | sysselsattning | up | ✅ 8 | ✅ | ✅ mäts |
-| sysselsättning/arbetslöshet | arbetsloshet | down | — | ✅ | ✅ mäts (D) |
-| bnp/produktivitet | bnp_per_capita | up | — | ✅ | ✅ mäts (D) |
-| bnp/produktivitet | produktivitet | up | ✅ 8 | ✅ | ✅ mäts |
-| reallöner/hushåll | realloner | up | — | ○ adapter | 🟡 *vilande dublett* (hushållens disp. ink. är arbetsindikatorn) |
-| reallöner/hushåll | hushallens_reala_disponibla_inkomst | up | ✅ 8 | ○ adapter | ✅ mäts (B) |
-| företagande/investeringar | naringslivets_investeringar | up | ✅ 8 | ○ adapter | ✅ mäts (B) |
-| inflation | inflation | target | `target` | `target` | ⚪ target |
-| offentliga finanser | statsskuld_underskott | target | `target` | `target` | ⚪ target |
+| Nivå | Kanoniskt namn | Kod-nyckel (sanningskälla) | Exempel |
+|---|---|---|---|
+| 1 | **Kategori** | `categories[].id` | Försvar och beredskap (`forsvar`) |
+| 2 | **Undermått** | `submeasures[].id` | Militär förmåga (`militar_formaga`) |
+| 3 | **Indikator** | `indicators[].id` | Försvarsanslag som andel av BNP (`forsvarsanslag_andel_bnp`) |
+| 3b | **Riktning** | `indicators[].direction` | upp · ned · målnivå (`target`) |
 
-### valfard
-| Submått | Indikator | Riktn. | B | D | Status |
-|---|---|---|---|---|---|
-| vård tillgänglighet | vardkoer | down | — | ✅ | ✅ mäts (D) |
-| vård tillgänglighet | vard_i_tid | up | — | — utgången/dublett | 🟡 *redundant* (vardkoer täcker) |
-| vård tillgänglighet | overlevnad_svar_sjukdom | up | — | — ej konsek. år | 🟡 mätbart (B-väg cancerscreening; se §6) |
-| skola kunskap | skolresultat | up | ✅ 8 | ✅ | ✅ mäts |
-| skola kunskap | skillnader_mellan_skolor | down | — | — ingen serie | 🟡 mätbart, ej byggt (svag) |
-| skola kunskap | behoriga_larare | up | — | ✅ | ✅ mäts (D) |
-| omsorg personal | personalomsattning_omsorg | down | — | — ingen serie | 🔴 **ej mätbart** (fel konstrukt + SKR la ned serien) |
-| finansiering/styrning | valfardsbrottslighet | down | ✅ 7 | — ingen serie | ✅ mäts (B) |
+**Regel mot begreppsförvirring:** `config/categories.yaml` är sanningskälla; **id:t** (t.ex. `nato_ukraina`) är
+det som aldrig får glida mellan dokument. De svenska visningsnamnen ovan är kanoniska — använd dem i all prosa.
+*Retirerade synonymer:* "submått" → **Undermått** (kod-nyckeln heter fortfarande `submeasures`/`submeasure`,
+engelska — det är samma begrepp); "mätpunkt"/"mått" → **Indikator**. Varje indikator har EN riktning:
+`up` → upp, `down` → ned, `target` → målnivå. (Visningsnamnen för Kategori/Undermått hämtas ur `categories.yaml`
+`name`-fältet — fyra trunkerade namn rättades 2026-06-06: Nato/Skola/Normer/Finansiering hade kapats av
+oquoterade kommatecken.)
 
-### trygghet
-| Submått | Indikator | Riktn. | B | D | Status |
-|---|---|---|---|---|---|
-| grov brottslighet | dodligt_vald | down | — | ✅ | ✅ mäts (D) |
-| grov brottslighet | skjutningar_sprangningar | down | ✅ 3 | ✅ | ✅ mäts |
-| utsatthet/trygghet | brottsutsatthet | down | ✅ 5 | ✅ | ✅ mäts |
-| utsatthet/trygghet | upplevd_otrygghet | down | — | ✅ | ✅ mäts (D) |
-| rättsv. effektivitet | uppklaringsgrad | up | — | ✅ | ✅ mäts (D) |
-| rättsv. effektivitet | handlaggningstid | down | ✅ 8 | ○ adapter | ✅ mäts (B) |
-| återfall/kriminalvård | aterfall_i_brott | down | ✅ 7 | — PDF/metodbrott | ✅ mäts (B) |
+### Mätbarhet — kan varje indikator mätas?
+En indikator bidrar till betyget om den har **B** (partikopplad evidens att ett instrument flyttar den) **eller**
+**D** (officiell svensk årsserie). B och D är två vägar — en stängd D dödar inte indikatorn om B bär den (t.ex.
+mediefrihet/korruption: D förbjuden/sekretess men B byggd).
+**Mätstatus:** ✅ **mäts** (B och/eller D, bidrar nu) · 🟡 **mätbar, ej byggd** (väg finns, jobb kvarstår) ·
+🔴 **ej mätbar** (B-vägg + ingen D — kandidat för borttagning/omklassning, sign-off §8.6) · ⚪ **target**
+(kontext, ingen riktning, betygssätts ej, renormaliseras bort).
 
-### forsvar
-| Submått | Indikator | Riktn. | B | D | Status |
-|---|---|---|---|---|---|
-| militär förmåga | personal_varnpliktiga | up | ✅ 7 | — sekretess/ÅR | ✅ mäts (B) |
-| militär förmåga | materiel_formaga | up | — | — sekretess | 🟡 mätbart, ej byggt (B-väg) |
-| ekonomisk ambition | forsvarsanslag_andel_bnp | target | `target` | `target` | ⚪ target |
-| civil beredskap | civil_beredskap_niva | up | ✅ 5 | — sekretess | ✅ mäts (B) |
-| nato/ukraina | ukraina_stod | up | — | — ad hoc | 🟡 mätbart, ej byggt (B-väg) |
-| nato/ukraina | nato_interoperabilitet | up | ✅ 7 | — sekretess | ✅ mäts (B) |
-| genomförbarhet/leverans | leveranstid_materiel | down | — | — sekretess | 🔴 **ej mätbart** (äkta B-vägg + sekretess) |
-
-### klimat
-| Submått | Indikator | Riktn. | B | D | Status |
-|---|---|---|---|---|---|
-| utsläppsminskningar | territoriella_utslapp | down | ✅ 8 | ✅ | ✅ mäts |
-| utsläppsminskningar | konsumtionsbaserade_utslapp | down | — | ✅ | ✅ mäts (D) |
-| energi/elpriser | fossil_energianvandning | down | — | ✅ | ✅ mäts (D) |
-| energi/elpriser | elprisvolatilitet | down | — | ○ härleds | 🟡 mätbart, ej byggt |
-| energi/elpriser | effektbrist | down | ✅ 7 | ○ härleds | ✅ mäts (B) |
-| kostnadseffektivitet | utslappsminskning_per_krona | up | ✅ 6 | ○ härleds | ✅ mäts (B) |
-| biologisk mångfald | hotade_arter_naturforlust | down | ✅ 8 | — ingen serie | ✅ mäts (B) |
-
-### integration
-| Submått | Indikator | Riktn. | B | D | Status |
-|---|---|---|---|---|---|
-| arbete/självförsörjning | sysselsattningsgap_inrikes_utrikes | down | ✅ 5 | ✅ | ✅ mäts |
-| arbete/självförsörjning | sjalvforsorjningsgrad | up | — | ✅ | ✅ mäts (D) |
-| arbete/självförsörjning | bidragsberoende | down | ✅ 7 | ✅ | ✅ mäts |
-| skola/språk | sfi_sprakkunskaper | up | — | ○ adapter | 🟡 mätbart, ej byggt |
-| skola/språk | skolresultat_utsatta_omraden | up | ✅ 6 | — ingen serie | ✅ mäts (B) |
-| boendesegregation | trangboddhet | down | — | ✅ | ✅ mäts (D) |
-| boendesegregation | segregation | down | — | — ingen serie | 🔴 **ej mätbart** (ingen instrumentevidens + ingen serie) |
-| normer/tillit | tillit_valdeltagande | up | — | — glest (valår) | 🔴 **ej mätbart** (fel konstrukt + glest valdeltagande) |
-
-### demokrati
-| Submått | Indikator | Riktn. | B | D | Status |
-|---|---|---|---|---|---|
-| rättsstat/maktdelning | otillborlig_politisering | down | ✅ 7 | — sekretess | ✅ mäts (B) |
-| korruption/tillit | korruption | down | ✅ 8 | — intl. förbjudet | ✅ mäts (B) |
-| korruption/tillit | fortroende_domstolar_myndigheter | up | — | — SOM ej API | 🟡 mätbart, ej byggt |
-| yttrandefrihet/medier | mediefrihet | up | ✅ 8 | — intl. förbjudet | ✅ mäts (B) |
-| personlig frihet | overvakning_utan_rattssakerhet | down | ✅ 8 | — sekretess | ✅ mäts (B) |
-| transparens/ansvar | politisk_transparens | up | — | — ingen serie | 🟡 mätbart, ej byggt (B-väg KU39, 2026-06-15) |
+### Mastertabell — samtliga 52 indikatorer (genererad ur config 2026-06-06)
+| Kategori | Undermått | Indikator | Riktning | Mätstatus |
+|---|---|---|---|---|
+| Ekonomi och jobb | Sysselsättning och arbetslöshet `sysselsattning_arbetsloshet` | Sysselsättning `sysselsattning` | upp | ✅ mäts (B+D) |
+| Ekonomi och jobb | Sysselsättning och arbetslöshet `sysselsattning_arbetsloshet` | Arbetslöshet `arbetsloshet` | ned | ✅ mäts (D) |
+| Ekonomi och jobb | BNP per capita och produktivitet `bnp_produktivitet` | BNP per capita `bnp_per_capita` | upp | ✅ mäts (D) |
+| Ekonomi och jobb | BNP per capita och produktivitet `bnp_produktivitet` | Produktivitet `produktivitet` | upp | ✅ mäts (B+D) |
+| Ekonomi och jobb | Reallöner och hushållens ekonomi `realloner_hushall` | Reallöner `realloner` | upp | 🟡 mätbar, ej byggd |
+| Ekonomi och jobb | Reallöner och hushållens ekonomi `realloner_hushall` | Hushållens reala disponibla inkomst `hushallens_reala_disponibla_inkomst` | upp | ✅ mäts (B) |
+| Ekonomi och jobb | Företagande och investeringar `foretagande_investeringar` | Näringslivets investeringar `naringslivets_investeringar` | upp | ✅ mäts (B) |
+| Ekonomi och jobb | Inflation och prisstabilitet `inflation_prisstabilitet` | Inflation (nära mål) `inflation` | målnivå | ⚪ target (kontext) |
+| Ekonomi och jobb | Offentliga finanser och långsiktig hållbarhet `offentliga_finanser` | Statsskuld/underskott (hållbar nivå) `statsskuld_underskott` | målnivå | ⚪ target (kontext) |
+| Välfärd | Vårdens tillgänglighet och kvalitet `vard_tillganglighet` | Vårdköer `vardkoer` | ned | ✅ mäts (D) |
+| Välfärd | Vårdens tillgänglighet och kvalitet `vard_tillganglighet` | Andel som får vård i tid `vard_i_tid` | upp | 🟡 mätbar, ej byggd |
+| Välfärd | Vårdens tillgänglighet och kvalitet `vard_tillganglighet` | Överlevnad efter svår sjukdom `overlevnad_svar_sjukdom` | upp | 🟡 mätbar, ej byggd |
+| Välfärd | Skolans kunskap och likvärdighet `skola_kunskap` | Skolresultat `skolresultat` | upp | ✅ mäts (B+D) |
+| Välfärd | Skolans kunskap och likvärdighet `skola_kunskap` | Skillnader mellan skolor `skillnader_mellan_skolor` | ned | 🟡 mätbar, ej byggd |
+| Välfärd | Skolans kunskap och likvärdighet `skola_kunskap` | Behöriga lärare `behoriga_larare` | upp | ✅ mäts (D) |
+| Välfärd | Omsorg och personalförsörjning `omsorg_personal` | Personalomsättning i omsorgen `personalomsattning_omsorg` | ned | 🔴 ej mätbar (vägg) |
+| Välfärd | Finansiering `finansiering_styrning` | Välfärdsbrottslighet `valfardsbrottslighet` | ned | ✅ mäts (B) |
+| Lag och trygghet | Grov brottslighet och våldsbrott `grov_brottslighet` | Dödligt våld `dodligt_vald` | ned | ✅ mäts (D) |
+| Lag och trygghet | Grov brottslighet och våldsbrott `grov_brottslighet` | Skjutningar och sprängningar `skjutningar_sprangningar` | ned | ✅ mäts (B+D) |
+| Lag och trygghet | Utsatthet och upplevd trygghet `utsatthet_trygghet` | Brottsutsatthet `brottsutsatthet` | ned | ✅ mäts (B+D) |
+| Lag och trygghet | Utsatthet och upplevd trygghet `utsatthet_trygghet` | Upplevd otrygghet `upplevd_otrygghet` | ned | ✅ mäts (D) |
+| Lag och trygghet | Rättsväsendets effektivitet `rattsvasendets_effektivitet` | Uppklaringsgrad `uppklaringsgrad` | upp | ✅ mäts (D) |
+| Lag och trygghet | Rättsväsendets effektivitet `rattsvasendets_effektivitet` | Handläggningstid `handlaggningstid` | ned | ✅ mäts (B) |
+| Lag och trygghet | Återfall och kriminalvård `aterfall_kriminalvard` | Återfall i brott `aterfall_i_brott` | ned | ✅ mäts (B) |
+| Försvar och beredskap | Militär förmåga `militar_formaga` | Personal och värnpliktiga `personal_varnpliktiga` | upp | ✅ mäts (B) |
+| Försvar och beredskap | Militär förmåga `militar_formaga` | Ammunition, luftvärn, logistik, cyberförmåga `materiel_formaga` | upp | 🟡 mätbar, ej byggd |
+| Försvar och beredskap | Ekonomisk ambitionsnivå och långsiktig finansiering `ekonomisk_ambition` | Försvarsanslag som andel av BNP `forsvarsanslag_andel_bnp` | målnivå | ⚪ target (kontext) |
+| Försvar och beredskap | Civil beredskap `civil_beredskap` | Civil beredskap (vård, energi, mat, transporter) `civil_beredskap_niva` | upp | ✅ mäts (B) |
+| Försvar och beredskap | Nato `nato_ukraina` | Ukraina-stöd `ukraina_stod` | upp | 🟡 mätbar, ej byggd |
+| Försvar och beredskap | Nato `nato_ukraina` | Nato-interoperabilitet `nato_interoperabilitet` | upp | ✅ mäts (B) |
+| Försvar och beredskap | Genomförbarhet och leveranstakt `genomforbarhet_leverans` | Leveranstid för materiel `leveranstid_materiel` | ned | 🔴 ej mätbar (vägg) |
+| Klimat, miljö och energi | Utsläppsminskningar `utslappsminskningar` | Territoriella utsläpp `territoriella_utslapp` | ned | ✅ mäts (B+D) |
+| Klimat, miljö och energi | Utsläppsminskningar `utslappsminskningar` | Konsumtionsbaserade utsläpp `konsumtionsbaserade_utslapp` | ned | ✅ mäts (D) |
+| Klimat, miljö och energi | Energiförsörjning och elpriser `energi_elpriser` | Fossil energianvändning `fossil_energianvandning` | ned | ✅ mäts (D) |
+| Klimat, miljö och energi | Energiförsörjning och elpriser `energi_elpriser` | Elprisvolatilitet `elprisvolatilitet` | ned | 🟡 mätbar, ej byggd |
+| Klimat, miljö och energi | Energiförsörjning och elpriser `energi_elpriser` | Effektbrist `effektbrist` | ned | ✅ mäts (B) |
+| Klimat, miljö och energi | Omställningens kostnadseffektivitet `kostnadseffektivitet` | Utsläppsminskning per krona `utslappsminskning_per_krona` | upp | ✅ mäts (B) |
+| Klimat, miljö och energi | Biologisk mångfald och natur `biologisk_mangfald` | Hotade arter / naturförlust `hotade_arter_naturforlust` | ned | ✅ mäts (B) |
+| Integration och social sammanhållning | Arbete och självförsörjning `arbete_sjalvforsorjning` | Sysselsättningsgap inrikes/utrikes födda `sysselsattningsgap_inrikes_utrikes` | ned | ✅ mäts (B+D) |
+| Integration och social sammanhållning | Arbete och självförsörjning `arbete_sjalvforsorjning` | Självförsörjningsgrad `sjalvforsorjningsgrad` | upp | ✅ mäts (D) |
+| Integration och social sammanhållning | Arbete och självförsörjning `arbete_sjalvforsorjning` | Bidragsberoende `bidragsberoende` | ned | ✅ mäts (B+D) |
+| Integration och social sammanhållning | Skola `skola_sprak` | SFI-resultat/språkkunskaper `sfi_sprakkunskaper` | upp | 🟡 mätbar, ej byggd |
+| Integration och social sammanhållning | Skola `skola_sprak` | Skolresultat i utsatta områden `skolresultat_utsatta_omraden` | upp | ✅ mäts (B) |
+| Integration och social sammanhållning | Boendesegregation och trygghet `boendesegregation` | Trångboddhet `trangboddhet` | ned | ✅ mäts (D) |
+| Integration och social sammanhållning | Boendesegregation och trygghet `boendesegregation` | Segregation `segregation` | ned | 🔴 ej mätbar (vägg) |
+| Integration och social sammanhållning | Normer `normer_tillit` | Tillit och valdeltagande `tillit_valdeltagande` | upp | 🔴 ej mätbar (vägg) |
+| Frihet, demokrati och institutioner | Rättsstat och maktdelning `rattsstat_maktdelning` | Otillbörlig politisering av myndigheter `otillborlig_politisering` | ned | ✅ mäts (B) |
+| Frihet, demokrati och institutioner | Korruption och myndighetstillit `korruption_tillit` | Korruption `korruption` | ned | ✅ mäts (B) |
+| Frihet, demokrati och institutioner | Korruption och myndighetstillit `korruption_tillit` | Förtroende för domstolar/myndigheter `fortroende_domstolar_myndigheter` | upp | 🟡 mätbar, ej byggd |
+| Frihet, demokrati och institutioner | Yttrandefrihet och medier `yttrandefrihet_medier` | Mediefrihet `mediefrihet` | upp | ✅ mäts (B) |
+| Frihet, demokrati och institutioner | Personlig frihet och integritet `personlig_frihet` | Övervakning utan rättssäkerhet `overvakning_utan_rattssakerhet` | ned | ✅ mäts (B) |
+| Frihet, demokrati och institutioner | Transparens och ansvarsutkrävande `transparens_ansvar` | Politisk transparens `politisk_transparens` | upp | 🟡 mätbar, ej byggd |
 
 ### Vad kartan säger — tre slags otäckthet
-
 1. **✅ Mäts (bidrar nu)** — majoriteten. Värdeneutralt skydd: indikatorer utan D mäts ofta ändå via **B**
-   (t.ex. nato_interoperabilitet, mediefrihet, korruption — D är sekretess/förbjuden men B bär dem). B
-   och D är två vägar; en stängd D dödar inte indikatorn.
-2. **🟡 Mätbart, ej byggt (10 st)** — jobb kvarstår, inte väggar: D-serien finns men adaptern är obyggd
+   (nato_interoperabilitet, mediefrihet, korruption — D sekretess/förbjuden men B bär dem).
+2. **🟡 Mätbar, ej byggd (10 st)** — jobb kvarstår, inte väggar: D-serien finns men adaptern är obyggd
    (realloner, sfi, elprisvolatilitet…) **eller** en B-väg finns men är ogjord (materiel, Ukraina-stöd,
-   politisk_transparens via KU39, övervakning av domstolsförtroende, overlevnad via cancerstrategi). **Dessa
-   ska byggas, inte tas bort.**
-3. **🔴 Ej mätbart — äkta vägg (4 st):** `personalomsattning_omsorg`, `leveranstid_materiel`, `segregation`,
-   `tillit_valdeltagande`. Varken byggbar B (instrument saknas/fel konstrukt) eller åtkomlig D. **Det är
-   exakt dessa fyra som blockerar de fyra HOLD-submåtten** (omsorg, leverans, boendesegregation, normer_tillit).
-   De är kandidater för **borttagning eller omklassning till kontext** — ett modell-/viktbeslut → **sign-off**.
+   politisk_transparens via KU39, domstolsförtroende, overlevnad via cancerstrategi). **Dessa byggs, ej stryks.**
+3. **🔴 Ej mätbar — äkta vägg (4 st):** `personalomsattning_omsorg`, `leveranstid_materiel`, `segregation`,
+   `tillit_valdeltagande`. Varken byggbar B (instrument saknas/fel konstrukt) eller åtkomlig D. **Exakt dessa fyra
+   blockerar de fyra HOLD-undermåtten** (omsorg, leverans, boendesegregation, normer_tillit) → kandidater för
+   **borttagning eller omklassning till kontext** (modell-/viktbeslut → sign-off, §8.6).
 4. **⚪ Target (3 st):** inflation, statsskuld, försvarsanslag — saknar riktning (nära mål = bäst), betygssätts
-   aldrig, renormaliseras bort. Behålls medvetet för *visning/kontext*, skadar inte betygen.
+   aldrig, renormaliseras bort. Behålls medvetet för *visning/kontext*.
 
-**Slutsats för "kan vi inte mäta — ska vi ha kvar?":** principen håller för de **4 röda** (de motsvarar precis
-de submått vi inte når) — men de **10 gula** är mätbara och bör byggas, inte strykas. Se beslutsdiskussion §8.
-
----
+**Slutsats för "kan vi inte mäta — ska vi ha kvar?":** principen håller för de **4 röda** (= precis de undermått
+vi inte når) — men de **10 gula** är mätbara och bör byggas, inte strykas. Beslutsdiskussion: §8.6.
 
 ## 5. Steg 2 — metodregister för positionering
 
@@ -289,8 +281,8 @@ facto kollektiv stance — och den **renaste neutraliteten**: alla kodas lika, i
 
 **Caveat:** (1) Acklamation ≠ alltid enhällighet — hämta fulltexten och bekräfta att *just den punkten*
 saknar reservation mot sakinnehållet. (2) Det ger **täckning, inte rankning** (likformigt lyft). (3)
-Lägger man ett konsensus-submått bredvid ett differentierande i samma kategori späds differentieringen
-(submåttsviktat medel) — gör ett submått i taget, inte en flod.
+Lägger man ett konsensus-undermått bredvid ett differentierande i samma kategori späds differentieringen
+(undermåttsviktat medel) — gör ett undermått i taget, inte en flod.
 
 ### 5.3 Budget- och kommittémotion — där differentieringen oftast bor
 **Vad:** En budget- eller kommittémotion visar ett partis hållning på det *specifika instrumentet* även
@@ -329,37 +321,37 @@ bygger vi en "straffa-konvertiterna"-maskin som belönar stelhet. Föregående m
   rader; redovisas som flagga (fas4b §9).
 
 ### 5.7 Nya indikatorer för steg-1-väggar (modellutvidgning, gräv djupare)
-**Vad:** För submått i §4.2 utan indikator: lägg en **ny indikator med svensk auktoritetsbelagd
+**Vad:** För undermått i §4.2 utan indikator: lägg en **ny indikator med svensk auktoritetsbelagd
 riktning** i `categories.yaml`, sedan en åtgärdstyp i evidensliggaren. Öppnar ett annars ouppnåeligt
-submått. Ex: trygghet/`forebyggande` via lag (2023) om kommuners brottsförebyggande ansvar + Brå.
+undermått. Ex: trygghet/`forebyggande` via lag (2023) om kommuners brottsförebyggande ansvar + Brå.
 **"L"-arbete** (design + sign-off), inte autonomt.
 
 ### 5.8 Sökdjup, eskalering och zoom-ut — när ett delområde/kategori får kallas "uttömt"
 > Standard fastlagd 2026-06-06 (skärpt efter diskussion). Första svepet prövade ~1 instrument per otäckt
-> submått i en enda runda och stannade vid "HOLD". Det räcker inte. **Att inte hitta ett instrument är
+> undermått i en enda runda och stannade vid "HOLD". Det räcker inte. **Att inte hitta ett instrument är
 > INTE en slutpunkt — det är signalen att eskalera.**
 
 **Eskaleringstrappa — deklarera inte "fast" förrän ALLA steg är uttömda:**
 
-1. **Instrument till befintligt submått (bredd + djup).** Pröva **5–7 genuint olika instrument** per otäckt
-   submått, i **flera rundor** tills två i rad ger noll nytt ("leta tills det är torrt"). Inte ett primärt
+1. **Instrument till befintligt undermått (bredd + djup).** Pröva **5–7 genuint olika instrument** per otäckt
+   undermått, i **flera rundor** tills två i rad ger noll nytt ("leta tills det är torrt"). Inte ett primärt
    plus närliggande varianter.
-2. **Hittar du inget rent instrument → STANNA INTE. Eskalera till nytt submått.** Kör INTE
+2. **Hittar du inget rent instrument → STANNA INTE. Eskalera till nytt undermått.** Kör INTE
    instrument-för-instrument i blindo. Ta ett steg tillbaka:
    - **a.** Läs om kategorin i [../IDEA.md](../IDEA.md) — vad den *ska* fånga + dess caveat.
    - **b.** Bred analys uppifrån-och-ned: vad påverkar *generellt* kategorin positivt enligt officiell svensk
      kunskap (myndigheter, SOU, forskningsöversikter)?
-   - **c.** Borra ner till ett **NYTT submått** (med ny indikator, jfr §5.2/§5.7) som (i) genuint hör hemma i
+   - **c.** Borra ner till ett **NYTT undermått** (med ny indikator, jfr §5.2/§5.7) som (i) genuint hör hemma i
      kategorin enligt IDEA.md, och (ii) har både evidens (steg 1) och neutral positionering (steg 2).
 3. **"Fast"/"uttömt" får sättas FÖRST när både (1) och (2) är uttömda** — och ska då redovisa *vilka*
-   instrument **och** *vilka* submått-vinklar som prövades. "HOLD" ≠ "uttömt": HOLD = ingen ren kandidat i
+   instrument **och** *vilka* undermått-vinklar som prövades. "HOLD" ≠ "uttömt": HOLD = ingen ren kandidat i
    *denna* runda på *detta* spår, inte att kategorin är omöjlig.
 
 **Två spärrar som alltid gäller på steg 2:**
-- **Fuska inte:** lägg inte ett nytt submått bara för att slippa ett svårt — det måste genuint höra hemma i
+- **Fuska inte:** lägg inte ett nytt undermått bara för att slippa ett svårt — det måste genuint höra hemma i
   kategorin (IDEA.md), inte vara en genväg till en lätt fyra.
-- **Struktur kräver sign-off:** nytt submått/indikator ändrar `categories.yaml` + viktbalansen → *föreslås*
-  för människan (instrument i befintligt submått byggs autonomt som v0). Default tills annat sägs.
+- **Struktur kräver sign-off:** nytt undermått/indikator ändrar `categories.yaml` + viktbalansen → *föreslås*
+  för människan (instrument i befintligt undermått byggs autonomt som v0). Default tills annat sägs.
 
 ---
 
@@ -458,7 +450,7 @@ Legend: ✅ byggt · 🟡 kandidat (research klar, väntar beslut) · ❌ förka
 - ⚠️ Kategorins egen IDEA.md-caveat ("stor risk för ideologisk bias") **bekräftad i praktiken** → HOLD rätt.
 
 ### Demokrati — **4/5** ✅ (public service-lagen byggt 2026-06-06)
-- ✅ `lagstadgat_oberoende_public_service` → `mediefrihet` (submått yttrandefrihet_medier, tidigare B-tomt
+- ✅ `lagstadgat_oberoende_public_service` → `mediefrihet` (undermått yttrandefrihet_medier, tidigare B-tomt
   3/5 → **4/5**). Instrument: för första gången regleras public service-uppdraget I LAG (prop. 2024/25:166,
   ur 2023 års **parlamentariska** public service-kommitté SOU 2024:34 "Ansvar och oberoende") med lagstadgat
   oberoende → mediefrihet UPP. Instrument-mekanism (prop. 5.2.1): public service "ska bedrivas självständigt i
@@ -479,7 +471,7 @@ Legend: ✅ byggt · 🟡 kandidat (research klar, väntar beslut) · ❌ förka
   betänkanden KU18 (regering-vs-opp-tilt).
 
 ### Ekonomi — 4/6 ✅
-- Färdigställt 2026-06-05; se [BACKLOG.md](BACKLOG.md). Alla 4 B-möjliga submått täckta; inflation/off.finanser
+- Färdigställt 2026-06-05; se [BACKLOG.md](BACKLOG.md). Alla 4 B-möjliga undermått täckta; inflation/off.finanser
   = target (vilande).
 
 ---
@@ -488,9 +480,9 @@ Legend: ✅ byggt · 🟡 kandidat (research klar, väntar beslut) · ❌ förka
 
 Sju kandidater researchades med tvåstegsmetoden (steg 1 svensk auktoritetskälla, steg 2 positionering;
 varje röstsiffra curl-verifierad mot data.riksdagen.se; codex-2nd-opinion på byggena). **Resultat: 2 byggda,
-5 HOLD** — dubblade nattens leverans (1 → 2 nya) och tog trygghet + klimat till 4 submått.
+5 HOLD** — dubblade nattens leverans (1 → 2 nya) och tog trygghet + klimat till 4 undermått.
 
-| # | Kategori → submått | Åtgärdstyp | Metod | Utfall |
+| # | Kategori → undermått | Åtgärdstyp | Metod | Utfall |
 |---|---|---|---|---|
 | 1 | trygghet → rättsv.effektivitet | `snabbforfarande_lagforing` | §5.2 enhällighet | ✅ **BYGGT** (Brå 2020:3; JuU2 p1) |
 | 2 | klimat → biologisk_mangfald | `atgarder_mot_invasiva_frammande_arter` | §5.2 enhällighet | ✅ **BYGGT** (low/low, FLAGGAD; MJU13 p1) |
@@ -506,7 +498,7 @@ varje röstsiffra curl-verifierad mot data.riksdagen.se; codex-2nd-opinion på b
 "källval" och "äkta vägg" (§4), nu empiriskt bekräftad. Förkastningsskäl + dok-id även i [BACKLOG.md](BACKLOG.md).
 
 > **OBS — detta var ett FÖRSTA svep (en runda, ~1 instrument per delområde), inte en uttömmande genomgång.**
-> De 5 HOLD och de 4 kategorier under 4 submått (välfärd 2, integration 2, försvar 3, demokrati 3) ska
+> De 5 HOLD och de 4 kategorier under 4 undermått (välfärd 2, integration 2, försvar 3, demokrati 3) ska
 > genomgås på nytt enligt **§5.8** (5–7 instrument per delområde, flera rundor, zoom-ut via IDEA.md) innan
 > någon kategori avförs som uttömd. "HOLD" här = ingen ren kandidat i runda 1, inte "omöjligt".
 >
@@ -515,7 +507,7 @@ varje röstsiffra curl-verifierad mot data.riksdagen.se; codex-2nd-opinion på b
 > HOLD ×5 bekräftat** efter genuint 5–7+ instrument per delområde — äkta steg-1-väggar (leveranstid,
 > boendesegregation), fel konstrukt (omsorg_personal, normer_tillit) eller steg-2-tilt (cancerscreening).
 > Skärpta återöppningsvillkor + near-miss-fynd (cancerscreening, KU4-tillgänglighet, KU39-insyn) i §6. Dessa
-> tre kategoriers väg till 4 submått kräver nu **modellutvidgning** (ny indikator/submått eller nytt
+> tre kategoriers väg till 4 undermått kräver nu **modellutvidgning** (ny indikator/undermått eller nytt
 > steg-2-läge) → **sign-off-frågor**, ej autonomt byggbart (§5.8 spärr 2 + §8).
 
 ---
@@ -524,12 +516,12 @@ varje röstsiffra curl-verifierad mot data.riksdagen.se; codex-2nd-opinion på b
 
 | # | Fråga | Läge / rekommendation |
 |---|---|---|
-| 1 | **Räkna värdeneutrala konsensus-mått mot 4-submått-målet?** (steg-1-bra mått, positionerat via enhällighet/§5.2 → alla supports) | Rekommendation: **ja, med disciplin** — ett submått i taget, enhällighet verifierad, flaggat som icke-rankningsdrivande. Det är BACKLOG-målet "höj B:s trovärdighet". |
+| 1 | **Räkna värdeneutrala konsensus-mått mot 4-undermått-målet?** (steg-1-bra mått, positionerat via enhällighet/§5.2 → alla supports) | Rekommendation: **ja, med disciplin** — ett undermått i taget, enhällighet verifierad, flaggat som icke-rankningsdrivande. Det är BACKLOG-målet "höj B:s trovärdighet". |
 | 2 | **Modellutvidgning för grad/magnitud?** (§5.6 — fånga "alla stödjer men olika mycket" ur budgetar) | Större ingrepp (viktad stance / ambitionsnivåer). Inte börjat; kräver designbeslut. Avgör hur mycket budgetdifferentiering vi kan kapitalisera. |
 | 3 | **Hur långt bak väger banan?** (§5.5) | Rekommendation: mandatperioden, recency-viktat; varaktiga omsvängningar kodas efter nuläget (nato-regeln). |
 | 4 | **Acceptera nato-byggets V-straff?** (V −0,375 i försvar) | ✅ **BESLUTAT 2026-06-06: OK** (objektivt belagt, V genuint Nato-kritiskt). |
 | 5 | **Behåll invasiva-arter-måttet (klimat)?** | ✅ **BESLUTAT 2026-06-06: BEHÅLL** ("kan fylla på i framtiden"). Byggt v0 med instrument-mekanismcitat + konservativ low/low + alla 8 supports. |
-| 6 | **Ta bort de 4 ej-mätbara indikatorerna?** (`personalomsattning_omsorg`, `leveranstid_materiel`, `segregation`, `tillit_valdeltagande` — varken byggbar B eller åtkomlig D; se mätbarhetskartan §4.3) | **ÖPPEN — användarfråga 2026-06-06.** Rekommendation: ja för dessa 4 (de motsvarar exakt de submått vi inte når och är ren dekoration), MEN behåll de **10 gula** (mätbara, ej byggda — bygg dem). Borttagning ändrar submåttsvikterna → **sign-off**; rör ej autonomt. Alternativ: omklassa till "kontext, ej betygssatt" (mildare än borttagning; modellen renormaliserar redan bort tomma). |
+| 6 | **Ta bort de 4 ej-mätbara indikatorerna?** (`personalomsattning_omsorg`, `leveranstid_materiel`, `segregation`, `tillit_valdeltagande` — varken byggbar B eller åtkomlig D; se mätbarhetskartan §4.3) | **ÖPPEN — användarfråga 2026-06-06.** Rekommendation: ja för dessa 4 (de motsvarar exakt de undermått vi inte når och är ren dekoration), MEN behåll de **10 gula** (mätbara, ej byggda — bygg dem). Borttagning ändrar undermåttsvikterna → **sign-off**; rör ej autonomt. Alternativ: omklassa till "kontext, ej betygssatt" (mildare än borttagning; modellen renormaliserar redan bort tomma). |
 
 ---
 
@@ -585,7 +577,8 @@ mot snapshot), `review_packet` (granskningspaket). Snapshot re-baselineas **bara
 | 2026-06-06 | Skapad efter natt-resultatet 1 mått: väggen, metodregister (kärna enhällighet-som-källa), designfråga, statustavla, kandidat-pipeline. |
 | 2026-06-06 | **Omstrukturerad kring tvåstegsmodellen** (§2): måttet skilt från positioneringen; "väggen" omklassad till steg-1-väggar (äkta) vs steg-2-källval (lösbart, §4); metodregistret blev "steg 2 — positionering" (§5) med källstege + budget-/kommittémotion (§5.3) + banan (§5.5) + uttryckliga gränser inkl. grad/magnitud-begränsningen (§5.6); differentiering omdefinierad som utfall, inte krav; öppna designfrågor samlade (§8). |
 | 2026-06-06 | **Första leveransen på metoden:** 7 kandidater researchade (codex-2nd-opinion), **2 byggda** (snabbforfarande → trygghet 4/5; invasiva arter → klimat 4/5, FLAGGAD) **+ 5 HOLD**. §3/§6/§7/§8/§9 uppdaterade med utfall; 36 evidensposter / 192 ståndpunkter; 167 tester gröna, ruff rent, inga nära-binära. Enhällighet-som-källa empiriskt bekräftad (löste steg-2-väggen för #1/#2). |
-| 2026-06-06 | **§5.8 sökdjup + zoom-ut tillagt** (5–7 instrument/delområde, flera rundor, läs IDEA.md + bred analys när du kör fast, leta nya submått). §7 markerat som "första svep, ej uttömt". §8.4/§8.5 markerade BESLUTADE (nato OK, invasiva behålls). Dagens arbete committat; fortsättning i fräsch session. |
-| 2026-06-06 | **§5.8 skärpt till eskaleringstrappa:** "inget instrument hittat" är inte slutstation — eskalera då till **nytt submått** (zoom-ut via IDEA.md). "Fast/uttömt" får sättas först när BÅDE instrument- OCH submått-spåret är uttömda. Spärrar kvar: fuska inte med submått, struktur kräver sign-off. |
-| 2026-06-06 | **§4.3 mätbarhetskarta tillagd** (på användarfråga): varje indikator klassad B/D → ✅ mäts / 🟡 mätbart-ej-byggt (10) / 🔴 ej mätbart (4) / ⚪ target (3). De 4 röda = exakt de 4 HOLD-submåtten → designfråga §8.6 (borttagning/omklassning, sign-off). De 10 gula ska byggas, ej strykas. |
+| 2026-06-06 | **§5.8 sökdjup + zoom-ut tillagt** (5–7 instrument/delområde, flera rundor, läs IDEA.md + bred analys när du kör fast, leta nya undermått). §7 markerat som "första svep, ej uttömt". §8.4/§8.5 markerade BESLUTADE (nato OK, invasiva behålls). Dagens arbete committat; fortsättning i fräsch session. |
+| 2026-06-06 | **§5.8 skärpt till eskaleringstrappa:** "inget instrument hittat" är inte slutstation — eskalera då till **nytt undermått** (zoom-ut via IDEA.md). "Fast/uttömt" får sättas först när BÅDE instrument- OCH undermått-spåret är uttömda. Spärrar kvar: fuska inte med undermått, struktur kräver sign-off. |
+| 2026-06-06 | **§4.3 mätbarhetskarta tillagd** (på användarfråga): varje indikator klassad B/D → ✅ mäts / 🟡 mätbart-ej-byggt (10) / 🔴 ej mätbart (4) / ⚪ target (3). De 4 röda = exakt de 4 HOLD-undermåtten → designfråga §8.6 (borttagning/omklassning, sign-off). De 10 gula ska byggas, ej strykas. |
 | 2026-06-06 | **Andra svepet (§5.8 tillämpat):** demokrati **3/5 → 4/5** via public service-lagen (KrU2 p1 enhällighet, codex BUILD-WITH-CHANGES, low/low). forsvar/valfard/integration djupsvepta (7+11+11 instrument, 4 parallella researchagenter, alla röstsiffror verifierade mot data.riksdagen.se) → **HOLD ×5 bekräftat** med skärpta återöppningsvillkor (§6). Nya fynd: vårdplats-slutrapport 2026:3 föll *nedåt* (villkor konsumerat); **cancerscreening** (valfard) + **KU4-tillgänglighet** (integration) = near-miss som faller på steg-2-tilt resp. fel konstrukt; **KU39 insyn i politiska processer** = stark demokrati-återöppning (beslut 2026-06-15). 37 evidensposter / 200 ståndpunkter; 167 tester gröna, ruff rent, 0 cyrilliska. §3/§6/§9 uppdaterade. |
+| 2026-06-06 | **Begreppsmodell stringentad (på användarfråga):** kanonisk vokabulär **Kategori → Undermått → Indikator → Riktning** låst i §4.3-ordlista; "submått" → **Undermått** normaliserat i alla 5 dok (IDEA/DATA/BACKLOG/ROADMAP/evidens_trovardighet, 116 förekomster); IDEA.md + BACKLOG.md pekar nu på §4.3 som sanningskälla. **Config-bugg fixad:** 4 undermåttsnamn (Nato/Skola/Normer/Finansiering) var trunkerade av oquoterade kommatecken i `categories.yaml` flow-YAML → citerade. **§4.3 fick mastertabell** över samtliga 52 indikatorer (Kategori/Undermått/Indikator/Riktning/Mätstatus, genererad ur config). dist byte-identisk (namn påverkar ej betyg); 167 tester gröna. |
