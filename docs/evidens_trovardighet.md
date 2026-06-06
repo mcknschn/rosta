@@ -146,6 +146,118 @@ riktning läggs till (§5.7).
 
 ---
 
+## 4.3 Mätbarhetskarta per indikator (samtliga mått) ⭐
+
+> Tillagd 2026-06-06 på användarens fråga: *kan varje indikator faktiskt mätas?* En indikator bidrar
+> till betyget om den har **B** (partikopplad evidens att ett instrument flyttar den) **eller** **D**
+> (officiell svensk årsserie). Saknar den båda — och båda vägarna är stängda — är den i praktiken
+> dekoration. Klassningen skiljer **"ej byggt än"** (mätbart, jobb kvarstår) från **"ej mätbart"**
+> (äkta vägg). Genererad ur `categories.yaml` + `evidence_ledger` + `party_positions` + `coverage_allowlist`.
+
+**Legend.** **B:** ✅ byggt (antal partier) · — tom · `target`. **D:** ✅ årsserie · ○ åtkomlig (adapter/härledning kvarstår) · — ingen användbar serie (skäl) · `target`.
+**Status:** ✅ **mäts** (bidrar nu) · 🟡 **mätbart, ej byggt** (väg finns) · 🔴 **ej mätbart** (B-vägg + ingen D — kandidat för borttagning/omklassning, sign-off) · ⚪ **target** (kontext, betygssätts ej, renormaliseras bort).
+
+### ekonomi
+| Submått | Indikator | Riktn. | B | D | Status |
+|---|---|---|---|---|---|
+| sysselsättning/arbetslöshet | sysselsattning | up | ✅ 8 | ✅ | ✅ mäts |
+| sysselsättning/arbetslöshet | arbetsloshet | down | — | ✅ | ✅ mäts (D) |
+| bnp/produktivitet | bnp_per_capita | up | — | ✅ | ✅ mäts (D) |
+| bnp/produktivitet | produktivitet | up | ✅ 8 | ✅ | ✅ mäts |
+| reallöner/hushåll | realloner | up | — | ○ adapter | 🟡 *vilande dublett* (hushållens disp. ink. är arbetsindikatorn) |
+| reallöner/hushåll | hushallens_reala_disponibla_inkomst | up | ✅ 8 | ○ adapter | ✅ mäts (B) |
+| företagande/investeringar | naringslivets_investeringar | up | ✅ 8 | ○ adapter | ✅ mäts (B) |
+| inflation | inflation | target | `target` | `target` | ⚪ target |
+| offentliga finanser | statsskuld_underskott | target | `target` | `target` | ⚪ target |
+
+### valfard
+| Submått | Indikator | Riktn. | B | D | Status |
+|---|---|---|---|---|---|
+| vård tillgänglighet | vardkoer | down | — | ✅ | ✅ mäts (D) |
+| vård tillgänglighet | vard_i_tid | up | — | — utgången/dublett | 🟡 *redundant* (vardkoer täcker) |
+| vård tillgänglighet | overlevnad_svar_sjukdom | up | — | — ej konsek. år | 🟡 mätbart (B-väg cancerscreening; se §6) |
+| skola kunskap | skolresultat | up | ✅ 8 | ✅ | ✅ mäts |
+| skola kunskap | skillnader_mellan_skolor | down | — | — ingen serie | 🟡 mätbart, ej byggt (svag) |
+| skola kunskap | behoriga_larare | up | — | ✅ | ✅ mäts (D) |
+| omsorg personal | personalomsattning_omsorg | down | — | — ingen serie | 🔴 **ej mätbart** (fel konstrukt + SKR la ned serien) |
+| finansiering/styrning | valfardsbrottslighet | down | ✅ 7 | — ingen serie | ✅ mäts (B) |
+
+### trygghet
+| Submått | Indikator | Riktn. | B | D | Status |
+|---|---|---|---|---|---|
+| grov brottslighet | dodligt_vald | down | — | ✅ | ✅ mäts (D) |
+| grov brottslighet | skjutningar_sprangningar | down | ✅ 3 | ✅ | ✅ mäts |
+| utsatthet/trygghet | brottsutsatthet | down | ✅ 5 | ✅ | ✅ mäts |
+| utsatthet/trygghet | upplevd_otrygghet | down | — | ✅ | ✅ mäts (D) |
+| rättsv. effektivitet | uppklaringsgrad | up | — | ✅ | ✅ mäts (D) |
+| rättsv. effektivitet | handlaggningstid | down | ✅ 8 | ○ adapter | ✅ mäts (B) |
+| återfall/kriminalvård | aterfall_i_brott | down | ✅ 7 | — PDF/metodbrott | ✅ mäts (B) |
+
+### forsvar
+| Submått | Indikator | Riktn. | B | D | Status |
+|---|---|---|---|---|---|
+| militär förmåga | personal_varnpliktiga | up | ✅ 7 | — sekretess/ÅR | ✅ mäts (B) |
+| militär förmåga | materiel_formaga | up | — | — sekretess | 🟡 mätbart, ej byggt (B-väg) |
+| ekonomisk ambition | forsvarsanslag_andel_bnp | target | `target` | `target` | ⚪ target |
+| civil beredskap | civil_beredskap_niva | up | ✅ 5 | — sekretess | ✅ mäts (B) |
+| nato/ukraina | ukraina_stod | up | — | — ad hoc | 🟡 mätbart, ej byggt (B-väg) |
+| nato/ukraina | nato_interoperabilitet | up | ✅ 7 | — sekretess | ✅ mäts (B) |
+| genomförbarhet/leverans | leveranstid_materiel | down | — | — sekretess | 🔴 **ej mätbart** (äkta B-vägg + sekretess) |
+
+### klimat
+| Submått | Indikator | Riktn. | B | D | Status |
+|---|---|---|---|---|---|
+| utsläppsminskningar | territoriella_utslapp | down | ✅ 8 | ✅ | ✅ mäts |
+| utsläppsminskningar | konsumtionsbaserade_utslapp | down | — | ✅ | ✅ mäts (D) |
+| energi/elpriser | fossil_energianvandning | down | — | ✅ | ✅ mäts (D) |
+| energi/elpriser | elprisvolatilitet | down | — | ○ härleds | 🟡 mätbart, ej byggt |
+| energi/elpriser | effektbrist | down | ✅ 7 | ○ härleds | ✅ mäts (B) |
+| kostnadseffektivitet | utslappsminskning_per_krona | up | ✅ 6 | ○ härleds | ✅ mäts (B) |
+| biologisk mångfald | hotade_arter_naturforlust | down | ✅ 8 | — ingen serie | ✅ mäts (B) |
+
+### integration
+| Submått | Indikator | Riktn. | B | D | Status |
+|---|---|---|---|---|---|
+| arbete/självförsörjning | sysselsattningsgap_inrikes_utrikes | down | ✅ 5 | ✅ | ✅ mäts |
+| arbete/självförsörjning | sjalvforsorjningsgrad | up | — | ✅ | ✅ mäts (D) |
+| arbete/självförsörjning | bidragsberoende | down | ✅ 7 | ✅ | ✅ mäts |
+| skola/språk | sfi_sprakkunskaper | up | — | ○ adapter | 🟡 mätbart, ej byggt |
+| skola/språk | skolresultat_utsatta_omraden | up | ✅ 6 | — ingen serie | ✅ mäts (B) |
+| boendesegregation | trangboddhet | down | — | ✅ | ✅ mäts (D) |
+| boendesegregation | segregation | down | — | — ingen serie | 🔴 **ej mätbart** (ingen instrumentevidens + ingen serie) |
+| normer/tillit | tillit_valdeltagande | up | — | — glest (valår) | 🔴 **ej mätbart** (fel konstrukt + glest valdeltagande) |
+
+### demokrati
+| Submått | Indikator | Riktn. | B | D | Status |
+|---|---|---|---|---|---|
+| rättsstat/maktdelning | otillborlig_politisering | down | ✅ 7 | — sekretess | ✅ mäts (B) |
+| korruption/tillit | korruption | down | ✅ 8 | — intl. förbjudet | ✅ mäts (B) |
+| korruption/tillit | fortroende_domstolar_myndigheter | up | — | — SOM ej API | 🟡 mätbart, ej byggt |
+| yttrandefrihet/medier | mediefrihet | up | ✅ 8 | — intl. förbjudet | ✅ mäts (B) |
+| personlig frihet | overvakning_utan_rattssakerhet | down | ✅ 8 | — sekretess | ✅ mäts (B) |
+| transparens/ansvar | politisk_transparens | up | — | — ingen serie | 🟡 mätbart, ej byggt (B-väg KU39, 2026-06-15) |
+
+### Vad kartan säger — tre slags otäckthet
+
+1. **✅ Mäts (bidrar nu)** — majoriteten. Värdeneutralt skydd: indikatorer utan D mäts ofta ändå via **B**
+   (t.ex. nato_interoperabilitet, mediefrihet, korruption — D är sekretess/förbjuden men B bär dem). B
+   och D är två vägar; en stängd D dödar inte indikatorn.
+2. **🟡 Mätbart, ej byggt (10 st)** — jobb kvarstår, inte väggar: D-serien finns men adaptern är obyggd
+   (realloner, sfi, elprisvolatilitet…) **eller** en B-väg finns men är ogjord (materiel, Ukraina-stöd,
+   politisk_transparens via KU39, övervakning av domstolsförtroende, overlevnad via cancerstrategi). **Dessa
+   ska byggas, inte tas bort.**
+3. **🔴 Ej mätbart — äkta vägg (4 st):** `personalomsattning_omsorg`, `leveranstid_materiel`, `segregation`,
+   `tillit_valdeltagande`. Varken byggbar B (instrument saknas/fel konstrukt) eller åtkomlig D. **Det är
+   exakt dessa fyra som blockerar de fyra HOLD-submåtten** (omsorg, leverans, boendesegregation, normer_tillit).
+   De är kandidater för **borttagning eller omklassning till kontext** — ett modell-/viktbeslut → **sign-off**.
+4. **⚪ Target (3 st):** inflation, statsskuld, försvarsanslag — saknar riktning (nära mål = bäst), betygssätts
+   aldrig, renormaliseras bort. Behålls medvetet för *visning/kontext*, skadar inte betygen.
+
+**Slutsats för "kan vi inte mäta — ska vi ha kvar?":** principen håller för de **4 röda** (de motsvarar precis
+de submått vi inte når) — men de **10 gula** är mätbara och bör byggas, inte strykas. Se beslutsdiskussion §8.
+
+---
+
 ## 5. Steg 2 — metodregister för positionering
 
 Alla källor lyder under samma grindar (§10): instrument-exakthet, ordagrant citat + dok-id,
@@ -417,6 +529,7 @@ varje röstsiffra curl-verifierad mot data.riksdagen.se; codex-2nd-opinion på b
 | 3 | **Hur långt bak väger banan?** (§5.5) | Rekommendation: mandatperioden, recency-viktat; varaktiga omsvängningar kodas efter nuläget (nato-regeln). |
 | 4 | **Acceptera nato-byggets V-straff?** (V −0,375 i försvar) | ✅ **BESLUTAT 2026-06-06: OK** (objektivt belagt, V genuint Nato-kritiskt). |
 | 5 | **Behåll invasiva-arter-måttet (klimat)?** | ✅ **BESLUTAT 2026-06-06: BEHÅLL** ("kan fylla på i framtiden"). Byggt v0 med instrument-mekanismcitat + konservativ low/low + alla 8 supports. |
+| 6 | **Ta bort de 4 ej-mätbara indikatorerna?** (`personalomsattning_omsorg`, `leveranstid_materiel`, `segregation`, `tillit_valdeltagande` — varken byggbar B eller åtkomlig D; se mätbarhetskartan §4.3) | **ÖPPEN — användarfråga 2026-06-06.** Rekommendation: ja för dessa 4 (de motsvarar exakt de submått vi inte når och är ren dekoration), MEN behåll de **10 gula** (mätbara, ej byggda — bygg dem). Borttagning ändrar submåttsvikterna → **sign-off**; rör ej autonomt. Alternativ: omklassa till "kontext, ej betygssatt" (mildare än borttagning; modellen renormaliserar redan bort tomma). |
 
 ---
 
@@ -474,4 +587,5 @@ mot snapshot), `review_packet` (granskningspaket). Snapshot re-baselineas **bara
 | 2026-06-06 | **Första leveransen på metoden:** 7 kandidater researchade (codex-2nd-opinion), **2 byggda** (snabbforfarande → trygghet 4/5; invasiva arter → klimat 4/5, FLAGGAD) **+ 5 HOLD**. §3/§6/§7/§8/§9 uppdaterade med utfall; 36 evidensposter / 192 ståndpunkter; 167 tester gröna, ruff rent, inga nära-binära. Enhällighet-som-källa empiriskt bekräftad (löste steg-2-väggen för #1/#2). |
 | 2026-06-06 | **§5.8 sökdjup + zoom-ut tillagt** (5–7 instrument/delområde, flera rundor, läs IDEA.md + bred analys när du kör fast, leta nya submått). §7 markerat som "första svep, ej uttömt". §8.4/§8.5 markerade BESLUTADE (nato OK, invasiva behålls). Dagens arbete committat; fortsättning i fräsch session. |
 | 2026-06-06 | **§5.8 skärpt till eskaleringstrappa:** "inget instrument hittat" är inte slutstation — eskalera då till **nytt submått** (zoom-ut via IDEA.md). "Fast/uttömt" får sättas först när BÅDE instrument- OCH submått-spåret är uttömda. Spärrar kvar: fuska inte med submått, struktur kräver sign-off. |
+| 2026-06-06 | **§4.3 mätbarhetskarta tillagd** (på användarfråga): varje indikator klassad B/D → ✅ mäts / 🟡 mätbart-ej-byggt (10) / 🔴 ej mätbart (4) / ⚪ target (3). De 4 röda = exakt de 4 HOLD-submåtten → designfråga §8.6 (borttagning/omklassning, sign-off). De 10 gula ska byggas, ej strykas. |
 | 2026-06-06 | **Andra svepet (§5.8 tillämpat):** demokrati **3/5 → 4/5** via public service-lagen (KrU2 p1 enhällighet, codex BUILD-WITH-CHANGES, low/low). forsvar/valfard/integration djupsvepta (7+11+11 instrument, 4 parallella researchagenter, alla röstsiffror verifierade mot data.riksdagen.se) → **HOLD ×5 bekräftat** med skärpta återöppningsvillkor (§6). Nya fynd: vårdplats-slutrapport 2026:3 föll *nedåt* (villkor konsumerat); **cancerscreening** (valfard) + **KU4-tillgänglighet** (integration) = near-miss som faller på steg-2-tilt resp. fel konstrukt; **KU39 insyn i politiska processer** = stark demokrati-återöppning (beslut 2026-06-15). 37 evidensposter / 200 ståndpunkter; 167 tester gröna, ruff rent, 0 cyrilliska. §3/§6/§9 uppdaterade. |
