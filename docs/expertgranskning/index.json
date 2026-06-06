@@ -1,14 +1,14 @@
 {
   "counts": {
-    "positions_total": 192,
-    "ledger_entries": 36,
-    "claims_produced": 205,
+    "positions_total": 200,
+    "ledger_entries": 37,
+    "claims_produced": 213,
     "stance": {
-      "supports": 167,
+      "supports": 175,
       "opposes": 25
     },
     "confidence": {
-      "high": 116,
+      "high": 124,
       "medium": 44,
       "low": 18,
       "None": 14

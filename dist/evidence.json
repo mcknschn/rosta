@@ -349,6 +349,11 @@
     "source_name": "Riksdagen",
     "statement": "C driver kontroller_och_informationsutbyte_mot_valfardsbrott; evidens (authority_evaluation) talar för riktning positive på valfardsbrottslighet."
   },
+  "claim:evidence_effect:C:lagstadgat_oberoende_public_service:demokrati:mediefrihet": {
+    "kind": "claim",
+    "source_name": "Enhälligt betänkande 2025/26",
+    "statement": "C driver lagstadgat_oberoende_public_service; evidens (authority_evaluation) talar för riktning positive på mediefrihet."
+  },
   "claim:evidence_effect:C:minskad_klasstorlek:valfard:skolresultat": {
     "kind": "claim",
     "source_name": "Riksdagen",
@@ -478,6 +483,11 @@
     "kind": "claim",
     "source_name": "Riksdagen",
     "statement": "KD driver kontroller_och_informationsutbyte_mot_valfardsbrott; evidens (authority_evaluation) talar för riktning positive på valfardsbrottslighet."
+  },
+  "claim:evidence_effect:KD:lagstadgat_oberoende_public_service:demokrati:mediefrihet": {
+    "kind": "claim",
+    "source_name": "Enhälligt betänkande 2025/26",
+    "statement": "KD driver lagstadgat_oberoende_public_service; evidens (authority_evaluation) talar för riktning positive på mediefrihet."
   },
   "claim:evidence_effect:KD:minskad_klasstorlek:valfard:skolresultat": {
     "kind": "claim",
@@ -619,6 +629,11 @@
     "source_name": "Riksdagen",
     "statement": "L driver kontroller_och_informationsutbyte_mot_valfardsbrott; evidens (authority_evaluation) talar för riktning positive på valfardsbrottslighet."
   },
+  "claim:evidence_effect:L:lagstadgat_oberoende_public_service:demokrati:mediefrihet": {
+    "kind": "claim",
+    "source_name": "Enhälligt betänkande 2025/26",
+    "statement": "L driver lagstadgat_oberoende_public_service; evidens (authority_evaluation) talar för riktning positive på mediefrihet."
+  },
   "claim:evidence_effect:L:minskad_klasstorlek:valfard:skolresultat": {
     "kind": "claim",
     "source_name": "Riksdagen",
@@ -754,6 +769,11 @@
     "source_name": "Riksdagen",
     "statement": "M driver kontroller_och_informationsutbyte_mot_valfardsbrott; evidens (authority_evaluation) talar för riktning positive på valfardsbrottslighet."
   },
+  "claim:evidence_effect:M:lagstadgat_oberoende_public_service:demokrati:mediefrihet": {
+    "kind": "claim",
+    "source_name": "Enhälligt betänkande 2025/26",
+    "statement": "M driver lagstadgat_oberoende_public_service; evidens (authority_evaluation) talar för riktning positive på mediefrihet."
+  },
   "claim:evidence_effect:M:minskad_klasstorlek:valfard:skolresultat": {
     "kind": "claim",
     "source_name": "Riksdagen",
@@ -879,6 +899,11 @@
     "source_name": "Riksdagen",
     "statement": "MP driver kontroller_och_informationsutbyte_mot_valfardsbrott; evidens (authority_evaluation) talar för riktning positive på valfardsbrottslighet."
   },
+  "claim:evidence_effect:MP:lagstadgat_oberoende_public_service:demokrati:mediefrihet": {
+    "kind": "claim",
+    "source_name": "Enhälligt betänkande 2025/26",
+    "statement": "MP driver lagstadgat_oberoende_public_service; evidens (authority_evaluation) talar för riktning positive på mediefrihet."
+  },
   "claim:evidence_effect:MP:ny_karnkraft:klimat:effektbrist": {
     "kind": "claim",
     "source_name": "Riksdagen",
@@ -988,6 +1013,11 @@
     "kind": "claim",
     "source_name": "Partimotion 2025/26",
     "statement": "S motsätter sig konkurrenskraftig_foretags_och_agarbeskattning; evidens (authority_evaluation) talar för riktning negative på naringslivets_investeringar."
+  },
+  "claim:evidence_effect:S:lagstadgat_oberoende_public_service:demokrati:mediefrihet": {
+    "kind": "claim",
+    "source_name": "Enhälligt betänkande 2025/26",
+    "statement": "S driver lagstadgat_oberoende_public_service; evidens (authority_evaluation) talar för riktning positive på mediefrihet."
   },
   "claim:evidence_effect:S:minskad_klasstorlek:valfard:skolresultat": {
     "kind": "claim",
@@ -1108,6 +1138,11 @@
     "kind": "claim",
     "source_name": "Riksdagen",
     "statement": "SD driver kontroller_och_informationsutbyte_mot_valfardsbrott; evidens (authority_evaluation) talar för riktning positive på valfardsbrottslighet."
+  },
+  "claim:evidence_effect:SD:lagstadgat_oberoende_public_service:demokrati:mediefrihet": {
+    "kind": "claim",
+    "source_name": "Enhälligt betänkande 2025/26",
+    "statement": "SD driver lagstadgat_oberoende_public_service; evidens (authority_evaluation) talar för riktning positive på mediefrihet."
   },
   "claim:evidence_effect:SD:minskad_klasstorlek:valfard:skolresultat": {
     "kind": "claim",
@@ -1248,6 +1283,11 @@
     "kind": "claim",
     "source_name": "Riksdagen",
     "statement": "V driver kontroller_och_informationsutbyte_mot_valfardsbrott; evidens (authority_evaluation) talar för riktning positive på valfardsbrottslighet."
+  },
+  "claim:evidence_effect:V:lagstadgat_oberoende_public_service:demokrati:mediefrihet": {
+    "kind": "claim",
+    "source_name": "Enhälligt betänkande 2025/26",
+    "statement": "V driver lagstadgat_oberoende_public_service; evidens (authority_evaluation) talar för riktning positive på mediefrihet."
   },
   "claim:evidence_effect:V:minskad_klasstorlek:valfard:skolresultat": {
     "kind": "claim",

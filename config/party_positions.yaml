@@ -2195,3 +2195,99 @@ entries:
   date: '2026-03-12'
   confidence: high
   mapping_note: "Punkt 1 (lagskärpningen) togs i acklamation -> MP bakom = supports. MP:s reservation (res. 2) gäller punkt 2 (avslagspunkt), INTE lagen. Åtgärder mot invasiva arter -> hotade_arter_naturforlust NER."
+
+# ---------------------------------------------------------------------------
+# demokrati B2 2026-06-06 — lagstadgat oberoende public service (yttrandefrihet_medier).
+# ENHÄLLIGHET-SOM-KÄLLA (§5.2): bet. 2025/26:KrU2 punkt 1 (anta regeringens lagförslag) togs i
+# ACKLAMATION (votering-API tomt @antal=0). Alla 15 reservationer hänger på punkt 2-14
+# (innehållsuppdrag/ekonomi/uppföljning, S/V/C/MP) — INGEN reservation mot punkt 1 -> alla 8 supports
+# på instrumentet att anta lagen. Codex-granskat BUILD-WITH-CHANGES. Icke-rankningsdrivande konsensus-mått.
+# ---------------------------------------------------------------------------
+- party: S
+  policy_type: lagstadgat_oberoende_public_service
+  stance: supports
+  source: "Enhälligt betänkande 2025/26:KrU2 punkt 1 (prop. 2024/25:166), acklamation. S-reservationer gäller punkt 2-14 (ej punkt 1)"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/HD01KrU2.html
+  doc_id: "HD01KrU2 punkt 1"
+  quote: "Det har inte väckts någon motion som går emot att riksdagen antar regeringens lagförslag. Utskottet föreslår att riksdagen antar lagförslagen, av de skäl som anförs i propositionen."
+  date: '2025-10-22'
+  confidence: high
+  mapping_note: "ENHÄLLIGT betänkande (källstege §5.2). Punkt 1 (anta lag om public service) togs i ACKLAMATION, ingen reservation mot sakinnehållet -> supports. S har reservationer på punkt 2-14 (innehållsuppdrag/ekonomi) men INTE mot att anta lagen -> tolkas EJ som opposition mot instrumentet. Lagstadgat oberoende public service -> mediefrihet UPP. Icke-rankningsdrivande konsensus-mått."
+- party: M
+  policy_type: lagstadgat_oberoende_public_service
+  stance: supports
+  source: "Enhälligt betänkande 2025/26:KrU2 punkt 1 (prop. 2024/25:166), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/HD01KrU2.html
+  doc_id: "HD01KrU2 punkt 1"
+  quote: "Det har inte väckts någon motion som går emot att riksdagen antar regeringens lagförslag. Utskottet föreslår att riksdagen antar lagförslagen, av de skäl som anförs i propositionen."
+  date: '2025-10-22'
+  confidence: high
+  mapping_note: "ENHÄLLIGT betänkande. Punkt 1 i acklamation (alla 8 bakom) -> supports. Lagstadgat oberoende public service -> mediefrihet UPP."
+- party: SD
+  policy_type: lagstadgat_oberoende_public_service
+  stance: supports
+  source: "Enhälligt betänkande 2025/26:KrU2 punkt 1 (prop. 2024/25:166), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/HD01KrU2.html
+  doc_id: "HD01KrU2 punkt 1"
+  quote: "Det har inte väckts någon motion som går emot att riksdagen antar regeringens lagförslag. Utskottet föreslår att riksdagen antar lagförslagen, av de skäl som anförs i propositionen."
+  date: '2025-10-22'
+  confidence: high
+  mapping_note: "ENHÄLLIGT betänkande. Punkt 1 i acklamation (alla 8 bakom, inga SD-reservationer) -> supports. Lagstadgat oberoende public service -> mediefrihet UPP."
+- party: C
+  policy_type: lagstadgat_oberoende_public_service
+  stance: supports
+  source: "Enhälligt betänkande 2025/26:KrU2 punkt 1 (prop. 2024/25:166), acklamation. C-reservationer gäller punkt 2-4 (ej punkt 1)"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/HD01KrU2.html
+  doc_id: "HD01KrU2 punkt 1"
+  quote: "Det har inte väckts någon motion som går emot att riksdagen antar regeringens lagförslag. Utskottet föreslår att riksdagen antar lagförslagen, av de skäl som anförs i propositionen."
+  date: '2025-10-22'
+  confidence: high
+  mapping_note: "ENHÄLLIGT betänkande. Punkt 1 i acklamation -> supports. C har reservationer på punkt 2-4 (innehåll/ekonomi) men INTE mot att anta lagen -> EJ opposition mot instrumentet. Lagstadgat oberoende public service -> mediefrihet UPP."
+- party: V
+  policy_type: lagstadgat_oberoende_public_service
+  stance: supports
+  source: "Enhälligt betänkande 2025/26:KrU2 punkt 1 (prop. 2024/25:166), acklamation. V-reservationer gäller punkt 2-4/10 (ej punkt 1)"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/HD01KrU2.html
+  doc_id: "HD01KrU2 punkt 1"
+  quote: "Det har inte väckts någon motion som går emot att riksdagen antar regeringens lagförslag. Utskottet föreslår att riksdagen antar lagförslagen, av de skäl som anförs i propositionen."
+  date: '2025-10-22'
+  confidence: high
+  mapping_note: "ENHÄLLIGT betänkande. Punkt 1 i acklamation -> supports. V har reservationer på punkt 2-4/10 (innehåll/ekonomi/granskning) men INTE mot att anta lagen -> EJ opposition mot instrumentet. Lagstadgat oberoende public service -> mediefrihet UPP."
+- party: KD
+  policy_type: lagstadgat_oberoende_public_service
+  stance: supports
+  source: "Enhälligt betänkande 2025/26:KrU2 punkt 1 (prop. 2024/25:166), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/HD01KrU2.html
+  doc_id: "HD01KrU2 punkt 1"
+  quote: "Det har inte väckts någon motion som går emot att riksdagen antar regeringens lagförslag. Utskottet föreslår att riksdagen antar lagförslagen, av de skäl som anförs i propositionen."
+  date: '2025-10-22'
+  confidence: high
+  mapping_note: "ENHÄLLIGT betänkande. Punkt 1 i acklamation (alla 8 bakom, inga KD-reservationer) -> supports. Lagstadgat oberoende public service -> mediefrihet UPP."
+- party: L
+  policy_type: lagstadgat_oberoende_public_service
+  stance: supports
+  source: "Enhälligt betänkande 2025/26:KrU2 punkt 1 (prop. 2024/25:166), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/HD01KrU2.html
+  doc_id: "HD01KrU2 punkt 1"
+  quote: "Det har inte väckts någon motion som går emot att riksdagen antar regeringens lagförslag. Utskottet föreslår att riksdagen antar lagförslagen, av de skäl som anförs i propositionen."
+  date: '2025-10-22'
+  confidence: high
+  mapping_note: "ENHÄLLIGT betänkande. Punkt 1 i acklamation (alla 8 bakom, inga L-reservationer) -> supports. Lagstadgat oberoende public service -> mediefrihet UPP."
+- party: MP
+  policy_type: lagstadgat_oberoende_public_service
+  stance: supports
+  source: "Enhälligt betänkande 2025/26:KrU2 punkt 1 (prop. 2024/25:166), acklamation. MP-reservationer gäller punkt 2-14 (ej punkt 1)"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/HD01KrU2.html
+  doc_id: "HD01KrU2 punkt 1"
+  quote: "Det har inte väckts någon motion som går emot att riksdagen antar regeringens lagförslag. Utskottet föreslår att riksdagen antar lagförslagen, av de skäl som anförs i propositionen."
+  date: '2025-10-22'
+  confidence: high
+  mapping_note: "ENHÄLLIGT betänkande. Punkt 1 i acklamation -> supports. MP har reservationer på punkt 2-14 (innehåll/ekonomi) men INTE mot att anta lagen -> EJ opposition mot instrumentet. Lagstadgat oberoende public service -> mediefrihet UPP."

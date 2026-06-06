@@ -3,7 +3,7 @@
 > AUTOGENERERAD av `pipeline/tools/review_packet.py` — ändra inte för hand.
 > Källa för betygskonsekvensen är det faktiska join-maskineriet i `pipeline/positions.py`.
 
-**192 ståndpunkter** → 205 evidence_effect-claims. Stance: {'supports': 167, 'opposes': 25}. Konfidens: {'high': 116, 'medium': 44, 'low': 18, 'None': 14}.
+**200 ståndpunkter** → 213 evidence_effect-claims. Stance: {'supports': 175, 'opposes': 25}. Konfidens: {'high': 124, 'medium': 44, 'low': 18, 'None': 14}.
 
 Pipelinen joinar **bara** på `party + policy_type + stance`. `supports` behåller evidensens riktning; `opposes` **vänder** den. Övriga fält är spårbarhet.
 
@@ -162,6 +162,21 @@ Liggarens effekt: otillborlig_politisering=positive (medium)
 |  | MP | supports | ↑ mot bättre (höjer B) | high | HD01KU2 / votering 3C8070DF-2ECB-405A-83AD-A14CF2A79C61 punkt 1 | 2025-09-29 |
 |  | S | supports | ↑ mot bättre (höjer B) | high | HD01KU2 / votering 3C8070DF-2ECB-405A-83AD-A14CF2A79C61 punkt 1 | 2025-09-29 |
 |  | V | supports | ↑ mot bättre (höjer B) | high | HD01KU2 / votering 3C8070DF-2ECB-405A-83AD-A14CF2A79C61 punkt 1 | 2025-09-29 |
+
+#### `lagstadgat_oberoende_public_service`
+
+Liggarens effekt: mediefrihet=positive (low)
+
+| OK? | Parti | Stance | B-konsekvens | Konf. | doc_id | Datum |
+|-----|-------|--------|--------------|-------|--------|-------|
+|  | C | supports | ↑ mot bättre (höjer B) | high | HD01KrU2 punkt 1 | 2025-10-22 |
+|  | KD | supports | ↑ mot bättre (höjer B) | high | HD01KrU2 punkt 1 | 2025-10-22 |
+|  | L | supports | ↑ mot bättre (höjer B) | high | HD01KrU2 punkt 1 | 2025-10-22 |
+|  | M | supports | ↑ mot bättre (höjer B) | high | HD01KrU2 punkt 1 | 2025-10-22 |
+|  | MP | supports | ↑ mot bättre (höjer B) | high | HD01KrU2 punkt 1 | 2025-10-22 |
+|  | S | supports | ↑ mot bättre (höjer B) | high | HD01KrU2 punkt 1 | 2025-10-22 |
+|  | SD | supports | ↑ mot bättre (höjer B) | high | HD01KrU2 punkt 1 | 2025-10-22 |
+|  | V | supports | ↑ mot bättre (höjer B) | high | HD01KrU2 punkt 1 | 2025-10-22 |
 
 #### `starkt_oberoende_granskning_och_insyn`
 

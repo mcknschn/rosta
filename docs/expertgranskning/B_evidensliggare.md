@@ -2,7 +2,7 @@
 
 > AUTOGENERERAD av `pipeline/tools/review_packet.py` — ändra inte för hand.
 
-**36 poster** (åtgärdstyp → indikatoreffekt). Generell policy-evidens, medvetet **inte** partikopplad. Varje post sätter riktningen för ALLA partier som driver åtgärdstypen — granska källan noga (blast-radius anges per post).
+**37 poster** (åtgärdstyp → indikatoreffekt). Generell policy-evidens, medvetet **inte** partikopplad. Varje post sätter riktningen för ALLA partier som driver åtgärdstypen — granska källan noga (blast-radius anges per post).
 
 ## Så granskar du
 
@@ -60,6 +60,16 @@
 - **URL:** https://data.riksdagen.se/dokument/HD01JuU28.html
 - **Not:** NEUTRALT ANKARE = Lagrådet (officiellt svenskt granskningsorgan), EJ partiretorik: Lagrådet fann att förslaget 'går avsevärt längre än nödvändigt' och 'står därmed i strid med grundlag', att beslut flyttas från riksdag till åklagare/domstol och att det 'saknas reella överklagandemöjligheter' samt kraftigt begränsad tillsyn. Åtgärdstypen = att BEGRÄNSA eller VILLKORA biometrisk realtidsövervakning med rättssäkerhetsgarantier (domstolsprövning, proportionalitet, oberoende tillsyn, överklagande) -> driver overvakning_utan_rattssakerhet NER (positiv riktning; partier som motsätter sig vänds till negativt B via _FLIP, som klimat-reduktionsplikt). Institutionellt/normativt (Lagrådets proportionalitetsbedömning), ingen uppmätt kausaleffekt -> effect_strength/confidence medium.
 - **Påverkar partier:** C(+), KD(−), L(−), M(−), MP(+), S(−), SD(−), V(+)
+- **OK?** ⬜ (✅/✏️/❌): 
+
+### `lagstadgat_oberoende_public_service` → mediefrihet
+
+- **Riktning:** positive · **evidensnivå:** authority_evaluation · **styrka:** low · **konfidens:** low
+- **Källa:** Prop. 2024/25:166 'En lag om public service och riktlinjer för verksamheten 2026–2033' (bygger på 2023 års parlamentariska public service-kommitté, betänkandet SOU 2024:34 'Ansvar och oberoende – public service i oroliga tider'). Partiståndpunkter via enhälligt betänkande 2025/26:KrU2 punkt 1, acklamation.
+- **URL:** https://data.riksdagen.se/dokument/HC03166.html
+- **Not:** TILLAGD 2026-06-06 (B2, enhällighet-som-källa). INSTRUMENT: för första gången regleras public service-uppdraget I LAG (ny lag om public service) med LAGSTADGAT OBEROENDE, i stället för enbart i regeringsbeslutat sändningstillstånd -> mediefrihet UPP (positiv riktning) via institutionellt skyddat oberoende. SNÄV FORMULERING (codex-krav 2026-06-06): claimet avser lagstadgat oberoende -> mediefrihet/fri åsiktsbildning, INTE generellt 'public service-lag -> demokrati'. INSTRUMENT-MEKANISM (ordagrant ur prop. 2024/25:166 avsnitt 5.2.1, Regeringens förslag): 'Public service-uppdraget ska bedrivas självständigt i förhållande till såväl staten som olika ekonomiska, politiska och andra intressen och maktsfärer i samhället och verksamheten ska präglas av oberoende och stark integritet.' Provenans = bred politisk enighet (prop. avsnitt 4): 'I Sverige råder sedan länge en bred politisk enighet om att en väl fungerande mediemarknad bygger på en kombination av ansvarstagande kommersiella medier och ett starkt och oberoende public service med högt förtroende hos allmänheten'; mediepolitikens syfte är 'att skapa goda förutsättningar för en mångfald av självständiga medieaktörer som bidrar till att stärka en fri åsiktsbildning, ett fritt utbyte av idéer liksom en aktiv granskning av samhällets makthavare'. KAVEAT (effect_strength/confidence=LOW, codex-kalibrerat): MEKANISM-/DESIGNBASERAD evidens (parlamentarisk kommitté SOU 2024:34 + proposition), INGEN ex-post-effektutvärdering av att lagen MÄTT ökat mediefriheten -> låg styrka/förtroende; får ej formuleras som uppmätt indikatorförbättring. KONSENSUS-MÅTT (icke-rankningsdrivande): positioneras via enhälligt bet. 2025/26:KrU2 punkt 1 (acklamation, votering-API tomt @antal=0, 'Det har inte väckts någon motion som går emot att riksdagen antar regeringens lagförslag'); samtliga 15 reservationer gäller punkt 2-14 (innehållsuppdrag/ekonomi/uppföljning, S/V/C/MP) och tolkas INTE som opposition mot punkt 1 -> alla 8 partier supports på instrumentet att anta lagen. FRAMTIDA UPPGRADERING: om SOU/utvärdering belägger starkare varför lagFORMEN (ej bara oberoende i sak) stärker institutionellt oberoende. Demokrati yttrandefrihet_medier tidigare B-tomt -> demokrati 3/5 -> 4/5.
+- **Påverkar partier:** C(+), KD(+), L(+), M(+), MP(+), S(+), SD(+), V(+)
+- ⚠ låg konfidens
 - **OK?** ⬜ (✅/✏️/❌): 
 
 ## ekonomi
