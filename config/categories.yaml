@@ -73,7 +73,7 @@ categories:
       - { id: vard_tillganglighet,   name: Vårdens tillgänglighet och kvalitet, weight: 30 }
       - { id: skola_kunskap,         name: Skolans kunskap och likvärdighet, weight: 30 }
       - { id: omsorg_personal,       name: Omsorg och personalförsörjning, weight: 20 }
-      - { id: finansiering_styrning, name: Finansiering, styrning och anti-fusk, weight: 20 }
+      - { id: finansiering_styrning, name: "Finansiering, styrning och anti-fusk", weight: 20 }
     indicators:
       - { id: vardkoer,                  submeasure: vard_tillganglighet, direction: down }
       - { id: vard_i_tid,                submeasure: vard_tillganglighet, direction: up }
@@ -113,7 +113,7 @@ categories:
       - { id: militar_formaga,          name: Militär förmåga, weight: 35 }
       - { id: ekonomisk_ambition,       name: Ekonomisk ambitionsnivå och långsiktig finansiering, weight: 25 }
       - { id: civil_beredskap,          name: Civil beredskap, weight: 20 }
-      - { id: nato_ukraina,             name: Nato, Ukraina och internationell trovärdighet, weight: 15 }
+      - { id: nato_ukraina,             name: "Nato, Ukraina och internationell trovärdighet", weight: 15 }
       - { id: genomforbarhet_leverans,  name: Genomförbarhet och leveranstakt, weight: 5 }
     indicators:
       - { id: forsvarsanslag_andel_bnp, submeasure: ekonomisk_ambition, direction: target, note: "Upp till beslutad målnivå" }
@@ -151,9 +151,9 @@ categories:
     caveat: Här finns stor risk för ideologisk bias. Därför måste indikatorerna vara extra tydliga.
     submeasures:
       - { id: arbete_sjalvforsorjning, name: Arbete och självförsörjning, weight: 30 }
-      - { id: skola_sprak,             name: Skola, språk och utbildning, weight: 25 }
+      - { id: skola_sprak,             name: "Skola, språk och utbildning", weight: 25 }
       - { id: boendesegregation,       name: Boendesegregation och trygghet, weight: 20 }
-      - { id: normer_tillit,           name: Normer, tillit och samhällsgemenskap, weight: 15 }
+      - { id: normer_tillit,           name: "Normer, tillit och samhällsgemenskap", weight: 15 }
       - { id: migrationssystem,        name: Migrationssystemets hållbarhet, weight: 10 }
     indicators:
       - { id: sysselsattningsgap_inrikes_utrikes, submeasure: arbete_sjalvforsorjning, direction: down }
