@@ -214,6 +214,19 @@ högre coverage → mindre B-krympning → B får faktiskt genomslag.
   **ranking oförändrad**. 37 evidensposter / 200 ståndpunkter; scorerun + B4 (inga nära-binära) + 167 tester gröna + ruff rent + 0 cyrilliska; paket
   regenererat. **snapshot ej re-baselinad.** Samma dag: **djupsvep §5.8** på forsvar/valfard/integration (7+11+11 instrument, 4 parallella agenter) →
   **HOLD ×5 bekräftat** med skärpta återöppningsvillkor (se evidens_trovardighet.md §6); väg till 4 undermått där kräver modellutvidgning → sign-off.
+- ✅ **B-GRÖN-SVEPET 2026-06-07 (användarmandat: varje undermått ≥1 B-grön; nya indikatorer autonomt som v0)** — 11 parallella
+  researchagenter + codex adversariell granskning → **5 mått byggda v0** (alla enhällighet-som-källa §5.2, alla 8 supports,
+  acklamation verifierad mot data.riksdagen.se dokumentstatus, citat verbatim, low/low, FLAGGADE för sign-off):
+  **(1)** `insyn_partifinansiering` → politisk_transparens (demokrati, lagen 2018:90/KU19 p1) → **demokrati 5/5 FULLT**;
+  **(2)** NY indikator `forsvarsfinansiering_upptrappning_mot_mal` ← `upptrappning_forsvarsanslag_mot_mal` (forsvar, FöU2 p1+p5) → **forsvar 4/5**;
+  **(3)** NY indikator `kommunalt_brottsforebyggande_arbete` ← `lagstadgat_kommunalt_brottsforebyggande_ansvar` (trygghet, lagen 2023:196/JuU9 p1) → **trygghet 5/5 FULLT**;
+  **(4)** `koncentration_nationell_hogspecialiserad_vard` → overlevnad_svar_sjukdom (valfard, SOU 2015:98/SoU18 p1);
+  **(5)** NY indikator `kontinuitet_i_omsorgen` ← `fast_omsorgskontakt` (valfard, prop. 2021/22:116/SoU24 p2) → **valfard 4/4 FULLT**.
+  **5 HOLD** (genomforbarhet_leverans, industriell_konkurrenskraft, boendesegregation, normer_tillit, migrationssystem — genuina
+  väggar; konkreta kandidat-indikatorer för sign-off) + **offentliga_finanser HOLD-kontext** (codex: åtstramnings-tilt). Inflation kontext.
+  42 evidensposter / 240 ståndpunkter; **isolerad effekt: ranking OFÖRÄNDRAD** (S>L>M>KD>MP>C>SD>V), alla cellförändringar positiva (inget
+  parti straffat — omöjligt att tilta då alla supports); ruff rent, 167 tester gröna, B4 inga nära-binära, 0 cyrilliska i config.
+  snapshot ej re-baselinad. **Fullständig leverans + sign-off-frågor: [evidens_trovardighet.md §8.7](evidens_trovardighet.md).** Väntar mänsklig sign-off.
 
 ### Status per spår efter nattkörning 2026-06-04 (A-raden uppdaterad 2026-06-05)
 

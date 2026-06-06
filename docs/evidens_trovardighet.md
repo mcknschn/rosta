@@ -90,28 +90,32 @@ steg.** Vi behandlade dem länge som ett — "finns en ren votering?" fick avgö
 ## 3. Var vi står (uppdateras per leverans)
 
 Aktiv partikopplad B-evidens per kategori (källa: `python -m pipeline.tools.coverage_report`,
-B4-grind `b_submeasure_spread`). **Senast uppdaterad 2026-06-06.**
+B4-grind `b_submeasure_spread`). **Senast uppdaterad 2026-06-07 (B-grön-svepet).**
 
-| Kategori | Undermått m. B-evidens | B-möjliga undermått¹ | Status |
-|---|---|---|---|
-| ekonomi | **4/6** | 4 | ✅ alla B-möjliga täckta (inflation/off.finanser = target) |
-| trygghet | **4/5** | ~4 | ✅ snabbförfarande byggt 2026-06-06 (enhällighet) → **4 nått** |
-| klimat | **4/5** | ~4 | ✅ invasiva arter byggt 2026-06-06 (enhällighet; low/low, FLAGGAD) → **4 nått** |
-| demokrati | **4/5** | 4–5² | ✅ public service-lagen byggt 2026-06-06 (enhällighet, KrU2 p1, alla 8 supports) → **4 nått** |
-| forsvar | **3/5** | 3³ | nato byggt; leverans HOLD **bekräftat djupsvep §5.8** (7 instrument; äkta steg-1-vägg — leveranstid ej svenskt belagt), ambition = target |
-| integration | 2/5 | 3–4⁴ | HOLD ×2 **bekräftat djupsvep §5.8** (11 instrument; boendesegr. steg-1-vägg, normer_tillit/KU4 fel konstrukt) |
-| valfard | 2/4 | 3⁵ | HOLD ×2 **bekräftat djupsvep §5.8** (11 instrument; vårdplats-slutrapport 2026:3 föll nedåt, cancerscreening = steg-2-tilt) |
+| Kategori | Undermått m. B-evidens | Status |
+|---|---|---|
+| demokrati | **5/5** | ✅ **FULLT** — transparens_ansvar byggt 2026-06-07 (insyn partifinansiering, lagen 2018:90/KU19 p1) |
+| trygghet | **5/5** | ✅ **FULLT** — forebyggande byggt 2026-06-07 (lagen 2023:196/JuU9 p1; tidigare utan indikator) |
+| valfard | **4/4** | ✅ **FULLT** — vard_tillganglighet (NHV→överlevnad) + omsorg_personal (kontinuitet) byggt 2026-06-07 |
+| ekonomi | **4/6** | ✅ alla 4 B-möjliga täckta; **offentliga_finanser HOLD-kontext** (codex: åtstramnings-tilt), inflation = target |
+| forsvar | **4/5** | ✅ ekonomisk_ambition byggt 2026-06-07 (upptrappning mot mål, FöU2 p1+p5); **genomforbarhet_leverans HOLD** (steg-2-tilt) |
+| klimat | **4/5** | **industriell_konkurrenskraft HOLD** (dubbelvägg: RiR 2024:17 + MJU15-tilt) |
+| integration | **2/5** | **boendesegr./normer_tillit/migrationssystem HOLD** (genuina väggar, högsta bias-risk) |
+
+**B-grön-svepet 2026-06-07 (användarmandat "varje undermått ≥1 B-grön"):** 11 parallella researchagenter +
+codex adversariell granskning → **5 byggda** (alla enhällighet-som-källa §5.2, alla 8 supports,
+icke-rankningsdrivande, v0/low/low, FLAGGADE för sign-off), **5 HOLD** (genuina väggar, sign-off-kandidater
+i §6/§8.7) + **offentliga_finanser HOLD-kontext** (codex). 3 kategorier nådde FULLT (demokrati/trygghet/valfard),
+forsvar 3/5→4/5.
 
 ¹ Undermått vars indikator har en riktning (≠ `target`) **och** kan kopplas till en åtgärdstyp med
-  evidensbelagd riktning. ² demokrati har undermått där neutralt mått ännu inte hittats utan dubbelräkning.
-  ³ försvar: `ekonomisk_ambition` = `forsvarsanslag_andel_bnp` är `target`. ⁴ integration:
-  `migrationssystem` saknar indikator. ⁵ välfärd: `vard_tillganglighet` + `omsorg_personal` otäckta.
+  evidensbelagd riktning.
 
-**Sammanlagt:** 37 evidensposter / 200 ståndpunkter (2026-06-06: +3 poster, +24 ståndpunkter via de tre
-enhällighet-måtten snabbförfarande + invasiva arter + public service). `dist/`-snapshot medvetet ej
-re-baselinad så kumulativ effekt syns (`score_diff` visar demokrati+nato+dagens leverans tillsammans).
-Public service-måttets **isolerade** effekt: icke-rankningsdrivande (ranking oförändrad), demokrati +0,0…+0,20
-per parti (alla supports), total +0,0…+0,015.
+**Sammanlagt:** 42 evidensposter / 240 ståndpunkter (2026-06-07: +5 poster, +40 ståndpunkter via de fem
+B-grön-måtten). `dist/`-snapshot medvetet ej re-baselinad så kumulativ effekt syns. **B-grön-svepets ISOLERADE
+effekt** (current dist vs git HEAD): **ranking OFÖRÄNDRAD** (S > L > M > KD > MP > C > SD > V), alla 8 partier +0,018…+0,109
+total (alla cellförändringar positiva — inget parti straffas, omöjligt att tilta då alla supports); störst lyft
+till tidigare under-täckta (SD +0,109 via valfard, MP +0,053 via forsvar) = täckningsifyllnad, ej bias.
 
 ---
 
@@ -178,9 +182,12 @@ mediefrihet/korruption: D förbjuden/sekretess men B byggd).
 🔴 **ej mätbar** (indikator finns men B-vägg + ingen D) · 🔴 **saknar indikator** (inget definierat att mäta —
 kräver ny indikator, §5.7) · ⚪ **target** (kontext, ingen riktning, betygssätts ej, renormaliseras bort).
 
-### Mastertabell — samtliga 35 undermått / 52 indikatorer (genererad ur config 2026-06-06)
-*De 3 undermått som **saknar indikator** (Förebyggande arbete, Industriell konkurrenskraft, Migrationssystemets
-hållbarhet) listas som egna rader — de är steg-1-väggar (§4.2): det finns inget definierat att mäta.*
+### Mastertabell — samtliga 35 undermått / 55 indikatorer (uppdaterad 2026-06-07, B-grön-svepet)
+*B-grön-svepet 2026-06-07 lade till 3 nya indikatorer (forsvarsfinansiering_upptrappning_mot_mal,
+kommunalt_brottsforebyggande_arbete, kontinuitet_i_omsorgen) och grönmarkerade 5 undermått (de 5 raderna
+markerade "byggt 2026-06-07"). Kvar utan B-grön: 2 undermått som **saknar indikator** (Industriell
+konkurrenskraft, Migrationssystemets hållbarhet — steg-1-väggar §4.2) + 4 HOLD-undermått (se §6/§8.7).
+Förebyggande arbete har nu en indikator (var tidigare en "saknar indikator"-vägg).*
 | Kategori | Undermått | Indikator | Riktning | Mätstatus |
 |---|---|---|---|---|
 | Ekonomi och jobb | Sysselsättning och arbetslöshet `sysselsattning_arbetsloshet` | Sysselsättning `sysselsattning` | upp | ✅ mäts (B+D) |
@@ -194,11 +201,12 @@ hållbarhet) listas som egna rader — de är steg-1-väggar (§4.2): det finns 
 | Ekonomi och jobb | Offentliga finanser och långsiktig hållbarhet `offentliga_finanser` | Statsskuld/underskott (hållbar nivå) `statsskuld_underskott` | målnivå | ⚪ target (kontext) |
 | Välfärd | Vårdens tillgänglighet och kvalitet `vard_tillganglighet` | Vårdköer `vardkoer` | ned | ✅ mäts (D) |
 | Välfärd | Vårdens tillgänglighet och kvalitet `vard_tillganglighet` | Andel som får vård i tid `vard_i_tid` | upp | 🟡 mätbar, ej byggd |
-| Välfärd | Vårdens tillgänglighet och kvalitet `vard_tillganglighet` | Överlevnad efter svår sjukdom `overlevnad_svar_sjukdom` | upp | 🟡 mätbar, ej byggd |
+| Välfärd | Vårdens tillgänglighet och kvalitet `vard_tillganglighet` | Överlevnad efter svår sjukdom `overlevnad_svar_sjukdom` | upp | ✅ mäts (B) — byggt 2026-06-07: koncentration_nationell_hogspecialiserad_vard (SOU 2015:98 + SoU18 p1, alla 8) |
 | Välfärd | Skolans kunskap och likvärdighet `skola_kunskap` | Skolresultat `skolresultat` | upp | ✅ mäts (B+D) |
 | Välfärd | Skolans kunskap och likvärdighet `skola_kunskap` | Skillnader mellan skolor `skillnader_mellan_skolor` | ned | 🟡 mätbar, ej byggd |
 | Välfärd | Skolans kunskap och likvärdighet `skola_kunskap` | Behöriga lärare `behoriga_larare` | upp | ✅ mäts (D) |
-| Välfärd | Omsorg och personalförsörjning `omsorg_personal` | Personalomsättning i omsorgen `personalomsattning_omsorg` | ned | 🔴 ej mätbar (vägg) |
+| Välfärd | Omsorg och personalförsörjning `omsorg_personal` | Personalomsättning i omsorgen `personalomsattning_omsorg` | ned | 🔴 ej mätbar (vägg; behålls separat) |
+| Välfärd | Omsorg och personalförsörjning `omsorg_personal` | Kontinuitet i omsorgen `kontinuitet_i_omsorgen` | upp | ✅ mäts (B) — byggt 2026-06-07: fast_omsorgskontakt (prop. 2021/22:116 + SoU24 p2, alla 8); NY indikator (konstrukt = kontinuitet, ej personalomsättning) |
 | Välfärd | Finansiering, styrning och anti-fusk `finansiering_styrning` | Välfärdsbrottslighet `valfardsbrottslighet` | ned | ✅ mäts (B) |
 | Lag och trygghet | Grov brottslighet och våldsbrott `grov_brottslighet` | Dödligt våld `dodligt_vald` | ned | ✅ mäts (D) |
 | Lag och trygghet | Grov brottslighet och våldsbrott `grov_brottslighet` | Skjutningar och sprängningar `skjutningar_sprangningar` | ned | ✅ mäts (B+D) |
@@ -206,11 +214,12 @@ hållbarhet) listas som egna rader — de är steg-1-väggar (§4.2): det finns 
 | Lag och trygghet | Utsatthet och upplevd trygghet `utsatthet_trygghet` | Upplevd otrygghet `upplevd_otrygghet` | ned | ✅ mäts (D) |
 | Lag och trygghet | Rättsväsendets effektivitet `rattsvasendets_effektivitet` | Uppklaringsgrad `uppklaringsgrad` | upp | ✅ mäts (D) |
 | Lag och trygghet | Rättsväsendets effektivitet `rattsvasendets_effektivitet` | Handläggningstid `handlaggningstid` | ned | ✅ mäts (B) |
-| Lag och trygghet | Förebyggande arbete `forebyggande` | _(ingen indikator definierad)_ | — | 🔴 saknar indikator |
+| Lag och trygghet | Förebyggande arbete `forebyggande` | Kommunalt brottsförebyggande arbete `kommunalt_brottsforebyggande_arbete` | upp | ✅ mäts (B) — byggt 2026-06-07: lagstadgat_kommunalt_brottsforebyggande_ansvar (lagen 2023:196, JuU9 p1, alla 8); NY indikator (tidigare saknade undermåttet indikator) |
 | Lag och trygghet | Återfall och kriminalvård `aterfall_kriminalvard` | Återfall i brott `aterfall_i_brott` | ned | ✅ mäts (B) |
 | Försvar och beredskap | Militär förmåga `militar_formaga` | Personal och värnpliktiga `personal_varnpliktiga` | upp | ✅ mäts (B) |
 | Försvar och beredskap | Militär förmåga `militar_formaga` | Ammunition, luftvärn, logistik, cyberförmåga `materiel_formaga` | upp | 🟡 mätbar, ej byggd |
 | Försvar och beredskap | Ekonomisk ambitionsnivå och långsiktig finansiering `ekonomisk_ambition` | Försvarsanslag som andel av BNP `forsvarsanslag_andel_bnp` | målnivå | ⚪ target (kontext) |
+| Försvar och beredskap | Ekonomisk ambitionsnivå och långsiktig finansiering `ekonomisk_ambition` | Finansieringsupptrappning mot mål `forsvarsfinansiering_upptrappning_mot_mal` | upp | ✅ mäts (B) — byggt 2026-06-07: upptrappning_forsvarsanslag_mot_mal (FöU2 p1+p5, alla 8); NY indikator |
 | Försvar och beredskap | Civil beredskap `civil_beredskap` | Civil beredskap (vård, energi, mat, transporter) `civil_beredskap_niva` | upp | ✅ mäts (B) |
 | Försvar och beredskap | Nato, Ukraina och internationell trovärdighet `nato_ukraina` | Ukraina-stöd `ukraina_stod` | upp | 🟡 mätbar, ej byggd |
 | Försvar och beredskap | Nato, Ukraina och internationell trovärdighet `nato_ukraina` | Nato-interoperabilitet `nato_interoperabilitet` | upp | ✅ mäts (B) |
@@ -237,27 +246,31 @@ hållbarhet) listas som egna rader — de är steg-1-väggar (§4.2): det finns 
 | Frihet, demokrati och institutioner | Korruption och myndighetstillit `korruption_tillit` | Förtroende för domstolar/myndigheter `fortroende_domstolar_myndigheter` | upp | 🟡 mätbar, ej byggd |
 | Frihet, demokrati och institutioner | Yttrandefrihet och medier `yttrandefrihet_medier` | Mediefrihet `mediefrihet` | upp | ✅ mäts (B) |
 | Frihet, demokrati och institutioner | Personlig frihet och integritet `personlig_frihet` | Övervakning utan rättssäkerhet `overvakning_utan_rattssakerhet` | ned | ✅ mäts (B) |
-| Frihet, demokrati och institutioner | Transparens och ansvarsutkrävande `transparens_ansvar` | Politisk transparens `politisk_transparens` | upp | 🟡 mätbar, ej byggd |
+| Frihet, demokrati och institutioner | Transparens och ansvarsutkrävande `transparens_ansvar` | Politisk transparens `politisk_transparens` | upp | ✅ mäts (B) — byggt 2026-06-07: insyn_partifinansiering (lagen 2018:90, KU19 p1, alla 8) |
 
-### Vad kartan säger — fyra slags otäckthet
-1. **✅ Mäts (bidrar nu)** — majoriteten. Värdeneutralt skydd: indikatorer utan D mäts ofta ändå via **B**
-   (nato_interoperabilitet, mediefrihet, korruption — D sekretess/förbjuden men B bär dem).
-2. **🟡 Mätbar, ej byggd (10 st)** — jobb kvarstår, inte väggar: D-serien finns men adaptern är obyggd
-   (realloner, sfi, elprisvolatilitet…) **eller** en B-väg finns men är ogjord (materiel, Ukraina-stöd,
-   politisk_transparens via KU39, domstolsförtroende, overlevnad via cancerstrategi). **Dessa byggs, ej stryks.**
-3. **🔴 Ej mätbar (7 undermått totalt):**
-   - **Indikator finns men är en äkta vägg (4):** `personalomsattning_omsorg`, `leveranstid_materiel`,
-     `segregation`, `tillit_valdeltagande` — varken byggbar B eller åtkomlig D. **Exakt dessa blockerar fyra av
-     HOLD-undermåtten.** Kandidater för **borttagning/omklassning** (§8.6).
-   - **Saknar indikator helt (3):** `forebyggande` (trygghet), `industriell_konkurrenskraft` (klimat),
-     `migrationssystem` (integration) — inget är ens definierat att mäta. Kräver en **ny indikator** (§5.7,
-     modellutvidgning) eller borttagning. Båda är sign-off.
-4. **⚪ Target (3 st):** inflation, statsskuld, försvarsanslag — saknar riktning (nära mål = bäst), betygssätts
-   aldrig, renormaliseras bort. Behålls medvetet för *visning/kontext*.
+### Vad kartan säger — efter B-grön-svepet 2026-06-07
+**Status per undermått (35 totalt):** **29 har nu en B-grön indikator** (24 sedan tidigare + 5 byggda i
+svepet). **6 saknar B-grön:** 4 HOLD-undermått (genuina väggar) + 2 target-/kontext-undermått (medvetet).
+1. **✅ Mäts via B (bidrar nu)** — 29 undermått. Värdeneutralt skydd: indikatorer utan D bärs ändå av **B**
+   (nato_interoperabilitet, mediefrihet, korruption, + de 5 nya). De 5 nya är alla enhällighet-konsensus (alla 8
+   supports, icke-rankningsdrivande), v0/low/low, FLAGGADE för sign-off.
+2. **🟡 Mätbar, ej byggd (8 st kvar)** — bonus-indikatorer på undermått som REDAN har en B-grön (ej krav för
+   målet): realloner, vard_i_tid, skillnader_mellan_skolor, materiel_formaga, ukraina_stod, elprisvolatilitet,
+   sfi_sprakkunskaper, fortroende_domstolar_myndigheter. Mest D-adaptrar (Spår D) + enstaka B-vägar. Nästa steg, ej brådskande.
+3. **🔴 HOLD-undermått utan B-grön (4):** `genomforbarhet_leverans` (forsvar — steg-2-tilt; ny indikator
+   `forsorjningstrygghet_materiel` föreslagen), `industriell_konkurrenskraft` (klimat — dubbelvägg;
+   `industrins_utslappsintensitet` föreslagen), `boendesegregation` + `normer_tillit` + `migrationssystem`
+   (integration — genuina väggar/högsta bias-risk). Alla med konkreta sign-off-kandidat-indikatorer i §8.7.
+   *(De döda indikatorerna `personalomsattning_omsorg`, `segregation`, `tillit_valdeltagande` behålls separat;
+   deras undermått täcks nu eller är HOLD.)*
+4. **⚪ Target/kontext (utan B-grön, medvetet):** `inflation_prisstabilitet` (Riksbanksstyrt) +
+   `offentliga_finanser` (codex HOLD-kontext 2026-06-07: åtstramnings-tilt + dubbelräkning mot A/c2 — directional
+   konvertering avvisad). `forsvarsanslag_andel_bnp` förblir target men undermåttet ekonomisk_ambition nåddes via
+   den nya syster-indikatorn forsvarsfinansiering_upptrappning_mot_mal.
 
-**Slutsats för "kan vi inte mäta — ska vi ha kvar?":** principen håller för de **7 röda** (4 ej mätbara + 3 utan
-indikator = precis de undermått vi inte når) → ta bort, omklassa till kontext, eller (för de 3) lägg ny indikator.
-De **10 gula** är mätbara och bör byggas, inte strykas. Beslutsdiskussion: §8.6.
+**Slutsats:** B-grön-målet är nått så långt **neutralitet före 4** tillåter — 5 rena enhällighet-mått byggda;
+de 6 återstående är antingen genuina väggar (där bygge skulle kräva tilt/fabrikat → sign-off-kandidater §8.7)
+eller medvetna target/kontext. De 8 gula är frivilliga bonus-indikatorer på redan täckta undermått.
 
 ## 5. Steg 2 — metodregister för positionering
 
@@ -368,7 +381,10 @@ undermått. Ex: trygghet/`forebyggande` via lag (2023) om kommuners brottsföreb
 
 Legend: ✅ byggt · 🟡 kandidat (research klar, väntar beslut) · ❌ förkastat (med skäl) · 🟣 steg-1-vägg (modellutvidgning).
 
-### Trygghet — **4/5** ✅ (snabbförfarande byggt 2026-06-06)
+> **B-grön-svepet 2026-06-07:** se **§8.7** för den fullständiga leveransen (5 byggda v0 + 5 HOLD-sign-off-kandidater
+> + offentliga_finanser-beslutet). Rubrikerna nedan uppdaterade till nya undermåttsräkningen.
+
+### Trygghet — **5/5** ✅ FULLT (forebyggande byggt 2026-06-07; snabbförfarande 2026-06-06)
 - ✅ `snabbforfarande_lagforing` → `handlaggningstid` (Brå 2020:3: handläggningstid i tingsrätt ca −40 %,
   total "mer än halverats"). Enhälligt bet. 2022/23:JuU2 p1 (acklamation; reservation V/C/MP gäller p2,
   de "välkomnar" snabbförfarandet) → **alla 8 supports** (§5.2). authority_evaluation/medium/medium.
@@ -377,7 +393,7 @@ Legend: ✅ byggt · 🟡 kandidat (research klar, väntar beslut) · ❌ förka
   indikator (grov brottslighet, ej generell uppklaring).
 - 🟣 `forebyggande`: saknar indikator → §5.7.
 
-### Klimat — **4/5** ✅ (invasiva arter byggt 2026-06-06; FLAGGAD)
+### Klimat — **4/5** (invasiva arter byggt 2026-06-06, FLAGGAD; industriell_konkurrenskraft HOLD 2026-06-07 — se §8.7)
 - ✅ `atgarder_mot_invasiva_frammande_arter` → `hotade_arter_naturforlust` (Naturvårdsverket: förteckningen
   är "ett verktyg i arbetet med att förebygga och begränsa spridningen av arter som kan orsaka skador på ...
   biologisk mångfald"). Enhälligt bet. 2025/26:MJU13 p1 (acklamation, "inte väckts någon motion som går
@@ -387,7 +403,7 @@ Legend: ✅ byggt · 🟡 kandidat (research klar, väntar beslut) · ❌ förka
 - ❌ bottentrålning / naturvård / levande hav: utformningsstrid eller avslagspunkter (tilt).
 - 🟣 `industriell_konkurrenskraft`: saknar indikator → §5.7.
 
-### Försvar — 3/5 (nato byggt; leverans HOLD)
+### Försvar — 4/5 (nato 2026-06-06 + ekonomisk_ambition/upptrappning 2026-06-07 byggt; genomforbarhet_leverans HOLD — se §8.7)
 - ✅ `nato_medlemskap` → `nato_interoperabilitet` (votering UU16 2022/23 p1; Försvarsberedningen Ds 2024:6;
   supports S/M/SD/C/KD/L, **opposes V**, **MP=none** [reversering, codex-granskad]). *Flaggat: straffar V.*
 - ❌ `genomforbarhet_leverans` HOLD (2026-06-06): inget instrument klarar steg 1 + steg 2 samtidigt. Ren
@@ -408,7 +424,7 @@ Legend: ✅ byggt · 🟡 kandidat (research klar, väntar beslut) · ❌ förka
     enda B-vägen kan vara att byta/komplettera indikatorn (t.ex. FMV leveransindex som D-serie) → designbeslut.
 - 🟣 `ekonomisk_ambition`: `target`-indikator → steg-1-vägg.
 
-### Välfärd — 2/4 (vård + omsorg HOLD)
+### Välfärd — 4/4 ✅ FULLT (vard_tillganglighet/NHV + omsorg_personal/kontinuitet byggt 2026-06-07 — se §8.7; tidigare HOLD överstigna med nya instrument)
 - ❌ `vard_tillganglighet` HOLD (2026-06-06): **riktningsgrinden faller**. RiR 2023:12 finner vårdgaranti/
   kömiljard/SVF "på många sätt inte effektiva" + undanträngning (mixed/negativ); nationell vårdförmedling är
   *outvärderad* (E-hälsomyndighetens uppdrag 2023, system under uppbyggnad) → vore fabrikat; vårdval (RiR
@@ -436,7 +452,7 @@ Legend: ✅ byggt · 🟡 kandidat (research klar, väntar beslut) · ❌ förka
     SKR la dessutom ned kontinuitetsstatistiken 2024 → även dataunderlaget borta. Strukturell vägg (en enda
     indikator, inget partistyrbart instrument flyttar den bevisat nedåt).
 
-### Integration — 2/5 (båda HOLD; högsta bias-risk bekräftad)
+### Integration — 2/5 (boendesegr./normer_tillit/migrationssystem HOLD; B-grön-svepet 2026-06-07 bekräftade genuina väggar — högsta bias-risk; sign-off-kandidater §8.7)
 - ❌ `normer_tillit` HOLD (2026-06-06): samhällsorientering belägger "kunskap om samhället/etablering", **inte
   tillit/valdeltagande** (instrument-grind faller); AU8 p3 ej enhällig (S-reservation) + är ett *avslag*.
   - **Djupsvep §5.8 (2026-06-06, 6 instrument):** HOLD bekräftat. **Renaste near-miss:** tillgänglighet vid val
@@ -458,7 +474,7 @@ Legend: ✅ byggt · 🟡 kandidat (research klar, väntar beslut) · ❌ förka
 - 🟣 `migrationssystem`: saknar indikator → §5.7.
 - ⚠️ Kategorins egen IDEA.md-caveat ("stor risk för ideologisk bias") **bekräftad i praktiken** → HOLD rätt.
 
-### Demokrati — **4/5** ✅ (public service-lagen byggt 2026-06-06)
+### Demokrati — **5/5** ✅ FULLT (transparens_ansvar/insyn partifinansiering byggt 2026-06-07; public service 2026-06-06)
 - ✅ `lagstadgat_oberoende_public_service` → `mediefrihet` (undermått yttrandefrihet_medier, tidigare B-tomt
   3/5 → **4/5**). Instrument: för första gången regleras public service-uppdraget I LAG (prop. 2024/25:166,
   ur 2023 års **parlamentariska** public service-kommitté SOU 2024:34 "Ansvar och oberoende") med lagstadgat
@@ -479,7 +495,7 @@ Legend: ✅ byggt · 🟡 kandidat (research klar, väntar beslut) · ❌ förka
   pol. tilt, ej anti-pressfrihet), nytt mediestöd (förordning → ingen votering; dubbelräkning mot A), massmedie-
   betänkanden KU18 (regering-vs-opp-tilt).
 
-### Ekonomi — 4/6 ✅
+### Ekonomi — 4/6 ✅ (offentliga_finanser HOLD-som-kontext 2026-06-07, codex avvisade directional konvertering — se §8.7; inflation = target)
 - Färdigställt 2026-06-05; se [BACKLOG.md](BACKLOG.md). Alla 4 B-möjliga undermått täckta; inflation/off.finanser
   = target (vilande).
 
@@ -530,7 +546,51 @@ varje röstsiffra curl-verifierad mot data.riksdagen.se; codex-2nd-opinion på b
 | 3 | **Hur långt bak väger banan?** (§5.5) | Rekommendation: mandatperioden, recency-viktat; varaktiga omsvängningar kodas efter nuläget (nato-regeln). |
 | 4 | **Acceptera nato-byggets V-straff?** (V −0,375 i försvar) | ✅ **BESLUTAT 2026-06-06: OK** (objektivt belagt, V genuint Nato-kritiskt). |
 | 5 | **Behåll invasiva-arter-måttet (klimat)?** | ✅ **BESLUTAT 2026-06-06: BEHÅLL** ("kan fylla på i framtiden"). Byggt v0 med instrument-mekanismcitat + konservativ low/low + alla 8 supports. |
-| 6 | **Ta bort / åtgärda de 7 röda undermåtten?** (a) 4 ej-mätbara *indikatorer* (`personalomsattning_omsorg`, `leveranstid_materiel`, `segregation`, `tillit_valdeltagande` — varken byggbar B eller åtkomlig D); (b) 3 undermått som *saknar indikator helt* (`forebyggande`, `industriell_konkurrenskraft`, `migrationssystem`). Se mätbarhetskartan §4.3. | **ÖPPEN — användarfråga 2026-06-06.** Rekommendation: för (a) ta bort eller omklassa till "kontext, ej betygssatt"; för (b) antingen lägg en **ny indikator** (§5.7, om värdeneutral svensk mätpunkt finns) eller ta bort undermåttet. Behåll de **10 gula** (mätbara, ej byggda — bygg dem). Allt detta ändrar undermåttsvikterna → **sign-off**; rör ej autonomt. (Modellen renormaliserar redan bort tomma undermått, så betygen är oförändrade tills beslut.) |
+| 6 | **Ta bort / åtgärda de röda undermåtten?** Efter B-grön-svepet 2026-06-07 är bilden ändrad: `forebyggande` har nu en indikator (byggd); `omsorg_personal` nås via nya `kontinuitet_i_omsorgen` (döda `personalomsattning_omsorg` behålls separat). Kvar: (a) döda indikatorer `leveranstid_materiel`/`segregation`/`tillit_valdeltagande` (deras undermått är HOLD eller D-täckta); (b) 2 undermått som *saknar indikator* (`industriell_konkurrenskraft`, `migrationssystem`). | **ÖPPEN.** Se §8.7 för konkreta sign-off-kandidat-indikatorer per HOLD-undermått. Rekommendation oförändrad: omklassa döda indikatorer till kontext eller lägg de föreslagna nya indikatorerna (sign-off, ändrar ej betyg förrän byggt då tomma undermått renormaliseras bort). |
+
+### 8.7 B-grön-svepet 2026-06-07 — vad som byggdes + sign-off-kandidater ⭐
+
+> Användarmandat (2026-06-07): **varje undermått ska ha minst en B-grön indikator** (D-grön räcker inte; om ett
+> undermått bara har D-grön måste en B-grön hittas). Scope vidgat: nya indikatorer får byggas autonomt som
+> **version 0**. Regel 1 (neutralitet före 4) gäller fortfarande — tiltade mått byggs aldrig.
+
+**BYGGT (5 mått, version 0, FLAGGADE för din sign-off — alla enhällighet-som-källa §5.2, alla 8 supports,
+icke-rankningsdrivande, low/low):** 11 parallella researchagenter + codex adversariell granskning (codex:
+4× BUILD-WITH-CHANGES, 1× BUILD; ändringar införda). Acklamation per punkt verifierad mot data.riksdagen.se
+dokumentstatus; citat verbatim-kollade.
+
+| Undermått (kategori) | Indikator | Åtgärdstyp / källa | Codex |
+|---|---|---|---|
+| transparens_ansvar (demokrati) | politisk_transparens | `insyn_partifinansiering` — lagen 2018:90, bet. 2017/18:KU19 p1 | BUILD-WC (dubbelräknings-flagga, se nedan) |
+| ekonomisk_ambition (forsvar) | **NY** forsvarsfinansiering_upptrappning_mot_mal | `upptrappning_forsvarsanslag_mot_mal` — Ds 2024:6 + prop. 2024/25:34, FöU2 p1+p5 | BUILD-WC (snäv "åtagande mot beslutad nivå") |
+| forebyggande (trygghet) | **NY** kommunalt_brottsforebyggande_arbete | `lagstadgat_kommunalt_brottsforebyggande_ansvar` — lagen 2023:196, JuU9 p1 | BUILD |
+| vard_tillganglighet (valfard) | overlevnad_svar_sjukdom | `koncentration_nationell_hogspecialiserad_vard` — SOU 2015:98 + prop. 2017/18:40, SoU18 p1 | BUILD-WC (snäv "koncentration→överlevnad") |
+| omsorg_personal (valfard) | **NY** kontinuitet_i_omsorgen | `fast_omsorgskontakt` — prop. 2021/22:116 + Socialstyrelsen, SoU24 p2 | BUILD-WC (ny indikator ≠ personalomsättning) |
+
+**Sign-off-frågor på de byggda:**
+- **Dubbelräkning (transparens):** C och MP är i den befintliga bunten `starkt_oberoende_granskning_och_insyn`
+  (→ korruption) ankrade på partifinansierings-citat → samma instrument krediterar C/MP under två demokrati-undermått.
+  *Val:* omankra C/MP:s granskningsbunt-rader till offentlighetsprincip/riksrevisions-citat, eller acceptera överlappet
+  (båda är icke-rankningsdrivande). Övriga 6 partier överlappar ej.
+- **Strukturändring:** 3 nya indikatorer i `categories.yaml` (forsvar/trygghet/valfard) — normalt §5.8-spärr-2-sign-off;
+  byggt som v0 per mandatet. Inga undermåttsvikter ändrade (nya indikatorer i befintliga undermått).
+- **Behåll/kasta:** alla 5 är low/low mekanism-/designevidens (ingen ex-post-effektutvärdering) — samma kalibrering
+  som invasiva arter/public service. Din sign-off avgör.
+
+**HOLD (5 undermått — bygge skulle kräva tilt/fabrikat; konkreta kandidat-indikatorer för din sign-off):**
+
+| Undermått (kategori) | Varför HOLD | Föreslagen indikator (sign-off) | Återöppningsvillkor |
+|---|---|---|---|
+| genomforbarhet_leverans (forsvar) | leveranstid = äkta steg-1-vägg; försörjningstrygghets-instrumentet positioneras bara via FöU2-avslagspunkter med oppositionsreservationer (tilt) | `forsorjningstrygghet_materiel` (up) — SOU 2022:24 (lagerhållning/inhemsk kapacitet) | enhälligt FöU-betänkande/lag om försörjningsberedskap utan reservation mot punkten |
+| industriell_konkurrenskraft (klimat) | dubbelvägg: RiR 2024:17 bestrider riktningen (Industriklivets syfte ≠ konkurrenskraft, "oklart vilka effekter") + MJU15 p1 = avslag av V+MP med reservationer | `industrins_utslappsintensitet` (down, utsläpp/förädlingsvärde, SCB/NV miljöräkenskaper) | miljötillstånds-/omställningsreform som passerar betänkande utan blocktilt, eller RiR/Tillväxtanalys-effektutvärdering |
+| boendesegregation (integration) | äkta steg-1-vägg (Boverket beskrivande; reform "rather the opposite effect"); enda mätbara instrument (kamera/belysning) dubbelräknar trygghet + krockar med demokrati-övervakning | `otrygghet_utsatta_omraden` (down, Brå NTU Lokal) — har D-väg men ingen neutral B-instrumenteffekt | IFAU/Brå kausal effektutvärdering (kontrollområde) av neutralt instrument |
+| normer_tillit (integration) | tillit/valdeltagande = inget neutralt partistyrbart instrument med svensk kausalkälla; KU4-tillgänglighet = fel konstrukt (förmåga att rösta ≠ uppmätt tillit/valdeltagande) | (öppen) ev. `mellanmansklig_tillit` (SOM) om neutralt instrument hittas; alt. omklassa | svensk källa som kausalt kopplar neutralt instrument → mätt tillit/valdeltagande |
+| migrationssystem (integration) | högsta bias-risk; steg-1 faller hårt — RiR 2025:5/2022:5/2021:24 + Statskontoret 2024:14 dokumenterar ineffektiva/perversa effekter; "begäran om avgörande" FÖRSÄMRAR | `handlaggningstid_migrationsverket` (down) — neutral konstruktion men ingen positiv instrumenteffekt belagd | Statskontoret/RiR-effektutvärdering av mottagnings-/återvändandecenter el. enhälligt SfU-effektmått |
+
+**KONTEXT (ej B-grön, medvetet):** `offentliga_finanser` — codex HOLD-kontext (åtstramnings-tilt: "framework
+compliance" privilegierar finanspolitisk återhållsamhet; dubbelräkning mot A/c2; smugglar target-konstrukt in i
+directional B). Lämnas som ⚪ target/kontext likt `inflation`. *(Kandidat fanns: `langsiktig_finanspolitisk_hallbarhet`
+via efterlevnad finanspolitiska ramverket, FiU14 acklamation — avvisad av codex på neutralitet. Din override möjlig.)*
 
 ---
 
@@ -551,6 +611,11 @@ varje röstsiffra curl-verifierad mot data.riksdagen.se; codex-2nd-opinion på b
 | 2026-06-06 | Dagens arbete **committat** (data:-prefix) | användarbeslut; fortsätter i fräsch session med §5.8 som spelbok |
 | 2026-06-06 | **public service-lagen byggt** (demokrati 3/5→4/5, alla 8 supports) | enhällighet-som-källa (bet. 2025/26:KrU2 p1, acklamation), codex BUILD-WITH-CHANGES; instrument lagstadgat oberoende (prop. 2024/25:166 ur parlamentarisk kommitté SOU 2024:34) → mediefrihet; mekanism-/designevidens → konservativ kalibrering low/low; icke-rankningsdrivande |
 | 2026-06-06 | **Djupsvep §5.8 på forsvar + valfard + integration** → HOLD ×5 bekräftat | 7+11+11 genuint olika instrument prövade (4 parallella researchagenter); äkta steg-1-väggar (leveranstid, boendesegregation) / fel konstrukt (omsorg_personal, normer_tillit) / steg-2-tilt (cancerscreening); återöppningsvillkor skärpta i §6. "Neutralitet före 4" + riktningsgrind står över täckningsmålet |
+| 2026-06-07 | **B-grön-mandatet** antaget (användare): varje undermått ≥1 **B-grön** (D-grön räcker ej); nya indikatorer får byggas autonomt som v0 | vidgar scope förbi §5.8-spärr-2 FÖR DETTA SYFTE; regel 1 (neutralitet före 4) kvar överst |
+| 2026-06-07 | **B-grön-svepet: 5 mått byggda v0** (transparens_ansvar, ekonomisk_ambition [NY ind.], forebyggande [NY ind.], vard_tillganglighet, omsorg_personal [NY ind.]) | 11 researchagenter + codex (4 BUILD-WC, 1 BUILD); alla enhällighet §5.2, alla 8 supports, low/low, FLAGGADE; demokrati/trygghet/valfard → FULLT, forsvar 3/5→4/5; ranking oförändrad, inget parti straffat |
+| 2026-06-07 | **5 undermått HOLD** (genomforbarhet_leverans, industriell_konkurrenskraft, boendesegregation, normer_tillit, migrationssystem) | bygge skulle kräva tilt/fabrikat; konkreta kandidat-indikatorer för sign-off i §8.7; "neutralitet före 4" |
+| 2026-06-07 | **offentliga_finanser HOLD-som-kontext** (directional konvertering avvisad) | codex: efterlevnad-av-ramverket privilegierar åtstramning + dubbelräkning A/c2 + target-konstrukt i directional B; lämnas ⚪ likt inflation. Q2-beslut "konvertera där meningsfullt" → ej här |
+| 2026-06-07 | **Snapshot ej re-baselinad** | kumulativ drift syns; re-baseline är sign-off-åtgärd |
 
 ---
 
@@ -591,3 +656,4 @@ mot snapshot), `review_packet` (granskningspaket). Snapshot re-baselineas **bara
 | 2026-06-06 | **§4.3 mätbarhetskarta tillagd** (på användarfråga): varje indikator klassad B/D → ✅ mäts / 🟡 mätbart-ej-byggt (10) / 🔴 ej mätbart (4) / ⚪ target (3). De 4 röda = exakt de 4 HOLD-undermåtten → designfråga §8.6 (borttagning/omklassning, sign-off). De 10 gula ska byggas, ej strykas. |
 | 2026-06-06 | **Andra svepet (§5.8 tillämpat):** demokrati **3/5 → 4/5** via public service-lagen (KrU2 p1 enhällighet, codex BUILD-WITH-CHANGES, low/low). forsvar/valfard/integration djupsvepta (7+11+11 instrument, 4 parallella researchagenter, alla röstsiffror verifierade mot data.riksdagen.se) → **HOLD ×5 bekräftat** med skärpta återöppningsvillkor (§6). Nya fynd: vårdplats-slutrapport 2026:3 föll *nedåt* (villkor konsumerat); **cancerscreening** (valfard) + **KU4-tillgänglighet** (integration) = near-miss som faller på steg-2-tilt resp. fel konstrukt; **KU39 insyn i politiska processer** = stark demokrati-återöppning (beslut 2026-06-15). 37 evidensposter / 200 ståndpunkter; 167 tester gröna, ruff rent, 0 cyrilliska. §3/§6/§9 uppdaterade. |
 | 2026-06-06 | **Begreppsmodell stringentad (på användarfråga):** kanonisk vokabulär **Kategori → Undermått → Indikator → Riktning** låst i §4.3-ordlista; "submått" → **Undermått** normaliserat i alla 5 dok (IDEA/DATA/BACKLOG/ROADMAP/evidens_trovardighet, 116 förekomster); IDEA.md + BACKLOG.md pekar nu på §4.3 som sanningskälla. **Config-bugg fixad:** 4 undermåttsnamn (Nato/Skola/Normer/Finansiering) var trunkerade av oquoterade kommatecken i `categories.yaml` flow-YAML → citerade. **§4.3 fick mastertabell** över samtliga **35 undermått / 52 indikatorer** (Kategori/Undermått/Indikator/Riktning/Mätstatus, genererad ur config; de 3 undermått som *saknar indikator* — forebyggande/industriell_konkurrenskraft/migrationssystem — listas som egna rader). dist byte-identisk (namn påverkar ej betyg); 167 tester gröna. |
+| 2026-06-07 | **B-GRÖN-SVEPET (användarmandat: varje undermått ≥1 B-grön):** 11 parallella researchagenter + codex adversariell granskning → **5 mått byggda v0** (insyn_partifinansiering→transparens; NY forsvarsfinansiering_upptrappning_mot_mal→ekonomisk_ambition; NY kommunalt_brottsforebyggande_arbete→forebyggande; koncentration NHV→överlevnad; NY kontinuitet_i_omsorgen→omsorg_personal). Alla enhällighet-som-källa §5.2 (alla 8 supports, acklamation verifierad mot data.riksdagen.se dokumentstatus, citat verbatim-kollade), low/low, FLAGGADE. **Demokrati 4/5→5/5, trygghet 4/5→5/5, valfard 2/4→4/4 (alla FULLT), forsvar 3/5→4/5.** **5 HOLD** (genomforbarhet_leverans, industriell_konkurrenskraft, boendesegregation, normer_tillit, migrationssystem — genuina väggar, kandidat-indikatorer §8.7) + **offentliga_finanser HOLD-kontext** (codex: åtstramnings-tilt). 42 evidensposter / 240 ståndpunkter; **isolerad effekt: ranking OFÖRÄNDRAD** (S>L>M>KD>MP>C>SD>V), alla cellförändringar positiva (inget parti straffat); ruff rent, 167 tester gröna, config valid, B4 inga nära-binära. §3/§4.3/§6/§8.6/§8.7(ny)/§9 uppdaterade. snapshot ej re-baselinad. Väntar mänsklig sign-off. |

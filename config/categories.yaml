@@ -82,6 +82,7 @@ categories:
       - { id: skillnader_mellan_skolor,  submeasure: skola_kunskap, direction: down }
       - { id: behoriga_larare,           submeasure: skola_kunskap, direction: up }
       - { id: personalomsattning_omsorg, submeasure: omsorg_personal, direction: down }
+      - { id: kontinuitet_i_omsorgen,    submeasure: omsorg_personal, direction: up, note: "Relations-/personalkontinuitet för omsorgstagaren i hemtjänsten (fast omsorgskontakt). Öppnar omsorg_personal. KONSTRUKT-NOT: detta är INTE personalomsattning_omsorg (🔴-vägg, data nedlagd) som behålls separat/orörd — det fångar kontinuitet ur omsorgstagarens perspektiv (Socialstyrelsen). fast_omsorgskontakt får ALDRIG beskrivas som belägg för lägre personalomsättning. Ny indikator 2026-06-07 (§5.7), version 0, sign-off." }
       - { id: valfardsbrottslighet,      submeasure: finansiering_styrning, direction: down }
 
   - id: trygghet
@@ -103,6 +104,7 @@ categories:
       - { id: uppklaringsgrad,         submeasure: rattsvasendets_effektivitet, direction: up }
       - { id: handlaggningstid,        submeasure: rattsvasendets_effektivitet, direction: down }
       - { id: aterfall_i_brott,        submeasure: aterfall_kriminalvard, direction: down }
+      - { id: kommunalt_brottsforebyggande_arbete, submeasure: forebyggande, direction: up, note: "Kommunalt kunskapsbaserat och samordnat brottsförebyggande arbete (lägesbild + åtgärdsplan + samordningsfunktion enligt lagen 2023:196). Öppnar undermåttet forebyggande (tidigare utan indikator, §4.2-vägg). Mäter förebyggande KAPACITET i kommunen, ej uppklaring (rattsvasendets_effektivitet) eller återfall (aterfall_kriminalvard). Ny indikator 2026-06-07 (§5.7), version 0, sign-off." }
 
   - id: forsvar
     name: Försvar och beredskap
@@ -117,6 +119,7 @@ categories:
       - { id: genomforbarhet_leverans,  name: Genomförbarhet och leveranstakt, weight: 5 }
     indicators:
       - { id: forsvarsanslag_andel_bnp, submeasure: ekonomisk_ambition, direction: target, note: "Upp till beslutad målnivå" }
+      - { id: forsvarsfinansiering_upptrappning_mot_mal, submeasure: ekonomisk_ambition, direction: up, note: "Åtagande att trappa upp försvarsanslagen mot den AV RIKSDAGEN BESLUTADE målnivån (Försvarsberedningens planeringsram → 2 % av BNP fr.o.m. 2028). Mäter finansierings-AMBITIONEN (åtagande om upptrappning mot beslutad nivå), EJ 'mer pengar alltid bättre', EJ anslagets magnitud (delpoäng A/a1) och EJ materiel/personal (militar_formaga). Target-indikatorn forsvarsanslag_andel_bnp behålls som kontext. Ny indikator 2026-06-07 (§5.7), version 0, sign-off." }
       - { id: personal_varnpliktiga,    submeasure: militar_formaga, direction: up, note: "Om utbildningskapacitet finns" }
       - { id: materiel_formaga,         submeasure: militar_formaga, direction: up, note: "Ammunition, luftvärn, logistik, cyberförmåga" }
       - { id: civil_beredskap_niva,     submeasure: civil_beredskap, direction: up, note: "Vård, energi, mat, transporter" }

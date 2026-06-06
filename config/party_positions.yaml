@@ -2291,3 +2291,449 @@ entries:
   date: '2025-10-22'
   confidence: high
   mapping_note: "ENHÄLLIGT betänkande. Punkt 1 i acklamation -> supports. MP har reservationer på punkt 2-14 (innehåll/ekonomi) men INTE mot att anta lagen -> EJ opposition mot instrumentet. Lagstadgat oberoende public service -> mediefrihet UPP."
+
+# ===========================================================================
+# B-GRÖN-SVEPET 2026-06-07 — 5 enhällighet-som-källa-mått (alla 8 supports,
+# icke-rankningsdrivande, version 0, FLAGGADE för sign-off). Acklamation per
+# punkt verifierad mot data.riksdagen.se dokumentstatus; citat verbatim-kollade.
+# ===========================================================================
+- party: S
+  policy_type: insyn_partifinansiering
+  stance: supports
+  source: "Lagen (2018:90) om insyn i finansiering av partier; enhälligt bet. 2017/18:KU19 punkt 1 (prop. 2017/18:55), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/H501KU19.html
+  doc_id: "H501KU19 punkt 1"
+  quote: "Riksdagen antar regeringens förslag till lag om insyn i finansiering av partier, till lag om ändring i lagen om insyn i finansiering av partier samt till lag om ändring i lagen (1972:625) om statligt stöd till politiska partier."
+  date: '2018-02-02'
+  confidence: medium
+  mapping_note: "ENHÄLLIGHET (§5.2): bet. 2017/18:KU19 punkt 1 (kärnlagen om insyn i partifinansiering) togs i ACKLAMATION, ingen reservation mot p1 -> S supports. Lagstadgad insyn i partifinansiering -> politisk_transparens UPP. Avser EJ den tiltade p4 (förbud mot partistöd från arbetsmarknadens parter, röstning)."
+- party: M
+  policy_type: insyn_partifinansiering
+  stance: supports
+  source: "Lagen (2018:90) om insyn i finansiering av partier; enhälligt bet. 2017/18:KU19 punkt 1 (prop. 2017/18:55), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/H501KU19.html
+  doc_id: "H501KU19 punkt 1"
+  quote: "Riksdagen antar regeringens förslag till lag om insyn i finansiering av partier, till lag om ändring i lagen om insyn i finansiering av partier samt till lag om ändring i lagen (1972:625) om statligt stöd till politiska partier."
+  date: '2018-02-02'
+  confidence: medium
+  mapping_note: "ENHÄLLIGHET (§5.2): bet. 2017/18:KU19 punkt 1 (kärnlagen om insyn i partifinansiering) togs i ACKLAMATION, ingen reservation mot p1 -> M supports. Lagstadgad insyn i partifinansiering -> politisk_transparens UPP. Avser EJ den tiltade p4 (förbud mot partistöd från arbetsmarknadens parter, röstning)."
+- party: SD
+  policy_type: insyn_partifinansiering
+  stance: supports
+  source: "Lagen (2018:90) om insyn i finansiering av partier; enhälligt bet. 2017/18:KU19 punkt 1 (prop. 2017/18:55), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/H501KU19.html
+  doc_id: "H501KU19 punkt 1"
+  quote: "Riksdagen antar regeringens förslag till lag om insyn i finansiering av partier, till lag om ändring i lagen om insyn i finansiering av partier samt till lag om ändring i lagen (1972:625) om statligt stöd till politiska partier."
+  date: '2018-02-02'
+  confidence: medium
+  mapping_note: "ENHÄLLIGHET (§5.2): bet. 2017/18:KU19 punkt 1 (kärnlagen om insyn i partifinansiering) togs i ACKLAMATION, ingen reservation mot p1 -> SD supports. Lagstadgad insyn i partifinansiering -> politisk_transparens UPP. Avser EJ den tiltade p4 (förbud mot partistöd från arbetsmarknadens parter, röstning)."
+- party: C
+  policy_type: insyn_partifinansiering
+  stance: supports
+  source: "Lagen (2018:90) om insyn i finansiering av partier; enhälligt bet. 2017/18:KU19 punkt 1 (prop. 2017/18:55), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/H501KU19.html
+  doc_id: "H501KU19 punkt 1"
+  quote: "Riksdagen antar regeringens förslag till lag om insyn i finansiering av partier, till lag om ändring i lagen om insyn i finansiering av partier samt till lag om ändring i lagen (1972:625) om statligt stöd till politiska partier."
+  date: '2018-02-02'
+  confidence: medium
+  mapping_note: "ENHÄLLIGHET (§5.2): bet. 2017/18:KU19 punkt 1 (kärnlagen om insyn i partifinansiering) togs i ACKLAMATION, ingen reservation mot p1 -> C supports. Lagstadgad insyn i partifinansiering -> politisk_transparens UPP. Avser EJ den tiltade p4 (förbud mot partistöd från arbetsmarknadens parter, röstning). DUBBELRÄKNINGS-NOT: C har även en partifinansierings-rad i bunten starkt_oberoende_granskning_och_insyn (-> korruption); sign-off omankrar den eller accepterar överlappet (icke-rankningsdrivande)."
+- party: V
+  policy_type: insyn_partifinansiering
+  stance: supports
+  source: "Lagen (2018:90) om insyn i finansiering av partier; enhälligt bet. 2017/18:KU19 punkt 1 (prop. 2017/18:55), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/H501KU19.html
+  doc_id: "H501KU19 punkt 1"
+  quote: "Riksdagen antar regeringens förslag till lag om insyn i finansiering av partier, till lag om ändring i lagen om insyn i finansiering av partier samt till lag om ändring i lagen (1972:625) om statligt stöd till politiska partier."
+  date: '2018-02-02'
+  confidence: medium
+  mapping_note: "ENHÄLLIGHET (§5.2): bet. 2017/18:KU19 punkt 1 (kärnlagen om insyn i partifinansiering) togs i ACKLAMATION, ingen reservation mot p1 -> V supports. Lagstadgad insyn i partifinansiering -> politisk_transparens UPP. Avser EJ den tiltade p4 (förbud mot partistöd från arbetsmarknadens parter, röstning)."
+- party: KD
+  policy_type: insyn_partifinansiering
+  stance: supports
+  source: "Lagen (2018:90) om insyn i finansiering av partier; enhälligt bet. 2017/18:KU19 punkt 1 (prop. 2017/18:55), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/H501KU19.html
+  doc_id: "H501KU19 punkt 1"
+  quote: "Riksdagen antar regeringens förslag till lag om insyn i finansiering av partier, till lag om ändring i lagen om insyn i finansiering av partier samt till lag om ändring i lagen (1972:625) om statligt stöd till politiska partier."
+  date: '2018-02-02'
+  confidence: medium
+  mapping_note: "ENHÄLLIGHET (§5.2): bet. 2017/18:KU19 punkt 1 (kärnlagen om insyn i partifinansiering) togs i ACKLAMATION, ingen reservation mot p1 -> KD supports. Lagstadgad insyn i partifinansiering -> politisk_transparens UPP. Avser EJ den tiltade p4 (förbud mot partistöd från arbetsmarknadens parter, röstning)."
+- party: L
+  policy_type: insyn_partifinansiering
+  stance: supports
+  source: "Lagen (2018:90) om insyn i finansiering av partier; enhälligt bet. 2017/18:KU19 punkt 1 (prop. 2017/18:55), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/H501KU19.html
+  doc_id: "H501KU19 punkt 1"
+  quote: "Riksdagen antar regeringens förslag till lag om insyn i finansiering av partier, till lag om ändring i lagen om insyn i finansiering av partier samt till lag om ändring i lagen (1972:625) om statligt stöd till politiska partier."
+  date: '2018-02-02'
+  confidence: medium
+  mapping_note: "ENHÄLLIGHET (§5.2): bet. 2017/18:KU19 punkt 1 (kärnlagen om insyn i partifinansiering) togs i ACKLAMATION, ingen reservation mot p1 -> L supports. Lagstadgad insyn i partifinansiering -> politisk_transparens UPP. Avser EJ den tiltade p4 (förbud mot partistöd från arbetsmarknadens parter, röstning)."
+- party: MP
+  policy_type: insyn_partifinansiering
+  stance: supports
+  source: "Lagen (2018:90) om insyn i finansiering av partier; enhälligt bet. 2017/18:KU19 punkt 1 (prop. 2017/18:55), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/H501KU19.html
+  doc_id: "H501KU19 punkt 1"
+  quote: "Riksdagen antar regeringens förslag till lag om insyn i finansiering av partier, till lag om ändring i lagen om insyn i finansiering av partier samt till lag om ändring i lagen (1972:625) om statligt stöd till politiska partier."
+  date: '2018-02-02'
+  confidence: medium
+  mapping_note: "ENHÄLLIGHET (§5.2): bet. 2017/18:KU19 punkt 1 (kärnlagen om insyn i partifinansiering) togs i ACKLAMATION, ingen reservation mot p1 -> MP supports. Lagstadgad insyn i partifinansiering -> politisk_transparens UPP. Avser EJ den tiltade p4 (förbud mot partistöd från arbetsmarknadens parter, röstning). DUBBELRÄKNINGS-NOT: MP har även en partifinansierings-rad i bunten starkt_oberoende_granskning_och_insyn (-> korruption); sign-off omankrar den eller accepterar överlappet (icke-rankningsdrivande)."
+- party: S
+  policy_type: upptrappning_forsvarsanslag_mot_mal
+  stance: supports
+  source: "Enhälligt bet. 2024/25:FöU2 punkt 1 (Mål för totalförsvaret) + punkt 5 (Framtida ekonomisk inriktning) (prop. 2024/25:34), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/HC01FöU2.html
+  doc_id: "HC01FöU2 punkt 1"
+  quote: "Riksdagen godkänner regeringens förslag till övergripande mål för totalförsvaret som ska gälla fr.o.m. 2025. Därmed bifaller riksdagen proposition 2024/25:34 punkt 1."
+  date: '2024-12-16'
+  confidence: medium
+  mapping_note: "ENHÄLLIGHET (§5.2): bet. 2024/25:FöU2 punkt 1 (Mål för totalförsvaret, bifaller prop. 2024/25:34 p1) + punkt 5 (Framtida ekonomisk inriktning) togs båda i ACKLAMATION -> S supports åtagandet att fullfölja finansieringsbanan upp mot beslutad målnivå (planeringsram mot 2 % av BNP fr.o.m. 2028). EJ budgetmagnitud (delpoäng A), EJ materiel/personal (militar_formaga)."
+- party: M
+  policy_type: upptrappning_forsvarsanslag_mot_mal
+  stance: supports
+  source: "Enhälligt bet. 2024/25:FöU2 punkt 1 (Mål för totalförsvaret) + punkt 5 (Framtida ekonomisk inriktning) (prop. 2024/25:34), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/HC01FöU2.html
+  doc_id: "HC01FöU2 punkt 1"
+  quote: "Riksdagen godkänner regeringens förslag till övergripande mål för totalförsvaret som ska gälla fr.o.m. 2025. Därmed bifaller riksdagen proposition 2024/25:34 punkt 1."
+  date: '2024-12-16'
+  confidence: medium
+  mapping_note: "ENHÄLLIGHET (§5.2): bet. 2024/25:FöU2 punkt 1 (Mål för totalförsvaret, bifaller prop. 2024/25:34 p1) + punkt 5 (Framtida ekonomisk inriktning) togs båda i ACKLAMATION -> M supports åtagandet att fullfölja finansieringsbanan upp mot beslutad målnivå (planeringsram mot 2 % av BNP fr.o.m. 2028). EJ budgetmagnitud (delpoäng A), EJ materiel/personal (militar_formaga)."
+- party: SD
+  policy_type: upptrappning_forsvarsanslag_mot_mal
+  stance: supports
+  source: "Enhälligt bet. 2024/25:FöU2 punkt 1 (Mål för totalförsvaret) + punkt 5 (Framtida ekonomisk inriktning) (prop. 2024/25:34), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/HC01FöU2.html
+  doc_id: "HC01FöU2 punkt 1"
+  quote: "Riksdagen godkänner regeringens förslag till övergripande mål för totalförsvaret som ska gälla fr.o.m. 2025. Därmed bifaller riksdagen proposition 2024/25:34 punkt 1."
+  date: '2024-12-16'
+  confidence: medium
+  mapping_note: "ENHÄLLIGHET (§5.2): bet. 2024/25:FöU2 punkt 1 (Mål för totalförsvaret, bifaller prop. 2024/25:34 p1) + punkt 5 (Framtida ekonomisk inriktning) togs båda i ACKLAMATION -> SD supports åtagandet att fullfölja finansieringsbanan upp mot beslutad målnivå (planeringsram mot 2 % av BNP fr.o.m. 2028). EJ budgetmagnitud (delpoäng A), EJ materiel/personal (militar_formaga). SD-motion vill nå HÖGRE nivå (3-3,5 % av BNP) -> supports på riktningen (upp mot/över beslutad målnivå)."
+- party: C
+  policy_type: upptrappning_forsvarsanslag_mot_mal
+  stance: supports
+  source: "Enhälligt bet. 2024/25:FöU2 punkt 1 (Mål för totalförsvaret) + punkt 5 (Framtida ekonomisk inriktning) (prop. 2024/25:34), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/HC01FöU2.html
+  doc_id: "HC01FöU2 punkt 1"
+  quote: "Riksdagen godkänner regeringens förslag till övergripande mål för totalförsvaret som ska gälla fr.o.m. 2025. Därmed bifaller riksdagen proposition 2024/25:34 punkt 1."
+  date: '2024-12-16'
+  confidence: medium
+  mapping_note: "ENHÄLLIGHET (§5.2): bet. 2024/25:FöU2 punkt 1 (Mål för totalförsvaret, bifaller prop. 2024/25:34 p1) + punkt 5 (Framtida ekonomisk inriktning) togs båda i ACKLAMATION -> C supports åtagandet att fullfölja finansieringsbanan upp mot beslutad målnivå (planeringsram mot 2 % av BNP fr.o.m. 2028). EJ budgetmagnitud (delpoäng A), EJ materiel/personal (militar_formaga)."
+- party: V
+  policy_type: upptrappning_forsvarsanslag_mot_mal
+  stance: supports
+  source: "Enhälligt bet. 2024/25:FöU2 punkt 1 (Mål för totalförsvaret) + punkt 5 (Framtida ekonomisk inriktning) (prop. 2024/25:34), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/HC01FöU2.html
+  doc_id: "HC01FöU2 punkt 1"
+  quote: "Riksdagen godkänner regeringens förslag till övergripande mål för totalförsvaret som ska gälla fr.o.m. 2025. Därmed bifaller riksdagen proposition 2024/25:34 punkt 1."
+  date: '2024-12-16'
+  confidence: medium
+  mapping_note: "ENHÄLLIGHET (§5.2): bet. 2024/25:FöU2 punkt 1 (Mål för totalförsvaret, bifaller prop. 2024/25:34 p1) + punkt 5 (Framtida ekonomisk inriktning) togs båda i ACKLAMATION -> V supports åtagandet att fullfölja finansieringsbanan upp mot beslutad målnivå (planeringsram mot 2 % av BNP fr.o.m. 2028). EJ budgetmagnitud (delpoäng A), EJ materiel/personal (militar_formaga)."
+- party: KD
+  policy_type: upptrappning_forsvarsanslag_mot_mal
+  stance: supports
+  source: "Enhälligt bet. 2024/25:FöU2 punkt 1 (Mål för totalförsvaret) + punkt 5 (Framtida ekonomisk inriktning) (prop. 2024/25:34), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/HC01FöU2.html
+  doc_id: "HC01FöU2 punkt 1"
+  quote: "Riksdagen godkänner regeringens förslag till övergripande mål för totalförsvaret som ska gälla fr.o.m. 2025. Därmed bifaller riksdagen proposition 2024/25:34 punkt 1."
+  date: '2024-12-16'
+  confidence: medium
+  mapping_note: "ENHÄLLIGHET (§5.2): bet. 2024/25:FöU2 punkt 1 (Mål för totalförsvaret, bifaller prop. 2024/25:34 p1) + punkt 5 (Framtida ekonomisk inriktning) togs båda i ACKLAMATION -> KD supports åtagandet att fullfölja finansieringsbanan upp mot beslutad målnivå (planeringsram mot 2 % av BNP fr.o.m. 2028). EJ budgetmagnitud (delpoäng A), EJ materiel/personal (militar_formaga)."
+- party: L
+  policy_type: upptrappning_forsvarsanslag_mot_mal
+  stance: supports
+  source: "Enhälligt bet. 2024/25:FöU2 punkt 1 (Mål för totalförsvaret) + punkt 5 (Framtida ekonomisk inriktning) (prop. 2024/25:34), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/HC01FöU2.html
+  doc_id: "HC01FöU2 punkt 1"
+  quote: "Riksdagen godkänner regeringens förslag till övergripande mål för totalförsvaret som ska gälla fr.o.m. 2025. Därmed bifaller riksdagen proposition 2024/25:34 punkt 1."
+  date: '2024-12-16'
+  confidence: medium
+  mapping_note: "ENHÄLLIGHET (§5.2): bet. 2024/25:FöU2 punkt 1 (Mål för totalförsvaret, bifaller prop. 2024/25:34 p1) + punkt 5 (Framtida ekonomisk inriktning) togs båda i ACKLAMATION -> L supports åtagandet att fullfölja finansieringsbanan upp mot beslutad målnivå (planeringsram mot 2 % av BNP fr.o.m. 2028). EJ budgetmagnitud (delpoäng A), EJ materiel/personal (militar_formaga)."
+- party: MP
+  policy_type: upptrappning_forsvarsanslag_mot_mal
+  stance: supports
+  source: "Enhälligt bet. 2024/25:FöU2 punkt 1 (Mål för totalförsvaret) + punkt 5 (Framtida ekonomisk inriktning) (prop. 2024/25:34), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/HC01FöU2.html
+  doc_id: "HC01FöU2 punkt 1"
+  quote: "Riksdagen godkänner regeringens förslag till övergripande mål för totalförsvaret som ska gälla fr.o.m. 2025. Därmed bifaller riksdagen proposition 2024/25:34 punkt 1."
+  date: '2024-12-16'
+  confidence: medium
+  mapping_note: "ENHÄLLIGHET (§5.2): bet. 2024/25:FöU2 punkt 1 (Mål för totalförsvaret, bifaller prop. 2024/25:34 p1) + punkt 5 (Framtida ekonomisk inriktning) togs båda i ACKLAMATION -> MP supports åtagandet att fullfölja finansieringsbanan upp mot beslutad målnivå (planeringsram mot 2 % av BNP fr.o.m. 2028). EJ budgetmagnitud (delpoäng A), EJ materiel/personal (militar_formaga). MP:s reservation gäller p5 men vill MER finansiering (civil ram får inte bli ett tak) -> supports på RIKTNINGEN (uppåt), ej opposes."
+- party: S
+  policy_type: lagstadgat_kommunalt_brottsforebyggande_ansvar
+  stance: supports
+  source: "Enhälligt bet. 2022/23:JuU9 punkt 1 (prop. 2022/23:43, lagen 2023:196), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/HA01JuU9.html
+  doc_id: "HA01JuU9 punkt 1"
+  quote: "Propositionen har inte lett till några motionsyrkanden eller andra invändningar under utskottsbehandlingen. Utskottet anser att regeringens lagförslag är ändamålsenligt utformat och att det bör antas av riksdagen."
+  date: '2023-03-23'
+  confidence: high
+  mapping_note: "ENHÄLLIGHET (§5.2): bet. 2022/23:JuU9 punkt 1 (enpunkts-betänkande) togs i ACKLAMATION, ingen reservation -> S supports. Lagstadgat kunskapsbaserat kommunalt brottsförebyggande arbete -> kommunalt_brottsforebyggande_arbete UPP. S lämnade ett SÄRSKILT YTTRANDE (ej reservation) som stödjer lagen men efterlyser ökad finansiering -> supports."
+- party: M
+  policy_type: lagstadgat_kommunalt_brottsforebyggande_ansvar
+  stance: supports
+  source: "Enhälligt bet. 2022/23:JuU9 punkt 1 (prop. 2022/23:43, lagen 2023:196), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/HA01JuU9.html
+  doc_id: "HA01JuU9 punkt 1"
+  quote: "Propositionen har inte lett till några motionsyrkanden eller andra invändningar under utskottsbehandlingen. Utskottet anser att regeringens lagförslag är ändamålsenligt utformat och att det bör antas av riksdagen."
+  date: '2023-03-23'
+  confidence: high
+  mapping_note: "ENHÄLLIGHET (§5.2): bet. 2022/23:JuU9 punkt 1 (enpunkts-betänkande) togs i ACKLAMATION, ingen reservation -> M supports. Lagstadgat kunskapsbaserat kommunalt brottsförebyggande arbete -> kommunalt_brottsforebyggande_arbete UPP."
+- party: SD
+  policy_type: lagstadgat_kommunalt_brottsforebyggande_ansvar
+  stance: supports
+  source: "Enhälligt bet. 2022/23:JuU9 punkt 1 (prop. 2022/23:43, lagen 2023:196), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/HA01JuU9.html
+  doc_id: "HA01JuU9 punkt 1"
+  quote: "Propositionen har inte lett till några motionsyrkanden eller andra invändningar under utskottsbehandlingen. Utskottet anser att regeringens lagförslag är ändamålsenligt utformat och att det bör antas av riksdagen."
+  date: '2023-03-23'
+  confidence: high
+  mapping_note: "ENHÄLLIGHET (§5.2): bet. 2022/23:JuU9 punkt 1 (enpunkts-betänkande) togs i ACKLAMATION, ingen reservation -> SD supports. Lagstadgat kunskapsbaserat kommunalt brottsförebyggande arbete -> kommunalt_brottsforebyggande_arbete UPP."
+- party: C
+  policy_type: lagstadgat_kommunalt_brottsforebyggande_ansvar
+  stance: supports
+  source: "Enhälligt bet. 2022/23:JuU9 punkt 1 (prop. 2022/23:43, lagen 2023:196), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/HA01JuU9.html
+  doc_id: "HA01JuU9 punkt 1"
+  quote: "Propositionen har inte lett till några motionsyrkanden eller andra invändningar under utskottsbehandlingen. Utskottet anser att regeringens lagförslag är ändamålsenligt utformat och att det bör antas av riksdagen."
+  date: '2023-03-23'
+  confidence: high
+  mapping_note: "ENHÄLLIGHET (§5.2): bet. 2022/23:JuU9 punkt 1 (enpunkts-betänkande) togs i ACKLAMATION, ingen reservation -> C supports. Lagstadgat kunskapsbaserat kommunalt brottsförebyggande arbete -> kommunalt_brottsforebyggande_arbete UPP."
+- party: V
+  policy_type: lagstadgat_kommunalt_brottsforebyggande_ansvar
+  stance: supports
+  source: "Enhälligt bet. 2022/23:JuU9 punkt 1 (prop. 2022/23:43, lagen 2023:196), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/HA01JuU9.html
+  doc_id: "HA01JuU9 punkt 1"
+  quote: "Propositionen har inte lett till några motionsyrkanden eller andra invändningar under utskottsbehandlingen. Utskottet anser att regeringens lagförslag är ändamålsenligt utformat och att det bör antas av riksdagen."
+  date: '2023-03-23'
+  confidence: high
+  mapping_note: "ENHÄLLIGHET (§5.2): bet. 2022/23:JuU9 punkt 1 (enpunkts-betänkande) togs i ACKLAMATION, ingen reservation -> V supports. Lagstadgat kunskapsbaserat kommunalt brottsförebyggande arbete -> kommunalt_brottsforebyggande_arbete UPP."
+- party: KD
+  policy_type: lagstadgat_kommunalt_brottsforebyggande_ansvar
+  stance: supports
+  source: "Enhälligt bet. 2022/23:JuU9 punkt 1 (prop. 2022/23:43, lagen 2023:196), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/HA01JuU9.html
+  doc_id: "HA01JuU9 punkt 1"
+  quote: "Propositionen har inte lett till några motionsyrkanden eller andra invändningar under utskottsbehandlingen. Utskottet anser att regeringens lagförslag är ändamålsenligt utformat och att det bör antas av riksdagen."
+  date: '2023-03-23'
+  confidence: high
+  mapping_note: "ENHÄLLIGHET (§5.2): bet. 2022/23:JuU9 punkt 1 (enpunkts-betänkande) togs i ACKLAMATION, ingen reservation -> KD supports. Lagstadgat kunskapsbaserat kommunalt brottsförebyggande arbete -> kommunalt_brottsforebyggande_arbete UPP."
+- party: L
+  policy_type: lagstadgat_kommunalt_brottsforebyggande_ansvar
+  stance: supports
+  source: "Enhälligt bet. 2022/23:JuU9 punkt 1 (prop. 2022/23:43, lagen 2023:196), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/HA01JuU9.html
+  doc_id: "HA01JuU9 punkt 1"
+  quote: "Propositionen har inte lett till några motionsyrkanden eller andra invändningar under utskottsbehandlingen. Utskottet anser att regeringens lagförslag är ändamålsenligt utformat och att det bör antas av riksdagen."
+  date: '2023-03-23'
+  confidence: high
+  mapping_note: "ENHÄLLIGHET (§5.2): bet. 2022/23:JuU9 punkt 1 (enpunkts-betänkande) togs i ACKLAMATION, ingen reservation -> L supports. Lagstadgat kunskapsbaserat kommunalt brottsförebyggande arbete -> kommunalt_brottsforebyggande_arbete UPP."
+- party: MP
+  policy_type: lagstadgat_kommunalt_brottsforebyggande_ansvar
+  stance: supports
+  source: "Enhälligt bet. 2022/23:JuU9 punkt 1 (prop. 2022/23:43, lagen 2023:196), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/HA01JuU9.html
+  doc_id: "HA01JuU9 punkt 1"
+  quote: "Propositionen har inte lett till några motionsyrkanden eller andra invändningar under utskottsbehandlingen. Utskottet anser att regeringens lagförslag är ändamålsenligt utformat och att det bör antas av riksdagen."
+  date: '2023-03-23'
+  confidence: high
+  mapping_note: "ENHÄLLIGHET (§5.2): bet. 2022/23:JuU9 punkt 1 (enpunkts-betänkande) togs i ACKLAMATION, ingen reservation -> MP supports. Lagstadgat kunskapsbaserat kommunalt brottsförebyggande arbete -> kommunalt_brottsforebyggande_arbete UPP."
+- party: S
+  policy_type: koncentration_nationell_hogspecialiserad_vard
+  stance: supports
+  source: "Bet. 2017/18:SoU18 punkt 1 (prop. 2017/18:40), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/H501SoU18.html
+  doc_id: "H501SoU18 punkt 1"
+  quote: "Utskottet välkomnar de lagändringar som regeringen föreslår och ställer sig bakom propositionen."
+  date: '2018-02-20'
+  confidence: medium
+  mapping_note: "ENHÄLLIGHET (§5.2): bet. 2017/18:SoU18 punkt 1 (Regeringens lagförslag, ny beslutsprocess för högspecialiserad vård) togs i ACKLAMATION -> S supports. Statligt beslutad koncentration av nationell högspecialiserad vård -> overlevnad_svar_sjukdom UPP."
+- party: M
+  policy_type: koncentration_nationell_hogspecialiserad_vard
+  stance: supports
+  source: "Bet. 2017/18:SoU18 punkt 1 (prop. 2017/18:40), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/H501SoU18.html
+  doc_id: "H501SoU18 punkt 1"
+  quote: "Utskottet välkomnar de lagändringar som regeringen föreslår och ställer sig bakom propositionen."
+  date: '2018-02-20'
+  confidence: medium
+  mapping_note: "ENHÄLLIGHET (§5.2): bet. 2017/18:SoU18 punkt 1 (Regeringens lagförslag, ny beslutsprocess för högspecialiserad vård) togs i ACKLAMATION -> M supports. Statligt beslutad koncentration av nationell högspecialiserad vård -> overlevnad_svar_sjukdom UPP."
+- party: SD
+  policy_type: koncentration_nationell_hogspecialiserad_vard
+  stance: supports
+  source: "Bet. 2017/18:SoU18 punkt 1 (prop. 2017/18:40), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/H501SoU18.html
+  doc_id: "H501SoU18 punkt 1"
+  quote: "Utskottet välkomnar de lagändringar som regeringen föreslår och ställer sig bakom propositionen."
+  date: '2018-02-20'
+  confidence: medium
+  mapping_note: "ENHÄLLIGHET (§5.2): bet. 2017/18:SoU18 punkt 1 (Regeringens lagförslag, ny beslutsprocess för högspecialiserad vård) togs i ACKLAMATION -> SD supports. Statligt beslutad koncentration av nationell högspecialiserad vård -> overlevnad_svar_sjukdom UPP."
+- party: C
+  policy_type: koncentration_nationell_hogspecialiserad_vard
+  stance: supports
+  source: "Bet. 2017/18:SoU18 punkt 1 (prop. 2017/18:40), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/H501SoU18.html
+  doc_id: "H501SoU18 punkt 1"
+  quote: "Utskottet välkomnar de lagändringar som regeringen föreslår och ställer sig bakom propositionen."
+  date: '2018-02-20'
+  confidence: medium
+  mapping_note: "ENHÄLLIGHET (§5.2): bet. 2017/18:SoU18 punkt 1 (Regeringens lagförslag, ny beslutsprocess för högspecialiserad vård) togs i ACKLAMATION -> C supports. Statligt beslutad koncentration av nationell högspecialiserad vård -> overlevnad_svar_sjukdom UPP."
+- party: V
+  policy_type: koncentration_nationell_hogspecialiserad_vard
+  stance: supports
+  source: "Bet. 2017/18:SoU18 punkt 1 (prop. 2017/18:40), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/H501SoU18.html
+  doc_id: "H501SoU18 punkt 1"
+  quote: "Utskottet välkomnar de lagändringar som regeringen föreslår och ställer sig bakom propositionen."
+  date: '2018-02-20'
+  confidence: medium
+  mapping_note: "ENHÄLLIGHET (§5.2): bet. 2017/18:SoU18 punkt 1 (Regeringens lagförslag, ny beslutsprocess för högspecialiserad vård) togs i ACKLAMATION -> V supports. Statligt beslutad koncentration av nationell högspecialiserad vård -> overlevnad_svar_sjukdom UPP. V:s motion 2017/18:3943 yrk 1 vill reglera NHV på BÅDE nationell OCH regional nivå -> stöder den nationella koncentrationen (vill komplettera regionalt), reservationer gäller andra punkter -> supports på kärninstrumentet."
+- party: KD
+  policy_type: koncentration_nationell_hogspecialiserad_vard
+  stance: supports
+  source: "Bet. 2017/18:SoU18 punkt 1 (prop. 2017/18:40), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/H501SoU18.html
+  doc_id: "H501SoU18 punkt 1"
+  quote: "Utskottet välkomnar de lagändringar som regeringen föreslår och ställer sig bakom propositionen."
+  date: '2018-02-20'
+  confidence: medium
+  mapping_note: "ENHÄLLIGHET (§5.2): bet. 2017/18:SoU18 punkt 1 (Regeringens lagförslag, ny beslutsprocess för högspecialiserad vård) togs i ACKLAMATION -> KD supports. Statligt beslutad koncentration av nationell högspecialiserad vård -> overlevnad_svar_sjukdom UPP."
+- party: L
+  policy_type: koncentration_nationell_hogspecialiserad_vard
+  stance: supports
+  source: "Bet. 2017/18:SoU18 punkt 1 (prop. 2017/18:40), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/H501SoU18.html
+  doc_id: "H501SoU18 punkt 1"
+  quote: "Utskottet välkomnar de lagändringar som regeringen föreslår och ställer sig bakom propositionen."
+  date: '2018-02-20'
+  confidence: medium
+  mapping_note: "ENHÄLLIGHET (§5.2): bet. 2017/18:SoU18 punkt 1 (Regeringens lagförslag, ny beslutsprocess för högspecialiserad vård) togs i ACKLAMATION -> L supports. Statligt beslutad koncentration av nationell högspecialiserad vård -> overlevnad_svar_sjukdom UPP."
+- party: MP
+  policy_type: koncentration_nationell_hogspecialiserad_vard
+  stance: supports
+  source: "Bet. 2017/18:SoU18 punkt 1 (prop. 2017/18:40), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/H501SoU18.html
+  doc_id: "H501SoU18 punkt 1"
+  quote: "Utskottet välkomnar de lagändringar som regeringen föreslår och ställer sig bakom propositionen."
+  date: '2018-02-20'
+  confidence: medium
+  mapping_note: "ENHÄLLIGHET (§5.2): bet. 2017/18:SoU18 punkt 1 (Regeringens lagförslag, ny beslutsprocess för högspecialiserad vård) togs i ACKLAMATION -> MP supports. Statligt beslutad koncentration av nationell högspecialiserad vård -> overlevnad_svar_sjukdom UPP."
+- party: S
+  policy_type: fast_omsorgskontakt
+  stance: supports
+  source: "Bet. 2021/22:SoU24 punkt 2 (Lagförslaget i övrigt) (prop. 2021/22:116), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/H901SoU24.html
+  doc_id: "H901SoU24 punkt 2"
+  quote: "Riksdagen antar regeringens förslag till lag om ändring i socialtjänstlagen (2001:453) i de delar som inte omfattas av utskottets förslag ovan."
+  date: '2022-04-25'
+  confidence: high
+  mapping_note: "ENHÄLLIGHET (§5.2): bet. 2021/22:SoU24 punkt 2 (Lagförslaget i övrigt; skyldighet att erbjuda fast omsorgskontakt, 3 c § SoL) togs i ACKLAMATION -> S supports. Fast omsorgskontakt -> kontinuitet_i_omsorgen UPP (EJ personalomsattning_omsorg)."
+- party: M
+  policy_type: fast_omsorgskontakt
+  stance: supports
+  source: "Bet. 2021/22:SoU24 punkt 2 (Lagförslaget i övrigt) (prop. 2021/22:116), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/H901SoU24.html
+  doc_id: "H901SoU24 punkt 2"
+  quote: "Riksdagen antar regeringens förslag till lag om ändring i socialtjänstlagen (2001:453) i de delar som inte omfattas av utskottets förslag ovan."
+  date: '2022-04-25'
+  confidence: high
+  mapping_note: "ENHÄLLIGHET (§5.2): bet. 2021/22:SoU24 punkt 2 (Lagförslaget i övrigt; skyldighet att erbjuda fast omsorgskontakt, 3 c § SoL) togs i ACKLAMATION -> M supports. Fast omsorgskontakt -> kontinuitet_i_omsorgen UPP (EJ personalomsattning_omsorg). M:s enda reservation gällde p1 (3 d §, undersköterske-kompetenskravet; M ville BREDDA behörigheten), INTE p2 (kontinuitetsinstrumentet) -> supports på p2."
+- party: SD
+  policy_type: fast_omsorgskontakt
+  stance: supports
+  source: "Bet. 2021/22:SoU24 punkt 2 (Lagförslaget i övrigt) (prop. 2021/22:116), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/H901SoU24.html
+  doc_id: "H901SoU24 punkt 2"
+  quote: "Riksdagen antar regeringens förslag till lag om ändring i socialtjänstlagen (2001:453) i de delar som inte omfattas av utskottets förslag ovan."
+  date: '2022-04-25'
+  confidence: high
+  mapping_note: "ENHÄLLIGHET (§5.2): bet. 2021/22:SoU24 punkt 2 (Lagförslaget i övrigt; skyldighet att erbjuda fast omsorgskontakt, 3 c § SoL) togs i ACKLAMATION -> SD supports. Fast omsorgskontakt -> kontinuitet_i_omsorgen UPP (EJ personalomsattning_omsorg)."
+- party: C
+  policy_type: fast_omsorgskontakt
+  stance: supports
+  source: "Bet. 2021/22:SoU24 punkt 2 (Lagförslaget i övrigt) (prop. 2021/22:116), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/H901SoU24.html
+  doc_id: "H901SoU24 punkt 2"
+  quote: "Riksdagen antar regeringens förslag till lag om ändring i socialtjänstlagen (2001:453) i de delar som inte omfattas av utskottets förslag ovan."
+  date: '2022-04-25'
+  confidence: high
+  mapping_note: "ENHÄLLIGHET (§5.2): bet. 2021/22:SoU24 punkt 2 (Lagförslaget i övrigt; skyldighet att erbjuda fast omsorgskontakt, 3 c § SoL) togs i ACKLAMATION -> C supports. Fast omsorgskontakt -> kontinuitet_i_omsorgen UPP (EJ personalomsattning_omsorg)."
+- party: V
+  policy_type: fast_omsorgskontakt
+  stance: supports
+  source: "Bet. 2021/22:SoU24 punkt 2 (Lagförslaget i övrigt) (prop. 2021/22:116), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/H901SoU24.html
+  doc_id: "H901SoU24 punkt 2"
+  quote: "Riksdagen antar regeringens förslag till lag om ändring i socialtjänstlagen (2001:453) i de delar som inte omfattas av utskottets förslag ovan."
+  date: '2022-04-25'
+  confidence: high
+  mapping_note: "ENHÄLLIGHET (§5.2): bet. 2021/22:SoU24 punkt 2 (Lagförslaget i övrigt; skyldighet att erbjuda fast omsorgskontakt, 3 c § SoL) togs i ACKLAMATION -> V supports. Fast omsorgskontakt -> kontinuitet_i_omsorgen UPP (EJ personalomsattning_omsorg)."
+- party: KD
+  policy_type: fast_omsorgskontakt
+  stance: supports
+  source: "Bet. 2021/22:SoU24 punkt 2 (Lagförslaget i övrigt) (prop. 2021/22:116), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/H901SoU24.html
+  doc_id: "H901SoU24 punkt 2"
+  quote: "Riksdagen antar regeringens förslag till lag om ändring i socialtjänstlagen (2001:453) i de delar som inte omfattas av utskottets förslag ovan."
+  date: '2022-04-25'
+  confidence: high
+  mapping_note: "ENHÄLLIGHET (§5.2): bet. 2021/22:SoU24 punkt 2 (Lagförslaget i övrigt; skyldighet att erbjuda fast omsorgskontakt, 3 c § SoL) togs i ACKLAMATION -> KD supports. Fast omsorgskontakt -> kontinuitet_i_omsorgen UPP (EJ personalomsattning_omsorg)."
+- party: L
+  policy_type: fast_omsorgskontakt
+  stance: supports
+  source: "Bet. 2021/22:SoU24 punkt 2 (Lagförslaget i övrigt) (prop. 2021/22:116), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/H901SoU24.html
+  doc_id: "H901SoU24 punkt 2"
+  quote: "Riksdagen antar regeringens förslag till lag om ändring i socialtjänstlagen (2001:453) i de delar som inte omfattas av utskottets förslag ovan."
+  date: '2022-04-25'
+  confidence: high
+  mapping_note: "ENHÄLLIGHET (§5.2): bet. 2021/22:SoU24 punkt 2 (Lagförslaget i övrigt; skyldighet att erbjuda fast omsorgskontakt, 3 c § SoL) togs i ACKLAMATION -> L supports. Fast omsorgskontakt -> kontinuitet_i_omsorgen UPP (EJ personalomsattning_omsorg)."
+- party: MP
+  policy_type: fast_omsorgskontakt
+  stance: supports
+  source: "Bet. 2021/22:SoU24 punkt 2 (Lagförslaget i övrigt) (prop. 2021/22:116), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/H901SoU24.html
+  doc_id: "H901SoU24 punkt 2"
+  quote: "Riksdagen antar regeringens förslag till lag om ändring i socialtjänstlagen (2001:453) i de delar som inte omfattas av utskottets förslag ovan."
+  date: '2022-04-25'
+  confidence: high
+  mapping_note: "ENHÄLLIGHET (§5.2): bet. 2021/22:SoU24 punkt 2 (Lagförslaget i övrigt; skyldighet att erbjuda fast omsorgskontakt, 3 c § SoL) togs i ACKLAMATION -> MP supports. Fast omsorgskontakt -> kontinuitet_i_omsorgen UPP (EJ personalomsattning_omsorg)."

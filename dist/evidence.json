@@ -319,6 +319,11 @@
     "source_name": "Riksdagen",
     "statement": "C driver behandlingsprogram_kriminalvard; evidens (authority_evaluation) talar för riktning positive på aterfall_i_brott."
   },
+  "claim:evidence_effect:C:fast_omsorgskontakt:valfard:kontinuitet_i_omsorgen": {
+    "kind": "claim",
+    "source_name": "Bet. 2021/22",
+    "statement": "C driver fast_omsorgskontakt; evidens (authority_evaluation) talar för riktning positive på kontinuitet_i_omsorgen."
+  },
   "claim:evidence_effect:C:fou_avdrag_skatteincitament:ekonomi:produktivitet": {
     "kind": "claim",
     "source_name": "Votering bet. 2022/23",
@@ -334,10 +339,20 @@
     "source_name": "Budgetmotion 2025/26 (C), Elisabeth Thand Ringqvist m.fl.",
     "statement": "C driver inkomststarkande_hushallspolitik; evidens (descriptive_statistic) talar för riktning positive på hushallens_reala_disponibla_inkomst."
   },
+  "claim:evidence_effect:C:insyn_partifinansiering:demokrati:politisk_transparens": {
+    "kind": "claim",
+    "source_name": "Lagen (2018",
+    "statement": "C driver insyn_partifinansiering; evidens (authority_evaluation) talar för riktning positive på politisk_transparens."
+  },
   "claim:evidence_effect:C:kompetensutveckling_larare:valfard:skolresultat": {
     "kind": "claim",
     "source_name": "Riksdagen",
     "statement": "C driver kompetensutveckling_larare; evidens (authority_evaluation) talar för riktning positive på skolresultat."
+  },
+  "claim:evidence_effect:C:koncentration_nationell_hogspecialiserad_vard:valfard:overlevnad_svar_sjukdom": {
+    "kind": "claim",
+    "source_name": "Bet. 2017/18",
+    "statement": "C driver koncentration_nationell_hogspecialiserad_vard; evidens (authority_evaluation) talar för riktning positive på overlevnad_svar_sjukdom."
   },
   "claim:evidence_effect:C:konkurrenskraftig_foretags_och_agarbeskattning:ekonomi:naringslivets_investeringar": {
     "kind": "claim",
@@ -348,6 +363,11 @@
     "kind": "claim",
     "source_name": "Riksdagen",
     "statement": "C driver kontroller_och_informationsutbyte_mot_valfardsbrott; evidens (authority_evaluation) talar för riktning positive på valfardsbrottslighet."
+  },
+  "claim:evidence_effect:C:lagstadgat_kommunalt_brottsforebyggande_ansvar:trygghet:kommunalt_brottsforebyggande_arbete": {
+    "kind": "claim",
+    "source_name": "Enhälligt bet. 2022/23",
+    "statement": "C driver lagstadgat_kommunalt_brottsforebyggande_ansvar; evidens (authority_evaluation) talar för riktning positive på kommunalt_brottsforebyggande_arbete."
   },
   "claim:evidence_effect:C:lagstadgat_oberoende_public_service:demokrati:mediefrihet": {
     "kind": "claim",
@@ -409,6 +429,11 @@
     "source_name": "Riksdagen",
     "statement": "C driver tidiga_insatser_lagstadiet; evidens (systematic_review) talar för riktning positive på skolresultat."
   },
+  "claim:evidence_effect:C:upptrappning_forsvarsanslag_mot_mal:forsvar:forsvarsfinansiering_upptrappning_mot_mal": {
+    "kind": "claim",
+    "source_name": "Enhälligt bet. 2024/25",
+    "statement": "C driver upptrappning_forsvarsanslag_mot_mal; evidens (authority_evaluation) talar för riktning positive på forsvarsfinansiering_upptrappning_mot_mal."
+  },
   "claim:evidence_effect:KD:aktiveringskrav_ekonomiskt_bistand:integration:bidragsberoende": {
     "kind": "claim",
     "source_name": "Riksdagen",
@@ -444,6 +469,11 @@
     "source_name": "Riksdagen",
     "statement": "KD driver behandlingsprogram_kriminalvard; evidens (authority_evaluation) talar för riktning positive på aterfall_i_brott."
   },
+  "claim:evidence_effect:KD:fast_omsorgskontakt:valfard:kontinuitet_i_omsorgen": {
+    "kind": "claim",
+    "source_name": "Bet. 2021/22",
+    "statement": "KD driver fast_omsorgskontakt; evidens (authority_evaluation) talar för riktning positive på kontinuitet_i_omsorgen."
+  },
   "claim:evidence_effect:KD:fou_avdrag_skatteincitament:ekonomi:produktivitet": {
     "kind": "claim",
     "source_name": "Votering bet. 2022/23",
@@ -458,6 +488,11 @@
     "kind": "claim",
     "source_name": "Motion 2025/26",
     "statement": "KD driver inkomststarkande_hushallspolitik; evidens (descriptive_statistic) talar för riktning positive på hushallens_reala_disponibla_inkomst."
+  },
+  "claim:evidence_effect:KD:insyn_partifinansiering:demokrati:politisk_transparens": {
+    "kind": "claim",
+    "source_name": "Lagen (2018",
+    "statement": "KD driver insyn_partifinansiering; evidens (authority_evaluation) talar för riktning positive på politisk_transparens."
   },
   "claim:evidence_effect:KD:koldioxidskatt:klimat:territoriella_utslapp": {
     "kind": "claim",
@@ -474,6 +509,11 @@
     "source_name": "Riksdagen",
     "statement": "KD driver kompetensutveckling_larare; evidens (authority_evaluation) talar för riktning positive på skolresultat."
   },
+  "claim:evidence_effect:KD:koncentration_nationell_hogspecialiserad_vard:valfard:overlevnad_svar_sjukdom": {
+    "kind": "claim",
+    "source_name": "Bet. 2017/18",
+    "statement": "KD driver koncentration_nationell_hogspecialiserad_vard; evidens (authority_evaluation) talar för riktning positive på overlevnad_svar_sjukdom."
+  },
   "claim:evidence_effect:KD:konkurrenskraftig_foretags_och_agarbeskattning:ekonomi:naringslivets_investeringar": {
     "kind": "claim",
     "source_name": "Motion 2025/26",
@@ -483,6 +523,11 @@
     "kind": "claim",
     "source_name": "Riksdagen",
     "statement": "KD driver kontroller_och_informationsutbyte_mot_valfardsbrott; evidens (authority_evaluation) talar för riktning positive på valfardsbrottslighet."
+  },
+  "claim:evidence_effect:KD:lagstadgat_kommunalt_brottsforebyggande_ansvar:trygghet:kommunalt_brottsforebyggande_arbete": {
+    "kind": "claim",
+    "source_name": "Enhälligt bet. 2022/23",
+    "statement": "KD driver lagstadgat_kommunalt_brottsforebyggande_ansvar; evidens (authority_evaluation) talar för riktning positive på kommunalt_brottsforebyggande_arbete."
   },
   "claim:evidence_effect:KD:lagstadgat_oberoende_public_service:demokrati:mediefrihet": {
     "kind": "claim",
@@ -549,6 +594,11 @@
     "source_name": "Riksdagen",
     "statement": "KD driver tidiga_insatser_lagstadiet; evidens (systematic_review) talar för riktning positive på skolresultat."
   },
+  "claim:evidence_effect:KD:upptrappning_forsvarsanslag_mot_mal:forsvar:forsvarsfinansiering_upptrappning_mot_mal": {
+    "kind": "claim",
+    "source_name": "Enhälligt bet. 2024/25",
+    "statement": "KD driver upptrappning_forsvarsanslag_mot_mal; evidens (authority_evaluation) talar för riktning positive på forsvarsfinansiering_upptrappning_mot_mal."
+  },
   "claim:evidence_effect:L:aktiveringskrav_ekonomiskt_bistand:integration:bidragsberoende": {
     "kind": "claim",
     "source_name": "Riksdagen",
@@ -589,6 +639,11 @@
     "source_name": "Riksdagen",
     "statement": "L driver behandlingsprogram_kriminalvard; evidens (authority_evaluation) talar för riktning positive på aterfall_i_brott."
   },
+  "claim:evidence_effect:L:fast_omsorgskontakt:valfard:kontinuitet_i_omsorgen": {
+    "kind": "claim",
+    "source_name": "Bet. 2021/22",
+    "statement": "L driver fast_omsorgskontakt; evidens (authority_evaluation) talar för riktning positive på kontinuitet_i_omsorgen."
+  },
   "claim:evidence_effect:L:fou_avdrag_skatteincitament:ekonomi:produktivitet": {
     "kind": "claim",
     "source_name": "Votering bet. 2022/23",
@@ -603,6 +658,11 @@
     "kind": "claim",
     "source_name": "Kommittémotion 2021/22 (L), Mats Persson, Johan Pehrson m.fl.",
     "statement": "L driver inkomststarkande_hushallspolitik; evidens (descriptive_statistic) talar för riktning positive på hushallens_reala_disponibla_inkomst."
+  },
+  "claim:evidence_effect:L:insyn_partifinansiering:demokrati:politisk_transparens": {
+    "kind": "claim",
+    "source_name": "Lagen (2018",
+    "statement": "L driver insyn_partifinansiering; evidens (authority_evaluation) talar för riktning positive på politisk_transparens."
   },
   "claim:evidence_effect:L:koldioxidskatt:klimat:territoriella_utslapp": {
     "kind": "claim",
@@ -619,6 +679,11 @@
     "source_name": "Riksdagen",
     "statement": "L driver kompetensutveckling_larare; evidens (authority_evaluation) talar för riktning positive på skolresultat."
   },
+  "claim:evidence_effect:L:koncentration_nationell_hogspecialiserad_vard:valfard:overlevnad_svar_sjukdom": {
+    "kind": "claim",
+    "source_name": "Bet. 2017/18",
+    "statement": "L driver koncentration_nationell_hogspecialiserad_vard; evidens (authority_evaluation) talar för riktning positive på overlevnad_svar_sjukdom."
+  },
   "claim:evidence_effect:L:konkurrenskraftig_foretags_och_agarbeskattning:ekonomi:naringslivets_investeringar": {
     "kind": "claim",
     "source_name": "Partimotion 2018/19",
@@ -628,6 +693,11 @@
     "kind": "claim",
     "source_name": "Riksdagen",
     "statement": "L driver kontroller_och_informationsutbyte_mot_valfardsbrott; evidens (authority_evaluation) talar för riktning positive på valfardsbrottslighet."
+  },
+  "claim:evidence_effect:L:lagstadgat_kommunalt_brottsforebyggande_ansvar:trygghet:kommunalt_brottsforebyggande_arbete": {
+    "kind": "claim",
+    "source_name": "Enhälligt bet. 2022/23",
+    "statement": "L driver lagstadgat_kommunalt_brottsforebyggande_ansvar; evidens (authority_evaluation) talar för riktning positive på kommunalt_brottsforebyggande_arbete."
   },
   "claim:evidence_effect:L:lagstadgat_oberoende_public_service:demokrati:mediefrihet": {
     "kind": "claim",
@@ -694,6 +764,11 @@
     "source_name": "Riksdagen",
     "statement": "L driver tydlig_statlig_styrning_civilt_forsvar; evidens (authority_evaluation) talar för riktning positive på civil_beredskap_niva."
   },
+  "claim:evidence_effect:L:upptrappning_forsvarsanslag_mot_mal:forsvar:forsvarsfinansiering_upptrappning_mot_mal": {
+    "kind": "claim",
+    "source_name": "Enhälligt bet. 2024/25",
+    "statement": "L driver upptrappning_forsvarsanslag_mot_mal; evidens (authority_evaluation) talar för riktning positive på forsvarsfinansiering_upptrappning_mot_mal."
+  },
   "claim:evidence_effect:M:aktiveringskrav_ekonomiskt_bistand:integration:bidragsberoende": {
     "kind": "claim",
     "source_name": "Riksdagen",
@@ -729,6 +804,11 @@
     "source_name": "Riksdagen",
     "statement": "M driver behandlingsprogram_kriminalvard; evidens (authority_evaluation) talar för riktning positive på aterfall_i_brott."
   },
+  "claim:evidence_effect:M:fast_omsorgskontakt:valfard:kontinuitet_i_omsorgen": {
+    "kind": "claim",
+    "source_name": "Bet. 2021/22",
+    "statement": "M driver fast_omsorgskontakt; evidens (authority_evaluation) talar för riktning positive på kontinuitet_i_omsorgen."
+  },
   "claim:evidence_effect:M:fou_avdrag_skatteincitament:ekonomi:produktivitet": {
     "kind": "claim",
     "source_name": "Votering bet. 2022/23",
@@ -743,6 +823,11 @@
     "kind": "claim",
     "source_name": "Kommittémotion 2021/22 (M), Elisabeth Svantesson m.fl.",
     "statement": "M driver inkomststarkande_hushallspolitik; evidens (descriptive_statistic) talar för riktning positive på hushallens_reala_disponibla_inkomst."
+  },
+  "claim:evidence_effect:M:insyn_partifinansiering:demokrati:politisk_transparens": {
+    "kind": "claim",
+    "source_name": "Lagen (2018",
+    "statement": "M driver insyn_partifinansiering; evidens (authority_evaluation) talar för riktning positive på politisk_transparens."
   },
   "claim:evidence_effect:M:koldioxidskatt:klimat:territoriella_utslapp": {
     "kind": "claim",
@@ -759,6 +844,11 @@
     "source_name": "Riksdagen",
     "statement": "M driver kompetensutveckling_larare; evidens (authority_evaluation) talar för riktning positive på skolresultat."
   },
+  "claim:evidence_effect:M:koncentration_nationell_hogspecialiserad_vard:valfard:overlevnad_svar_sjukdom": {
+    "kind": "claim",
+    "source_name": "Bet. 2017/18",
+    "statement": "M driver koncentration_nationell_hogspecialiserad_vard; evidens (authority_evaluation) talar för riktning positive på overlevnad_svar_sjukdom."
+  },
   "claim:evidence_effect:M:konkurrenskraftig_foretags_och_agarbeskattning:ekonomi:naringslivets_investeringar": {
     "kind": "claim",
     "source_name": "Riksdagen",
@@ -768,6 +858,11 @@
     "kind": "claim",
     "source_name": "Riksdagen",
     "statement": "M driver kontroller_och_informationsutbyte_mot_valfardsbrott; evidens (authority_evaluation) talar för riktning positive på valfardsbrottslighet."
+  },
+  "claim:evidence_effect:M:lagstadgat_kommunalt_brottsforebyggande_ansvar:trygghet:kommunalt_brottsforebyggande_arbete": {
+    "kind": "claim",
+    "source_name": "Enhälligt bet. 2022/23",
+    "statement": "M driver lagstadgat_kommunalt_brottsforebyggande_ansvar; evidens (authority_evaluation) talar för riktning positive på kommunalt_brottsforebyggande_arbete."
   },
   "claim:evidence_effect:M:lagstadgat_oberoende_public_service:demokrati:mediefrihet": {
     "kind": "claim",
@@ -829,6 +924,11 @@
     "source_name": "Riksdagen",
     "statement": "M driver tydlig_statlig_styrning_civilt_forsvar; evidens (authority_evaluation) talar för riktning positive på civil_beredskap_niva."
   },
+  "claim:evidence_effect:M:upptrappning_forsvarsanslag_mot_mal:forsvar:forsvarsfinansiering_upptrappning_mot_mal": {
+    "kind": "claim",
+    "source_name": "Enhälligt bet. 2024/25",
+    "statement": "M driver upptrappning_forsvarsanslag_mot_mal; evidens (authority_evaluation) talar för riktning positive på forsvarsfinansiering_upptrappning_mot_mal."
+  },
   "claim:evidence_effect:MP:arbetsmarknadsutbildning:ekonomi:sysselsattning": {
     "kind": "claim",
     "source_name": "Riksdagen",
@@ -854,6 +954,11 @@
     "source_name": "Riksdagen",
     "statement": "MP driver behandlingsprogram_kriminalvard; evidens (authority_evaluation) talar för riktning positive på aterfall_i_brott."
   },
+  "claim:evidence_effect:MP:fast_omsorgskontakt:valfard:kontinuitet_i_omsorgen": {
+    "kind": "claim",
+    "source_name": "Bet. 2021/22",
+    "statement": "MP driver fast_omsorgskontakt; evidens (authority_evaluation) talar för riktning positive på kontinuitet_i_omsorgen."
+  },
   "claim:evidence_effect:MP:fokuserad_avskrackning_gvi:trygghet:skjutningar_sprangningar": {
     "kind": "claim",
     "source_name": "Riksdagen",
@@ -874,6 +979,11 @@
     "source_name": "Kommittémotion 2025/26 \"Ett Sverige utan barnfattigdom\" (MP)",
     "statement": "MP driver inkomststarkande_hushallspolitik; evidens (descriptive_statistic) talar för riktning positive på hushallens_reala_disponibla_inkomst."
   },
+  "claim:evidence_effect:MP:insyn_partifinansiering:demokrati:politisk_transparens": {
+    "kind": "claim",
+    "source_name": "Lagen (2018",
+    "statement": "MP driver insyn_partifinansiering; evidens (authority_evaluation) talar för riktning positive på politisk_transparens."
+  },
   "claim:evidence_effect:MP:koldioxidskatt:klimat:territoriella_utslapp": {
     "kind": "claim",
     "source_name": "Motion 2024/25",
@@ -889,6 +999,11 @@
     "source_name": "Riksdagen",
     "statement": "MP driver kompetensutveckling_larare; evidens (authority_evaluation) talar för riktning positive på skolresultat."
   },
+  "claim:evidence_effect:MP:koncentration_nationell_hogspecialiserad_vard:valfard:overlevnad_svar_sjukdom": {
+    "kind": "claim",
+    "source_name": "Bet. 2017/18",
+    "statement": "MP driver koncentration_nationell_hogspecialiserad_vard; evidens (authority_evaluation) talar för riktning positive på overlevnad_svar_sjukdom."
+  },
   "claim:evidence_effect:MP:konkurrenskraftig_foretags_och_agarbeskattning:ekonomi:naringslivets_investeringar": {
     "kind": "claim",
     "source_name": "Riksdagen",
@@ -898,6 +1013,11 @@
     "kind": "claim",
     "source_name": "Riksdagen",
     "statement": "MP driver kontroller_och_informationsutbyte_mot_valfardsbrott; evidens (authority_evaluation) talar för riktning positive på valfardsbrottslighet."
+  },
+  "claim:evidence_effect:MP:lagstadgat_kommunalt_brottsforebyggande_ansvar:trygghet:kommunalt_brottsforebyggande_arbete": {
+    "kind": "claim",
+    "source_name": "Enhälligt bet. 2022/23",
+    "statement": "MP driver lagstadgat_kommunalt_brottsforebyggande_ansvar; evidens (authority_evaluation) talar för riktning positive på kommunalt_brottsforebyggande_arbete."
   },
   "claim:evidence_effect:MP:lagstadgat_oberoende_public_service:demokrati:mediefrihet": {
     "kind": "claim",
@@ -944,6 +1064,11 @@
     "source_name": "Riksdagen",
     "statement": "MP driver tidiga_insatser_lagstadiet; evidens (systematic_review) talar för riktning positive på skolresultat."
   },
+  "claim:evidence_effect:MP:upptrappning_forsvarsanslag_mot_mal:forsvar:forsvarsfinansiering_upptrappning_mot_mal": {
+    "kind": "claim",
+    "source_name": "Enhälligt bet. 2024/25",
+    "statement": "MP driver upptrappning_forsvarsanslag_mot_mal; evidens (authority_evaluation) talar för riktning positive på forsvarsfinansiering_upptrappning_mot_mal."
+  },
   "claim:evidence_effect:S:aktiveringskrav_ekonomiskt_bistand:integration:bidragsberoende": {
     "kind": "claim",
     "source_name": "Riksdagen",
@@ -984,6 +1109,11 @@
     "source_name": "Riksdagen",
     "statement": "S driver behandlingsprogram_kriminalvard; evidens (authority_evaluation) talar för riktning positive på aterfall_i_brott."
   },
+  "claim:evidence_effect:S:fast_omsorgskontakt:valfard:kontinuitet_i_omsorgen": {
+    "kind": "claim",
+    "source_name": "Bet. 2021/22",
+    "statement": "S driver fast_omsorgskontakt; evidens (authority_evaluation) talar för riktning positive på kontinuitet_i_omsorgen."
+  },
   "claim:evidence_effect:S:fokuserad_avskrackning_gvi:trygghet:skjutningar_sprangningar": {
     "kind": "claim",
     "source_name": "Riksdagen",
@@ -1004,15 +1134,30 @@
     "source_name": "Kommittémotion 2025/26 UO12 \"Ekonomisk trygghet för familjer och barn\" (S)",
     "statement": "S driver inkomststarkande_hushallspolitik; evidens (descriptive_statistic) talar för riktning positive på hushallens_reala_disponibla_inkomst."
   },
+  "claim:evidence_effect:S:insyn_partifinansiering:demokrati:politisk_transparens": {
+    "kind": "claim",
+    "source_name": "Lagen (2018",
+    "statement": "S driver insyn_partifinansiering; evidens (authority_evaluation) talar för riktning positive på politisk_transparens."
+  },
   "claim:evidence_effect:S:kompetensutveckling_larare:valfard:skolresultat": {
     "kind": "claim",
     "source_name": "Riksdagen",
     "statement": "S driver kompetensutveckling_larare; evidens (authority_evaluation) talar för riktning positive på skolresultat."
   },
+  "claim:evidence_effect:S:koncentration_nationell_hogspecialiserad_vard:valfard:overlevnad_svar_sjukdom": {
+    "kind": "claim",
+    "source_name": "Bet. 2017/18",
+    "statement": "S driver koncentration_nationell_hogspecialiserad_vard; evidens (authority_evaluation) talar för riktning positive på overlevnad_svar_sjukdom."
+  },
   "claim:evidence_effect:S:konkurrenskraftig_foretags_och_agarbeskattning:ekonomi:naringslivets_investeringar": {
     "kind": "claim",
     "source_name": "Partimotion 2025/26",
     "statement": "S motsätter sig konkurrenskraftig_foretags_och_agarbeskattning; evidens (authority_evaluation) talar för riktning negative på naringslivets_investeringar."
+  },
+  "claim:evidence_effect:S:lagstadgat_kommunalt_brottsforebyggande_ansvar:trygghet:kommunalt_brottsforebyggande_arbete": {
+    "kind": "claim",
+    "source_name": "Enhälligt bet. 2022/23",
+    "statement": "S driver lagstadgat_kommunalt_brottsforebyggande_ansvar; evidens (authority_evaluation) talar för riktning positive på kommunalt_brottsforebyggande_arbete."
   },
   "claim:evidence_effect:S:lagstadgat_oberoende_public_service:demokrati:mediefrihet": {
     "kind": "claim",
@@ -1074,6 +1219,11 @@
     "source_name": "Riksdagen",
     "statement": "S driver tydlig_statlig_styrning_civilt_forsvar; evidens (authority_evaluation) talar för riktning positive på civil_beredskap_niva."
   },
+  "claim:evidence_effect:S:upptrappning_forsvarsanslag_mot_mal:forsvar:forsvarsfinansiering_upptrappning_mot_mal": {
+    "kind": "claim",
+    "source_name": "Enhälligt bet. 2024/25",
+    "statement": "S driver upptrappning_forsvarsanslag_mot_mal; evidens (authority_evaluation) talar för riktning positive på forsvarsfinansiering_upptrappning_mot_mal."
+  },
   "claim:evidence_effect:SD:aktiveringskrav_ekonomiskt_bistand:integration:bidragsberoende": {
     "kind": "claim",
     "source_name": "Riksdagen",
@@ -1104,6 +1254,11 @@
     "source_name": "Votering bet. 2025/26",
     "statement": "SD motsätter sig begransa_biometrisk_realtidsovervakning_rattssakerhet; evidens (authority_evaluation) talar för riktning negative på overvakning_utan_rattssakerhet."
   },
+  "claim:evidence_effect:SD:fast_omsorgskontakt:valfard:kontinuitet_i_omsorgen": {
+    "kind": "claim",
+    "source_name": "Bet. 2021/22",
+    "statement": "SD driver fast_omsorgskontakt; evidens (authority_evaluation) talar för riktning positive på kontinuitet_i_omsorgen."
+  },
   "claim:evidence_effect:SD:fou_avdrag_skatteincitament:ekonomi:produktivitet": {
     "kind": "claim",
     "source_name": "Votering bet. 2022/23",
@@ -1113,6 +1268,11 @@
     "kind": "claim",
     "source_name": "Riksdagen",
     "statement": "SD driver inkomststarkande_hushallspolitik; evidens (descriptive_statistic) talar för riktning positive på hushallens_reala_disponibla_inkomst."
+  },
+  "claim:evidence_effect:SD:insyn_partifinansiering:demokrati:politisk_transparens": {
+    "kind": "claim",
+    "source_name": "Lagen (2018",
+    "statement": "SD driver insyn_partifinansiering; evidens (authority_evaluation) talar för riktning positive på politisk_transparens."
   },
   "claim:evidence_effect:SD:koldioxidskatt:klimat:territoriella_utslapp": {
     "kind": "claim",
@@ -1129,6 +1289,11 @@
     "source_name": "Riksdagen",
     "statement": "SD driver kompetensutveckling_larare; evidens (authority_evaluation) talar för riktning positive på skolresultat."
   },
+  "claim:evidence_effect:SD:koncentration_nationell_hogspecialiserad_vard:valfard:overlevnad_svar_sjukdom": {
+    "kind": "claim",
+    "source_name": "Bet. 2017/18",
+    "statement": "SD driver koncentration_nationell_hogspecialiserad_vard; evidens (authority_evaluation) talar för riktning positive på overlevnad_svar_sjukdom."
+  },
   "claim:evidence_effect:SD:konkurrenskraftig_foretags_och_agarbeskattning:ekonomi:naringslivets_investeringar": {
     "kind": "claim",
     "source_name": "Kommittémotion 2024/25",
@@ -1138,6 +1303,11 @@
     "kind": "claim",
     "source_name": "Riksdagen",
     "statement": "SD driver kontroller_och_informationsutbyte_mot_valfardsbrott; evidens (authority_evaluation) talar för riktning positive på valfardsbrottslighet."
+  },
+  "claim:evidence_effect:SD:lagstadgat_kommunalt_brottsforebyggande_ansvar:trygghet:kommunalt_brottsforebyggande_arbete": {
+    "kind": "claim",
+    "source_name": "Enhälligt bet. 2022/23",
+    "statement": "SD driver lagstadgat_kommunalt_brottsforebyggande_ansvar; evidens (authority_evaluation) talar för riktning positive på kommunalt_brottsforebyggande_arbete."
   },
   "claim:evidence_effect:SD:lagstadgat_oberoende_public_service:demokrati:mediefrihet": {
     "kind": "claim",
@@ -1204,6 +1374,11 @@
     "source_name": "Riksdagen",
     "statement": "SD driver tydlig_statlig_styrning_civilt_forsvar; evidens (authority_evaluation) talar för riktning positive på civil_beredskap_niva."
   },
+  "claim:evidence_effect:SD:upptrappning_forsvarsanslag_mot_mal:forsvar:forsvarsfinansiering_upptrappning_mot_mal": {
+    "kind": "claim",
+    "source_name": "Enhälligt bet. 2024/25",
+    "statement": "SD driver upptrappning_forsvarsanslag_mot_mal; evidens (authority_evaluation) talar för riktning positive på forsvarsfinansiering_upptrappning_mot_mal."
+  },
   "claim:evidence_effect:V:aktiveringskrav_ekonomiskt_bistand:integration:bidragsberoende": {
     "kind": "claim",
     "source_name": "Riksdagen",
@@ -1239,6 +1414,11 @@
     "source_name": "Riksdagen",
     "statement": "V driver behandlingsprogram_kriminalvard; evidens (authority_evaluation) talar för riktning positive på aterfall_i_brott."
   },
+  "claim:evidence_effect:V:fast_omsorgskontakt:valfard:kontinuitet_i_omsorgen": {
+    "kind": "claim",
+    "source_name": "Bet. 2021/22",
+    "statement": "V driver fast_omsorgskontakt; evidens (authority_evaluation) talar för riktning positive på kontinuitet_i_omsorgen."
+  },
   "claim:evidence_effect:V:fokuserad_avskrackning_gvi:trygghet:skjutningar_sprangningar": {
     "kind": "claim",
     "source_name": "Riksdagen",
@@ -1259,6 +1439,11 @@
     "source_name": "Riksdagen",
     "statement": "V driver inkomststarkande_hushallspolitik; evidens (descriptive_statistic) talar för riktning positive på hushallens_reala_disponibla_inkomst."
   },
+  "claim:evidence_effect:V:insyn_partifinansiering:demokrati:politisk_transparens": {
+    "kind": "claim",
+    "source_name": "Lagen (2018",
+    "statement": "V driver insyn_partifinansiering; evidens (authority_evaluation) talar för riktning positive på politisk_transparens."
+  },
   "claim:evidence_effect:V:koldioxidskatt:klimat:territoriella_utslapp": {
     "kind": "claim",
     "source_name": "Budgetmotion 2024/25",
@@ -1274,6 +1459,11 @@
     "source_name": "Riksdagen",
     "statement": "V driver kompetensutveckling_larare; evidens (authority_evaluation) talar för riktning positive på skolresultat."
   },
+  "claim:evidence_effect:V:koncentration_nationell_hogspecialiserad_vard:valfard:overlevnad_svar_sjukdom": {
+    "kind": "claim",
+    "source_name": "Bet. 2017/18",
+    "statement": "V driver koncentration_nationell_hogspecialiserad_vard; evidens (authority_evaluation) talar för riktning positive på overlevnad_svar_sjukdom."
+  },
   "claim:evidence_effect:V:konkurrenskraftig_foretags_och_agarbeskattning:ekonomi:naringslivets_investeringar": {
     "kind": "claim",
     "source_name": "Kommittémotion 2017/18",
@@ -1283,6 +1473,11 @@
     "kind": "claim",
     "source_name": "Riksdagen",
     "statement": "V driver kontroller_och_informationsutbyte_mot_valfardsbrott; evidens (authority_evaluation) talar för riktning positive på valfardsbrottslighet."
+  },
+  "claim:evidence_effect:V:lagstadgat_kommunalt_brottsforebyggande_ansvar:trygghet:kommunalt_brottsforebyggande_arbete": {
+    "kind": "claim",
+    "source_name": "Enhälligt bet. 2022/23",
+    "statement": "V driver lagstadgat_kommunalt_brottsforebyggande_ansvar; evidens (authority_evaluation) talar för riktning positive på kommunalt_brottsforebyggande_arbete."
   },
   "claim:evidence_effect:V:lagstadgat_oberoende_public_service:demokrati:mediefrihet": {
     "kind": "claim",
@@ -1343,6 +1538,11 @@
     "kind": "claim",
     "source_name": "Riksdagen",
     "statement": "V driver tydlig_statlig_styrning_civilt_forsvar; evidens (authority_evaluation) talar för riktning positive på civil_beredskap_niva."
+  },
+  "claim:evidence_effect:V:upptrappning_forsvarsanslag_mot_mal:forsvar:forsvarsfinansiering_upptrappning_mot_mal": {
+    "kind": "claim",
+    "source_name": "Enhälligt bet. 2024/25",
+    "statement": "V driver upptrappning_forsvarsanslag_mot_mal; evidens (authority_evaluation) talar för riktning positive på forsvarsfinansiering_upptrappning_mot_mal."
   },
   "claim:observed_result:obs:bra:brottsutsatthet:2016": {
     "kind": "claim",

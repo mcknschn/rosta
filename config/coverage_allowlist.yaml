@@ -24,12 +24,14 @@ allowlist:
   - { category: valfard, indicator: overlevnad_svar_sjukdom,   reason: "incompatible: Kolada N79196 (relativ 5-årsöverlevnad cancer, åldersstd.) finns men är KVINKENNIAL (2005/2010/2015/2020/2023, inga konsekutiva år) -> D-attributionen (score.attribute_series) kräver konsekutiva år och får 0 bidrag. Skulle kräva en årsserie ELLER en attributionsutvidgning till icke-konsekutiva datapunkter (scoring-kärna, utanför databredd-backloggen)." }
   - { category: valfard, indicator: skillnader_mellan_skolor,  reason: "no_api: ingen nationell spridnings-/likvärdighetsserie i Kolada/SCB (Skolverkets rapporter ej maskinläsbara)." }
   - { category: valfard, indicator: personalomsattning_omsorg, reason: "no_api: ingen omsorgsspecifik nationell personalomsättningsserie (Kolada saknar KPI)." }
+  - { category: valfard, indicator: kontinuitet_i_omsorgen,    reason: "B-only: ny B-indikator 2026-06-07 (§5.7, fast omsorgskontakt → kontinuitet). Socialstyrelsens andel-som-ofta-träffar-sin-fasta-omsorgskontakt är ej ren maskinläsbar årsserie; formell effektutvärdering klar dec 2026/okt 2027. version 0, sign-off." }
   - { category: valfard, indicator: valfardsbrottslighet,      reason: "no_api: ingen ren officiell årsserie för välfärdsbrottslighet." }
   # --- trygghet (dodligt_vald + NTU brottsutsatthet/upplevd_otrygghet inlästa via Brå) ---
   # brottsutsatthet (NTU 3A) + upplevd_otrygghet (NTU 4A:1) inlästa via build_fas2 -> ej allowlistade.
   # uppklaringsgrad (personuppklaringsprocent, Handlagda brott 10La) inläst via build_fas2 -> ej allowlistad.
   # skjutningar_sprangningar (Polisens skjutningar + sprängningar, config/skjutningar_sprangningar.yaml) inläst via build_fas3 -> ej allowlistad.
   - { category: trygghet, indicator: handlaggningstid,         reason: "future: Brå/Åklagarmyndigheten genomströmningstider — publiceras i statistikdatabasen (interaktiv) / PDF, ingen ren maskinläsbar årsserie hittad (sonderat 2026-06-03)." }
+  - { category: trygghet, indicator: kommunalt_brottsforebyggande_arbete, reason: "B-only: ny B-indikator 2026-06-07 (§5.7, lagen 2023:196 om kommuners brottsförebyggande ansvar). Ingen nationell maskinläsbar årsserie för kommunal brottsförebyggande kapacitet (Brå publicerar ej KPI). version 0, sign-off." }
   - { category: trygghet, indicator: aterfall_i_brott,         reason: "blocked: Brås återfallsstatistik publiceras bara som PDF-rapporter (prel/slutlig per ingångsår, ej ren tabell) med omarbetad metod och flerårig eftersläpning -> kräver expertbedömd transkribering (prel vs slutlig, metodbrott), ej lämplig för automatisk solo-transkribering (sonderat 2026-06-03)." }
   # --- forsvar (till stor del kvalitativt/sekretess) ---
   - { category: forsvar, indicator: forsvarsanslag_andel_bnp, reason: "target: upp till beslutad målnivå, ej up/down -> ej D-duglig." }
@@ -39,6 +41,7 @@ allowlist:
   - { category: forsvar, indicator: ukraina_stod,             reason: "qualitative: politiskt/ad hoc, ingen objektiv årsindikator." }
   - { category: forsvar, indicator: nato_interoperabilitet,   reason: "qualitative: ingen öppen mätserie." }
   - { category: forsvar, indicator: leveranstid_materiel,     reason: "qualitative: sekretess, ingen öppen serie." }
+  - { category: forsvar, indicator: forsvarsfinansiering_upptrappning_mot_mal, reason: "B-only: ny B-indikator 2026-06-07 (§5.7, åtagande om finansieringsupptrappning mot beslutad målnivå). Inriktnings-/åtagandemått, ej utfallsårsserie (target-syskonet forsvarsanslag_andel_bnp är likaså D-otäckt). version 0, sign-off." }
   # --- klimat (territoriella + konsumtionsbaserade + fossil energianvändning inlästa) ---
   # fossil_energianvandning inläst via Energimyndigheten EN0202_8 (build_fas3) -> ej längre allowlistad.
   - { category: klimat, indicator: elprisvolatilitet,          reason: "derived: härleds ur Svk/spotpriser, ingen färdig officiell årsserie." }
