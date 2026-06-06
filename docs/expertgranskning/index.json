@@ -1,19 +1,19 @@
 {
   "counts": {
-    "positions_total": 169,
-    "ledger_entries": 33,
-    "claims_produced": 182,
+    "positions_total": 192,
+    "ledger_entries": 36,
+    "claims_produced": 205,
     "stance": {
-      "supports": 145,
-      "opposes": 24
+      "supports": 167,
+      "opposes": 25
     },
     "confidence": {
-      "high": 93,
+      "high": 116,
       "medium": 44,
       "low": 18,
       "None": 14
     },
-    "priority_count": 92
+    "priority_count": 93
   },
   "priority_doc_ids": [
     "GQ02Sf289",
@@ -60,6 +60,7 @@
     "H9024253",
     "H902916",
     "HA01SfU19 / votering 198C0FEC-86BA-4075-8020-9D85FE07E2AF",
+    "HA01UU16 / votering 6B63ADBF-B6F8-4CE0-A574-230BEE238A46 punkt 1",
     "HA02948",
     "HA02998",
     "HB01MJU5 / votering 21E8B615-C235-489F-8189-D26CABD56F24 punkt 1",

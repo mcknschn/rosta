@@ -299,6 +299,11 @@
     "source_name": "Riksdagen",
     "statement": "C driver ateraktiverad_utokad_varnplikt; evidens (authority_evaluation) talar för riktning positive på personal_varnpliktiga."
   },
+  "claim:evidence_effect:C:atgarder_mot_invasiva_frammande_arter:klimat:hotade_arter_naturforlust": {
+    "kind": "claim",
+    "source_name": "Enhälligt betänkande 2025/26",
+    "statement": "C driver atgarder_mot_invasiva_frammande_arter; evidens (authority_evaluation) talar för riktning positive på hotade_arter_naturforlust."
+  },
   "claim:evidence_effect:C:atgarder_mot_otillaten_paverkan_offentlig_sektor:demokrati:korruption": {
     "kind": "claim",
     "source_name": "Riksdagen",
@@ -349,6 +354,11 @@
     "source_name": "Riksdagen",
     "statement": "C driver minskad_klasstorlek; evidens (authority_evaluation) talar för riktning positive på skolresultat."
   },
+  "claim:evidence_effect:C:nato_medlemskap:forsvar:nato_interoperabilitet": {
+    "kind": "claim",
+    "source_name": "Votering bet. 2022/23",
+    "statement": "C driver nato_medlemskap; evidens (authority_evaluation) talar för riktning positive på nato_interoperabilitet."
+  },
   "claim:evidence_effect:C:reduktionsplikt_drivmedel:klimat:territoriella_utslapp": {
     "kind": "claim",
     "source_name": "Votering bet. 2023/24",
@@ -363,6 +373,11 @@
     "kind": "claim",
     "source_name": "Riksdagen",
     "statement": "C driver sfi_kombinerat_med_praktik; evidens (authority_evaluation) talar för riktning positive på sysselsattningsgap_inrikes_utrikes."
+  },
+  "claim:evidence_effect:C:snabbforfarande_lagforing:trygghet:handlaggningstid": {
+    "kind": "claim",
+    "source_name": "Enhälligt betänkande 2022/23",
+    "statement": "C driver snabbforfarande_lagforing; evidens (authority_evaluation) talar för riktning positive på handlaggningstid."
   },
   "claim:evidence_effect:C:sprakpraktik_kombinerad_sprakutbildning_och_arbetspraktik:integration:sysselsattningsgap_inrikes_utrikes": {
     "kind": "claim",
@@ -408,6 +423,11 @@
     "kind": "claim",
     "source_name": "Riksdagen",
     "statement": "KD driver ateraktiverad_utokad_varnplikt; evidens (authority_evaluation) talar för riktning positive på personal_varnpliktiga."
+  },
+  "claim:evidence_effect:KD:atgarder_mot_invasiva_frammande_arter:klimat:hotade_arter_naturforlust": {
+    "kind": "claim",
+    "source_name": "Enhälligt betänkande 2025/26",
+    "statement": "KD driver atgarder_mot_invasiva_frammande_arter; evidens (authority_evaluation) talar för riktning positive på hotade_arter_naturforlust."
   },
   "claim:evidence_effect:KD:begransa_biometrisk_realtidsovervakning_rattssakerhet:demokrati:overvakning_utan_rattssakerhet": {
     "kind": "claim",
@@ -464,6 +484,11 @@
     "source_name": "Riksdagen",
     "statement": "KD driver minskad_klasstorlek; evidens (authority_evaluation) talar för riktning positive på skolresultat."
   },
+  "claim:evidence_effect:KD:nato_medlemskap:forsvar:nato_interoperabilitet": {
+    "kind": "claim",
+    "source_name": "Votering bet. 2022/23",
+    "statement": "KD driver nato_medlemskap; evidens (authority_evaluation) talar för riktning positive på nato_interoperabilitet."
+  },
   "claim:evidence_effect:KD:ny_karnkraft:klimat:effektbrist": {
     "kind": "claim",
     "source_name": "Riksdagen",
@@ -488,6 +513,11 @@
     "kind": "claim",
     "source_name": "Riksdagen",
     "statement": "KD driver situationell_prevention_utomhusbelysning; evidens (systematic_review) talar för riktning positive på brottsutsatthet."
+  },
+  "claim:evidence_effect:KD:snabbforfarande_lagforing:trygghet:handlaggningstid": {
+    "kind": "claim",
+    "source_name": "Enhälligt betänkande 2022/23",
+    "statement": "KD driver snabbforfarande_lagforing; evidens (authority_evaluation) talar för riktning positive på handlaggningstid."
   },
   "claim:evidence_effect:KD:sprakpraktik_kombinerad_sprakutbildning_och_arbetspraktik:integration:sysselsattningsgap_inrikes_utrikes": {
     "kind": "claim",
@@ -528,6 +558,11 @@
     "kind": "claim",
     "source_name": "Riksdagen",
     "statement": "L driver ateraktiverad_utokad_varnplikt; evidens (authority_evaluation) talar för riktning positive på personal_varnpliktiga."
+  },
+  "claim:evidence_effect:L:atgarder_mot_invasiva_frammande_arter:klimat:hotade_arter_naturforlust": {
+    "kind": "claim",
+    "source_name": "Enhälligt betänkande 2025/26",
+    "statement": "L driver atgarder_mot_invasiva_frammande_arter; evidens (authority_evaluation) talar för riktning positive på hotade_arter_naturforlust."
   },
   "claim:evidence_effect:L:atgarder_mot_otillaten_paverkan_offentlig_sektor:demokrati:korruption": {
     "kind": "claim",
@@ -589,6 +624,11 @@
     "source_name": "Riksdagen",
     "statement": "L driver minskad_klasstorlek; evidens (authority_evaluation) talar för riktning positive på skolresultat."
   },
+  "claim:evidence_effect:L:nato_medlemskap:forsvar:nato_interoperabilitet": {
+    "kind": "claim",
+    "source_name": "Votering bet. 2022/23",
+    "statement": "L driver nato_medlemskap; evidens (authority_evaluation) talar för riktning positive på nato_interoperabilitet."
+  },
   "claim:evidence_effect:L:ny_karnkraft:klimat:effektbrist": {
     "kind": "claim",
     "source_name": "Riksdagen",
@@ -613,6 +653,11 @@
     "kind": "claim",
     "source_name": "Riksdagen",
     "statement": "L driver situationell_prevention_utomhusbelysning; evidens (systematic_review) talar för riktning positive på brottsutsatthet."
+  },
+  "claim:evidence_effect:L:snabbforfarande_lagforing:trygghet:handlaggningstid": {
+    "kind": "claim",
+    "source_name": "Enhälligt betänkande 2022/23",
+    "statement": "L driver snabbforfarande_lagforing; evidens (authority_evaluation) talar för riktning positive på handlaggningstid."
   },
   "claim:evidence_effect:L:starkt_oberoende_granskning_och_insyn:demokrati:korruption": {
     "kind": "claim",
@@ -653,6 +698,11 @@
     "kind": "claim",
     "source_name": "Riksdagen",
     "statement": "M driver ateraktiverad_utokad_varnplikt; evidens (authority_evaluation) talar för riktning positive på personal_varnpliktiga."
+  },
+  "claim:evidence_effect:M:atgarder_mot_invasiva_frammande_arter:klimat:hotade_arter_naturforlust": {
+    "kind": "claim",
+    "source_name": "Enhälligt betänkande 2025/26",
+    "statement": "M driver atgarder_mot_invasiva_frammande_arter; evidens (authority_evaluation) talar för riktning positive på hotade_arter_naturforlust."
   },
   "claim:evidence_effect:M:begransa_biometrisk_realtidsovervakning_rattssakerhet:demokrati:overvakning_utan_rattssakerhet": {
     "kind": "claim",
@@ -709,6 +759,11 @@
     "source_name": "Riksdagen",
     "statement": "M driver minskad_klasstorlek; evidens (authority_evaluation) talar för riktning positive på skolresultat."
   },
+  "claim:evidence_effect:M:nato_medlemskap:forsvar:nato_interoperabilitet": {
+    "kind": "claim",
+    "source_name": "Votering bet. 2022/23",
+    "statement": "M driver nato_medlemskap; evidens (authority_evaluation) talar för riktning positive på nato_interoperabilitet."
+  },
   "claim:evidence_effect:M:ny_karnkraft:klimat:effektbrist": {
     "kind": "claim",
     "source_name": "Riksdagen",
@@ -728,6 +783,11 @@
     "kind": "claim",
     "source_name": "Riksdagen",
     "statement": "M driver sfi_kombinerat_med_praktik; evidens (authority_evaluation) talar för riktning positive på sysselsattningsgap_inrikes_utrikes."
+  },
+  "claim:evidence_effect:M:snabbforfarande_lagforing:trygghet:handlaggningstid": {
+    "kind": "claim",
+    "source_name": "Enhälligt betänkande 2022/23",
+    "statement": "M driver snabbforfarande_lagforing; evidens (authority_evaluation) talar för riktning positive på handlaggningstid."
   },
   "claim:evidence_effect:M:starkt_oberoende_granskning_och_insyn:demokrati:korruption": {
     "kind": "claim",
@@ -753,6 +813,11 @@
     "kind": "claim",
     "source_name": "Riksdagen",
     "statement": "MP driver arbetsmarknadsutbildning; evidens (authority_evaluation) talar för riktning positive på sysselsattning."
+  },
+  "claim:evidence_effect:MP:atgarder_mot_invasiva_frammande_arter:klimat:hotade_arter_naturforlust": {
+    "kind": "claim",
+    "source_name": "Enhälligt betänkande 2025/26",
+    "statement": "MP driver atgarder_mot_invasiva_frammande_arter; evidens (authority_evaluation) talar för riktning positive på hotade_arter_naturforlust."
   },
   "claim:evidence_effect:MP:atgarder_mot_otillaten_paverkan_offentlig_sektor:demokrati:korruption": {
     "kind": "claim",
@@ -829,6 +894,11 @@
     "source_name": "Riksdagen",
     "statement": "MP driver situationell_prevention_utomhusbelysning; evidens (systematic_review) talar för riktning positive på brottsutsatthet."
   },
+  "claim:evidence_effect:MP:snabbforfarande_lagforing:trygghet:handlaggningstid": {
+    "kind": "claim",
+    "source_name": "Enhälligt betänkande 2022/23",
+    "statement": "MP driver snabbforfarande_lagforing; evidens (authority_evaluation) talar för riktning positive på handlaggningstid."
+  },
   "claim:evidence_effect:MP:sprakpraktik_kombinerad_sprakutbildning_och_arbetspraktik:integration:sysselsattningsgap_inrikes_utrikes": {
     "kind": "claim",
     "source_name": "Riksdagen",
@@ -868,6 +938,11 @@
     "kind": "claim",
     "source_name": "Riksdagen",
     "statement": "S driver ateraktiverad_utokad_varnplikt; evidens (authority_evaluation) talar för riktning positive på personal_varnpliktiga."
+  },
+  "claim:evidence_effect:S:atgarder_mot_invasiva_frammande_arter:klimat:hotade_arter_naturforlust": {
+    "kind": "claim",
+    "source_name": "Enhälligt betänkande 2025/26",
+    "statement": "S driver atgarder_mot_invasiva_frammande_arter; evidens (authority_evaluation) talar för riktning positive på hotade_arter_naturforlust."
   },
   "claim:evidence_effect:S:atgarder_mot_otillaten_paverkan_offentlig_sektor:demokrati:korruption": {
     "kind": "claim",
@@ -919,6 +994,11 @@
     "source_name": "Riksdagen",
     "statement": "S driver minskad_klasstorlek; evidens (authority_evaluation) talar för riktning positive på skolresultat."
   },
+  "claim:evidence_effect:S:nato_medlemskap:forsvar:nato_interoperabilitet": {
+    "kind": "claim",
+    "source_name": "Votering bet. 2022/23",
+    "statement": "S driver nato_medlemskap; evidens (authority_evaluation) talar för riktning positive på nato_interoperabilitet."
+  },
   "claim:evidence_effect:S:ny_karnkraft:klimat:effektbrist": {
     "kind": "claim",
     "source_name": "Riksdagen",
@@ -933,6 +1013,11 @@
     "kind": "claim",
     "source_name": "Riksdagen",
     "statement": "S driver sfi_kombinerat_med_praktik; evidens (authority_evaluation) talar för riktning positive på sysselsattningsgap_inrikes_utrikes."
+  },
+  "claim:evidence_effect:S:snabbforfarande_lagforing:trygghet:handlaggningstid": {
+    "kind": "claim",
+    "source_name": "Enhälligt betänkande 2022/23",
+    "statement": "S driver snabbforfarande_lagforing; evidens (authority_evaluation) talar för riktning positive på handlaggningstid."
   },
   "claim:evidence_effect:S:starkt_oberoende_granskning_och_insyn:demokrati:korruption": {
     "kind": "claim",
@@ -979,6 +1064,11 @@
     "source_name": "Riksdagen",
     "statement": "SD driver ateraktiverad_utokad_varnplikt; evidens (authority_evaluation) talar för riktning positive på personal_varnpliktiga."
   },
+  "claim:evidence_effect:SD:atgarder_mot_invasiva_frammande_arter:klimat:hotade_arter_naturforlust": {
+    "kind": "claim",
+    "source_name": "Enhälligt betänkande 2025/26",
+    "statement": "SD driver atgarder_mot_invasiva_frammande_arter; evidens (authority_evaluation) talar för riktning positive på hotade_arter_naturforlust."
+  },
   "claim:evidence_effect:SD:begransa_biometrisk_realtidsovervakning_rattssakerhet:demokrati:overvakning_utan_rattssakerhet": {
     "kind": "claim",
     "source_name": "Votering bet. 2025/26",
@@ -1024,6 +1114,11 @@
     "source_name": "Riksdagen",
     "statement": "SD motsätter sig minskad_klasstorlek; evidens (authority_evaluation) talar för riktning negative på skolresultat."
   },
+  "claim:evidence_effect:SD:nato_medlemskap:forsvar:nato_interoperabilitet": {
+    "kind": "claim",
+    "source_name": "Votering bet. 2022/23",
+    "statement": "SD driver nato_medlemskap; evidens (authority_evaluation) talar för riktning positive på nato_interoperabilitet."
+  },
   "claim:evidence_effect:SD:ny_karnkraft:klimat:effektbrist": {
     "kind": "claim",
     "source_name": "Riksdagen",
@@ -1043,6 +1138,11 @@
     "kind": "claim",
     "source_name": "Riksdagen",
     "statement": "SD driver situationell_prevention_utomhusbelysning; evidens (systematic_review) talar för riktning positive på brottsutsatthet."
+  },
+  "claim:evidence_effect:SD:snabbforfarande_lagforing:trygghet:handlaggningstid": {
+    "kind": "claim",
+    "source_name": "Enhälligt betänkande 2022/23",
+    "statement": "SD driver snabbforfarande_lagforing; evidens (authority_evaluation) talar för riktning positive på handlaggningstid."
   },
   "claim:evidence_effect:SD:starkt_oberoende_granskning_och_insyn:demokrati:korruption": {
     "kind": "claim",
@@ -1088,6 +1188,11 @@
     "kind": "claim",
     "source_name": "Riksdagen",
     "statement": "V driver ateraktiverad_utokad_varnplikt; evidens (authority_evaluation) talar för riktning positive på personal_varnpliktiga."
+  },
+  "claim:evidence_effect:V:atgarder_mot_invasiva_frammande_arter:klimat:hotade_arter_naturforlust": {
+    "kind": "claim",
+    "source_name": "Enhälligt betänkande 2025/26",
+    "statement": "V driver atgarder_mot_invasiva_frammande_arter; evidens (authority_evaluation) talar för riktning positive på hotade_arter_naturforlust."
   },
   "claim:evidence_effect:V:begransa_biometrisk_realtidsovervakning_rattssakerhet:demokrati:overvakning_utan_rattssakerhet": {
     "kind": "claim",
@@ -1149,6 +1254,11 @@
     "source_name": "Riksdagen",
     "statement": "V driver minskad_klasstorlek; evidens (authority_evaluation) talar för riktning positive på skolresultat."
   },
+  "claim:evidence_effect:V:nato_medlemskap:forsvar:nato_interoperabilitet": {
+    "kind": "claim",
+    "source_name": "Votering bet. 2022/23",
+    "statement": "V motsätter sig nato_medlemskap; evidens (authority_evaluation) talar för riktning negative på nato_interoperabilitet."
+  },
   "claim:evidence_effect:V:ny_karnkraft:klimat:effektbrist": {
     "kind": "claim",
     "source_name": "Riksdagen",
@@ -1168,6 +1278,11 @@
     "kind": "claim",
     "source_name": "Riksdagen",
     "statement": "V driver situationell_prevention_utomhusbelysning; evidens (systematic_review) talar för riktning positive på brottsutsatthet."
+  },
+  "claim:evidence_effect:V:snabbforfarande_lagforing:trygghet:handlaggningstid": {
+    "kind": "claim",
+    "source_name": "Enhälligt betänkande 2022/23",
+    "statement": "V driver snabbforfarande_lagforing; evidens (authority_evaluation) talar för riktning positive på handlaggningstid."
   },
   "claim:evidence_effect:V:sprakpraktik_kombinerad_sprakutbildning_och_arbetspraktik:integration:sysselsattningsgap_inrikes_utrikes": {
     "kind": "claim",

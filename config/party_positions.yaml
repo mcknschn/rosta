@@ -1915,3 +1915,283 @@ entries:
   date: '2026-05-26'
   confidence: medium
   mapping_note: "L (regeringsparti) röstade Ja till lagen (punkt 1, 16) och Ja på punkt 2 -> opposes (_FLIP). NOTERA: L är liberalt men bröt INTE ut här (till skillnad från C). Neutralt ankare = Lagrådet."
+
+# ---------------------------------------------------------------------------------------------------
+# forsvar / nato_ukraina — policy_type nato_medlemskap (B2 2026-06-06)
+# Votering bet. 2022/23:UU16 punkt 1 (godkänner Sveriges anslutning till Nato, prop. 2022/23:74),
+# votering 6B63ADBF-B6F8-4CE0-A574-230BEE238A46. Verifierat per parti: Ja = S(93) M(60) SD(64) C(21)
+# KD(17) L(14); Nej = V(21), MP(16). Källa/riktning: Försvarsberedningen Ds 2024:6 (authority_evaluation).
+# CODEX-GRANSKAT: MP=none (MP svängde till Nato-stöd efter 2022; opposes vore föråldrat). V=opposes
+# (fortsatt Nato-kritiskt = aktuell position). Blocköverskridande (S på Ja-sidan med högern).
+# ---------------------------------------------------------------------------------------------------
+- party: S
+  policy_type: nato_medlemskap
+  stance: supports
+  source: "Votering bet. 2022/23:UU16 (prop. 2022/23:74), punkt 1"
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HA01UU16.html
+  doc_id: "HA01UU16 / votering 6B63ADBF-B6F8-4CE0-A574-230BEE238A46 punkt 1"
+  quote: "Röst: Ja — godkände Sveriges anslutning till Nordatlantiska fördraget (Nato-medlemskap)."
+  date: '2023-03-22'
+  confidence: high
+  mapping_note: "S röstade Ja (93). Nato-medlemskap -> nato_interoperabilitet UPP => supports. Votering punkt 1 (sakfrågan)."
+- party: M
+  policy_type: nato_medlemskap
+  stance: supports
+  source: "Votering bet. 2022/23:UU16 (prop. 2022/23:74), punkt 1"
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HA01UU16.html
+  doc_id: "HA01UU16 / votering 6B63ADBF-B6F8-4CE0-A574-230BEE238A46 punkt 1"
+  quote: "Röst: Ja — godkände Sveriges anslutning till Nordatlantiska fördraget (Nato-medlemskap)."
+  date: '2023-03-22'
+  confidence: high
+  mapping_note: "M röstade Ja (60). Nato-medlemskap -> nato_interoperabilitet UPP => supports."
+- party: SD
+  policy_type: nato_medlemskap
+  stance: supports
+  source: "Votering bet. 2022/23:UU16 (prop. 2022/23:74), punkt 1"
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HA01UU16.html
+  doc_id: "HA01UU16 / votering 6B63ADBF-B6F8-4CE0-A574-230BEE238A46 punkt 1"
+  quote: "Röst: Ja — godkände Sveriges anslutning till Nordatlantiska fördraget (Nato-medlemskap)."
+  date: '2023-03-22'
+  confidence: high
+  mapping_note: "SD röstade Ja (64). Nato-medlemskap -> nato_interoperabilitet UPP => supports."
+- party: C
+  policy_type: nato_medlemskap
+  stance: supports
+  source: "Votering bet. 2022/23:UU16 (prop. 2022/23:74), punkt 1"
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HA01UU16.html
+  doc_id: "HA01UU16 / votering 6B63ADBF-B6F8-4CE0-A574-230BEE238A46 punkt 1"
+  quote: "Röst: Ja — godkände Sveriges anslutning till Nordatlantiska fördraget (Nato-medlemskap)."
+  date: '2023-03-22'
+  confidence: high
+  mapping_note: "C röstade Ja (21). Nato-medlemskap -> nato_interoperabilitet UPP => supports."
+- party: KD
+  policy_type: nato_medlemskap
+  stance: supports
+  source: "Votering bet. 2022/23:UU16 (prop. 2022/23:74), punkt 1"
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HA01UU16.html
+  doc_id: "HA01UU16 / votering 6B63ADBF-B6F8-4CE0-A574-230BEE238A46 punkt 1"
+  quote: "Röst: Ja — godkände Sveriges anslutning till Nordatlantiska fördraget (Nato-medlemskap)."
+  date: '2023-03-22'
+  confidence: high
+  mapping_note: "KD röstade Ja (17). Nato-medlemskap -> nato_interoperabilitet UPP => supports."
+- party: L
+  policy_type: nato_medlemskap
+  stance: supports
+  source: "Votering bet. 2022/23:UU16 (prop. 2022/23:74), punkt 1"
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HA01UU16.html
+  doc_id: "HA01UU16 / votering 6B63ADBF-B6F8-4CE0-A574-230BEE238A46 punkt 1"
+  quote: "Röst: Ja — godkände Sveriges anslutning till Nordatlantiska fördraget (Nato-medlemskap)."
+  date: '2023-03-22'
+  confidence: high
+  mapping_note: "L röstade Ja (14). Nato-medlemskap -> nato_interoperabilitet UPP => supports."
+- party: V
+  policy_type: nato_medlemskap
+  stance: opposes
+  source: "Votering bet. 2022/23:UU16 (prop. 2022/23:74), punkt 1 (reservation 1, V+MP)"
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HA01UU16.html
+  doc_id: "HA01UU16 / votering 6B63ADBF-B6F8-4CE0-A574-230BEE238A46 punkt 1"
+  quote: "Röst: Nej (21) — avslog Sveriges anslutning till Nato (reservation 1)."
+  date: '2023-03-22'
+  confidence: high
+  mapping_note: "V röstade Nej (21) = motsätter sig Nato-medlemskap -> _FLIP -> negativt B mot nato_interoperabilitet. V är fortsatt Nato-kritiskt (aktuell position, ej föråldrad). Blocköverskridande split: S ligger på Ja-sidan med högern. MP röstade också Nej men kodas NONE (ej opposes) eftersom MP sedan svängt till Nato-stöd -> föråldrad position, se evidensliggar-noten (codex-granskat 2026-06-06)."
+
+# ---------------------------------------------------------------------------------------------------
+# trygghet / rattsvasendets_effektivitet — policy_type snabbforfarande_lagforing (B2 2026-06-06)
+# ENHÄLLIGHET-SOM-KÄLLA (docs/evidens_trovardighet.md §5.2): bet. 2022/23:JuU2 punkt 1 "Snabbare
+# lagföring av brott" (prop. 2021/22:279) togs i ACKLAMATION (voteringlista punkt 1 @antal=0), ingen
+# reservation mot sakinnehållet. Enda reservationen (V/C/MP) gäller punkt 2 (påföljd/böter), EJ
+# snabbförfarandet — V/C/MP "välkomnar" uttryckligen permanentningen. -> alla 8 partier supports.
+# Källa/riktning: Brå 2020:3. Codex-granskat 2026-06-06 (BUILD-WITH-CHANGES). Icke-rankningsdrivande.
+# ---------------------------------------------------------------------------------------------------
+- party: S
+  policy_type: snabbforfarande_lagforing
+  stance: supports
+  source: "Enhälligt betänkande 2022/23:JuU2 punkt 1 (prop. 2021/22:279), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/HA01JuU2.html
+  doc_id: "HA01JuU2 punkt 1"
+  quote: "1. Snabbare lagföring av brott — Riksdagen antar regeringens förslag [...]. Därmed bifaller riksdagen proposition 2021/22:279 punkterna 1–5."
+  date: '2022-12-07'
+  confidence: high
+  mapping_note: "ENHÄLLIGT betänkande (källstege §5.2). Punkt 1 (permanentning av snabbförfarande i hela landet) togs i ACKLAMATION (@antal=0), ingen reservation mot sakinnehållet -> alla 8 partier supports. Snabbförfarande -> handlaggningstid NER (positiv). Icke-rankningsdrivande konsensus-mått."
+- party: M
+  policy_type: snabbforfarande_lagforing
+  stance: supports
+  source: "Enhälligt betänkande 2022/23:JuU2 punkt 1 (prop. 2021/22:279), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/HA01JuU2.html
+  doc_id: "HA01JuU2 punkt 1"
+  quote: "1. Snabbare lagföring av brott — Riksdagen antar regeringens förslag [...]. Därmed bifaller riksdagen proposition 2021/22:279 punkterna 1–5."
+  date: '2022-12-07'
+  confidence: high
+  mapping_note: "ENHÄLLIGT betänkande. Punkt 1 i acklamation (alla 8 bakom) -> supports. Snabbförfarande -> handlaggningstid NER."
+- party: SD
+  policy_type: snabbforfarande_lagforing
+  stance: supports
+  source: "Enhälligt betänkande 2022/23:JuU2 punkt 1 (prop. 2021/22:279), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/HA01JuU2.html
+  doc_id: "HA01JuU2 punkt 1"
+  quote: "1. Snabbare lagföring av brott — Riksdagen antar regeringens förslag [...]. Därmed bifaller riksdagen proposition 2021/22:279 punkterna 1–5."
+  date: '2022-12-07'
+  confidence: high
+  mapping_note: "ENHÄLLIGT betänkande. Punkt 1 i acklamation (alla 8 bakom; SD:s Jomshof var utskottets ordförande) -> supports. Snabbförfarande -> handlaggningstid NER."
+- party: C
+  policy_type: snabbforfarande_lagforing
+  stance: supports
+  source: "Enhälligt betänkande 2022/23:JuU2 punkt 1; C-reservation (punkt 2) bekräftar stöd för snabbförfarandet"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/HA01JuU2.html
+  doc_id: "HA01JuU2 punkt 1"
+  quote: "Vi välkomnar att den kunskap som inhämtats från försöksverksamheten med ett snabbförfarande i brottmål nu permanentas och implementeras i hela landet."
+  date: '2022-12-07'
+  confidence: high
+  mapping_note: "Punkt 1 togs i acklamation (alla 8 bakom). C:s enda reservation gäller punkt 2 (påföljdsbestämning), och reservationstexten välkomnar uttryckligen permanentningen av snabbförfarandet -> supports (källbelagt, ej tolkning). Snabbförfarande -> handlaggningstid NER."
+- party: V
+  policy_type: snabbforfarande_lagforing
+  stance: supports
+  source: "Enhälligt betänkande 2022/23:JuU2 punkt 1; V-reservation (punkt 2) bekräftar stöd för snabbförfarandet"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/HA01JuU2.html
+  doc_id: "HA01JuU2 punkt 1"
+  quote: "Vi välkomnar att den kunskap som inhämtats från försöksverksamheten med ett snabbförfarande i brottmål nu permanentas och implementeras i hela landet."
+  date: '2022-12-07'
+  confidence: high
+  mapping_note: "Punkt 1 togs i acklamation (alla 8 bakom). V:s enda reservation gäller punkt 2 (påföljdsbestämning); i reservationstexten välkomnar V uttryckligen snabbförfarandet -> supports. Snabbförfarande -> handlaggningstid NER."
+- party: KD
+  policy_type: snabbforfarande_lagforing
+  stance: supports
+  source: "Enhälligt betänkande 2022/23:JuU2 punkt 1 (prop. 2021/22:279), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/HA01JuU2.html
+  doc_id: "HA01JuU2 punkt 1"
+  quote: "1. Snabbare lagföring av brott — Riksdagen antar regeringens förslag [...]. Därmed bifaller riksdagen proposition 2021/22:279 punkterna 1–5."
+  date: '2022-12-07'
+  confidence: high
+  mapping_note: "ENHÄLLIGT betänkande. Punkt 1 i acklamation (alla 8 bakom) -> supports. Snabbförfarande -> handlaggningstid NER."
+- party: L
+  policy_type: snabbforfarande_lagforing
+  stance: supports
+  source: "Enhälligt betänkande 2022/23:JuU2 punkt 1 (prop. 2021/22:279), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/HA01JuU2.html
+  doc_id: "HA01JuU2 punkt 1"
+  quote: "1. Snabbare lagföring av brott — Riksdagen antar regeringens förslag [...]. Därmed bifaller riksdagen proposition 2021/22:279 punkterna 1–5."
+  date: '2022-12-07'
+  confidence: high
+  mapping_note: "ENHÄLLIGT betänkande. Punkt 1 i acklamation (alla 8 bakom) -> supports. Snabbförfarande -> handlaggningstid NER."
+- party: MP
+  policy_type: snabbforfarande_lagforing
+  stance: supports
+  source: "Enhälligt betänkande 2022/23:JuU2 punkt 1; MP-reservation (punkt 2) bekräftar stöd för snabbförfarandet"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/HA01JuU2.html
+  doc_id: "HA01JuU2 punkt 1"
+  quote: "Vi välkomnar att den kunskap som inhämtats från försöksverksamheten med ett snabbförfarande i brottmål nu permanentas och implementeras i hela landet."
+  date: '2022-12-07'
+  confidence: high
+  mapping_note: "Punkt 1 togs i acklamation (alla 8 bakom). MP:s enda reservation gäller punkt 2 (påföljdsbestämning); i reservationstexten välkomnar MP uttryckligen snabbförfarandet -> supports. Snabbförfarande -> handlaggningstid NER."
+
+# ---------------------------------------------------------------------------------------------------
+# klimat / biologisk_mangfald — policy_type atgarder_mot_invasiva_frammande_arter (B2 2026-06-06)
+# ENHÄLLIGHET-SOM-KÄLLA: bet. 2025/26:MJU13 punkt 1 (skärpt regelverk för invasiva arter, miljöbalken
+# + inregränslagen, prop. 2025/26:41) togs i ACKLAMATION (@antal=0); utskottet: "inte väckts någon
+# motion som går emot regeringens lagförslag" -> alla 8 partier supports. Tiltade avslagspunkten (p2,
+# split C Nej / MP avstår) UTESLUTEN. Källa/riktning: Naturvårdsverket. Codex förordade HOLD ->
+# byggd som version 0 med konservativ kalibrering (low/low), FLAGGAD för sign-off (se evidensliggaren).
+# ---------------------------------------------------------------------------------------------------
+- party: S
+  policy_type: atgarder_mot_invasiva_frammande_arter
+  stance: supports
+  source: "Enhälligt betänkande 2025/26:MJU13 punkt 1; S särskilt yttrande välkomnar lagskärpningen"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/HD01MJU13.html
+  doc_id: "HD01MJU13 punkt 1"
+  quote: "Vi socialdemokrater välkomnar förslaget om att regelverket för invasiva främmande arter skärps. Vi står därmed bakom utskottets ställningstagande."
+  date: '2026-03-12'
+  confidence: high
+  mapping_note: "Punkt 1 (skärpt regelverk) togs i acklamation. S har särskilt yttrande på punkt 1 som uttryckligen välkomnar skärpningen och står bakom utskottet (vill gå längre, ej emot) -> supports. Åtgärder mot invasiva arter -> hotade_arter_naturforlust NER."
+- party: M
+  policy_type: atgarder_mot_invasiva_frammande_arter
+  stance: supports
+  source: "Enhälligt betänkande 2025/26:MJU13 punkt 1 (prop. 2025/26:41), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/HD01MJU13.html
+  doc_id: "HD01MJU13 punkt 1"
+  quote: "Det har inte väckts någon motion som går emot regeringens lagförslag. Utskottet anser att riksdagen ... bör anta regeringens förslag till ändringar i miljöbalken samt förslag till ändringar i inregränslagen. Utskottet tillstyrker således regeringens proposition."
+  date: '2026-03-12'
+  confidence: high
+  mapping_note: "ENHÄLLIGT betänkande (källstege §5.2). Punkt 1 i acklamation (@antal=0), ingen motion emot -> alla 8 partier supports. Tiltade avslagspunkten p2 utesluten. Åtgärder mot invasiva arter -> hotade_arter_naturforlust NER. Icke-rankningsdrivande konsensus-mått."
+- party: SD
+  policy_type: atgarder_mot_invasiva_frammande_arter
+  stance: supports
+  source: "Enhälligt betänkande 2025/26:MJU13 punkt 1 (prop. 2025/26:41), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/HD01MJU13.html
+  doc_id: "HD01MJU13 punkt 1"
+  quote: "Det har inte väckts någon motion som går emot regeringens lagförslag. Utskottet anser att riksdagen ... bör anta regeringens förslag ... Utskottet tillstyrker således regeringens proposition."
+  date: '2026-03-12'
+  confidence: high
+  mapping_note: "ENHÄLLIGT betänkande. Punkt 1 i acklamation -> supports. Åtgärder mot invasiva arter -> hotade_arter_naturforlust NER."
+- party: C
+  policy_type: atgarder_mot_invasiva_frammande_arter
+  stance: supports
+  source: "Enhälligt betänkande 2025/26:MJU13 punkt 1 (C-reservation gäller punkt 2, ej lagskärpningen)"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/HD01MJU13.html
+  doc_id: "HD01MJU13 punkt 1"
+  quote: "Det har inte väckts någon motion som går emot regeringens lagförslag. Utskottet ... tillstyrker således regeringens proposition."
+  date: '2026-03-12'
+  confidence: high
+  mapping_note: "Punkt 1 (lagskärpningen) togs i acklamation -> C bakom = supports. C:s reservation (res. 1) gäller punkt 2 (avslagspunkt om ytterligare insatser), INTE lagen. Åtgärder mot invasiva arter -> hotade_arter_naturforlust NER."
+- party: V
+  policy_type: atgarder_mot_invasiva_frammande_arter
+  stance: supports
+  source: "Enhälligt betänkande 2025/26:MJU13 punkt 1 (prop. 2025/26:41), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/HD01MJU13.html
+  doc_id: "HD01MJU13 punkt 1"
+  quote: "Det har inte väckts någon motion som går emot regeringens lagförslag. Utskottet ... tillstyrker således regeringens proposition."
+  date: '2026-03-12'
+  confidence: high
+  mapping_note: "ENHÄLLIGT betänkande. Punkt 1 i acklamation -> supports. Åtgärder mot invasiva arter -> hotade_arter_naturforlust NER."
+- party: KD
+  policy_type: atgarder_mot_invasiva_frammande_arter
+  stance: supports
+  source: "Enhälligt betänkande 2025/26:MJU13 punkt 1 (prop. 2025/26:41), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/HD01MJU13.html
+  doc_id: "HD01MJU13 punkt 1"
+  quote: "Det har inte väckts någon motion som går emot regeringens lagförslag. Utskottet ... tillstyrker således regeringens proposition."
+  date: '2026-03-12'
+  confidence: high
+  mapping_note: "ENHÄLLIGT betänkande. Punkt 1 i acklamation -> supports. Åtgärder mot invasiva arter -> hotade_arter_naturforlust NER."
+- party: L
+  policy_type: atgarder_mot_invasiva_frammande_arter
+  stance: supports
+  source: "Enhälligt betänkande 2025/26:MJU13 punkt 1 (prop. 2025/26:41), acklamation"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/HD01MJU13.html
+  doc_id: "HD01MJU13 punkt 1"
+  quote: "Det har inte väckts någon motion som går emot regeringens lagförslag. Utskottet ... tillstyrker således regeringens proposition."
+  date: '2026-03-12'
+  confidence: high
+  mapping_note: "ENHÄLLIGT betänkande. Punkt 1 i acklamation -> supports. Åtgärder mot invasiva arter -> hotade_arter_naturforlust NER."
+- party: MP
+  policy_type: atgarder_mot_invasiva_frammande_arter
+  stance: supports
+  source: "Enhälligt betänkande 2025/26:MJU13 punkt 1 (MP-reservation gäller punkt 2, ej lagskärpningen)"
+  source_type: betankande
+  source_url: https://data.riksdagen.se/dokument/HD01MJU13.html
+  doc_id: "HD01MJU13 punkt 1"
+  quote: "Det har inte väckts någon motion som går emot regeringens lagförslag. Utskottet ... tillstyrker således regeringens proposition."
+  date: '2026-03-12'
+  confidence: high
+  mapping_note: "Punkt 1 (lagskärpningen) togs i acklamation -> MP bakom = supports. MP:s reservation (res. 2) gäller punkt 2 (avslagspunkt), INTE lagen. Åtgärder mot invasiva arter -> hotade_arter_naturforlust NER."

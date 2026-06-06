@@ -2,7 +2,7 @@
 
 > AUTOGENERERAD av `pipeline/tools/review_packet.py` — ändra inte för hand.
 
-**33 poster** (åtgärdstyp → indikatoreffekt). Generell policy-evidens, medvetet **inte** partikopplad. Varje post sätter riktningen för ALLA partier som driver åtgärdstypen — granska källan noga (blast-radius anges per post).
+**36 poster** (åtgärdstyp → indikatoreffekt). Generell policy-evidens, medvetet **inte** partikopplad. Varje post sätter riktningen för ALLA partier som driver åtgärdstypen — granska källan noga (blast-radius anges per post).
 
 ## Så granskar du
 
@@ -150,6 +150,15 @@
 - ⚠ låg konfidens
 - **OK?** ⬜ (✅/✏️/❌): 
 
+### `nato_medlemskap` → nato_interoperabilitet
+
+- **Riktning:** positive · **evidensnivå:** authority_evaluation · **styrka:** high · **konfidens:** high
+- **Källa:** Försvarsberedningen, Ds 2024:6 'Stärkt försvarsförmåga – Sverige som allierad'. Partiståndpunkter via votering bet. 2022/23:UU16 punkt 1 (godkänner Sveriges anslutning till Nato, prop. 2022/23:74).
+- **URL:** https://data.riksdagen.se/dokument/HCB46.html
+- **Not:** NEUTRALT ANKARE = Försvarsberedningen (blocköverskridande beredningsorgan): Nato-medlemskap 'ökar säkerheten för Sverige och stärker Nato som helhet'; 'det kollektiva försvarsåtagandet i Nato utgör nu en central del i den svenska säkerhets- och försvarspolitiken' och ger 'interoperabilitet och förmåga att operativt agera gemensamt med andra'. Medlemskapet är det grundläggande instrumentet för nato_interoperabilitet (UPP) -> direction positive (nära definitionellt) -> effect_strength/confidence high. MP-NOT (codex-granskat 2026-06-06): MP röstade Nej 2022 men har sedan svängt till Nato-stöd -> MP kodas none (ej opposes), då ett negativt B från en föråldrad position vore vilseledande för en app som guidar dagens röst. V (fortsatt Nato-kritiskt = aktuellt) kodas opposes.
+- **Påverkar partier:** C(+), KD(+), L(+), M(+), S(+), SD(+), V(−)
+- **OK?** ⬜ (✅/✏️/❌): 
+
 ## integration
 
 ### `sfi_kombinerat_med_praktik` → sysselsattningsgap_inrikes_utrikes
@@ -235,6 +244,16 @@
 - **Påverkar partier:** KD(+), L(+), M(+), MP(−), S(+), SD(+), V(−)
 - **OK?** ⬜ (✅/✏️/❌): 
 
+### `atgarder_mot_invasiva_frammande_arter` → hotade_arter_naturforlust
+
+- **Riktning:** positive · **evidensnivå:** authority_evaluation · **styrka:** low · **konfidens:** low
+- **Källa:** Naturvårdsverket, ämnesområde 'Invasiva främmande arter' (myndighetsbedömning). Instrument/beslut: prop. 2025/26:41, bet. 2025/26:MJU13 punkt 1 (skärpt regelverk: miljöbalken + inregränslagen).
+- **URL:** https://www.naturvardsverket.se/amnesomraden/invasiva-frammande-arter/
+- **Not:** TILLAGD 2026-06-06 (B2, enhällighet-som-källa). Åtgärder mot invasiva främmande arter (EU-förordn. 1143/2014 + nationellt regelverk: nationell förteckning, straffansvar för otillåten hantering, anmälningsskyldighet + Tullverkets kontroll vid inre gräns, tidig upptäckt) -> hotade_arter_naturforlust NER (positiv riktning). INSTRUMENT-MEKANISM (svar på codex instrument-precisions-invändning 2026-06-06): Naturvårdsverket anger att förteckningen är 'ett verktyg i arbetet med att förebygga och begränsa spridningen av arter som kan orsaka skador på natur, biologisk mångfald och ekosystem', och prop. 2025/26:41 (i MJU13) att 'det mest kostnadseffektiva sättet att förhindra introduktion av invasiva främmande arter är att de upptäcks i ett tidigt skede' -> instrumentet driver indikatorn via mekanismen förhindra spridning/introduktion. Naturvårdsverkets rubrikbedömning: 'Invasiva främmande arter är ett av de största hoten mot biologisk mångfald i Sverige och globalt.' KAVEAT (effect_strength/confidence=LOW, codex-kalibrerat 2026-06-06): riktningen är myndighetsbelagd på MEKANISM-nivå men det finns INGEN kvantifierad svensk kausalutvärdering av åtgärdernas faktiska utfall på hotade arter -> låg styrka/förtroende. KONSENSUS-MÅTT: positioneras via enhälligt bet. 2025/26:MJU13 punkt 1 (acklamation, 'inte väckts någon motion som går emot regeringens lagförslag') -> alla 8 partier supports; tiltade avslagspunkten (p2) utesluten. FLAGGAD för mänsklig sign-off — codex förordade HOLD; byggd som version 0 med konservativ kalibrering för din bedömning.
+- **Påverkar partier:** C(+), KD(+), L(+), M(+), MP(+), S(+), SD(+), V(+)
+- ⚠ låg konfidens
+- **OK?** ⬜ (✅/✏️/❌): 
+
 ## trygghet
 
 ### `behandlingsprogram_kriminalvard` → aterfall_i_brott
@@ -282,6 +301,15 @@
 - **Not:** Effektiv mot planerade egendomsbrott, ingen påtaglig effekt mot våldsbrott (platsspecifikt).
 - **Påverkar partier:** —(ingen ståndpunkt)
 - ⚠ mixed → ≈neutral B
+- **OK?** ⬜ (✅/✏️/❌): 
+
+### `snabbforfarande_lagforing` → handlaggningstid
+
+- **Riktning:** positive · **evidensnivå:** authority_evaluation · **styrka:** medium · **konfidens:** medium
+- **Källa:** Brå Rapport 2020:3 'Snabbare lagföring – Utvärdering av en försöksverksamhet i norra Stockholm'. Partiståndpunkter via enhälligt betänkande 2022/23:JuU2 punkt 1 (prop. 2021/22:279), acklamation.
+- **URL:** https://bra.se/rapporter/arkiv/2020-04-01-snabbare-lagforing
+- **Not:** TILLAGD 2026-06-06 (B2, enhällighet-som-källa). Snabbförfarande/snabbare lagföring KORTAR handläggningstiden i rättskedjan -> handlaggningstid NER (positiv riktning). Brå (kvasiexperiment mot kontrollområde) ordagrant: 'Den totala handläggningstiden från registrerad misstanke till avslut har mer än halverats'; tingsrätt -34 dagar efter justering för tidstrender = 'en minskning med cirka 40 procent' (median från >50 till ~20 dagar). Brås slutsats: 'goda skäl att fortsätta med, och utvidga verksamheten'. KAVEAT (effect_strength/confidence=medium, ej high): ETT försöksområde (norra Stockholm), icke-parallella förtrender flaggade av Brå själv, 'bör inte förvänta sig samma resultat överallt'. Riktning entydig. KONSENSUS-MÅTT (codex 2026-06-06): positioneras via enhälligt bet. 2022/23:JuU2 punkt 1 (acklamation, ingen reservation mot sakinnehållet; enda reservationen V/C/MP gäller punkt 2/påföljd) -> alla 8 partier supports = icke-rankningsdrivande, höjer trygghet-coverage (submåttet rattsvasendets_effektivitet, tidigare B-tomt).
+- **Påverkar partier:** C(+), KD(+), L(+), M(+), MP(+), S(+), SD(+), V(+)
 - **OK?** ⬜ (✅/✏️/❌): 
 
 ## valfard

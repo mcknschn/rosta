@@ -3,7 +3,7 @@
 > AUTOGENERERAD av `pipeline/tools/review_packet.py` — ändra inte för hand.
 > Källa för betygskonsekvensen är det faktiska join-maskineriet i `pipeline/positions.py`.
 
-**169 ståndpunkter** → 182 evidence_effect-claims. Stance: {'supports': 145, 'opposes': 24}. Konfidens: {'high': 93, 'medium': 44, 'low': 18, 'None': 14}.
+**192 ståndpunkter** → 205 evidence_effect-claims. Stance: {'supports': 167, 'opposes': 25}. Konfidens: {'high': 116, 'medium': 44, 'low': 18, 'None': 14}.
 
 Pipelinen joinar **bara** på `party + policy_type + stance`. `supports` behåller evidensens riktning; `opposes` **vänder** den. Övriga fält är spårbarhet.
 
@@ -17,7 +17,7 @@ Pipelinen joinar **bara** på `party + policy_type + stance`. `supports` behåll
 
 ## ⚑ Prioriterad granskning (högst betygspåverkan/risk)
 
-92 rader där fel gör störst skada: **opposes** (vänder evidensen), **prop_avslag** (måste verifiera att propositionen ÄR instrumentet), **ny_karnkraft** (laddad fråga), **low_confidence**, **single_member**, **äldre källa**.
+93 rader där fel gör störst skada: **opposes** (vänder evidensen), **prop_avslag** (måste verifiera att propositionen ÄR instrumentet), **ny_karnkraft** (laddad fråga), **low_confidence**, **single_member**, **äldre källa**.
 
 | OK? | Parti | Åtgärdstyp | Stance | B-konsekvens | Konf. | doc_id | Datum | Flaggor |
 |-----|-------|-----------|--------|--------------|-------|--------|-------|---------|
@@ -72,6 +72,7 @@ Pipelinen joinar **bara** på `party + policy_type + stance`. `supports` behåll
 |  | L | minskad_klasstorlek | **supports** | ↑ mot bättre (höjer B) | medium | H2023002 | 2014-11-11 | old_source_2014 |
 |  | M | minskad_klasstorlek | **supports** | ↑ mot bättre (höjer B) | medium | H2023002 | 2014-11-11 | old_source_2014 |
 |  | SD | minskad_klasstorlek | **opposes** | ↓ mot sämre (sänker B) | high | H302761 | 2015-10-02 | opposes, old_source_2015 |
+|  | V | nato_medlemskap | **opposes** | ↓ mot sämre (sänker B) | high | HA01UU16 / votering 6B63ADBF-B6F8-4CE0-A574-230BEE238A46 punkt 1 | 2023-03-22 | opposes |
 |  | KD | ny_karnkraft | **supports** | ↑ mot bättre (höjer B) | medium | H9024195 | 2021-10-05 | ny_karnkraft, old_source_2021 |
 |  | L | ny_karnkraft | **supports** | ↑ mot bättre (höjer B) | medium | H8023242 | 2020-10-06 | ny_karnkraft, old_source_2020 |
 |  | M | ny_karnkraft | **supports** | ↑ mot bättre (höjer B) | medium | H9023688 | 2021-10-05 | ny_karnkraft, old_source_2021 |
@@ -281,6 +282,20 @@ Liggarens effekt: personal_varnpliktiga=positive (high)
 |  | SD ⚑ | supports | ↑ mot bättre (höjer B) | high | HA02948 | 2022-11-22 |
 |  | V ⚑ | supports | ↑ mot bättre (höjer B) | high | HD02199 | 2025-09-23 |
 
+#### `nato_medlemskap`
+
+Liggarens effekt: nato_interoperabilitet=positive (high)
+
+| OK? | Parti | Stance | B-konsekvens | Konf. | doc_id | Datum |
+|-----|-------|--------|--------------|-------|--------|-------|
+|  | C | supports | ↑ mot bättre (höjer B) | high | HA01UU16 / votering 6B63ADBF-B6F8-4CE0-A574-230BEE238A46 punkt 1 | 2023-03-22 |
+|  | KD | supports | ↑ mot bättre (höjer B) | high | HA01UU16 / votering 6B63ADBF-B6F8-4CE0-A574-230BEE238A46 punkt 1 | 2023-03-22 |
+|  | L | supports | ↑ mot bättre (höjer B) | high | HA01UU16 / votering 6B63ADBF-B6F8-4CE0-A574-230BEE238A46 punkt 1 | 2023-03-22 |
+|  | M | supports | ↑ mot bättre (höjer B) | high | HA01UU16 / votering 6B63ADBF-B6F8-4CE0-A574-230BEE238A46 punkt 1 | 2023-03-22 |
+|  | S | supports | ↑ mot bättre (höjer B) | high | HA01UU16 / votering 6B63ADBF-B6F8-4CE0-A574-230BEE238A46 punkt 1 | 2023-03-22 |
+|  | SD | supports | ↑ mot bättre (höjer B) | high | HA01UU16 / votering 6B63ADBF-B6F8-4CE0-A574-230BEE238A46 punkt 1 | 2023-03-22 |
+|  | V ⚑ | opposes | ↓ mot sämre (sänker B) | high | HA01UU16 / votering 6B63ADBF-B6F8-4CE0-A574-230BEE238A46 punkt 1 | 2023-03-22 |
+
 #### `tydlig_statlig_styrning_civilt_forsvar`
 
 Liggarens effekt: civil_beredskap_niva=positive (low)
@@ -346,6 +361,21 @@ Liggarens effekt: sysselsattningsgap_inrikes_utrikes=positive (medium)
 |  | V | supports | ↑ mot bättre (höjer B) | high | HA021299 | 2022-11-22 |
 
 ### klimat
+
+#### `atgarder_mot_invasiva_frammande_arter`
+
+Liggarens effekt: hotade_arter_naturforlust=positive (low)
+
+| OK? | Parti | Stance | B-konsekvens | Konf. | doc_id | Datum |
+|-----|-------|--------|--------------|-------|--------|-------|
+|  | C | supports | ↑ mot bättre (höjer B) | high | HD01MJU13 punkt 1 | 2026-03-12 |
+|  | KD | supports | ↑ mot bättre (höjer B) | high | HD01MJU13 punkt 1 | 2026-03-12 |
+|  | L | supports | ↑ mot bättre (höjer B) | high | HD01MJU13 punkt 1 | 2026-03-12 |
+|  | M | supports | ↑ mot bättre (höjer B) | high | HD01MJU13 punkt 1 | 2026-03-12 |
+|  | MP | supports | ↑ mot bättre (höjer B) | high | HD01MJU13 punkt 1 | 2026-03-12 |
+|  | S | supports | ↑ mot bättre (höjer B) | high | HD01MJU13 punkt 1 | 2026-03-12 |
+|  | SD | supports | ↑ mot bättre (höjer B) | high | HD01MJU13 punkt 1 | 2026-03-12 |
+|  | V | supports | ↑ mot bättre (höjer B) | high | HD01MJU13 punkt 1 | 2026-03-12 |
 
 #### `koldioxidskatt`
 
@@ -426,6 +456,21 @@ Liggarens effekt: brottsutsatthet=positive (medium)
 |  | MP | supports | ↑ mot bättre (höjer B) | medium | HB022669 | 2023-10-05 |
 |  | SD ⚑ | supports | ↑ mot bättre (höjer B) | low | HD02256 | 2025-09-24 |
 |  | V | supports | ↑ mot bättre (höjer B) | medium | HA021217 | 2022-11-01 |
+
+#### `snabbforfarande_lagforing`
+
+Liggarens effekt: handlaggningstid=positive (medium)
+
+| OK? | Parti | Stance | B-konsekvens | Konf. | doc_id | Datum |
+|-----|-------|--------|--------------|-------|--------|-------|
+|  | C | supports | ↑ mot bättre (höjer B) | high | HA01JuU2 punkt 1 | 2022-12-07 |
+|  | KD | supports | ↑ mot bättre (höjer B) | high | HA01JuU2 punkt 1 | 2022-12-07 |
+|  | L | supports | ↑ mot bättre (höjer B) | high | HA01JuU2 punkt 1 | 2022-12-07 |
+|  | M | supports | ↑ mot bättre (höjer B) | high | HA01JuU2 punkt 1 | 2022-12-07 |
+|  | MP | supports | ↑ mot bättre (höjer B) | high | HA01JuU2 punkt 1 | 2022-12-07 |
+|  | S | supports | ↑ mot bättre (höjer B) | high | HA01JuU2 punkt 1 | 2022-12-07 |
+|  | SD | supports | ↑ mot bättre (höjer B) | high | HA01JuU2 punkt 1 | 2022-12-07 |
+|  | V | supports | ↑ mot bättre (höjer B) | high | HA01JuU2 punkt 1 | 2022-12-07 |
 
 ### valfard
 
