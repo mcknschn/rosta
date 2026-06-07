@@ -720,8 +720,10 @@ undermått, inte ett nytt). Höjer inte 3/5→4/5, men skulle stärka integratio
 
 **Slutsats/rekommendation:** integration stannar på **3/5 B-grön** — det neutrala taket. boendesegregation + normer_tillit
 redovisas som genuina HOLD-väggar (uttömda över flera rundor, med skärpta steg-1-vs-steg-2-diagnoser + konkreta
-återöppningstriggrar). **Ersätt INTE** ett walls-undermått med ett alternativ (alla dubbelräknar/tiltar). Öppet
-sign-off-val: bygga etablerings-instrumentet som 2:a B-rad i arbete_sjalvforsorjning (coverage-stärkande bonus, ej 4/5).
+återöppningstriggrar). **Ersätt INTE** ett walls-undermått med ett alternativ (alla dubbelräknar/tiltar).
+**ANVÄNDARBESLUT 2026-06-07: ACCEPTERA 3/5** — båda väggarna kvar som HOLD (återöppningstriggrar loggade), ingen
+omstrukturering, etablerings-bonusen byggs ej nu. Neutralitet före 4. (Etablering-instrumentet IFAU R 2023:19 ligger
+kvar som framtida coverage-bonus i arbete_sjalvforsorjning om det önskas, men ändrar ej 3/5.)
 
 ---
 
@@ -754,6 +756,7 @@ sign-off-val: bygga etablerings-instrumentet som 2:a B-rad i arbete_sjalvforsorj
 | 2026-06-07 | **boendesegregation: full nedstigning #2–#5** → HOLD; **logg-rättelse** | #2 bosättningslag passerar steg 1 (RiR 2021:29) men faller på steg-2-värdekonflikt (självstyre); #3/#4/#5 wall. Diagnos: STEG 2/neutralitet, EJ steg 1 (gamla loggen fel) |
 | 2026-06-07 | **genomforbarhet_leverans + industriell_konkurrenskraft: nedstigning** → båda HOLD, men **väggarna krympta** | genomforbarhet: STEG 2 LÖST (FöU3 p1 acklamation), kvar enbart steg-1/instrument-effekt → en effektutvärdering räcker för BUILD. industriell_konkurrenskraft: neutralt ankare finns (elnät NU15 p1 acklamation) men steg 1 tvåsidigt (Tillväxtanalys: elektrifiering→"förlorad konkurrenskraft"); D-serie (utsläpp/förädlingsvärde) finns men ≠ B. Inget byggt — "neutralitet före 4" |
 | 2026-06-07 | **Integration extra indikatorvända + alternativ-undermått-analys** (för att nå 4/5) → integration stannar på **3/5** | nya indikatorspår (boendesegr: DO/Bostad först/RiR 2024:15/CU13; normer: IFAU 2017:12/2018:3/heders/diskriminering) alla wall; alternativ-undermått-analys: inget rent byte (alla dubbelräknar befintligt undermått/annan kategori eller tiltar) → §5.8-spärr "fuska inte" → behåll HOLD, ersätt ej. Etablerings-instrument (IFAU R 2023:19) starkt men dubbelräknar arbete_sjalvforsorjning (öppet sign-off-val) |
+| 2026-06-07 | **Integration ACCEPTERAS på 3/5** (användarbeslut) | inget neutralt 4:e undermått finns (båda väggar äkta, alla alternativ dubbelräknar/tiltar); omstrukturering avvisad; "neutralitet före 4". Etablerings-bonusen ej byggd. Väggarnas återöppningstriggrar bevakas |
 
 ---
 
