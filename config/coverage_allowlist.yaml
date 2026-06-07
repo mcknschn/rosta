@@ -51,7 +51,7 @@ allowlist:
   - { category: klimat, indicator: hotade_arter_naturforlust,  reason: "no_api: SLU Artdatabanken (rödlistan), ingen årlig maskinläsbar serie." }
   # --- integration (bidragsberoende, trangboddhet, sjalvforsorjningsgrad, sysselsattningsgap inlästa) ---
   # sysselsattningsgap_inrikes_utrikes härleds nu (pipeline.derived, SCB TAB6529 SYSP 13−23) -> ej allowlistad.
-  - { category: integration, indicator: sfi_sprakkunskaper,           reason: "future: Skolverket är statistikansvarig (SCB producent, undersökning 'Komvux i sfi'); andel godkända betyg/genomströmning finns men publiceras via Skolverkets statistikportal (ej ren PxWeb), och semantikval (godkäntandel vs progression) kräver beslut. Egen adapter ej byggd." }
+  # sfi_sprakkunskaper inläst via SCB TAB1814 (AA0003EB, andel godkända i sfi %, build_fas2) -> ej allowlistad fr.o.m. 2026-06-07 (Spår D Tier 2; §5.2 avgjort: godkäntandel = enda direktionskonsistenta måttet, up).
   - { category: integration, indicator: skolresultat_utsatta_omraden, reason: "no_api: ingen ren nationell årsserie för utsatta områden." }
   - { category: integration, indicator: segregation,                 reason: "no_api: ingen ren officiell segregationsårsserie." }
   - { category: integration, indicator: tillit_valdeltagande,        reason: "no_api/sparse: valdeltagande bara valår (glest); SOM-tillit ej API." }

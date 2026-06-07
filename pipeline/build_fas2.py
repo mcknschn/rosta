@@ -70,6 +70,22 @@ SCB_SERIES = [
      "fixed": {"Anvandningstyp": "BNAR", "ContentsCode": "000000RN"},
      "expect": {"min_points": 20, "value_range": [200000, 1300000], "min_latest_year": 2023,
                 "anchors": {"2020": 972986}}},
+    # sfi_sprakkunskaper (integration -> skola_sprak, riktning up): andel personer GODKÄNDA i
+    # svenska för invandrare (procent), SCB:s officiella sfi-statistik TAB1814 (Skolverket är
+    # statistikansvarig, SCB producent). ContentsCode AA0003EB = "Andel godkända i sfi, procent".
+    # SEMANTIKVAL (§5.2) avgjort av datan: tabellen har två mått — godkäntandel (AA0003EB, up) och
+    # vistelsetid-median (AA0003EC, down). Bara godkäntandel matchar indikatorns kanoniska riktning
+    # (up) -> det är det enda direktionskonsistenta valet utan att omdefiniera indikatorn.
+    # METODBROTT 2022 (SCB-not: kursbetyg G/I/– + sista kursdag 1 jan fr.o.m. 2022): SCB publicerar
+    # ändå EN obruten serie 1997–2023, och de två brott-närliggande övergångarna (2021->2022 = −,
+    # 2022->2023 = +) är teckenkonsistenta med den genuina nedgång-/stabiliseringstrenden. Eftersom D
+    # bara tar TECKEN (ej magnitud) ändrar metodbrottet magnituden men inte tecknet -> hela serien
+    # behålls (till skillnad från NTU, där SCB delade serien och nivåerna var ojämförbara). v0, flaggad.
+    {"table": "TAB1814", "indicator": "sfi_sprakkunskaper", "category": "integration",
+     "submeasure": "skola_sprak", "unit": "% godkända i sfi",
+     "fixed": {"Region": "00", "Kon": "1+2", "Bakgrund": "000", "ContentsCode": "AA0003EB"},
+     "expect": {"min_points": 20, "value_range": [25, 55], "min_latest_year": 2023,
+                "anchors": {"2020": 32.3, "2004": 46.4}}},
 ]
 
 # Kolada-KPI:er (Riket = kommun 0000, kön T = totalt via fetch_kpi_series-defaults).

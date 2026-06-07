@@ -3719,6 +3719,141 @@
     "source_name": "SCB",
     "statement": "naringslivets_investeringar = 1041714.0 (ekonomi, 2024)."
   },
+  "claim:observed_result:obs:scb:sfi_sprakkunskaper:1997": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "sfi_sprakkunskaper = 40.9 (integration, 1997)."
+  },
+  "claim:observed_result:obs:scb:sfi_sprakkunskaper:1998": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "sfi_sprakkunskaper = 38.2 (integration, 1998)."
+  },
+  "claim:observed_result:obs:scb:sfi_sprakkunskaper:1999": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "sfi_sprakkunskaper = 38.9 (integration, 1999)."
+  },
+  "claim:observed_result:obs:scb:sfi_sprakkunskaper:2000": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "sfi_sprakkunskaper = 39.7 (integration, 2000)."
+  },
+  "claim:observed_result:obs:scb:sfi_sprakkunskaper:2001": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "sfi_sprakkunskaper = 35.0 (integration, 2001)."
+  },
+  "claim:observed_result:obs:scb:sfi_sprakkunskaper:2002": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "sfi_sprakkunskaper = 36.3 (integration, 2002)."
+  },
+  "claim:observed_result:obs:scb:sfi_sprakkunskaper:2003": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "sfi_sprakkunskaper = 39.0 (integration, 2003)."
+  },
+  "claim:observed_result:obs:scb:sfi_sprakkunskaper:2004": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "sfi_sprakkunskaper = 46.4 (integration, 2004)."
+  },
+  "claim:observed_result:obs:scb:sfi_sprakkunskaper:2005": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "sfi_sprakkunskaper = 47.6 (integration, 2005)."
+  },
+  "claim:observed_result:obs:scb:sfi_sprakkunskaper:2006": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "sfi_sprakkunskaper = 45.1 (integration, 2006)."
+  },
+  "claim:observed_result:obs:scb:sfi_sprakkunskaper:2007": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "sfi_sprakkunskaper = 47.3 (integration, 2007)."
+  },
+  "claim:observed_result:obs:scb:sfi_sprakkunskaper:2008": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "sfi_sprakkunskaper = 42.0 (integration, 2008)."
+  },
+  "claim:observed_result:obs:scb:sfi_sprakkunskaper:2009": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "sfi_sprakkunskaper = 42.1 (integration, 2009)."
+  },
+  "claim:observed_result:obs:scb:sfi_sprakkunskaper:2010": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "sfi_sprakkunskaper = 42.4 (integration, 2010)."
+  },
+  "claim:observed_result:obs:scb:sfi_sprakkunskaper:2011": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "sfi_sprakkunskaper = 42.1 (integration, 2011)."
+  },
+  "claim:observed_result:obs:scb:sfi_sprakkunskaper:2012": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "sfi_sprakkunskaper = 41.2 (integration, 2012)."
+  },
+  "claim:observed_result:obs:scb:sfi_sprakkunskaper:2013": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "sfi_sprakkunskaper = 41.6 (integration, 2013)."
+  },
+  "claim:observed_result:obs:scb:sfi_sprakkunskaper:2014": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "sfi_sprakkunskaper = 41.0 (integration, 2014)."
+  },
+  "claim:observed_result:obs:scb:sfi_sprakkunskaper:2015": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "sfi_sprakkunskaper = 41.3 (integration, 2015)."
+  },
+  "claim:observed_result:obs:scb:sfi_sprakkunskaper:2016": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "sfi_sprakkunskaper = 39.7 (integration, 2016)."
+  },
+  "claim:observed_result:obs:scb:sfi_sprakkunskaper:2017": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "sfi_sprakkunskaper = 39.3 (integration, 2017)."
+  },
+  "claim:observed_result:obs:scb:sfi_sprakkunskaper:2018": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "sfi_sprakkunskaper = 36.9 (integration, 2018)."
+  },
+  "claim:observed_result:obs:scb:sfi_sprakkunskaper:2019": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "sfi_sprakkunskaper = 36.5 (integration, 2019)."
+  },
+  "claim:observed_result:obs:scb:sfi_sprakkunskaper:2020": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "sfi_sprakkunskaper = 32.3 (integration, 2020)."
+  },
+  "claim:observed_result:obs:scb:sfi_sprakkunskaper:2021": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "sfi_sprakkunskaper = 33.8 (integration, 2021)."
+  },
+  "claim:observed_result:obs:scb:sfi_sprakkunskaper:2022": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "sfi_sprakkunskaper = 30.9 (integration, 2022)."
+  },
+  "claim:observed_result:obs:scb:sfi_sprakkunskaper:2023": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "sfi_sprakkunskaper = 32.3 (integration, 2023)."
+  },
   "claim:observed_result:obs:scb:sjalvforsorjningsgrad:2005": {
     "kind": "claim",
     "source_name": "SCB",

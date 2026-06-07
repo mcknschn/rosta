@@ -126,7 +126,7 @@ högre coverage → mindre B-krympning → B får faktiskt genomslag.
   familj-åtgärdstyp `inkomststarkande_hushallspolitik` (skatte- och/eller transfereringsreformer som höjer disponibel inkomst),
   evidens **Fördelningspolitisk redogörelse april 2025** (descriptive_statistic/medium/high). **8 partiståndpunkter, alla supports**
   via sitt block-instrument (höger M/SD/C/KD/L: sänkt skatt på arbete; vänster S/V/MP: höjda transfereringar) — ordagrant källbelagda
-  via 8 parallella agenter mot fulltext. **Löser tilt-problemet:** eftersom båda blocken kodas supports (en åtgärдstyp, coverage 4/4→5/5,
+  via 8 parallella agenter mot fulltext. **Löser tilt-problemet:** eftersom båda blocken kodas supports (en åtgärdstyp, coverage 4/4→5/5,
   ingen straff) får alla ett positivt köpkraftsbidrag, **störst lyft för dem investeringar-undermåttet tryckte ner** (V +0,26, C +0,17,
   MP/S +0,12) → späder ut högertilten. **Ekonomi 3/6 → 4/6 täckta undermått = "4 bra mått" nått, värdeneutralt.** Ny ranking:
   **S > L > M > KD > MP > C > V > SD.** dist/snapshot/paket (priority 87) + 167 tester gröna. Forskning→förslag→mänsklig sign-off 2026-06-05.
@@ -251,11 +251,21 @@ högre coverage → mindre B-krympning → B får faktiskt genomslag.
   V/ekonomi NA korrekt. 170 tester gröna (+3 nya derived-tester), ruff rent, 0 främmande tecken. Coverage-strängen rättad (trygghet var felaktigt listad D-tom). snapshot
   re-baselinad + committad 2026-06-07 (`data:`-commit). v0 kvarstår tills formell granskning bumpar v0→v1.
 
+- ✅ **SPÅR D — Tier 2: `sfi_sprakkunskaper` → integration får sin första skola_sprak-D 2026-06-07 (v0, FLAGGAD; tracker [spar_D_datatackning.md](spar_D_datatackning.md))** —
+  andel personer **godkända i sfi** (%, riktning up) ur SCB:s officiella sfi-statistik **TAB1814** ContentsCode `AA0003EB`, 1997–2023 (27 obs). Visade sig vara
+  **S, inte M:** SCB (producenten) exponerar serien som ren PxWeb v2 → befintliga `scb.py`-adaptern räckte, ingen Skolverket-portaladapter behövdes (allowlistens
+  "ej ren PxWeb"-antagande överspelat). **§5.2-semantiken avgjord av datan:** TAB1814 har båda §5.2-måtten som var sin ContentsCode — godkäntandel (`AA0003EB`, up) och
+  vistelsetid-median (`AA0003EC`, down = progressionen); bara godkäntandel matchar indikatorns kanoniska riktning. **Metodbrott 2022** (G/I/– + cutoff 1 jan) hanterat
+  genom att behålla hela serien (sign-only D robust mot magnitudskiftet; brott-övergångarna teckenkonsistenta med trenden). **Integration 2 → 3 D-täckta submått
+  (skola_sprak öppnat);** total D-täckning **21 → 22/56**. **Adversariell teckenkontroll:** sfi-godkäntandelen föll 2015→2020 under S+MP → S net −0,49 / MP −0,65
+  (genuint negativt integrationsutfall på deras vakt); Tidö-partierna +1,0 men tunt underlag (ej överkrediterade); V = NA. **Isolerad effekt: endast integration rörd**
+  (S −0,060, MP −0,079, M/KD/SD +0,067), TOTAL ±0,004…0,008, **ranking OFÖRÄNDRAD** (S>L>M>KD>MP>C>SD>V). ≈170 tester gröna, fas3-gate-invarianten håller. v0.
+
 ### Status per spår efter nattkörning 2026-06-04 (A-raden uppdaterad 2026-06-05)
 
 | Spår | Status |
 |------|--------|
-| **D** (datatäckning) | **Egen tracker: [spar_D_datatackning.md](spar_D_datatackning.md).** uppklaringsgrad + skjutningar/sprängningar (2026-06-03) + **Tier 1 ekonomi: naringslivets_investeringar + hushallens_reala_disponibla_inkomst (2026-06-07, v0)** levererade → **21/56 D-serier, ekonomi 4/4 D-bara submått**. Återstående D-källor **uttömda/blockerade eller kräver M/L-bygge** (se [coverage_allowlist](../config/coverage_allowlist.yaml) + tracker Tier 2–5): sfi (Skolverket-portal, M), overlevnad annuell (Socialstyrelsen, M), Svk-derived klimat (gränsfall källregel), **strukturella nollor försvar/demokrati** (transkribering: personal_varnpliktiga / SOM, L), samt blockerade (återfall PDF, handläggning interaktiv DB, demokrati int. index förbjudna, försvar sekretess). **De rena SCB/Kolada-årsserierna skördades i Fas 2–3; resten kräver ny adapter, transkribering, eller är otillåten.** |
+| **D** (datatäckning) | **Egen tracker: [spar_D_datatackning.md](spar_D_datatackning.md).** uppklaringsgrad + skjutningar/sprängningar (2026-06-03) + **Tier 1 ekonomi: naringslivets_investeringar + hushallens_reala_disponibla_inkomst (2026-06-07, v0)** + **Tier 2: sfi_sprakkunskaper (SCB TAB1814, integration→skola_sprak, 2026-06-07, v0)** levererade → **22/56 D-serier; ekonomi 4/4 D-bara submått, integration 3/5 submått**. *(sfi visade sig vara S inte M — SCB-PxWeb räckte; §5.2 avgjord av datan = godkäntandel.)* Återstående D-källor **uttömda/blockerade eller kräver M/L-bygge** (se [coverage_allowlist](../config/coverage_allowlist.yaml) + tracker Tier 3–5): overlevnad annuell (Socialstyrelsen, M, §5.3), realloner (Medlingsinstitutet, M, låg prio), Svk-derived klimat (gränsfall källregel), **strukturella nollor försvar/demokrati** (transkribering: personal_varnpliktiga / SOM, L), samt blockerade (återfall PDF, handläggning interaktiv DB, demokrati int. index förbjudna, försvar sekretess). **De rena SCB/Kolada-årsserierna skördades i Fas 2–3; resten kräver ny adapter, transkribering, eller är otillåten.** |
 | **B** (evidens) | ✅ **B1 expertgranskad + sign-off 2026-06-05 → `version 1`** (se B1 nedan): party_positions (4 SUSPECT + 79-raders screening) och evidence_ledger (30 poster triade, 6 fixar) genomgångna; skarp betygsättning aktiverad. **B4-verktyg/grind ✅** + **B2 ekonomi ✅** (4/6) + **B2 demokrati ✅** (rättsstat: grundlagsskydd domstolarnas oberoende, votering KU2; personlig frihet: begränsa biometrisk realtidsövervakning, votering JuU28/Lagrådet, codex-granskat) levererade 2026-06-05 → demokrati **1/5 → 3/5**, **inga nära-binära kategorier kvar** (`b_near_binary_accepted` tom). Återstår otäckta (ej blockerare): transparens_ansvar (offentlighetsprincip = dubbelräkning, skippat) + yttrandefrihet_medier (acklamation/regeringslägesartefakt) — inget värdeneutralt mått funnet utan tilt/dubbelräkning. **Natt 2026-06-06:** B2 utvidgad till de 5 övriga kategorierna — **1 byggt** (forsvar/nato_medlemskap → försvar 3/5); välfärd (2/4), trygghet (3/5), klimat (3/5), integration (2/5) gav **0 rena mått** (alla föll på "sakreform=acklamation / namnupprop=vänster-höger-tilt"); kandidatlistor för morgondiskussion (se B2-natt-blocket nedan). **Dag 2026-06-06 (enhällighet-som-källa, [evidens_trovardighet.md](done/evidens_trovardighet.md)):** den nya tvåstegsmetoden (måttet ≠ positioneringen; acklamation slår bara ut *voteringskällan*, enhälligt betänkande = alla 8 supports) byggde **2 till** — **snabbforfarande → trygghet 4/5** och **invasiva arter → klimat 4/5** (FLAGGAD, codex förordade HOLD). 5 andra kandidater HOLD (steg-1-evidens saknas/mixed). 36 evidensposter / 192 ståndpunkter; 167 tester gröna. |
 | **A** (agerande) | **A1 (fler budgetår) ✅ LEVERERAD 2026-06-05** — budget 2023 + 2024 tillagda (snitt över 3 år), fyrlagrigt adversariellt verifierat (invariant + pandas + Codex + roll-call); se Levererat ovan. Korruptionsrisken som blockerade solo-körningen löstes via den oberoende cell-för-cell-kontrollen. A2 (votering→A) är en designfråga (viktning utan dubbelräkning av a2) → kräver beslut, deferrad. |
 | **C** (ansvar) | c2 finansiering uppskjutet (designbeslut, ej neutralt byggbart). C2 (mandatperiodskiften) + C3 (subnationell D) är modellutvidgningar utanför ren databredd → deferrade. |
@@ -305,7 +315,7 @@ Polisen/Socialstyrelsen återanvänder Brå-Excel-mönstret som redan finns.
 | Indikator | Kategori → undermått | Källa & metod | Effort | Tag |
 |-----------|--------------------|---------------|--------|-----|
 | `realloner` | ekonomi → reallöner/hushåll | Medlingsinstitutets konjunkturlönestatistik (helekonomi-löneindex; SCB:s API saknar ren serie) | M | future |
-| `sfi_sprakkunskaper` | integration → skola/språk | Skolverkets statistikportal (kräver semantikval: godkäntandel vs progression) | M | future |
+| ~~`sfi_sprakkunskaper`~~ ✅ | integration → skola/språk | SCB **TAB1814** `AA0003EB` (andel godkända i sfi %) — ej Skolverket-portal, SCB-PxWeb räckte | **S** | ✅ **inläst 2026-06-07 (Tier 2, v0); §5.2 avgjord (godkäntandel)** |
 | *(Svk-källadapter)* | klimat (förkrav för Våg 3-härledda) | Svenska kraftnät, öppna data (spotpris/effektbalans) | M | derived-förkrav |
 
 ### Våg 3 — härledda + design­krävande ⚪🟣
@@ -454,7 +464,7 @@ företagande/investeringar samt hushållens disponibla inkomst → ekonomi 4/6 t
 | Sprint | Data (D) | Evidens (B) | Övrigt |
 |--------|----------|-------------|--------|
 | **1** | Våg 1: Brå (uppklaring/handläggning/återfall) + Socialstyrelsen (överlevnad) | **B1: starta expertgranskning** | **O1: drift-skydd** |
-| **2** | Våg 2: Medlingsinstitutet (reallöner) + Skolverket (sfi) + Svk-adapter | B2: bredda liggaren | ~~A1: fler budgetår~~ ✅ klar |
+| **2** | Våg 2: Medlingsinstitutet (reallöner) + ~~Skolverket (sfi)~~ ✅ (SCB TAB1814, Tier 2) + Svk-adapter | B2: bredda liggaren | ~~A1: fler budgetår~~ ✅ klar |
 | **3** | Våg 3: härledda klimat (elpris/effekt) + demokrati/försvar-design | B3: omstridda åtgärdstyper | A2 votering · C2/C3 · F1/F2 |
 
 > Varje levererat steg: flytta indikatorn ur `coverage_allowlist.yaml`, uppdatera täckningssiffran

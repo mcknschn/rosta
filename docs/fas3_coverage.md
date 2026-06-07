@@ -8,10 +8,11 @@ Invarianten "inget tyst gap" hävdas av `tests/test_fas3_gate.py`. Generera aktu
 python -m pipeline.tools.coverage_report
 ```
 
-Per 2026-06-07: **21 / 56 indikatorer inlästa** (D-dugliga, annuell up/down) i **5 av 7 kategorier**
+Per 2026-06-07: **22 / 56 indikatorer inlästa** (D-dugliga, annuell up/down) i **5 av 7 kategorier**
 (ekonomi, välfärd, klimat, integration, trygghet). Försvar och demokrati saknar D-data (allowlistade).
 *(17 per 2026-05-31; +2 trygghet 2026-06-03 — uppklaringsgrad + skjutningar/sprängningar; +2 ekonomi
-2026-06-07 — naringslivets_investeringar + hushallens_reala_disponibla_inkomst, Spår D Tier 1.)*
+2026-06-07 — naringslivets_investeringar + hushallens_reala_disponibla_inkomst, Spår D Tier 1;
++1 integration 2026-06-07 — sfi_sprakkunskaper, Spår D Tier 2.)*
 
 ## Inlästa indikatorer (matar D)
 
@@ -38,6 +39,7 @@ Per 2026-06-07: **21 / 56 indikatorer inlästa** (D-dugliga, annuell up/down) i 
 | integration | trangboddhet | SCB ULF | TAB6439 | down | 2020–2025¹ |
 | integration | sjalvforsorjningsgrad | SCB AKU (utrikes födda) | TAB6529 | up | 2005–2025 |
 | integration | sysselsattningsgap_inrikes_utrikes | SCB AKU (härledd) | TAB6529 SYSP 13−23 | down | 2005–2025⁴ |
+| integration | sfi_sprakkunskaper | SCB (Skolverket) | TAB1814 (AA0003EB) | up | 1997–2023⁷ |
 
 ¹ TAB6439 har dubbelår före 2020 som medvetet utesluts från D (multiårsspann ≠ enskild årspunkt).
 ² Aggregatet "brott mot enskild person" (Samtliga 16–84 år) finns i NTU enbart fr.o.m. 2016
@@ -59,10 +61,19 @@ Per 2026-06-07: **21 / 56 indikatorer inlästa** (D-dugliga, annuell up/down) i 
   årsförändring = tecknet på den officiella reala tillväxttakten (sign-only, vilket är allt D
   använder). SCB har redan deflaterat → inget eget deflatorval. Drift-skyddet sitter på
   föräldra-tillväxtserien (fångar real 2023 ≈ −1,1 %). Konjunktur-/räntekänslig → D 10 %, flaggat.
+⁷ Andel personer GODKÄNDA i sfi (procent), SCB:s officiella sfi-statistik TAB1814, ContentsCode
+  AA0003EB (Skolverket statistikansvarig, SCB producent). Semantikval (Spår D §5.2) avgjort av
+  datan: tabellen har två mått — godkäntandel (AA0003EB, riktning up) och vistelsetid-median
+  (AA0003EC, down). Bara godkäntandel matchar indikatorns kanoniska riktning. METODBROTT 2022
+  (SCB-not: kursbetyg G/I/– + sista kursdag 1 jan fr.o.m. 2022): SCB publicerar ändå EN obruten
+  serie 1997–2023, och de brott-närliggande övergångarna (2021→2022 −, 2022→2023 +) är
+  teckenkonsistenta med den genuina nedgång-/stabiliseringstrenden — eftersom D bara tar TECKEN
+  (ej magnitud) ändrar brottet magnituden men inte tecknet, så hela serien behålls (jfr NTU², där
+  SCB delade serien och nivåerna var ojämförbara → fönstrades). v0, flaggad.
 
 ## Allowlistade gap (skäl i `config/coverage_allowlist.yaml`)
 
-35 indikatorer saknar ännu en officiell svensk årsserie. Sammanfattning per skältyp:
+34 indikatorer saknar ännu en officiell svensk årsserie. Sammanfattning per skältyp:
 
 - **target** (ej up/down, ej D-duglig): inflation, statsskuld_underskott, forsvarsanslag_andel_bnp.
 - **derived** (kräver flera serier/beräkning): elprisvolatilitet, effektbrist,
@@ -71,11 +82,12 @@ Per 2026-06-07: **21 / 56 indikatorer inlästa** (D-dugliga, annuell up/down) i 
 - **no_api** (officiell/akademisk källa utan maskinläsbar årsserie): skillnader_mellan_skolor,
   personalomsattning_omsorg, valfardsbrottslighet, hotade_arter_naturforlust, skolresultat_utsatta_omraden,
   segregation, fortroende_domstolar_myndigheter (SOM).
-- **future** (källa finns, adapter ej byggd): vard_i_tid, overlevnad_svar_sjukdom, sfi_sprakkunskaper,
+- **future** (källa finns, adapter ej byggd): vard_i_tid, overlevnad_svar_sjukdom,
   realloner (kräver Medlingsinstitutets konjunkturlönestatistik — SCB:s API saknar en ren helekonomi-
   löneserie, sonderat 2026-05-31), och Brås handläggnings-/återfallstabeller (handlaggningstid,
   aterfall_i_brott). (uppklaringsgrad + skjutningar_sprangningar inlästa 2026-06-03;
-  naringslivets_investeringar + hushallens_reala_disponibla_inkomst inlästa 2026-06-07.)
+  naringslivets_investeringar + hushallens_reala_disponibla_inkomst inlästa 2026-06-07;
+  sfi_sprakkunskaper inläst 2026-06-07 via SCB TAB1814 — Spår D Tier 2.)
 - **international** (ej officiell svensk källa, otillåtet enligt CLAUDE.md): korruption (TI), mediefrihet (RSF).
 - **qualitative** (ingen kvantitativ officiell mätserie): merparten av försvars- och demokratiindikatorerna
   (materiel_formaga, civil_beredskap_niva, ukraina_stod, nato_interoperabilitet, leveranstid_materiel,

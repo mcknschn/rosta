@@ -43,8 +43,8 @@ bredda D flyttar tyngdpunkten mot faktiskt utfall.
 
 ## 2. Nuläge (verifierat via `python -m pipeline.tools.coverage_report`, 2026-06-07)
 
-**21/56 indikatorer inlästa** (annuell, D-duglig) i **5/7 kategorier** (efter Tier 1, §7). Försvar +
-demokrati = 0 D. *(Var 19/56 innan Tier 1; +2 ekonomi 2026-06-07.)*
+**22/56 indikatorer inlästa** (annuell, D-duglig) i **5/7 kategorier** (efter Tier 2, §7). Försvar +
+demokrati = 0 D. *(Var 19/56 innan Tier 1; +2 ekonomi + 1 integration 2026-06-07.)*
 
 | Kategori | D-täckta submått | Inlästa D-serier |
 |----------|:---:|---|
@@ -53,7 +53,7 @@ demokrati = 0 D. *(Var 19/56 innan Tier 1; +2 ekonomi 2026-06-07.)*
 | trygghet | 3 / 5 | dodligt_vald, skjutningar_sprangningar, brottsutsatthet, upplevd_otrygghet, uppklaringsgrad |
 | forsvar | **0 / 5** | — (strukturell lucka) |
 | klimat | 2 / 5 | territoriella_utslapp, konsumtionsbaserade_utslapp, fossil_energianvandning |
-| integration | 2 / 5 | sysselsattningsgap_inrikes_utrikes, sjalvforsorjningsgrad, bidragsberoende, trangboddhet |
+| integration | 3 / 5 | sysselsattningsgap_inrikes_utrikes, sjalvforsorjningsgrad, bidragsberoende, trangboddhet, **sfi_sprakkunskaper** |
 | demokrati | **0 / 5** | — (strukturell lucka) |
 
 ¹ ekonomi har 6 submått men 2 är `target`-only (inflation, offentliga finanser) → ej D-bara.
@@ -84,13 +84,18 @@ byggs som ett kumulativt realindex (tecken på indexförändring = tecken på of
 Drift-skyddet sitter på föräldra-tillväxtserien. Något mer än ren "reuse adapter", men deterministiskt
 och golden-testat (`tests/test_derived.py`).
 
-### Tier 2 — ny adapter, källa finns (M) ⚪
+### Tier 2 — ny adapter, källa finns (M) ⚪ (sfi LEVERERAD 2026-06-07)
 
-| ☐ | Indikator | Kategori → submått | Källa/metod | Effort | Not |
+| ☑ | Indikator | Kategori → submått | Källa/metod | Effort | Not |
 |---|-----------|--------------------|-------------|:---:|-----|
-| ☐ | `sfi_sprakkunskaper` | integration → skola_sprak | Skolverkets statistikportal (Komvux i sfi) | M | Öppnar D-löst submått. Semantikval: godkäntandel vs progression (§5.2). |
+| ☑ | `sfi_sprakkunskaper` | integration → skola_sprak | SCB **TAB1814** `AA0003EB` (andel godkända i sfi %, `build_fas2`) | **S**¹ | ✅ inläst 1997–2023, ur allowlisten. **Öppnade skola_sprak (D-löst submått).** §5.2 avgjort av datan (godkäntandel = enda direktionskonsistenta måttet). v0, sign-only D. |
 | ☐ | `overlevnad_svar_sjukdom` | valfard → vard_tillganglighet | Socialstyrelsen/Kolada — **annuell** överlevnadsserie | M | Submått redan täckt (djup, ej bredd). Cancer-KPI N79196 = kvinkennial/inkompatibel; **annuellt alternativ behöver sonderas** (t.ex. 28-dygnsöverlevnad AMI/stroke) (§5.3). |
 | ☐ | `realloner` | ekonomi → realloner_hushall | Medlingsinstitutets konjunkturlönestatistik | M | Samma submått som Tier 1-posten täcker billigare → låg prio. |
+
+¹ Visade sig vara **S, inte M**: SCB (producenten) exponerar sfi-statistiken som en ren PxWeb-v2-
+tabell (TAB1814), så den befintliga `scb.py`-adaptern räckte — ingen egen Skolverket-portaladapter
+behövdes. Allowlistens "ej ren PxWeb"-antagande (Skolverkets portal) var överspelat. Metodbrott 2022
+hanteras genom att hela serien behålls (sign-only D är robust mot magnitudskiftet); se §7 + `build_fas2`-not.
 
 ### Tier 3 — härledd, kräver ny föräldraadapter (M+S) ⚪🟣
 
@@ -135,14 +140,15 @@ Listade här för fullständighet så de inte återöppnas oavsiktligt. Skäl i 
 
 ## 4. Rekommenderad ordning
 
-1. **Tier 1** (om §5.1-beslutet blir bygg) — billigaste reella D-breddning; tar ekonomi till full
-   D-täckning av sina D-bara submått. Validerar trackern med en liten, säker leverans.
-2. **Tier 2 `sfi_sprakkunskaper`** — öppnar integration/skola_sprak (D-löst submått) via ny men
-   välavgränsad Skolverket-adapter.
+1. ~~**Tier 1**~~ ✅ — ekonomi till full D-täckning av sina D-bara submått (2026-06-07, §7).
+2. ~~**Tier 2 `sfi_sprakkunskaper`**~~ ✅ — öppnade integration/skola_sprak (D-löst submått); visade sig
+   vara **S, inte M** (SCB exponerar TAB1814 som ren PxWeb v2 → befintlig adapter räckte) (2026-06-07, §7).
 3. **Tier 4 strukturella nollor** (`personal_varnpliktiga`, SOM) — högst strategiskt värde (försvar +
-   demokrati får sin första D), men störst arbete; tas när billigare bredd är uttömd.
+   demokrati får sin första D), men störst arbete; tas när billigare bredd är uttömd. **← nästa**
 4. **Tier 3 Svk-derived** — mest djup (energi-submåttet är redan täckt); lägst prioritet, gränsfall
    mot källregeln.
+5. **Tier 2-rest** (`overlevnad_svar_sjukdom` §5.3, `realloner`) — kvar i Tier 2 men kräver sondering/
+   är låg prio (samma submått billigare täckt).
 
 > **Ärlig brasklapp:** den billiga rena-API-vågen är i allt väsentligt redan skördad (Fas 2–3). Det
 > som återstår är antingen ett **uppskjutet designbeslut** (Tier 1), **nya adaptrar** (Tier 2–3),
@@ -158,9 +164,13 @@ konjunkturkänsliga serier (`bnp_per_capita`, `produktivitet`) med *tecken-ej-ma
 makt-/ansvarsviktning + flaggor. **Beslut (din sign-off 2026-06-07): bygg båda som v0.** Levererat
 (§7); ekonomi-effekt liten + förklarbar, ranking oförändrad.
 
-### 5.2 `sfi_sprakkunskaper`: vilken semantik?
-Godkäntandel (nivå) vs progression/genomströmning. Måste väljas innan adaptern byggs; påverkar
-riktningstolkning. Officiell statistikansvarig: Skolverket (producent SCB).
+### 5.2 `sfi_sprakkunskaper`: vilken semantik? ✅ AVGJORT 2026-06-07 (av datan — godkäntandel)
+Godkäntandel (nivå) vs progression/genomströmning. **Datan avgjorde:** SCB:s TAB1814 har båda måtten
+som var sin ContentsCode — godkäntandel (`AA0003EB`, riktning **up**) och vistelsetid-median för
+godkända (`AA0003EC`, riktning **down**, dvs. progressionsmåttet). Bara godkäntandel matchar
+indikatorns kanoniska riktning (`up` i categories.yaml); progression skulle kräva att riktningen
+flippas, dvs. en omdefiniering av indikatorn — inte "bygg Tier 2". **Beslut: godkäntandel (AA0003EB).**
+Levererat (§7). Metodbrott 2022 hanterades genom att behålla hela serien (sign-only D robust).
 
 ### 5.3 `overlevnad_svar_sjukdom`: finns en annuell serie?
 Cancer-5-årsöverlevnad (Kolada N79196) är kvinkennial → inkompatibel med D:s konsekutiva-år-krav.
@@ -222,3 +232,39 @@ V/ekonomi oförändrad (NA, korrekt). **Ranking OFÖRÄNDRAD:** S > L > M > KD >
 coverage-strängen rättad (trygghet felaktigt listad som D-tom → nu korrekt 5 kategorier). **`dist/`-
 snapshot re-baselinad + committad 2026-06-07** (`data:`-commit). v0 kvarstår tills en formell
 granskning bumpar v0→v1 (jfr B1-expertgranskningen).
+
+### ✅ 2026-06-07 — Tier 2: `sfi_sprakkunskaper` → integration får sin första skola_sprak-D (v0, FLAGGAD)
+
+**En D-serie byggd → integration 2 → 3 D-täckta submått (skola_sprak öppnat):**
+
+1. **`sfi_sprakkunskaper`** (integration → skola_sprak, riktning up): andel personer **godkända i sfi**
+   (procent), SCB:s officiella sfi-statistik **TAB1814**, ContentsCode `AA0003EB` (Skolverket
+   statistikansvarig, SCB producent). Inläst **1997–2023** (27 obs). Visade sig vara **S, inte M**:
+   SCB exponerar serien som ren PxWeb v2 → befintliga `scb.py`-adaptern räckte, ingen Skolverket-
+   portaladapter. `expect`-ankare 2020=32,3 / 2004=46,4 (live-verifierade). Ur allowlisten.
+
+**Semantik (§5.2 avgjord av datan):** TAB1814 har båda §5.2-måtten som var sin ContentsCode —
+godkäntandel (`AA0003EB`, up) och vistelsetid-median för godkända (`AA0003EC`, down = progressionen).
+Bara godkäntandel matchar indikatorns kanoniska riktning (up) → enda direktionskonsistenta valet utan
+att omdefiniera indikatorn.
+
+**Metodbrott 2022** (SCB-not: kursbetyg G/I/– + sista kursdag 1 jan fr.o.m. 2022): hela serien
+behålls. Skäl: de två brott-närliggande övergångarna (2021→2022 = −, 2022→2023 = +) är teckenkonsistenta
+med den genuina nedgång-/stabiliseringstrenden, och D tar bara **tecken** (ej magnitud) → brottet
+ändrar magnituden men inte tecknet. Till skillnad från NTU (där SCB delade serien, ojämförbara nivåer →
+fönstrades) publicerar SCB här EN obruten serie 1997–2023.
+
+**Verifiering:** live-hämtade dimensionskoder (Region/Kon/Bakgrund/ContentsCode fixerade, ej gissade);
+`expect`-grind passerad i bygget; **adversariell teckenkontroll** av attributionen — sfi-godkäntandelen
+föll stadigt 2015→2020 (39,7→32,3) under S+MP-regeringarna (post-2015 immigrationsvåg) → S net −0,49 /
+MP −0,65 (genuint negativt integrationsutfall på deras vakt); JÖK-stödpartierna C −0,30 / L −0,14 delar
+sent-nedgångsfönstret; Tidö-partierna M/KD net +1,0 men **tunt** underlag (basis 0,10–0,21, bara
+2022→2023-återhämtningen via delår-2022) → ej överkrediterade; V = NA (aldrig regering). Brottövergången
+flippar ingen partis tecken. Hela testsviten grön (≈170 passed, 4 skipped).
+
+**Betygseffekt (score_diff):** endast **integration** rörd. S/integration −0,060, MP −0,079, C −0,052,
+L −0,032 (sfi-nedgången sänker JÖK-erans integration-D); M/KD/SD +0,067 (liten, tunn återhämtningskredit);
+V oförändrad (NA). TOTAL-rörelser ±0,004…0,008. **Ranking OFÖRÄNDRAD:** S > L > M > KD > MP > C > SD > V.
+
+**Flaggor/version:** v0 (sign-only D, väger 10 %; metodbrott 2022 dokumenterat). `dist/` omräknat. v0
+kvarstår tills en formell granskning bumpar v0→v1.
