@@ -1839,6 +1839,381 @@
     "source_name": "bra",
     "statement": "upplevd_otrygghet = 24.99 (trygghet, 2025)."
   },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1951": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 101.4 (ekonomi, 1951)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1952": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 106.67 (ekonomi, 1952)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1953": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 109.55 (ekonomi, 1953)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1954": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 113.5 (ekonomi, 1954)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1955": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 118.49 (ekonomi, 1955)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1956": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 121.1 (ekonomi, 1956)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1957": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 122.67 (ekonomi, 1957)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1958": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 124.27 (ekonomi, 1958)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1959": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 126.01 (ekonomi, 1959)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1960": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 131.8 (ekonomi, 1960)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1961": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 138.26 (ekonomi, 1961)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1962": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 143.1 (ekonomi, 1962)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1963": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 149.11 (ekonomi, 1963)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1964": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 159.25 (ekonomi, 1964)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1965": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 162.75 (ekonomi, 1965)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1966": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 166.33 (ekonomi, 1966)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1967": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 168.66 (ekonomi, 1967)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1968": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 174.73 (ekonomi, 1968)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1969": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 180.85 (ekonomi, 1969)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1970": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 185.37 (ekonomi, 1970)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1971": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 187.97 (ekonomi, 1971)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1972": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 186.46 (ekonomi, 1972)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1973": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 189.26 (ekonomi, 1973)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1974": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 198.91 (ekonomi, 1974)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1975": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 205.08 (ekonomi, 1975)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1976": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 210.62 (ekonomi, 1976)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1977": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 212.09 (ekonomi, 1977)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1978": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 208.7 (ekonomi, 1978)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1979": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 214.96 (ekonomi, 1979)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1980": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 218.83 (ekonomi, 1980)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1981": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 207.45 (ekonomi, 1981)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1982": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 203.71 (ekonomi, 1982)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1983": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 202.08 (ekonomi, 1983)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1984": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 204.51 (ekonomi, 1984)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1985": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 209.83 (ekonomi, 1985)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1986": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 216.54 (ekonomi, 1986)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1987": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 222.17 (ekonomi, 1987)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1988": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 221.5 (ekonomi, 1988)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1989": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 227.26 (ekonomi, 1989)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1990": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 232.04 (ekonomi, 1990)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1991": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 243.64 (ekonomi, 1991)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1992": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 250.7 (ekonomi, 1992)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1993": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 237.16 (ekonomi, 1993)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1994": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 236.69 (ekonomi, 1994)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1995": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 237.87 (ekonomi, 1995)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1996": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 237.4 (ekonomi, 1996)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1997": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 235.74 (ekonomi, 1997)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1998": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 241.63 (ekonomi, 1998)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1999": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 247.91 (ekonomi, 1999)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:2000": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 259.81 (ekonomi, 2000)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:2001": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 274.1 (ekonomi, 2001)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:2002": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 286.71 (ekonomi, 2002)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:2003": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 288.43 (ekonomi, 2003)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:2004": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 293.05 (ekonomi, 2004)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:2005": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 303.01 (ekonomi, 2005)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:2006": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 319.07 (ekonomi, 2006)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:2007": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 338.85 (ekonomi, 2007)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:2008": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 350.37 (ekonomi, 2008)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:2009": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 358.43 (ekonomi, 2009)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:2010": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 368.82 (ekonomi, 2010)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:2011": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 382.1 (ekonomi, 2011)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:2012": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 397.39 (ekonomi, 2012)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:2013": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 406.13 (ekonomi, 2013)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:2014": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 416.69 (ekonomi, 2014)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:2015": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 425.86 (ekonomi, 2015)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:2016": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 439.91 (ekonomi, 2016)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:2017": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 450.91 (ekonomi, 2017)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:2018": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 459.02 (ekonomi, 2018)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:2019": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 470.96 (ekonomi, 2019)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:2020": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 467.66 (ekonomi, 2020)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:2021": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 487.77 (ekonomi, 2021)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:2022": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 496.06 (ekonomi, 2022)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:2023": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 490.61 (ekonomi, 2023)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:2024": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 499.44 (ekonomi, 2024)."
+  },
+  "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:2025": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "hushallens_reala_disponibla_inkomst = 505.93 (ekonomi, 2025)."
+  },
   "claim:observed_result:obs:derived:produktivitet:1980": {
     "kind": "claim",
     "source_name": "SCB",
@@ -3118,6 +3493,231 @@
     "kind": "claim",
     "source_name": "SCB",
     "statement": "konsumtionsbaserade_utslapp = 80428937.0 (klimat, 2023)."
+  },
+  "claim:observed_result:obs:scb:naringslivets_investeringar:1980": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "naringslivets_investeringar = 368078.0 (ekonomi, 1980)."
+  },
+  "claim:observed_result:obs:scb:naringslivets_investeringar:1981": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "naringslivets_investeringar = 347629.0 (ekonomi, 1981)."
+  },
+  "claim:observed_result:obs:scb:naringslivets_investeringar:1982": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "naringslivets_investeringar = 354228.0 (ekonomi, 1982)."
+  },
+  "claim:observed_result:obs:scb:naringslivets_investeringar:1983": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "naringslivets_investeringar = 370540.0 (ekonomi, 1983)."
+  },
+  "claim:observed_result:obs:scb:naringslivets_investeringar:1984": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "naringslivets_investeringar = 406398.0 (ekonomi, 1984)."
+  },
+  "claim:observed_result:obs:scb:naringslivets_investeringar:1985": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "naringslivets_investeringar = 442818.0 (ekonomi, 1985)."
+  },
+  "claim:observed_result:obs:scb:naringslivets_investeringar:1986": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "naringslivets_investeringar = 451761.0 (ekonomi, 1986)."
+  },
+  "claim:observed_result:obs:scb:naringslivets_investeringar:1987": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "naringslivets_investeringar = 478915.0 (ekonomi, 1987)."
+  },
+  "claim:observed_result:obs:scb:naringslivets_investeringar:1988": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "naringslivets_investeringar = 501512.0 (ekonomi, 1988)."
+  },
+  "claim:observed_result:obs:scb:naringslivets_investeringar:1989": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "naringslivets_investeringar = 551552.0 (ekonomi, 1989)."
+  },
+  "claim:observed_result:obs:scb:naringslivets_investeringar:1990": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "naringslivets_investeringar = 554982.0 (ekonomi, 1990)."
+  },
+  "claim:observed_result:obs:scb:naringslivets_investeringar:1991": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "naringslivets_investeringar = 498069.0 (ekonomi, 1991)."
+  },
+  "claim:observed_result:obs:scb:naringslivets_investeringar:1992": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "naringslivets_investeringar = 442119.0 (ekonomi, 1992)."
+  },
+  "claim:observed_result:obs:scb:naringslivets_investeringar:1993": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "naringslivets_investeringar = 360297.0 (ekonomi, 1993)."
+  },
+  "claim:observed_result:obs:scb:naringslivets_investeringar:1994": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "naringslivets_investeringar = 379945.0 (ekonomi, 1994)."
+  },
+  "claim:observed_result:obs:scb:naringslivets_investeringar:1995": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "naringslivets_investeringar = 430210.0 (ekonomi, 1995)."
+  },
+  "claim:observed_result:obs:scb:naringslivets_investeringar:1996": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "naringslivets_investeringar = 460788.0 (ekonomi, 1996)."
+  },
+  "claim:observed_result:obs:scb:naringslivets_investeringar:1997": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "naringslivets_investeringar = 479647.0 (ekonomi, 1997)."
+  },
+  "claim:observed_result:obs:scb:naringslivets_investeringar:1998": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "naringslivets_investeringar = 522051.0 (ekonomi, 1998)."
+  },
+  "claim:observed_result:obs:scb:naringslivets_investeringar:1999": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "naringslivets_investeringar = 551413.0 (ekonomi, 1999)."
+  },
+  "claim:observed_result:obs:scb:naringslivets_investeringar:2000": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "naringslivets_investeringar = 602715.0 (ekonomi, 2000)."
+  },
+  "claim:observed_result:obs:scb:naringslivets_investeringar:2001": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "naringslivets_investeringar = 614282.0 (ekonomi, 2001)."
+  },
+  "claim:observed_result:obs:scb:naringslivets_investeringar:2002": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "naringslivets_investeringar = 599402.0 (ekonomi, 2002)."
+  },
+  "claim:observed_result:obs:scb:naringslivets_investeringar:2003": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "naringslivets_investeringar = 609669.0 (ekonomi, 2003)."
+  },
+  "claim:observed_result:obs:scb:naringslivets_investeringar:2004": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "naringslivets_investeringar = 648843.0 (ekonomi, 2004)."
+  },
+  "claim:observed_result:obs:scb:naringslivets_investeringar:2005": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "naringslivets_investeringar = 684298.0 (ekonomi, 2005)."
+  },
+  "claim:observed_result:obs:scb:naringslivets_investeringar:2006": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "naringslivets_investeringar = 751608.0 (ekonomi, 2006)."
+  },
+  "claim:observed_result:obs:scb:naringslivets_investeringar:2007": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "naringslivets_investeringar = 823709.0 (ekonomi, 2007)."
+  },
+  "claim:observed_result:obs:scb:naringslivets_investeringar:2008": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "naringslivets_investeringar = 822482.0 (ekonomi, 2008)."
+  },
+  "claim:observed_result:obs:scb:naringslivets_investeringar:2009": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "naringslivets_investeringar = 701188.0 (ekonomi, 2009)."
+  },
+  "claim:observed_result:obs:scb:naringslivets_investeringar:2010": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "naringslivets_investeringar = 740377.0 (ekonomi, 2010)."
+  },
+  "claim:observed_result:obs:scb:naringslivets_investeringar:2011": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "naringslivets_investeringar = 792924.0 (ekonomi, 2011)."
+  },
+  "claim:observed_result:obs:scb:naringslivets_investeringar:2012": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "naringslivets_investeringar = 779351.0 (ekonomi, 2012)."
+  },
+  "claim:observed_result:obs:scb:naringslivets_investeringar:2013": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "naringslivets_investeringar = 773759.0 (ekonomi, 2013)."
+  },
+  "claim:observed_result:obs:scb:naringslivets_investeringar:2014": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "naringslivets_investeringar = 819254.0 (ekonomi, 2014)."
+  },
+  "claim:observed_result:obs:scb:naringslivets_investeringar:2015": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "naringslivets_investeringar = 887977.0 (ekonomi, 2015)."
+  },
+  "claim:observed_result:obs:scb:naringslivets_investeringar:2016": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "naringslivets_investeringar = 932190.0 (ekonomi, 2016)."
+  },
+  "claim:observed_result:obs:scb:naringslivets_investeringar:2017": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "naringslivets_investeringar = 966526.0 (ekonomi, 2017)."
+  },
+  "claim:observed_result:obs:scb:naringslivets_investeringar:2018": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "naringslivets_investeringar = 970943.0 (ekonomi, 2018)."
+  },
+  "claim:observed_result:obs:scb:naringslivets_investeringar:2019": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "naringslivets_investeringar = 965951.0 (ekonomi, 2019)."
+  },
+  "claim:observed_result:obs:scb:naringslivets_investeringar:2020": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "naringslivets_investeringar = 972986.0 (ekonomi, 2020)."
+  },
+  "claim:observed_result:obs:scb:naringslivets_investeringar:2021": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "naringslivets_investeringar = 1061189.0 (ekonomi, 2021)."
+  },
+  "claim:observed_result:obs:scb:naringslivets_investeringar:2022": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "naringslivets_investeringar = 1074126.0 (ekonomi, 2022)."
+  },
+  "claim:observed_result:obs:scb:naringslivets_investeringar:2023": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "naringslivets_investeringar = 1059067.0 (ekonomi, 2023)."
+  },
+  "claim:observed_result:obs:scb:naringslivets_investeringar:2024": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "naringslivets_investeringar = 1041714.0 (ekonomi, 2024)."
   },
   "claim:observed_result:obs:scb:sjalvforsorjningsgrad:2005": {
     "kind": "claim",

@@ -1,10 +1,10 @@
-"""Härledda D-indikatorer (gap/kvot) ur redan verifierade officiella serier.
+"""Härledda D-indikatorer (gap/kvot/index) ur redan verifierade officiella serier.
 
-Vissa kanoniska indikatorer (categories.yaml) är inte EN publicerad serie utan en DIFFERENS
-eller KVOT mellan två officiella serier. Loadern (pipeline.sources.scb) hämtar en serie i taget;
-den här modulen kombinerar två sådana serier (vardera helt specificerad av tabell + fixerade
-dimensionskoder) till en härledd årsserie som matar delpoäng D precis som vilken annan
-observations-serie som helst.
+Vissa kanoniska indikatorer (categories.yaml) är inte EN publicerad serie utan en DIFFERENS,
+KVOT eller ett kumulerat INDEX byggt ur officiella serier. Loadern (pipeline.sources.scb) hämtar
+en serie i taget; den här modulen kombinerar en eller två sådana serier (vardera helt
+specificerad av tabell + fixerade dimensionskoder) till en härledd årsserie som matar delpoäng D
+precis som vilken annan observations-serie som helst.
 
 Implementerat:
   * sysselsattningsgap_inrikes_utrikes (integration, riktning down): skillnaden i
@@ -15,10 +15,18 @@ Implementerat:
     ContentsCode=000000RN, mnkr) DELAT med faktiskt arbetade timmar i hela ekonomin (TAB5622
     Arbetskraftsinsats, SNI2007=0002, ContentsCode=000004C1, 10 000-tal timmar), skalat till
     kr per arbetad timme. Reell produktivitet (fasta priser separerar volym från pris).
+  * hushallens_reala_disponibla_inkomst (ekonomi, riktning up): kumulativt REALINDEX (basår-1 =
+    100) ur SCB:s officiella reala tillväxttakt för hushållens disponibla inkomst, netto (NR
+    TAB4592, NRindikator=B6nRealGrowth, Sektor=S14). idx[y] = idx[y-1]·(1 + g[y]/100). SCB har
+    redan deflaterat (real tillväxt), så indexet kräver inget eget deflatorval. Måttet finns bara
+    publicerat som tillväxttakt; D behöver en NIVÅ (tecknet på årsförändringen). Tecknet på
+    indexets årsförändring = tecknet på den officiella reala tillväxttakten — vilket är allt D
+    använder (sign, ej magnitud). Drift-skyddet sitter därför på FÖRÄLDRA-tillväxtserien
+    (input_expect), inte på det konstruerade indexet (som saknar publicerat ankarvärde).
 
-Provenans: en härledd observation citerar BÅDA föräldraserierna i source_ref
+Provenans: en härledd observation citerar föräldraserie(rna) i source_ref
 ("derived:{ref_tag}:{år}") och beräkningen är ren/deterministisk -> golden-testbar. Inget
-mänskligt omdöme; ingen imputation (ett år tas bara med om BÅDA föräldrarna har värde).
+mänskligt omdöme; ingen imputation (gap/kvot: ett år tas bara med om BÅDA föräldrarna har värde).
 
 Robusthet: en serie med en angiven enhet (t.ex. kr/timme) får en rimlighetsgrind ('plausible')
 på nivån. SCB bytte t.ex. TAB5622:s timenhet från "1 000 000-tal" till "10 000-tal" 2026-05-29;
@@ -29,10 +37,12 @@ from __future__ import annotations
 
 from typing import Any
 
+from . import expectations
 from .sources import scb
 
-# Härledda indikatorer. Varje post specificerar två operander (a, b) — vardera en SCB-serie
-# (tabell + fixerade dimensionskoder) — samt en operation ('gap' = a−b, 'ratio' = a/b·scale).
+# Härledda indikatorer. Varje post specificerar en (a) eller två (a, b) operander — vardera en
+# SCB-serie (tabell + fixerade dimensionskoder) — samt en operation ('gap' = a−b, 'ratio' =
+# a/b·scale, 'index' = kumulativt index av en tillväxttakt a).
 DERIVED = (
     {
         "indicator": "sysselsattningsgap_inrikes_utrikes",
@@ -63,6 +73,22 @@ DERIVED = (
         "expect": {"min_points": 20, "value_range": [200, 800], "min_latest_year": 2022,
                    "anchors": {"2020": 619.94}},
     },
+    {
+        "indicator": "hushallens_reala_disponibla_inkomst",
+        "category": "ekonomi", "submeasure": "realloner_hushall",
+        "unit": "index (realt, basår-1 = 100; SCB NR hushållens reala disp. inkomst, netto)",
+        "op": "index", "base": 100.0,
+        "a": {"table": "TAB4592", "fixed": {"NRindikator": "B6nRealGrowth", "Sektor": "S14"}},
+        "ref_tag": "scb:TAB4592(B6nRealGrowth,S14,kumul.index)",
+        # Drift-skyddet sitter på FÖRÄLDRA-tillväxtserien (indexet är konstruerat -> inget publicerat
+        # ankarvärde). value_range [-15,15] tål reala fall (skiljer från nominell tillväxt, som
+        # alltid > 0 i fönstret); ankare 2023≈-1.1 (real, NEGATIVT) pinnar real vs nominell/annan
+        # sektor med rel_tol 0.3 (NR revideras). rel_tol-bandet [-1.43,-0.77] utesluter nominell.
+        "input_expect": {"min_points": 60, "value_range": [-15, 15], "min_latest_year": 2024,
+                         "anchors": {"2023": -1.1, "2021": 4.3}, "rel_tol": 0.3},
+        # expect på det HÄRLEDDA indexet: bara form/aktualitet (nivån är arbiträr, sign-only D).
+        "expect": {"min_points": 60, "min_latest_year": 2024},
+    },
 )
 
 # Kanoniska indikatorer denna modul levererar (för täcknings-gaten i tests/test_fas3_gate.py).
@@ -83,8 +109,29 @@ def compute_ratio(a: dict[str, float], b: dict[str, float], scale: float) -> dic
     }
 
 
-def _series_for(spec: dict[str, Any], a: dict[str, float], b: dict[str, float]) -> dict[str, float]:
-    """Tillämpar spec:ens operation på de två föräldraserierna."""
+def compute_index(growth: dict[str, float], base: float) -> dict[str, float]:
+    """{år -> kumulativt index} ur en tillväxttakt i PROCENT (avrundat 2 dec).
+
+    idx[y] = idx[y-1]·(1 + g[y]/100); nivån FÖRE första året = base. Eftersom idx alltid är > 0
+    har idx:s årsförändring samma TECKEN som g[y] — vilket är allt delpoäng D använder (sign, ej
+    magnitud). Ingen imputation: bara år som finns i tillväxtserien emitteras.
+    """
+    out: dict[str, float] = {}
+    level = base
+    for year in sorted(growth, key=int):
+        level *= 1.0 + growth[year] / 100.0
+        out[year] = round(level, 2)
+    return out
+
+
+def _series_for(
+    spec: dict[str, Any], a: dict[str, float], b: dict[str, float] | None
+) -> dict[str, float]:
+    """Tillämpar spec:ens operation på föräldraserien/-serierna."""
+    if spec["op"] == "index":
+        return compute_index(a, spec.get("base", 100.0))
+    if b is None:
+        raise ValueError(f"Operation {spec['op']!r} kräver två operander (a, b) — {spec['indicator']!r}")
     if spec["op"] == "gap":
         return compute_gap(a, b)
     if spec["op"] == "ratio":
@@ -92,8 +139,10 @@ def _series_for(spec: dict[str, Any], a: dict[str, float], b: dict[str, float]) 
     raise ValueError(f"Okänd operation {spec['op']!r} för {spec['indicator']!r}")
 
 
-def _rows_for(spec: dict[str, Any], a: dict[str, float], b: dict[str, float]) -> list[dict[str, Any]]:
-    """Bygger observations-rader ur två (redan hämtade) föräldraserier. Nätverksfri -> testbar."""
+def _rows_for(
+    spec: dict[str, Any], a: dict[str, float], b: dict[str, float] | None = None
+) -> list[dict[str, Any]]:
+    """Bygger observations-rader ur (redan hämtade) föräldraserier. Nätverksfri -> testbar."""
     series = _series_for(spec, a, b)
     if len(series) < 2:
         raise ValueError(
@@ -120,16 +169,26 @@ def _rows_for(spec: dict[str, Any], a: dict[str, float], b: dict[str, float]) ->
 
 
 def fetch_derived(retrieved_at: str) -> list[dict[str, Any]]:
-    """Hämtar föräldraserierna ur SCB och returnerar härledda observations-rader."""
+    """Hämtar föräldraserien/-serierna ur SCB och returnerar härledda observations-rader."""
     rows: list[dict[str, Any]] = []
     for spec in DERIVED:
         a = scb.fetch_series_map(
             spec["a"]["table"], spec["a"]["fixed"], retrieved_at,
             dataset_id=f"{spec['indicator']}_a",
         )
-        b = scb.fetch_series_map(
-            spec["b"]["table"], spec["b"]["fixed"], retrieved_at,
-            dataset_id=f"{spec['indicator']}_b",
-        )
+        # Drift-skydd på FÖRÄLDRA-serien (för index-op, där det härledda värdet saknar publicerat
+        # ankare) — hard-failar på fel dimension/sektor INNAN den kumuleras in i D.
+        ie = spec.get("input_expect")
+        if ie:
+            expectations.check_series(
+                [{"period": y, "value": v} for y, v in a.items()], ie,
+                f"Härledd {spec['indicator']} (föräldraserie {spec['ref_tag']})",
+            )
+        b = None
+        if "b" in spec:
+            b = scb.fetch_series_map(
+                spec["b"]["table"], spec["b"]["fixed"], retrieved_at,
+                dataset_id=f"{spec['indicator']}_b",
+            )
         rows.extend(_rows_for(spec, a, b))
     return rows

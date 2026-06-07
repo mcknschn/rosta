@@ -59,8 +59,8 @@ categories:
       - { id: bnp_per_capita,       submeasure: bnp_produktivitet, direction: up }
       - { id: produktivitet,        submeasure: bnp_produktivitet, direction: up }
       - { id: realloner,            submeasure: realloner_hushall, direction: up }
-      - { id: hushallens_reala_disponibla_inkomst, submeasure: realloner_hushall, direction: up, note: "Hushållens reala disponibla inkomst/köpkraft (SCB nationalräkenskaper); partistyrbar via skatt på arbete + transfereringar — den arbetande B-indikatorn i submåttet (realloner är vilande kontext)" }
-      - { id: naringslivets_investeringar, submeasure: foretagande_investeringar, direction: up, note: "Näringslivets fasta bruttoinvesteringar (SCB nationalräkenskaper); konjunkturkänslig" }
+      - { id: hushallens_reala_disponibla_inkomst, submeasure: realloner_hushall, direction: up, note: "Hushållens reala disponibla inkomst/köpkraft (SCB NR). B-indikator (partistyrbar via skatt på arbete + transfereringar; realloner är vilande kontext) OCH D-indikator fr.o.m. 2026-06-07 (Spår D Tier 1, v0): kumulativt realindex ur SCB:s officiella reala tillväxttakt (TAB4592 B6nRealGrowth, S14), pipeline.derived. Konjunktur-/räntekänslig → D tar bara TECKEN, väger 10 %, makt-/ansvarsviktas." }
+      - { id: naringslivets_investeringar, submeasure: foretagande_investeringar, direction: up, note: "Näringslivets fasta bruttoinvesteringar i fasta priser (SCB NR TAB3610, Anvandningstyp=BNAR). B-indikator (företags-/ägarbeskattning → investeringar) OCH D-indikator fr.o.m. 2026-06-07 (Spår D Tier 1, v0). Konjunkturkänslig → D tar bara TECKEN (ej magnitud), väger 10 %, makt-/ansvarsviktas (jfr ekonomi-caveat)." }
       - { id: inflation,            submeasure: inflation_prisstabilitet, direction: target, note: "Nära målet (~2 %), inte bara lägst" }
       - { id: statsskuld_underskott, submeasure: offentliga_finanser, direction: target, note: "Hållbar nivå" }
 

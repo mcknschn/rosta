@@ -59,6 +59,17 @@ SCB_SERIES = [
                "Kon": "1+2", "Alder": "tot15-74", "ContentsCode": "000007VG"},
      "expect": {"min_points": 12, "value_range": [40, 80], "min_latest_year": 2024,
                 "anchors": {"2020": 59.2}}},
+    # naringslivets_investeringar (ekonomi -> foretagande_investeringar, riktning up): näringslivets
+    # FASTA bruttoinvesteringar i FASTA priser (volym, ref 2020) ur BNP-användningssidan (TAB3610,
+    # samma tabellfamilj som produktivitetens BNP-täljare). Anvandningstyp=BNAR ("näringslivets fasta
+    # bruttoinv"); fasta priser separerar volym från pris så D:s årstecken mäter reell investering,
+    # inte inflation. D-aktiverad 2026-06-07 (Spår D Tier 1, v0); konjunkturkänslig -> D tar bara
+    # TECKEN (ej magnitud), makt-/ansvarsviktas och väger 10 % (jfr ekonomi-caveat, IDEA.md).
+    {"table": "TAB3610", "indicator": "naringslivets_investeringar", "category": "ekonomi",
+     "submeasure": "foretagande_investeringar", "unit": "mnkr (fasta priser, ref 2020)",
+     "fixed": {"Anvandningstyp": "BNAR", "ContentsCode": "000000RN"},
+     "expect": {"min_points": 20, "value_range": [200000, 1300000], "min_latest_year": 2023,
+                "anchors": {"2020": 972986}}},
 ]
 
 # Kolada-KPI:er (Riket = kommun 0000, kön T = totalt via fetch_kpi_series-defaults).

@@ -8,8 +8,10 @@ Invarianten "inget tyst gap" hävdas av `tests/test_fas3_gate.py`. Generera aktu
 python -m pipeline.tools.coverage_report
 ```
 
-Per 2026-05-31: **17 / 50 indikatorer inlästa** (D-dugliga, annuell up/down) i **5 av 7 kategorier**
+Per 2026-06-07: **21 / 56 indikatorer inlästa** (D-dugliga, annuell up/down) i **5 av 7 kategorier**
 (ekonomi, välfärd, klimat, integration, trygghet). Försvar och demokrati saknar D-data (allowlistade).
+*(17 per 2026-05-31; +2 trygghet 2026-06-03 — uppklaringsgrad + skjutningar/sprängningar; +2 ekonomi
+2026-06-07 — naringslivets_investeringar + hushallens_reala_disponibla_inkomst, Spår D Tier 1.)*
 
 ## Inlästa indikatorer (matar D)
 
@@ -19,12 +21,16 @@ Per 2026-05-31: **17 / 50 indikatorer inlästa** (D-dugliga, annuell up/down) i 
 | ekonomi | sysselsattning | SCB AKU | TAB6514 | up | 2001–2025 |
 | ekonomi | bnp_per_capita | SCB NR | TAB6728 | up | 1980–2024 |
 | ekonomi | produktivitet | SCB NR (härledd) | TAB3610 ÷ TAB5622 | up | 1980–2024⁵ |
+| ekonomi | naringslivets_investeringar | SCB NR | TAB3610 (BNAR, fasta priser) | up | 1980–2024 |
+| ekonomi | hushallens_reala_disponibla_inkomst | SCB NR (härledd index) | TAB4592 (B6nRealGrowth, S14)⁶ | up | 1951–2025 |
 | valfard | skolresultat | Kolada | N15507 | up | 2015–2025 |
 | valfard | behoriga_larare | Kolada | N15813 | up | 2015–2025 |
 | valfard | vardkoer | Kolada | N79242 | down | 2021–2024 |
 | trygghet | dodligt_vald | Brå (Tabell 20) | per 100 000 | down | 2002–2025 |
+| trygghet | skjutningar_sprangningar | Polisen (transkr.) | config-yaml | down | 2018–2025 |
 | trygghet | brottsutsatthet | Brå NTU | Tabell 3A | down | 2016–2024² |
 | trygghet | upplevd_otrygghet | Brå NTU | Tabell 4A:1 | down | 2017–2025³ |
+| trygghet | uppklaringsgrad | Brå (Handlagda 10La) | personuppkl.% | up | 2016–2025 |
 | klimat | territoriella_utslapp | SCB (Naturvårdsverket) | TAB4698 | down | 1990–2024 |
 | klimat | konsumtionsbaserade_utslapp | SCB Miljöräkenskaper | TAB5637 | down | 2008–2023 |
 | klimat | fossil_energianvandning | Energimyndigheten (PxWeb v1) | EN0202_8 | down | 1970–2024 |
@@ -47,21 +53,29 @@ Per 2026-05-31: **17 / 50 indikatorer inlästa** (D-dugliga, annuell up/down) i 
   Reproducerar finanskris-svackan 2008–2009 och produktivitetsfallet 2022–2023 (Codex- och
   adversariellt verifierad). Ettårstecken är konjunkturkänsligt/revideras — D väger bara 10 %,
   makt-/ansvarsviktat och flaggat.
+⁶ Härlett kumulativt REALINDEX (`pipeline/derived.py`, op `index`): hushållens reala disponibla
+  inkomst finns bara publicerad som tillväxttakt (SCB NR TAB4592, NRindikator=B6nRealGrowth,
+  Sektor=S14). Indexet idx[y]=idx[y−1]·(1+g[y]/100) ger den NIVÅ D behöver; tecknet på indexets
+  årsförändring = tecknet på den officiella reala tillväxttakten (sign-only, vilket är allt D
+  använder). SCB har redan deflaterat → inget eget deflatorval. Drift-skyddet sitter på
+  föräldra-tillväxtserien (fångar real 2023 ≈ −1,1 %). Konjunktur-/räntekänslig → D 10 %, flaggat.
 
 ## Allowlistade gap (skäl i `config/coverage_allowlist.yaml`)
 
-34 indikatorer saknar ännu en officiell svensk årsserie. Sammanfattning per skältyp:
+35 indikatorer saknar ännu en officiell svensk årsserie. Sammanfattning per skältyp:
 
 - **target** (ej up/down, ej D-duglig): inflation, statsskuld_underskott, forsvarsanslag_andel_bnp.
 - **derived** (kräver flera serier/beräkning): elprisvolatilitet, effektbrist,
-  utslappsminskning_per_krona. (produktivitet och sysselsattningsgap_inrikes_utrikes är nu härledda, se ovan.)
+  utslappsminskning_per_krona. (produktivitet, sysselsattningsgap_inrikes_utrikes och
+  hushallens_reala_disponibla_inkomst är nu härledda, se ovan.)
 - **no_api** (officiell/akademisk källa utan maskinläsbar årsserie): skillnader_mellan_skolor,
   personalomsattning_omsorg, valfardsbrottslighet, hotade_arter_naturforlust, skolresultat_utsatta_omraden,
   segregation, fortroende_domstolar_myndigheter (SOM).
 - **future** (källa finns, adapter ej byggd): vard_i_tid, overlevnad_svar_sjukdom, sfi_sprakkunskaper,
   realloner (kräver Medlingsinstitutets konjunkturlönestatistik — SCB:s API saknar en ren helekonomi-
-  löneserie, sonderat 2026-05-31), och Brås uppklarings-/återfallstabeller (uppklaringsgrad,
-  handlaggningstid, aterfall_i_brott), skjutningar_sprangningar (Polisen). NTU-utsatthet/otrygghet inlästa.
+  löneserie, sonderat 2026-05-31), och Brås handläggnings-/återfallstabeller (handlaggningstid,
+  aterfall_i_brott). (uppklaringsgrad + skjutningar_sprangningar inlästa 2026-06-03;
+  naringslivets_investeringar + hushallens_reala_disponibla_inkomst inlästa 2026-06-07.)
 - **international** (ej officiell svensk källa, otillåtet enligt CLAUDE.md): korruption (TI), mediefrihet (RSF).
 - **qualitative** (ingen kvantitativ officiell mätserie): merparten av försvars- och demokratiindikatorerna
   (materiel_formaga, civil_beredskap_niva, ukraina_stod, nato_interoperabilitet, leveranstid_materiel,

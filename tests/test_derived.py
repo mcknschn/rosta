@@ -14,6 +14,9 @@ from pipeline import config, derived
 # Spec-uppslag (ordningsoberoende) så testerna inte beror på positionen i DERIVED.
 _GAP = next(d for d in derived.DERIVED if d["indicator"] == "sysselsattningsgap_inrikes_utrikes")
 _PROD = next(d for d in derived.DERIVED if d["indicator"] == "produktivitet")
+_INC = next(
+    d for d in derived.DERIVED if d["indicator"] == "hushallens_reala_disponibla_inkomst"
+)
 
 
 def test_compute_gap_subtraherar_och_skar_ojamna_ar() -> None:
@@ -50,6 +53,33 @@ def test_rows_for_produktivitet_kvot_kanonisk_och_dubbel_provenans() -> None:
     assert r0["id"] == "obs:derived:produktivitet:2022"
     assert r0["source_ref"] == "derived:scb:TAB3610(BNPM,fast2020)/TAB5622(hela_ekonomin,timmar):2022"
     assert r0["value"] == 624.35  # kr/timme, fasta 2020-priser
+
+
+def test_compute_index_kumulerar_tillvaxttakt_och_bevarar_tecken() -> None:
+    """index[y] = index[y-1]·(1+g[y]/100), nivå före första året = base; tecknet på
+    årsförändringen = tecknet på tillväxttakten (det enda D använder)."""
+    growth = {"2021": 4.3, "2022": 1.7, "2023": -1.1}
+    idx = derived.compute_index(growth, 100.0)
+    assert idx == {"2021": 104.3, "2022": 106.07, "2023": 104.91}
+    # 2023 hade NEGATIV real tillväxt -> indexet ska FALLA (real-inkomstfall), tecknet bevaras
+    assert idx["2023"] < idx["2022"]
+    assert idx["2022"] > idx["2021"]
+
+
+def test_rows_for_index_kanonisk_enkel_operand_dubbel_provenans() -> None:
+    """index-op tar EN operand (b=None); rader är kanoniska (ekonomi/realloner_hushall) + citerar källan."""
+    rows = derived._rows_for(_INC, {"2021": 4.3, "2022": 1.7})
+    assert all(r["category"] == "ekonomi" and r["submeasure"] == "realloner_hushall" for r in rows)
+    r0 = rows[0]
+    assert r0["id"] == "obs:derived:hushallens_reala_disponibla_inkomst:2021"
+    assert r0["source_ref"] == "derived:scb:TAB4592(B6nRealGrowth,S14,kumul.index):2021"
+    assert r0["value"] == 104.3
+
+
+def test_gap_op_kraver_tva_operander() -> None:
+    """gap/ratio utan andra operanden (b=None) ska faila högt — inte tyst ge fel serie."""
+    with pytest.raises(ValueError, match="kräver två operander"):
+        derived._series_for(_GAP, {"2022": 82.5}, None)
 
 
 def test_for_fa_gemensamma_ar_ger_hard_fail() -> None:

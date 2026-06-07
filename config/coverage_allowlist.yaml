@@ -13,10 +13,11 @@
 version: 1
 
 allowlist:
-  # --- ekonomi (produktivitet härleds nu: BNP fasta priser / arbetade timmar, pipeline.derived) ---
-  - { category: ekonomi, indicator: realloner,            reason: "future: kräver Medlingsinstitutets konjunkturlönestatistik (helekonomi-löneindex) som egen adapter — SCB:s API saknar en ren, kontinuerlig helekonomi-löneserie (allt är privat sektor, sektoruppdelat/brutet vid SSYK-revisionen 2014, eller dött). Sonderat 2026-05-31." }
-  - { category: ekonomi, indicator: naringslivets_investeringar, reason: "future: SCB nationalräkenskaper (fasta bruttoinvesteringar, näringslivet) finns men adaptern är inte byggd; indikatorn tillagd 2026-06-05 (B2) för delpoäng B (företags-/ägarbeskattning → investeringar). Dessutom starkt konjunkturkänslig → D-attribution till sittande regering brusig (jfr ekonomi-caveat). B-only tills vidare." }
-  - { category: ekonomi, indicator: hushallens_reala_disponibla_inkomst, reason: "future: SCB nationalräkenskaper (hushållens reala disponibla inkomst) finns men adaptern är inte byggd; indikatorn tillagd 2026-06-05 (B2) som den arbetande B-indikatorn i submåttet 'Reallöner och hushållens ekonomi' (partistyrbar via skatt + transfereringar, värdeneutral). D-bar i framtiden (värdeneutralt utfall), men konjunktur-/ränte-känslig → attribution brusig. B-only tills vidare." }
+  # --- ekonomi (produktivitet + hushallens_reala_disponibla_inkomst härleds, pipeline.derived;
+  #     naringslivets_investeringar inläst via SCB TAB3610 BNAR (build_fas2) — ej längre allowlistade) ---
+  # naringslivets_investeringar: SCB TAB3610 Anvandningstyp=BNAR (näringslivets fasta bruttoinv, fasta priser) -> ej allowlistad fr.o.m. 2026-06-07 (Spår D Tier 1).
+  # hushallens_reala_disponibla_inkomst: härlett kumulativt realindex ur SCB TAB4592 B6nRealGrowth S14 (pipeline.derived) -> ej allowlistad fr.o.m. 2026-06-07 (Spår D Tier 1).
+  - { category: ekonomi, indicator: realloner,            reason: "future: kräver Medlingsinstitutets konjunkturlönestatistik (helekonomi-löneindex) som egen adapter — SCB:s API saknar en ren, kontinuerlig helekonomi-löneserie (allt är privat sektor, sektoruppdelat/brutet vid SSYK-revisionen 2014, eller dött). Sonderat 2026-05-31. (realloner är vilande kontext; submåttet realloner_hushall får sin D via hushallens_reala_disponibla_inkomst.)" }
   - { category: ekonomi, indicator: inflation,            reason: "target: nära mål (~2 %), ej up/down -> ej D-duglig (kvarstår för B/visning)." }
   - { category: ekonomi, indicator: statsskuld_underskott, reason: "target: hållbar nivå, ej up/down -> ej D-duglig." }
   # --- valfard ---

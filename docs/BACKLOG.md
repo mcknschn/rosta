@@ -240,11 +240,22 @@ högre coverage → mindre B-krympning → B får faktiskt genomslag.
   M/SD/L +0,04…0,09 — korrekt riktningsmönster för systemeffektivitet); 167 tester gröna, ruff rent, 0 cyrilliska. snapshot ej re-baselinad.
   **Sign-off-frågor: [evidens_trovardighet.md §8.7](done/evidens_trovardighet.md).** Väntar mänsklig sign-off.
 
+- ✅ **SPÅR D — Tier 1: ekonomi-D till full submåttstäckning 2026-06-07 (v0, FLAGGAD; tracker [spar_D_datatackning.md](spar_D_datatackning.md))** —
+  två SCB-NR-serier byggda (§5.1 B-only-beslutet hävt, din sign-off): **(1)** `naringslivets_investeringar` (ekonomi → foretagande_investeringar, up)
+  ur SCB NR **TAB3610** Anvandningstyp=`BNAR` (näringslivets fasta bruttoinv, **fasta priser** ref 2020), ren `SCB_SERIES`-post, 1980–2024;
+  **(2)** `hushallens_reala_disponibla_inkomst` (ekonomi → realloner_hushall, up) som kumulativt **realindex** ur SCB:s officiella reala tillväxttakt
+  (NR **TAB4592** `B6nRealGrowth`/`S14`), ny `derived.py`-op `index` med drift-skydd på föräldra-tillväxtserien, 1951–2025. **Ekonomi 2 → 4 D-täckta
+  submått (alla 4 D-bara täckta);** total D-täckning **19 → 21/56**. Dimensionskoder **live-verifierade** (ej gissade); `expect`-grindar passerade;
+  golden-test för `compute_index`; **adversariell teckenkontroll** (Tidö-partierna bär investeringsnedgången 2023–2024, JÖK-eran tillväxten;
+  real-inkomstfallet 2023 principiellt fördelat). **Isolerad effekt: endast ekonomi rörd, +0,007…+0,074/parti, ranking OFÖRÄNDRAD** (S>L>M>KD>MP>C>SD>V);
+  V/ekonomi NA korrekt. 170 tester gröna (+3 nya derived-tester), ruff rent, 0 främmande tecken. Coverage-strängen rättad (trygghet var felaktigt listad D-tom). snapshot
+  re-baselinad + committad 2026-06-07 (`data:`-commit). v0 kvarstår tills formell granskning bumpar v0→v1.
+
 ### Status per spår efter nattkörning 2026-06-04 (A-raden uppdaterad 2026-06-05)
 
 | Spår | Status |
 |------|--------|
-| **D** (datatäckning) | uppklaringsgrad + skjutningar/sprängningar **levererade**. Återstående D-källor **uttömda/blockerade** (se [coverage_allowlist](../config/coverage_allowlist.yaml) med precisa skäl): återfall (PDF prel/slutlig + metodbrott), handläggning (interaktiv DB), overlevnad (Kolada N79196 finns men **kvinkennial** → inkompatibel med D:s konsekutiva-år-krav), reallöner/sfi (portal/ej ren serie), Svk-derived klimat (operativ/timdata + Nord Pool-pris = gränsfall mot officiell-källa-regeln, lågt mervärde då klimat har 3 D-serier), demokrati (internationella index förbjudna), försvar (sekretess/kvalitativt). **De rena SCB/Kolada-årsserierna skördades i Fas 2–3; den hårda taljen kräver expertbedömd transkribering, modellutvidgning, eller är otillåten.** |
+| **D** (datatäckning) | **Egen tracker: [spar_D_datatackning.md](spar_D_datatackning.md).** uppklaringsgrad + skjutningar/sprängningar (2026-06-03) + **Tier 1 ekonomi: naringslivets_investeringar + hushallens_reala_disponibla_inkomst (2026-06-07, v0)** levererade → **21/56 D-serier, ekonomi 4/4 D-bara submått**. Återstående D-källor **uttömda/blockerade eller kräver M/L-bygge** (se [coverage_allowlist](../config/coverage_allowlist.yaml) + tracker Tier 2–5): sfi (Skolverket-portal, M), overlevnad annuell (Socialstyrelsen, M), Svk-derived klimat (gränsfall källregel), **strukturella nollor försvar/demokrati** (transkribering: personal_varnpliktiga / SOM, L), samt blockerade (återfall PDF, handläggning interaktiv DB, demokrati int. index förbjudna, försvar sekretess). **De rena SCB/Kolada-årsserierna skördades i Fas 2–3; resten kräver ny adapter, transkribering, eller är otillåten.** |
 | **B** (evidens) | ✅ **B1 expertgranskad + sign-off 2026-06-05 → `version 1`** (se B1 nedan): party_positions (4 SUSPECT + 79-raders screening) och evidence_ledger (30 poster triade, 6 fixar) genomgångna; skarp betygsättning aktiverad. **B4-verktyg/grind ✅** + **B2 ekonomi ✅** (4/6) + **B2 demokrati ✅** (rättsstat: grundlagsskydd domstolarnas oberoende, votering KU2; personlig frihet: begränsa biometrisk realtidsövervakning, votering JuU28/Lagrådet, codex-granskat) levererade 2026-06-05 → demokrati **1/5 → 3/5**, **inga nära-binära kategorier kvar** (`b_near_binary_accepted` tom). Återstår otäckta (ej blockerare): transparens_ansvar (offentlighetsprincip = dubbelräkning, skippat) + yttrandefrihet_medier (acklamation/regeringslägesartefakt) — inget värdeneutralt mått funnet utan tilt/dubbelräkning. **Natt 2026-06-06:** B2 utvidgad till de 5 övriga kategorierna — **1 byggt** (forsvar/nato_medlemskap → försvar 3/5); välfärd (2/4), trygghet (3/5), klimat (3/5), integration (2/5) gav **0 rena mått** (alla föll på "sakreform=acklamation / namnupprop=vänster-höger-tilt"); kandidatlistor för morgondiskussion (se B2-natt-blocket nedan). **Dag 2026-06-06 (enhällighet-som-källa, [evidens_trovardighet.md](done/evidens_trovardighet.md)):** den nya tvåstegsmetoden (måttet ≠ positioneringen; acklamation slår bara ut *voteringskällan*, enhälligt betänkande = alla 8 supports) byggde **2 till** — **snabbforfarande → trygghet 4/5** och **invasiva arter → klimat 4/5** (FLAGGAD, codex förordade HOLD). 5 andra kandidater HOLD (steg-1-evidens saknas/mixed). 36 evidensposter / 192 ståndpunkter; 167 tester gröna. |
 | **A** (agerande) | **A1 (fler budgetår) ✅ LEVERERAD 2026-06-05** — budget 2023 + 2024 tillagda (snitt över 3 år), fyrlagrigt adversariellt verifierat (invariant + pandas + Codex + roll-call); se Levererat ovan. Korruptionsrisken som blockerade solo-körningen löstes via den oberoende cell-för-cell-kontrollen. A2 (votering→A) är en designfråga (viktning utan dubbelräkning av a2) → kräver beslut, deferrad. |
 | **C** (ansvar) | c2 finansiering uppskjutet (designbeslut, ej neutralt byggbart). C2 (mandatperiodskiften) + C3 (subnationell D) är modellutvidgningar utanför ren databredd → deferrade. |
@@ -263,6 +274,11 @@ nu utfördes — det var precis det villkoret planen ställde.*
 ---
 
 ## Spår D — Datatäckning (utfall, delpoäng D)
+
+> **📍 Aktiv tracker:** [spar_D_datatackning.md](spar_D_datatackning.md) — utbruten arbets-/
+> trackinglogg för Spår D (verifierat nuläge, byggbarhetsverdikt per indikator, öppna beslut,
+> exit-kriterier). Flyttas till `docs/done/` när spåret är klart. Vågtabellerna nedan behålls
+> som översikt; trackern är sanningskällan för status.
 
 Mål: fler kanoniska årsserier som matar D-attributionen, så fler kategorier/undermått mäts på
 faktiskt utfall. Alla nya serier ska vara kanoniska (finnas i `categories.yaml` med rätt

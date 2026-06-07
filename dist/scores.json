@@ -86,7 +86,7 @@
     }
   ],
   "meta": {
-    "coverage": "Preliminär: A=agerande (a2 motionsprioritering, andel av egna motioner, full; a1 budgetprioritering gated — aktiv för 7/7 kategorier ur officiella utgiftsramar (2023–2025), expertgranskad v1 2026-06-05, annars a2-fallback); C=makt per kategori: nationell regeringsmakt blandad med subnationell makt (SKR-styren, 21 regioner + 290 kommuner × 3 mandatperioder) via en per-kategori region/kommun-split efter lagstadgat ansvar; forsvar nationellt per design; c2 finansiering ännu ej byggd (C=c1 makt); D=resultatattribution från officiella årsserier för ekonomi/välfärd/klimat/integration där partiet haft nationell makt (medel säkerhet, ej tillämplig för partier utan makt och för trygghet/försvar/demokrati som saknar D-data). B är AKTIVERAD för ALLA 7 kategorier via 247 källbelagda, adversariellt verifierade + panel-harmoniserade partiståndpunkter (riksdagsvotering/motion, Fas 4c); coverage-viktad (B krymps mot neutral efter andel kodade åtgärdstyper, B_thin_coverage-flagga vid tunn täckning). party_positions + evidence_ledger expertgranskade v1 (mänsklig sign-off 2026-06-05).",
+    "coverage": "Preliminär: A=agerande (a2 motionsprioritering, andel av egna motioner, full; a1 budgetprioritering gated — aktiv för 7/7 kategorier ur officiella utgiftsramar (2023–2025), expertgranskad v1 2026-06-05, annars a2-fallback); C=makt per kategori: nationell regeringsmakt blandad med subnationell makt (SKR-styren, 21 regioner + 290 kommuner × 3 mandatperioder) via en per-kategori region/kommun-split efter lagstadgat ansvar; forsvar nationellt per design; c2 finansiering ännu ej byggd (C=c1 makt); D=resultatattribution från officiella årsserier för ekonomi/välfärd/trygghet/klimat/integration där partiet haft nationell makt (medel säkerhet, ej tillämplig för partier utan makt och för försvar/demokrati som saknar D-data). B är AKTIVERAD för ALLA 7 kategorier via 247 källbelagda, adversariellt verifierade + panel-harmoniserade partiståndpunkter (riksdagsvotering/motion, Fas 4c); coverage-viktad (B krymps mot neutral efter andel kodade åtgärdstyper, B_thin_coverage-flagga vid tunn täckning). party_positions + evidence_ledger expertgranskade v1 (mänsklig sign-off 2026-06-05).",
     "generated": "2026-06-07",
     "model_version": 1,
     "parties": [
@@ -140,8 +140,8 @@
       },
       "ekonomi": {
         "ci": [
-          2.089,
-          2.876
+          2.163,
+          2.951
         ],
         "claim_refs": [
           "claim:action:C:ekonomi:motioner",
@@ -152,15 +152,15 @@
           "claim:responsibility:C:regional:2014-2018:government",
           "claim:responsibility:C:regional:2018-2022:government",
           "claim:responsibility:C:regional:2022-2026:government",
-          "claim:observed_result:obs:derived:produktivitet:1980",
-          "claim:observed_result:obs:derived:produktivitet:1981",
-          "claim:observed_result:obs:derived:produktivitet:1982"
+          "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1951",
+          "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1952",
+          "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1953"
         ],
         "components": {
           "A": 2.0,
           "B": 3.493,
           "C": 1.429,
-          "D": 2.458
+          "D": 3.199
         },
         "confidence": {
           "A": "high",
@@ -173,7 +173,7 @@
           "B_coverage_5/5",
           "A_a1_active"
         ],
-        "score": 2.483
+        "score": 2.557
       },
       "forsvar": {
         "ci": [
@@ -398,8 +398,8 @@
       },
       "ekonomi": {
         "ci": [
-          2.685,
-          3.473
+          2.693,
+          3.48
         ],
         "claim_refs": [
           "claim:action:KD:ekonomi:motioner",
@@ -410,15 +410,15 @@
           "claim:responsibility:KD:regional:2014-2018:government",
           "claim:responsibility:KD:regional:2018-2022:government",
           "claim:responsibility:KD:regional:2022-2026:government",
-          "claim:observed_result:obs:derived:produktivitet:1980",
-          "claim:observed_result:obs:derived:produktivitet:1981",
-          "claim:observed_result:obs:derived:produktivitet:1982"
+          "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1951",
+          "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1952",
+          "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1953"
         ],
         "components": {
           "A": 2.643,
           "B": 4.199,
           "C": 2.143,
-          "D": 2.306
+          "D": 2.382
         },
         "confidence": {
           "A": "high",
@@ -431,7 +431,7 @@
           "B_coverage_5/5",
           "A_a1_active"
         ],
-        "score": 3.079
+        "score": 3.087
       },
       "forsvar": {
         "ci": [
@@ -657,8 +657,8 @@
       },
       "ekonomi": {
         "ci": [
-          2.783,
-          3.571
+          2.836,
+          3.623
         ],
         "claim_refs": [
           "claim:action:L:ekonomi:motioner",
@@ -670,15 +670,15 @@
           "claim:responsibility:L:regional:2014-2018:government",
           "claim:responsibility:L:regional:2018-2022:government",
           "claim:responsibility:L:regional:2022-2026:government",
-          "claim:observed_result:obs:derived:produktivitet:1980",
-          "claim:observed_result:obs:derived:produktivitet:1981",
-          "claim:observed_result:obs:derived:produktivitet:1982"
+          "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1951",
+          "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1952",
+          "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1953"
         ],
         "components": {
           "A": 2.357,
           "B": 4.199,
           "C": 3.571,
-          "D": 2.287
+          "D": 2.813
         },
         "confidence": {
           "A": "high",
@@ -691,7 +691,7 @@
           "B_coverage_5/5",
           "A_a1_active"
         ],
-        "score": 3.177
+        "score": 3.23
       },
       "forsvar": {
         "ci": [
@@ -921,8 +921,8 @@
       },
       "ekonomi": {
         "ci": [
-          3.187,
-          3.974
+          3.194,
+          3.982
         ],
         "claim_refs": [
           "claim:action:M:ekonomi:motioner",
@@ -933,15 +933,15 @@
           "claim:responsibility:M:regional:2014-2018:government",
           "claim:responsibility:M:regional:2018-2022:government",
           "claim:responsibility:M:regional:2022-2026:government",
-          "claim:observed_result:obs:derived:produktivitet:1980",
-          "claim:observed_result:obs:derived:produktivitet:1981",
-          "claim:observed_result:obs:derived:produktivitet:1982"
+          "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1951",
+          "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1952",
+          "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1953"
         ],
         "components": {
           "A": 2.929,
           "B": 5.0,
           "C": 2.857,
-          "D": 2.306
+          "D": 2.382
         },
         "confidence": {
           "A": "high",
@@ -954,7 +954,7 @@
           "B_coverage_5/5",
           "A_a1_active"
         ],
-        "score": 3.581
+        "score": 3.588
       },
       "forsvar": {
         "ci": [
@@ -1180,8 +1180,8 @@
       },
       "ekonomi": {
         "ci": [
-          2.365,
-          3.153
+          2.405,
+          3.193
         ],
         "claim_refs": [
           "claim:action:MP:ekonomi:motioner",
@@ -1193,15 +1193,15 @@
           "claim:responsibility:MP:regional:2014-2018:government",
           "claim:responsibility:MP:regional:2018-2022:government",
           "claim:responsibility:MP:regional:2022-2026:government",
-          "claim:observed_result:obs:derived:produktivitet:1980",
-          "claim:observed_result:obs:derived:produktivitet:1981",
-          "claim:observed_result:obs:derived:produktivitet:1982"
+          "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1951",
+          "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1952",
+          "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1953"
         ],
         "components": {
           "A": 1.0,
           "B": 3.973,
           "C": 4.286,
-          "D": 3.257
+          "D": 3.658
         },
         "confidence": {
           "A": "high",
@@ -1214,7 +1214,7 @@
           "B_coverage_5/5",
           "A_a1_active"
         ],
-        "score": 2.759
+        "score": 2.799
       },
       "forsvar": {
         "ci": [
@@ -1448,8 +1448,8 @@
       },
       "ekonomi": {
         "ci": [
-          3.768,
-          4.556
+          3.798,
+          4.586
         ],
         "claim_refs": [
           "claim:action:S:ekonomi:motioner",
@@ -1462,15 +1462,15 @@
           "claim:responsibility:S:regional:2014-2018:government",
           "claim:responsibility:S:regional:2018-2022:government",
           "claim:responsibility:S:regional:2022-2026:government",
-          "claim:observed_result:obs:derived:produktivitet:1980",
-          "claim:observed_result:obs:derived:produktivitet:1981",
-          "claim:observed_result:obs:derived:produktivitet:1982"
+          "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1951",
+          "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1952",
+          "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1953"
         ],
         "components": {
           "A": 4.286,
           "B": 3.973,
           "C": 5.0,
-          "D": 3.072
+          "D": 3.375
         },
         "confidence": {
           "A": "high",
@@ -1483,7 +1483,7 @@
           "B_coverage_5/5",
           "A_a1_active"
         ],
-        "score": 4.162
+        "score": 4.192
       },
       "forsvar": {
         "ci": [
@@ -1715,8 +1715,8 @@
       },
       "ekonomi": {
         "ci": [
-          2.047,
-          2.834
+          2.054,
+          2.842
         ],
         "claim_refs": [
           "claim:action:SD:ekonomi:motioner",
@@ -1724,15 +1724,15 @@
           "claim:responsibility:SD:municipal:2022-2026:government",
           "claim:responsibility:SD:national:2022-10-18/pagaende:support",
           "claim:responsibility:SD:regional:2022-2026:government",
-          "claim:observed_result:obs:derived:produktivitet:1980",
-          "claim:observed_result:obs:derived:produktivitet:1981",
-          "claim:observed_result:obs:derived:produktivitet:1982"
+          "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1951",
+          "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1952",
+          "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1953"
         ],
         "components": {
           "A": 1.5,
           "B": 4.294,
           "C": 0.714,
-          "D": 2.306
+          "D": 2.382
         },
         "confidence": {
           "A": "high",
@@ -1745,7 +1745,7 @@
           "B_coverage_5/5",
           "A_a1_active"
         ],
-        "score": 2.441
+        "score": 2.448
       },
       "forsvar": {
         "ci": [
@@ -1965,9 +1965,9 @@
           "claim:responsibility:V:regional:2014-2018:government",
           "claim:responsibility:V:regional:2018-2022:government",
           "claim:responsibility:V:regional:2022-2026:government",
-          "claim:observed_result:obs:derived:produktivitet:1980",
-          "claim:observed_result:obs:derived:produktivitet:1981",
-          "claim:observed_result:obs:derived:produktivitet:1982"
+          "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1951",
+          "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1952",
+          "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1953"
         ],
         "components": {
           "A": 3.286,
