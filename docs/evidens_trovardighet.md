@@ -490,6 +490,7 @@ Legend: ✅ byggt · 🟡 kandidat (research klar, väntar beslut) · ❌ förka
     EJ avstår — då byggs måttet via §5.2.
 - ❌ `boendesegregation` HOLD (2026-06-06): ingen kausal svensk *instrument*-utvärdering (Boverket beskrivande);
   CU18 p12 är ett **avslag** med S/V/C-reservationer, underliggande CU6 är regering-vs-vänster-split → tilt.
+  *(RÄTTAT 2026-06-07: steg-1-evidens finns numera — RiR 2021:29, se nedstigningen längre ned; väggen är STEG 2/neutralitet.)*
   - **Djupsvep §5.8 (2026-06-06, 5 instrument):** HOLD bekräftat — **äkta steg-1-vägg (§4.2)**. Ingen svensk
     auktoritetskälla visar att ett *instrument* mäter trångboddhet/segregation NEDÅT: blandade upplåtelseformer
     (mixed), områdesinsatser (förbättrar individer men området oförändrat — folk flyttar + stigma), Boverket
@@ -501,7 +502,21 @@ Legend: ✅ byggt · 🟡 kandidat (research klar, väntar beslut) · ❌ förka
   i demokrati. Codex-skäl (korrekta): (1) det är **trygghet-evidens ometiketterad** som integration — Brå-effekten
   avser ej utsatta områden; (2) **dubbelräknar** befintliga `situationell_prevention_kamerabevakning`→trygghet;
   (3) exakt den varning §8.7 redan givit ("kamera... dubbelräknar trygghet + krockar med demokrati-övervakning");
-  (4) 7 supports/1 opposes → ~noll differentiering. boendesegregation förblir **äkta steg-1-vägg**.
+  (4) 7 supports/1 opposes → ~noll differentiering. boendesegregation kvarstår HOLD.
+  - **Kandidatnedstigning 2026-06-07 (efter codex-killen, dedikerad agent):** HOLD bekräftat — men **diagnosen skärpt
+    och en logg-faktarättelse:** väggen är **STEG 2 (neutralitet), inte steg 1 (evidens)**. (i) **#2 bosättningslagen
+    (2016:38)/kommunanvisning PASSERAR instrument-grinden** — **RiR 2021:29** "Bosättningslagen – har reformen levt upp
+    till intentionerna?" ÄR en kausal segments-instrumentutvärdering (statlig kommunanvisning → jämnare kommunspridning;
+    det tidigare ojämna mottagandet "ökade segregationen") → motsäger den tidigare logg-raden "ingen kausal svensk
+    instrument-utvärdering". MEN faller på neutralitetsgrinden: SD vill AVSKAFFA lagen på *kommunalt-självstyre*-grund,
+    M vill behålla → genuin självstyre/centralism-VÄRDEKONFLIKT (Dir 2024:22 ramar in den så) = tilt. (ii) **#3
+    vräkningsförebyggande:** ingen kausal effektutvärdering (Socialstyrelsen/Länsstyrelsen beskrivande) + ankare S/V-
+    ensidiga (SoU16 p10 avslag, vänstertilt) → faller båda grindar. (iii) **#4 EBO/områdesbegränsning:** negativ-evidens
+    DELVIS belagd (Ds 2018:18/SfU11: EBO-koncentration → "segregation, trångboddhet…") men bara utrednings-MOTIVERING
+    (ej ex-post-effektmätning) + migrations-värdeaxel-tilt (V avslår hela, M/SD/KD vill strängare) → bygg ej. (iv) **#5
+    områdesinsatser/Delmi 2025:3/Statskontoret 2023:** beskrivande/mixed (oförändrat). **Återöppna #2:** om den nya
+    bosättningslagen (ur Dir 2024:22, ikraft ~2027) tas i enhälligt SfU/AU-betänkande utan självstyre-reservation mot
+    huvudpunkten → RiR 2021:29 blir steg 1 och §5.2 löser steg 2. (Bevaka SfU 2026/27.)
 - ✅ `migrationssystem` byggt (se kategorihuvudet ovan) — den enda av integrations tre HOLD-väggar som föll
   2026-06-07. normer_tillit + boendesegregation kvarstår HOLD.
 - ⚠️ Kategorins egen IDEA.md-caveat ("stor risk för ideologisk bias") **bekräftad i praktiken** → HOLD rätt.
@@ -615,9 +630,9 @@ dokumentstatus; citat verbatim-kollade.
 |---|---|---|---|
 | genomforbarhet_leverans (forsvar) | leveranstid = äkta steg-1-vägg; försörjningstrygghets-instrumentet positioneras bara via FöU2-avslagspunkter med oppositionsreservationer (tilt) | `forsorjningstrygghet_materiel` (up) — SOU 2022:24 (lagerhållning/inhemsk kapacitet) | enhälligt FöU-betänkande/lag om försörjningsberedskap utan reservation mot punkten |
 | industriell_konkurrenskraft (klimat) | dubbelvägg: RiR 2024:17 bestrider riktningen (Industriklivets syfte ≠ konkurrenskraft, "oklart vilka effekter") + MJU15 p1 = avslag av V+MP med reservationer | `industrins_utslappsintensitet` (down, utsläpp/förädlingsvärde, SCB/NV miljöräkenskaper) | miljötillstånds-/omställningsreform som passerar betänkande utan blocktilt, eller RiR/Tillväxtanalys-effektutvärdering |
-| boendesegregation (integration) | äkta steg-1-vägg (Boverket beskrivande; reform "rather the opposite effect"); enda mätbara instrument (kamera/belysning) dubbelräknar trygghet + krockar med demokrati-övervakning | `otrygghet_utsatta_omraden` (down, Brå NTU Lokal) — har D-väg men ingen neutral B-instrumenteffekt | IFAU/Brå kausal effektutvärdering (kontrollområde) av neutralt instrument |
-| normer_tillit (integration) | tillit/valdeltagande = inget neutralt partistyrbart instrument med svensk kausalkälla; KU4-tillgänglighet = fel konstrukt (förmåga att rösta ≠ uppmätt tillit/valdeltagande) | (öppen) ev. `mellanmansklig_tillit` (SOM) om neutralt instrument hittas; alt. omklassa | svensk källa som kausalt kopplar neutralt instrument → mätt tillit/valdeltagande |
-| migrationssystem (integration) | högsta bias-risk; steg-1 faller hårt — RiR 2025:5/2022:5/2021:24 + Statskontoret 2024:14 dokumenterar ineffektiva/perversa effekter; "begäran om avgörande" FÖRSÄMRAR | `handlaggningstid_migrationsverket` (down) — neutral konstruktion men ingen positiv instrumenteffekt belagd | Statskontoret/RiR-effektutvärdering av mottagnings-/återvändandecenter el. enhälligt SfU-effektmått |
+| boendesegregation (integration) | **[UPPDATERAT 2026-06-07, se Integration-svepet nedan: kamera-väg byggd→reverterad (codex KILL); diagnos rättad — steg-1-evidens FINNS (RiR 2021:29 kommunanvisning→spridning), väggen är STEG 2/neutralitet (bosättningslag/EBO = självstyre-/migrations-värdekonflikt)]** ~~äkta steg-1-vägg (Boverket beskrivande)~~ | — | enhälligt SfU/AU-betänkande om nya bosättningslagen (Dir 2024:22, ~2027) utan självstyre-reservation → RiR 2021:29 blir steg 1 |
+| normer_tillit (integration) | **[UPPDATERAT 2026-06-07, se nedan: steg 1 LÖST (Delmi 2025:5 GOTV-kausalitet); väggen är STEG 2 — inget neutralt ankare]** ~~inget neutralt partistyrbart instrument med svensk kausalkälla~~ | (öppen) `valdeltagande_utsatta_omraden` om enhälligt GOTV-ankare hittas | enhälligt/acklamerat GOTV-anslag där oppositionen EJ avstår |
+| migrationssystem (integration) | **[LÖST 2026-06-07, se Integration-svepet nedan: byggt via negativ-evidens-vinkeln — RiR 2020:7/`se_over_ansvarsfordelning_atervandande`, tvåsidig split SfU6 p2]** ~~steg-1 faller hårt~~ | ✅ `atervandande_effektivitet` (up) BYGGT v0 | (byggt) |
 
 **KONTEXT (ej B-grön, medvetet):** `offentliga_finanser` — codex HOLD-kontext (åtstramnings-tilt: "framework
 compliance" privilegierar finanspolitisk återhållsamhet; dubbelräkning mot A/c2; smugglar target-konstrukt in i
@@ -633,7 +648,7 @@ får bra B). 3 forskningsagenter (5 förslag/undermått) + per-parti-verifiering
 | Undermått | Utfall | Vad |
 |---|---|---|
 | `migrationssystem` | ✅ **BYGGT v0 (FLAGGAT)** | NY ind. `atervandande_effektivitet` (up, systemfunktion) / instrument `se_over_ansvarsfordelning_atervandande` / RiR 2020:7 (negativ-evidens-vinkeln: splittrad struktur kostar). Genuin tvåsidig split bet. 2020/21:SfU6 p2 (votering verifierad): supports M/KD/SD/C/L, opposes S/MP, V none. Codex **KEEP-WITH-CHANGES** (snävade policy_type "samla"→"se över ansvarsfördelning"; tidsnot 2020/21 = partiernas nuläge ej bevisat → sign-off). Effekt: integration 2/5→**3/5**, ranking oförändrad, endast integration rörd (S −0.063, MP −0.044, M/SD/L +0.04…0.09). |
-| `boendesegregation` | ❌ **HOLD** (kamera-väg byggd → reverterad) | Förslag `trygghet_utsatta_omraden` via kamerabevakning (JuU27/Brå) + symmetrisk IMY-negativ-post i demokrati. Codex **KILL** (korrekt): trygghet-evidens ometiketterad som integration; **dubbelräknar** `situationell_prevention_kamerabevakning`→trygghet; exakt §8.7-varningen; 7-1 ≈ noll differentiering. Förblir äkta steg-1-vägg. |
+| `boendesegregation` | ❌ **HOLD** (kamera reverterad; nedstigning #2–#5 gjord) | Kamera-vägen byggd→reverterad (codex KILL: trygghet-relabel + dubbelräknar `situationell_prevention_kamerabevakning` + §8.7-varningen + 7-1≈noll diff). **Dedikerad nedstigning 2026-06-07:** #2 bosättningslagen/kommunanvisning **passerar instrument-grinden** (RiR 2021:29 = kausal: kommunanvisning→jämnare spridning, gamla systemet "ökade segregationen") men **faller på neutralitet** (SD vill avskaffa på självstyre-grund, M behålla = värdekonflikt); #3 vräkning (ingen kausal eval + S/V-tilt); #4 EBO (negativ-evidens bara utredningsmotivering + migrations-värdeaxel-tilt); #5 områdesinsatser (beskrivande/mixed). **Diagnos rättad: väggen är STEG 2/neutralitet, EJ steg 1** (RiR 2021:29 finns). |
 | `normer_tillit` | ❌ **HOLD** (steg 1 löst, steg 2 saknas) | GOTV: Delmi 2025:5 löser steg 1 (kausal) men inget neutralt steg-2-ankare (avslag+enpartisreservation, eller acklamation där oppositionen avstår). Nedstigning #2/#3 + egna vinklar + negativ-rutt: alla wall på instrument-grind. Se §6. |
 
 **Sign-off på det byggda (migration):** (1) behåll/kasta `atervandande_effektivitet` (v0, RiR 2020:7, MEDIUM/MEDIUM —
