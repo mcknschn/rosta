@@ -3,9 +3,10 @@
 > **Status: UTKAST v2 — ej implementerad.** v1 granskad adversariellt av Codex 2026-06-07 → **verdikt HOLD**
 > (rätt riskområden, men spärrarna för svaga; centrala val flyttades till "officiell referensnivå",
 > "ambitionssteg" och manuell neutralitetskoll utan hård definition — där låg tilt-vektorn). v2 nedan
-> adresserar Codex 10 punkter (granskningslogg §12). **Kräver förnyad Codex-granskning + mänsklig sign-off
-> innan bygge.** Bärande regel oförändrad: **neutralitet före 4** — en grad-modell som inte kan hållas
-> värdeneutral byggs INTE.
+> adresserar Codex 10 punkter (granskningslogg §12). v2 granskad av Codex 2026-06-07 → **verdikt
+> DATAPILOT-FIRST** (de stora tilt-vektorerna borta, men bygg INTE scoring nu — kör den icke-scoring
+> go/no-go-datapiloten först; värdet troligen smalt, se §0). Bärande regel oförändrad: **neutralitet före 4**
+> — en grad-modell som inte kan hållas värdeneutral byggs INTE.
 >
 > Relaterat: [done/evidens_trovardighet.md §5.6](done/evidens_trovardighet.md) (gränserna för steg 2),
 > [done/evidens_trovardighet.md §2](done/evidens_trovardighet.md) (tvåstegsmodellen),
@@ -25,6 +26,15 @@ Därför är **pilotens FÖRSTA uppgift en go/no-go**: finns det ÖVERHUVUDTAGET
 icke-A-dubbelräknande* kvantifierad ambition? Om svaret är "knappt några" är den ärliga slutsatsen att viktad
 stance ska byggas **smalt eller inte alls** — inte att tvinga fram den. Detta är inte ett misslyckande; det är
 "neutralitet före 4" tillämpat på modellnivå.
+
+**Codex v2-bedömning (2026-06-07):** sannolikt överlever bara **~10–25 %** av instrumenten strikt G4/A-test
+(resten är budgetnära: försvar %, polisantal, vårdplatser, ersättnings-/lärartäthet, bistånd). Två ytterligare
+kvarvarande risker utöver §8: **(K1) kategori-asymmetri** — G7-ankare klustrar i vissa områden (försvar/ekonomi
+har beslutade målnivåer; integration/demokrati sällan), så viktning kan systematiskt addera differentiering till
+vissa KATEGORIER = subtil tilt på *kategorinivå*, inte bara instrument. **(K2) A-testets små n** — kollinjäritet
+på 8 partier är statistiskt svagt. **Datapiloten måste därför mäta både hur många instrument som överlever OCH
+om de klustrar per kategori** (K1), och A-testet får ej vila enbart på korrelation (K2 — komplettera med
+kvalitativ monotoni-/distinkt-signal-bedömning).
 
 ---
 
@@ -211,7 +221,14 @@ utan neutral nivå-källa stannar binärt utan kostnad.
   **v2 åtgärdar:** G6 instrumenturval (p.2) + G7 ankartaxonomi (p.1); m_min-band skiljer svagt stöd från neutralt +
   förbjuder m=0 (p.3/p.4); §3 3-klass-källtaxonomi + A-dubbelräkningstest, G4-kollaps erkänd som HUVUDRISK §0 (p.6);
   Alt B nedgraderad till datapilot/renormalisering (p.7); formell per-instrument-skala (p.5); testbar neutralitetskoll
-  + golden edge cases + per-instrument adversariellt protokoll (p.8/p.9/p.10). **Väntar v2-pass.**
+  + golden edge cases + per-instrument adversariellt protokoll (p.8/p.9/p.10).
+- **2026-06-07 (v2 → DATAPILOT-FIRST):** Codex förnyad granskning. v2 tog bort v1:s stora uppenbara tilt-vektorer
+  men greenlightar EJ scoring-bygge. Tre kvarvarande vektorer codex ej fullt litar på: (a) vad som räknas som "alla
+  kandidatinstrument" i G6 (urvalsdefinitionen ej hård), (b) A-testets svaga statistik på bara 8 partier, (c) G7-ankare
+  finns OJÄMNT mellan politikområden → kategori-asymmetri (K1, §0). VÄRDE: codex bedömer att ~10–25 % av instrumenten
+  överlever strikt G4/A-test (resten budgetnära). Verdikt: **bygg ej scoring nu, överge ej heller — kör go/no-go-
+  datapiloten (icke-scoring) som empiriskt avgör värdet.** v3-incorporering av (a)/(b)/(c) görs FÖRST om datapiloten
+  ger grönt (annars onödigt arbete).
 
 ## 13. Relaterat
 - [done/evidens_trovardighet.md](done/evidens_trovardighet.md) — B-spårets arbetslogg (§5.6, §8 fråga 2, §9 Beslut 12)
