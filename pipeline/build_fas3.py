@@ -15,7 +15,7 @@ import sys
 from datetime import date
 
 from . import derived, expectations, warehouse
-from .sources import energimyndigheten, polisen
+from .sources import energimyndigheten, forsvarsmakten, polisen
 
 
 def main() -> None:
@@ -73,6 +73,26 @@ def main() -> None:
     span = f"{prows[0]['period']}..{prows[-1]['period']}" if prows else "-"
     print(f"Polisen (transkr.) -> trygghet    skjutningar_sprangningar: {n:4} obs ({span})")
 
+    # Försvarsmakten: antal värnpliktiga som påbörjade grundutbildning (forsvar, delpoäng D) —
+    # transkriberad config (config/personal_varnpliktiga.yaml; reproducerbar via
+    # tools/varnpliktiga_audit), korsverifierad mot Pliktverkets inskrivna. source_ref
+    # 'forsvarsmakten:' ligger utanför scb/kolada-purge-scope. Försvarets FÖRSTA D-serie.
+    frows = forsvarsmakten.build_personal_varnpliktiga_observations()
+    unlisted = {r["indicator"] for r in frows} - set(forsvarsmakten.INDICATORS)
+    if unlisted:
+        raise ValueError(f"Försvarsmakten emitterar indikatorer utanför INDICATORS: {sorted(unlisted)}")
+    for ind in forsvarsmakten.INDICATORS:
+        expectations.check_series(
+            [r for r in frows if r["indicator"] == ind], forsvarsmakten.EXPECT.get(ind),
+            f"Försvarsmakten {ind}",
+        )
+    # Full-replace av forsvarsmakten-rader (transkriberad, komplett serie): tar bort ev.
+    # föråldrade rader om årsuppsättning/source_ref ändrats.
+    con.execute("DELETE FROM observations WHERE source_ref LIKE 'forsvarsmakten:%'")
+    n = warehouse.upsert(con, "observations", frows)
+    span = f"{frows[0]['period']}..{frows[-1]['period']}" if frows else "-"
+    print(f"Försvarsmakten (transkr.) -> forsvar  personal_varnpliktiga: {n:4} obs ({span})")
+
     print("\n-- täckning (klimat, observations) --")
     for cat, ind, n, lo, hi in con.execute(
         "SELECT category, indicator, count(*), min(period), max(period) "
@@ -82,8 +102,8 @@ def main() -> None:
 
     print("\n-- kända luckor (loggas, ej tysta; se docs/fas3_coverage.md) --")
     print("   klimat: elprisvolatilitet/effektbrist (Svk, härledda) återstår.")
-    print("   forsvar/demokrati: kvalitativa/internationella indikatorer -> ingen officiell")
-    print("       svensk årsserie matar D (allowlistade).")
+    print("   forsvar: personal_varnpliktiga (FM ÅR) matar nu D — övriga försvarsindikatorer")
+    print("       kvalitativa/sekretess (allowlistade). demokrati: ingen officiell D-serie ännu.")
     con.close()
 
 

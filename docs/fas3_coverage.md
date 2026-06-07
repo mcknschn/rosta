@@ -8,11 +8,12 @@ Invarianten "inget tyst gap" hävdas av `tests/test_fas3_gate.py`. Generera aktu
 python -m pipeline.tools.coverage_report
 ```
 
-Per 2026-06-07: **22 / 56 indikatorer inlästa** (D-dugliga, annuell up/down) i **5 av 7 kategorier**
-(ekonomi, välfärd, klimat, integration, trygghet). Försvar och demokrati saknar D-data (allowlistade).
+Per 2026-06-07: **23 / 56 indikatorer inlästa** (D-dugliga, annuell up/down) i **6 av 7 kategorier**
+(ekonomi, välfärd, klimat, integration, trygghet, försvar). Endast demokrati saknar D-data (allowlistad).
 *(17 per 2026-05-31; +2 trygghet 2026-06-03 — uppklaringsgrad + skjutningar/sprängningar; +2 ekonomi
 2026-06-07 — naringslivets_investeringar + hushallens_reala_disponibla_inkomst, Spår D Tier 1;
-+1 integration 2026-06-07 — sfi_sprakkunskaper, Spår D Tier 2.)*
++1 integration 2026-06-07 — sfi_sprakkunskaper, Spår D Tier 2; +1 försvar 2026-06-07 —
+personal_varnpliktiga, Spår D Tier 4, försvarets första D-serie.)*
 
 ## Inlästa indikatorer (matar D)
 
@@ -40,6 +41,7 @@ Per 2026-06-07: **22 / 56 indikatorer inlästa** (D-dugliga, annuell up/down) i 
 | integration | sjalvforsorjningsgrad | SCB AKU (utrikes födda) | TAB6529 | up | 2005–2025 |
 | integration | sysselsattningsgap_inrikes_utrikes | SCB AKU (härledd) | TAB6529 SYSP 13−23 | down | 2005–2025⁴ |
 | integration | sfi_sprakkunskaper | SCB (Skolverket) | TAB1814 (AA0003EB) | up | 1997–2023⁷ |
+| forsvar | personal_varnpliktiga | Försvarsmakten (ÅR) | transkr. config-yaml | up | 2018–2025⁸ |
 
 ¹ TAB6439 har dubbelår före 2020 som medvetet utesluts från D (multiårsspann ≠ enskild årspunkt).
 ² Aggregatet "brott mot enskild person" (Samtliga 16–84 år) finns i NTU enbart fr.o.m. 2016
@@ -70,10 +72,21 @@ Per 2026-06-07: **22 / 56 indikatorer inlästa** (D-dugliga, annuell up/down) i 
   teckenkonsistenta med den genuina nedgång-/stabiliseringstrenden — eftersom D bara tar TECKEN
   (ej magnitud) ändrar brottet magnituden men inte tecknet, så hela serien behålls (jfr NTU², där
   SCB delade serien och nivåerna var ojämförbara → fönstrades). v0, flaggad.
+⁸ Antal värnpliktiga som PÅBÖRJADE grundutbildning per kalenderår, **Försvarsmaktens årsredovisning**
+  (förmågemyndigheten; FM:s ÅR-mått är kalenderårsrent, till skillnad från Pliktverkets utbildningsårs-
+  etiketterade "inskrivna"). **Försvarets första D-serie** (kategorin var tidigare strukturellt D-tom).
+  Värdet (3 750→8 136, 2018–2025) korsverifieras varje år mot Plikt- och prövningsverkets OBEROENDE
+  "inskrivna till GU" (≤~3 % skillnad de år båda finns); avgörande är att BÅDA myndigheterna visar
+  samma enda nedgång 2021→2022, den enda teckenkänsliga D-övergången. Eftersom D bara tar TECKEN är
+  attributionen robust mot sifferosäkerhet. Transkriberad config (FM:s/Pliktverkets ÅR-PDF:er är ej
+  maskinläsbara), auditerbar via `pipeline/tools/varnpliktiga_audit.py`. KÄLLGRÄNS: 2018 + 2025 direkt
+  bekräftade ur FM ÅR; 2019/2021/2022/2024 korsverifierade mot Pliktverket; 2020 + 2023 (inre monotona
+  punkter, påverkar inget tecken) lokaliserade via Wikipedias FM-ÅR-citerade tabell. v0 tills exakta
+  PDF-siffror transkriberats direkt (→v1).
 
 ## Allowlistade gap (skäl i `config/coverage_allowlist.yaml`)
 
-34 indikatorer saknar ännu en officiell svensk årsserie. Sammanfattning per skältyp:
+33 indikatorer saknar ännu en officiell svensk årsserie. Sammanfattning per skältyp:
 
 - **target** (ej up/down, ej D-duglig): inflation, statsskuld_underskott, forsvarsanslag_andel_bnp.
 - **derived** (kräver flera serier/beräkning): elprisvolatilitet, effektbrist,
@@ -91,7 +104,8 @@ Per 2026-06-07: **22 / 56 indikatorer inlästa** (D-dugliga, annuell up/down) i 
 - **international** (ej officiell svensk källa, otillåtet enligt CLAUDE.md): korruption (TI), mediefrihet (RSF).
 - **qualitative** (ingen kvantitativ officiell mätserie): merparten av försvars- och demokratiindikatorerna
   (materiel_formaga, civil_beredskap_niva, ukraina_stod, nato_interoperabilitet, leveranstid_materiel,
-  personal_varnpliktiga, politisk_transparens, otillborlig_politisering, overvakning_utan_rattssakerhet).
+  politisk_transparens, otillborlig_politisering, overvakning_utan_rattssakerhet). (personal_varnpliktiga
+  inläst 2026-06-07 via Försvarsmaktens ÅR — Spår D Tier 4, försvarets första D-serie.)
 
 ## Nästa steg för att krympa allowlisten
 

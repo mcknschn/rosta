@@ -75,6 +75,11 @@ def skjutningar_sprangningar() -> dict[str, Any]:
     return _load("skjutningar_sprangningar.yaml")
 
 
+@cache
+def personal_varnpliktiga() -> dict[str, Any]:
+    return _load("personal_varnpliktiga.yaml")
+
+
 def party_codes() -> list[str]:
     return [p["code"] for p in categories()["parties"]]
 

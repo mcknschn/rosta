@@ -43,15 +43,15 @@ bredda D flyttar tyngdpunkten mot faktiskt utfall.
 
 ## 2. Nuläge (verifierat via `python -m pipeline.tools.coverage_report`, 2026-06-07)
 
-**22/56 indikatorer inlästa** (annuell, D-duglig) i **5/7 kategorier** (efter Tier 2, §7). Försvar +
-demokrati = 0 D. *(Var 19/56 innan Tier 1; +2 ekonomi + 1 integration 2026-06-07.)*
+**23/56 indikatorer inlästa** (annuell, D-duglig) i **6/7 kategorier** (efter Tier 4, §7). Endast
+demokrati = 0 D. *(Var 19/56 innan Tier 1; +2 ekonomi + 1 integration + 1 försvar 2026-06-07.)*
 
 | Kategori | D-täckta submått | Inlästa D-serier |
 |----------|:---:|---|
 | ekonomi | **4 / 4 D-bara¹** | sysselsattning, arbetsloshet, bnp_per_capita, produktivitet, **naringslivets_investeringar**, **hushallens_reala_disponibla_inkomst** |
 | valfard | 2 / 4 | vardkoer, skolresultat, behoriga_larare |
 | trygghet | 3 / 5 | dodligt_vald, skjutningar_sprangningar, brottsutsatthet, upplevd_otrygghet, uppklaringsgrad |
-| forsvar | **0 / 5** | — (strukturell lucka) |
+| forsvar | **1 / 5** | **personal_varnpliktiga** (första D — Tier 4; militar_formaga öppnat) |
 | klimat | 2 / 5 | territoriella_utslapp, konsumtionsbaserade_utslapp, fossil_energianvandning |
 | integration | 3 / 5 | sysselsattningsgap_inrikes_utrikes, sjalvforsorjningsgrad, bidragsberoende, trangboddhet, **sfi_sprakkunskaper** |
 | demokrati | **0 / 5** | — (strukturell lucka) |
@@ -106,17 +106,17 @@ hanteras genom att hela serien behålls (sign-only D är robust mot magnitudskif
 | ☐ | `effektbrist` | klimat → energi_elpriser | härled ur Svk effektbalans | S | Submått redan täckt (djup). |
 | ☐ | `utslappsminskning_per_krona` | klimat → kostnadseffektivitet | utsläpp ÷ klimatutgift | L | Öppnar D-löst submått, men "klimatutgift" är metodiskt omtvistad (vilket UO?) → §5.5. |
 
-### Tier 4 — transkribering med källrad, fyller strukturella nollor (L) 🟣
+### Tier 4 — transkribering med källrad, fyller strukturella nollor (L) 🟣 (varnpliktiga LEVERERAD 2026-06-07)
 
 Samma trogna transkriberingsmönster som `budget_ramar.yaml` / SKR / `skjutningar_sprangningar.yaml`
 (källrad per värde, korsverifiering, auditverktyg). **Högsta strategiska värde** — ger de två
 D-blanka kategorierna sin första utfallsserie — men störst arbete och integritetskrav.
 
-| ☐ | Indikator | Kategori → submått | Källa/metod | Effort | Not |
+| ☑ | Indikator | Kategori → submått | Källa/metod | Effort | Not |
 |---|-----------|--------------------|-------------|:---:|-----|
-| ☐ | `personal_varnpliktiga` | **forsvar** → militar_formaga | Försvarsmaktens ÅR / Plikt- och prövningsverket | L | **Ger försvar sin första D.** Transkribering, ej API. |
-| ☐ | `fortroende_domstolar_myndigheter` | **demokrati** → korruption_tillit | SOM-institutet (akademisk, tillåten) | L | **Ger demokrati sin första D.** Ej maskinläsbar → transkribering m. dokumenterad metod. |
-| ☐ | `tillit_valdeltagande` | integration → normer_tillit | SOM-institutet (akademisk) | L | Öppnar D-löst submått. Valdeltagande bara valår (glest). |
+| ☑ | `personal_varnpliktiga` | **forsvar** → militar_formaga | **Försvarsmaktens ÅR** (antal påbörjade GU/år 2018–2025), korsverif. mot Pliktverkets inskrivna | L | ✅ inläst, ur allowlisten. **GAV FÖRSVAR DESS FÖRSTA D.** "varför inte båda" löst: FM = värde, Pliktverket = oberoende korsverifiering; båda visar samma enda nedgång 2021→2022. v0. |
+| ☐ | `fortroende_domstolar_myndigheter` | **demokrati** → korruption_tillit | SOM-institutet (akademisk, tillåten) | L | **Ger demokrati sin första D.** Ej maskinläsbar → transkribering m. dokumenterad metod. **← nästa strukturella noll.** |
+| ☐ | `tillit_valdeltagande` | integration → normer_tillit | SOM-institutet (akademisk) | L | 🔴 BEVAKA: B-only/utvidgningskandidat, ej D-byggas (categories.yaml-not). Öppnar D-löst submått först om neutralt ankare dyker upp. |
 
 ### Tier 5 — blockerade / stängda som designbeslut 🔴 (bygg **inte**)
 
@@ -143,8 +143,10 @@ Listade här för fullständighet så de inte återöppnas oavsiktligt. Skäl i 
 1. ~~**Tier 1**~~ ✅ — ekonomi till full D-täckning av sina D-bara submått (2026-06-07, §7).
 2. ~~**Tier 2 `sfi_sprakkunskaper`**~~ ✅ — öppnade integration/skola_sprak (D-löst submått); visade sig
    vara **S, inte M** (SCB exponerar TAB1814 som ren PxWeb v2 → befintlig adapter räckte) (2026-06-07, §7).
-3. **Tier 4 strukturella nollor** (`personal_varnpliktiga`, SOM) — högst strategiskt värde (försvar +
-   demokrati får sin första D), men störst arbete; tas när billigare bredd är uttömd. **← nästa**
+3. ~~**Tier 4 `personal_varnpliktiga`**~~ ✅ — gav **försvar sin första D** (FM ÅR, antal påbörjade GU
+   2018–2025, korsverif. mot Pliktverket); "varför inte båda"-sign-off 2026-06-07, §7. Återstår av
+   Tier 4: **`fortroende_domstolar_myndigheter` (SOM) — ger DEMOKRATI sin första D, ← nästa strukturella
+   noll** (sista D-blanka kategorin; akademisk källa, ej maskinläsbar → transkribering).
 4. **Tier 3 Svk-derived** — mest djup (energi-submåttet är redan täckt); lägst prioritet, gränsfall
    mot källregeln.
 5. **Tier 2-rest** (`overlevnad_svar_sjukdom` §5.3, `realloner`) — kvar i Tier 2 men kräver sondering/
@@ -268,3 +270,45 @@ V oförändrad (NA). TOTAL-rörelser ±0,004…0,008. **Ranking OFÖRÄNDRAD:** 
 
 **Flaggor/version:** v0 (sign-only D, väger 10 %; metodbrott 2022 dokumenterat). `dist/` omräknat. v0
 kvarstår tills en formell granskning bumpar v0→v1.
+
+### ✅ 2026-06-07 — Tier 4: `personal_varnpliktiga` → FÖRSVARET FÅR SIN FÖRSTA D (v0, FLAGGAD)
+
+**En D-serie byggd → forsvar 0 → 1 D-täckt submått (militar_formaga öppnat); kategorin var tidigare
+strukturellt D-tom. 6/7 kategorier har nu D (bara demokrati kvar).**
+
+1. **`personal_varnpliktiga`** (forsvar → militar_formaga, riktning up): antal värnpliktiga som
+   **påbörjade grundutbildning** per kalenderår, **Försvarsmaktens årsredovisning**. Inläst **2018–2025**
+   (8 obs, 3 750→8 136). Transkriberad config (`config/personal_varnpliktiga.yaml`) — FM:s/Pliktverkets
+   ÅR-PDF:er är FlateDecode och ej maskinläsbara av verktygskedjan, så samma trogna transkriberings-
+   mönster som skjutningar/budget_ramar; auditerbar via `pipeline/tools/varnpliktiga_audit.py`. Ny
+   sektorsadapter `pipeline/sources/forsvarsmakten.py`, wirad i `build_fas3` (full-replace,
+   `forsvarsmakten:`-source_ref utanför scb/kolada-purge-scope). Ur allowlisten.
+
+**Designbeslut "varför inte båda" (din sign-off 2026-06-07):** två officiella myndighetsmått fanns —
+FM "påbörjade GU" (kalenderårsrent) och Plikt- och prövningsverkets "inskrivna till GU" (utbildningsårs-
+etiketterat, mappar EJ entydigt mot kalenderår). Till skillnad från sfi (§5.2, där datan eliminerade
+valet) divergerar de inte i sak — de **korsverifierar samma uppbyggnad**. Lösning: **FM = värdebärande
+serie** (förmågemyndighet, kalenderårsrent), **Pliktverket = oberoende korsverifiering** varje år
+(≤~3 % skillnad de år båda finns). Avgörande: BÅDA visar samma **enda nedgång 2021→2022** — den enda
+teckenkänsliga D-övergången är dubbelbekräftad.
+
+**Attribution (matchar oberoende handberäkning exakt):** värnpliktsuppbyggnaden 2018→2025 (3 750→8 136)
+skedde under både S-ledda och Tidö-regeringar → alla ansvarspartier får POSITIV försvars-D (genuint
+positivt utfall på allas vakt). S net +0,58 (D 3,96, basis 4,79 stark) / MP +0,53 (3,83) — bär 2018–2021-
+rampen, dinged av 2022-dippen som landar på dem; L +0,75 (4,37, JÖK-stöd + Tidö-regering); M/KD/SD
+net +1,0 (D 5,0, Tidö-eran 2022→2025 alla upp); C +0,36 (3,40, JÖK-stöd). **V = NA** (aldrig regering i
+fönstret — korrekt, ingen försvars-D att attribuera). Inga D_thin_basis-flaggor (alla basis > 1,0).
+
+**Källgräns (v0, transparent):** 2018 + 2025 direkt bekräftade ur FM ÅR (ordagranna meningar);
+2019/2021/2022/2024 korsverifierade mot Pliktverkets direkt-lästa pressmeddelanden; 2020 + 2023 (inre
+monotona punkter — påverkar inget D-tecken) lokaliserade via Wikipedias FM-ÅR-citerade tabell "Volymer
+inryckta". v0 kvarstår tills exakta siffror transkriberats direkt ur FM-ÅR-PDF:erna (→v1).
+
+**Verifiering:** integritets-audit grön (konsekutiva 2018–2025, monoton upp utom dubbelbekräftad
+2021→2022-dipp, Pliktverket-korsverifiering inom tolerans); golden-test (`tests/test_source_forsvarsmakten.py`,
+8 nya) inkl. att auditen fångar en odokumenterad nedgång; fas3-gaten håller; hela sviten grön.
+
+**Betygseffekt (score_diff):** endast **forsvar** rörd. Alla 7 ansvarspartier: forsvar D
+not_applicable→uppmätt, kategori +0,090…+0,250 (KD/M/SD +0,250, L +0,187, S +0,146, MP +0,133, C +0,090);
+V oförändrad (NA). TOTAL +0,014…+0,038. **Ranking OFÖRÄNDRAD:** S > L > M > KD > MP > C > SD > V. `dist/`
+omräknat + snapshot re-baselinad. v0 kvarstår tills formell granskning bumpar v0→v1.

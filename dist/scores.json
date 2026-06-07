@@ -86,7 +86,7 @@
     }
   ],
   "meta": {
-    "coverage": "Preliminär: A=agerande (a2 motionsprioritering, andel av egna motioner, full; a1 budgetprioritering gated — aktiv för 7/7 kategorier ur officiella utgiftsramar (2023–2025), expertgranskad v1 2026-06-05, annars a2-fallback); C=makt per kategori: nationell regeringsmakt blandad med subnationell makt (SKR-styren, 21 regioner + 290 kommuner × 3 mandatperioder) via en per-kategori region/kommun-split efter lagstadgat ansvar; forsvar nationellt per design; c2 finansiering ännu ej byggd (C=c1 makt); D=resultatattribution från officiella årsserier för ekonomi/välfärd/trygghet/klimat/integration där partiet haft nationell makt (medel säkerhet, ej tillämplig för partier utan makt och för försvar/demokrati som saknar D-data). B är AKTIVERAD för ALLA 7 kategorier via 247 källbelagda, adversariellt verifierade + panel-harmoniserade partiståndpunkter (riksdagsvotering/motion, Fas 4c); coverage-viktad (B krymps mot neutral efter andel kodade åtgärdstyper, B_thin_coverage-flagga vid tunn täckning). party_positions + evidence_ledger expertgranskade v1 (mänsklig sign-off 2026-06-05).",
+    "coverage": "Preliminär: A=agerande (a2 motionsprioritering, andel av egna motioner, full; a1 budgetprioritering gated — aktiv för 7/7 kategorier ur officiella utgiftsramar (2023–2025), expertgranskad v1 2026-06-05, annars a2-fallback); C=makt per kategori: nationell regeringsmakt blandad med subnationell makt (SKR-styren, 21 regioner + 290 kommuner × 3 mandatperioder) via en per-kategori region/kommun-split efter lagstadgat ansvar; forsvar nationellt per design; c2 finansiering ännu ej byggd (C=c1 makt); D=resultatattribution från officiella årsserier för ekonomi/välfärd/trygghet/klimat/integration/försvar där partiet haft nationell makt (medel säkerhet, ej tillämplig för partier utan makt och för demokrati som ännu saknar D-data). B är AKTIVERAD för ALLA 7 kategorier via 247 källbelagda, adversariellt verifierade + panel-harmoniserade partiståndpunkter (riksdagsvotering/motion, Fas 4c); coverage-viktad (B krymps mot neutral efter andel kodade åtgärdstyper, B_thin_coverage-flagga vid tunn täckning). party_positions + evidence_ledger expertgranskade v1 (mänsklig sign-off 2026-06-05).",
     "generated": "2026-06-07",
     "model_version": 1,
     "parties": [
@@ -177,8 +177,8 @@
       },
       "forsvar": {
         "ci": [
-          2.764,
-          3.641
+          2.899,
+          3.687
         ],
         "claim_refs": [
           "claim:action:C:forsvar:motioner",
@@ -188,28 +188,30 @@
           "claim:responsibility:C:national:2019-01-21/2021-11-30:support",
           "claim:responsibility:C:regional:2014-2018:government",
           "claim:responsibility:C:regional:2018-2022:government",
-          "claim:responsibility:C:regional:2022-2026:government"
+          "claim:responsibility:C:regional:2022-2026:government",
+          "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2018",
+          "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2019",
+          "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2020"
         ],
         "components": {
           "A": 3.286,
           "B": 4.375,
           "C": 0.714,
-          "D": 2.5
+          "D": 3.404
         },
         "confidence": {
           "A": "high",
           "B": "medium",
           "C": "high",
-          "D": "low"
+          "D": "medium"
         },
         "evidence_refs": [],
         "flags": [
           "B_coverage_3/4",
           "A_a1_active",
-          "C_national_only_by_design",
-          "D_not_applicable"
+          "C_national_only_by_design"
         ],
-        "score": 3.203
+        "score": 3.293
       },
       "integration": {
         "ci": [
@@ -435,8 +437,8 @@
       },
       "forsvar": {
         "ci": [
-          3.289,
-          4.166
+          3.584,
+          4.371
         ],
         "claim_refs": [
           "claim:action:KD:forsvar:motioner",
@@ -446,28 +448,30 @@
           "claim:responsibility:KD:national:2022-10-18/pagaende:government",
           "claim:responsibility:KD:regional:2014-2018:government",
           "claim:responsibility:KD:regional:2018-2022:government",
-          "claim:responsibility:KD:regional:2022-2026:government"
+          "claim:responsibility:KD:regional:2022-2026:government",
+          "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2018",
+          "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2019",
+          "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2020"
         ],
         "components": {
           "A": 3.929,
           "B": 4.375,
           "C": 2.5,
-          "D": 2.5
+          "D": 5.0
         },
         "confidence": {
           "A": "high",
           "B": "medium",
           "C": "high",
-          "D": "low"
+          "D": "medium"
         },
         "evidence_refs": [],
         "flags": [
           "B_coverage_3/4",
           "A_a1_active",
-          "C_national_only_by_design",
-          "D_not_applicable"
+          "C_national_only_by_design"
         ],
-        "score": 3.728
+        "score": 3.978
       },
       "integration": {
         "ci": [
@@ -695,8 +699,8 @@
       },
       "forsvar": {
         "ci": [
-          3.44,
-          4.317
+          3.672,
+          4.46
         ],
         "claim_refs": [
           "claim:action:L:forsvar:motioner",
@@ -707,28 +711,30 @@
           "claim:responsibility:L:national:2022-10-18/pagaende:government",
           "claim:responsibility:L:regional:2014-2018:government",
           "claim:responsibility:L:regional:2018-2022:government",
-          "claim:responsibility:L:regional:2022-2026:government"
+          "claim:responsibility:L:regional:2022-2026:government",
+          "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2018",
+          "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2019",
+          "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2020"
         ],
         "components": {
           "A": 3.357,
           "B": 5.0,
           "C": 3.571,
-          "D": 2.5
+          "D": 4.372
         },
         "confidence": {
           "A": "high",
           "B": "medium",
           "C": "high",
-          "D": "low"
+          "D": "medium"
         },
         "evidence_refs": [],
         "flags": [
           "B_coverage_4/4",
           "A_a1_active",
-          "C_national_only_by_design",
-          "D_not_applicable"
+          "C_national_only_by_design"
         ],
-        "score": 3.879
+        "score": 4.066
       },
       "integration": {
         "ci": [
@@ -958,8 +964,8 @@
       },
       "forsvar": {
         "ci": [
-          2.708,
-          3.585
+          3.003,
+          3.79
         ],
         "claim_refs": [
           "claim:action:M:forsvar:motioner",
@@ -969,28 +975,30 @@
           "claim:responsibility:M:national:2022-10-18/pagaende:government",
           "claim:responsibility:M:regional:2014-2018:government",
           "claim:responsibility:M:regional:2018-2022:government",
-          "claim:responsibility:M:regional:2022-2026:government"
+          "claim:responsibility:M:regional:2022-2026:government",
+          "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2018",
+          "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2019",
+          "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2020"
         ],
         "components": {
           "A": 1.929,
           "B": 5.0,
           "C": 2.5,
-          "D": 2.5
+          "D": 5.0
         },
         "confidence": {
           "A": "high",
           "B": "medium",
           "C": "high",
-          "D": "low"
+          "D": "medium"
         },
         "evidence_refs": [],
         "flags": [
           "B_coverage_4/4",
           "A_a1_active",
-          "C_national_only_by_design",
-          "D_not_applicable"
+          "C_national_only_by_design"
         ],
-        "score": 3.146
+        "score": 3.396
       },
       "integration": {
         "ci": [
@@ -1218,8 +1226,8 @@
       },
       "forsvar": {
         "ci": [
-          1.848,
-          3.04
+          2.026,
+          3.128
         ],
         "claim_refs": [
           "claim:action:MP:forsvar:motioner",
@@ -1230,29 +1238,31 @@
           "claim:responsibility:MP:national:2019-01-21/2021-11-30:government",
           "claim:responsibility:MP:regional:2014-2018:government",
           "claim:responsibility:MP:regional:2018-2022:government",
-          "claim:responsibility:MP:regional:2022-2026:government"
+          "claim:responsibility:MP:regional:2022-2026:government",
+          "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2018",
+          "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2019",
+          "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2020"
         ],
         "components": {
           "A": 1.143,
           "B": 3.125,
           "C": 4.286,
-          "D": 2.5
+          "D": 3.834
         },
         "confidence": {
           "A": "high",
           "B": "low",
           "C": "high",
-          "D": "low"
+          "D": "medium"
         },
         "evidence_refs": [],
         "flags": [
           "B_coverage_1/4",
           "B_thin_coverage",
           "A_a1_active",
-          "C_national_only_by_design",
-          "D_not_applicable"
+          "C_national_only_by_design"
         ],
-        "score": 2.444
+        "score": 2.577
       },
       "integration": {
         "ci": [
@@ -1487,8 +1497,8 @@
       },
       "forsvar": {
         "ci": [
-          2.883,
-          3.76
+          3.073,
+          3.861
         ],
         "claim_refs": [
           "claim:action:S:forsvar:motioner",
@@ -1500,28 +1510,30 @@
           "claim:responsibility:S:national:2021-11-30/2022-10-18:government",
           "claim:responsibility:S:regional:2014-2018:government",
           "claim:responsibility:S:regional:2018-2022:government",
-          "claim:responsibility:S:regional:2022-2026:government"
+          "claim:responsibility:S:regional:2022-2026:government",
+          "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2018",
+          "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2019",
+          "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2020"
         ],
         "components": {
           "A": 1.429,
           "B": 5.0,
           "C": 5.0,
-          "D": 2.5
+          "D": 3.957
         },
         "confidence": {
           "A": "high",
           "B": "medium",
           "C": "high",
-          "D": "low"
+          "D": "medium"
         },
         "evidence_refs": [],
         "flags": [
           "B_coverage_4/4",
           "A_a1_active",
-          "C_national_only_by_design",
-          "D_not_applicable"
+          "C_national_only_by_design"
         ],
-        "score": 3.321
+        "score": 3.467
       },
       "integration": {
         "ci": [
@@ -1749,36 +1761,38 @@
       },
       "forsvar": {
         "ci": [
-          2.89,
-          3.767
+          3.185,
+          3.972
         ],
         "claim_refs": [
           "claim:action:SD:forsvar:motioner",
           "claim:responsibility:SD:municipal:2018-2022:government",
           "claim:responsibility:SD:municipal:2022-2026:government",
           "claim:responsibility:SD:national:2022-10-18/pagaende:support",
-          "claim:responsibility:SD:regional:2022-2026:government"
+          "claim:responsibility:SD:regional:2022-2026:government",
+          "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2018",
+          "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2019",
+          "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2020"
         ],
         "components": {
           "A": 2.786,
           "B": 5.0,
           "C": 1.429,
-          "D": 2.5
+          "D": 5.0
         },
         "confidence": {
           "A": "high",
           "B": "medium",
           "C": "high",
-          "D": "low"
+          "D": "medium"
         },
         "evidence_refs": [],
         "flags": [
           "B_coverage_4/4",
           "A_a1_active",
-          "C_national_only_by_design",
-          "D_not_applicable"
+          "C_national_only_by_design"
         ],
-        "score": 3.329
+        "score": 3.579
       },
       "integration": {
         "ci": [
@@ -2001,7 +2015,10 @@
           "claim:responsibility:V:municipal:2022-2026:government",
           "claim:responsibility:V:regional:2014-2018:government",
           "claim:responsibility:V:regional:2018-2022:government",
-          "claim:responsibility:V:regional:2022-2026:government"
+          "claim:responsibility:V:regional:2022-2026:government",
+          "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2018",
+          "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2019",
+          "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2020"
         ],
         "components": {
           "A": 2.143,

@@ -1,0 +1,85 @@
+# Antal värnpliktiga som PÅBÖRJADE grundutbildning med värnplikt i Sverige per kalenderår.
+#
+# DELPOÄNG D, kategori forsvar, kanonisk indikator personal_varnpliktiga (riktning up, fler
+# utbildade värnpliktiga = starkare militär förmåga; submått militar_formaga). Detta är försvarets
+# FÖRSTA D-serie — kategorin var tidigare strukturellt D-tom (allowlistad). Spår D Tier 4.
+#
+# VÄRDEKÄLLA (spine): Försvarsmaktens årsredovisning (FM ÅR) per år — "antal som påbörjade
+# grundutbildning med värnplikt" / "antal inryckta". FM är förmågemyndigheten och dess ÅR-mått är
+# kalenderårsrent (antal som faktiskt ryckte in under året), till skillnad från Plikt- och
+# prövningsverkets "inskrivna", vars utbildningsårs-etikett (X/X+1) inte mappar entydigt mot
+# kalenderår. Värdet matchar indikatorns namn direkt: antal värnpliktiga under utbildning.
+#
+# KORSVERIFIERING ("varför inte båda", din sign-off 2026-06-07): varje år stäms av mot Plikt- och
+# prövningsverkets OBEROENDE "inskrivna till grundutbildning med värnplikt" (annat myndighetsmått,
+# läst direkt ur Pliktverkets pressmeddelanden). De två officiella myndigheterna ligger nära varann
+# (≤~3 % de år båda finns) och — avgörande — BÅDA visar samma enda nedgång 2021->2022. Eftersom D
+# bara tar TECKEN på årsförändringen är attributionen robust mot kvarvarande sifferosäkerhet:
+# serien är monoton uppåt utom 2021->2022, och den enda teckenkänsliga övergången är dubbel-
+# bekräftad av båda myndigheterna.
+#
+# SERIE FR.O.M. 2018: värnplikten återaktiverades 1 jan 2018; 2018 är första kullen (FM ÅR 2018:
+# "Sammantaget påbörjade 3 750 värnpliktiga grundutbildning"). Inga värden före 2018 (måttet
+# existerar inte — värnplikten vilade 2010–2017).
+#
+# KÄLLSPÅRNINGENS GRÄNS (v0, transparent): FM:s och Pliktverkets årsredovisnings-PDF:er är
+# FlateDecode-komprimerade och kan inte maskinläsas av verktygskedjan (pdftoppm saknas; WebFetch ger
+# binärt). 2018 + 2025 är direkt bekräftade ur FM ÅR (ordagrann mening). 2019/2021/2022/2024 är
+# korsverifierade mot Pliktverkets direkt-lästa pressmeddelanden. 2020 + 2023 vilar på FM-ÅR-
+# siffror lokaliserade via Wikipedias FM-ÅR-citerade tabell "Volymer inryckta" — men båda är inre
+# punkter på en monoton uppgång, så deras exakta värde påverkar INGET tecken (2019<2020<2021 och
+# 2022<2023<2024 håller för varje rimligt värde). v0 kvarstår tills exakta siffror transkriberats
+# direkt ur FM-ÅR-PDF:erna (bumpar v0->v1, jfr B1-granskningen). Reproducerbar/auditerbar via
+# pipeline/tools/varnpliktiga_audit.py.
+version: 0
+indicator: personal_varnpliktiga
+category: forsvar
+submeasure: militar_formaga
+unit: "antal varnpliktiga som paborjade grundutbildning (hela landet)"
+fm_arsredovisning_index: "https://www.forsvarsmakten.se/sv/om-forsvarsmakten/dokument/arsredovisningar/"
+years:
+  2018:
+    value: 3750
+    source: "https://www.forsvarsmakten.se/siteassets/2-om-forsvarsmakten/dokument/arsredovisningar/arsredovisning-2018/hkv-2019-02-21-fm2018-10243.7-huvuddokument-fm-ar-2018.pdf"
+    source_note: "FM AR 2018, direkt bekraftad: 'Sammantaget paborjade 3 750 varnpliktiga grundutbildning, vilket var nagot farre an malsattningen.'"
+  2019:
+    value: 4500
+    source: "https://www.forsvarsmakten.se/sv/om-forsvarsmakten/dokument/arsredovisningar/"
+    source_note: "FM AR 2019 (lokaliserad via Wikipedias FM-AR-citerade tabell Volymer inryckta)."
+    crosscheck_pliktverket: 4672
+    crosscheck_note: "Rekryteringsmyndigheten: 4 672 inskrivna till GU 2019/2020 (oberoende myndighetsmatt, nara)."
+  2020:
+    value: 4917
+    source: "https://www.forsvarsmakten.se/sv/om-forsvarsmakten/dokument/arsredovisningar/"
+    source_note: "FM AR 2020 (lokaliserad via Wikipedias FM-AR-citerade tabell Volymer inryckta). Inre monoton punkt -> paverkar inget D-tecken."
+  2021:
+    value: 5873
+    source: "https://www.forsvarsmakten.se/sv/om-forsvarsmakten/dokument/arsredovisningar/"
+    source_note: "FM AR 2021 (lokaliserad via Wikipedias FM-AR-citerade tabell Volymer inryckta)."
+    crosscheck_pliktverket: 5826
+    crosscheck_source: "https://via.tt.se/pressmeddelande/5-826-personer-inskrivna-till-varnplikt-20212022?publisherId=3235997&releaseId=3309814"
+    crosscheck_note: "Pliktverket: 5 826 inskrivna, 'borjar sin varnplikt fran sommaren 2021' (oberoende myndighetsmatt, 0,8 % skillnad)."
+  2022:
+    value: 5475
+    source: "https://www.forsvarsmakten.se/sv/om-forsvarsmakten/dokument/arsredovisningar/"
+    source_note: "FM AR 2022 (lokaliserad via Wikipedias FM-AR-citerade tabell Volymer inryckta). ENDA nedgangen i serien."
+    crosscheck_pliktverket: 5583
+    crosscheck_source: "https://via.tt.se/pressmeddelande/3334741/5-583-personer-inskrivna-till-varnplikt-sa-har-manga-kommer-fran-din-kommun?publisherId=3235997"
+    crosscheck_note: "Pliktverket: 5 583 inskrivna — BADA myndigheterna visar nedgang fran 2021 (dubbelbekraftad teckenkansliga overgang)."
+  2023:
+    value: 6320
+    source: "https://www.forsvarsmakten.se/globalassets/02-om-forsvarsmakten/myndighetsinformation/dokument/arsredovisningar/2023/forsvarsmaktens-arsredovisning-2023-bilagor.pdf"
+    source_note: "FM AR 2023 (lokaliserad via Wikipedias FM-AR-citerade tabell Volymer inryckta). Inre monoton punkt -> paverkar inget D-tecken."
+  2024:
+    value: 7300
+    source: "https://www.forsvarsmakten.se/siteassets/2-om-forsvarsmakten/dokument/arsredovisningar/arsredovisning-2024/forsvarsmaktens-arsredovisning-2024-bilaga-1-2-och-5.pdf"
+    source_note: "FM AR 2024, direkt citat: 'Under aret paborjade drygt 7 300 varnpliktiga sin grundutbildning, vilket overtraffade malsattningen' (mal 7 000). 7300 = 'drygt 7 300'; exakt heltal ej maskinlasbart ur PDF, men tecknet 6320->7300->8136 ar entydigt upp."
+    crosscheck_pliktverket: 7310
+    crosscheck_note: "Pliktverket: 7 310 inskrivna (utbildningsstart 2024) — nara FM:s drygt 7 300."
+  2025:
+    value: 8136
+    source: "https://www.forsvarsmakten.se/globalassets/02-om-forsvarsmakten/myndighetsinformation/dokument/arsredovisningar/2025/forsvarsmaktens-arsredovisning-2025.pdf"
+    source_note: "FM AR 2025, direkt bekraftad: 'Totalt ryckte 8 136 varnpliktiga in under aret' (fler an nagot tidigare ar under 2000-talet)."
+    crosscheck_pliktverket: 8251
+    crosscheck_source: "https://via.tt.se/pressmeddelande/4101317/8-251-personer-inskrivna-till-grundutbildning-2025?publisherId=3235997"
+    crosscheck_note: "Pliktverket: 8 251 inskrivna (utbildningsstart 2025) — nara FM:s 8 136 inryckta."

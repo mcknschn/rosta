@@ -36,7 +36,9 @@ allowlist:
   - { category: trygghet, indicator: aterfall_i_brott,         reason: "blocked: Brås återfallsstatistik publiceras bara som PDF-rapporter (prel/slutlig per ingångsår, ej ren tabell) med omarbetad metod och flerårig eftersläpning -> kräver expertbedömd transkribering (prel vs slutlig, metodbrott), ej lämplig för automatisk solo-transkribering (sonderat 2026-06-03)." }
   # --- forsvar (till stor del kvalitativt/sekretess) ---
   - { category: forsvar, indicator: forsvarsanslag_andel_bnp, reason: "target: upp till beslutad målnivå, ej up/down -> ej D-duglig." }
-  - { category: forsvar, indicator: personal_varnpliktiga,    reason: "no_api: Försvarsmaktens ÅR, ingen ren maskinläsbar årsserie." }
+  # personal_varnpliktiga inläst via Försvarsmaktens årsredovisning (antal som påbörjade GU per
+  # kalenderår 2018-2025, transkriberad config/personal_varnpliktiga.yaml, korsverifierad mot
+  # Pliktverkets inskrivna) -> ej allowlistad fr.o.m. 2026-06-07 (Spår D Tier 4). FÖRSVARETS FÖRSTA D.
   - { category: forsvar, indicator: materiel_formaga,         reason: "qualitative: sekretess/operativ förmåga, ingen öppen mätserie." }
   - { category: forsvar, indicator: civil_beredskap_niva,     reason: "qualitative: MSB-bedömning, ingen kvantitativ årsserie." }
   - { category: forsvar, indicator: ukraina_stod,             reason: "qualitative: politiskt/ad hoc, ingen objektiv årsindikator." }

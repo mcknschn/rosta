@@ -2819,6 +2819,46 @@
     "source_name": "energimyndigheten",
     "statement": "fossil_energianvandning = 101.607 (klimat, 2024)."
   },
+  "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2018": {
+    "kind": "claim",
+    "source_name": "forsvarsmakten",
+    "statement": "personal_varnpliktiga = 3750.0 (forsvar, 2018)."
+  },
+  "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2019": {
+    "kind": "claim",
+    "source_name": "forsvarsmakten",
+    "statement": "personal_varnpliktiga = 4500.0 (forsvar, 2019)."
+  },
+  "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2020": {
+    "kind": "claim",
+    "source_name": "forsvarsmakten",
+    "statement": "personal_varnpliktiga = 4917.0 (forsvar, 2020)."
+  },
+  "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2021": {
+    "kind": "claim",
+    "source_name": "forsvarsmakten",
+    "statement": "personal_varnpliktiga = 5873.0 (forsvar, 2021)."
+  },
+  "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2022": {
+    "kind": "claim",
+    "source_name": "forsvarsmakten",
+    "statement": "personal_varnpliktiga = 5475.0 (forsvar, 2022)."
+  },
+  "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2023": {
+    "kind": "claim",
+    "source_name": "forsvarsmakten",
+    "statement": "personal_varnpliktiga = 6320.0 (forsvar, 2023)."
+  },
+  "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2024": {
+    "kind": "claim",
+    "source_name": "forsvarsmakten",
+    "statement": "personal_varnpliktiga = 7300.0 (forsvar, 2024)."
+  },
+  "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2025": {
+    "kind": "claim",
+    "source_name": "forsvarsmakten",
+    "statement": "personal_varnpliktiga = 8136.0 (forsvar, 2025)."
+  },
   "claim:observed_result:obs:kolada:N15507:0000:2015": {
     "kind": "claim",
     "source_name": "Kolada",
