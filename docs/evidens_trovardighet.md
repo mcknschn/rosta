@@ -90,7 +90,7 @@ steg.** Vi behandlade dem länge som ett — "finns en ren votering?" fick avgö
 ## 3. Var vi står (uppdateras per leverans)
 
 Aktiv partikopplad B-evidens per kategori (källa: `python -m pipeline.tools.coverage_report`,
-B4-grind `b_submeasure_spread`). **Senast uppdaterad 2026-06-07 (B-grön-svepet).**
+B4-grind `b_submeasure_spread`). **Senast uppdaterad 2026-06-07 (B-grön-svepet + integration-svepet + HOLD-vägg-nedstigningar + arbete-kalibrering).**
 
 | Kategori | Undermått m. B-evidens | Status |
 |---|---|---|
@@ -389,8 +389,11 @@ undermått. Ex: trygghet/`forebyggande` via lag (2023) om kommuners brottsföreb
 
 Legend: ✅ byggt · 🟡 kandidat (research klar, väntar beslut) · ❌ förkastat (med skäl) · 🟣 steg-1-vägg (modellutvidgning).
 
-> **B-grön-svepet 2026-06-07:** se **§8.7** för den fullständiga leveransen (5 byggda v0 + 5 HOLD-sign-off-kandidater
-> + offentliga_finanser-beslutet). Rubrikerna nedan uppdaterade till nya undermåttsräkningen.
+> **Leveranser 2026-06-07:** se **§8.7** (B-grön-svepet: 5 mått + integration-svepet: migration + alternativ-undermått-analys)
+> och **§8.8 sign-off-checklista** för hela sign-off-ytan. Totalt **6 byggda B-mått v0** (5 enhällighet + 1 differentierande
+> migration) + 1 kalibrering (sfi confidence→high). **4 HOLD-väggar** (boendesegregation, normer_tillit, genomforbarhet_leverans,
+> industriell_konkurrenskraft — med skärpta diagnoser + triggrar) + inflation/offentliga_finanser = target/kontext.
+> Rubrikerna nedan uppdaterade till nya undermåttsräkningen.
 
 ### Trygghet — **5/5** ✅ FULLT (forebyggande byggt 2026-06-07; snabbförfarande 2026-06-06)
 - ✅ `snabbforfarande_lagforing` → `handlaggningstid` (Brå 2020:3: handläggningstid i tingsrätt ca −40 %,
@@ -735,10 +738,43 @@ snabbspår (implementeringsuppföljning); subv. anställningar (redan i liggaren
 förblir B-tomt** (operationaliserat som SCB TAB6529 = utrikes föddas sysselsättningsgrad → kräver konstrukt-exakt
 sysselsättnings-effekt för målgruppen). **Watch-lead:** kommande IFAU-effektutvärdering av regionalt yrkesvux/
 kombinationsutbildningar med sysselsättningsutfall PER FÖDELSELAND (SOU 2024:16 "Växla yrke som vuxen") → då blir
-yrkesvux byggbart (verifierade particitat finns redan: S/M/C/V/KD/L/MP, SD-lucka). **Legitim icke-dubbelräknande
-uppgradering (öppet sign-off-val):** lägg R 2023:19 som bekräftande 4-års-RCT-källa till BEFINTLIGA
-`sfi_kombinerat_med_praktik` (visar att +15 p.e.-effekten består 10–20 p.e. i flera år) → motiverar ev. confidence
-medium→high (score-påverkande → din sign-off). Citat-only-tillägg = ingen score-effekt.
+yrkesvux byggbart (verifierade particitat finns redan: S/M/C/V/KD/L/MP, SD-lucka). **GJORT 2026-06-07 (användarbeslut):**
+R 2023:19 lagd som bekräftande 4-års-RCT-källa till BEFINTLIGA `sfi_kombinerat_med_praktik` + confidence medium→high
+(effekten består 10–20 p.e. i flera år, ej längre "bara en pilot"). **VIKTIGT — INGEN score-effekt:** dist byte-identisk.
+B normaliserar `net_support` per riktning (num_sum/abs_sum), så confidence-vikten cancelar när ett partis claims pekar åt
+samma håll; även CI oförändrad efter avrundning. Ändringen är alltså ren proveniens/kalibrering (korrekt confidence-värde,
+forward-korrekt om modellen senare använder confidence för CI), version ej bumpad → sign-off.
+
+---
+
+### 8.8 Sign-off-checklista (allt flaggat v0 — för genomgång i kommande session) ⭐
+
+> Allt nedan är byggt som **version 0 / FLAGGAT**; `version`-fälten är EJ bumpade och `dist/`-snapshot är EJ re-baselinad
+> (sign-off-åtgärder). Inget partibetyg/omdöme finns i kod — bara i versionsstyrd config (CLAUDE.md). Här är hela
+> sign-off-ytan samlad.
+
+**A. Byggda B-mått att behålla/kasta (6 st, alla v0):**
+| # | Mått (kategori) | Källa/typ | Codex | Score-effekt |
+|---|---|---|---|---|
+| 1 | transparens_ansvar / `insyn_partifinansiering` (demokrati) | enhällighet KU19 p1, low/low | BUILD-WC | icke-rankningsdrivande |
+| 2 | ekonomisk_ambition / NY `forsvarsfinansiering_upptrappning_mot_mal` (forsvar) | enhällighet FöU2, low/low | BUILD-WC | icke-rankningsdrivande |
+| 3 | forebyggande / NY `kommunalt_brottsforebyggande_arbete` (trygghet) | enhällighet JuU9, low/low | BUILD | icke-rankningsdrivande |
+| 4 | vard_tillganglighet / `koncentration_nationell_hogspecialiserad_vard` (valfard) | enhällighet SoU18, low/low | BUILD-WC | icke-rankningsdrivande |
+| 5 | omsorg_personal / NY `kontinuitet_i_omsorgen` (valfard) | enhällighet SoU24, low/low | BUILD-WC | icke-rankningsdrivande |
+| 6 | migrationssystem / NY `atervandande_effektivitet` (integration) | **genuin split** RiR 2020:7/SfU6 p2, medium/medium | KEEP-WC | **differentierande** (S −0,06, MP −0,04, M/SD/L +0,04…0,09) |
+
+**B. Kalibrering att bekräfta (1 st):** `sfi_kombinerat_med_praktik` confidence medium→high + R 2023:19-källa (ingen score-effekt; ren proveniens).
+
+**C. Specifika sign-off-frågor:**
+1. **Mått 6 (migration) — TIDSGRIND:** stansen vilar på 2020/21 (SfU6); M/KD/L/SD bekräftas av Tidöavtalet 2022, men S/MP/C:s *nuvarande* hållning är ej omverifierad. Acceptera, eller kräv omverifiering mot innevarande mandatperiod? Och: godkänn att det är appens första *differentierande* integration-B-mått.
+2. **Mått 1 (transparens) — DUBBELRÄKNING:** C/MP är även i bunten `starkt_oberoende_granskning_och_insyn` (→ korruption) ankrade på partifinansierings-citat. Omankra C/MP där, eller acceptera överlappet (båda icke-rankningsdrivande)?
+3. **3 NYA indikatorer i `categories.yaml`** (forsvarsfinansiering_upptrappning_mot_mal, kommunalt_brottsforebyggande_arbete, kontinuitet_i_omsorgen) + 1 (atervandande_effektivitet) = strukturändring; normalt §5.8-spärr-2-sign-off, byggt v0 per mandatet. Inga undermåttsvikter ändrade.
+4. **Kalibrering:** mått 1–5 är low/low (mekanism-/designevidens); mått 6 är medium/medium (RiR-auktoritetsutvärdering). Bekräfta kalibreringen.
+5. **offentliga_finanser** lämnad ⚪ HOLD-kontext (codex: åtstramnings-tilt). Override möjlig (`langsiktig_finanspolitisk_hallbarhet` via FiU14-acklamation).
+6. **Re-baselina `dist/scores.snapshot.json`?** Görs vid sign-off så drift nollställs.
+7. **Bumpa `version`-fälten** i categories.yaml/evidence_ledger.yaml/party_positions.yaml (1→2) vid godkännande.
+
+**D. HOLD-väggar (ingen åtgärd nu, bevaka triggrarna):** boendesegregation (steg-2/neutralitet; trigger: enhälligt bosättningslag-betänkande ~2027 + RiR 2021:29), normer_tillit (steg-2; trigger: enhälligt GOTV-anslag, el. acklamerat yrkesprogram + IFAU 2017:12), genomforbarhet_leverans (steg-1/instrument-effekt; trigger: FöU3-strategins effektredovisning), industriell_konkurrenskraft (steg-1 tvåsidig; trigger: ren positiv konkurrenskraftskälla för elnät NU15). + inflation/offentliga_finanser = medvetet target/kontext.
 
 ---
 
@@ -773,6 +809,7 @@ medium→high (score-påverkande → din sign-off). Citat-only-tillägg = ingen 
 | 2026-06-07 | **Integration extra indikatorvända + alternativ-undermått-analys** (för att nå 4/5) → integration stannar på **3/5** | nya indikatorspår (boendesegr: DO/Bostad först/RiR 2024:15/CU13; normer: IFAU 2017:12/2018:3/heders/diskriminering) alla wall; alternativ-undermått-analys: inget rent byte (alla dubbelräknar befintligt undermått/annan kategori eller tiltar) → §5.8-spärr "fuska inte" → behåll HOLD, ersätt ej. Etablerings-instrument (IFAU R 2023:19) starkt men dubbelräknar arbete_sjalvforsorjning (öppet sign-off-val) |
 | 2026-06-07 | **Integration ACCEPTERAS på 3/5** (användarbeslut) | inget neutralt 4:e undermått finns (båda väggar äkta, alla alternativ dubbelräknar/tiltar); omstrukturering avvisad; "neutralitet före 4". Etablerings-bonusen ej byggd. Väggarnas återöppningstriggrar bevakas |
 | 2026-06-07 | **arbete_sjalvforsorjning: inget nytt distinkt instrument byggt** (användarbegäran "flera mått") | etablering IFAU R 2023:19 = DUBBELRÄKNING (samma Göteborgs-RCT som sfi_kombinerat_med_praktik); fresh sökning (yrkesvux/validering/KROM/snabbspår/subv.) wallar på evidens-grind (~0 effekt för utrikes födda / korrelation / noll effekt) el. neutralitet; bygg ej (att koda yrkesvux positive vore tilt). sjalvforsorjningsgrad förblir B-tomt; watch-lead IFAU yrkesvux per födelseland (SOU 2024:16). Öppet sign-off: stärk sfi_kombinerat_med_praktik m. R 2023:19 (4-års-RCT, ev. conf medium→high) |
+| 2026-06-07 | **sfi_kombinerat_med_praktik stärkt** (användarbeslut): R 2023:19 som bekräftande 4-års-RCT-källa + confidence medium→high | RCT-uppföljning visar att effekten består (10–20 p.e. flera år) → ej längre "bara en pilot". **INGEN score-effekt** (dist byte-identisk: B normaliserar net_support per riktning → confidence cancelar för samriktade claims; CI oförändrad). Ren proveniens/kalibrering; version ej bumpad → sign-off |
 
 ---
 
@@ -813,6 +850,7 @@ mot snapshot), `review_packet` (granskningspaket). Snapshot re-baselineas **bara
 | 2026-06-06 | **§4.3 mätbarhetskarta tillagd** (på användarfråga): varje indikator klassad B/D → ✅ mäts / 🟡 mätbart-ej-byggt (10) / 🔴 ej mätbart (4) / ⚪ target (3). De 4 röda = exakt de 4 HOLD-undermåtten → designfråga §8.6 (borttagning/omklassning, sign-off). De 10 gula ska byggas, ej strykas. |
 | 2026-06-06 | **Andra svepet (§5.8 tillämpat):** demokrati **3/5 → 4/5** via public service-lagen (KrU2 p1 enhällighet, codex BUILD-WITH-CHANGES, low/low). forsvar/valfard/integration djupsvepta (7+11+11 instrument, 4 parallella researchagenter, alla röstsiffror verifierade mot data.riksdagen.se) → **HOLD ×5 bekräftat** med skärpta återöppningsvillkor (§6). Nya fynd: vårdplats-slutrapport 2026:3 föll *nedåt* (villkor konsumerat); **cancerscreening** (valfard) + **KU4-tillgänglighet** (integration) = near-miss som faller på steg-2-tilt resp. fel konstrukt; **KU39 insyn i politiska processer** = stark demokrati-återöppning (beslut 2026-06-15). 37 evidensposter / 200 ståndpunkter; 167 tester gröna, ruff rent, 0 cyrilliska. §3/§6/§9 uppdaterade. |
 | 2026-06-06 | **Begreppsmodell stringentad (på användarfråga):** kanonisk vokabulär **Kategori → Undermått → Indikator → Riktning** låst i §4.3-ordlista; "submått" → **Undermått** normaliserat i alla 5 dok (IDEA/DATA/BACKLOG/ROADMAP/evidens_trovardighet, 116 förekomster); IDEA.md + BACKLOG.md pekar nu på §4.3 som sanningskälla. **Config-bugg fixad:** 4 undermåttsnamn (Nato/Skola/Normer/Finansiering) var trunkerade av oquoterade kommatecken i `categories.yaml` flow-YAML → citerade. **§4.3 fick mastertabell** över samtliga **35 undermått / 52 indikatorer** (Kategori/Undermått/Indikator/Riktning/Mätstatus, genererad ur config; de 3 undermått som *saknar indikator* — forebyggande/industriell_konkurrenskraft/migrationssystem — listas som egna rader). dist byte-identisk (namn påverkar ej betyg); 167 tester gröna. |
+| 2026-06-07 | **sfi_kombinerat_med_praktik stärkt + §8.8 sign-off-checklista + doc-konsistensgenomgång:** R 2023:19 (4-års-RCT) lagd som bekräftande källa + confidence medium→high (användarbeslut) — ingen score-effekt (dist byte-identisk, B normaliserar net_support per riktning). Ny **§8.8 = samlad sign-off-yta** (6 byggda v0 + 1 kalibrering + 7 sign-off-frågor + 4 HOLD-väggar) inför kommande sign-off-session. §3-timestamp + §6-banner uppdaterade; counts verifierade (43 poster / 247 ståndpunkter / 29 av 35 B-grön). |
 | 2026-06-07 | **arbete_sjalvforsorjning fler-mått-försök (användarbegäran "bygg arbete_sjalvforsorjning, flera mått"):** 2 agenter. Etablering IFAU R 2023:19 = **DUBBELRÄKNING** (4-årsuppföljning av samma Göteborgs-RCT som redan ankrar sfi_kombinerat_med_praktik) → bygg ej. Fresh sökning efter GENUINT DISTINKT instrument: **inget byggbart** — yrkesvux/komvux (IFAU 2019:17 effekt ~0 för utrikes födda utanför Europa → positive vore tilt), validering (SNS 72 = före/efter/korrelation), KROM (IFAU 2024:9 noll effekt + privatiserings-axel), snabbspår/subv. anställningar (uppföljning/dubbelräkning). sjalvforsorjningsgrad förblir B-tomt; watch-lead IFAU yrkesvux per födelseland (SOU 2024:16). **Inget byggt, ingen config-ändring** — "neutralitet före 4" (koda ej en effekt källan inte bär). Öppet sign-off: stärk befintliga sfi_kombinerat_med_praktik m. R 2023:19 (4-års-RCT). §8.7/§9. |
 | 2026-06-07 | **INTEGRATION EXTRA RUNDA + ALTERNATIV-UNDERMÅTT (användarbegäran: en vända till för att nå 4/5, annars byt undermått):** 3 agenter (fresh indikatorvända boendesegr + normer_tillit, samt §5.8-steg-2 strukturanalys). **Båda väggarna bekräftade på GENUINT NYA spår** (ej omprövning): boendesegr — DO-diskriminering, hemlöshet/Bostad först, bostadsbidrag RiR 2024:15, CU13-acklamation, alla wall; normer_tillit — **ny near-miss IFAU 2017:12** (yrkesprogram→valdeltagande, partistyrbart) men UbU22-split på fel värdeaxel = tilt, + IFAU 2018:3/heders/diskriminering wall. **Alternativ-undermått: inget rent byte** — diskriminering/hälsogap/utrikes kvinnor/medborgarskap/skolnärvaro/barnfattigdom dubbelräknar alla befintligt undermått/annan kategori eller tiltar (§5.8-spärr). Enda starka fynd = **etablerings-B-instrument** (IFAU R 2023:19, uppmätt kausal) men dubbelräknar arbete_sjalvforsorjning (öppet sign-off-val). **integration stannar 3/5**; inget byggt; "neutralitet före 4". §6/§8.7/§9 uppdaterade, ingen config-ändring. |
 | 2026-06-07 | **HOLD-VÄGG-NEDSTIGNINGAR (användarbegäran "gå igenom dem med"):** dedikerade kandidatnedstigningar för de återstående HOLD-väggarna. **boendesegregation:** #2–#5 prövade → HOLD, men logg-rättelse (RiR 2021:29 ÄR kausal kommunanvisning-utvärdering; väggen är STEG 2/neutralitet, ej steg 1) + skärpta återöppningsvillkor. **genomforbarhet_leverans (forsvar):** STEG 2 LÖST (bet. 2025/26:FöU3 p1 acklamation, alla 8) → väggen krympt till enbart steg-1/instrument-effekt; en effektutvärdering räcker nu för BUILD. **industriell_konkurrenskraft (klimat):** neutralt ankare finns (elnät bet. 2023/24:NU15 p1 acklamation) men steg 1 tvåsidigt (Tillväxtanalys: elektrifiering→"förlorad konkurrenskraft"); RiR 2024:17 "oklart"≠belagd negativ; D-serie utsläpp/förädlingsvärde finns (≠ B). **Inget byggt** (inget passerar båda grindar) — "neutralitet före 4". §6/§8.7/§9 uppdaterade; ingen config-ändring. |
