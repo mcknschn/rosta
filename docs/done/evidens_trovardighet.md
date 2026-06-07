@@ -1,5 +1,11 @@
 # Rösta — Evidens & trovärdighet (B-spåret): arbetslogg & metodutveckling
 
+> ✅ **B-SPÅRET SIGNERAT / SLUTFÖRT 2026-06-07** — arkiverat i `docs/done/`. Hela §8.8-sign-off-ytan avgjord
+> (se §8.8 + beslutslogg §9): 6 B-mått godkända, version 1→2, snapshot re-baselinad, dubbelräkning åtgärdad,
+> migration omverifierad, döda indikatorer→BEVAKA. **§4.3 förblir den LEVANDE kanoniska ordlistan**
+> (Kategori→Undermått→Indikator→Riktning) som IDEA/DATA/BACKLOG pekar på. Dokumentet återupptas vid framtida
+> B-leverans (HOLD-triggrar faller in) eller om **viktad stance** ändrar B-modellen → flyttas då tillbaka till `docs/`.
+
 > **Levande arbetsdokument.** Spårar arbetet med att höja **B** (delpoäng evidens/träffsäkerhet,
 > 0,35 av varje kategoripoäng) — både *täckning* (fler undermått med partikopplad evidens) och
 > *trovärdighet* (källkvalitet, neutralitet, verifierbarhet).
@@ -7,9 +13,9 @@
 > Bärande omtag (2026-06-06): **måttet och positioneringen är två skilda steg** (§2). Mycket av
 > det vi kallade "väggen" var i själva verket ett källval i steg 2, inte ett fel i måttet.
 >
-> Relaterat: metoden i [fas4b_partistandpunkter_metod.md](fas4b_partistandpunkter_metod.md)
-> (källhierarki, instrument-regeln, verifiering), planen i [BACKLOG.md](BACKLOG.md) (Spår B),
-> grundprincipen i [../IDEA.md](../IDEA.md), datamodellen i [../DATA.md](../DATA.md).
+> Relaterat: metoden i [fas4b_partistandpunkter_metod.md](../fas4b_partistandpunkter_metod.md)
+> (källhierarki, instrument-regeln, verifiering), planen i [BACKLOG.md](../BACKLOG.md) (Spår B),
+> grundprincipen i [../IDEA.md](../../IDEA.md), datamodellen i [../DATA.md](../../DATA.md).
 
 ---
 
@@ -90,7 +96,7 @@ steg.** Vi behandlade dem länge som ett — "finns en ren votering?" fick avgö
 ## 3. Var vi står (uppdateras per leverans)
 
 Aktiv partikopplad B-evidens per kategori (källa: `python -m pipeline.tools.coverage_report`,
-B4-grind `b_submeasure_spread`). **Senast uppdaterad 2026-06-07 (B-grön-svepet + integration-svepet + HOLD-vägg-nedstigningar + arbete-kalibrering).**
+B4-grind `b_submeasure_spread`). **Senast uppdaterad 2026-06-07 — ✅ SIGN-OFF GENOMFÖRD (B-grön- + integration-svepen godkända; version 1→2; snapshot re-baselinad). Se §8.8/§9.**
 
 | Kategori | Undermått m. B-evidens | Status |
 |---|---|---|
@@ -117,7 +123,7 @@ relabel + dubbelräkning) och **normer_tillit** (steg 1 löst/Delmi 2025:5, steg
   evidensbelagd riktning.
 
 **Sammanlagt:** 43 evidensposter / 247 ståndpunkter (2026-06-07: B-grön-svepet +5 poster/+40 ståndpunkter; integration-
-svepet +1 post/+7 ståndpunkter [migration, V utelämnat]). `dist/`-snapshot medvetet ej re-baselinad så kumulativ effekt syns. **B-grön-svepets ISOLERADE
+svepet +1 post/+7 ståndpunkter [migration, V utelämnat]). `dist/`-snapshot **re-baselinad vid sign-off 2026-06-07** (drift nollställd; den ackumulerade svep-effekten inlåst — vid baslinjebytet flippade SD>V längst ner, topp 6 oförändrad). **B-grön-svepets ISOLERADE
 effekt** (current dist vs git HEAD): **ranking OFÖRÄNDRAD** (S > L > M > KD > MP > C > SD > V), alla 8 partier +0,018…+0,109
 total (alla cellförändringar positiva — inget parti straffas, omöjligt att tilta då alla supports); störst lyft
 till tidigare under-täckta (SD +0,109 via valfard, MP +0,053 via forsvar) = täckningsifyllnad, ej bias.
@@ -268,8 +274,9 @@ kontext-undermått (medvetet).
    `forsorjningstrygghet_materiel` föreslagen), `industriell_konkurrenskraft` (klimat — dubbelvägg;
    `industrins_utslappsintensitet` föreslagen), `boendesegregation` + `normer_tillit`
    (integration — genuina väggar/högsta bias-risk; se §8.7). *(`migrationssystem` LÖST 2026-06-07 via RiR 2020:7,
-   se §8.7.) (De döda indikatorerna `personalomsattning_omsorg`, `segregation`, `tillit_valdeltagande` behålls
-   separat; deras undermått täcks nu eller är HOLD.)*
+   se §8.7.) (De döda indikatorerna `personalomsattning_omsorg`, `leveranstid_materiel`, `segregation`,
+   `tillit_valdeltagande` omklassade till **🔴 BEVAKA / utvidgningskandidat** 2026-06-07 — behålls med
+   återöppningsvillkor i `categories.yaml`-noter, renormaliseras bort tills dess; Beslut 8.)*
 4. **⚪ Target/kontext (utan B-grön, medvetet):** `inflation_prisstabilitet` (Riksbanksstyrt) +
    `offentliga_finanser` (codex HOLD-kontext 2026-06-07: åtstramnings-tilt + dubbelräkning mot A/c2 — directional
    konvertering avvisad). `forsvarsanslag_andel_bnp` förblir target men undermåttet ekonomisk_ambition nåddes via
@@ -283,7 +290,7 @@ target/kontext. De 8 gula är frivilliga bonus-indikatorer på redan täckta und
 ## 5. Steg 2 — metodregister för positionering
 
 Alla källor lyder under samma grindar (§10): instrument-exakthet, ordagrant citat + dok-id,
-neutralitet. `source_type`-enumet i [fas4b §7](fas4b_partistandpunkter_metod.md) tillåter redan hela
+neutralitet. `source_type`-enumet i [fas4b §7](../fas4b_partistandpunkter_metod.md) tillåter redan hela
 stegen — vi har bara underutnyttjat allt utom votering.
 
 ### 5.1 Källstegen och vad varje källa är bra på
@@ -305,7 +312,7 @@ Confidence speglar var på stegen raden sitter; coverage-krympning + flagga bär
 *mot* punkten) är det belägg för att alla 8 partier står bakom. Koda samtliga `supports`,
 `source_type: betankande`, `quote` = meningen som visar enhällighet/utskottets förslag.
 
-**Varför tillåtet:** [fas4b §5](fas4b_partistandpunkter_metod.md) säger redan att stance får sättas när
+**Varför tillåtet:** [fas4b §5](../fas4b_partistandpunkter_metod.md) säger redan att stance får sättas när
 partiet är formell avsändare, röstat för, eller står bakom via utskott. Ett enhälligt betänkande är de
 facto kollektiv stance — och den **renaste neutraliteten**: alla kodas lika, inget straffas.
 
@@ -368,7 +375,7 @@ undermått. Ex: trygghet/`forebyggande` via lag (2023) om kommuners brottsföreb
    plus närliggande varianter.
 2. **Hittar du inget rent instrument → STANNA INTE. Eskalera till nytt undermått.** Kör INTE
    instrument-för-instrument i blindo. Ta ett steg tillbaka:
-   - **a.** Läs om kategorin i [../IDEA.md](../IDEA.md) — vad den *ska* fånga + dess caveat.
+   - **a.** Läs om kategorin i [../IDEA.md](../../IDEA.md) — vad den *ska* fånga + dess caveat.
    - **b.** Bred analys uppifrån-och-ned: vad påverkar *generellt* kategorin positivt enligt officiell svensk
      kunskap (myndigheter, SOU, forskningsöversikter)?
    - **c.** Borra ner till ett **NYTT undermått** (med ny indikator, jfr §5.2/§5.7) som (i) genuint hör hemma i
@@ -389,11 +396,12 @@ undermått. Ex: trygghet/`forebyggande` via lag (2023) om kommuners brottsföreb
 
 Legend: ✅ byggt · 🟡 kandidat (research klar, väntar beslut) · ❌ förkastat (med skäl) · 🟣 steg-1-vägg (modellutvidgning).
 
-> **Leveranser 2026-06-07:** se **§8.7** (B-grön-svepet: 5 mått + integration-svepet: migration + alternativ-undermått-analys)
-> och **§8.8 sign-off-checklista** för hela sign-off-ytan. Totalt **6 byggda B-mått v0** (5 enhällighet + 1 differentierande
-> migration) + 1 kalibrering (sfi confidence→high). **4 HOLD-väggar** (boendesegregation, normer_tillit, genomforbarhet_leverans,
-> industriell_konkurrenskraft — med skärpta diagnoser + triggrar) + inflation/offentliga_finanser = target/kontext.
-> Rubrikerna nedan uppdaterade till nya undermåttsräkningen.
+> **Leveranser 2026-06-07 — ✅ SIGN-OFF GENOMFÖRD (§8.8/§9):** se **§8.7** (B-grön-svepet: 5 mått + integration-svepet:
+> migration + alternativ-undermått-analys) och **§8.8 sign-off-checklista** (nu avgjord). Totalt **6 byggda B-mått, godkända
+> v2** (5 enhällighet + 1 differentierande migration) + 1 kalibrering (sfi confidence→high). Dubbelräkning (C/MP transparens)
+> åtgärdad, migration omverifierad, 4 döda indikatorer → BEVAKA, version 1→2, snapshot re-baselinad. **4 HOLD-väggar**
+> (boendesegregation, normer_tillit, genomforbarhet_leverans, industriell_konkurrenskraft — med skärpta diagnoser + triggrar,
+> lämnas/bevakas) + inflation/offentliga_finanser = target/kontext. Rubrikerna nedan uppdaterade till nya undermåttsräkningen.
 
 ### Trygghet — **5/5** ✅ FULLT (forebyggande byggt 2026-06-07; snabbförfarande 2026-06-06)
 - ✅ `snabbforfarande_lagforing` → `handlaggningstid` (Brå 2020:3: handläggningstid i tingsrätt ca −40 %,
@@ -583,7 +591,7 @@ Legend: ✅ byggt · 🟡 kandidat (research klar, väntar beslut) · ❌ förka
   betänkanden KU18 (regering-vs-opp-tilt).
 
 ### Ekonomi — 4/6 ✅ (offentliga_finanser HOLD-som-kontext 2026-06-07, codex avvisade directional konvertering — se §8.7; inflation = target)
-- Färdigställt 2026-06-05; se [BACKLOG.md](BACKLOG.md). Alla 4 B-möjliga undermått täckta; inflation/off.finanser
+- Färdigställt 2026-06-05; se [BACKLOG.md](../BACKLOG.md). Alla 4 B-möjliga undermått täckta; inflation/off.finanser
   = target (vilande).
 
 ---
@@ -607,7 +615,7 @@ varje röstsiffra curl-verifierad mot data.riksdagen.se; codex-2nd-opinion på b
 Återöppningsvillkor per HOLD står i §6. Centralt fynd: **enhällighet-som-källa fungerar** (#1, #2 var
 "väggade" under den gamla votering-först-metoden), men den dissolverar bara *steg-2*-väggen — där *steg 1*
 (riktningsevidensen) saknas eller är mixed (#3–#7) hjälper ingen positioneringsmetod. Det är gränsen mellan
-"källval" och "äkta vägg" (§4), nu empiriskt bekräftad. Förkastningsskäl + dok-id även i [BACKLOG.md](BACKLOG.md).
+"källval" och "äkta vägg" (§4), nu empiriskt bekräftad. Förkastningsskäl + dok-id även i [BACKLOG.md](../BACKLOG.md).
 
 > **OBS — detta var ett FÖRSTA svep (en runda, ~1 instrument per delområde), inte en uttömmande genomgång.**
 > De 5 HOLD och de 4 kategorier under 4 undermått (välfärd 2, integration 2, försvar 3, demokrati 3) ska
@@ -629,11 +637,11 @@ varje röstsiffra curl-verifierad mot data.riksdagen.se; codex-2nd-opinion på b
 | # | Fråga | Läge / rekommendation |
 |---|---|---|
 | 1 | **Räkna värdeneutrala konsensus-mått mot 4-undermått-målet?** (steg-1-bra mått, positionerat via enhällighet/§5.2 → alla supports) | Rekommendation: **ja, med disciplin** — ett undermått i taget, enhällighet verifierad, flaggat som icke-rankningsdrivande. Det är BACKLOG-målet "höj B:s trovärdighet". |
-| 2 | **Modellutvidgning för grad/magnitud?** (§5.6 — fånga "alla stödjer men olika mycket" ur budgetar) | Större ingrepp (viktad stance / ambitionsnivåer). Inte börjat; kräver designbeslut. Avgör hur mycket budgetdifferentiering vi kan kapitalisera. |
-| 3 | **Hur långt bak väger banan?** (§5.5) | Rekommendation: mandatperioden, recency-viktat; varaktiga omsvängningar kodas efter nuläget (nato-regeln). |
+| 2 | **Modellutvidgning för grad/magnitud?** (§5.6 — fånga "alla stödjer men olika mycket" ur budgetar) | ✅ **BESLUTAT 2026-06-07: ANTAGEN** som kommande förbättring (Beslut 12). Större ingrepp (viktad stance / ambitionsnivåer); **sekvensering vs D-spåret under beslut**. Kräver egen spec + **neutralitetsgrind** (magnitud endast ur kvantifierad officiell källa, binär fallback annars). Avgör hur mycket budgetdifferentiering vi kan kapitalisera. |
+| 3 | **Hur långt bak väger banan?** (§5.5) | ✅ **BESLUTAT 2026-06-07** (Beslut 13): mandatperioden, recency-viktat; varaktiga omsvängningar kodas efter nuläget (nato-regeln). **Framtida:** väga in flera mandatperioder — kräver eget designbeslut (hur tyngs historik utan "straffa-konvertiter"-effekt). |
 | 4 | **Acceptera nato-byggets V-straff?** (V −0,375 i försvar) | ✅ **BESLUTAT 2026-06-06: OK** (objektivt belagt, V genuint Nato-kritiskt). |
 | 5 | **Behåll invasiva-arter-måttet (klimat)?** | ✅ **BESLUTAT 2026-06-06: BEHÅLL** ("kan fylla på i framtiden"). Byggt v0 med instrument-mekanismcitat + konservativ low/low + alla 8 supports. |
-| 6 | **Ta bort / åtgärda de röda undermåtten?** Efter B-grön-svepet 2026-06-07 är bilden ändrad: `forebyggande` har nu en indikator (byggd); `omsorg_personal` nås via nya `kontinuitet_i_omsorgen` (döda `personalomsattning_omsorg` behålls separat). Kvar: (a) döda indikatorer `leveranstid_materiel`/`segregation`/`tillit_valdeltagande` (deras undermått är HOLD eller D-täckta); (b) 2 undermått som *saknar indikator* (`industriell_konkurrenskraft`, `migrationssystem`). | **ÖPPEN.** Se §8.7 för konkreta sign-off-kandidat-indikatorer per HOLD-undermått. Rekommendation oförändrad: omklassa döda indikatorer till kontext eller lägg de föreslagna nya indikatorerna (sign-off, ändrar ej betyg förrän byggt då tomma undermått renormaliseras bort). |
+| 6 | **Ta bort / åtgärda de röda undermåtten?** Efter B-grön-svepet 2026-06-07 är bilden ändrad: `forebyggande` har nu en indikator (byggd); `omsorg_personal` nås via nya `kontinuitet_i_omsorgen` (döda `personalomsattning_omsorg` behålls separat). Kvar: (a) döda indikatorer `leveranstid_materiel`/`segregation`/`tillit_valdeltagande` (deras undermått är HOLD eller D-täckta); (b) 2 undermått som *saknar indikator* (`industriell_konkurrenskraft`, `migrationssystem`). | ✅ **BESLUTAT 2026-06-07** (Beslut 8): de 4 döda indikatorerna (`personalomsattning_omsorg`, `leveranstid_materiel`, `segregation`, `tillit_valdeltagande`) omklassade till **🔴 BEVAKA / utvidgningskandidat** med återöppningsvillkor i `categories.yaml`-noter — ej strukna, kan återupplivas vid ny indikator/evidens. De 2 indikatorlösa undermåtten: `migrationssystem` LÖST (RiR 2020:7), `industriell_konkurrenskraft` kvar som HOLD-vägg (§8.7). Poängneutralt (renormaliseras bort). |
 
 ### 8.7 B-grön-svepet 2026-06-07 — vad som byggdes + sign-off-kandidater ⭐
 
@@ -655,10 +663,11 @@ dokumentstatus; citat verbatim-kollade.
 | omsorg_personal (valfard) | **NY** kontinuitet_i_omsorgen | `fast_omsorgskontakt` — prop. 2021/22:116 + Socialstyrelsen, SoU24 p2 | BUILD-WC (ny indikator ≠ personalomsättning) |
 
 **Sign-off-frågor på de byggda:**
-- **Dubbelräkning (transparens):** C och MP är i den befintliga bunten `starkt_oberoende_granskning_och_insyn`
-  (→ korruption) ankrade på partifinansierings-citat → samma instrument krediterar C/MP under två demokrati-undermått.
-  *Val:* omankra C/MP:s granskningsbunt-rader till offentlighetsprincip/riksrevisions-citat, eller acceptera överlappet
-  (båda är icke-rankningsdrivande). Övriga 6 partier överlappar ej.
+- **Dubbelräkning (transparens) — ✅ ÅTGÄRDAD (sign-off 2026-06-07, Beslut 3):** C och MP var i bunten
+  `starkt_oberoende_granskning_och_insyn` (→ korruption) ankrade på partifinansierings-citat → dubbelkrediterade under två
+  demokrati-undermått. **Lösning:** raderna omankrade till andra yrkanden i *samma* motioner — C → **lobbyregister**
+  (HD023583 yrk. 17), MP → **offentlighetsprincipen** (HA02181 yrk. 9), båda verifierade ordagrant mot `.text`.
+  Partifinansiering krediteras nu ENDAST i `insyn_partifinansiering`. Poängneutralt (stance kvar supports). Övriga 6 partier överlappade ej.
 - **Strukturändring:** 3 nya indikatorer i `categories.yaml` (forsvar/trygghet/valfard) — normalt §5.8-spärr-2-sign-off;
   byggt som v0 per mandatet. Inga undermåttsvikter ändrade (nya indikatorer i befintliga undermått).
 - **Behåll/kasta:** alla 5 är low/low mekanism-/designevidens (ingen ex-post-effektutvärdering) — samma kalibrering
@@ -691,12 +700,14 @@ får bra B). 3 forskningsagenter (5 förslag/undermått) + per-parti-verifiering
 | `boendesegregation` | ❌ **HOLD** (kamera reverterad; nedstigning #2–#5 gjord) | Kamera-vägen byggd→reverterad (codex KILL: trygghet-relabel + dubbelräknar `situationell_prevention_kamerabevakning` + §8.7-varningen + 7-1≈noll diff). **Dedikerad nedstigning 2026-06-07:** #2 bosättningslagen/kommunanvisning **passerar instrument-grinden** (RiR 2021:29 = kausal: kommunanvisning→jämnare spridning, gamla systemet "ökade segregationen") men **faller på neutralitet** (SD vill avskaffa på självstyre-grund, M behålla = värdekonflikt); #3 vräkning (ingen kausal eval + S/V-tilt); #4 EBO (negativ-evidens bara utredningsmotivering + migrations-värdeaxel-tilt); #5 områdesinsatser (beskrivande/mixed). **Diagnos rättad: väggen är STEG 2/neutralitet, EJ steg 1** (RiR 2021:29 finns). |
 | `normer_tillit` | ❌ **HOLD** (steg 1 löst, steg 2 saknas) | GOTV: Delmi 2025:5 löser steg 1 (kausal) men inget neutralt steg-2-ankare (avslag+enpartisreservation, eller acklamation där oppositionen avstår). Nedstigning #2/#3 + egna vinklar + negativ-rutt: alla wall på instrument-grind. Se §6. |
 
-**Sign-off på det byggda (migration):** (1) behåll/kasta `atervandande_effektivitet` (v0, RiR 2020:7, MEDIUM/MEDIUM —
-starkare kalibrering än enhällighetsmåttens low/low eftersom RiR är auktoritetsutvärdering). (2) **Tidsgrind:** stansen
-vilar på 2020/21 (SfU6); M/KD/L/SD bekräftas av Tidöavtalet 2022, men S/MP/C:s *nuvarande* hållning är ej omverifierad —
-acceptera eller kräv omverifiering mot innevarande mandatperiod. (3) Detta är appens första **differentierande** (ej
-enhällighets-) integration-B-mått → bekräfta att den tvåsidiga splitten (RiR-ankrad, vunnen mot regeringen) är
-värdeneutral nog för den mest bias-känsliga kategorin.
+**Sign-off på det byggda (migration) — ✅ AVGJORD (2026-06-07, Beslut 2):** (1) `atervandande_effektivitet` **BEHÅLLS**
+(v0→v2, RiR 2020:7, MEDIUM/MEDIUM — starkare kalibrering än enhällighetsmåttens low/low eftersom RiR är auktoritetsutvärdering).
+(2) **Tidsgrind — OMVERIFIERAD (Beslut 2a, val A):** bred sökning i innevarande mandatperiod (SfU-motioner, plattformar, prop.
+2025/26:263 + S/MP/C:s följdmotioner hd024152/hd024173/hd024159) gav INGEN nyare instrument-exakt källa om ansvarsfördelningen
+för återvändande → kodningen vilar fortsatt på SfU6 2020/21, **symmetriskt skärpt föråldrad-flagga** på S/MP/C-raderna. Att
+städa bort de overifierbara raderna skulle lämna enbart Tidöblocket → blocktilt; den tvåsidiga RiR-spliten bär neutraliteten.
+(3) **BEKRÄFTAD** som appens första *differentierande* integration-B-mått (Beslut 2b): den tvåsidiga splitten (RiR-ankrad,
+vunnen mot S/MP-regeringen, C+L korsade) är värdeneutral nog för den mest bias-känsliga kategorin.
 
 #### Integration extra runda + alternativ-undermått-analys 2026-06-07 (§5.8 steg 2) ⭐
 
@@ -747,11 +758,35 @@ forward-korrekt om modellen senare använder confidence för CI), version ej bum
 
 ---
 
-### 8.8 Sign-off-checklista (allt flaggat v0 — för genomgång i kommande session) ⭐
+### 8.8 Sign-off-checklista — ✅ GENOMFÖRD 2026-06-07 ⭐
 
-> Allt nedan är byggt som **version 0 / FLAGGAT**; `version`-fälten är EJ bumpade och `dist/`-snapshot är EJ re-baselinad
-> (sign-off-åtgärder). Inget partibetyg/omdöme finns i kod — bara i versionsstyrd config (CLAUDE.md). Här är hela
-> sign-off-ytan samlad.
+> **SIGN-OFF GENOMFÖRD 2026-06-07 (användarbeslut, hela ytan nedan avgjord).** `version`-fälten bumpade 1→2
+> (categories/evidence_ledger/party_positions) och `dist/scores.snapshot.json` re-baselinad (drift nollställd).
+> Inget partibetyg/omdöme finns i kod — bara i versionsstyrd config (CLAUDE.md). Den ursprungliga checklistan
+> bevaras nedan; utfallet per punkt:
+
+**Utfall per punkt (beslut 2026-06-07):**
+- **A. Alla 6 byggda B-mått BEHÅLLS** (Beslut 1: de 5 enhällighetsmåtten; Beslut 2: migration). Inget kastat.
+- **B. sfi-kalibreringen BEKRÄFTAD** (Beslut 5).
+- **C1. Migration tidsgrind — OMVERIFIERAD** (Beslut 2a): bred sökning i innevarande mandatperiod gav ingen nyare
+  instrument-exakt källa för S/MP/C → kodningen behålls (vilar på SfU6 2020/21), **symmetriskt skärpt föråldrad-flagga**
+  på S/MP/C-raderna. Valet: behåll alla rader (den tvåsidiga RiR-spliten bär neutraliteten; att städa bort skapar blocktilt).
+  Migration bekräftad som appens första *differentierande* integration-B-mått (Beslut 2b).
+- **C2. Transparens-dubbelräkning — ÅTGÄRDAD** (Beslut 3): C:s och MP:s rader i bunten
+  `starkt_oberoende_granskning_och_insyn` omankrade från partifinansierings-citat till **lobbyregister** (C, HD023583 yrk. 17)
+  resp. **offentlighetsprincipen** (MP, HA02181 yrk. 9), verifierade ordagrant mot `.text`. Partifinansiering krediteras nu
+  ENDAST i `insyn_partifinansiering`. Poängneutralt (stance kvar supports).
+- **C3. 3 nya indikatorer i `categories.yaml` — GODKÄNDA** (Beslut 9). Inga undermåttsvikter ändrade.
+- **C4. Kalibreringen BEKRÄFTAD** (Beslut 4): mått 1–5 low/low, mått 6 medium/medium — ingen justering.
+- **C5. `offentliga_finanser` LÄMNAS ⚪ kontext** (Beslut 6), ingen override.
+- **C6. Snapshot RE-BASELINAD** (Beslut 10).
+- **C7. `version`-fälten BUMPADE 1→2** (Beslut 11) + test_fas4.py uppdaterat.
+- **D. HOLD-väggarna LÄMNAS, bevakas** (Beslut 7). De 4 döda indikatorerna omklassade till **🔴 BEVAKA** /
+  utvidgningskandidat (Beslut 8). inflation/offentliga_finanser = medvetet target/kontext.
+- **Beslut 12 (viktad stance):** antagen som kommande förbättring; sekvensering vs D-spåret under beslut (se §8 fråga 2).
+- **Beslut 13 (banan):** mandatperioden recency-viktat bekräftad nu; flera mandatperioder = framtida designfråga (se §8 fråga 3).
+
+> **Ursprunglig checklista (bevarad — allt nedan nu avgjort ovan):**
 
 **A. Byggda B-mått att behålla/kasta (6 st, alla v0):**
 | # | Mått (kategori) | Källa/typ | Codex | Score-effekt |
@@ -810,13 +845,20 @@ forward-korrekt om modellen senare använder confidence för CI), version ej bum
 | 2026-06-07 | **Integration ACCEPTERAS på 3/5** (användarbeslut) | inget neutralt 4:e undermått finns (båda väggar äkta, alla alternativ dubbelräknar/tiltar); omstrukturering avvisad; "neutralitet före 4". Etablerings-bonusen ej byggd. Väggarnas återöppningstriggrar bevakas |
 | 2026-06-07 | **arbete_sjalvforsorjning: inget nytt distinkt instrument byggt** (användarbegäran "flera mått") | etablering IFAU R 2023:19 = DUBBELRÄKNING (samma Göteborgs-RCT som sfi_kombinerat_med_praktik); fresh sökning (yrkesvux/validering/KROM/snabbspår/subv.) wallar på evidens-grind (~0 effekt för utrikes födda / korrelation / noll effekt) el. neutralitet; bygg ej (att koda yrkesvux positive vore tilt). sjalvforsorjningsgrad förblir B-tomt; watch-lead IFAU yrkesvux per födelseland (SOU 2024:16). Öppet sign-off: stärk sfi_kombinerat_med_praktik m. R 2023:19 (4-års-RCT, ev. conf medium→high) |
 | 2026-06-07 | **sfi_kombinerat_med_praktik stärkt** (användarbeslut): R 2023:19 som bekräftande 4-års-RCT-källa + confidence medium→high | RCT-uppföljning visar att effekten består (10–20 p.e. flera år) → ej längre "bara en pilot". **INGEN score-effekt** (dist byte-identisk: B normaliserar net_support per riktning → confidence cancelar för samriktade claims; CI oförändrad). Ren proveniens/kalibrering; version ej bumpad → sign-off |
+| 2026-06-07 | ✅ **SIGN-OFF GENOMFÖRD** (hela §8.8-ytan, användarbeslut): alla **6 byggda B-mått behålls** (Beslut 1+2); kalibreringen (1–5 low/low, 6 medium/medium) + sfi medium→high **bekräftade** (Beslut 4+5); `offentliga_finanser` lämnas **⚪ kontext** ingen override (Beslut 6); HOLD-väggarna **lämnas/bevakas** (Beslut 7); 3 nya indikatorer i categories.yaml **godkända** (Beslut 9). | flaggade v0-mått mognade till godkänd config; "neutralitet före 4" upprätthållen genom hela bygget |
+| 2026-06-07 | **version-fälten bumpade 1→2** (categories/evidence_ledger/party_positions) + test_fas4.py; **dist/scores.snapshot.json re-baselinad** (drift nollställd) (Beslut 10+11) | sign-off-åtgärder; ackumulerad drift från B-grön- + integration-svepen inlåst. **Bottenflip SD>V** (var V>SD vid förra baslinjen) = följd av att SD:s täckningsluckor fyllts med konsensusmått (SD störst lyft +0,133, mest välfärd); ej bias (alla nya mått alla-8-supports), ej från dagens edits (byte-identisk dist). Topp 6 oförändrad |
+| 2026-06-07 | **Transparens-dubbelräkning ÅTGÄRDAD** (Beslut 3): C/MP:s rader i bunten `starkt_oberoende_granskning_och_insyn` omankrade från partifinansiering → **lobbyregister** (C, HD023583 yrk. 17) resp. **offentlighetsprincipen** (MP, HA02181 yrk. 9) | codex-dubbelräkningsflaggan stängd; partifinansiering krediteras nu ENDAST i `insyn_partifinansiering`. Citat verifierade ordagrant mot `.text`; poängneutralt (stance kvar supports). Princip: en post bär en fråga |
+| 2026-06-07 | **Migration tidsgrind OMVERIFIERAD → behåll alla rader, skärp föråldrad-flagga** (Beslut 2a, val A) | bred sökning innevarande mandatperiod (SfU-motioner, plattformar, prop. 2025/26:263 + följdmotioner) gav INGEN nyare instrument-exakt S/MP/C-källa om ansvarsfördelningen för återvändande → kodningen vilar fortsatt på SfU6 2020/21, symmetriskt flaggad föråldrad. Att städa bort de overifierbara raderna skulle lämna enbart Tidöblocket → blocktilt; den tvåsidiga RiR-spliten bär neutraliteten. Bekräftad som appens första differentierande integration-B-mått (Beslut 2b) |
+| 2026-06-07 | **4 döda indikatorer omklassade → 🔴 BEVAKA / utvidgningskandidat** (Beslut 8): personalomsattning_omsorg, leveranstid_materiel, segregation, tillit_valdeltagande | poängneutralt (renormaliseras redan bort, score.py aggregate_B); behålls med återöppningsvillkor istället för att strykas — kan bli kandidater när ny indikator/evidens dyker upp. §8 fråga 6 löst |
+| 2026-06-07 | **Viktad stance ANTAGEN som kommande förbättring** (Beslut 12, användarbeslut) | binär supports/opposes fångar ej grad/magnitud (§5.6); viktad stance låser upp budgetdifferentiering. Kräver egen spec + neutralitetsgrind (magnitud endast ur kvantifierad officiell källa). Sekvensering vs D-spåret under beslut (se §8 fråga 2) |
+| 2026-06-07 | **Banan: mandatperioden recency-viktat BEKRÄFTAD** (Beslut 13) nu; **flera mandatperioder = framtida designfråga** | nato-regeln står (varaktiga omsvängningar kodas efter nuläget). Att väga in flera mandatperioder kräver designbeslut om hur historik ska tyngas utan att bli "straffa-konvertiter"-maskin (§5.5). §8 fråga 3 |
 
 ---
 
 ## 10. Verifierings- & provenansstandard (grindar varje mått måste passera)
 
-Sammanfattar grindarna — fullständigt i [fas4b §4, §8](fas4b_partistandpunkter_metod.md) och
-[fas4c_rubrik.md](fas4c_rubrik.md).
+Sammanfattar grindarna — fullständigt i [fas4b §4, §8](../fas4b_partistandpunkter_metod.md) och
+[fas4c_rubrik.md](../fas4c_rubrik.md).
 
 1. **Riktningsgrind (steg 1)** — instrumentets effekt på indikatorn belagd av officiell svensk källa
    (akademisk svensk om officiell saknas). Negativt B-bidrag kräver `authority_evaluation`/
@@ -856,3 +898,4 @@ mot snapshot), `review_packet` (granskningspaket). Snapshot re-baselineas **bara
 | 2026-06-07 | **HOLD-VÄGG-NEDSTIGNINGAR (användarbegäran "gå igenom dem med"):** dedikerade kandidatnedstigningar för de återstående HOLD-väggarna. **boendesegregation:** #2–#5 prövade → HOLD, men logg-rättelse (RiR 2021:29 ÄR kausal kommunanvisning-utvärdering; väggen är STEG 2/neutralitet, ej steg 1) + skärpta återöppningsvillkor. **genomforbarhet_leverans (forsvar):** STEG 2 LÖST (bet. 2025/26:FöU3 p1 acklamation, alla 8) → väggen krympt till enbart steg-1/instrument-effekt; en effektutvärdering räcker nu för BUILD. **industriell_konkurrenskraft (klimat):** neutralt ankare finns (elnät bet. 2023/24:NU15 p1 acklamation) men steg 1 tvåsidigt (Tillväxtanalys: elektrifiering→"förlorad konkurrenskraft"); RiR 2024:17 "oklart"≠belagd negativ; D-serie utsläpp/förädlingsvärde finns (≠ B). **Inget byggt** (inget passerar båda grindar) — "neutralitet före 4". §6/§8.7/§9 uppdaterade; ingen config-ändring. |
 | 2026-06-07 | **INTEGRATION-SVEPET (användarfokus: fyll integrations otäckta undermått; metodpoäng: negativ evidens lika giltig som positiv):** 3 researchagenter (5 förslag/undermått) + per-parti-verifiering mot data.riksdagen.se + codex adversariell granskning. **migrationssystem BYGGT v0** (NY ind. `atervandande_effektivitet` / `se_over_ansvarsfordelning_atervandande` / RiR 2020:7; genuin tvåsidig split SfU6 p2: supports M/KD/SD/C/L, opposes S/MP, V none; codex KEEP-WITH-CHANGES — policy_type snävad "samla"→"se över", tidsnot 2020/21). **boendesegregation: kamera-väg byggd → REVERTERAD** (codex KILL: trygghet-relabel + dubbelräkning + §8.7-varningen + 7-1≈noll diff). **normer_tillit: HOLD** (Delmi 2025:5 löser steg 1; inget neutralt steg-2-ankare; nedstigning #2/#3/egna wall på instrument-grind). **Integration 2/5→3/5**; isolerad effekt: **ranking OFÖRÄNDRAD** (S>L>M>KD>MP>C>SD>V), endast integration rörd (S −0.063, MP −0.044, M/SD/L +0.04…0.09); 43 evidensposter / 247 ståndpunkter; 167 tester gröna, ruff rent, 0 cyrilliska, config valid. §4.3/§6/§8.7/§9/§11 uppdaterade. snapshot ej re-baselinad. Väntar sign-off. |
 | 2026-06-07 | **B-GRÖN-SVEPET (användarmandat: varje undermått ≥1 B-grön):** 11 parallella researchagenter + codex adversariell granskning → **5 mått byggda v0** (insyn_partifinansiering→transparens; NY forsvarsfinansiering_upptrappning_mot_mal→ekonomisk_ambition; NY kommunalt_brottsforebyggande_arbete→forebyggande; koncentration NHV→överlevnad; NY kontinuitet_i_omsorgen→omsorg_personal). Alla enhällighet-som-källa §5.2 (alla 8 supports, acklamation verifierad mot data.riksdagen.se dokumentstatus, citat verbatim-kollade), low/low, FLAGGADE. **Demokrati 4/5→5/5, trygghet 4/5→5/5, valfard 2/4→4/4 (alla FULLT), forsvar 3/5→4/5.** **5 HOLD** (genomforbarhet_leverans, industriell_konkurrenskraft, boendesegregation, normer_tillit, migrationssystem — genuina väggar, kandidat-indikatorer §8.7) + **offentliga_finanser HOLD-kontext** (codex: åtstramnings-tilt). 42 evidensposter / 240 ståndpunkter; **isolerad effekt: ranking OFÖRÄNDRAD** (S>L>M>KD>MP>C>SD>V), alla cellförändringar positiva (inget parti straffat); ruff rent, 167 tester gröna, config valid, B4 inga nära-binära. §3/§4.3/§6/§8.6/§8.7(ny)/§9 uppdaterade. snapshot ej re-baselinad. Väntar mänsklig sign-off. |
+| 2026-06-07 | ✅ **SIGN-OFF-SESSION GENOMFÖRD (§8.8-ytan stängd):** Användaren gick igenom alla öppna frågor och avgjorde. **Verkställt i config:** (3) transparens-dubbelräkning åtgärdad — C omankrad till lobbyregister (HD023583 yrk. 17), MP till offentlighetsprincipen (HA02181 yrk. 9), båda verifierade ordagrant mot `.text` av researchagent; (2a) migration S/MP/C omverifierade mot innevarande mandatperiod (ingen nyare källa → behåll, skärpt föråldrad-flagga); (8) 4 döda indikatorer → 🔴 BEVAKA-noter; (11) version 1→2 i tre config-filer + test; (10) snapshot re-baselinad (drift nollställd). **Allt poängneutralt** (`git diff dist/scores.json` tom; bara svepens ackumulerade drift inlåst → bottenflip SD>V, topp 6 oförändrad). 167 tester gröna, ruff rent, 0 cyrilliska, B4 inga nära-binära, ranking S>L>M>KD>MP>C>SD>V. **Beslut 12 (viktad stance) antagen** som kommande förbättring (sekvensering vs D under beslut); **Beslut 13 (banan)** mandatperioden bekräftad, flerperiod framtida designfråga. §3/§4.3/§6/§8/§8.7/§8.8/§9/§11 uppdaterade. |

@@ -140,7 +140,7 @@ På så sätt kan en användare se vilka påståenden som ligger bakom varje po�
 > **Begreppsmodell (kanonisk):** Kategori → **Undermått** → **Indikator** (+ **Riktning**). Tabellerna nedan
 > kallar undermått-kolumnen "Undermått" och listar indikatorerna i avsnittet "Positiv riktning". Den
 > auktoritativa ordlistan + en fullständig mätbarhetskarta för samtliga indikatorer finns i
-> [docs/evidens_trovardighet.md §4.3](docs/evidens_trovardighet.md). Sanningskälla för namn/id: `config/categories.yaml`.
+> [docs/done/evidens_trovardighet.md §4.3](docs/done/evidens_trovardighet.md). Sanningskälla för namn/id: `config/categories.yaml`.
 
 ### 1. Ekonomi och jobb
 
