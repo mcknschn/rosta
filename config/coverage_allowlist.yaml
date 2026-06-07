@@ -60,7 +60,10 @@ allowlist:
   - { category: integration, indicator: atervandande_effektivitet,   reason: "B-only (integration-svepet 2026-06-07): ingen publik årsserie för kostnad/effektivitet per verkställt återvändande; B via RiR 2020:7 (SfU6 p2)." }
   # --- demokrati (helt kvalitativt/internationellt) ---
   - { category: demokrati, indicator: korruption,                       reason: "international/qualitative: ingen officiell svensk kvantitativ korruptionsårsserie (TI:s CPI ej officiell svensk källa)." }
-  - { category: demokrati, indicator: fortroende_domstolar_myndigheter, reason: "no_api: SOM-institutet (akademisk, tillåten) publicerar ej maskinläsbar årsserie." }
+  # fortroende_domstolar_myndigheter inläst via Brå NTU 5A:1 (förtroende för rättsväsendet som helhet,
+  # andel ganska/mycket stort förtroende, 2017-2025, samma adapter som brottsutsatthet/otrygghet) ->
+  # ej allowlistad fr.o.m. 2026-06-07 (Spår D Tier 4). DEMOKRATIS FÖRSTA D. Officiell källa (Brå/SOS)
+  # krävs framför SOM (akademiskt) per CLAUDE.md; tracker-antagandet "SOM, no_api" var överspelat.
   - { category: demokrati, indicator: mediefrihet,                      reason: "international: RSF:s index är ej officiell svensk källa." }
   - { category: demokrati, indicator: politisk_transparens,             reason: "qualitative: ingen kvantitativ officiell årsserie." }
   - { category: demokrati, indicator: otillborlig_politisering,         reason: "qualitative: ingen objektiv mätserie." }

@@ -43,8 +43,9 @@ bredda D flyttar tyngdpunkten mot faktiskt utfall.
 
 ## 2. Nuläge (verifierat via `python -m pipeline.tools.coverage_report`, 2026-06-07)
 
-**23/56 indikatorer inlästa** (annuell, D-duglig) i **6/7 kategorier** (efter Tier 4, §7). Endast
-demokrati = 0 D. *(Var 19/56 innan Tier 1; +2 ekonomi + 1 integration + 1 försvar 2026-06-07.)*
+**24/56 indikatorer inlästa** (annuell, D-duglig) i **ALLA 7 kategorier** (efter Tier 4, §7). **Ingen
+kategori är längre D-tom — båda strukturella nollorna (försvar + demokrati) fyllda.** *(Var 19/56 innan
+Tier 1; +2 ekonomi + 1 integration + 1 försvar + 1 demokrati 2026-06-07.)*
 
 | Kategori | D-täckta submått | Inlästa D-serier |
 |----------|:---:|---|
@@ -54,7 +55,7 @@ demokrati = 0 D. *(Var 19/56 innan Tier 1; +2 ekonomi + 1 integration + 1 försv
 | forsvar | **1 / 5** | **personal_varnpliktiga** (första D — Tier 4; militar_formaga öppnat) |
 | klimat | 2 / 5 | territoriella_utslapp, konsumtionsbaserade_utslapp, fossil_energianvandning |
 | integration | 3 / 5 | sysselsattningsgap_inrikes_utrikes, sjalvforsorjningsgrad, bidragsberoende, trangboddhet, **sfi_sprakkunskaper** |
-| demokrati | **0 / 5** | — (strukturell lucka) |
+| demokrati | **1 / 5** | **fortroende_domstolar_myndigheter** (första D — Tier 4; Brå NTU 5A:1, korruption_tillit öppnat) |
 
 ¹ ekonomi har 6 submått men 2 är `target`-only (inflation, offentliga finanser) → ej D-bara.
 
@@ -115,8 +116,13 @@ D-blanka kategorierna sin första utfallsserie — men störst arbete och integr
 | ☑ | Indikator | Kategori → submått | Källa/metod | Effort | Not |
 |---|-----------|--------------------|-------------|:---:|-----|
 | ☑ | `personal_varnpliktiga` | **forsvar** → militar_formaga | **Försvarsmaktens ÅR** (antal påbörjade GU/år 2018–2025), korsverif. mot Pliktverkets inskrivna | L | ✅ inläst, ur allowlisten. **GAV FÖRSVAR DESS FÖRSTA D.** "varför inte båda" löst: FM = värde, Pliktverket = oberoende korsverifiering; båda visar samma enda nedgång 2021→2022. v0. |
-| ☐ | `fortroende_domstolar_myndigheter` | **demokrati** → korruption_tillit | SOM-institutet (akademisk, tillåten) | L | **Ger demokrati sin första D.** Ej maskinläsbar → transkribering m. dokumenterad metod. **← nästa strukturella noll.** |
+| ☑ | `fortroende_domstolar_myndigheter` | **demokrati** → korruption_tillit | **Brå NTU 5A:1** (förtroende rättsväsendet som helhet, andel ganska/mycket stort förtroende), `bra.fetch_ntu` | L→**S**¹ | ✅ inläst 2017–2025, ur allowlisten. **GAV DEMOKRATI DESS FÖRSTA D.** Officiell källa (Brå/SOS) krävs framför SOM (akademiskt). v0. |
 | ☐ | `tillit_valdeltagande` | integration → normer_tillit | SOM-institutet (akademisk) | L | 🔴 BEVAKA: B-only/utvidgningskandidat, ej D-byggas (categories.yaml-not). Öppnar D-löst submått först om neutralt ankare dyker upp. |
+
+¹ Visade sig vara **S, inte L** (samma mönster som sfi): Brå NTU — en *officiell* källa — mäter förtroende
+för rättsväsendet (5A:1) som en ren xlsx-tabell via den befintliga `bra.fetch_ntu`-adaptern, så ingen
+SOM-transkribering behövdes. CLAUDE.md *kräver* dessutom officiell källa när sådan finns (akademiskt bara
+"när officiell statistik saknas") → SOM hade varit otillåtet här. Allowlistens "no_api: SOM"-antagande överspelat.
 
 ### Tier 5 — blockerade / stängda som designbeslut 🔴 (bygg **inte**)
 
@@ -143,12 +149,12 @@ Listade här för fullständighet så de inte återöppnas oavsiktligt. Skäl i 
 1. ~~**Tier 1**~~ ✅ — ekonomi till full D-täckning av sina D-bara submått (2026-06-07, §7).
 2. ~~**Tier 2 `sfi_sprakkunskaper`**~~ ✅ — öppnade integration/skola_sprak (D-löst submått); visade sig
    vara **S, inte M** (SCB exponerar TAB1814 som ren PxWeb v2 → befintlig adapter räckte) (2026-06-07, §7).
-3. ~~**Tier 4 `personal_varnpliktiga`**~~ ✅ — gav **försvar sin första D** (FM ÅR, antal påbörjade GU
-   2018–2025, korsverif. mot Pliktverket); "varför inte båda"-sign-off 2026-06-07, §7. Återstår av
-   Tier 4: **`fortroende_domstolar_myndigheter` (SOM) — ger DEMOKRATI sin första D, ← nästa strukturella
-   noll** (sista D-blanka kategorin; akademisk källa, ej maskinläsbar → transkribering).
+3. ~~**Tier 4 strukturella nollor**~~ ✅ — BÅDA fyllda 2026-06-07 (§7): `personal_varnpliktiga` (FM ÅR)
+   gav **försvar** sin första D; `fortroende_domstolar_myndigheter` (Brå NTU 5A:1 — officiell, ej SOM)
+   gav **demokrati** sin första D. **Alla 7 kategorier har nu D.** Båda strukturella nollorna ur
+   exit-kriterium §6.2 är därmed uppfyllda.
 4. **Tier 3 Svk-derived** — mest djup (energi-submåttet är redan täckt); lägst prioritet, gränsfall
-   mot källregeln.
+   mot källregeln. **← nästa om mer D-bredd önskas** (men öppnar inget D-löst submått).
 5. **Tier 2-rest** (`overlevnad_svar_sjukdom` §5.3, `realloner`) — kvar i Tier 2 men kräver sondering/
    är låg prio (samma submått billigare täckt).
 
@@ -195,11 +201,15 @@ Spår D anses **färdigt för arkivering** när:
 
 1. Varje icke-blockerad D-lös submått (Tier 1–4) är **antingen byggd** (serie inläst, ur allowlisten,
    golden-testad) **eller** har ett dokumenterat HOLD/stängt-beslut med skäl i allowlisten.
-2. Båda strukturella nollorna (försvar, demokrati) har **antingen** sin första D-serie **eller** ett
-   uttryckligt accepterat "redovisas som låg täckning med hög osäkerhet"-beslut (sign-off).
+   *(Status 2026-06-07: Tier 1+2+4 byggda. Kvar: Tier 3 Svk-derived (öppnar inget D-löst submått) +
+   Tier 2-rest overlevnad/realloner — alla har dokumenterat skäl/HOLD, inget tyst gap.)*
+2. ✅ **UPPFYLLT 2026-06-07:** båda strukturella nollorna har sin första D-serie — **försvar**
+   (`personal_varnpliktiga`, FM ÅR) och **demokrati** (`fortroende_domstolar_myndigheter`, Brå NTU 5A:1).
+   Alla 7 kategorier har nu D.
 3. `coverage_allowlist.yaml` innehåller bara poster i klasserna `target`/`international`/`qualitative`/
-   `blocked`/`no_api` (= genuint ej byggbara) — inga `future`-poster kvar utan beslut.
-4. `docs/fas3_coverage.md` + `scorerun.py:coverage`-strängen speglar slutläget; testsviten grön.
+   `blocked`/`no_api` (= genuint ej byggbara) — inga `future`-poster kvar utan beslut. *(Kvar att städa:
+   några `future`-poster — overlevnad_svar_sjukdom, realloner, Svk-derived — kräver sondering/beslut.)*
+4. `docs/fas3_coverage.md` + `scorerun.py:coverage`-strängen speglar slutläget; testsviten grön. ✅
 
 ---
 
@@ -312,3 +322,40 @@ inryckta". v0 kvarstår tills exakta siffror transkriberats direkt ur FM-ÅR-PDF
 not_applicable→uppmätt, kategori +0,090…+0,250 (KD/M/SD +0,250, L +0,187, S +0,146, MP +0,133, C +0,090);
 V oförändrad (NA). TOTAL +0,014…+0,038. **Ranking OFÖRÄNDRAD:** S > L > M > KD > MP > C > SD > V. `dist/`
 omräknat + snapshot re-baselinad. v0 kvarstår tills formell granskning bumpar v0→v1.
+
+### ✅ 2026-06-07 — Tier 4: `fortroende_domstolar_myndigheter` → DEMOKRATIN FÅR SIN FÖRSTA D (v0, FLAGGAD)
+
+**En D-serie byggd → demokrati 0 → 1 D-täckt submått (korruption_tillit öppnat). ALLA 7 kategorier har
+nu D — den sista strukturella nollan fylld; exit-kriterium §6.2 uppfyllt.**
+
+1. **`fortroende_domstolar_myndigheter`** (demokrati → korruption_tillit, riktning up): andel med
+   **ganska/mycket stort förtroende för rättsväsendet som helhet** (domstolar + polis/åklagare/
+   kriminalvård), **Brå NTU blad 5A:1** "Samtliga 16-84 år". Inläst **2017–2025** (9 obs, 44,1→54,0 %).
+
+**Källval — S, inte L (samma mönster som sfi):** trackern antog SOM-institutet (akademiskt → L-
+transkribering). Men **Brå NTU — en officiell källa (SOS)** — mäter förtroende för rättsväsendet som
+en ren xlsx-tabell, läst av den BEFINTLIGA `bra.fetch_ntu`-adaptern (samma som brottsutsatthet/
+upplevd_otrygghet). Dessutom: CLAUDE.md tillåter akademiska källor **bara när officiell statistik
+saknas** — vilket den inte gör här → SOM hade varit otillåtet. Adaptern generaliserades så NTU-serier
+bär egen kategori/submått (`bra.INDICATOR_CATEGORY`; de flesta är trygghet, denna demokrati).
+
+**Scope-val (5A:1 rättsväsendet som helhet):** indikatornamnet "domstolar_*myndigheter*" → den trognaste
+matchningen är aggregatet rättsväsendet som helhet (domstolar + rättsvårdande myndigheter), inte en
+enskild institution. **Icke-konsekvent val:** blad 5D:1 (domstolarna specifikt) ger samma kvalitativa
+D (stigande utom dipp 2022→2023), så valet 5A:1 vs 5D:1 ändrar inte attributionen — 5D:1 dokumenteras
+som korsverifiering ("varför inte båda"-andan).
+
+**2017-fönster (NTU-metodbrott):** åren 2007*–2016* är asteriskmärkta (NTU 2017-omläggning), exakt
+samma metodbrott som upplevd_otrygghet redan hanterar → `min_year=2017` (nuvarande metod, 9 år).
+
+**Verifiering (attribution matchar oberoende handberäkning exakt):** förtroendet för rättsväsendet steg
+44→54 % 2017→2025 under både S-ledda och Tidö-regeringar → alla ansvarspartier positiv demokrati-D.
+MP +0,80 (D 4,49 — högst; regering 2017–2021-uppgången, lämnade före 2022→2023-dippen); SD/M/KD +0,81
+(4,53, Tidö-eran); L +0,76 (4,39); C +0,67 (4,17); S +0,55 (3,88, bär längsta fönstret + 2022→2023-
+dippen via 0,79-vikt). **V = NA** (aldrig regering). Inga D_thin_basis (alla basis > 1,0). Generaliserad
+adapter golden-testad (NTU-fixtur fick blad 5A:1; ny kategori-mappnings-test); fas3-gaten håller; sviten grön.
+
+**Betygseffekt (score_diff):** endast **demokrati** rörd. Alla 7 ansvarspartier: demokrati D
+not_applicable→uppmätt, kategori +0,139…+0,203; V oförändrad (NA). TOTAL +0,010…+0,015. **Ranking
+OFÖRÄNDRAD:** S > L > M > KD > MP > C > SD > V. `dist/` omräknat + snapshot re-baselinad. v0 (survey-mått,
+sign-only D, väger 10 %). coverage-strängen: D nu aktiv i ALLA 7 kategorier.

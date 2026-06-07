@@ -1,12 +1,12 @@
 {
   "totals": {
-    "C": 3.093,
-    "KD": 3.194,
-    "L": 3.417,
-    "M": 3.363,
-    "MP": 3.137,
-    "S": 3.692,
-    "SD": 2.769,
+    "C": 3.106,
+    "KD": 3.209,
+    "L": 3.432,
+    "M": 3.378,
+    "MP": 3.152,
+    "S": 3.702,
+    "SD": 2.784,
     "V": 2.621
   },
   "ranking": [
@@ -21,11 +21,10 @@
   ],
   "cells": {
     "C/demokrati": {
-      "score": 3.186,
+      "score": 3.353,
       "flags": [
         "A_a1_active",
-        "B_coverage_7/7",
-        "D_not_applicable"
+        "B_coverage_7/7"
       ]
     },
     "C/ekonomi": {
@@ -72,11 +71,10 @@
       ]
     },
     "KD/demokrati": {
-      "score": 2.536,
+      "score": 2.739,
       "flags": [
         "A_a1_active",
-        "B_coverage_5/7",
-        "D_not_applicable"
+        "B_coverage_5/7"
       ]
     },
     "KD/ekonomi": {
@@ -123,11 +121,10 @@
       ]
     },
     "L/demokrati": {
-      "score": 3.129,
+      "score": 3.318,
       "flags": [
         "A_a1_active",
-        "B_coverage_7/7",
-        "D_not_applicable"
+        "B_coverage_7/7"
       ]
     },
     "L/ekonomi": {
@@ -174,11 +171,10 @@
       ]
     },
     "M/demokrati": {
-      "score": 2.186,
+      "score": 2.389,
       "flags": [
         "A_a1_active",
-        "B_coverage_5/7",
-        "D_not_applicable"
+        "B_coverage_5/7"
       ]
     },
     "M/ekonomi": {
@@ -225,11 +221,10 @@
       ]
     },
     "MP/demokrati": {
-      "score": 4.289,
+      "score": 4.488,
       "flags": [
         "A_a1_active",
-        "B_coverage_6/7",
-        "D_not_applicable"
+        "B_coverage_6/7"
       ]
     },
     "MP/ekonomi": {
@@ -278,11 +273,10 @@
       ]
     },
     "S/demokrati": {
-      "score": 3.314,
+      "score": 3.453,
       "flags": [
         "A_a1_active",
-        "B_coverage_7/7",
-        "D_not_applicable"
+        "B_coverage_7/7"
       ]
     },
     "S/ekonomi": {
@@ -329,11 +323,10 @@
       ]
     },
     "SD/demokrati": {
-      "score": 2.581,
+      "score": 2.784,
       "flags": [
         "A_a1_active",
-        "B_coverage_5/7",
-        "D_not_applicable"
+        "B_coverage_5/7"
       ]
     },
     "SD/ekonomi": {

@@ -8,12 +8,13 @@ Invarianten "inget tyst gap" hävdas av `tests/test_fas3_gate.py`. Generera aktu
 python -m pipeline.tools.coverage_report
 ```
 
-Per 2026-06-07: **23 / 56 indikatorer inlästa** (D-dugliga, annuell up/down) i **6 av 7 kategorier**
-(ekonomi, välfärd, klimat, integration, trygghet, försvar). Endast demokrati saknar D-data (allowlistad).
+Per 2026-06-07: **24 / 56 indikatorer inlästa** (D-dugliga, annuell up/down) i **alla 7 kategorier**
+(ekonomi, välfärd, klimat, integration, trygghet, försvar, demokrati). **Ingen kategori är längre D-tom.**
 *(17 per 2026-05-31; +2 trygghet 2026-06-03 — uppklaringsgrad + skjutningar/sprängningar; +2 ekonomi
 2026-06-07 — naringslivets_investeringar + hushallens_reala_disponibla_inkomst, Spår D Tier 1;
 +1 integration 2026-06-07 — sfi_sprakkunskaper, Spår D Tier 2; +1 försvar 2026-06-07 —
-personal_varnpliktiga, Spår D Tier 4, försvarets första D-serie.)*
+personal_varnpliktiga (försvarets första D); +1 demokrati 2026-06-07 — fortroende_domstolar_myndigheter
+(demokratis första D, Brå NTU 5A:1), Spår D Tier 4.)*
 
 ## Inlästa indikatorer (matar D)
 
@@ -42,6 +43,7 @@ personal_varnpliktiga, Spår D Tier 4, försvarets första D-serie.)*
 | integration | sysselsattningsgap_inrikes_utrikes | SCB AKU (härledd) | TAB6529 SYSP 13−23 | down | 2005–2025⁴ |
 | integration | sfi_sprakkunskaper | SCB (Skolverket) | TAB1814 (AA0003EB) | up | 1997–2023⁷ |
 | forsvar | personal_varnpliktiga | Försvarsmakten (ÅR) | transkr. config-yaml | up | 2018–2025⁸ |
+| demokrati | fortroende_domstolar_myndigheter | Brå NTU | blad 5A:1 | up | 2017–2025⁹ |
 
 ¹ TAB6439 har dubbelår före 2020 som medvetet utesluts från D (multiårsspann ≠ enskild årspunkt).
 ² Aggregatet "brott mot enskild person" (Samtliga 16–84 år) finns i NTU enbart fr.o.m. 2016
@@ -83,10 +85,18 @@ personal_varnpliktiga, Spår D Tier 4, försvarets första D-serie.)*
   bekräftade ur FM ÅR; 2019/2021/2022/2024 korsverifierade mot Pliktverket; 2020 + 2023 (inre monotona
   punkter, påverkar inget tecken) lokaliserade via Wikipedias FM-ÅR-citerade tabell. v0 tills exakta
   PDF-siffror transkriberats direkt (→v1).
+⁹ Förtroende för **rättsväsendet som helhet** (domstolar + polis/åklagare/kriminalvård), andel med
+  ganska/mycket stort förtroende, **Brå NTU blad 5A:1** ("Samtliga 16-84 år"). **Demokratis första
+  D-serie.** Officiell källa (Brå/SOS) → krävs framför SOM-institutet (akademiskt; CLAUDE.md tillåter
+  akademiskt bara NÄR officiell statistik saknas — vilket den inte gör här). Samma adapter som
+  brottsutsatthet/upplevd_otrygghet (`bra.fetch_ntu`), så "no_api/SOM"-antagandet var överspelat.
+  **2017-fönstret:** åren 2007*–2016* är asteriskmärkta (NTU 2017-omläggning, samma metodbrott som
+  upplevd_otrygghet³) → nuvarande metod fr.o.m. 2017 (2017–2025, 9 år). Blad 5D:1 (domstolarna
+  specifikt) korsverifierar med samma teckenförlopp (stigande utom dipp 2022→2023).
 
 ## Allowlistade gap (skäl i `config/coverage_allowlist.yaml`)
 
-33 indikatorer saknar ännu en officiell svensk årsserie. Sammanfattning per skältyp:
+32 indikatorer saknar ännu en officiell svensk årsserie. Sammanfattning per skältyp:
 
 - **target** (ej up/down, ej D-duglig): inflation, statsskuld_underskott, forsvarsanslag_andel_bnp.
 - **derived** (kräver flera serier/beräkning): elprisvolatilitet, effektbrist,
@@ -94,7 +104,8 @@ personal_varnpliktiga, Spår D Tier 4, försvarets första D-serie.)*
   hushallens_reala_disponibla_inkomst är nu härledda, se ovan.)
 - **no_api** (officiell/akademisk källa utan maskinläsbar årsserie): skillnader_mellan_skolor,
   personalomsattning_omsorg, valfardsbrottslighet, hotade_arter_naturforlust, skolresultat_utsatta_omraden,
-  segregation, fortroende_domstolar_myndigheter (SOM).
+  segregation. (fortroende_domstolar_myndigheter inläst 2026-06-07 via Brå NTU 5A:1 — officiell källa,
+  ej SOM; demokratis första D-serie, Spår D Tier 4.)
 - **future** (källa finns, adapter ej byggd): vard_i_tid, overlevnad_svar_sjukdom,
   realloner (kräver Medlingsinstitutets konjunkturlönestatistik — SCB:s API saknar en ren helekonomi-
   löneserie, sonderat 2026-05-31), och Brås handläggnings-/återfallstabeller (handlaggningstid,
@@ -113,4 +124,6 @@ personal_varnpliktiga, Spår D Tier 4, försvarets första D-serie.)*
 2. ~~**Brå NTU** (brottsutsatthet, upplevd_otrygghet)~~ — **klar** (`bra.fetch_ntu`, Tabellsamling NTU 2007–2025, blad 3A + 4A:1, "Samtliga 16–84 år", nuvarande-metod-fönster). Trygghet har nu 3 D-serier.
 3. **Socialstyrelsen** (overlevnad_svar_sjukdom) + **Skolverket** (sfi_sprakkunskaper) + **Medlingsinstitutet** (realloner) — egna adaptrar.
 4. ~~**Loader-stöd för härledda indikatorer** (gap/kvot)~~ — **klar** (`pipeline/derived.py`, ren gap/kvot-beräkning ur verifierade serier, två-tabells-operander + rimlighetsgrind). Inlästa: sysselsattningsgap_inrikes_utrikes (SCB TAB6529 SYSP 13−23) och produktivitet (SCB TAB3610 BNP fast ÷ TAB5622 arbetade timmar). Återstår att härleda: utslappsminskning_per_krona, elprisvolatilitet (kräver nya föräldraserier).
-5. **SOM-institutet** (fortroende_domstolar_myndigheter, tillit) — tabellinläsning (akademisk källa, tillåten).
+5. ~~**SOM-institutet** (fortroende_domstolar_myndigheter)~~ — **klar 2026-06-07 via Brå NTU 5A:1** (officiell
+   källa, ej SOM; demokratis första D). Återstår ev. SOM för `tillit_valdeltagande` (integration), men den är
+   🔴 BEVAKA/B-only (categories.yaml) — bygg ej som D utan separat sign-off.

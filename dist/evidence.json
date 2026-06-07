@@ -1744,6 +1744,51 @@
     "source_name": "bra",
     "statement": "dodligt_vald = 0.8 (trygghet, 2025)."
   },
+  "claim:observed_result:obs:bra:fortroende_domstolar_myndigheter:2017": {
+    "kind": "claim",
+    "source_name": "bra",
+    "statement": "fortroende_domstolar_myndigheter = 44.06 (demokrati, 2017)."
+  },
+  "claim:observed_result:obs:bra:fortroende_domstolar_myndigheter:2018": {
+    "kind": "claim",
+    "source_name": "bra",
+    "statement": "fortroende_domstolar_myndigheter = 46.8 (demokrati, 2018)."
+  },
+  "claim:observed_result:obs:bra:fortroende_domstolar_myndigheter:2019": {
+    "kind": "claim",
+    "source_name": "bra",
+    "statement": "fortroende_domstolar_myndigheter = 48.32 (demokrati, 2019)."
+  },
+  "claim:observed_result:obs:bra:fortroende_domstolar_myndigheter:2020": {
+    "kind": "claim",
+    "source_name": "bra",
+    "statement": "fortroende_domstolar_myndigheter = 48.56 (demokrati, 2020)."
+  },
+  "claim:observed_result:obs:bra:fortroende_domstolar_myndigheter:2021": {
+    "kind": "claim",
+    "source_name": "bra",
+    "statement": "fortroende_domstolar_myndigheter = 52.12 (demokrati, 2021)."
+  },
+  "claim:observed_result:obs:bra:fortroende_domstolar_myndigheter:2022": {
+    "kind": "claim",
+    "source_name": "bra",
+    "statement": "fortroende_domstolar_myndigheter = 52.85 (demokrati, 2022)."
+  },
+  "claim:observed_result:obs:bra:fortroende_domstolar_myndigheter:2023": {
+    "kind": "claim",
+    "source_name": "bra",
+    "statement": "fortroende_domstolar_myndigheter = 49.48 (demokrati, 2023)."
+  },
+  "claim:observed_result:obs:bra:fortroende_domstolar_myndigheter:2024": {
+    "kind": "claim",
+    "source_name": "bra",
+    "statement": "fortroende_domstolar_myndigheter = 53.13 (demokrati, 2024)."
+  },
+  "claim:observed_result:obs:bra:fortroende_domstolar_myndigheter:2025": {
+    "kind": "claim",
+    "source_name": "bra",
+    "statement": "fortroende_domstolar_myndigheter = 53.98 (demokrati, 2025)."
+  },
   "claim:observed_result:obs:bra:uppklaringsgrad:2016": {
     "kind": "claim",
     "source_name": "bra",

@@ -158,9 +158,10 @@ def main() -> None:
         n = warehouse.upsert(con, "observations", rows)
         print(f"Kolada {k['kpi']:7} -> {k['category']:11} {k['indicator']:22}: {n:4} obs  ('{title}')")
 
-    # Brå (trygghet, delpoäng D) — Excel, inget API. source_ref 'bra:' ligger utanför
+    # Brå (trygghet + demokrati, delpoäng D) — Excel, inget API. source_ref 'bra:' ligger utanför
     # _purge_unmanaged-scopet (scb:/kolada:), så raderna rensas aldrig av SCB/Kolada-bygget.
-    # Dödligt våld (Tabell 20) + NTU (utsatthet 3A, otrygghet 4A:1) + personuppklaring (10La).
+    # Dödligt våld (Tabell 20) + NTU (utsatthet 3A, otrygghet 4A:1, förtroende rättsväsendet 5A:1
+    # -> demokrati) + personuppklaring (10La).
     bra_rows = bra.fetch_dodligt_vald(ra) + bra.fetch_ntu(ra) + bra.fetch_personuppklaring(ra)
     # Håll bra.INDICATORS (som coverage-gaten läser) i synk med vad som faktiskt skrivs:
     # en framtida Brå-fetch som emitterar en oannonserad indikator ska falla högt här.
@@ -175,7 +176,8 @@ def main() -> None:
     for ind in bra.INDICATORS:
         sub = [r for r in bra_rows if r["indicator"] == ind]
         span = f"{sub[0]['period']}..{sub[-1]['period']}" if sub else "-"
-        print(f"Brå     NTU/SOS   -> trygghet     {ind:22}: {len(sub):4} obs ({span})")
+        cat = bra.INDICATOR_CATEGORY.get(ind, "trygghet")
+        print(f"Brå     NTU/SOS   -> {cat:11} {ind:30}: {len(sub):4} obs ({span})")
 
     print("\n-- täckning (observations) --")
     for cat, ind, n, lo, hi in con.execute(

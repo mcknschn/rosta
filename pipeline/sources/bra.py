@@ -1,4 +1,4 @@
-"""Brå (bra.se) — kriminalstatistik (delpoäng D, kategori trygghet).
+"""Brå (bra.se) — kriminalstatistik + NTU-förtroende (delpoäng D, trygghet + demokrati).
 
 Brå har inget publikt API men publicerar Sveriges officiella statistik (SOS) som fritt
 vidareutnyttjningsbara Excel-tabeller (se bra.se/om-bra/om-webbplatsen/data-fran-bra.html).
@@ -18,6 +18,11 @@ Implementerat:
       NTU-metod tas med (brottsutsatthet: aggregatkategorin finns bara fr.o.m. 2016 enligt
       källfotnot; otrygghet: 2007-2016 är omräknade med ANNAN metod -> exkluderas, fr.o.m.
       2017 är nuvarande metod). Tidsbrytningen är källflaggad (asterisk i tabellen).
+      - förtroende för RÄTTSVÄSENDET SOM HELHET, andel med ganska/mycket stort förtroende
+        (blad 5A:1, "Samtliga 16-84 år") -> demokrati / korruption_tillit / fortroende_domstolar_
+        myndigheter (riktning up). Officiell källa (Brå/SOS) -> krävs framför SOM-institutet
+        (akademiskt). Samma 2017-metodbrott (2007*-2016* asteriskmärkta) -> fönstras fr.o.m. 2017.
+        Demokratis FÖRSTA D-serie. Blad 5D:1 (domstolarna) korsverifierar med samma teckenförlopp.
   * Personuppklaringsprocent, samtliga brott, hela landet (Handlagda brott, tidsserie 10La)
       -> trygghet / rattsvasendets_effektivitet / uppklaringsgrad (riktning up). Headline-raden
       "SAMTLIGA BROTT". Personuppklaring = Brås officiella huvudmått för uppklaring sedan 2014;
@@ -70,23 +75,50 @@ PERSONUPPKL_URL = (
 # Excel kapar bladnamn vid 31 tecken: "Statistik personuppklaringsprocent" -> ...proc.
 _PERSONUPPKL_SHEET = "Statistik personuppklaringsproc"
 
-# NTU-serier vi tar in. Varje serie pekar ut EN rad i ETT blad via dess radetikett (kol A[/B]).
-# min_year skär bort de år som inte är jämförbara under nuvarande NTU-metod (källflaggat med *):
+# NTU-serier vi tar in. Varje serie pekar ut EN rad i ETT blad via dess radetikett (kol A[/B])
+# och bär sin egen kategori/submått (de flesta NTU-serier är trygghet, men förtroende-modulen
+# 5A:1 matar demokrati/korruption_tillit). min_year skär bort de år som inte är jämförbara under
+# nuvarande NTU-metod (källflaggat med *):
 #   3A  brottsutsatthet: aggregatet "Brott mot enskild person" finns bara fr.o.m. 2016 (fotnot 2).
 #   4A:1 upplevd_otrygghet: 2007-2016 är omräknade med annan metod; nuvarande metod fr.o.m. 2017.
+#   5A:1 fortroende_domstolar_myndigheter: åren 2007*-2016* är asteriskmärkta (NTU 2017-omläggning,
+#        samma metodbrott som 4A:1); nuvarande metod fr.o.m. 2017.
+_PROC_BEF = "% (andel av befolkningen 16–84 år)"
 _NTU_SERIES = (
     {
         "sheet": "3A", "label_a": "Brott mot enskild person", "label_b": "Samtliga",
         "indicator": "brottsutsatthet", "min_year": 2016,
+        "category": "trygghet", "submeasure": "utsatthet_trygghet", "unit": _PROC_BEF,
     },
     {
         "sheet": "4A.1", "label_a": "Samtliga 16-84 år", "label_b": None,
         "indicator": "upplevd_otrygghet", "min_year": 2017,
+        "category": "trygghet", "submeasure": "utsatthet_trygghet", "unit": _PROC_BEF,
+    },
+    {
+        # Förtroende för RÄTTSVÄSENDET SOM HELHET (domstolar + polis/åklagare/kriminalvård) = den
+        # trognaste matchningen för den kanoniska indikatorn fortroende_domstolar_myndigheter
+        # (demokrati → korruption_tillit, riktning up). Officiell källa (Brå/SOS) → krävs framför
+        # SOM-institutet (akademiskt; CLAUDE.md tillåter akademiskt bara NÄR officiell saknas).
+        # Blad 5D:1 (domstolarna specifikt) korsverifierar med samma teckenförlopp (se docs).
+        "sheet": "5A.1", "label_a": "Samtliga 16-84 år", "label_b": None,
+        "indicator": "fortroende_domstolar_myndigheter", "min_year": 2017,
+        "category": "demokrati", "submeasure": "korruption_tillit",
+        "unit": "% (andel med ganska/mycket stort förtroende, 16–84 år)",
     },
 )
 
 # Kanoniska indikatorer denna modul levererar (för täcknings-gaten i tests/test_fas3_gate.py).
-INDICATORS = ("dodligt_vald", "brottsutsatthet", "upplevd_otrygghet", "uppklaringsgrad")
+INDICATORS = ("dodligt_vald", "brottsutsatthet", "upplevd_otrygghet", "uppklaringsgrad",
+              "fortroende_domstolar_myndigheter")
+
+# Kategori per indikator — coverage-gaten mappar (kategori, indikator), och de flesta Brå-serier är
+# trygghet men NTU:s förtroende-modul matar demokrati. Hålls i synk med categories.yaml + raderna.
+INDICATOR_CATEGORY = {
+    "dodligt_vald": "trygghet", "brottsutsatthet": "trygghet",
+    "upplevd_otrygghet": "trygghet", "uppklaringsgrad": "trygghet",
+    "fortroende_domstolar_myndigheter": "demokrati",
+}
 
 # Serie-drift-förväntan per indikator (pipeline.expectations). Ankare = stabila publicerade
 # värden (slutår, ±rel_tol). Grov med flit — fångar fel/tom/stale serie, ej exakta tal.
@@ -99,6 +131,8 @@ EXPECT = {
                           "anchors": {"2018": 27.89}},
     "uppklaringsgrad": {"min_points": 8, "value_range": [5, 25], "min_latest_year": 2024,
                         "anchors": {"2020": 13.87}},
+    "fortroende_domstolar_myndigheter": {"min_points": 7, "value_range": [30, 65],
+                                         "min_latest_year": 2024, "anchors": {"2021": 52.12, "2024": 53.13}},
 }
 
 
@@ -190,9 +224,9 @@ def _ntu_rows_from_workbook(wb: Any) -> list[dict[str, Any]]:
         for year, val in sorted(series.items()):
             rows.append({
                 "id": f"obs:bra:{s['indicator']}:{year}",
-                "category": "trygghet", "submeasure": "utsatthet_trygghet",
+                "category": s["category"], "submeasure": s["submeasure"],
                 "indicator": s["indicator"], "period": str(year),
-                "value": val, "unit": "% (andel av befolkningen 16–84 år)",
+                "value": val, "unit": s["unit"],
                 "geography": "Riket", "source_ref": f"bra:ntu_{sheet_tag}:{year}",
             })
     return rows

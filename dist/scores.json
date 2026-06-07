@@ -86,7 +86,7 @@
     }
   ],
   "meta": {
-    "coverage": "Preliminär: A=agerande (a2 motionsprioritering, andel av egna motioner, full; a1 budgetprioritering gated — aktiv för 7/7 kategorier ur officiella utgiftsramar (2023–2025), expertgranskad v1 2026-06-05, annars a2-fallback); C=makt per kategori: nationell regeringsmakt blandad med subnationell makt (SKR-styren, 21 regioner + 290 kommuner × 3 mandatperioder) via en per-kategori region/kommun-split efter lagstadgat ansvar; forsvar nationellt per design; c2 finansiering ännu ej byggd (C=c1 makt); D=resultatattribution från officiella årsserier för ekonomi/välfärd/trygghet/klimat/integration/försvar där partiet haft nationell makt (medel säkerhet, ej tillämplig för partier utan makt och för demokrati som ännu saknar D-data). B är AKTIVERAD för ALLA 7 kategorier via 247 källbelagda, adversariellt verifierade + panel-harmoniserade partiståndpunkter (riksdagsvotering/motion, Fas 4c); coverage-viktad (B krymps mot neutral efter andel kodade åtgärdstyper, B_thin_coverage-flagga vid tunn täckning). party_positions + evidence_ledger expertgranskade v1 (mänsklig sign-off 2026-06-05).",
+    "coverage": "Preliminär: A=agerande (a2 motionsprioritering, andel av egna motioner, full; a1 budgetprioritering gated — aktiv för 7/7 kategorier ur officiella utgiftsramar (2023–2025), expertgranskad v1 2026-06-05, annars a2-fallback); C=makt per kategori: nationell regeringsmakt blandad med subnationell makt (SKR-styren, 21 regioner + 290 kommuner × 3 mandatperioder) via en per-kategori region/kommun-split efter lagstadgat ansvar; forsvar nationellt per design; c2 finansiering ännu ej byggd (C=c1 makt); D=resultatattribution från officiella årsserier för ALLA 7 kategorier (ekonomi/välfärd/trygghet/klimat/integration/försvar/demokrati) där partiet haft nationell makt (medel säkerhet, ej tillämplig för partier utan makt i fönstret, t.ex. V). B är AKTIVERAD för ALLA 7 kategorier via 247 källbelagda, adversariellt verifierade + panel-harmoniserade partiståndpunkter (riksdagsvotering/motion, Fas 4c); coverage-viktad (B krymps mot neutral efter andel kodade åtgärdstyper, B_thin_coverage-flagga vid tunn täckning). party_positions + evidence_ledger expertgranskade v1 (mänsklig sign-off 2026-06-05).",
     "generated": "2026-06-07",
     "model_version": 1,
     "parties": [
@@ -105,8 +105,8 @@
     "C": {
       "demokrati": {
         "ci": [
-          2.747,
-          3.624
+          2.959,
+          3.747
         ],
         "claim_refs": [
           "claim:action:C:demokrati:motioner",
@@ -116,27 +116,29 @@
           "claim:responsibility:C:national:2019-01-21/2021-11-30:support",
           "claim:responsibility:C:regional:2014-2018:government",
           "claim:responsibility:C:regional:2018-2022:government",
-          "claim:responsibility:C:regional:2022-2026:government"
+          "claim:responsibility:C:regional:2022-2026:government",
+          "claim:observed_result:obs:bra:fortroende_domstolar_myndigheter:2017",
+          "claim:observed_result:obs:bra:fortroende_domstolar_myndigheter:2018",
+          "claim:observed_result:obs:bra:fortroende_domstolar_myndigheter:2019"
         ],
         "components": {
           "A": 2.429,
           "B": 5.0,
           "C": 1.429,
-          "D": 2.5
+          "D": 4.173
         },
         "confidence": {
           "A": "high",
           "B": "medium",
           "C": "high",
-          "D": "low"
+          "D": "medium"
         },
         "evidence_refs": [],
         "flags": [
           "B_coverage_7/7",
-          "A_a1_active",
-          "D_not_applicable"
+          "A_a1_active"
         ],
-        "score": 3.186
+        "score": 3.353
       },
       "ekonomi": {
         "ci": [
@@ -365,8 +367,8 @@
     "KD": {
       "demokrati": {
         "ci": [
-          2.097,
-          2.974
+          2.345,
+          3.133
         ],
         "claim_refs": [
           "claim:action:KD:demokrati:motioner",
@@ -376,27 +378,29 @@
           "claim:responsibility:KD:national:2022-10-18/pagaende:government",
           "claim:responsibility:KD:regional:2014-2018:government",
           "claim:responsibility:KD:regional:2018-2022:government",
-          "claim:responsibility:KD:regional:2022-2026:government"
+          "claim:responsibility:KD:regional:2022-2026:government",
+          "claim:observed_result:obs:bra:fortroende_domstolar_myndigheter:2017",
+          "claim:observed_result:obs:bra:fortroende_domstolar_myndigheter:2018",
+          "claim:observed_result:obs:bra:fortroende_domstolar_myndigheter:2019"
         ],
         "components": {
           "A": 1.786,
           "B": 3.571,
           "C": 2.143,
-          "D": 2.5
+          "D": 4.534
         },
         "confidence": {
           "A": "high",
           "B": "medium",
           "C": "high",
-          "D": "low"
+          "D": "medium"
         },
         "evidence_refs": [],
         "flags": [
           "B_coverage_5/7",
-          "A_a1_active",
-          "D_not_applicable"
+          "A_a1_active"
         ],
-        "score": 2.536
+        "score": 2.739
       },
       "ekonomi": {
         "ci": [
@@ -625,8 +629,8 @@
     "L": {
       "demokrati": {
         "ci": [
-          2.69,
-          3.567
+          2.924,
+          3.712
         ],
         "claim_refs": [
           "claim:action:L:demokrati:motioner",
@@ -637,27 +641,29 @@
           "claim:responsibility:L:national:2022-10-18/pagaende:government",
           "claim:responsibility:L:regional:2014-2018:government",
           "claim:responsibility:L:regional:2018-2022:government",
-          "claim:responsibility:L:regional:2022-2026:government"
+          "claim:responsibility:L:regional:2022-2026:government",
+          "claim:observed_result:obs:bra:fortroende_domstolar_myndigheter:2017",
+          "claim:observed_result:obs:bra:fortroende_domstolar_myndigheter:2018",
+          "claim:observed_result:obs:bra:fortroende_domstolar_myndigheter:2019"
         ],
         "components": {
           "A": 2.357,
           "B": 4.0,
           "C": 3.571,
-          "D": 2.5
+          "D": 4.392
         },
         "confidence": {
           "A": "high",
           "B": "medium",
           "C": "high",
-          "D": "low"
+          "D": "medium"
         },
         "evidence_refs": [],
         "flags": [
           "B_coverage_7/7",
-          "A_a1_active",
-          "D_not_applicable"
+          "A_a1_active"
         ],
-        "score": 3.129
+        "score": 3.318
       },
       "ekonomi": {
         "ci": [
@@ -892,8 +898,8 @@
     "M": {
       "demokrati": {
         "ci": [
-          1.747,
-          2.624
+          1.995,
+          2.783
         ],
         "claim_refs": [
           "claim:action:M:demokrati:motioner",
@@ -903,27 +909,29 @@
           "claim:responsibility:M:national:2022-10-18/pagaende:government",
           "claim:responsibility:M:regional:2014-2018:government",
           "claim:responsibility:M:regional:2018-2022:government",
-          "claim:responsibility:M:regional:2022-2026:government"
+          "claim:responsibility:M:regional:2022-2026:government",
+          "claim:observed_result:obs:bra:fortroende_domstolar_myndigheter:2017",
+          "claim:observed_result:obs:bra:fortroende_domstolar_myndigheter:2018",
+          "claim:observed_result:obs:bra:fortroende_domstolar_myndigheter:2019"
         ],
         "components": {
           "A": 0.643,
           "B": 3.571,
           "C": 2.857,
-          "D": 2.5
+          "D": 4.534
         },
         "confidence": {
           "A": "high",
           "B": "medium",
           "C": "high",
-          "D": "low"
+          "D": "medium"
         },
         "evidence_refs": [],
         "flags": [
           "B_coverage_5/7",
-          "A_a1_active",
-          "D_not_applicable"
+          "A_a1_active"
         ],
-        "score": 2.186
+        "score": 2.389
       },
       "ekonomi": {
         "ci": [
@@ -1152,8 +1160,8 @@
     "MP": {
       "demokrati": {
         "ci": [
-          3.851,
-          4.728
+          4.095,
+          4.882
         ],
         "claim_refs": [
           "claim:action:MP:demokrati:motioner",
@@ -1164,27 +1172,29 @@
           "claim:responsibility:MP:national:2019-01-21/2021-11-30:government",
           "claim:responsibility:MP:regional:2014-2018:government",
           "claim:responsibility:MP:regional:2018-2022:government",
-          "claim:responsibility:MP:regional:2022-2026:government"
+          "claim:responsibility:MP:regional:2022-2026:government",
+          "claim:observed_result:obs:bra:fortroende_domstolar_myndigheter:2017",
+          "claim:observed_result:obs:bra:fortroende_domstolar_myndigheter:2018",
+          "claim:observed_result:obs:bra:fortroende_domstolar_myndigheter:2019"
         ],
         "components": {
           "A": 4.429,
           "B": 4.643,
           "C": 4.286,
-          "D": 2.5
+          "D": 4.491
         },
         "confidence": {
           "A": "high",
           "B": "medium",
           "C": "high",
-          "D": "low"
+          "D": "medium"
         },
         "evidence_refs": [],
         "flags": [
           "B_coverage_6/7",
-          "A_a1_active",
-          "D_not_applicable"
+          "A_a1_active"
         ],
-        "score": 4.289
+        "score": 4.488
       },
       "ekonomi": {
         "ci": [
@@ -1421,8 +1431,8 @@
     "S": {
       "demokrati": {
         "ci": [
-          2.876,
-          3.753
+          3.059,
+          3.846
         ],
         "claim_refs": [
           "claim:action:S:demokrati:motioner",
@@ -1434,27 +1444,29 @@
           "claim:responsibility:S:national:2021-11-30/2022-10-18:government",
           "claim:responsibility:S:regional:2014-2018:government",
           "claim:responsibility:S:regional:2018-2022:government",
-          "claim:responsibility:S:regional:2022-2026:government"
+          "claim:responsibility:S:regional:2022-2026:government",
+          "claim:observed_result:obs:bra:fortroende_domstolar_myndigheter:2017",
+          "claim:observed_result:obs:bra:fortroende_domstolar_myndigheter:2018",
+          "claim:observed_result:obs:bra:fortroende_domstolar_myndigheter:2019"
         ],
         "components": {
           "A": 2.286,
           "B": 4.0,
           "C": 5.0,
-          "D": 2.5
+          "D": 3.883
         },
         "confidence": {
           "A": "high",
           "B": "medium",
           "C": "high",
-          "D": "low"
+          "D": "medium"
         },
         "evidence_refs": [],
         "flags": [
           "B_coverage_7/7",
-          "A_a1_active",
-          "D_not_applicable"
+          "A_a1_active"
         ],
-        "score": 3.314
+        "score": 3.453
       },
       "ekonomi": {
         "ci": [
@@ -1695,35 +1707,37 @@
     "SD": {
       "demokrati": {
         "ci": [
-          2.142,
-          3.02
+          2.391,
+          3.178
         ],
         "claim_refs": [
           "claim:action:SD:demokrati:motioner",
           "claim:responsibility:SD:municipal:2018-2022:government",
           "claim:responsibility:SD:municipal:2022-2026:government",
           "claim:responsibility:SD:national:2022-10-18/pagaende:support",
-          "claim:responsibility:SD:regional:2022-2026:government"
+          "claim:responsibility:SD:regional:2022-2026:government",
+          "claim:observed_result:obs:bra:fortroende_domstolar_myndigheter:2017",
+          "claim:observed_result:obs:bra:fortroende_domstolar_myndigheter:2018",
+          "claim:observed_result:obs:bra:fortroende_domstolar_myndigheter:2019"
         ],
         "components": {
           "A": 2.643,
           "B": 3.333,
           "C": 0.714,
-          "D": 2.5
+          "D": 4.534
         },
         "confidence": {
           "A": "high",
           "B": "medium",
           "C": "high",
-          "D": "low"
+          "D": "medium"
         },
         "evidence_refs": [],
         "flags": [
           "B_coverage_5/7",
-          "A_a1_active",
-          "D_not_applicable"
+          "A_a1_active"
         ],
-        "score": 2.581
+        "score": 2.784
       },
       "ekonomi": {
         "ci": [
@@ -1944,7 +1958,10 @@
           "claim:responsibility:V:municipal:2022-2026:government",
           "claim:responsibility:V:regional:2014-2018:government",
           "claim:responsibility:V:regional:2018-2022:government",
-          "claim:responsibility:V:regional:2022-2026:government"
+          "claim:responsibility:V:regional:2022-2026:government",
+          "claim:observed_result:obs:bra:fortroende_domstolar_myndigheter:2017",
+          "claim:observed_result:obs:bra:fortroende_domstolar_myndigheter:2018",
+          "claim:observed_result:obs:bra:fortroende_domstolar_myndigheter:2019"
         ],
         "components": {
           "A": 3.429,

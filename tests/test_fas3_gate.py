@@ -27,7 +27,7 @@ def _ingested() -> set[tuple[str, str]]:
     for k in build_fas2.KOLADA_KPIS:
         out.add((k["category"], k["indicator"]))
     for ind in bra.INDICATORS:
-        out.add(("trygghet", ind))
+        out.add((bra.INDICATOR_CATEGORY[ind], ind))
     for ind in energimyndigheten.INDICATORS:
         out.add(("klimat", ind))
     for ind in polisen.INDICATORS:

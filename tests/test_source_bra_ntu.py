@@ -57,22 +57,38 @@ def test_for_fa_arsvarden_ger_hard_fail() -> None:
         bra._ntu_headline_series(_wb()["4A.1"], "Samtliga 16-84 år", None, 2099)
 
 
-def test_rows_kanoniska_indikatorer_i_trygghet() -> None:
-    """Radbyggaren ger kanoniska trygghet-indikatorer med rätt form och source_ref."""
+def test_fortroende_rattsvasendet_headline_2017_och_framat() -> None:
+    """5A:1: förtroende rättsväsendet som helhet fr.o.m. 2017; det asteriskade 2016* uteslutet."""
+    series = bra._ntu_headline_series(_wb()["5A.1"], "Samtliga 16-84 år", None, 2017)
+    assert series == {2017: 44.06, 2018: 46.80}
+    assert 2016 not in series  # NTU 2017-metodbrott (2016* asteriskmärkt) skärs bort av min_year
+
+
+def test_rows_kanoniska_indikatorer_med_ratt_kategori() -> None:
+    """Radbyggaren ger kanoniska indikatorer med rätt form, kategori och source_ref."""
     rows = bra._ntu_rows_from_workbook(_wb())
     inds = {r["indicator"] for r in rows}
-    assert inds == {"brottsutsatthet", "upplevd_otrygghet"}
-    assert all(r["category"] == "trygghet" for r in rows)
-    assert all(r["submeasure"] == "utsatthet_trygghet" for r in rows)
+    assert inds == {"brottsutsatthet", "upplevd_otrygghet", "fortroende_domstolar_myndigheter"}
+    cat_by_ind = {r["indicator"]: r["category"] for r in rows}
+    assert cat_by_ind["brottsutsatthet"] == "trygghet"
+    assert cat_by_ind["upplevd_otrygghet"] == "trygghet"
+    assert cat_by_ind["fortroende_domstolar_myndigheter"] == "demokrati"  # NTU matar demokrati
+    fort = [r for r in rows if r["indicator"] == "fortroende_domstolar_myndigheter"]
+    assert all(r["submeasure"] == "korruption_tillit" for r in fort)
     assert all(r["geography"] == "Riket" for r in rows)
     assert all(r["indicator"] in bra.INDICATORS for r in rows)
-    by_ind = {r["source_ref"] for r in rows}
-    assert "bra:ntu_3a:2016" in by_ind
-    assert "bra:ntu_4a1:2017" in by_ind
+    by_ref = {r["source_ref"] for r in rows}
+    assert "bra:ntu_3a:2016" in by_ref
+    assert "bra:ntu_4a1:2017" in by_ref
+    assert "bra:ntu_5a1:2017" in by_ref
 
 
-def test_ntu_indikatorer_ar_kanoniska_trygghetsindikatorer() -> None:
-    """INDICATORS pekar bara på indikatorer som finns i categories.yaml under trygghet."""
-    trygghet = next(c for c in config.categories()["categories"] if c["id"] == "trygghet")
-    inds = {i["id"] for i in trygghet["indicators"]}
-    assert {"brottsutsatthet", "upplevd_otrygghet"} <= inds
+def test_indicator_category_i_synk_med_categories_yaml() -> None:
+    """bra.INDICATOR_CATEGORY (som coverage-gaten läser) pekar på rätt kategori i categories.yaml."""
+    by_cat = {
+        c["id"]: {i["id"] for i in c.get("indicators", [])}
+        for c in config.categories()["categories"]
+    }
+    for ind, cat in bra.INDICATOR_CATEGORY.items():
+        assert ind in by_cat[cat], f"{ind} saknas i categories.yaml under {cat}"
+    assert "fortroende_domstolar_myndigheter" in by_cat["demokrati"]
