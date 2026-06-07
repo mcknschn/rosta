@@ -228,6 +228,18 @@ högre coverage → mindre B-krympning → B får faktiskt genomslag.
   parti straffat — omöjligt att tilta då alla supports); ruff rent, 167 tester gröna, B4 inga nära-binära, 0 cyrilliska i config.
   snapshot ej re-baselinad. **Fullständig leverans + sign-off-frågor: [evidens_trovardighet.md §8.7](evidens_trovardighet.md).** Väntar mänsklig sign-off.
 
+- ✅ **INTEGRATION-SVEPET 2026-06-07 (användarfokus: fyll integrations otäckta undermått; metodpoäng: negativ evidens lika giltig som positiv)**
+  — 3 researchagenter (5 förslag/undermått) + per-parti-verifiering mot data.riksdagen.se + codex adversariell granskning.
+  **1 byggt v0 (FLAGGAT):** NY indikator `atervandande_effektivitet` ← `se_over_ansvarsfordelning_atervandande` (migrationssystem, RiR 2020:7 —
+  splittrad återvändandestruktur kostar/ineffektiv; **negativ-evidens-vinkeln**). **Genuin tvåsidig split** (appens första differentierande
+  integration-B-mått, ej enhällighet): bet. 2020/21:SfU6 p2, votering verifierad → supports M/KD/SD/C/L, opposes S/MP, V none. Codex
+  **KEEP-WITH-CHANGES** (snävade policy_type "samla"→"se över ansvarsfördelning"; tidsnot 2020/21). → **integration 2/5 → 3/5.**
+  **2 HOLD:** `boendesegregation` (kamera-väg byggd → REVERTERAD, codex KILL: trygghet-relabel + dubbelräknar situationell_prevention_kamerabevakning +
+  exakt §8.7-varningen + 7-1≈noll diff) + `normer_tillit` (Delmi 2025:5 löser steg 1, inget neutralt steg-2-ankare; nedstigning #2/#3/egna wall).
+  43 evidensposter / 247 ståndpunkter; **isolerad effekt: ranking OFÖRÄNDRAD** (S>L>M>KD>MP>C>SD>V), endast integration rörd (S −0,063, MP −0,044,
+  M/SD/L +0,04…0,09 — korrekt riktningsmönster för systemeffektivitet); 167 tester gröna, ruff rent, 0 cyrilliska. snapshot ej re-baselinad.
+  **Sign-off-frågor: [evidens_trovardighet.md §8.7](evidens_trovardighet.md).** Väntar mänsklig sign-off.
+
 ### Status per spår efter nattkörning 2026-06-04 (A-raden uppdaterad 2026-06-05)
 
 | Spår | Status |
