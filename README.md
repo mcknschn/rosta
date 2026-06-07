@@ -6,7 +6,7 @@ sakfrågor; appen rangordnar partierna utifrån faktiskt data från officiella s
 
 - **Modellen:** [IDEA.md](IDEA.md)
 - **Datainsamling & arkitektur:** [DATA.md](DATA.md)
-- **Exekveringsplan (faser 0–6, fryst historik):** [docs/ROADMAP.md](docs/ROADMAP.md)
+- **Exekveringsplan (faser 0–6, fryst historik):** [docs/ROADMAP.md](docs/done/ROADMAP.md)
 - **Framåtblickande backlog (data, evidens, drift):** [docs/BACKLOG.md](docs/BACKLOG.md)
 - **Grundregler:** [CLAUDE.md](CLAUDE.md) — endast officiella svenska källor.
 
@@ -88,13 +88,13 @@ coverage-viktade så tunn täckning drar mot neutral (version 0 – kräver gran
 [metod](docs/fas4b_partistandpunkter_metod.md)). Ståndpunkterna är **panel-harmoniserade** (Fas 4c, alla
 8 partier per åtgärdstyp bedömda mot en gemensam frusen rubrik) och liggaren utökad med den enda omstridda
 åtgärdstyp som passerade evidens-/negativ-grinden av 8 skannade (`ny_karnkraft` → effektbrist; 7 hade för
-blandad officiell evidens och lämnades inerta – [Fas 4c](docs/ROADMAP.md)). **Inga ståndpunkter fabriceras**
+blandad officiell evidens och lämnades inerta – [Fas 4c](docs/done/ROADMAP.md)). **Inga ståndpunkter fabriceras**
 — varje rad citerar en riksdagskälla och är adversariellt verifierad mot fulltext. **Frontenden (Fas 6) är byggd** — en statisk, byggfri väljarkompass i [web/](web/) som viktar kategorierna
 client-side, rangordnar partierna med osäkerhetsband och expanderbart bevisspår, delar vikter via URL och
 visar en tydlig version-0-varning. Den är **Playwright-e2e-testad** (8 fall) och har genomgått en
 **WCAG 2.2 AA-granskning** ([docs/fas6_wcag.md](docs/fas6_wcag.md)). Kör `python -m http.server 8000` och
 öppna `/web/`. Per-fas status:
-[DATA.md §6](DATA.md). Full exekveringsplan: [docs/ROADMAP.md](docs/ROADMAP.md).
+[DATA.md §6](DATA.md). Full exekveringsplan: [docs/ROADMAP.md](docs/done/ROADMAP.md).
 
 > `dist/scores.json` är en **pipeline-demonstration på riktig data**, inte ett färdigt röstråd —
 > rankingen drivs tills vidare främst av aktivitet + makt (+ resultat där makt funnits), vilket

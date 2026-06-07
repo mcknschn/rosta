@@ -14,7 +14,7 @@
 
 | Fil | Roll |
 |-----|------|
-| [ROADMAP.md](ROADMAP.md) | **Fryst historik** — hur faser 0–6 + b-faser byggdes och verifierades. Ändras inte. |
+| [ROADMAP.md](done/ROADMAP.md) | **Fryst historik** (arkiverad i `done/`) — hur faser 0–6 + b-faser byggdes och verifierades. Ändras inte. |
 | [../config/coverage_allowlist.yaml](../config/coverage_allowlist.yaml) | **Maskinläsbar sanningskälla** för vilka D-indikatorer som ännu saknas, med skäl-tag. Coverage-gaten (`tests/test_fas3_gate.py`) tvingar varje indikator att vara *inläst* ELLER *allowlistad*. |
 | **BACKLOG.md** (denna) | **Prioritering & plan** — vågordning per arbetsspår. Duplicerar inte allowlisten; pekar på den. När en indikator byggs: flytta ut den ur allowlisten och bocka av här. |
 | [evidens_trovardighet.md](done/evidens_trovardighet.md) | **B-spårets arbetslogg & metodutveckling** — bärande: **tvåstegsmodellen** (måttet ≠ positioneringen). Skiljer äkta steg-1-väggar (måttet saknas) från steg-2-källval (acklamation slår bara ut voteringskällan). Metodregister för positionering (källstege, enhällighet, budget-/kommittémotion, bana över tid), statustavla + kandidat-pipeline per kategori, öppna designfrågor, beslutslogg. Uppdateras per B-leverans. **§4.3 = kanonisk begreppsmodell (Kategori→Undermått→Indikator→Riktning) + mätbarhetskarta för samtliga 52 indikatorer.** |
