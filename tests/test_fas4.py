@@ -81,7 +81,7 @@ def test_shipped_party_positions_are_sourced_not_fabricated() -> None:
     # källa (kort beteckning + URL + dok-id + ordagrant utdrag).
     from pipeline import config
     pp = config.party_positions()
-    assert pp.get("version") == 1  # expertgranskad + mänsklig sign-off 2026-06-05 (var 0 i utkastfasen)
+    assert pp.get("version") == 2  # sign-off 2026-06-07 (B-grön + integration-svepen); v1 = 2026-06-05
     assert pp.get("status") == "expert_reviewed"
     parties = set(config.party_codes())
     ledger_policies = {e["policy_type"] for e in config.evidence_ledger()["entries"]}

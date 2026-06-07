@@ -14,7 +14,7 @@
 # Testas i tests/test_config.py.
 
 meta:
-  version: 1
+  version: 2          # sign-off 2026-06-07 (B-grön- + integration-svepen godkända; v1 = sign-off 2026-06-05)
   source_doc: IDEA.md
   score_scale: [0, 5]          # varje parti betygsätts 0-5 per kategori
   weight_unit: percent
@@ -81,7 +81,7 @@ categories:
       - { id: skolresultat,              submeasure: skola_kunskap, direction: up }
       - { id: skillnader_mellan_skolor,  submeasure: skola_kunskap, direction: down }
       - { id: behoriga_larare,           submeasure: skola_kunskap, direction: up }
-      - { id: personalomsattning_omsorg, submeasure: omsorg_personal, direction: down }
+      - { id: personalomsattning_omsorg, submeasure: omsorg_personal, direction: down, note: "🔴 BEVAKA (ej mätbar nu; version 0, sign-off 2026-06-07). B-vägg: inget partistyrbart instrument flyttar personalomsättningen bevisat nedåt (Äldreomsorgslyftet/Heltidsresan m.fl. mäter annat). D-vägg: SKR lade ned kontinuitetsstatistiken 2024. Bidrar EJ till betyg (renormaliseras bort, score.py aggregate_B). BEHÅLLS som UTVIDGNINGSKANDIDAT — undermåttet omsorg_personal täcks nu av kontinuitet_i_omsorgen; om Socialstyrelsens nya personalkontinuitetsmått (del 2026-12, slut 2027-10) ger ett partistyrbart instrument kan denna återupplivas. Se §8 fråga 6 / §4.3." }
       - { id: kontinuitet_i_omsorgen,    submeasure: omsorg_personal, direction: up, note: "Relations-/personalkontinuitet för omsorgstagaren i hemtjänsten (fast omsorgskontakt). Öppnar omsorg_personal. KONSTRUKT-NOT: detta är INTE personalomsattning_omsorg (🔴-vägg, data nedlagd) som behålls separat/orörd — det fångar kontinuitet ur omsorgstagarens perspektiv (Socialstyrelsen). fast_omsorgskontakt får ALDRIG beskrivas som belägg för lägre personalomsättning. Ny indikator 2026-06-07 (§5.7), version 0, sign-off." }
       - { id: valfardsbrottslighet,      submeasure: finansiering_styrning, direction: down }
 
@@ -124,7 +124,7 @@ categories:
       - { id: materiel_formaga,         submeasure: militar_formaga, direction: up, note: "Ammunition, luftvärn, logistik, cyberförmåga" }
       - { id: civil_beredskap_niva,     submeasure: civil_beredskap, direction: up, note: "Vård, energi, mat, transporter" }
       - { id: ukraina_stod,             submeasure: nato_ukraina, direction: up, note: "Givet svensk uthållighet" }
-      - { id: leveranstid_materiel,     submeasure: genomforbarhet_leverans, direction: down }
+      - { id: leveranstid_materiel,     submeasure: genomforbarhet_leverans, direction: down, note: "🔴 BEVAKA (ej mätbar nu; version 0, sign-off 2026-06-07). Äkta steg-1-vägg: officiella svenska källor behandlar lång leveranstid som exogent marknadsproblem, inget instrument belägger ordagrant kortad ledtid. Bidrar EJ till betyg (renormaliseras bort, score.py aggregate_B). BEHÅLLS som UTVIDGNINGSKANDIDAT — undermåttet genomforbarhet_leverans är HOLD; om FMV leveransindex blir D-serie eller en effektutvärdering av försvarsindustristrategin (FöU3) belägger försörjningstrygghet kan undermåttet öppnas (ev. via syster-indikator forsorjningstrygghet_materiel). Se §8.7 / §4.3." }
       - { id: nato_interoperabilitet,   submeasure: nato_ukraina, direction: up }
 
   - id: klimat
@@ -165,8 +165,8 @@ categories:
       - { id: sfi_sprakkunskaper,                 submeasure: skola_sprak, direction: up }
       - { id: skolresultat_utsatta_omraden,       submeasure: skola_sprak, direction: up }
       - { id: trangboddhet,                       submeasure: boendesegregation, direction: down }
-      - { id: segregation,                        submeasure: boendesegregation, direction: down }
-      - { id: tillit_valdeltagande,               submeasure: normer_tillit, direction: up }
+      - { id: segregation,                        submeasure: boendesegregation, direction: down, note: "🔴 BEVAKA (ej mätbar nu; version 0, sign-off 2026-06-07). Steg-2-vägg (neutralitet): kausal evidens FINNS (RiR 2021:29, kommunanvisning->jämnare spridning) men instrumenten (bosättningslag/EBO) är självstyre-/migrations-värdekonflikter -> tilt. Bidrar EJ till betyg (renormaliseras bort, score.py aggregate_B). BEHÅLLS som UTVIDGNINGSKANDIDAT — om nya bosättningslagen (Dir 2024:22, ~2027) tas i enhälligt SfU/AU-betänkande utan självstyre-reservation kan undermåttet boendesegregation öppnas. Se §8.7 / §4.3." }
+      - { id: tillit_valdeltagande,               submeasure: normer_tillit, direction: up, note: "🔴 BEVAKA (ej mätbar nu; version 0, sign-off 2026-06-07). Steg-2-vägg: kausal evidens FINNS (Delmi 2025:5, GOTV->valdeltagande; IFAU 2017:12) men inget neutralt partistyrbart steg-2-ankare (anslag avslås/enpartisreserveras, eller acklameras bara för att oppositionen avstår). Bidrar EJ till betyg (renormaliseras bort, score.py aggregate_B). BEHÅLLS som UTVIDGNINGSKANDIDAT — om ett enhälligt/acklamerat GOTV-anslag där oppositionen ej avstår dyker upp kan undermåttet normer_tillit öppnas. Se §8.7 / §4.3." }
       - { id: atervandande_effektivitet,          submeasure: migrationssystem, direction: up }
 
   - id: demokrati

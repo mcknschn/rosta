@@ -18,7 +18,7 @@
 # högrisk-screening: inga fabrikat). Skarp betygsättning aktiverad. Metod oförändrad; rättelser
 # i denna fil dokumenterade per rad (mapping_note "EXPERTBESLUT 2026-06-05").
 
-version: 1
+version: 2
 status: expert_reviewed
 entries:
 - party: S
@@ -1344,11 +1344,11 @@ entries:
   source: Kommittemotion (C) – data.riksdagen.se/HD023583
   source_type: kommittemotion
   source_url: https://data.riksdagen.se/dokument/HD023583
-  doc_id: HD023583
-  quote: Riksdagen ställer sig bakom det som anförs i motionen om behovet av skärpt insyn i partifinansieringen och tillkännager detta för regeringen.
+  doc_id: HD023583 yrk. 17
+  quote: Riksdagen ställer sig bakom det som anförs i motionen om behovet av ett lobbyregister och tillkännager detta för regeringen.
   date: '2025-10-07'
   confidence: high
-  mapping_note: 'Instrument-exakt (insyn = kärnindikator); ''skärpt insyn'' = utöka instrumentet => supports. Bunten-regel §2: motionen buntar flera demokratiyrkanden (yrkande 9 transparens, yrkande 17 lobbyregister, samt ett avsnitt om att begränsa spridning av personuppgifter via offentlighetsprincipen mot kriminella — annat skyddsändamål) — den interna nyansen noteras och används ALDRIG som skäl att förkasta raden. Partikollektiv kommittemotion => confidence hög. Harmoniseras lika med MP:s HA02181 (samma typ av buntad transparens/insyn-motion, partikollektiv).'
+  mapping_note: "Instrument-exakt for oberoende granskning/insyn via LOBBYREGISTER (HD023583 yrk. 17), EJ partifinansiering => supports. OMANKRAD 2026-06-07 (sign-off, dubbelräkning åtgärdad): raden var tidigare ankrad på yrk. 16 ('behovet av skärpt insyn i partifinansieringen') = SAMMA instrument som måttet insyn_partifinansiering (transparens_ansvar), vilket dubbelkrediterade C under två demokrati-undermått. Raden bär nu lobbyregister-yrkandet (brödtext: 'För att få bättre insyn ... behövs ett lobbyregister på nationell nivå'); partifinansierings-yrkandena (yrk. 15-16) används medvetet EJ här -> ingen overlap kvar. Partikollektiv kommittemotion => confidence hög. Stance och betyg oförändrade (citat verifierat ordagrant mot HD023583.text 2026-06-07)."
 - party: V
   policy_type: starkt_oberoende_granskning_och_insyn
   stance: supports
@@ -1388,11 +1388,11 @@ entries:
   source: Partimotion (MP) – data.riksdagen.se/HA02181
   source_type: partimotion
   source_url: https://data.riksdagen.se/dokument/HA02181
-  doc_id: HA02181
-  quote: Riksdagen ställer sig bakom det som anförs i motionen om att skärpa lagstiftningen om insyn i finansiering av partier och tillkännager detta för regeringen.
+  doc_id: HA02181 yrk. 9
+  quote: Riksdagen ställer sig bakom det som anförs i motionen om att friskolor ska omfattas av offentlighetsprincipen och tillkännager detta för regeringen.
   date: '2022-11-16'
   confidence: high
-  mapping_note: 'Instrument-exakt (insyn). Bunten-regel §2: buntmotion med eget transparens-/korruptionsavsnitt — citatet (skärpt insyn i partifinansiering) ar instrument-exakt, övriga yrkanden (lobbyism/transparensregister, friskolor/offentlighetsprincip) noteras och förkastar inte raden. Harmoniseras lika med C:s HD023583 (samma typ av buntad insyn/transparens-motion). TIDSREGEL §4: kallan ar fran rm 2022/23, dvs i början av föredragen mandatperiod men äldre än de övriga partiernas 2025/26-källor; ingen nyare instrument-exakt MP-partikollektiv kalla hittad — detta noteras explicit per §4 (symmetriskt: inget strängare tidskrav läggs pa MP). Partimotion (partikollektiv) => confidence hög, ej beroende av enskild-motion-regeln.'
+  mapping_note: "Instrument-exakt for oberoende granskning/insyn via OFFENTLIGHETSPRINCIPEN (HA02181 yrk. 9, friskolor), EJ partifinansiering => supports. OMANKRAD 2026-06-07 (sign-off, dubbelräkning åtgärdad): raden var tidigare ankrad på yrk. 10 ('skärpa lagstiftningen om insyn i finansiering av partier') = SAMMA instrument som måttet insyn_partifinansiering (transparens_ansvar), vilket dubbelkrediterade MP under två demokrati-undermått. Raden bär nu offentlighetsprincip-yrkandet (brödtext: 'Offentlighetsprincipen är en hörnsten i den svenska demokratin ... möjliggör för allmänheten att granska offentlig verksamhet'); partifinansierings-yrkandet (yrk. 10) används medvetet EJ här -> ingen overlap kvar. TIDSREGEL §4: kallan ar fran rm 2022/23 (symmetriskt: inget strängare tidskrav läggs pa MP). Partimotion (partikollektiv) => confidence hög. Stance och betyg oförändrade (citat verifierat ordagrant mot HA02181.text 2026-06-07)."
 - party: S
   policy_type: systematiskt_antikorruptionsarbete_kommuner_regioner
   stance: supports
@@ -2340,7 +2340,7 @@ entries:
   quote: "Riksdagen antar regeringens förslag till lag om insyn i finansiering av partier, till lag om ändring i lagen om insyn i finansiering av partier samt till lag om ändring i lagen (1972:625) om statligt stöd till politiska partier."
   date: '2018-02-02'
   confidence: medium
-  mapping_note: "ENHÄLLIGHET (§5.2): bet. 2017/18:KU19 punkt 1 (kärnlagen om insyn i partifinansiering) togs i ACKLAMATION, ingen reservation mot p1 -> C supports. Lagstadgad insyn i partifinansiering -> politisk_transparens UPP. Avser EJ den tiltade p4 (förbud mot partistöd från arbetsmarknadens parter, röstning). DUBBELRÄKNINGS-NOT: C har även en partifinansierings-rad i bunten starkt_oberoende_granskning_och_insyn (-> korruption); sign-off omankrar den eller accepterar överlappet (icke-rankningsdrivande)."
+  mapping_note: "ENHÄLLIGHET (§5.2): bet. 2017/18:KU19 punkt 1 (kärnlagen om insyn i partifinansiering) togs i ACKLAMATION, ingen reservation mot p1 -> C supports. Lagstadgad insyn i partifinansiering -> politisk_transparens UPP. Avser EJ den tiltade p4 (förbud mot partistöd från arbetsmarknadens parter, röstning). DUBBELRÄKNING ÅTGÄRDAD 2026-06-07 (sign-off): C:s rad i bunten starkt_oberoende_granskning_och_insyn (-> korruption) omankrad från partifinansiering till lobbyregister (HD023583 yrk. 17); partifinansierings-instrumentet krediteras nu ENDAST här (transparens_ansvar) -> ingen dubbelräkning kvar."
 - party: V
   policy_type: insyn_partifinansiering
   stance: supports
@@ -2384,7 +2384,7 @@ entries:
   quote: "Riksdagen antar regeringens förslag till lag om insyn i finansiering av partier, till lag om ändring i lagen om insyn i finansiering av partier samt till lag om ändring i lagen (1972:625) om statligt stöd till politiska partier."
   date: '2018-02-02'
   confidence: medium
-  mapping_note: "ENHÄLLIGHET (§5.2): bet. 2017/18:KU19 punkt 1 (kärnlagen om insyn i partifinansiering) togs i ACKLAMATION, ingen reservation mot p1 -> MP supports. Lagstadgad insyn i partifinansiering -> politisk_transparens UPP. Avser EJ den tiltade p4 (förbud mot partistöd från arbetsmarknadens parter, röstning). DUBBELRÄKNINGS-NOT: MP har även en partifinansierings-rad i bunten starkt_oberoende_granskning_och_insyn (-> korruption); sign-off omankrar den eller accepterar överlappet (icke-rankningsdrivande)."
+  mapping_note: "ENHÄLLIGHET (§5.2): bet. 2017/18:KU19 punkt 1 (kärnlagen om insyn i partifinansiering) togs i ACKLAMATION, ingen reservation mot p1 -> MP supports. Lagstadgad insyn i partifinansiering -> politisk_transparens UPP. Avser EJ den tiltade p4 (förbud mot partistöd från arbetsmarknadens parter, röstning). DUBBELRÄKNING ÅTGÄRDAD 2026-06-07 (sign-off): MP:s rad i bunten starkt_oberoende_granskning_och_insyn (-> korruption) omankrad från partifinansiering till offentlighetsprincipen (HA02181 yrk. 9); partifinansierings-instrumentet krediteras nu ENDAST här (transparens_ansvar) -> ingen dubbelräkning kvar."
 - party: S
   policy_type: upptrappning_forsvarsanslag_mot_mal
   stance: supports
@@ -2790,7 +2790,7 @@ entries:
   quote: "Riksdagen ... bifaller ... delvis motionerna ... 2020/21:311 av Jonny Cato (C) ..."
   date: '2020-11-11'
   confidence: high
-  mapping_note: "C:s egen motion träffar instrumentet (ser över ansvarsfördelning/uppdrag mellan myndigheterna) och blev delvis bifallen; C ja-röst mot S/MP-reservationen. NEUTRALITETSNYANS: C stod här mot sina dåvarande budgetpartners S/MP -> styrker att splitten följer sakfrågan, ej regering-vs-opp."
+  mapping_note: "C:s egen motion träffar instrumentet (ser över ansvarsfördelning/uppdrag mellan myndigheterna) och blev delvis bifallen; C ja-röst mot S/MP-reservationen. NEUTRALITETSNYANS: C stod här mot sina dåvarande budgetpartners S/MP -> styrker att splitten följer sakfrågan, ej regering-vs-opp. OMVERIFIERAD 2026-06-07 (sign-off): bred sökning i innevarande mandatperiod (SfU-motioner, C:s migrationsplattform hd023190, prop. 2025/26:263 + C:s följdmotion hd024159) gav INGEN nyare instrument-exakt C-källa om ansvarsfördelningen för återvändande (C:s nyare 'ansvarsfördelning' gäller informationsutbytets juridiska placering, ej myndighetsorganisationen). Kodningen vilar fortsatt på SfU6 2020/21 — BEHÅLLEN (användarbeslut 2026-06-07), symmetriskt flaggad föråldrad; den tvåsidiga RiR-ankrade spliten bär neutraliteten."
 - party: L
   policy_type: se_over_ansvarsfordelning_atervandande
   stance: supports
@@ -2812,7 +2812,7 @@ entries:
   quote: "Vi anser att det är en rimlig avgränsning av uppdraget eftersom en förändring av ansvarsfördelningen, t.ex. genom att flytta uppdrag mellan myndigheter eller att bilda en ny myndighet, skulle ta stora resurser i anspråk, men inte med säkerhet väsentligt förbättra resultaten ..."
   date: '2020-11-11'
   confidence: high
-  mapping_note: "S försvarar uttryckligen den befintliga (splittrade) strukturen / det avgränsade Statskontorsuppdraget och avvisar reformen (flytta uppdrag / bilda ny myndighet) -> opposes på exakt instrumentet (_FLIP -> negativt B i atervandande_effektivitet). TIDSNOT (§10.5): primärkälla 2020/21; partiets NUVARANDE hållning är ej verifierad här -> flaggas för tidskontroll vid sign-off."
+  mapping_note: "S försvarar uttryckligen den befintliga (splittrade) strukturen / det avgränsade Statskontorsuppdraget och avvisar reformen (flytta uppdrag / bilda ny myndighet) -> opposes på exakt instrumentet (_FLIP -> negativt B i atervandande_effektivitet). TIDSNOT (§10.5): primärkälla 2020/21. OMVERIFIERAD 2026-06-07 (sign-off): bred sökning i innevarande mandatperiod (SfU-motioner, S UO8 hd023587, S 'Migration' hb022622, prop. 2025/26:263 + S:s följdmotion hd024152) gav INGEN nyare instrument-exakt S-källa om ansvarsfördelningen för återvändande — prop. 263 innehåller ingen organisationsreform, S:s nyare material rör volym/befogenheter/informationsutbyte/integritet. Kodningen vilar fortsatt på SfU6 2020/21 (S var då regeringsparti som försvarade sitt eget Statskontorsuppdrag) — BEHÅLLEN (användarbeslut 2026-06-07), symmetriskt flaggad föråldrad; den tvåsidiga RiR-ankrade spliten (vunnen mot S/MP-regeringen) bär neutraliteten."
 - party: MP
   policy_type: se_over_ansvarsfordelning_atervandande
   stance: opposes
@@ -2823,4 +2823,4 @@ entries:
   quote: "Vi anser att det är en rimlig avgränsning av uppdraget eftersom en förändring av ansvarsfördelningen, t.ex. genom att flytta uppdrag mellan myndigheter eller att bilda en ny myndighet, skulle ta stora resurser i anspråk, men inte med säkerhet väsentligt förbättra resultaten ..."
   date: '2020-11-11'
   confidence: high
-  mapping_note: "MP formell medreservant i reservation 3 och nej-röst -> försvarar status quo-avgränsningen -> opposes på instrumentet. TIDSNOT (§10.5): primärkälla 2020/21; flaggas för tidskontroll vid sign-off."
+  mapping_note: "MP formell medreservant i reservation 3 och nej-röst -> försvarar status quo-avgränsningen -> opposes på instrumentet. TIDSNOT (§10.5): primärkälla 2020/21. OMVERIFIERAD 2026-06-07 (sign-off): bred sökning i innevarande mandatperiod (SfU-motioner, MP-plattformen hd023362, prop. 2025/26:263 + MP:s följdmotion hd024173 som avslår propositionen på integritetsgrund) gav INGEN nyare instrument-exakt MP-källa om ansvarsfördelningen för återvändande. Kodningen vilar fortsatt på SfU6 2020/21 (MP var då regeringsparti) — BEHÅLLEN (användarbeslut 2026-06-07), symmetriskt flaggad föråldrad."
