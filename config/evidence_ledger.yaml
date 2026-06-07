@@ -56,10 +56,10 @@ entries:
     direction: positive
     evidence_level: authority_evaluation
     effect_strength: medium
-    confidence: medium
-    source: "IFAU, forskningssammanfattning 'Utrikes föddas etablering på arbetsmarknaden' (refererar Dahlberg m.fl. 2020)"
+    confidence: high
+    source: "IFAU, forskningssammanfattning 'Utrikes föddas etablering på arbetsmarknaden' (refererar Dahlberg m.fl. 2020); BEKRÄFTAD av IFAU R 2023:19 'Etablering av nyanlända flyktingar' (Dahlberg/Egebark/Vikman, RCT-uppföljning 4 år av samma Göteborgs-försök)"
     source_url: "https://www.ifau.se/Press/Forskningssammanfattningar/Utrikes-foddas-eta-pa-arbetsmarknaden-/"
-    note: "EXPERTUPPGRADERING 2026-06-05 (ersätter generisk seed-källa): IFAU sammanfattar att 'Genom intensiv språkutbildning, arbetspraktik samt sök- och matchningshjälp dubblerades sysselsättningen bland lågutbildade nyanlända' (Dahlberg m.fl. 2020) -> kombinerad sfi + praktik höjer sysselsättningen för utrikes födda (minskar gapet). confidence höjd low->medium (konkret kvantifierad effekt, men vilar på en pilot i Göteborg)."
+    note: "EXPERTUPPGRADERING 2026-06-05 (ersätter generisk seed-källa): IFAU sammanfattar att 'Genom intensiv språkutbildning, arbetspraktik samt sök- och matchningshjälp dubblerades sysselsättningen bland lågutbildade nyanlända' (Dahlberg m.fl. 2020) -> kombinerad sfi + praktik höjer sysselsättningen för utrikes födda (minskar gapet). UPPGRADERAD 2026-06-07 (användarbeslut, version ej bumpad -> sign-off) confidence medium->high: IFAU R 2023:19 (RCT i Göteborg, 140 lottade) är 4-årsuppföljningen av SAMMA försök och visar att effekten BESTÅR — behandlingsgruppen har '10-20 procentenheter högre sysselsättning under flera år efter att insatsen avslutats' och jämförelsegruppen kommer ifatt först >3 år senare (kortsiktigt ~+15 p.e. = fördubbling). Inte längre 'bara en pilot' -> RCT med varaktig effekt -> confidence high (effect_strength kvar medium: ett försöksområde/pilotskala, ej nationell utrullning). PDF: https://www.ifau.se/globalassets/pdf/se/2023/r2023-19-etablering-av-nyanlanda-flyktingar.pdf . DUBBELRÄKNINGS-SPÄRR: R 2023:19 konsumeras HÄR som bekräftande källa — den får ALDRIG byggas som eget B-instrument (det vore samma Dahlberg-Göteborgs-RCT räknad två gånger)."
 
   # ---------------------------------------------------------------------------
   # verified_draft (2026-05-30, research-workflow, källor URL-bekräftade)
