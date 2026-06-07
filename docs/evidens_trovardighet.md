@@ -249,15 +249,15 @@ Förebyggande arbete har nu en indikator (var tidigare en "saknar indikator"-vä
 | Frihet, demokrati och institutioner | Transparens och ansvarsutkrävande `transparens_ansvar` | Politisk transparens `politisk_transparens` | upp | ✅ mäts (B) — byggt 2026-06-07: insyn_partifinansiering (lagen 2018:90, KU19 p1, alla 8) |
 
 ### Vad kartan säger — efter B-grön-svepet 2026-06-07
-**Status per undermått (35 totalt):** **29 har nu en B-grön indikator** (24 sedan tidigare + 5 byggda i
-svepet). **6 saknar B-grön:** 4 HOLD-undermått (genuina väggar) + 2 target-/kontext-undermått (medvetet).
-1. **✅ Mäts via B (bidrar nu)** — 29 undermått. Värdeneutralt skydd: indikatorer utan D bärs ändå av **B**
+**Status per undermått (35 totalt):** **28 har nu en B-grön indikator** (23 sedan tidigare + 5 byggda i
+svepet). **7 saknar B-grön:** 5 HOLD-undermått (genuina väggar) + 2 target-/kontext-undermått (medvetet).
+1. **✅ Mäts via B (bidrar nu)** — 28 undermått. Värdeneutralt skydd: indikatorer utan D bärs ändå av **B**
    (nato_interoperabilitet, mediefrihet, korruption, + de 5 nya). De 5 nya är alla enhällighet-konsensus (alla 8
    supports, icke-rankningsdrivande), v0/low/low, FLAGGADE för sign-off.
 2. **🟡 Mätbar, ej byggd (8 st kvar)** — bonus-indikatorer på undermått som REDAN har en B-grön (ej krav för
    målet): realloner, vard_i_tid, skillnader_mellan_skolor, materiel_formaga, ukraina_stod, elprisvolatilitet,
    sfi_sprakkunskaper, fortroende_domstolar_myndigheter. Mest D-adaptrar (Spår D) + enstaka B-vägar. Nästa steg, ej brådskande.
-3. **🔴 HOLD-undermått utan B-grön (4):** `genomforbarhet_leverans` (forsvar — steg-2-tilt; ny indikator
+3. **🔴 HOLD-undermått utan B-grön (5):** `genomforbarhet_leverans` (forsvar — steg-2-tilt; ny indikator
    `forsorjningstrygghet_materiel` föreslagen), `industriell_konkurrenskraft` (klimat — dubbelvägg;
    `industrins_utslappsintensitet` föreslagen), `boendesegregation` + `normer_tillit` + `migrationssystem`
    (integration — genuina väggar/högsta bias-risk). Alla med konkreta sign-off-kandidat-indikatorer i §8.7.
