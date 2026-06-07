@@ -511,6 +511,14 @@ Legend: ✅ byggt · 🟡 kandidat (research klar, väntar beslut) · ❌ förka
     konstrukt / icke-svensk kausalitet / korrelation / A-dubbelräkning). Status: **steg 1 löst, steg 2 saknas.**
     **Återöppna (GOTV):** ett enhälligt/acklamerat anslagsbeslut för icke-partisk röstmobilisering där oppositionen
     EJ avstår — då byggs måttet via §5.2.
+  - **Extra runda 2026-06-07 (5 nya spår):** HOLD bekräftat, men en genuint ny near-miss. **IFAU 2017:12** (treåriga
+    yrkesprogram → valdeltagande +3 p.e. för resurssvaga unga) är en **NY steg-1-vinst med ett PARTISTYRBART instrument**
+    (det GOTV saknade) — men steg 2 faller: bet. 2021/22:UbU22 p1-spliten är **SD+L-avslag på utbildningskvalitets-grund
+    (kunskapsurholkning), ej valdeltagande** → koda dem `opposes` vore konstrukt-missmatch + tilt på fel värdeaxel. Övriga:
+    IFAU 2018:3 (tidig rösträtt utländska medborgare = kausal NOLLeffekt), Brå hedersförtryck 2026 (beskrivande, ej
+    utfallseffekt), RiR 2026 etnisk diskriminering (processgranskning), RiR 2023 tillit/kontroll civilsamhälle
+    (administrativ kontroll, ej tillitseffekt) — alla wall. **Skärpt återöppning:** acklamerad UbU-behandling av treåriga
+    yrkesprogram UTAN avslagsreservation → §5.2 löser steg 2 mot IFAU 2017:12.
 - ❌ `boendesegregation` HOLD (2026-06-06): ingen kausal svensk *instrument*-utvärdering (Boverket beskrivande);
   CU18 p12 är ett **avslag** med S/V/C-reservationer, underliggande CU6 är regering-vs-vänster-split → tilt.
   *(RÄTTAT 2026-06-07: steg-1-evidens finns numera — RiR 2021:29, se nedstigningen längre ned; väggen är STEG 2/neutralitet.)*
@@ -540,6 +548,12 @@ Legend: ✅ byggt · 🟡 kandidat (research klar, väntar beslut) · ❌ förka
     områdesinsatser/Delmi 2025:3/Statskontoret 2023:** beskrivande/mixed (oförändrat). **Återöppna #2:** om den nya
     bosättningslagen (ur Dir 2024:22, ikraft ~2027) tas i enhälligt SfU/AU-betänkande utan självstyre-reservation mot
     huvudpunkten → RiR 2021:29 blir steg 1 och §5.2 löser steg 2. (Bevaka SfU 2026/27.)
+  - **Extra runda 2026-06-07 (5 nya spår):** HOLD bekräftat, inga nya öppningar. Avförda spår: DO-bostadsdiskriminering
+    (instrument = förslag, ej infört; värdeaxel), hemlöshet/Bostad först (regeringsbeslut → inget riksdagsankare;
+    CU13-motioner avslagna; mäter kvarboende ej segregation), bostadsbidrag **RiR 2024:15** (belägger trångboddhet
+    ÖKAT men ingen kausal instrumenteffekt + transfererings-värdeaxel), bostadspolitik **bet. 2024/25:CU13** (acklamation
+    = avslag på ~160 oppositionsmotioner, §5.2 ej tillämpbar), färska kunskapskällor (Delmi 2025:3/Boverket
+    2023:23/2023:26 beskrivande). Dir 2024:22-triggern fortfarande ouppfylld (utredningsstadiet, självstyre-inramad).
 - ✅ `migrationssystem` byggt (se kategorihuvudet ovan) — den enda av integrations tre HOLD-väggar som föll
   2026-06-07. normer_tillit + boendesegregation kvarstår HOLD.
 - ⚠️ Kategorins egen IDEA.md-caveat ("stor risk för ideologisk bias") **bekräftad i praktiken** → HOLD rätt.
@@ -681,6 +695,34 @@ acceptera eller kräv omverifiering mot innevarande mandatperiod. (3) Detta är 
 enhällighets-) integration-B-mått → bekräfta att den tvåsidiga splitten (RiR-ankrad, vunnen mot regeringen) är
 värdeneutral nog för den mest bias-känsliga kategorin.
 
+#### Integration extra runda + alternativ-undermått-analys 2026-06-07 (§5.8 steg 2) ⭐
+
+Användaren bad om en runda till med fler indikatorer för de två kvarvarande väggarna (boendesegregation, normer_tillit),
+och om inget vettigt hittas — en §5.8-steg-2-analys av ALTERNATIVA undermått. Båda gjorda (3 agenter).
+
+**Indikatorvändan:** båda väggarna bekräftade (se §6 "Extra runda"). Enda nya near-miss: normer_tillit IFAU 2017:12
+(treåriga yrkesprogram → valdeltagande, partistyrbart instrument) — men UbU22-spliten är på fel värdeaxel (utbildnings-
+kvalitet) → tilt. boendesegregation: 5 nya spår, alla wall (instrument-grind eller värdeaxel).
+
+**Alternativ-undermått-analys (zoom-ut via IDEA.md "Arbete, språk, skolsegregation, självförsörjning, tillit"):**
+**Inget alternativt undermått är en ren ersättare.** Prövade: (a) diskriminering arbets-/bostadsmarknad (D = bara
+DO-anmälningar, icke-neutralt; varje instrument-ankare tiltat — AU10-avslag), (b) hälsogap inrikes/utrikes (= VÄLFÄRD-
+överlapp), (c) utrikes kvinnors sysselsättning (= delmängd `arbete_sjalvforsorjning`, samma SCB TAB6529), (d)
+medborgarskap/naturalisering (IFAU: effekten är SELEKTION ej kausal + värdeladdat), (e) barns skolnärvaro (= `skola_sprak`),
+(g) barnfattigdom utrikes födda (= arbete/ekonomi-överlapp). Alla **dubbelräknar** ett befintligt undermått/annan kategori
+eller faller på **samma neutralitetsvägg**. Att byta in en lättare fyra = exakt §5.8-spärren ("fuska inte").
+
+**Enda starka fyndet — ett B-INSTRUMENT (ej nytt undermått):** **etableringseffektivitet** via **IFAU R 2023:19** (intensiv/
+tidig etableringsinsats → ~+15 p.e. sysselsättning år 1; uppmätt KAUSAL effekt, medium/medium-värdig — starkaste steg-1 i
+hela integrationssvepet). Men den **dubbelräknar `arbete_sjalvforsorjning`** (= ny instrument-väg in i ett REDAN B-grönt
+undermått, inte ett nytt). Höjer inte 3/5→4/5, men skulle stärka integrationens B-robusthet (coverage). Steg-2-ankare
+(AU-betänkande om etablerings-/intensitetsreform) **ej verifierat ännu** → kräver verifiering + codex om det byggs.
+
+**Slutsats/rekommendation:** integration stannar på **3/5 B-grön** — det neutrala taket. boendesegregation + normer_tillit
+redovisas som genuina HOLD-väggar (uttömda över flera rundor, med skärpta steg-1-vs-steg-2-diagnoser + konkreta
+återöppningstriggrar). **Ersätt INTE** ett walls-undermått med ett alternativ (alla dubbelräknar/tiltar). Öppet
+sign-off-val: bygga etablerings-instrumentet som 2:a B-rad i arbete_sjalvforsorjning (coverage-stärkande bonus, ej 4/5).
+
 ---
 
 ## 9. Beslutslogg
@@ -711,6 +753,7 @@ värdeneutral nog för den mest bias-känsliga kategorin.
 | 2026-06-07 | **normer_tillit förblir HOLD** efter kandidatnedstigning (#1 GOTV → #2/#3/egna) | steg 1 löst (Delmi 2025:5) men inget neutralt steg-2-ankare; övriga kandidater wall på instrument-grind; "neutralitet före 4" + riktningsgrind |
 | 2026-06-07 | **boendesegregation: full nedstigning #2–#5** → HOLD; **logg-rättelse** | #2 bosättningslag passerar steg 1 (RiR 2021:29) men faller på steg-2-värdekonflikt (självstyre); #3/#4/#5 wall. Diagnos: STEG 2/neutralitet, EJ steg 1 (gamla loggen fel) |
 | 2026-06-07 | **genomforbarhet_leverans + industriell_konkurrenskraft: nedstigning** → båda HOLD, men **väggarna krympta** | genomforbarhet: STEG 2 LÖST (FöU3 p1 acklamation), kvar enbart steg-1/instrument-effekt → en effektutvärdering räcker för BUILD. industriell_konkurrenskraft: neutralt ankare finns (elnät NU15 p1 acklamation) men steg 1 tvåsidigt (Tillväxtanalys: elektrifiering→"förlorad konkurrenskraft"); D-serie (utsläpp/förädlingsvärde) finns men ≠ B. Inget byggt — "neutralitet före 4" |
+| 2026-06-07 | **Integration extra indikatorvända + alternativ-undermått-analys** (för att nå 4/5) → integration stannar på **3/5** | nya indikatorspår (boendesegr: DO/Bostad först/RiR 2024:15/CU13; normer: IFAU 2017:12/2018:3/heders/diskriminering) alla wall; alternativ-undermått-analys: inget rent byte (alla dubbelräknar befintligt undermått/annan kategori eller tiltar) → §5.8-spärr "fuska inte" → behåll HOLD, ersätt ej. Etablerings-instrument (IFAU R 2023:19) starkt men dubbelräknar arbete_sjalvforsorjning (öppet sign-off-val) |
 
 ---
 
@@ -751,6 +794,7 @@ mot snapshot), `review_packet` (granskningspaket). Snapshot re-baselineas **bara
 | 2026-06-06 | **§4.3 mätbarhetskarta tillagd** (på användarfråga): varje indikator klassad B/D → ✅ mäts / 🟡 mätbart-ej-byggt (10) / 🔴 ej mätbart (4) / ⚪ target (3). De 4 röda = exakt de 4 HOLD-undermåtten → designfråga §8.6 (borttagning/omklassning, sign-off). De 10 gula ska byggas, ej strykas. |
 | 2026-06-06 | **Andra svepet (§5.8 tillämpat):** demokrati **3/5 → 4/5** via public service-lagen (KrU2 p1 enhällighet, codex BUILD-WITH-CHANGES, low/low). forsvar/valfard/integration djupsvepta (7+11+11 instrument, 4 parallella researchagenter, alla röstsiffror verifierade mot data.riksdagen.se) → **HOLD ×5 bekräftat** med skärpta återöppningsvillkor (§6). Nya fynd: vårdplats-slutrapport 2026:3 föll *nedåt* (villkor konsumerat); **cancerscreening** (valfard) + **KU4-tillgänglighet** (integration) = near-miss som faller på steg-2-tilt resp. fel konstrukt; **KU39 insyn i politiska processer** = stark demokrati-återöppning (beslut 2026-06-15). 37 evidensposter / 200 ståndpunkter; 167 tester gröna, ruff rent, 0 cyrilliska. §3/§6/§9 uppdaterade. |
 | 2026-06-06 | **Begreppsmodell stringentad (på användarfråga):** kanonisk vokabulär **Kategori → Undermått → Indikator → Riktning** låst i §4.3-ordlista; "submått" → **Undermått** normaliserat i alla 5 dok (IDEA/DATA/BACKLOG/ROADMAP/evidens_trovardighet, 116 förekomster); IDEA.md + BACKLOG.md pekar nu på §4.3 som sanningskälla. **Config-bugg fixad:** 4 undermåttsnamn (Nato/Skola/Normer/Finansiering) var trunkerade av oquoterade kommatecken i `categories.yaml` flow-YAML → citerade. **§4.3 fick mastertabell** över samtliga **35 undermått / 52 indikatorer** (Kategori/Undermått/Indikator/Riktning/Mätstatus, genererad ur config; de 3 undermått som *saknar indikator* — forebyggande/industriell_konkurrenskraft/migrationssystem — listas som egna rader). dist byte-identisk (namn påverkar ej betyg); 167 tester gröna. |
+| 2026-06-07 | **INTEGRATION EXTRA RUNDA + ALTERNATIV-UNDERMÅTT (användarbegäran: en vända till för att nå 4/5, annars byt undermått):** 3 agenter (fresh indikatorvända boendesegr + normer_tillit, samt §5.8-steg-2 strukturanalys). **Båda väggarna bekräftade på GENUINT NYA spår** (ej omprövning): boendesegr — DO-diskriminering, hemlöshet/Bostad först, bostadsbidrag RiR 2024:15, CU13-acklamation, alla wall; normer_tillit — **ny near-miss IFAU 2017:12** (yrkesprogram→valdeltagande, partistyrbart) men UbU22-split på fel värdeaxel = tilt, + IFAU 2018:3/heders/diskriminering wall. **Alternativ-undermått: inget rent byte** — diskriminering/hälsogap/utrikes kvinnor/medborgarskap/skolnärvaro/barnfattigdom dubbelräknar alla befintligt undermått/annan kategori eller tiltar (§5.8-spärr). Enda starka fynd = **etablerings-B-instrument** (IFAU R 2023:19, uppmätt kausal) men dubbelräknar arbete_sjalvforsorjning (öppet sign-off-val). **integration stannar 3/5**; inget byggt; "neutralitet före 4". §6/§8.7/§9 uppdaterade, ingen config-ändring. |
 | 2026-06-07 | **HOLD-VÄGG-NEDSTIGNINGAR (användarbegäran "gå igenom dem med"):** dedikerade kandidatnedstigningar för de återstående HOLD-väggarna. **boendesegregation:** #2–#5 prövade → HOLD, men logg-rättelse (RiR 2021:29 ÄR kausal kommunanvisning-utvärdering; väggen är STEG 2/neutralitet, ej steg 1) + skärpta återöppningsvillkor. **genomforbarhet_leverans (forsvar):** STEG 2 LÖST (bet. 2025/26:FöU3 p1 acklamation, alla 8) → väggen krympt till enbart steg-1/instrument-effekt; en effektutvärdering räcker nu för BUILD. **industriell_konkurrenskraft (klimat):** neutralt ankare finns (elnät bet. 2023/24:NU15 p1 acklamation) men steg 1 tvåsidigt (Tillväxtanalys: elektrifiering→"förlorad konkurrenskraft"); RiR 2024:17 "oklart"≠belagd negativ; D-serie utsläpp/förädlingsvärde finns (≠ B). **Inget byggt** (inget passerar båda grindar) — "neutralitet före 4". §6/§8.7/§9 uppdaterade; ingen config-ändring. |
 | 2026-06-07 | **INTEGRATION-SVEPET (användarfokus: fyll integrations otäckta undermått; metodpoäng: negativ evidens lika giltig som positiv):** 3 researchagenter (5 förslag/undermått) + per-parti-verifiering mot data.riksdagen.se + codex adversariell granskning. **migrationssystem BYGGT v0** (NY ind. `atervandande_effektivitet` / `se_over_ansvarsfordelning_atervandande` / RiR 2020:7; genuin tvåsidig split SfU6 p2: supports M/KD/SD/C/L, opposes S/MP, V none; codex KEEP-WITH-CHANGES — policy_type snävad "samla"→"se över", tidsnot 2020/21). **boendesegregation: kamera-väg byggd → REVERTERAD** (codex KILL: trygghet-relabel + dubbelräkning + §8.7-varningen + 7-1≈noll diff). **normer_tillit: HOLD** (Delmi 2025:5 löser steg 1; inget neutralt steg-2-ankare; nedstigning #2/#3/egna wall på instrument-grind). **Integration 2/5→3/5**; isolerad effekt: **ranking OFÖRÄNDRAD** (S>L>M>KD>MP>C>SD>V), endast integration rörd (S −0.063, MP −0.044, M/SD/L +0.04…0.09); 43 evidensposter / 247 ståndpunkter; 167 tester gröna, ruff rent, 0 cyrilliska, config valid. §4.3/§6/§8.7/§9/§11 uppdaterade. snapshot ej re-baselinad. Väntar sign-off. |
 | 2026-06-07 | **B-GRÖN-SVEPET (användarmandat: varje undermått ≥1 B-grön):** 11 parallella researchagenter + codex adversariell granskning → **5 mått byggda v0** (insyn_partifinansiering→transparens; NY forsvarsfinansiering_upptrappning_mot_mal→ekonomisk_ambition; NY kommunalt_brottsforebyggande_arbete→forebyggande; koncentration NHV→överlevnad; NY kontinuitet_i_omsorgen→omsorg_personal). Alla enhällighet-som-källa §5.2 (alla 8 supports, acklamation verifierad mot data.riksdagen.se dokumentstatus, citat verbatim-kollade), low/low, FLAGGADE. **Demokrati 4/5→5/5, trygghet 4/5→5/5, valfard 2/4→4/4 (alla FULLT), forsvar 3/5→4/5.** **5 HOLD** (genomforbarhet_leverans, industriell_konkurrenskraft, boendesegregation, normer_tillit, migrationssystem — genuina väggar, kandidat-indikatorer §8.7) + **offentliga_finanser HOLD-kontext** (codex: åtstramnings-tilt). 42 evidensposter / 240 ståndpunkter; **isolerad effekt: ranking OFÖRÄNDRAD** (S>L>M>KD>MP>C>SD>V), alla cellförändringar positiva (inget parti straffat); ruff rent, 167 tester gröna, config valid, B4 inga nära-binära. §3/§4.3/§6/§8.6/§8.7(ny)/§9 uppdaterade. snapshot ej re-baselinad. Väntar mänsklig sign-off. |
