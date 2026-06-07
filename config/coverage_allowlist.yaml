@@ -54,6 +54,7 @@ allowlist:
   - { category: integration, indicator: skolresultat_utsatta_omraden, reason: "no_api: ingen ren nationell årsserie för utsatta områden." }
   - { category: integration, indicator: segregation,                 reason: "no_api: ingen ren officiell segregationsårsserie." }
   - { category: integration, indicator: tillit_valdeltagande,        reason: "no_api/sparse: valdeltagande bara valår (glest); SOM-tillit ej API." }
+  - { category: integration, indicator: atervandande_effektivitet,   reason: "B-only (integration-svepet 2026-06-07): ingen publik årsserie för kostnad/effektivitet per verkställt återvändande; B via RiR 2020:7 (SfU6 p2)." }
   # --- demokrati (helt kvalitativt/internationellt) ---
   - { category: demokrati, indicator: korruption,                       reason: "international/qualitative: ingen officiell svensk kvantitativ korruptionsårsserie (TI:s CPI ej officiell svensk källa)." }
   - { category: demokrati, indicator: fortroende_domstolar_myndigheter, reason: "no_api: SOM-institutet (akademisk, tillåten) publicerar ej maskinläsbar årsserie." }

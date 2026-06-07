@@ -167,6 +167,7 @@ categories:
       - { id: trangboddhet,                       submeasure: boendesegregation, direction: down }
       - { id: segregation,                        submeasure: boendesegregation, direction: down }
       - { id: tillit_valdeltagande,               submeasure: normer_tillit, direction: up }
+      - { id: atervandande_effektivitet,          submeasure: migrationssystem, direction: up }
 
   - id: demokrati
     name: Frihet, demokrati och institutioner

@@ -2737,3 +2737,90 @@ entries:
   date: '2022-04-25'
   confidence: high
   mapping_note: "ENHÄLLIGHET (§5.2): bet. 2021/22:SoU24 punkt 2 (Lagförslaget i övrigt; skyldighet att erbjuda fast omsorgskontakt, 3 c § SoL) togs i ACKLAMATION -> MP supports. Fast omsorgskontakt -> kontinuitet_i_omsorgen UPP (EJ personalomsattning_omsorg)."
+
+# ===================================================================================================
+# INTEGRATION-SVEPET 2026-06-07 — policy_type se_over_ansvarsfordelning_atervandande (migrationssystem).
+# GENUIN SPLIT (ej enhällighet). Primärbelägg: bet. 2020/21:SfU6 punkt 2 (RiR 2020:7), votering
+# C7DEF4C6-4668-4D8E-AF06-7A820A666C39 ("Utskottets förslag mot reservation 3 (S, MP)"): tillkännagivande
+# att regeringen bör tillsätta utredning som ser över ANSVARSFÖRDELNINGEN för återvändandeverksamheten.
+# Röster p2: S 1ja/15nej · M 11ja · SD 10ja · C 5ja · V 4avst · KD 3ja · L 3ja · MP 3nej. Verifierat mot
+# data.riksdagen.se dokumentstatus. direction positive (reform -> effektivitet UPP); supports = stödjer
+# reformen, opposes = försvarar status quo. V UTELÄMNAS (avstod + egen, annan instrument-linje).
+# ===================================================================================================
+- party: M
+  policy_type: se_over_ansvarsfordelning_atervandande
+  stance: supports
+  source: "Bet. 2020/21:SfU6 punkt 2, votering — Utskottets förslag (tillkännagivande om utredning som ser över ansvarsfördelningen) mot reservation 3 (S,MP); M röstade ja. M medförfattare till motion 2020/21:145 yrk. 3 (delvis bifallen)."
+  source_type: votering
+  source_url: https://www.riksdagen.se/sv/dokument-och-lagar/dokument/betankande/riksrevisionens-rapport-om_H801SfU6/html/
+  doc_id: "H801SfU6 punkt 2; votering C7DEF4C6-4668-4D8E-AF06-7A820A666C39 (M 11 ja); motion H802145 yrk. 3"
+  quote: "Riksdagen ställer sig bakom det som utskottet anför om att regeringen bör tillsätta en utredning som ser över ansvarsfördelningen för återvändandeverksamheten och tillkännager detta för regeringen. Därmed bifaller riksdagen delvis motionerna 2020/21:145 ... yrkande 3 ..."
+  date: '2020-11-11'
+  confidence: high
+  mapping_note: "M medförfattare till det bifallna yrkandet (utredning om ansvarsfördelningen) OCH ja-röst mot status quo-reservationen -> supports på instrumentet se_over_ansvarsfordelning_atervandande. TIDSNOT (§10.5): bekräftas aktuellt av Tidöavtalet (2022): 'se över myndigheternas ansvarsfördelning'."
+- party: KD
+  policy_type: se_over_ansvarsfordelning_atervandande
+  stance: supports
+  source: "Bet. 2020/21:SfU6 punkt 2, votering (KD 3 ja). KD medförfattare till motion 2020/21:145 yrk. 3 + egen motion 2020/21:3663 yrk. 30 (delvis bifallna)."
+  source_type: votering
+  source_url: https://www.riksdagen.se/sv/dokument-och-lagar/dokument/betankande/riksrevisionens-rapport-om_H801SfU6/html/
+  doc_id: "H801SfU6 punkt 2; votering C7DEF4C6-4668-4D8E-AF06-7A820A666C39 (KD 3 ja); motion H802145 yrk. 3 + motion 2020/21:3663 yrk. 30"
+  quote: "Därmed bifaller riksdagen delvis motionerna 2020/21:145 ... yrkande 3 ... och 2020/21:3663 av Hans Eklind m.fl. (KD) yrkande 30."
+  date: '2020-11-11'
+  confidence: high
+  mapping_note: "KD både motionär bakom det bifallna instrumentet (yrk. om att utreda ansvaret för återvändandearbetet) och ja-röst mot status quo -> supports. TIDSNOT: bekräftas av Tidöavtalet (2022)."
+- party: SD
+  policy_type: se_over_ansvarsfordelning_atervandande
+  stance: supports
+  source: "Bet. 2020/21:SfU6 punkt 2, votering (SD 10 ja). SD:s motion 2020/21:2552 yrk. 22 (reformer av återvändandeverksamheten) delvis bifallen."
+  source_type: votering
+  source_url: https://www.riksdagen.se/sv/dokument-och-lagar/dokument/betankande/riksrevisionens-rapport-om_H801SfU6/html/
+  doc_id: "H801SfU6 punkt 2; votering C7DEF4C6-4668-4D8E-AF06-7A820A666C39 (SD 10 ja); motion 2020/21:2552 yrk. 22"
+  quote: "Därmed bifaller riksdagen delvis motionerna ... 2020/21:2552 av Jonas Andersson i Skellefteå m.fl. (SD) yrkande 22 ..."
+  date: '2020-11-11'
+  confidence: high
+  mapping_note: "SD-yrkandet om reformer av återvändandeverksamheten delvis bifallet inom tillkännagivandet om ansvarsfördelningen; SD ja-röst mot status quo -> supports. TIDSNOT: bekräftas av Tidöavtalet (2022, SD samarbetsparti)."
+- party: C
+  policy_type: se_over_ansvarsfordelning_atervandande
+  stance: supports
+  source: "Bet. 2020/21:SfU6 punkt 2, votering (C 5 ja). C:s motion 2020/21:311 (Jonny Cato) delvis bifallen — uttryckligen om ansvarsfördelning mellan myndigheterna."
+  source_type: votering
+  source_url: https://www.riksdagen.se/sv/dokument-och-lagar/dokument/betankande/riksrevisionens-rapport-om_H801SfU6/html/
+  doc_id: "H801SfU6 punkt 2; votering C7DEF4C6-4668-4D8E-AF06-7A820A666C39 (C 5 ja); motion H802311 (Jonny Cato, C)"
+  quote: "Riksdagen ... bifaller ... delvis motionerna ... 2020/21:311 av Jonny Cato (C) ..."
+  date: '2020-11-11'
+  confidence: high
+  mapping_note: "C:s egen motion träffar instrumentet (ser över ansvarsfördelning/uppdrag mellan myndigheterna) och blev delvis bifallen; C ja-röst mot S/MP-reservationen. NEUTRALITETSNYANS: C stod här mot sina dåvarande budgetpartners S/MP -> styrker att splitten följer sakfrågan, ej regering-vs-opp."
+- party: L
+  policy_type: se_over_ansvarsfordelning_atervandande
+  stance: supports
+  source: "Bet. 2020/21:SfU6 punkt 2, votering — L röstade ja (3 ja) för utskottets förslag (utredning om ansvarsfördelningen) mot reservation 3 (S,MP)."
+  source_type: votering
+  source_url: https://www.riksdagen.se/sv/dokument-och-lagar/dokument/betankande/riksrevisionens-rapport-om_H801SfU6/html/
+  doc_id: "H801SfU6 punkt 2; votering C7DEF4C6-4668-4D8E-AF06-7A820A666C39 (L 3 ja)"
+  quote: "Röst: Ja (punkt 2) — L 3 ja, 0 nej; biföll utskottets förslag om utredning som ser över ansvarsfördelningen för återvändandeverksamheten, mot reservation 3 (S, MP)."
+  date: '2020-11-11'
+  confidence: medium
+  mapping_note: "L har ingen egen motion i ärendet; belägget är ja-rösten i sakvoteringen mot status quo-reservationen -> supports. confidence=medium (vilar på votering, ej egen text). TIDSNOT: bekräftas av Tidöavtalet (2022, L undertecknare)."
+- party: S
+  policy_type: se_over_ansvarsfordelning_atervandande
+  stance: opposes
+  source: "Bet. 2020/21:SfU6 reservation 3 (S, MP), punkt 2 — S försvarar status quo (Statskontorets avgränsade uppdrag) och avvisar att se över ansvarsfördelningen i grunden; S röstade nej (15 nej)."
+  source_type: betankande
+  source_url: https://www.riksdagen.se/sv/dokument-och-lagar/dokument/betankande/riksrevisionens-rapport-om_H801SfU6/html/
+  doc_id: "H801SfU6 reservation 3 (S,MP); votering C7DEF4C6-4668-4D8E-AF06-7A820A666C39 (S 15 nej)"
+  quote: "Vi anser att det är en rimlig avgränsning av uppdraget eftersom en förändring av ansvarsfördelningen, t.ex. genom att flytta uppdrag mellan myndigheter eller att bilda en ny myndighet, skulle ta stora resurser i anspråk, men inte med säkerhet väsentligt förbättra resultaten ..."
+  date: '2020-11-11'
+  confidence: high
+  mapping_note: "S försvarar uttryckligen den befintliga (splittrade) strukturen / det avgränsade Statskontorsuppdraget och avvisar reformen (flytta uppdrag / bilda ny myndighet) -> opposes på exakt instrumentet (_FLIP -> negativt B i atervandande_effektivitet). TIDSNOT (§10.5): primärkälla 2020/21; partiets NUVARANDE hållning är ej verifierad här -> flaggas för tidskontroll vid sign-off."
+- party: MP
+  policy_type: se_over_ansvarsfordelning_atervandande
+  stance: opposes
+  source: "Bet. 2020/21:SfU6 reservation 3 (S, MP), punkt 2 — MP medreservant; samma status quo-ståndpunkt. MP röstade nej (3 nej)."
+  source_type: betankande
+  source_url: https://www.riksdagen.se/sv/dokument-och-lagar/dokument/betankande/riksrevisionens-rapport-om_H801SfU6/html/
+  doc_id: "H801SfU6 reservation 3 (S,MP); votering C7DEF4C6-4668-4D8E-AF06-7A820A666C39 (MP 3 nej)"
+  quote: "Vi anser att det är en rimlig avgränsning av uppdraget eftersom en förändring av ansvarsfördelningen, t.ex. genom att flytta uppdrag mellan myndigheter eller att bilda en ny myndighet, skulle ta stora resurser i anspråk, men inte med säkerhet väsentligt förbättra resultaten ..."
+  date: '2020-11-11'
+  confidence: high
+  mapping_note: "MP formell medreservant i reservation 3 och nej-röst -> försvarar status quo-avgränsningen -> opposes på instrumentet. TIDSNOT (§10.5): primärkälla 2020/21; flaggas för tidskontroll vid sign-off."

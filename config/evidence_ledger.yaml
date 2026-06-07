@@ -555,3 +555,26 @@ entries:
     source: "Prop. 2021/22:116 'En fast omsorgskontakt i hemtjänsten' (3 kap. 3 c § SoL); Socialstyrelsen 'Vård och omsorg för äldre – Lägesrapport 2025' (kap. 'Fast omsorgskontakt – en viktig faktor för kontinuitet'). Partiståndpunkter via bet. 2021/22:SoU24 punkt 2 'Lagförslaget i övrigt', acklamation."
     source_url: "https://data.riksdagen.se/dokument/H901SoU24.html"
     note: "TILLAGD 2026-06-07 (B-grön-svepet, §5.7 ny indikator + §5.2 enhällighet; codex BUILD-WITH-CHANGES). NY INDIKATOR kontinuitet_i_omsorgen (up) i omsorg_personal. KONSTRUKT-KORRIGERING (codex-krav): fast omsorgskontakt är konstrukt-exakt för KONTINUITET (relationskontinuitet för omsorgstagaren), INTE för personalomsattning_omsorg (🔴-väggen, data nedlagd) som behålls SEPARAT/orörd — fast_omsorgskontakt får ALDRIG beskrivas som belägg för lägre personalomsättning. INSTRUMENT-MEKANISM (prop. 2021/22:116, ordagrant): den fasta omsorgskontakten ska 'tillgodose den enskildes behov av trygghet, kontinuitet, individanpassad omsorg och samordning'; Socialstyrelsen (Lägesrapport 2025): 'Hemtjänsttagare som ofta träffar sin fasta omsorgskontakt upplever i högre grad att de får trygg och individanpassad omsorg.' KAVEAT (LOW/LOW): observations-/mekanismevidens (association + lagens syfte), ingen kausal ex-post-effekt; tillgången varierar 0–71 % mellan utförare; Socialstyrelsens formella effektutvärdering klar dec 2026/okt 2027. KONSENSUS-MÅTT (icke-rankningsdrivande): bet. 2021/22:SoU24 punkt 2 'Lagförslaget i övrigt' (3 c §) ACKLAMATION (verifierat dokumentstatus) -> alla 8 supports. EXKLUDERAR p1 (3 d §, undersköterske-KOMPETENSkravet, röstning M=Nej; M ville BREDDA behörigheten, ej avskaffa -> fel konstrukt + tilt)."
+
+  # ===========================================================================
+  # INTEGRATION-SVEPET 2026-06-07 (forts. B-grön-mandatet). 1 mått byggt (version 0,
+  # FLAGGAT): migrationssystem via RiR 2020:7 — genuin tvåsidig split, VÄRDENEUTRALT
+  # auktoritetsankare, votering verifierad mot data.riksdagen.se. boendesegregation +
+  # normer_tillit förblir HOLD:
+  #  - boendesegregation: kamera-vägen FÖRKASTAD (codex 2026-06-07) — relabel av
+  #    trygghet, dubbelräknar situationell_prevention_kamerabevakning, exakt §8.7-varningen.
+  #  - normer_tillit: steg 1 löst (Delmi 2025:5), inget neutralt steg-2-ankare (nedstigning
+  #    #1-#3 + egna vinklar prövade 2026-06-07, alla wall på instrument-grinden). Se §6/§8.7.
+  # ===========================================================================
+
+  # --- integration / migrationssystem (atervandande_effektivitet) ---
+  - category: integration
+    indicator: atervandande_effektivitet
+    policy_type: se_over_ansvarsfordelning_atervandande
+    direction: positive
+    evidence_level: authority_evaluation
+    effect_strength: medium
+    confidence: medium
+    source: "Riksrevisionen RiR 2020:7 'Återvändandeverksamheten – resultat, kostnader och effektivitet' (riksdagens spegel dok H8B57). Partiståndpunkter via bet. 2020/21:SfU6 punkt 2 (votering C7DEF4C6-4668-4D8E-AF06-7A820A666C39)."
+    source_url: "https://www.riksrevisionen.se/granskningar/granskningsrapporter/2020/atervandandeverksamheten---resultat-kostnader-och-effektivitet.html"
+    note: "TILLAGD 2026-06-07 (integration-svepet, NY INDIKATOR §5.7, FLAGGAD; codex KEEP-WITH-CHANGES). INSTRUMENT (snävt, codex-krav): att SE ÖVER/reformera ansvarsfördelningen för återvändandeverksamheten (Migrationsverket/Polis/Kriminalvården) -> atervandande_effektivitet UPP. EJ den starkare 'samla allt ansvar'-tesen (som RiR inte slår fast) -> policy_type bytt till se_over_ansvarsfordelning_atervandande. SYSTEMFUNKTION, EJ VOLYM: mäter kostnad/effektivitet PER verkställt beslut (att lagakraftvunna beslut verkställs effektivt) — ALDRIG antal utvisningar/'fler = bra'. INSTRUMENT-MEKANISM (RiR 2020:7, ordagrant): kostnaden per verkställd person har 'ökat från cirka 48 000 kronor 2016 till knappt 97 000 kronor 2018'; styrningen beskrivs som 'svag, otydlig och splittrad'. INSTRUMENT-GRIND: RiR REKOMMENDERAR uttryckligen att 'se över myndigheternas uppdrag och ansvarsfördelning, samt överväga förändring av myndighetsorganisationen på området' — claimet hålls vid DENNA nivå (se över/överväga). direction positive (ej en §10-negativ-post; framställs ej som negativ-evidens-vinkel). KAVEAT (effect_strength/confidence=MEDIUM, ej high): RiR belägger problemet starkt + rekommenderar översynen, men ingen ex-post-utvärdering bevisar att omorganisation RÄCKER (S/MP-reservation 3 invänder just detta). TIDSNOT (§10.5): primärkällan är 2020/21 -> partiernas NUVARANDE hållning är EJ bevisad här; flaggas för tidskontroll vid sign-off (M/KD/L/SD-riktningen är förenlig med Tidöavtalet 2022). EJ enhällighet: tvåsidig split. NEUTRALITET (verifierat mot SfU6 votering C7DEF4C6 + betänkandetext 2026-06-07): tillkännagivandet 'tillsätta en utredning som ser över ansvarsfördelningen' vanns MOT sittande S/MP-regering; C+L (då i Januari-samarbete med S) röstade JA med oppositionen -> ej rent regering-vs-opp; V avstod (ej med S/MP) -> ej ren vänster-höger-axel. Röster p2: S 1ja/15nej, M 11, SD 10, C 5, V 4avst, KD 3, L 3, MP 3nej."

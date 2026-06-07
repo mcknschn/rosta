@@ -394,6 +394,11 @@
     "source_name": "Riksdagen",
     "statement": "C driver riktade_insatser_nyanlanda_elever; evidens (authority_evaluation) talar för riktning positive på skolresultat_utsatta_omraden."
   },
+  "claim:evidence_effect:C:se_over_ansvarsfordelning_atervandande:integration:atervandande_effektivitet": {
+    "kind": "claim",
+    "source_name": "Bet. 2020/21",
+    "statement": "C driver se_over_ansvarsfordelning_atervandande; evidens (authority_evaluation) talar för riktning positive på atervandande_effektivitet."
+  },
   "claim:evidence_effect:C:sfi_kombinerat_med_praktik:integration:sysselsattningsgap_inrikes_utrikes": {
     "kind": "claim",
     "source_name": "Riksdagen",
@@ -558,6 +563,11 @@
     "kind": "claim",
     "source_name": "Riksdagen",
     "statement": "KD driver riktade_insatser_nyanlanda_elever; evidens (authority_evaluation) talar för riktning positive på skolresultat_utsatta_omraden."
+  },
+  "claim:evidence_effect:KD:se_over_ansvarsfordelning_atervandande:integration:atervandande_effektivitet": {
+    "kind": "claim",
+    "source_name": "Bet. 2020/21",
+    "statement": "KD driver se_over_ansvarsfordelning_atervandande; evidens (authority_evaluation) talar för riktning positive på atervandande_effektivitet."
   },
   "claim:evidence_effect:KD:sfi_kombinerat_med_praktik:integration:sysselsattningsgap_inrikes_utrikes": {
     "kind": "claim",
@@ -729,6 +739,11 @@
     "source_name": "Riksdagen",
     "statement": "L driver riktade_insatser_nyanlanda_elever; evidens (authority_evaluation) talar för riktning positive på skolresultat_utsatta_omraden."
   },
+  "claim:evidence_effect:L:se_over_ansvarsfordelning_atervandande:integration:atervandande_effektivitet": {
+    "kind": "claim",
+    "source_name": "Bet. 2020/21",
+    "statement": "L driver se_over_ansvarsfordelning_atervandande; evidens (authority_evaluation) talar för riktning positive på atervandande_effektivitet."
+  },
   "claim:evidence_effect:L:sfi_kombinerat_med_praktik:integration:sysselsattningsgap_inrikes_utrikes": {
     "kind": "claim",
     "source_name": "Riksdagen",
@@ -894,6 +909,11 @@
     "source_name": "Riksdagen",
     "statement": "M driver riktade_insatser_nyanlanda_elever; evidens (authority_evaluation) talar för riktning positive på skolresultat_utsatta_omraden."
   },
+  "claim:evidence_effect:M:se_over_ansvarsfordelning_atervandande:integration:atervandande_effektivitet": {
+    "kind": "claim",
+    "source_name": "Bet. 2020/21",
+    "statement": "M driver se_over_ansvarsfordelning_atervandande; evidens (authority_evaluation) talar för riktning positive på atervandande_effektivitet."
+  },
   "claim:evidence_effect:M:sfi_kombinerat_med_praktik:integration:sysselsattningsgap_inrikes_utrikes": {
     "kind": "claim",
     "source_name": "Riksdagen",
@@ -1033,6 +1053,11 @@
     "kind": "claim",
     "source_name": "Votering bet. 2023/24",
     "statement": "MP driver reduktionsplikt_drivmedel; evidens (authority_evaluation) talar för riktning positive på territoriella_utslapp."
+  },
+  "claim:evidence_effect:MP:se_over_ansvarsfordelning_atervandande:integration:atervandande_effektivitet": {
+    "kind": "claim",
+    "source_name": "Bet. 2020/21",
+    "statement": "MP motsätter sig se_over_ansvarsfordelning_atervandande; evidens (authority_evaluation) talar för riktning negative på atervandande_effektivitet."
   },
   "claim:evidence_effect:MP:situationell_prevention_utomhusbelysning:trygghet:brottsutsatthet": {
     "kind": "claim",
@@ -1183,6 +1208,11 @@
     "kind": "claim",
     "source_name": "Votering bet. 2023/24",
     "statement": "S driver reduktionsplikt_drivmedel; evidens (authority_evaluation) talar för riktning positive på territoriella_utslapp."
+  },
+  "claim:evidence_effect:S:se_over_ansvarsfordelning_atervandande:integration:atervandande_effektivitet": {
+    "kind": "claim",
+    "source_name": "Bet. 2020/21",
+    "statement": "S motsätter sig se_over_ansvarsfordelning_atervandande; evidens (authority_evaluation) talar för riktning negative på atervandande_effektivitet."
   },
   "claim:evidence_effect:S:sfi_kombinerat_med_praktik:integration:sysselsattningsgap_inrikes_utrikes": {
     "kind": "claim",
@@ -1338,6 +1368,11 @@
     "kind": "claim",
     "source_name": "Riksdagen",
     "statement": "SD driver riktade_insatser_nyanlanda_elever; evidens (authority_evaluation) talar för riktning positive på skolresultat_utsatta_omraden."
+  },
+  "claim:evidence_effect:SD:se_over_ansvarsfordelning_atervandande:integration:atervandande_effektivitet": {
+    "kind": "claim",
+    "source_name": "Bet. 2020/21",
+    "statement": "SD driver se_over_ansvarsfordelning_atervandande; evidens (authority_evaluation) talar för riktning positive på atervandande_effektivitet."
   },
   "claim:evidence_effect:SD:situationell_prevention_utomhusbelysning:trygghet:brottsutsatthet": {
     "kind": "claim",
