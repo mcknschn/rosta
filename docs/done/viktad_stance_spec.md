@@ -1,22 +1,52 @@
 # Rösta — Spec: Viktad stance (grad/magnitud i B) 🟡 UTKAST v2
 
-> **Status: UTKAST v2 — ej implementerad.** v1 granskad adversariellt av Codex 2026-06-07 → **verdikt HOLD**
-> (rätt riskområden, men spärrarna för svaga; centrala val flyttades till "officiell referensnivå",
-> "ambitionssteg" och manuell neutralitetskoll utan hård definition — där låg tilt-vektorn). v2 nedan
-> adresserar Codex 10 punkter (granskningslogg §12). v2 granskad av Codex 2026-06-07 → **verdikt
-> DATAPILOT-FIRST** (de stora tilt-vektorerna borta, men bygg INTE scoring nu — kör den icke-scoring
-> go/no-go-datapiloten först; värdet troligen smalt, se §0). Bärande regel oförändrad: **neutralitet före 4**
-> — en grad-modell som inte kan hållas värdeneutral byggs INTE.
+> **Status: ❌ ÖVERGIVEN — UTVÄRDERAD, EJ FULLFÖLJD (användarbeslut 2026-06-07).** Datapiloten (§0) visade att
+> bara **~3/43 instrument (≈7 %)** har en kvantifierad ambitionsnivå, klustrade i forsvar+klimat och mest
+> budgetnära → alla förbestämda kill-kriterier föll in → **bygg ej viktad stance.** Binär stance består som
+> rätt passform för en instrumentbaserad modell. Dokumentet bevaras som utvärderingsunderlag.
 >
-> Relaterat: [done/evidens_trovardighet.md §5.6](done/evidens_trovardighet.md) (gränserna för steg 2),
-> [done/evidens_trovardighet.md §2](done/evidens_trovardighet.md) (tvåstegsmodellen),
-> [fas4b_partistandpunkter_metod.md](fas4b_partistandpunkter_metod.md) (källhierarki/grindar),
-> [../DATA.md](../DATA.md), [../IDEA.md](../IDEA.md).
+> *Historik:* v1 Codex-granskning → HOLD; v2 (adresserade 10 punkter) → Codex **DATAPILOT-FIRST**; datapilot
+> (§0) → **ABANDON**. Bärande regel som höll hela vägen: **neutralitet före 4** — en grad-modell som inte kan
+> hållas värdeneutral byggs INTE. (Resten av dokumentet är designen som *skulle* gällt om bygget genomförts.)
+>
+> Relaterat: [done/evidens_trovardighet.md §5.6](evidens_trovardighet.md) (gränserna för steg 2),
+> [done/evidens_trovardighet.md §2](evidens_trovardighet.md) (tvåstegsmodellen),
+> [fas4b_partistandpunkter_metod.md](../fas4b_partistandpunkter_metod.md) (källhierarki/grindar),
+> [../DATA.md](../../DATA.md), [../IDEA.md](../../IDEA.md).
 
 ---
 
 ## 0. Huvudrisk & ärlig go/no-go (läs först)
 
+### ✅ DATAPILOT-UTFALL 2026-06-07 — SLUTRESULTAT: ABANDON
+Icke-scoring kartläggning av samtliga **43 instrument** i evidensliggaren mot kraven (kvantifierad nivå finns?
+G7-ankare? icke-budgetnära/icke-A-dubbelräknande?):
+
+| Kategori | Rena överlevare | Kommentar |
+|---|---|---|
+| ekonomi (6) | 0 | skatte-/transferinstrument = budgetnära; övriga binära reformer |
+| valfard (7) | 0 | 6 binära reformer/lagar; minskad_klasstorlek budgetnära utan ankare |
+| trygghet (7) | 0 | alla binära reformer/lagar — ingen kvantitet |
+| forsvar (5) | 0 rena | upptrappning % BNP + utökad värnplikt = kvantitet m. ankare MEN **budgetnära** (A-test) |
+| klimat (5) | 0–1 | reduktionsplikt = icke-budgetär kvantitet men **ankare konstruerat**; koldioxidskatt/kärnkraft saknar rent ankare |
+| integration (6) | 0 | alla binära reformer |
+| demokrati (7) | 0 | alla binära lagar/reformer |
+
+**Tally:** ~0–1 rena, ~3 generöst (inkl. budgetnära), **alla i forsvar+klimat**. ≈ **3/43 = 7 %** — *lägre* än
+Codex prior (10–25 %). **Alla tre kill-kriterier föll in** (< ~8–10 överlevare ✓, klustrar i ≤2 kategorier ✓,
+mest budgetnära ✓).
+
+**Strukturell orsak:** appen kodar **instrument** (diskreta reformer/lagar — "stöd reformen eller ej"). Grad
+finns bara för de få instrument som *är* en kontinuerlig parameter (skattesats, % BNP, % inblandning, antal
+värnpliktiga), och de är nästan alla budgetnära (= A:s jobb) eller saknar neutralt ankare. **Binär stance är
+därför inte en brist att laga — den är rätt passform.** Differentieringen som grad skulle ge bor i
+budget*nivåer*, vilket delpoäng A redan mäter.
+
+**→ Användarbeslut 2026-06-07: ÖVERGE viktad stance.** Resten av specen bevaras som utvärderingsunderlag.
+
+---
+
+### Bakgrund (varför piloten kördes)
 Codex centrala invändning: **de flesta kvantifierbara "instrumentmål" är budgetproxy i annan form** (försvar
 % av BNP, antal poliser, ersättnings-/lärartäthets-/vårdplatsnivåer, biståndsandel). Då gäller:
 - **strikt G4** (ingen A-dubbelräkning) ⇒ binär fallback *nästan alltid* ⇒ specen löser inte problemet brett, eller
@@ -40,7 +70,7 @@ kvalitativ monotoni-/distinkt-signal-bedömning).
 
 ## 1. Problemet & målet
 
-**Idag är B sign-baserad.** Per (parti, indikator) ([effects.py](../pipeline/effects.py)):
+**Idag är B sign-baserad.** Per (parti, indikator) ([effects.py](../../pipeline/effects.py)):
 
 ```
 num_sum = Σ  w_c · s_c        # w_c = confidence-vikt, s_c = tecken(±1)
@@ -50,7 +80,7 @@ net     = clamp(num_sum / abs_sum, -1, 1)        # → net_support_to_score → 
 
 `abs_sum` använder `|w_c|` ⇒ **confidence cancelar för samriktade claims** ⇒ "supports" ger `net=+1` oavsett
 styrka. Modellen ser *riktning* men inte *grad*, så konsensusmått kollapsar till enhällighet (alla 8 supports,
-icke-rankningsdrivande) trots verklig ambitionsskillnad ([done/evidens_trovardighet.md §5.6](done/evidens_trovardighet.md)).
+icke-rankningsdrivande) trots verklig ambitionsskillnad ([done/evidens_trovardighet.md §5.6](evidens_trovardighet.md)).
 
 **Mål:** låta B fånga grad **endast där graden kan beläggas värdeneutralt**. B är 35 % av kategoripoängen —
 störst hävstång. **Icke-mål:** tvinga fram differentiering; binär fallback är ett fullgott utfall.
@@ -229,9 +259,13 @@ utan neutral nivå-källa stannar binärt utan kostnad.
   överlever strikt G4/A-test (resten budgetnära). Verdikt: **bygg ej scoring nu, överge ej heller — kör go/no-go-
   datapiloten (icke-scoring) som empiriskt avgör värdet.** v3-incorporering av (a)/(b)/(c) görs FÖRST om datapiloten
   ger grönt (annars onödigt arbete).
+- **2026-06-07 (datapilot → ABANDON):** Icke-scoring kartläggning av alla 43 instrument (§0). Resultat: ~3/43 (≈7 %)
+  har kvantifierad nivå, klustrade i forsvar+klimat, mest budgetnära → alla tre kill-kriterier föll in (lägre än
+  Codex 10–25 %-prior). Strukturell orsak: instrumentbaserad modell ⇒ instrument är diskreta reformer; grad bor i
+  budgetnivåer (= A). **Användarbeslut: ÖVERGE viktad stance.** v3 byggs ej. Spec bevarad som utvärderingsunderlag.
 
 ## 13. Relaterat
-- [done/evidens_trovardighet.md](done/evidens_trovardighet.md) — B-spårets arbetslogg (§5.6, §8 fråga 2, §9 Beslut 12)
-- [fas4b_partistandpunkter_metod.md](fas4b_partistandpunkter_metod.md) — källhierarki, instrument-regeln, grindar
-- [../IDEA.md](../IDEA.md), [../DATA.md](../DATA.md) — grundprincip & datamodell
-- [../config/scoring.yaml](../config/scoring.yaml), [../pipeline/effects.py](../pipeline/effects.py), [../pipeline/score.py](../pipeline/score.py)
+- [done/evidens_trovardighet.md](evidens_trovardighet.md) — B-spårets arbetslogg (§5.6, §8 fråga 2, §9 Beslut 12)
+- [fas4b_partistandpunkter_metod.md](../fas4b_partistandpunkter_metod.md) — källhierarki, instrument-regeln, grindar
+- [../IDEA.md](../../IDEA.md), [../DATA.md](../../DATA.md) — grundprincip & datamodell
+- [../config/scoring.yaml](../../config/scoring.yaml), [../pipeline/effects.py](../../pipeline/effects.py), [../pipeline/score.py](../../pipeline/score.py)
