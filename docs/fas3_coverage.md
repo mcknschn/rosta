@@ -96,7 +96,7 @@ personal_varnpliktiga (försvarets första D); +1 demokrati 2026-06-07 — fortr
 
 ## Allowlistade gap (skäl i `config/coverage_allowlist.yaml`)
 
-32 indikatorer saknar ännu en officiell svensk årsserie. Sammanfattning per skältyp:
+30 indikatorer saknar ännu en officiell svensk årsserie. Sammanfattning per skältyp:
 
 - **target** (ej up/down, ej D-duglig): inflation, statsskuld_underskott, forsvarsanslag_andel_bnp.
 - **derived** (kräver flera serier/beräkning): elprisvolatilitet, effektbrist,
@@ -106,23 +106,26 @@ personal_varnpliktiga (försvarets första D); +1 demokrati 2026-06-07 — fortr
   personalomsattning_omsorg, valfardsbrottslighet, hotade_arter_naturforlust, skolresultat_utsatta_omraden,
   segregation. (fortroende_domstolar_myndigheter inläst 2026-06-07 via Brå NTU 5A:1 — officiell källa,
   ej SOM; demokratis första D-serie, Spår D Tier 4.)
-- **future** (källa finns, adapter ej byggd): vard_i_tid, overlevnad_svar_sjukdom,
+- **future** (källa finns, adapter ej byggd): vard_i_tid,
   realloner (kräver Medlingsinstitutets konjunkturlönestatistik — SCB:s API saknar en ren helekonomi-
   löneserie, sonderat 2026-05-31), och Brås handläggnings-/återfallstabeller (handlaggningstid,
   aterfall_i_brott). (uppklaringsgrad + skjutningar_sprangningar inlästa 2026-06-03;
   naringslivets_investeringar + hushallens_reala_disponibla_inkomst inlästa 2026-06-07;
-  sfi_sprakkunskaper inläst 2026-06-07 via SCB TAB1814 — Spår D Tier 2.)
+  sfi_sprakkunskaper inläst 2026-06-07 via SCB TAB1814 — Spår D Tier 2;
+  overlevnad_svar_sjukdom inläst 2026-06-08 via Kolada U70471 (30-dagarsöverlevnad tjocktarmscancer) — Spår D natt.)
 - **international** (ej officiell svensk källa, otillåtet enligt CLAUDE.md): korruption (TI), mediefrihet (RSF).
 - **qualitative** (ingen kvantitativ officiell mätserie): merparten av försvars- och demokratiindikatorerna
-  (materiel_formaga, civil_beredskap_niva, ukraina_stod, nato_interoperabilitet, leveranstid_materiel,
+  (materiel_formaga, civil_beredskap_niva, nato_interoperabilitet, leveranstid_materiel,
   politisk_transparens, otillborlig_politisering, overvakning_utan_rattssakerhet). (personal_varnpliktiga
-  inläst 2026-06-07 via Försvarsmaktens ÅR — Spår D Tier 4, försvarets första D-serie.)
+  inläst 2026-06-07 via Försvarsmaktens ÅR — Spår D Tier 4, försvarets första D-serie; ukraina_stod inläst
+  2026-06-08 via Regeringens militära stöd/år — Spår D natt, öppnade submåttet nato_ukraina. civil_beredskap_niva
+  bekräftad vägg via MSB ÅR-PDF-läsning 2026-06-08: bara pengar/anslag, inget neutralt utfallsmått.)
 
 ## Nästa steg för att krympa allowlisten
 
 1. ~~**Energimyndigheten** (fossil_energianvandning)~~ — **klar** (PxWeb-v1-adapter `pipeline/build_fas3.py`, EN0202_8, fossila energivaror summerade).
 2. ~~**Brå NTU** (brottsutsatthet, upplevd_otrygghet)~~ — **klar** (`bra.fetch_ntu`, Tabellsamling NTU 2007–2025, blad 3A + 4A:1, "Samtliga 16–84 år", nuvarande-metod-fönster). Trygghet har nu 3 D-serier.
-3. **Socialstyrelsen** (overlevnad_svar_sjukdom) + **Skolverket** (sfi_sprakkunskaper) + **Medlingsinstitutet** (realloner) — egna adaptrar.
+3. ~~**Socialstyrelsen** (overlevnad_svar_sjukdom)~~ **klar 2026-06-08 via Kolada U70471** (ej egen Socialstyrelse-adapter behövdes) + ~~**Skolverket** (sfi_sprakkunskaper)~~ **klar** (SCB TAB1814) + **Medlingsinstitutet** (realloner) — kvarstår, låg prio.
 4. ~~**Loader-stöd för härledda indikatorer** (gap/kvot)~~ — **klar** (`pipeline/derived.py`, ren gap/kvot-beräkning ur verifierade serier, två-tabells-operander + rimlighetsgrind). Inlästa: sysselsattningsgap_inrikes_utrikes (SCB TAB6529 SYSP 13−23) och produktivitet (SCB TAB3610 BNP fast ÷ TAB5622 arbetade timmar). Återstår att härleda: utslappsminskning_per_krona, elprisvolatilitet (kräver nya föräldraserier).
 5. ~~**SOM-institutet** (fortroende_domstolar_myndigheter)~~ — **klar 2026-06-07 via Brå NTU 5A:1** (officiell
    källa, ej SOM; demokratis första D). Återstår ev. SOM för `tillit_valdeltagande` (integration), men den är
