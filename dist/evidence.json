@@ -2877,7 +2877,7 @@
   "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2020": {
     "kind": "claim",
     "source_name": "forsvarsmakten",
-    "statement": "personal_varnpliktiga = 4917.0 (forsvar, 2020)."
+    "statement": "personal_varnpliktiga = 4915.0 (forsvar, 2020)."
   },
   "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2021": {
     "kind": "claim",
@@ -2897,7 +2897,7 @@
   "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2024": {
     "kind": "claim",
     "source_name": "forsvarsmakten",
-    "statement": "personal_varnpliktiga = 7300.0 (forsvar, 2024)."
+    "statement": "personal_varnpliktiga = 7343.0 (forsvar, 2024)."
   },
   "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2025": {
     "kind": "claim",
