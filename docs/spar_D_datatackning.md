@@ -43,17 +43,19 @@ bredda D flyttar tyngdpunkten mot faktiskt utfall.
 
 ## 2. Nuläge (verifierat via `python -m pipeline.tools.coverage_report`, 2026-06-07)
 
-**26/56 indikatorer inlästa** (annuell, D-duglig) i **ALLA 7 kategorier**. *(24 efter Tier 4 2026-06-07;
-+1 `overlevnad_svar_sjukdom` (välfärd) + 1 `ukraina_stod` (försvar) i **Spår D natt 2026-06-08** — full
-försökslogg i [spar_D_nattrapport_2026-06-08.md](spar_D_nattrapport_2026-06-08.md).)* Ingen kategori D-tom.
+**28 D-serier inlästa** (annuell, D-duglig) i **ALLA 7 kategorier** *(56 ursprungliga kanoniska + 2 nya
+kanoniska indikatorer i djupsvepet)*. *(24 efter Tier 4; +`overlevnad_svar_sjukdom` +`ukraina_stod` i
+natt 2026-06-08; +`brukarnojdhet_hemtjanst` (välfärd/omsorg) +`utslappsintensitet` (klimat/kostnadseff) i
+**djupsvepet 2026-06-09**.)* Full logg: [spar_D_svep_2026-06-08.md](spar_D_svep_2026-06-08.md) (90 kandidater)
++ [nattrapport](spar_D_nattrapport_2026-06-08.md). **omsorg_personal + kostnadseffektivitet öppnade.**
 
 | Kategori | D-täckta submått | Inlästa D-serier |
 |----------|:---:|---|
 | ekonomi | **4 / 4 D-bara¹** | sysselsattning, arbetsloshet, bnp_per_capita, produktivitet, **naringslivets_investeringar**, **hushallens_reala_disponibla_inkomst** |
-| valfard | 2 / 4 | vardkoer, **overlevnad_svar_sjukdom** (Kolada U70471, natt 2026-06-08), skolresultat, behoriga_larare |
+| valfard | **3 / 4** | vardkoer, overlevnad_svar_sjukdom, skolresultat, behoriga_larare, **brukarnojdhet_hemtjanst** (omsorg_personal öppnat, djupsvep) |
 | trygghet | 3 / 5 | dodligt_vald, skjutningar_sprangningar, brottsutsatthet, upplevd_otrygghet, uppklaringsgrad |
 | forsvar | **2 / 5** | personal_varnpliktiga, **ukraina_stod** (nato_ukraina öppnat, natt 2026-06-08) |
-| klimat | 2 / 5 | territoriella_utslapp, konsumtionsbaserade_utslapp, fossil_energianvandning |
+| klimat | **3 / 5** | territoriella_utslapp, konsumtionsbaserade_utslapp, fossil_energianvandning, **utslappsintensitet** (kostnadseffektivitet öppnat, djupsvep) |
 | integration | 3 / 5 | sysselsattningsgap_inrikes_utrikes, sjalvforsorjningsgrad, bidragsberoende, trangboddhet, **sfi_sprakkunskaper** |
 | demokrati | **1 / 5** | **fortroende_domstolar_myndigheter** (första D — Tier 4; Brå NTU 5A:1, korruption_tillit öppnat) |
 
@@ -320,6 +322,23 @@ Spår D anses **färdigt för arkivering** när:
 ## 7. Leveranslogg (append per leverans)
 
 > Format: datum · indikator · kategori→submått · källa · verifiering · betygseffekt · flagga/version.
+
+### ✅ 2026-06-09 — Spår D djupsvep: 90 kandidater testade, +2 D-serier (v0, FLAGGADE)
+
+Fullt djuptest av **5 kandidater per D-tomt undermått (18 × 5 = 90)**, varje kandidat hämtad mot källan.
+Full logg: [spar_D_svep_2026-06-08.md](spar_D_svep_2026-06-08.md). Byggt (rena/neutrala/officiella/riktningsklara):
+
+1. **`brukarnojdhet_hemtjanst`** (välfärd → omsorg_personal, up): Kolada U21468 brukarbedömning hemtjänst
+   helhet, 2013-2025. **Öppnar omsorg_personal (D-tomt).** Ny kanonisk indikator (D-only). Commit `1cd6f56`.
+2. **`utslappsintensitet`** (klimat → kostnadseffektivitet, down): härledd ratio territoriella utsläpp
+   (TAB4698) ÷ BNP (TAB3610 BNPM), 1990-2024. **Öppnar kostnadseffektivitet (D-tomt).** Commit `1cd6f56`.
+
+**Lärdom:** "saknad data" var sällan sant — för target-submått + demokrati FINNS rena 20-30-årsserier; blockeraren
+är **riktning/neutralitet/attribution**, ej tillgänglighet (validerar target-design + coverage-krympning). Två
+"byggbara" visade sig figur-låsta (KOS-återfall, migration öppna-ärenden — diagram ej tabell). Demokrati = äkta
+vägg (20/20 tvetydiga). **Öppna sign-off-byggen** (data verifierad, väntar riktnings-/neutralitetsbeslut): försvar
+% BNP (ekonomisk_ambition), klimat fågelindex/skyddad natur (biologisk_mangfald), KOS-återfall via tabellbilaga,
+m.fl. — se svep-rapporten §4.
 
 ### ✅ 2026-06-08 — Spår D natt: +2 D-serier + PDF-verifiering (v0, FLAGGADE)
 
