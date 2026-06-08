@@ -22,15 +22,18 @@
 # "Sammantaget påbörjade 3 750 värnpliktiga grundutbildning"). Inga värden före 2018 (måttet
 # existerar inte — värnplikten vilade 2010–2017).
 #
-# KÄLLSPÅRNINGENS GRÄNS (v0, transparent): FM:s och Pliktverkets årsredovisnings-PDF:er är
-# FlateDecode-komprimerade och kan inte maskinläsas av verktygskedjan (pdftoppm saknas; WebFetch ger
-# binärt). 2018 + 2025 är direkt bekräftade ur FM ÅR (ordagrann mening). 2019/2021/2022/2024 är
-# korsverifierade mot Pliktverkets direkt-lästa pressmeddelanden. 2020 + 2023 vilar på FM-ÅR-
-# siffror lokaliserade via Wikipedias FM-ÅR-citerade tabell "Volymer inryckta" — men båda är inre
-# punkter på en monoton uppgång, så deras exakta värde påverkar INGET tecken (2019<2020<2021 och
-# 2022<2023<2024 håller för varje rimligt värde). v0 kvarstår tills exakta siffror transkriberats
-# direkt ur FM-ÅR-PDF:erna (bumpar v0->v1, jfr B1-granskningen). Reproducerbar/auditerbar via
-# pipeline/tools/varnpliktiga_audit.py.
+# KÄLLSPÅRNING (PDF-VERIFIERAD 2026-06-08): det tidigare antagandet att FM:s ÅR-PDF:er är oläsbara
+# (FlateDecode, pdftoppm saknas) är ÖVERSPELAT — pdfplumber/PyMuPDF läser dem. 7 av 8 år är nu DIREKT
+# verifierade ur FM ÅR (ordagranna citat/Personalberättelsens tabeller):
+#   2018 direktcitat · 2019 "drygt 4 500" (ÖB-sammanfattning) · 2020 tabell 4 915 (FM ÅR 2022 bil. 1
+#   Tab 6, inkl. HAGS) · 2021 tabell 5 873 (FM ÅR 2022+2023 bilagor, ×2) · 2022 tabell 5 475 (×3) ·
+#   2023 prosa+tabell 6 320 · 2024 tabell 7 343 (FM ÅR 2024 bil. 1 Tab 3) · 2025 direktcitat 8 136.
+# KORRIGERINGAR mot tidigare gissningar: 2020 4917->4915, 2024 7300->7343. Båda är inre/monotona och
+# ändrar INGET D-tecken (serien är monoton upp utom den dubbelbekräftade 2021->2022-dippen).
+# ENDA MJUKA PUNKTEN: 2019 = "drygt 4 500" (exakt heltal ej funnet; 2019 års bilaga-PDF ger 404, 2021
+# års ÅR är bildbaserad men 2021-värdet är korsbekräftat via 2022/2023 års bilagor). Påverkar inget
+# tecken (inre monoton punkt). version 0 kvarstår tills din formella sign-off (då v1, jfr B1-
+# granskningen). Reproducerbar/auditerbar via pipeline/tools/varnpliktiga_audit.py.
 version: 0
 indicator: personal_varnpliktiga
 category: forsvar
@@ -40,18 +43,18 @@ fm_arsredovisning_index: "https://www.forsvarsmakten.se/sv/om-forsvarsmakten/dok
 years:
   2018:
     value: 3750
-    source: "https://www.forsvarsmakten.se/siteassets/2-om-forsvarsmakten/dokument/arsredovisningar/arsredovisning-2018/hkv-2019-02-21-fm2018-10243.7-huvuddokument-fm-ar-2018.pdf"
-    source_note: "FM AR 2018, direkt bekraftad: 'Sammantaget paborjade 3 750 varnpliktiga grundutbildning, vilket var nagot farre an malsattningen.'"
+    source: "https://www.forsvarsmakten.se/globalassets/02-om-forsvarsmakten/myndighetsinformation/dokument/arsredovisningar/2018/hkv-2019-02-21-fm2018-10243.7-huvuddokument-fm-ar-2018.pdf"
+    source_note: "FM AR 2018 (s.19), direkt bekraftad ur PDF: 'Sammantaget paborjade 3 750 varnpliktiga grundutbildning, vilket var nagot farre an malsattningen.'"
   2019:
     value: 4500
-    source: "https://www.forsvarsmakten.se/sv/om-forsvarsmakten/dokument/arsredovisningar/"
-    source_note: "FM AR 2019 (lokaliserad via Wikipedias FM-AR-citerade tabell Volymer inryckta)."
+    source: "https://www.forsvarsmakten.se/globalassets/02-om-forsvarsmakten/myndighetsinformation/dokument/arsredovisningar/2019/fm2018-20355.12-forsvarsmaktens-ar-2019_huvuddokument.pdf"
+    source_note: "FM AR 2019 (s.22), direkt ur PDF: 'Antalet ... som paborjade grundutbildning under 2019 ... uppgick till drygt 4 500'. MJUK PUNKT: exakt heltal ej publicerat (2019 ars bilaga-PDF ger 404); 4500 = golvvarde. Inre monoton punkt -> paverkar inget D-tecken."
     crosscheck_pliktverket: 4672
     crosscheck_note: "Rekryteringsmyndigheten: 4 672 inskrivna till GU 2019/2020 (oberoende myndighetsmatt, nara)."
   2020:
-    value: 4917
-    source: "https://www.forsvarsmakten.se/sv/om-forsvarsmakten/dokument/arsredovisningar/"
-    source_note: "FM AR 2020 (lokaliserad via Wikipedias FM-AR-citerade tabell Volymer inryckta). Inre monoton punkt -> paverkar inget D-tecken."
+    value: 4915
+    source: "https://www.forsvarsmakten.se/globalassets/02-om-forsvarsmakten/myndighetsinformation/dokument/arsredovisningar/2022/fm2021-22412.41-fm-ar-2022_bilagor.pdf"
+    source_note: "FM AR 2022 bilaga 1 (Personalberattelsen) Tabell 6, direkt ur PDF: Paborjat GU 2020 = 4 915 (inkl. HAGS, som avslutades under 2020). KORRIGERAR tidigare 4917. FM AR 2020 huvuddok: 'Drygt 4 900 varnpliktiga paborjade grundutbildning 2020'. Inre monoton punkt -> paverkar inget D-tecken."
   2021:
     value: 5873
     source: "https://www.forsvarsmakten.se/sv/om-forsvarsmakten/dokument/arsredovisningar/"
@@ -71,11 +74,11 @@ years:
     source: "https://www.forsvarsmakten.se/globalassets/02-om-forsvarsmakten/myndighetsinformation/dokument/arsredovisningar/2023/forsvarsmaktens-arsredovisning-2023-bilagor.pdf"
     source_note: "FM AR 2023 (lokaliserad via Wikipedias FM-AR-citerade tabell Volymer inryckta). Inre monoton punkt -> paverkar inget D-tecken."
   2024:
-    value: 7300
-    source: "https://www.forsvarsmakten.se/siteassets/2-om-forsvarsmakten/dokument/arsredovisningar/arsredovisning-2024/forsvarsmaktens-arsredovisning-2024-bilaga-1-2-och-5.pdf"
-    source_note: "FM AR 2024, direkt citat: 'Under aret paborjade drygt 7 300 varnpliktiga sin grundutbildning, vilket overtraffade malsattningen' (mal 7 000). 7300 = 'drygt 7 300'; exakt heltal ej maskinlasbart ur PDF, men tecknet 6320->7300->8136 ar entydigt upp."
+    value: 7343
+    source: "https://www.forsvarsmakten.se/globalassets/02-om-forsvarsmakten/myndighetsinformation/dokument/arsredovisningar/2024/forsvarsmaktens-arsredovisning-2024-bilaga-1-2-och-5.pdf"
+    source_note: "FM AR 2024 bilaga 1 Tabell 3, direkt ur PDF: Paborjat GU 2024 = 7 343 (exakt heltal; KORRIGERAR tidigare 'drygt 7 300'). OB-sammanfattning: 'Under aret paborjade drygt 7 300 varnpliktiga'. Bekraftad ur FM AR 2025 s.29."
     crosscheck_pliktverket: 7310
-    crosscheck_note: "Pliktverket: 7 310 inskrivna (utbildningsstart 2024) — nara FM:s drygt 7 300."
+    crosscheck_note: "Pliktverket AR 2024: 'drygt 7 400 inskrivna till GU24' (~7 310 enl. pressmtrl) — nara FM:s 7 343 inryckta."
   2025:
     value: 8136
     source: "https://www.forsvarsmakten.se/globalassets/02-om-forsvarsmakten/myndighetsinformation/dokument/arsredovisningar/2025/forsvarsmaktens-arsredovisning-2025.pdf"

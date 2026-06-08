@@ -12,10 +12,12 @@ from pipeline import config
 from pipeline.sources import forsvarsmakten
 from pipeline.tools import varnpliktiga_audit
 
-# Facit: antal påbörjade GU (FM ÅR), nationell siffra per år, transkriberade 2026-06-07.
+# Facit: antal påbörjade GU (FM ÅR), nationell siffra per år. PDF-verifierad 2026-06-08 direkt ur
+# FM ÅR (2020 korr. 4917->4915 inkl. HAGS, FM ÅR 2022 bil.1 Tab6; 2024 korr. 7300->7343, FM ÅR 2024
+# bil.1 Tab3). Korrigeringarna ändrar inga D-tecken (serien monoton upp utom 2021->2022).
 GOLDEN = {
-    "2018": 3750, "2019": 4500, "2020": 4917, "2021": 5873,
-    "2022": 5475, "2023": 6320, "2024": 7300, "2025": 8136,
+    "2018": 3750, "2019": 4500, "2020": 4915, "2021": 5873,
+    "2022": 5475, "2023": 6320, "2024": 7343, "2025": 8136,
 }
 
 
