@@ -65,6 +65,108 @@ inget ansvar att attribuera. Det är **korrekt och rättvist**, inte ett gap.
 
 ---
 
+## 2.1 Mastertabell — D-täckning per indikator (samtliga 56) ⭐
+
+> **Parallell till B-spårets mastertabell** ([done/evidens_trovardighet.md §4.3](done/evidens_trovardighet.md)),
+> fast för **D** (resultat/utfall). Sanningskälla: `python -m pipeline.tools.coverage_report` +
+> [`config/coverage_allowlist.yaml`](../config/coverage_allowlist.yaml). **Verifierad 2026-06-08.**
+> OBS: D-dimensionen i §4.3-tabellen (kolumnen "mäts (D)") är **inaktuell** efter Spår D Tier 1/2/4 —
+> *denna* tabell är den auktoritativa D-vyn. Kanoniska visningsnamn för Kategori/Undermått: §4.3.
+>
+> **D-status:** ✅ **byggd** (officiell svensk annuell up/down-serie inläst, matar `category_d`) ·
+> 🟡 **byggbar / öppet beslut** (väg finns — härledning/sondering/adapter — men ej byggd; väntar
+> designbeslut §5) · 🔴 **ej byggbar** (ingen maskinläsbar officiell årsserie: `no_api`/`qualitative`/
+> `blocked`/`low_value`/`B-only`, eller otillåten `international`-källa) · ⚪ **target** (ingen
+> riktning → ej D-duglig per konstruktion).
+
+### Sammanfattning (hur stor täckning vi har)
+
+- **24 / 56 indikatorer** har en D-serie (annuell up/down som matar `category_d`).
+- **+5 byggbara/öppna** (🟡) → **realistiskt tak ≈ 29/56**; resten är **3 target** (⚪, ej D-dugliga
+  per konstruktion) + **24 genuina väggar** (🔴) + 1 undermått helt utan indikator (`industriell_konkurrenskraft`).
+- **16 / 35 undermått** har minst en D-serie.
+
+| Kategori | ✅ byggd | 🟡 öppen | 🔴 vägg | ⚪ target | Indikatorer | Undermått m. D |
+|----------|:---:|:---:|:---:|:---:|:---:|:---:|
+| Ekonomi och jobb | 6 | 1 | 0 | 2 | 9 | 4/6 (4/4 D-bara) |
+| Välfärd | 3 | 1 | 5 | 0 | 9 | 2/4 |
+| Lag och trygghet | 5 | 0 | 3 | 0 | 8 | 3/5 |
+| Försvar och beredskap | 1 | 0 | 6 | 1 | 8 | 1/5 |
+| Klimat, miljö och energi | 3 | 3 | 1 | 0 | 7¹ | 2/5 |
+| Integration och social sammanhållning | 5 | 0 | 4 | 0 | 9 | 3/5 |
+| Frihet, demokrati och institutioner | 1 | 0 | 5 | 0 | 6 | 1/5 |
+| **SUMMA** | **24** | **5** | **24** | **3** | **56** | **16/35** |
+
+¹ klimat har 8 undermått-rader men `industriell_konkurrenskraft` saknar indikator (ingen rad i de 56).
+
+### Full mastertabell — alla 56 indikatorer
+
+| Kategori | Undermått | Indikator | Riktn. | D-status | Serie / skäl |
+|----------|-----------|-----------|:---:|:---:|--------------|
+| Ekonomi och jobb | Sysselsättning och arbetslöshet | `sysselsattning` | upp | ✅ byggd | 25 obs · 2001–2025 |
+| Ekonomi och jobb | Sysselsättning och arbetslöshet | `arbetsloshet` | ned | ✅ byggd | 25 obs · 2001–2025 |
+| Ekonomi och jobb | BNP per capita och produktivitet | `bnp_per_capita` | upp | ✅ byggd | 45 obs · 1980–2024 |
+| Ekonomi och jobb | BNP per capita och produktivitet | `produktivitet` | upp | ✅ byggd | 45 obs · 1980–2024 |
+| Ekonomi och jobb | Reallöner och hushållens ekonomi | `hushallens_reala_disponibla_inkomst` | upp | ✅ byggd | 75 obs · 1951–2025 (härlett realindex, Tier 1) |
+| Ekonomi och jobb | Reallöner och hushållens ekonomi | `realloner` | upp | 🟡 öppen | `future`: Medlingsinst.-adapter; **låg prio** (submåttet redan D-täckt via syster) |
+| Ekonomi och jobb | Företagande och investeringar | `naringslivets_investeringar` | upp | ✅ byggd | 45 obs · 1980–2024 (Tier 1) |
+| Ekonomi och jobb | Inflation och prisstabilitet | `inflation` | mål | ⚪ target | nära mål, ingen up/down |
+| Ekonomi och jobb | Offentliga finanser och hållbarhet | `statsskuld_underskott` | mål | ⚪ target | hållbar nivå, ingen up/down |
+| Välfärd | Vårdens tillgänglighet och kvalitet | `vardkoer` | ned | ✅ byggd | 4 obs · 2021–2024 |
+| Välfärd | Vårdens tillgänglighet och kvalitet | `overlevnad_svar_sjukdom` | upp | 🟡 öppen | `incompatible`: cancer-KPI kvinkennial; **annuell serie sonderas (§5.3)** |
+| Välfärd | Vårdens tillgänglighet och kvalitet | `vard_i_tid` | upp | 🔴 vägg | `low_value`: Kolada U79142 avslutad 2023 + dubblerar vardkoer |
+| Välfärd | Skolans kunskap och likvärdighet | `skolresultat` | upp | ✅ byggd | 11 obs · 2015–2025 |
+| Välfärd | Skolans kunskap och likvärdighet | `behoriga_larare` | upp | ✅ byggd | 11 obs · 2015–2025 |
+| Välfärd | Skolans kunskap och likvärdighet | `skillnader_mellan_skolor` | ned | 🔴 vägg | `no_api`: ingen nationell likvärdighetsserie |
+| Välfärd | Omsorg och personalförsörjning | `personalomsattning_omsorg` | ned | 🔴 vägg | `no_api`: ingen omsorgsspecifik serie |
+| Välfärd | Omsorg och personalförsörjning | `kontinuitet_i_omsorgen` | upp | 🔴 vägg | `B-only`: utfallsserie saknas (bidrar bara till B) |
+| Välfärd | Finansiering, styrning och anti-fusk | `valfardsbrottslighet` | ned | 🔴 vägg | `no_api`: ingen ren årsserie |
+| Lag och trygghet | Grov brottslighet och våldsbrott | `dodligt_vald` | ned | ✅ byggd | 24 obs · 2002–2025 |
+| Lag och trygghet | Grov brottslighet och våldsbrott | `skjutningar_sprangningar` | ned | ✅ byggd | 8 obs · 2018–2025 (transkriberad) |
+| Lag och trygghet | Utsatthet och upplevd trygghet | `brottsutsatthet` | ned | ✅ byggd | 9 obs · 2016–2024 (Brå NTU) |
+| Lag och trygghet | Utsatthet och upplevd trygghet | `upplevd_otrygghet` | ned | ✅ byggd | 9 obs · 2017–2025 (Brå NTU) |
+| Lag och trygghet | Rättsväsendets effektivitet | `uppklaringsgrad` | upp | ✅ byggd | 10 obs · 2016–2025 |
+| Lag och trygghet | Rättsväsendets effektivitet | `handlaggningstid` | ned | 🔴 vägg | `future`: bara interaktiv DB/PDF, ingen ren årsserie funnen (sonderat) |
+| Lag och trygghet | Förebyggande arbete | `kommunalt_brottsforebyggande_arbete` | upp | 🔴 vägg | `B-only`: ingen nationell KPI för kommunal kapacitet |
+| Lag och trygghet | Återfall och kriminalvård | `aterfall_i_brott` | ned | 🔴 vägg | `blocked`: bara PDF (prel/slutlig), metodbrott → expertbedömd transkr. |
+| Försvar och beredskap | Militär förmåga | `personal_varnpliktiga` | upp | ✅ byggd | 8 obs · 2018–2025 (FM ÅR, transkriberad — Tier 4) |
+| Försvar och beredskap | Militär förmåga | `materiel_formaga` | upp | 🔴 vägg | `qualitative`: sekretess/operativ förmåga |
+| Försvar och beredskap | Ekonomisk ambitionsnivå | `forsvarsanslag_andel_bnp` | mål | ⚪ target | upp till beslutad målnivå |
+| Försvar och beredskap | Ekonomisk ambitionsnivå | `forsvarsfinansiering_upptrappning_mot_mal` | upp | 🔴 vägg | `B-only`: åtagande-/inriktningsmått, ej utfallsårsserie |
+| Försvar och beredskap | Civil beredskap | `civil_beredskap_niva` | upp | 🔴 vägg | `qualitative`: MSB-bedömning, ingen årsserie |
+| Försvar och beredskap | Nato, Ukraina, trovärdighet | `ukraina_stod` | upp | 🔴 vägg | `qualitative`: ad hoc, ingen objektiv årsindikator |
+| Försvar och beredskap | Nato, Ukraina, trovärdighet | `nato_interoperabilitet` | upp | 🔴 vägg | `qualitative`: ingen öppen mätserie |
+| Försvar och beredskap | Genomförbarhet och leveranstakt | `leveranstid_materiel` | ned | 🔴 vägg | `qualitative`: sekretess |
+| Klimat, miljö och energi | Utsläppsminskningar | `territoriella_utslapp` | ned | ✅ byggd | 35 obs · 1990–2024 |
+| Klimat, miljö och energi | Utsläppsminskningar | `konsumtionsbaserade_utslapp` | ned | ✅ byggd | 16 obs · 2008–2023 |
+| Klimat, miljö och energi | Energiförsörjning och elpriser | `fossil_energianvandning` | ned | ✅ byggd | 55 obs · 1970–2024 (Energimynd.) |
+| Klimat, miljö och energi | Energiförsörjning och elpriser | `elprisvolatilitet` | ned | 🟡 öppen | `derived`: härleds ur Svk spotpris — **källregel-beslut §5.4** |
+| Klimat, miljö och energi | Energiförsörjning och elpriser | `effektbrist` | ned | 🟡 öppen | `derived`: härleds ur Svk effektbalans — **§5.4** |
+| Klimat, miljö och energi | Omställningens kostnadseffektivitet | `utslappsminskning_per_krona` | upp | 🟡 öppen | `derived`: utsläpp/kostnad — **def. "klimatutgift" §5.5** |
+| Klimat, miljö och energi | Biologisk mångfald och natur | `hotade_arter_naturforlust` | ned | 🔴 vägg | `no_api`: SLU rödlistan, ingen årlig maskinläsbar serie |
+| Klimat, miljö och energi | Industriell konkurrenskraft | _(ingen indikator)_ | — | 🔴 vägg | saknar indikator (steg-1-vägg, §4.2 i B-trackern) |
+| Integration och social sammanhållning | Arbete och självförsörjning | `sysselsattningsgap_inrikes_utrikes` | ned | ✅ byggd | 21 obs · 2005–2025 (härlett) |
+| Integration och social sammanhållning | Arbete och självförsörjning | `sjalvforsorjningsgrad` | upp | ✅ byggd | 21 obs · 2005–2025 |
+| Integration och social sammanhållning | Arbete och självförsörjning | `bidragsberoende` | ned | ✅ byggd | 15 obs · 2010–2024 |
+| Integration och social sammanhållning | Skola, språk och utbildning | `sfi_sprakkunskaper` | upp | ✅ byggd | 27 obs · 1997–2023 (Tier 2) |
+| Integration och social sammanhållning | Skola, språk och utbildning | `skolresultat_utsatta_omraden` | upp | 🔴 vägg | `no_api`: ingen ren nationell årsserie |
+| Integration och social sammanhållning | Boendesegregation och trygghet | `trangboddhet` | ned | ✅ byggd | 15 obs · 1988–2025 |
+| Integration och social sammanhållning | Boendesegregation och trygghet | `segregation` | ned | 🔴 vägg | `no_api`: ingen ren officiell segregationsårsserie |
+| Integration och social sammanhållning | Normer, tillit och samhällsgemenskap | `tillit_valdeltagande` | upp | 🔴 vägg | `no_api/sparse`: valdeltagande bara valår; SOM-tillit ej API |
+| Integration och social sammanhållning | Migrationssystemets hållbarhet | `atervandande_effektivitet` | upp | 🔴 vägg | `B-only`: ingen publik årsserie för kostnad/effektivitet |
+| Frihet, demokrati och institutioner | Rättsstat och maktdelning | `otillborlig_politisering` | ned | 🔴 vägg | `qualitative`: ingen objektiv mätserie |
+| Frihet, demokrati och institutioner | Korruption och myndighetstillit | `fortroende_domstolar_myndigheter` | upp | ✅ byggd | 9 obs · 2017–2025 (Brå NTU 5A:1 — Tier 4) |
+| Frihet, demokrati och institutioner | Korruption och myndighetstillit | `korruption` | ned | 🔴 vägg | `international`: TI CPI ej officiell svensk källa |
+| Frihet, demokrati och institutioner | Yttrandefrihet och medier | `mediefrihet` | upp | 🔴 vägg | `international`: RSF-index ej officiell svensk källa |
+| Frihet, demokrati och institutioner | Personlig frihet och integritet | `overvakning_utan_rattssakerhet` | ned | 🔴 vägg | `qualitative`: ingen objektiv mätserie |
+| Frihet, demokrati och institutioner | Transparens och ansvarsutkrävande | `politisk_transparens` | upp | 🔴 vägg | `qualitative`: ingen kvantitativ officiell årsserie |
+
+**Partiaxeln (orthogonal mot tabellen ovan):** `V` får `D_not_applicable` i *alla* kategorier
+(aldrig nationell regering 2014–2026) — det är en attributions-egenskap, inte en täckningslucka, och
+påverkar inte raderna ovan. Se §2.
+
+---
+
 ## 3. Arbetskö — D-lösa submått med byggbarhet
 
 Status: 🔵 nästa · ⚪ planerad · 🟣 designbeslut krävs · 🔴 blockerad/stängd · ✅ klar.

@@ -154,6 +154,21 @@ objektiva kategoriindikatorer
 
 Väljaren viktar kategorier, inte ideologiska metoder. Scoringen ska därför inte fråga om en åtgärd är "höger" eller "vänster", utan om den enligt källorna rimligen påverkar indikatorerna i positiv eller negativ riktning.
 
+### Två nivåer: vad varje delpoäng sitter på
+
+De fyra delpoängen lever på **två olika nivåer** i begreppsmodellen (Kategori → Undermått → Indikator → Riktning). Det är avsiktligt — inte en lucka att linjera bort:
+
+| Delpoäng | Mäter | Nivå | Sitter på indikatorer? |
+|---|---|---|:---:|
+| **A** | prioritering (budgetandel + motionsandel) | **Kategori** | nej |
+| **B** | evidens för ståndpunkt (instrument → indikatoreffekt) | **Indikator/undermått** | **ja** |
+| **C** | makt/ansvar | **Kategori** | nej |
+| **D** | utfall (årsserie förbättrades under ansvar) | **Indikator/undermått** | **ja** |
+
+- **A och C är kategorinivå** och har inga indikatorer: prioritering (budget-UO + motionsandel) och makt är egenskaper hos (parti × kategori), inte hos en enskild indikator. De har alltid ett värde för varje kategori — ingen undermåttslucka kan göra dem "tunna" — och utgör tillsammans 55 % av kategoripoängen. Att efterfråga "samma indikatorer" för A/C är därför ett kategorifel.
+- **B och D är indikator-/undermåttsnivå** och sitter på *samma* indikator-id. Idealet är därför **B+D på samma undermått** (framåtblickande evidens + bakåtblickande utfall = fullständig bild). Var detta uppnås spåras i mastertabellerna ([done/evidens_trovardighet.md §4.3](docs/done/evidens_trovardighet.md) för B/D-status, [spar_D_datatackning.md §2.1](docs/spar_D_datatackning.md) för D-täckning).
+- **Mål: maximal union av B och D — inte tvingad identitet.** B når indikatorer D aldrig kan (mediefrihet/korruption = D förbjuden; kvalitativt/sekretess = materiel, civil beredskap), och D når rena makroutfall där inget rent instrument finns att koda B mot. Att tvinga samma indikatormängd vore att krympa till snittmängden och kasta täckning. Tunnhet i en kategoris B/D-bredd hanteras därför genom att *bredda unionen* och krympa D efter bredd ([docs/d_coverage_krympning_spec.md](docs/d_coverage_krympning_spec.md)) — inte genom att linjera de fyra linserna. (Skild men parallell strukturaxel: skalsemantiken nedan, relativ A/C vs absolut B/D.)
+
 **A — Faktiskt agerande** (vad partiet prioriterat, *relativt* — inte i absolut volym): `A = 0,6·a1 + 0,4·a2`.
 - `a1` budgetprioritering **(byggd, Fas 1b):** andel av partiets föreslagna utgiftsramar (Σ kategorins UO / Σ alla 27 UO), rank-normaliserad över de 8 partierna. Ramtalen transkriberas troget ur officiella källor (FiU1 rambeslut + budgetmotioner) till `config/budget_ramar.yaml` med källrad per frame — **ingen runtime-parser** (det finns ingen strukturerad API-väg till anslag per UO; en bräcklig parser fick inte korrumpera A, tyngsta delpoängen). **Hård grind:** a1 vägs in för en (budgetår, kategori) endast när alla 8 partier har verifierad ram för varje kategori-UO; annars `A = a2` (flagga `A_a2_only`). Saknad cell → hård fail, aldrig tyst 0. a1 är ett snitt över **tre budgetår (2023–2025)** ur respektive FiU1-rambeslut; version 0, kräver granskning. [Metod](docs/fas1b_budget_metod.md).
 - `a2` lagstiftningsprioritering: **andel av partiets egna motioner** som rör kategorin (= motioner i kategorins utskott / partiets totala motioner), rank-normaliserad över de 8 partierna.
