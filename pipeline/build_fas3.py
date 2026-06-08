@@ -15,7 +15,7 @@ import sys
 from datetime import date
 
 from . import derived, expectations, warehouse
-from .sources import energimyndigheten, forsvarsmakten, polisen
+from .sources import energimyndigheten, forsvarsmakten, polisen, regeringen
 
 
 def main() -> None:
@@ -92,6 +92,24 @@ def main() -> None:
     n = warehouse.upsert(con, "observations", frows)
     span = f"{frows[0]['period']}..{frows[-1]['period']}" if frows else "-"
     print(f"Försvarsmakten (transkr.) -> forsvar  personal_varnpliktiga: {n:4} obs ({span})")
+
+    # Regeringen/Försvarsdepartementet: Sveriges militära stöd till Ukraina per år (forsvar,
+    # delpoäng D) — transkriberad config (config/ukraina_stod.yaml). Öppnar submåttet nato_ukraina.
+    # source_ref 'regeringen:' ligger utanför scb/kolada-purge-scope.
+    rrows = regeringen.build_ukraina_stod_observations()
+    unlisted = {r["indicator"] for r in rrows} - set(regeringen.INDICATORS)
+    if unlisted:
+        raise ValueError(f"Regeringen emitterar indikatorer utanför INDICATORS: {sorted(unlisted)}")
+    for ind in regeringen.INDICATORS:
+        expectations.check_series(
+            [r for r in rrows if r["indicator"] == ind], regeringen.EXPECT.get(ind),
+            f"Regeringen {ind}",
+        )
+    # Full-replace av regeringen-rader (transkriberad, komplett serie).
+    con.execute("DELETE FROM observations WHERE source_ref LIKE 'regeringen:%'")
+    n = warehouse.upsert(con, "observations", rrows)
+    span = f"{rrows[0]['period']}..{rrows[-1]['period']}" if rrows else "-"
+    print(f"Regeringen (transkr.) -> forsvar       ukraina_stod: {n:4} obs ({span})")
 
     print("\n-- täckning (klimat, observations) --")
     for cat, ind, n, lo, hi in con.execute(

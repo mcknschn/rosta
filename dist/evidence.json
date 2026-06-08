@@ -3149,6 +3149,26 @@
     "source_name": "polisen",
     "statement": "skjutningar_sprangningar = 352.0 (trygghet, 2025)."
   },
+  "claim:observed_result:obs:regeringen:ukraina_stod:2022": {
+    "kind": "claim",
+    "source_name": "regeringen",
+    "statement": "ukraina_stod = 6.1 (forsvar, 2022)."
+  },
+  "claim:observed_result:obs:regeringen:ukraina_stod:2023": {
+    "kind": "claim",
+    "source_name": "regeringen",
+    "statement": "ukraina_stod = 17.0 (forsvar, 2023)."
+  },
+  "claim:observed_result:obs:regeringen:ukraina_stod:2024": {
+    "kind": "claim",
+    "source_name": "regeringen",
+    "statement": "ukraina_stod = 25.0 (forsvar, 2024)."
+  },
+  "claim:observed_result:obs:regeringen:ukraina_stod:2025": {
+    "kind": "claim",
+    "source_name": "regeringen",
+    "statement": "ukraina_stod = 40.0 (forsvar, 2025)."
+  },
   "claim:observed_result:obs:scb:arbetsloshet:2001": {
     "kind": "claim",
     "source_name": "SCB",

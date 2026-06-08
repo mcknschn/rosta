@@ -87,7 +87,7 @@
   ],
   "meta": {
     "coverage": "Preliminär: A=agerande (a2 motionsprioritering, andel av egna motioner, full; a1 budgetprioritering gated — aktiv för 7/7 kategorier ur officiella utgiftsramar (2023–2025), expertgranskad v1 2026-06-05, annars a2-fallback); C=makt per kategori: nationell regeringsmakt blandad med subnationell makt (SKR-styren, 21 regioner + 290 kommuner × 3 mandatperioder) via en per-kategori region/kommun-split efter lagstadgat ansvar; forsvar nationellt per design; c2 finansiering ännu ej byggd (C=c1 makt); D=resultatattribution från officiella årsserier för ALLA 7 kategorier (ekonomi/välfärd/trygghet/klimat/integration/försvar/demokrati) där partiet haft nationell makt (medel säkerhet, ej tillämplig för partier utan makt i fönstret, t.ex. V). B är AKTIVERAD för ALLA 7 kategorier via 247 källbelagda, adversariellt verifierade + panel-harmoniserade partiståndpunkter (riksdagsvotering/motion, Fas 4c); coverage-viktad (B krymps mot neutral efter andel kodade åtgärdstyper, B_thin_coverage-flagga vid tunn täckning). party_positions + evidence_ledger expertgranskade v1 (mänsklig sign-off 2026-06-05).",
-    "generated": "2026-06-07",
+    "generated": "2026-06-08",
     "model_version": 1,
     "parties": [
       "S",
@@ -705,8 +705,8 @@
       },
       "forsvar": {
         "ci": [
-          3.672,
-          4.46
+          3.691,
+          4.478
         ],
         "claim_refs": [
           "claim:action:L:forsvar:motioner",
@@ -726,7 +726,7 @@
           "A": 3.357,
           "B": 5.0,
           "C": 3.571,
-          "D": 4.372
+          "D": 4.561
         },
         "confidence": {
           "A": "high",
@@ -740,7 +740,7 @@
           "A_a1_active",
           "C_national_only_by_design"
         ],
-        "score": 4.066
+        "score": 4.085
       },
       "integration": {
         "ci": [
@@ -1509,8 +1509,8 @@
       },
       "forsvar": {
         "ci": [
-          3.073,
-          3.861
+          3.105,
+          3.892
         ],
         "claim_refs": [
           "claim:action:S:forsvar:motioner",
@@ -1531,7 +1531,7 @@
           "A": 1.429,
           "B": 5.0,
           "C": 5.0,
-          "D": 3.957
+          "D": 4.27
         },
         "confidence": {
           "A": "high",
@@ -1545,7 +1545,7 @@
           "A_a1_active",
           "C_national_only_by_design"
         ],
-        "score": 3.467
+        "score": 3.498
       },
       "integration": {
         "ci": [

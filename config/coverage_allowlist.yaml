@@ -41,7 +41,10 @@ allowlist:
   # Pliktverkets inskrivna) -> ej allowlistad fr.o.m. 2026-06-07 (Spår D Tier 4). FÖRSVARETS FÖRSTA D.
   - { category: forsvar, indicator: materiel_formaga,         reason: "qualitative: sekretess/operativ förmåga, ingen öppen mätserie." }
   - { category: forsvar, indicator: civil_beredskap_niva,     reason: "qualitative: MSB-bedömning, ingen kvantitativ årsserie." }
-  - { category: forsvar, indicator: ukraina_stod,             reason: "qualitative: politiskt/ad hoc, ingen objektiv årsindikator." }
+  # ukraina_stod inläst via Regeringens samlade redovisning av militärt stöd till Ukraina per år
+  # (config/ukraina_stod.yaml, 2022-2025, transkriberad) -> ej allowlistad fr.o.m. 2026-06-08
+  # (Spår D natt). Öppnade submåttet nato_ukraina. Tidigare antagande "ad hoc, ingen objektiv
+  # årsindikator" var överspelat: regeringen redovisar ett per-år-värde.
   - { category: forsvar, indicator: nato_interoperabilitet,   reason: "qualitative: ingen öppen mätserie." }
   - { category: forsvar, indicator: leveranstid_materiel,     reason: "qualitative: sekretess, ingen öppen serie." }
   - { category: forsvar, indicator: forsvarsfinansiering_upptrappning_mot_mal, reason: "B-only: ny B-indikator 2026-06-07 (§5.7, åtagande om finansieringsupptrappning mot beslutad målnivå). Inriktnings-/åtagandemått, ej utfallsårsserie (target-syskonet forsvarsanslag_andel_bnp är likaså D-otäckt). version 0, sign-off." }

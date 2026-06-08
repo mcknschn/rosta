@@ -123,7 +123,7 @@ categories:
       - { id: personal_varnpliktiga,    submeasure: militar_formaga, direction: up, note: "Om utbildningskapacitet finns" }
       - { id: materiel_formaga,         submeasure: militar_formaga, direction: up, note: "Ammunition, luftvärn, logistik, cyberförmåga" }
       - { id: civil_beredskap_niva,     submeasure: civil_beredskap, direction: up, note: "Vård, energi, mat, transporter" }
-      - { id: ukraina_stod,             submeasure: nato_ukraina, direction: up, note: "Givet svensk uthållighet" }
+      - { id: ukraina_stod,             submeasure: nato_ukraina, direction: up, note: "Givet svensk uthållighet. D-indikator fr.o.m. 2026-06-08 (Spår D natt, v0): värdet av Sveriges MILITÄRA stöd till Ukraina per kalenderår (Regeringens samlade redovisning, 2022-2025; config/ukraina_stod.yaml). Öppnar submåttet nato_ukraina (tidigare D-tomt). 2026-2027 (beslutad framåtram) exkluderas. D tar bara TECKEN (monoton upp 2022-2025), väger 10 %, makt-/ansvarsviktas." }
       - { id: leveranstid_materiel,     submeasure: genomforbarhet_leverans, direction: down, note: "🔴 BEVAKA (ej mätbar nu; version 0, sign-off 2026-06-07). Äkta steg-1-vägg: officiella svenska källor behandlar lång leveranstid som exogent marknadsproblem, inget instrument belägger ordagrant kortad ledtid. Bidrar EJ till betyg (renormaliseras bort, score.py aggregate_B). BEHÅLLS som UTVIDGNINGSKANDIDAT — undermåttet genomforbarhet_leverans är HOLD; om FMV leveransindex blir D-serie eller en effektutvärdering av försvarsindustristrategin (FöU3) belägger försörjningstrygghet kan undermåttet öppnas (ev. via syster-indikator forsorjningstrygghet_materiel). Se §8.7 / §4.3." }
       - { id: nato_interoperabilitet,   submeasure: nato_ukraina, direction: up }
 

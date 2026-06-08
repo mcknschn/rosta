@@ -80,6 +80,11 @@ def personal_varnpliktiga() -> dict[str, Any]:
     return _load("personal_varnpliktiga.yaml")
 
 
+@cache
+def ukraina_stod() -> dict[str, Any]:
+    return _load("ukraina_stod.yaml")
+
+
 def party_codes() -> list[str]:
     return [p["code"] for p in categories()["parties"]]
 

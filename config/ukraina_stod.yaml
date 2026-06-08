@@ -1,0 +1,49 @@
+# Sveriges MILITÄRA stöd till Ukraina per kalenderår (miljarder kronor).
+#
+# DELPOÄNG D, kategori forsvar, kanonisk indikator ukraina_stod (riktning up, mer uthålligt
+# militärt stöd = bättre; submått nato_ukraina). Öppnar submåttet nato_ukraina (tidigare D-tomt) →
+# försvarets D vilar inte längre på enbart militar_formaga (personal_varnpliktiga). Spår D, natt
+# 2026-06-08.
+#
+# VÄRDEKÄLLA: Regeringens samlade redovisning av det militära stödet till Ukraina
+# (regeringen.se "Militärt stöd till Ukraina"), som anger värdet per år i en stapel. Officiell
+# svensk källa (Försvarsdepartementet/Regeringen). Värdet matchar indikatorns namn direkt: värdet
+# av Sveriges militära stöd till Ukraina.
+#
+# SERIE 2022–2025: 2022 = första helåret efter Rysslands fullskaliga invasion (feb 2022). Stödet
+# steg varje år (6,1 → 17 → 25 → 40 mdr). 2026–2027 (40 mdr/år) är en BESLUTAD TVÅÅRSRAM (framåt-
+# riktad, ej utfall) → EXKLUDERAS ur D-serien tills åren infaller; de är dessutom platta (tecken 0)
+# och skulle inte ändra attributionen.
+#
+# SEMANTIK (militärt, ej humanitärt): endast det MILITÄRA stödet räknas (matchar försvarskategorin).
+# Regeringen särredovisar militärt stöd från humanitärt/återuppbyggnad.
+#
+# KÄLLSPÅRNINGENS GRÄNS (v0, transparent): värdena är avlästa ur regeringens per-år-stapel på den
+# samlade stöd-sidan (officiell men aggregerad presentation; enskilda stödpaket har egna press-
+# meddelanden). 2025 = 40 mdr är delvis "beslutad ram" snarare än reviderat utfall. Eftersom D bara
+# tar TECKEN på årsförändringen är attributionen robust mot kvarvarande sifferosäkerhet: serien är
+# strikt monoton uppåt 2022→2025, så varje rimligt värde ger samma tecken (alla +). v0 kvarstår tills
+# varje års militära stödvärde transkriberats post för post ur de enskilda pressmeddelandena (→v1).
+version: 0
+indicator: ukraina_stod
+category: forsvar
+submeasure: nato_ukraina
+unit: "miljarder kronor (Sveriges militära stöd till Ukraina per år)"
+source_index: "https://www.regeringen.se/regeringens-politik/sveriges-stod-till-ukraina/militart-stod-till-ukraina/"
+years:
+  2022:
+    value: 6.1
+    source: "https://www.regeringen.se/regeringens-politik/sveriges-stod-till-ukraina/militart-stod-till-ukraina/"
+    source_note: "Regeringens per-ar-stapel for militart stod till Ukraina: 2022 = 6,1 mdr kr."
+  2023:
+    value: 17.0
+    source: "https://www.regeringen.se/regeringens-politik/sveriges-stod-till-ukraina/militart-stod-till-ukraina/"
+    source_note: "Regeringens per-ar-stapel: 2023 = 17 mdr kr."
+  2024:
+    value: 25.0
+    source: "https://www.regeringen.se/regeringens-politik/sveriges-stod-till-ukraina/militart-stod-till-ukraina/"
+    source_note: "Regeringens per-ar-stapel: 2024 = 25 mdr kr."
+  2025:
+    value: 40.0
+    source: "https://www.regeringen.se/regeringens-politik/sveriges-stod-till-ukraina/militart-stod-till-ukraina/"
+    source_note: "Regeringens per-ar-stapel: 2025 = 40 mdr kr (delvis beslutad ram). 2026-2027 (40 mdr/ar) ar framatriktad tvaarsram -> exkluderas."
