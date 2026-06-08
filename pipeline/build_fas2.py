@@ -105,6 +105,17 @@ KOLADA_KPIS = [
      "submeasure": "vard_tillganglighet", "unit": "antal dagar (median)",
      "expect": {"min_points": 3, "value_range": [20, 200], "min_latest_year": 2023,
                 "anchors": {"2022": 65.0}}},
+    # overlevnad_svar_sjukdom (valfard -> vard_tillganglighet, riktning up): 30-dagarsöverlevnad efter
+    # AKUT tjocktarmscancerkirurgi (Kolada U70471, Socialstyrelsen/Vården i siffror). D-aktiverad
+    # 2026-06-08 (Spår D natt, v0). VAL AV ANNUELL SERIE: indikatorns naturliga kandidat — relativ
+    # 5-årsöverlevnad cancer (N79196) — är KVINKENNIAL (vart 5:e år) → oduglig för D:s konsekutiva-år-
+    # krav. U70471 är en officiell ÅRLIG (2010-2025, 16 år) överlevnadsserie för en svår sjukdom som
+    # matchar indikatorns riktning (up = högre överlevnad bättre). Diskriminerande (genuina nedgångsår
+    # 2012/2017/2020/2024) → ej monoton. D tar bara TECKEN, väger 10 %, makt-/ansvarsviktas.
+    {"kpi": "U70471", "indicator": "overlevnad_svar_sjukdom", "category": "valfard",
+     "submeasure": "vard_tillganglighet", "unit": "% (30-dagarsöverlevnad, akut tjocktarmscancerkirurgi)",
+     "expect": {"min_points": 12, "value_range": [85, 99], "min_latest_year": 2024,
+                "anchors": {"2015": 94.76}}},
 ]
 
 

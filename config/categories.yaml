@@ -77,7 +77,7 @@ categories:
     indicators:
       - { id: vardkoer,                  submeasure: vard_tillganglighet, direction: down }
       - { id: vard_i_tid,                submeasure: vard_tillganglighet, direction: up }
-      - { id: overlevnad_svar_sjukdom,   submeasure: vard_tillganglighet, direction: up }
+      - { id: overlevnad_svar_sjukdom,   submeasure: vard_tillganglighet, direction: up, note: "D-indikator fr.o.m. 2026-06-08 (Spår D natt, v0): 30-dagarsöverlevnad efter akut tjocktarmscancerkirurgi (Kolada U70471, Socialstyrelsen, årlig 2010-2025). Det kvinkenniala 5-årscancermåttet (N79196) var odugligt för D:s konsekutiva-år-krav → U70471 är den årliga officiella överlevnadsserien för svår sjukdom. D tar bara TECKEN, väger 10 %." }
       - { id: skolresultat,              submeasure: skola_kunskap, direction: up }
       - { id: skillnader_mellan_skolor,  submeasure: skola_kunskap, direction: down }
       - { id: behoriga_larare,           submeasure: skola_kunskap, direction: up }

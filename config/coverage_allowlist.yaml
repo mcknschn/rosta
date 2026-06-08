@@ -22,7 +22,10 @@ allowlist:
   - { category: ekonomi, indicator: statsskuld_underskott, reason: "target: hållbar nivå, ej up/down -> ej D-duglig." }
   # --- valfard ---
   - { category: valfard, indicator: vard_i_tid,                reason: "low_value: Kolada U79142 (vårdgaranti-index) finns men avslutades 2023 OCH dubblerar vard_tillganglighet-submåttet som vardkoer redan täcker. Lågt mervärde." }
-  - { category: valfard, indicator: overlevnad_svar_sjukdom,   reason: "incompatible: Kolada N79196 (relativ 5-årsöverlevnad cancer, åldersstd.) finns men är KVINKENNIAL (2005/2010/2015/2020/2023, inga konsekutiva år) -> D-attributionen (score.attribute_series) kräver konsekutiva år och får 0 bidrag. Skulle kräva en årsserie ELLER en attributionsutvidgning till icke-konsekutiva datapunkter (scoring-kärna, utanför databredd-backloggen)." }
+  # overlevnad_svar_sjukdom inläst via Kolada U70471 (30-dagarsöverlevnad efter akut tjocktarmscancer-
+  # kirurgi, årlig 2010-2025) -> ej allowlistad fr.o.m. 2026-06-08 (Spår D natt). Det kvinkenniala
+  # N79196 (5-årsöverlevnad cancer) var odugligt för D:s konsekutiva-år-krav; U70471 är den årliga
+  # officiella överlevnadsserien för svår sjukdom (matchar riktning up).
   - { category: valfard, indicator: skillnader_mellan_skolor,  reason: "no_api: ingen nationell spridnings-/likvärdighetsserie i Kolada/SCB (Skolverkets rapporter ej maskinläsbara)." }
   - { category: valfard, indicator: personalomsattning_omsorg, reason: "no_api: ingen omsorgsspecifik nationell personalomsättningsserie (Kolada saknar KPI)." }
   - { category: valfard, indicator: kontinuitet_i_omsorgen,    reason: "B-only: ny B-indikator 2026-06-07 (§5.7, fast omsorgskontakt → kontinuitet). Socialstyrelsens andel-som-ofta-träffar-sin-fasta-omsorgskontakt är ej ren maskinläsbar årsserie; formell effektutvärdering klar dec 2026/okt 2027. version 0, sign-off." }

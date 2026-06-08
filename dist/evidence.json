@@ -3109,6 +3109,86 @@
     "source_name": "Kolada",
     "statement": "vardkoer = 64.0 (valfard, 2024)."
   },
+  "claim:observed_result:obs:kolada:U70471:0000:2010": {
+    "kind": "claim",
+    "source_name": "Kolada",
+    "statement": "overlevnad_svar_sjukdom = 91.60186625 (valfard, 2010)."
+  },
+  "claim:observed_result:obs:kolada:U70471:0000:2011": {
+    "kind": "claim",
+    "source_name": "Kolada",
+    "statement": "overlevnad_svar_sjukdom = 92.59259259 (valfard, 2011)."
+  },
+  "claim:observed_result:obs:kolada:U70471:0000:2012": {
+    "kind": "claim",
+    "source_name": "Kolada",
+    "statement": "overlevnad_svar_sjukdom = 90.16393443 (valfard, 2012)."
+  },
+  "claim:observed_result:obs:kolada:U70471:0000:2013": {
+    "kind": "claim",
+    "source_name": "Kolada",
+    "statement": "overlevnad_svar_sjukdom = 93.19852941 (valfard, 2013)."
+  },
+  "claim:observed_result:obs:kolada:U70471:0000:2014": {
+    "kind": "claim",
+    "source_name": "Kolada",
+    "statement": "overlevnad_svar_sjukdom = 93.73913043 (valfard, 2014)."
+  },
+  "claim:observed_result:obs:kolada:U70471:0000:2015": {
+    "kind": "claim",
+    "source_name": "Kolada",
+    "statement": "overlevnad_svar_sjukdom = 94.75655431 (valfard, 2015)."
+  },
+  "claim:observed_result:obs:kolada:U70471:0000:2016": {
+    "kind": "claim",
+    "source_name": "Kolada",
+    "statement": "overlevnad_svar_sjukdom = 95.63567362 (valfard, 2016)."
+  },
+  "claim:observed_result:obs:kolada:U70471:0000:2017": {
+    "kind": "claim",
+    "source_name": "Kolada",
+    "statement": "overlevnad_svar_sjukdom = 92.96066253 (valfard, 2017)."
+  },
+  "claim:observed_result:obs:kolada:U70471:0000:2018": {
+    "kind": "claim",
+    "source_name": "Kolada",
+    "statement": "overlevnad_svar_sjukdom = 93.86138614 (valfard, 2018)."
+  },
+  "claim:observed_result:obs:kolada:U70471:0000:2019": {
+    "kind": "claim",
+    "source_name": "Kolada",
+    "statement": "overlevnad_svar_sjukdom = 94.92900609 (valfard, 2019)."
+  },
+  "claim:observed_result:obs:kolada:U70471:0000:2020": {
+    "kind": "claim",
+    "source_name": "Kolada",
+    "statement": "overlevnad_svar_sjukdom = 93.90962672 (valfard, 2020)."
+  },
+  "claim:observed_result:obs:kolada:U70471:0000:2021": {
+    "kind": "claim",
+    "source_name": "Kolada",
+    "statement": "overlevnad_svar_sjukdom = 93.85796545 (valfard, 2021)."
+  },
+  "claim:observed_result:obs:kolada:U70471:0000:2022": {
+    "kind": "claim",
+    "source_name": "Kolada",
+    "statement": "overlevnad_svar_sjukdom = 95.39748954 (valfard, 2022)."
+  },
+  "claim:observed_result:obs:kolada:U70471:0000:2023": {
+    "kind": "claim",
+    "source_name": "Kolada",
+    "statement": "overlevnad_svar_sjukdom = 95.79831933 (valfard, 2023)."
+  },
+  "claim:observed_result:obs:kolada:U70471:0000:2024": {
+    "kind": "claim",
+    "source_name": "Kolada",
+    "statement": "overlevnad_svar_sjukdom = 95.38461538 (valfard, 2024)."
+  },
+  "claim:observed_result:obs:kolada:U70471:0000:2025": {
+    "kind": "claim",
+    "source_name": "Kolada",
+    "statement": "overlevnad_svar_sjukdom = 95.98662207 (valfard, 2025)."
+  },
   "claim:observed_result:obs:polisen:skjutningar_sprangningar:2018": {
     "kind": "claim",
     "source_name": "polisen",
