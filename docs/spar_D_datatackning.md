@@ -43,16 +43,16 @@ bredda D flyttar tyngdpunkten mot faktiskt utfall.
 
 ## 2. Nuläge (verifierat via `python -m pipeline.tools.coverage_report`, 2026-06-07)
 
-**24/56 indikatorer inlästa** (annuell, D-duglig) i **ALLA 7 kategorier** (efter Tier 4, §7). **Ingen
-kategori är längre D-tom — båda strukturella nollorna (försvar + demokrati) fyllda.** *(Var 19/56 innan
-Tier 1; +2 ekonomi + 1 integration + 1 försvar + 1 demokrati 2026-06-07.)*
+**26/56 indikatorer inlästa** (annuell, D-duglig) i **ALLA 7 kategorier**. *(24 efter Tier 4 2026-06-07;
++1 `overlevnad_svar_sjukdom` (välfärd) + 1 `ukraina_stod` (försvar) i **Spår D natt 2026-06-08** — full
+försökslogg i [spar_D_nattrapport_2026-06-08.md](spar_D_nattrapport_2026-06-08.md).)* Ingen kategori D-tom.
 
 | Kategori | D-täckta submått | Inlästa D-serier |
 |----------|:---:|---|
 | ekonomi | **4 / 4 D-bara¹** | sysselsattning, arbetsloshet, bnp_per_capita, produktivitet, **naringslivets_investeringar**, **hushallens_reala_disponibla_inkomst** |
-| valfard | 2 / 4 | vardkoer, skolresultat, behoriga_larare |
+| valfard | 2 / 4 | vardkoer, **overlevnad_svar_sjukdom** (Kolada U70471, natt 2026-06-08), skolresultat, behoriga_larare |
 | trygghet | 3 / 5 | dodligt_vald, skjutningar_sprangningar, brottsutsatthet, upplevd_otrygghet, uppklaringsgrad |
-| forsvar | **1 / 5** | **personal_varnpliktiga** (första D — Tier 4; militar_formaga öppnat) |
+| forsvar | **2 / 5** | personal_varnpliktiga, **ukraina_stod** (nato_ukraina öppnat, natt 2026-06-08) |
 | klimat | 2 / 5 | territoriella_utslapp, konsumtionsbaserade_utslapp, fossil_energianvandning |
 | integration | 3 / 5 | sysselsattningsgap_inrikes_utrikes, sjalvforsorjningsgrad, bidragsberoende, trangboddhet, **sfi_sprakkunskaper** |
 | demokrati | **1 / 5** | **fortroende_domstolar_myndigheter** (första D — Tier 4; Brå NTU 5A:1, korruption_tillit öppnat) |
@@ -81,21 +81,23 @@ inget ansvar att attribuera. Det är **korrekt och rättvist**, inte ett gap.
 
 ### Sammanfattning (hur stor täckning vi har)
 
-- **24 / 56 indikatorer** har en D-serie (annuell up/down som matar `category_d`).
-- **+5 byggbara/öppna** (🟡) → **realistiskt tak ≈ 29/56**; resten är **3 target** (⚪, ej D-dugliga
-  per konstruktion) + **24 genuina väggar** (🔴) + 1 undermått helt utan indikator (`industriell_konkurrenskraft`).
-- **16 / 35 undermått** har minst en D-serie.
+- **26 / 56 indikatorer** har en D-serie (annuell up/down som matar `category_d`). *(+2 i natt 2026-06-08.)*
+- **+4 byggbara/öppna** (🟡; realloner, elprisvolatilitet, effektbrist, utslappsminskning_per_krona) →
+  **realistiskt tak ≈ 30/56**; resten är **3 target** (⚪) + **23 genuina väggar** (🔴) + 1 undermått utan
+  indikator (`industriell_konkurrenskraft`). *(Natt-fynd: flera "väggar" omprövade — civil_beredskap PDF-
+  läst = bara pengar; demokrati = riktnings-tvetydiga aktivitetsmått; se nattrapporten.)*
+- **17 / 35 undermått** har minst en D-serie. *(+1: nato_ukraina öppnat.)*
 
 | Kategori | ✅ byggd | 🟡 öppen | 🔴 vägg | ⚪ target | Indikatorer | Undermått m. D |
 |----------|:---:|:---:|:---:|:---:|:---:|:---:|
 | Ekonomi och jobb | 6 | 1 | 0 | 2 | 9 | 4/6 (4/4 D-bara) |
-| Välfärd | 3 | 1 | 5 | 0 | 9 | 2/4 |
+| Välfärd | **4** | **0** | 5 | 0 | 9 | 2/4 |
 | Lag och trygghet | 5 | 0 | 3 | 0 | 8 | 3/5 |
-| Försvar och beredskap | 1 | 0 | 6 | 1 | 8 | 1/5 |
+| Försvar och beredskap | **2** | 0 | **5** | 1 | 8 | **2/5** |
 | Klimat, miljö och energi | 3 | 3 | 1 | 0 | 7¹ | 2/5 |
 | Integration och social sammanhållning | 5 | 0 | 4 | 0 | 9 | 3/5 |
 | Frihet, demokrati och institutioner | 1 | 0 | 5 | 0 | 6 | 1/5 |
-| **SUMMA** | **24** | **5** | **24** | **3** | **56** | **16/35** |
+| **SUMMA** | **26** | **4** | **23** | **3** | **56** | **17/35** |
 
 ¹ klimat har 8 undermått-rader men `industriell_konkurrenskraft` saknar indikator (ingen rad i de 56).
 
@@ -113,7 +115,7 @@ inget ansvar att attribuera. Det är **korrekt och rättvist**, inte ett gap.
 | Ekonomi och jobb | Inflation och prisstabilitet | `inflation` | mål | ⚪ target | nära mål, ingen up/down |
 | Ekonomi och jobb | Offentliga finanser och hållbarhet | `statsskuld_underskott` | mål | ⚪ target | hållbar nivå, ingen up/down |
 | Välfärd | Vårdens tillgänglighet och kvalitet | `vardkoer` | ned | ✅ byggd | 4 obs · 2021–2024 |
-| Välfärd | Vårdens tillgänglighet och kvalitet | `overlevnad_svar_sjukdom` | upp | 🟡 öppen | `incompatible`: cancer-KPI kvinkennial; **annuell serie sonderas (§5.3)** |
+| Välfärd | Vårdens tillgänglighet och kvalitet | `overlevnad_svar_sjukdom` | upp | ✅ byggd | Kolada U70471 30-dagarsöverlevnad tjocktarmscancer, 16 obs 2010-2025 (natt 2026-06-08; §5.3 löst) |
 | Välfärd | Vårdens tillgänglighet och kvalitet | `vard_i_tid` | upp | 🔴 vägg | `low_value`: Kolada U79142 avslutad 2023 + dubblerar vardkoer |
 | Välfärd | Skolans kunskap och likvärdighet | `skolresultat` | upp | ✅ byggd | 11 obs · 2015–2025 |
 | Välfärd | Skolans kunskap och likvärdighet | `behoriga_larare` | upp | ✅ byggd | 11 obs · 2015–2025 |
@@ -134,7 +136,7 @@ inget ansvar att attribuera. Det är **korrekt och rättvist**, inte ett gap.
 | Försvar och beredskap | Ekonomisk ambitionsnivå | `forsvarsanslag_andel_bnp` | mål | ⚪ target | upp till beslutad målnivå |
 | Försvar och beredskap | Ekonomisk ambitionsnivå | `forsvarsfinansiering_upptrappning_mot_mal` | upp | 🔴 vägg | `B-only`: åtagande-/inriktningsmått, ej utfallsårsserie |
 | Försvar och beredskap | Civil beredskap | `civil_beredskap_niva` | upp | 🔴 vägg | `qualitative`: MSB-bedömning, ingen årsserie |
-| Försvar och beredskap | Nato, Ukraina, trovärdighet | `ukraina_stod` | upp | 🔴 vägg | `qualitative`: ad hoc, ingen objektiv årsindikator |
+| Försvar och beredskap | Nato, Ukraina, trovärdighet | `ukraina_stod` | upp | ✅ byggd | Regeringens militära stöd/år, 4 obs 2022-2025 (natt 2026-06-08) |
 | Försvar och beredskap | Nato, Ukraina, trovärdighet | `nato_interoperabilitet` | upp | 🔴 vägg | `qualitative`: ingen öppen mätserie |
 | Försvar och beredskap | Genomförbarhet och leveranstakt | `leveranstid_materiel` | ned | 🔴 vägg | `qualitative`: sekretess |
 | Klimat, miljö och energi | Utsläppsminskningar | `territoriella_utslapp` | ned | ✅ byggd | 35 obs · 1990–2024 |
@@ -318,6 +320,25 @@ Spår D anses **färdigt för arkivering** när:
 ## 7. Leveranslogg (append per leverans)
 
 > Format: datum · indikator · kategori→submått · källa · verifiering · betygseffekt · flagga/version.
+
+### ✅ 2026-06-08 — Spår D natt: +2 D-serier + PDF-verifiering (v0, FLAGGADE)
+
+Full försökslogg (alla försök, lyckade + misslyckade, 5 parallella källsondering-agenter):
+[spar_D_nattrapport_2026-06-08.md](spar_D_nattrapport_2026-06-08.md). Sammanfattning:
+
+1. **`overlevnad_svar_sjukdom`** (välfärd → vard_tillganglighet, up): Kolada **U70471** 30-dagarsöverlevnad
+   tjocktarmscancer, 16 obs 2010-2025. **Välfärd 3→4 D-indikatorer.** Löser §5.3 (kvinkennial-problemet).
+   Betygseffekt: endast valfard, ranking oförändrad. Commit `65a5eda`.
+2. **`ukraina_stod`** (försvar → nato_ukraina, up): Regeringens militära stöd/år, 4 obs 2022-2025 (6,1→40
+   mdr). **Öppnade nato_ukraina → försvar 1→2 D, två olika submått.** Ny `regeringen`-adapter. Commit `05dc3b3`.
+3. **`personal_varnpliktiga` PDF-verifierad** → v1-redo: FM ÅR-PDF:erna nu maskinläsbara (pdfplumber); 2020
+   4917→4915, 2024 →7343; inga D-tecken ändrade. Commits `23b9215`, `7e1bf58`.
+
+**Verktygsfynd:** "officiell PDF = oläsbar" var överspelat (pdfplumber/PyMuPDF/pdftotext finns) → FM ÅR + MSB
+ÅR lästa direkt. **Omprövade väggar:** civil_beredskap (MSB ÅR PDF-läst = bara pengar/anslag → vägg
+bekräftad); demokrati (mediefrihet vägg, korruption/transparens riktnings-tvetydiga → funderare);
+elprisvolatilitet (byggbar via SCB EN0301 men kräver ny klassisk-PxWeb-adapter + §5.4-sign-off).
+**Öppna sign-off-frågor:** se nattrapporten §3 (försvar 3:e D, klimat 4:e, höftfraktur/omsorg, demokrati, v1-bump).
 
 ### ✅ 2026-06-07 — Tier 1: ekonomi-D till full submåttstäckning (v0, FLAGGAD, väntar sign-off)
 
