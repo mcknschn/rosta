@@ -1,12 +1,12 @@
 {
   "totals": {
-    "C": 3.093,
-    "KD": 3.207,
-    "L": 3.428,
-    "M": 3.376,
-    "MP": 3.143,
-    "S": 3.709,
-    "SD": 2.781,
+    "C": 3.095,
+    "KD": 3.192,
+    "L": 3.421,
+    "M": 3.361,
+    "MP": 3.141,
+    "S": 3.71,
+    "SD": 2.766,
     "V": 2.621
   },
   "ranking": [
@@ -50,7 +50,7 @@
       ]
     },
     "C/klimat": {
-      "score": 3.465,
+      "score": 3.512,
       "flags": [
         "A_a1_active",
         "B_coverage_2/4"
@@ -64,7 +64,7 @@
       ]
     },
     "C/valfard": {
-      "score": 3.326,
+      "score": 3.305,
       "flags": [
         "A_a1_active",
         "B_coverage_6/6"
@@ -100,7 +100,7 @@
       ]
     },
     "KD/klimat": {
-      "score": 2.713,
+      "score": 2.693,
       "flags": [
         "A_a1_active",
         "B_coverage_4/4"
@@ -114,7 +114,7 @@
       ]
     },
     "KD/valfard": {
-      "score": 3.168,
+      "score": 3.106,
       "flags": [
         "A_a1_active",
         "B_coverage_6/6"
@@ -150,7 +150,7 @@
       ]
     },
     "L/klimat": {
-      "score": 2.61,
+      "score": 2.632,
       "flags": [
         "A_a1_active",
         "B_coverage_4/4"
@@ -164,7 +164,7 @@
       ]
     },
     "L/valfard": {
-      "score": 3.786,
+      "score": 3.735,
       "flags": [
         "A_a1_active",
         "B_coverage_5/6"
@@ -200,7 +200,7 @@
       ]
     },
     "M/klimat": {
-      "score": 3.049,
+      "score": 3.029,
       "flags": [
         "A_a1_active",
         "B_coverage_4/4"
@@ -214,7 +214,7 @@
       ]
     },
     "M/valfard": {
-      "score": 3.732,
+      "score": 3.671,
       "flags": [
         "A_a1_active",
         "B_coverage_6/6"
@@ -252,7 +252,7 @@
       ]
     },
     "MP/klimat": {
-      "score": 4.095,
+      "score": 4.131,
       "flags": [
         "A_a1_active",
         "B_coverage_4/4"
@@ -266,7 +266,7 @@
       ]
     },
     "MP/valfard": {
-      "score": 3.027,
+      "score": 2.997,
       "flags": [
         "A_a1_active",
         "B_coverage_5/6"
@@ -302,7 +302,7 @@
       ]
     },
     "S/klimat": {
-      "score": 2.847,
+      "score": 2.882,
       "flags": [
         "A_a1_active",
         "B_coverage_3/4"
@@ -316,7 +316,7 @@
       ]
     },
     "S/valfard": {
-      "score": 4.627,
+      "score": 4.611,
       "flags": [
         "A_a1_active",
         "B_coverage_5/6"
@@ -352,7 +352,7 @@
       ]
     },
     "SD/klimat": {
-      "score": 1.995,
+      "score": 1.975,
       "flags": [
         "A_a1_active",
         "B_coverage_4/4"
@@ -366,7 +366,7 @@
       ]
     },
     "SD/valfard": {
-      "score": 2.74,
+      "score": 2.679,
       "flags": [
         "A_a1_active",
         "B_coverage_6/6"

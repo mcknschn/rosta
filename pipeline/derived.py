@@ -74,6 +74,21 @@ DERIVED = (
                    "anchors": {"2020": 619.94}},
     },
     {
+        "indicator": "utslappsintensitet",
+        "category": "klimat", "submeasure": "kostnadseffektivitet",
+        "unit": "ton CO2-ekv. per mnkr BNP (fasta priser ref. 2020)",
+        "op": "ratio", "scale": 1000.0,
+        # kt (1000 ton) / mnkr · 1000 = ton/mnkr. Tecknet på årsförändringen (det D bryr sig om) är
+        # oberoende av skalfaktorn. Ekonomins koldioxidintensitet (frikoppling utsläpp/BNP).
+        "plausible": (1.0, 40.0),  # ton/mnkr; fångar ett ev. SCB-enhetsbyte högt
+        "a": {"table": "TAB4698", "fixed": {"Vaxthusgaser": "CO2-ekv.", "Sektor": "0.1",
+              "ContentsCode": "0000018Q"}},  # territoriella växthusgasutsläpp, kt
+        "b": {"table": "TAB3610", "fixed": {"Anvandningstyp": "BNPM", "ContentsCode": "000000RN"}},  # BNP mnkr
+        "ref_tag": "scb:TAB4698(CO2ekv,tot)/TAB3610(BNPM,fast2020)",
+        "expect": {"min_points": 20, "value_range": [1, 40], "min_latest_year": 2023,
+                   "anchors": {"2020": 9.17}},
+    },
+    {
         "indicator": "hushallens_reala_disponibla_inkomst",
         "category": "ekonomi", "submeasure": "realloner_hushall",
         "unit": "index (realt, basår-1 = 100; SCB NR hushållens reala disp. inkomst, netto)",

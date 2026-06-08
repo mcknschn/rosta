@@ -83,6 +83,7 @@ categories:
       - { id: behoriga_larare,           submeasure: skola_kunskap, direction: up }
       - { id: personalomsattning_omsorg, submeasure: omsorg_personal, direction: down, note: "🔴 BEVAKA (ej mätbar nu; version 0, sign-off 2026-06-07). B-vägg: inget partistyrbart instrument flyttar personalomsättningen bevisat nedåt (Äldreomsorgslyftet/Heltidsresan m.fl. mäter annat). D-vägg: SKR lade ned kontinuitetsstatistiken 2024. Bidrar EJ till betyg (renormaliseras bort, score.py aggregate_B). BEHÅLLS som UTVIDGNINGSKANDIDAT — undermåttet omsorg_personal täcks nu av kontinuitet_i_omsorgen; om Socialstyrelsens nya personalkontinuitetsmått (del 2026-12, slut 2027-10) ger ett partistyrbart instrument kan denna återupplivas. Se §8 fråga 6 / §4.3." }
       - { id: kontinuitet_i_omsorgen,    submeasure: omsorg_personal, direction: up, note: "Relations-/personalkontinuitet för omsorgstagaren i hemtjänsten (fast omsorgskontakt). Öppnar omsorg_personal. KONSTRUKT-NOT: detta är INTE personalomsattning_omsorg (🔴-vägg, data nedlagd) som behålls separat/orörd — det fångar kontinuitet ur omsorgstagarens perspektiv (Socialstyrelsen). fast_omsorgskontakt får ALDRIG beskrivas som belägg för lägre personalomsättning. Ny indikator 2026-06-07 (§5.7), version 0, sign-off." }
+      - { id: brukarnojdhet_hemtjanst,   submeasure: omsorg_personal, direction: up, note: "Brukarbedömd nöjdhet med hemtjänsten (helhetssyn), Socialstyrelsens/SCB:s brukarundersökning via Kolada U21468. D-indikator fr.o.m. 2026-06-09 (Spår D djupsvep, v0): ger omsorg_personal dess FÖRSTA D-serie (utfallssida — upplevd omsorgskvalitet, komplement till personal-/kontinuitetsmåtten). 2013-2025 (2021 saknas, pausad pandemiår). Riktning up = nöjdare brukare bättre; neutralt (inget parti vill ha missnöjda brukare). D tar bara TECKEN, väger 10 %. Ny kanonisk indikator (D-only; ingen partistyrbar B-koppling ännu)." }
       - { id: valfardsbrottslighet,      submeasure: finansiering_styrning, direction: down }
 
   - id: trygghet
@@ -145,6 +146,7 @@ categories:
       - { id: elprisvolatilitet,            submeasure: energi_elpriser, direction: down }
       - { id: effektbrist,                  submeasure: energi_elpriser, direction: down }
       - { id: utslappsminskning_per_krona,  submeasure: kostnadseffektivitet, direction: up }
+      - { id: utslappsintensitet,           submeasure: kostnadseffektivitet, direction: down, note: "Ekonomins koldioxidintensitet = territoriella växthusgasutsläpp (SCB MI/TAB4698, kt CO2-ekv) per BNP (SCB TAB3610 BNPM, fasta priser), ton/mnkr. D-indikator fr.o.m. 2026-06-09 (Spår D djupsvep, v0): ger kostnadseffektivitet sin FÖRSTA D-serie (1990-2024, härledd ratio). Mäter om utsläppen minskar i förhållande till ekonomisk output (frikoppling) — närmaste neutrala officiella proxy då 'klimatutgift'-nämnaren (utslappsminskning_per_krona) saknar ren officiell årsserie (§5.5). Riktning down = lägre intensitet bättre. D tar bara TECKEN, väger 10 %." }
       - { id: hotade_arter_naturforlust,    submeasure: biologisk_mangfald, direction: down }
 
   - id: integration

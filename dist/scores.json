@@ -87,7 +87,7 @@
   ],
   "meta": {
     "coverage": "Preliminär: A=agerande (a2 motionsprioritering, andel av egna motioner, full; a1 budgetprioritering gated — aktiv för 7/7 kategorier ur officiella utgiftsramar (2023–2025), expertgranskad v1 2026-06-05, annars a2-fallback); C=makt per kategori: nationell regeringsmakt blandad med subnationell makt (SKR-styren, 21 regioner + 290 kommuner × 3 mandatperioder) via en per-kategori region/kommun-split efter lagstadgat ansvar; forsvar nationellt per design; c2 finansiering ännu ej byggd (C=c1 makt); D=resultatattribution från officiella årsserier för ALLA 7 kategorier (ekonomi/välfärd/trygghet/klimat/integration/försvar/demokrati) där partiet haft nationell makt (medel säkerhet, ej tillämplig för partier utan makt i fönstret, t.ex. V). B är AKTIVERAD för ALLA 7 kategorier via 247 källbelagda, adversariellt verifierade + panel-harmoniserade partiståndpunkter (riksdagsvotering/motion, Fas 4c); coverage-viktad (B krymps mot neutral efter andel kodade åtgärdstyper, B_thin_coverage-flagga vid tunn täckning). party_positions + evidence_ledger expertgranskade v1 (mänsklig sign-off 2026-06-05).",
-    "generated": "2026-06-08",
+    "generated": "2026-06-09",
     "model_version": 1,
     "parties": [
       "S",
@@ -254,8 +254,8 @@
       },
       "klimat": {
         "ci": [
-          3.072,
-          3.859
+          3.118,
+          3.906
         ],
         "claim_refs": [
           "claim:action:C:klimat:motioner",
@@ -266,15 +266,15 @@
           "claim:responsibility:C:regional:2014-2018:government",
           "claim:responsibility:C:regional:2018-2022:government",
           "claim:responsibility:C:regional:2022-2026:government",
-          "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1970",
-          "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1971",
-          "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1972"
+          "claim:observed_result:obs:derived:utslappsintensitet:1990",
+          "claim:observed_result:obs:derived:utslappsintensitet:1991",
+          "claim:observed_result:obs:derived:utslappsintensitet:1992"
         ],
         "components": {
           "A": 4.143,
           "B": 3.75,
           "C": 1.429,
-          "D": 2.815
+          "D": 3.283
         },
         "confidence": {
           "A": "high",
@@ -287,7 +287,7 @@
           "B_coverage_2/4",
           "A_a1_active"
         ],
-        "score": 3.465
+        "score": 3.512
       },
       "trygghet": {
         "ci": [
@@ -328,8 +328,8 @@
       },
       "valfard": {
         "ci": [
-          2.932,
-          3.72
+          2.911,
+          3.699
         ],
         "claim_refs": [
           "claim:action:C:valfard:motioner",
@@ -348,7 +348,7 @@
           "A": 2.571,
           "B": 5.0,
           "C": 1.429,
-          "D": 3.332
+          "D": 3.124
         },
         "confidence": {
           "A": "high",
@@ -361,7 +361,7 @@
           "B_coverage_6/6",
           "A_a1_active"
         ],
-        "score": 3.326
+        "score": 3.305
       }
     },
     "KD": {
@@ -516,8 +516,8 @@
       },
       "klimat": {
         "ci": [
-          2.319,
-          3.107
+          2.299,
+          3.087
         ],
         "claim_refs": [
           "claim:action:KD:klimat:motioner",
@@ -528,15 +528,15 @@
           "claim:responsibility:KD:regional:2014-2018:government",
           "claim:responsibility:KD:regional:2018-2022:government",
           "claim:responsibility:KD:regional:2022-2026:government",
-          "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1970",
-          "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1971",
-          "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1972"
+          "claim:observed_result:obs:derived:utslappsintensitet:1990",
+          "claim:observed_result:obs:derived:utslappsintensitet:1991",
+          "claim:observed_result:obs:derived:utslappsintensitet:1992"
         ],
         "components": {
           "A": 1.929,
           "B": 4.118,
           "C": 2.143,
-          "D": 1.79
+          "D": 1.589
         },
         "confidence": {
           "A": "high",
@@ -549,7 +549,7 @@
           "B_coverage_4/4",
           "A_a1_active"
         ],
-        "score": 2.713
+        "score": 2.693
       },
       "trygghet": {
         "ci": [
@@ -590,8 +590,8 @@
       },
       "valfard": {
         "ci": [
-          2.774,
-          3.561
+          2.713,
+          3.5
         ],
         "claim_refs": [
           "claim:action:KD:valfard:motioner",
@@ -610,7 +610,7 @@
           "A": 1.786,
           "B": 5.0,
           "C": 2.143,
-          "D": 3.82
+          "D": 3.207
         },
         "confidence": {
           "A": "high",
@@ -623,7 +623,7 @@
           "B_coverage_6/6",
           "A_a1_active"
         ],
-        "score": 3.168
+        "score": 3.106
       }
     },
     "L": {
@@ -782,8 +782,8 @@
       },
       "klimat": {
         "ci": [
-          2.216,
-          3.004
+          2.239,
+          3.026
         ],
         "claim_refs": [
           "claim:action:L:klimat:motioner",
@@ -795,15 +795,15 @@
           "claim:responsibility:L:regional:2014-2018:government",
           "claim:responsibility:L:regional:2018-2022:government",
           "claim:responsibility:L:regional:2022-2026:government",
-          "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1970",
-          "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1971",
-          "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1972"
+          "claim:observed_result:obs:derived:utslappsintensitet:1990",
+          "claim:observed_result:obs:derived:utslappsintensitet:1991",
+          "claim:observed_result:obs:derived:utslappsintensitet:1992"
         ],
         "components": {
           "A": 1.071,
           "B": 4.118,
           "C": 3.571,
-          "D": 2.043
+          "D": 2.27
         },
         "confidence": {
           "A": "high",
@@ -816,7 +816,7 @@
           "B_coverage_4/4",
           "A_a1_active"
         ],
-        "score": 2.61
+        "score": 2.632
       },
       "trygghet": {
         "ci": [
@@ -858,8 +858,8 @@
       },
       "valfard": {
         "ci": [
-          3.392,
-          4.18
+          3.341,
+          4.129
         ],
         "claim_refs": [
           "claim:action:L:valfard:motioner",
@@ -879,7 +879,7 @@
           "A": 3.214,
           "B": 4.583,
           "C": 3.571,
-          "D": 3.603
+          "D": 3.094
         },
         "confidence": {
           "A": "high",
@@ -892,7 +892,7 @@
           "B_coverage_5/6",
           "A_a1_active"
         ],
-        "score": 3.786
+        "score": 3.735
       }
     },
     "M": {
@@ -1047,8 +1047,8 @@
       },
       "klimat": {
         "ci": [
-          2.655,
-          3.442
+          2.635,
+          3.422
         ],
         "claim_refs": [
           "claim:action:M:klimat:motioner",
@@ -1059,15 +1059,15 @@
           "claim:responsibility:M:regional:2014-2018:government",
           "claim:responsibility:M:regional:2018-2022:government",
           "claim:responsibility:M:regional:2022-2026:government",
-          "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1970",
-          "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1971",
-          "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1972"
+          "claim:observed_result:obs:derived:utslappsintensitet:1990",
+          "claim:observed_result:obs:derived:utslappsintensitet:1991",
+          "claim:observed_result:obs:derived:utslappsintensitet:1992"
         ],
         "components": {
           "A": 2.5,
           "B": 4.118,
           "C": 2.857,
-          "D": 1.79
+          "D": 1.589
         },
         "confidence": {
           "A": "high",
@@ -1080,7 +1080,7 @@
           "B_coverage_4/4",
           "A_a1_active"
         ],
-        "score": 3.049
+        "score": 3.029
       },
       "trygghet": {
         "ci": [
@@ -1121,8 +1121,8 @@
       },
       "valfard": {
         "ci": [
-          3.338,
-          4.126
+          3.277,
+          4.064
         ],
         "claim_refs": [
           "claim:action:M:valfard:motioner",
@@ -1141,7 +1141,7 @@
           "A": 2.929,
           "B": 5.0,
           "C": 2.857,
-          "D": 3.82
+          "D": 3.207
         },
         "confidence": {
           "A": "high",
@@ -1154,7 +1154,7 @@
           "B_coverage_6/6",
           "A_a1_active"
         ],
-        "score": 3.732
+        "score": 3.671
       }
     },
     "MP": {
@@ -1315,8 +1315,8 @@
       },
       "klimat": {
         "ci": [
-          3.701,
-          4.489
+          3.737,
+          4.525
         ],
         "claim_refs": [
           "claim:action:MP:klimat:motioner",
@@ -1328,15 +1328,15 @@
           "claim:responsibility:MP:regional:2014-2018:government",
           "claim:responsibility:MP:regional:2018-2022:government",
           "claim:responsibility:MP:regional:2022-2026:government",
-          "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1970",
-          "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1971",
-          "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1972"
+          "claim:observed_result:obs:derived:utslappsintensitet:1990",
+          "claim:observed_result:obs:derived:utslappsintensitet:1991",
+          "claim:observed_result:obs:derived:utslappsintensitet:1992"
         ],
         "components": {
           "A": 4.714,
           "B": 3.529,
           "C": 4.286,
-          "D": 3.311
+          "D": 3.673
         },
         "confidence": {
           "A": "high",
@@ -1349,7 +1349,7 @@
           "B_coverage_4/4",
           "A_a1_active"
         ],
-        "score": 4.095
+        "score": 4.131
       },
       "trygghet": {
         "ci": [
@@ -1391,8 +1391,8 @@
       },
       "valfard": {
         "ci": [
-          2.634,
-          3.421
+          2.603,
+          3.391
         ],
         "claim_refs": [
           "claim:action:MP:valfard:motioner",
@@ -1412,7 +1412,7 @@
           "A": 1.143,
           "B": 4.583,
           "C": 4.286,
-          "D": 3.231
+          "D": 2.929
         },
         "confidence": {
           "A": "high",
@@ -1425,7 +1425,7 @@
           "B_coverage_5/6",
           "A_a1_active"
         ],
-        "score": 3.027
+        "score": 2.997
       }
     },
     "S": {
@@ -1588,8 +1588,8 @@
       },
       "klimat": {
         "ci": [
-          2.453,
-          3.24
+          2.488,
+          3.275
         ],
         "claim_refs": [
           "claim:action:S:klimat:motioner",
@@ -1602,15 +1602,15 @@
           "claim:responsibility:S:regional:2014-2018:government",
           "claim:responsibility:S:regional:2018-2022:government",
           "claim:responsibility:S:regional:2022-2026:government",
-          "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1970",
-          "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1971",
-          "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1972"
+          "claim:observed_result:obs:derived:utslappsintensitet:1990",
+          "claim:observed_result:obs:derived:utslappsintensitet:1991",
+          "claim:observed_result:obs:derived:utslappsintensitet:1992"
         ],
         "components": {
           "A": 0.571,
           "B": 4.375,
           "C": 5.0,
-          "D": 3.369
+          "D": 3.718
         },
         "confidence": {
           "A": "high",
@@ -1623,7 +1623,7 @@
           "B_coverage_3/4",
           "A_a1_active"
         ],
-        "score": 2.847
+        "score": 2.882
       },
       "trygghet": {
         "ci": [
@@ -1666,7 +1666,7 @@
       },
       "valfard": {
         "ci": [
-          4.233,
+          4.217,
           5.0
         ],
         "claim_refs": [
@@ -1688,7 +1688,7 @@
           "A": 5.0,
           "B": 4.583,
           "C": 5.0,
-          "D": 2.73
+          "D": 2.569
         },
         "confidence": {
           "A": "high",
@@ -1701,7 +1701,7 @@
           "B_coverage_5/6",
           "A_a1_active"
         ],
-        "score": 4.627
+        "score": 4.611
       }
     },
     "SD": {
@@ -1844,8 +1844,8 @@
       },
       "klimat": {
         "ci": [
-          1.602,
-          2.389
+          1.582,
+          2.369
         ],
         "claim_refs": [
           "claim:action:SD:klimat:motioner",
@@ -1853,15 +1853,15 @@
           "claim:responsibility:SD:municipal:2022-2026:government",
           "claim:responsibility:SD:national:2022-10-18/pagaende:support",
           "claim:responsibility:SD:regional:2022-2026:government",
-          "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1970",
-          "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1971",
-          "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1972"
+          "claim:observed_result:obs:derived:utslappsintensitet:1990",
+          "claim:observed_result:obs:derived:utslappsintensitet:1991",
+          "claim:observed_result:obs:derived:utslappsintensitet:1992"
         ],
         "components": {
           "A": 2.214,
           "B": 2.353,
           "C": 0.714,
-          "D": 1.79
+          "D": 1.589
         },
         "confidence": {
           "A": "high",
@@ -1874,7 +1874,7 @@
           "B_coverage_4/4",
           "A_a1_active"
         ],
-        "score": 1.995
+        "score": 1.975
       },
       "trygghet": {
         "ci": [
@@ -1912,8 +1912,8 @@
       },
       "valfard": {
         "ci": [
-          2.346,
-          3.134
+          2.285,
+          3.072
         ],
         "claim_refs": [
           "claim:action:SD:valfard:motioner",
@@ -1929,7 +1929,7 @@
           "A": 2.357,
           "B": 3.737,
           "C": 0.714,
-          "D": 3.82
+          "D": 3.207
         },
         "confidence": {
           "A": "high",
@@ -1942,7 +1942,7 @@
           "B_coverage_6/6",
           "A_a1_active"
         ],
-        "score": 2.74
+        "score": 2.679
       }
     },
     "V": {
@@ -2108,9 +2108,9 @@
           "claim:responsibility:V:regional:2014-2018:government",
           "claim:responsibility:V:regional:2018-2022:government",
           "claim:responsibility:V:regional:2022-2026:government",
-          "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1970",
-          "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1971",
-          "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1972"
+          "claim:observed_result:obs:derived:utslappsintensitet:1990",
+          "claim:observed_result:obs:derived:utslappsintensitet:1991",
+          "claim:observed_result:obs:derived:utslappsintensitet:1992"
         ],
         "components": {
           "A": 2.857,

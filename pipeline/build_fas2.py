@@ -116,6 +116,15 @@ KOLADA_KPIS = [
      "submeasure": "vard_tillganglighet", "unit": "% (30-dagarsöverlevnad, akut tjocktarmscancerkirurgi)",
      "expect": {"min_points": 12, "value_range": [85, 99], "min_latest_year": 2024,
                 "anchors": {"2015": 94.76}}},
+    # brukarnojdhet_hemtjanst (valfard -> omsorg_personal, riktning up): andel brukare med positiv
+    # helhetsbedömning av hemtjänsten (Socialstyrelsens/SCB:s brukarundersökning, Kolada U21468).
+    # D-aktiverad 2026-06-09 (Spår D djupsvep, v0) -> ger omsorg_personal sin FÖRSTA D-serie
+    # (utfallssida: upplevd omsorgskvalitet). 2013-2025; 2021 saknas (pausad pandemiår) -> D hoppar
+    # bara över 2020->2022-övergången (icke-konsekutiv), resten konsekutiv. D tar bara TECKEN, väger 10 %.
+    {"kpi": "U21468", "indicator": "brukarnojdhet_hemtjanst", "category": "valfard",
+     "submeasure": "omsorg_personal", "unit": "% (brukarbedömning hemtjänst, helhetssyn)",
+     "expect": {"min_points": 8, "value_range": [70, 95], "min_latest_year": 2024,
+                "anchors": {"2015": 89.0}}},
 ]
 
 

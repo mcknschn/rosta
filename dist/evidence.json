@@ -2589,6 +2589,181 @@
     "source_name": "SCB",
     "statement": "sysselsattningsgap_inrikes_utrikes = 3.6 (integration, 2025)."
   },
+  "claim:observed_result:obs:derived:utslappsintensitet:1990": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "utslappsintensitet = 25.52 (klimat, 1990)."
+  },
+  "claim:observed_result:obs:derived:utslappsintensitet:1991": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "utslappsintensitet = 25.86 (klimat, 1991)."
+  },
+  "claim:observed_result:obs:derived:utslappsintensitet:1992": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "utslappsintensitet = 26.02 (klimat, 1992)."
+  },
+  "claim:observed_result:obs:derived:utslappsintensitet:1993": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "utslappsintensitet = 26.59 (klimat, 1993)."
+  },
+  "claim:observed_result:obs:derived:utslappsintensitet:1994": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "utslappsintensitet = 26.45 (klimat, 1994)."
+  },
+  "claim:observed_result:obs:derived:utslappsintensitet:1995": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "utslappsintensitet = 25.2 (klimat, 1995)."
+  },
+  "claim:observed_result:obs:derived:utslappsintensitet:1996": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "utslappsintensitet = 26.09 (klimat, 1996)."
+  },
+  "claim:observed_result:obs:derived:utslappsintensitet:1997": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "utslappsintensitet = 23.71 (klimat, 1997)."
+  },
+  "claim:observed_result:obs:derived:utslappsintensitet:1998": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "utslappsintensitet = 22.86 (klimat, 1998)."
+  },
+  "claim:observed_result:obs:derived:utslappsintensitet:1999": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "utslappsintensitet = 20.98 (klimat, 1999)."
+  },
+  "claim:observed_result:obs:derived:utslappsintensitet:2000": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "utslappsintensitet = 19.69 (klimat, 2000)."
+  },
+  "claim:observed_result:obs:derived:utslappsintensitet:2001": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "utslappsintensitet = 19.65 (klimat, 2001)."
+  },
+  "claim:observed_result:obs:derived:utslappsintensitet:2002": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "utslappsintensitet = 19.38 (klimat, 2002)."
+  },
+  "claim:observed_result:obs:derived:utslappsintensitet:2003": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "utslappsintensitet = 19.11 (klimat, 2003)."
+  },
+  "claim:observed_result:obs:derived:utslappsintensitet:2004": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "utslappsintensitet = 18.17 (klimat, 2004)."
+  },
+  "claim:observed_result:obs:derived:utslappsintensitet:2005": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "utslappsintensitet = 16.94 (klimat, 2005)."
+  },
+  "claim:observed_result:obs:derived:utslappsintensitet:2006": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "utslappsintensitet = 16.09 (klimat, 2006)."
+  },
+  "claim:observed_result:obs:derived:utslappsintensitet:2007": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "utslappsintensitet = 15.32 (klimat, 2007)."
+  },
+  "claim:observed_result:obs:derived:utslappsintensitet:2008": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "utslappsintensitet = 14.89 (klimat, 2008)."
+  },
+  "claim:observed_result:obs:derived:utslappsintensitet:2009": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "utslappsintensitet = 14.5 (klimat, 2009)."
+  },
+  "claim:observed_result:obs:derived:utslappsintensitet:2010": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "utslappsintensitet = 15.12 (klimat, 2010)."
+  },
+  "claim:observed_result:obs:derived:utslappsintensitet:2011": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "utslappsintensitet = 13.66 (klimat, 2011)."
+  },
+  "claim:observed_result:obs:derived:utslappsintensitet:2012": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "utslappsintensitet = 13.04 (klimat, 2012)."
+  },
+  "claim:observed_result:obs:derived:utslappsintensitet:2013": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "utslappsintensitet = 12.53 (klimat, 2013)."
+  },
+  "claim:observed_result:obs:derived:utslappsintensitet:2014": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "utslappsintensitet = 11.86 (klimat, 2014)."
+  },
+  "claim:observed_result:obs:derived:utslappsintensitet:2015": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "utslappsintensitet = 11.32 (klimat, 2015)."
+  },
+  "claim:observed_result:obs:derived:utslappsintensitet:2016": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "utslappsintensitet = 11.06 (klimat, 2016)."
+  },
+  "claim:observed_result:obs:derived:utslappsintensitet:2017": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "utslappsintensitet = 10.67 (klimat, 2017)."
+  },
+  "claim:observed_result:obs:derived:utslappsintensitet:2018": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "utslappsintensitet = 10.32 (klimat, 2018)."
+  },
+  "claim:observed_result:obs:derived:utslappsintensitet:2019": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "utslappsintensitet = 9.82 (klimat, 2019)."
+  },
+  "claim:observed_result:obs:derived:utslappsintensitet:2020": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "utslappsintensitet = 9.17 (klimat, 2020)."
+  },
+  "claim:observed_result:obs:derived:utslappsintensitet:2021": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "utslappsintensitet = 9.05 (klimat, 2021)."
+  },
+  "claim:observed_result:obs:derived:utslappsintensitet:2022": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "utslappsintensitet = 8.46 (klimat, 2022)."
+  },
+  "claim:observed_result:obs:derived:utslappsintensitet:2023": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "utslappsintensitet = 8.3 (klimat, 2023)."
+  },
+  "claim:observed_result:obs:derived:utslappsintensitet:2024": {
+    "kind": "claim",
+    "source_name": "SCB",
+    "statement": "utslappsintensitet = 8.74 (klimat, 2024)."
+  },
   "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1970": {
     "kind": "claim",
     "source_name": "energimyndigheten",
@@ -3108,6 +3283,66 @@
     "kind": "claim",
     "source_name": "Kolada",
     "statement": "vardkoer = 64.0 (valfard, 2024)."
+  },
+  "claim:observed_result:obs:kolada:U21468:0000:2013": {
+    "kind": "claim",
+    "source_name": "Kolada",
+    "statement": "brukarnojdhet_hemtjanst = 89.0 (valfard, 2013)."
+  },
+  "claim:observed_result:obs:kolada:U21468:0000:2014": {
+    "kind": "claim",
+    "source_name": "Kolada",
+    "statement": "brukarnojdhet_hemtjanst = 89.0 (valfard, 2014)."
+  },
+  "claim:observed_result:obs:kolada:U21468:0000:2015": {
+    "kind": "claim",
+    "source_name": "Kolada",
+    "statement": "brukarnojdhet_hemtjanst = 89.0 (valfard, 2015)."
+  },
+  "claim:observed_result:obs:kolada:U21468:0000:2016": {
+    "kind": "claim",
+    "source_name": "Kolada",
+    "statement": "brukarnojdhet_hemtjanst = 89.0 (valfard, 2016)."
+  },
+  "claim:observed_result:obs:kolada:U21468:0000:2017": {
+    "kind": "claim",
+    "source_name": "Kolada",
+    "statement": "brukarnojdhet_hemtjanst = 89.0 (valfard, 2017)."
+  },
+  "claim:observed_result:obs:kolada:U21468:0000:2018": {
+    "kind": "claim",
+    "source_name": "Kolada",
+    "statement": "brukarnojdhet_hemtjanst = 88.0 (valfard, 2018)."
+  },
+  "claim:observed_result:obs:kolada:U21468:0000:2019": {
+    "kind": "claim",
+    "source_name": "Kolada",
+    "statement": "brukarnojdhet_hemtjanst = 88.0 (valfard, 2019)."
+  },
+  "claim:observed_result:obs:kolada:U21468:0000:2020": {
+    "kind": "claim",
+    "source_name": "Kolada",
+    "statement": "brukarnojdhet_hemtjanst = 88.0 (valfard, 2020)."
+  },
+  "claim:observed_result:obs:kolada:U21468:0000:2022": {
+    "kind": "claim",
+    "source_name": "Kolada",
+    "statement": "brukarnojdhet_hemtjanst = 86.0 (valfard, 2022)."
+  },
+  "claim:observed_result:obs:kolada:U21468:0000:2023": {
+    "kind": "claim",
+    "source_name": "Kolada",
+    "statement": "brukarnojdhet_hemtjanst = 86.0 (valfard, 2023)."
+  },
+  "claim:observed_result:obs:kolada:U21468:0000:2024": {
+    "kind": "claim",
+    "source_name": "Kolada",
+    "statement": "brukarnojdhet_hemtjanst = 84.67706836 (valfard, 2024)."
+  },
+  "claim:observed_result:obs:kolada:U21468:0000:2025": {
+    "kind": "claim",
+    "source_name": "Kolada",
+    "statement": "brukarnojdhet_hemtjanst = 84.94741959 (valfard, 2025)."
   },
   "claim:observed_result:obs:kolada:U70471:0000:2010": {
     "kind": "claim",
