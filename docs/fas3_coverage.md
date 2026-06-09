@@ -8,13 +8,17 @@ Invarianten "inget tyst gap" hävdas av `tests/test_fas3_gate.py`. Generera aktu
 python -m pipeline.tools.coverage_report
 ```
 
-Per 2026-06-07: **24 / 56 indikatorer inlästa** (D-dugliga, annuell up/down) i **alla 7 kategorier**
+Per 2026-06-09: **34 / 63 indikatorer inlästa** (D-dugliga, annuell up/down) i **alla 7 kategorier**
 (ekonomi, välfärd, klimat, integration, trygghet, försvar, demokrati). **Ingen kategori är längre D-tom.**
 *(17 per 2026-05-31; +2 trygghet 2026-06-03 — uppklaringsgrad + skjutningar/sprängningar; +2 ekonomi
 2026-06-07 — naringslivets_investeringar + hushallens_reala_disponibla_inkomst, Spår D Tier 1;
 +1 integration 2026-06-07 — sfi_sprakkunskaper, Spår D Tier 2; +1 försvar 2026-06-07 —
 personal_varnpliktiga (försvarets första D); +1 demokrati 2026-06-07 — fortroende_domstolar_myndigheter
-(demokratis första D, Brå NTU 5A:1), Spår D Tier 4.)*
+(demokratis första D, Brå NTU 5A:1), Spår D Tier 4; +1 välfärd + 1 klimat 2026-06-08/09 (Spår D
+djupsvep); **+6 färsk session 2026-06-09 (Spår D byggkö):** aterfall_i_brott (trygghet, Kriminalvården
+KOS), hackande_faglar_skog (klimat, biologisk_mangfald — Svensk Fågeltaxering), och 4 V-Dem-index
+(demokrati — rattsstatsindex/yttrandefrihetsindex/privata_friheter/horisontellt_ansvarsutkravande,
+öppnar alla 4 kvarvarande D-tomma demokrati-submått). **Inget demokrati-submått är längre D-tomt.**)*
 
 ## Inlästa indikatorer (matar D)
 
@@ -34,9 +38,11 @@ personal_varnpliktiga (försvarets första D); +1 demokrati 2026-06-07 — fortr
 | trygghet | brottsutsatthet | Brå NTU | Tabell 3A | down | 2016–2024² |
 | trygghet | upplevd_otrygghet | Brå NTU | Tabell 4A:1 | down | 2017–2025³ |
 | trygghet | uppklaringsgrad | Brå (Handlagda 10La) | personuppkl.% | up | 2016–2025 |
+| trygghet | aterfall_i_brott | Kriminalvården KOS (transkr.) | Tabell 6.1 (råtal→andel) | down | 1994–2022¹⁰ |
 | klimat | territoriella_utslapp | SCB (Naturvårdsverket) | TAB4698 | down | 1990–2024 |
 | klimat | konsumtionsbaserade_utslapp | SCB Miljöräkenskaper | TAB5637 | down | 2008–2023 |
 | klimat | fossil_energianvandning | Energimyndigheten (PxWeb v1) | EN0202_8 | down | 1970–2024 |
+| klimat | hackande_faglar_skog | Svensk Fågeltaxering / Lund (transkr.) | sverigesmiljomal.se Highcharts | up | 2002–2024¹¹ |
 | integration | bidragsberoende | Kolada | N31825 | down | 2010–2024 |
 | integration | trangboddhet | SCB ULF | TAB6439 | down | 2020–2025¹ |
 | integration | sjalvforsorjningsgrad | SCB AKU (utrikes födda) | TAB6529 | up | 2005–2025 |
@@ -44,6 +50,10 @@ personal_varnpliktiga (försvarets första D); +1 demokrati 2026-06-07 — fortr
 | integration | sfi_sprakkunskaper | SCB (Skolverket) | TAB1814 (AA0003EB) | up | 1997–2023⁷ |
 | forsvar | personal_varnpliktiga | Försvarsmakten (ÅR) | transkr. config-yaml | up | 2018–2025⁸ |
 | demokrati | fortroende_domstolar_myndigheter | Brå NTU | blad 5A:1 | up | 2017–2025⁹ |
+| demokrati | rattsstatsindex | V-Dem / Göteborgs univ. (transkr.) | v2x_rule | up | 2000–2025¹² |
+| demokrati | yttrandefrihetsindex | V-Dem / Göteborgs univ. (transkr.) | v2x_freexp_altinf | up | 2000–2025¹² |
+| demokrati | privata_friheter | V-Dem / Göteborgs univ. (transkr.) | v2x_clpriv | up | 2000–2025¹² |
+| demokrati | horisontellt_ansvarsutkravande | V-Dem / Göteborgs univ. (transkr.) | v2x_horacc_osp | up | 2000–2025¹² |
 
 ¹ TAB6439 har dubbelår före 2020 som medvetet utesluts från D (multiårsspann ≠ enskild årspunkt).
 ² Aggregatet "brott mot enskild person" (Samtliga 16–84 år) finns i NTU enbart fr.o.m. 2016
@@ -93,10 +103,31 @@ personal_varnpliktiga (försvarets första D); +1 demokrati 2026-06-07 — fortr
   **2017-fönstret:** åren 2007*–2016* är asteriskmärkta (NTU 2017-omläggning, samma metodbrott som
   upplevd_otrygghet³) → nuvarande metod fr.o.m. 2017 (2017–2025, 9 år). Blad 5D:1 (domstolarna
   specifikt) korsverifierar med samma teckenförlopp (stigande utom dipp 2022→2023).
+¹⁰ Andel av klienter med starthändelse (avslutad fängelse-/påbörjad frivårdsverkställighet) som
+  återfaller i brott inom 3 år, **Kriminalvården KOS 2025 Tabell 6.1** (ingångsår 1994–2022, källa
+  KVR/KUM). Öppnar submåttet aterfall_kriminalvard (tidigare allowlistat blocked:PDF). KOS publicerar
+  råtalen (antal klienter + antal återfall) + en heltalsavrundad andel; vi lagrar RÅTALEN och beräknar
+  andelen (config/aterfall_i_brott.yaml + loader), eftersom dödzonen (0,5 %) annars gör varje 1 pp-
+  avrundningssteg till ett falskt tecken i platån 2012–2022. Verifierat direkt mot KOS-PDF:en;
+  loadern korsverifierar mot publicerad andel (hård fail >0,6 pp). v0 (platå-signalsvaghet, ej dataproblem).
+¹¹ Samlat populationsindex för 16 skogsfågelarter (basår 2002=100), **Svensk Fågeltaxering, Lunds
+  universitet** (akademisk svensk källa), officiell miljömålsindikator "Levande skogar" via
+  sverigesmiljomal.se. Öppnar biologisk_mangfald (NY indikator; hotade_arter_naturforlust förblir
+  no_api-allowlistad). Tidsserien ligger maskinläsbart som Highcharts-JSON i sid-HTML:en; verifierad
+  exakt via `pipeline/tools/faglar_transcribe.py` (alla 23 år). Äkta biologiskt UTFALL, ej policy-insats.
+  v0 ⚠ BRUS-CAVEAT: trendlös/brusig serie → D (tecken, 10 %, makt-/ansvarsviktat) bidrar netto ≈ neutralt.
+¹² **V-Dem** (Varieties of Democracy), Sverige 2000–2025, fyra 0-1-index (ett per tidigare D-tomt
+  demokrati-submått). **V-Dem-institutet är värdat vid Göteborgs universitet → svensk akademisk källa**
+  (CLAUDE.md tillåter när officiell statistik saknas) + ny intl-neutralitetsklausul (extern bedömare >
+  statens självvärdering); TILLSTÅNDS-mått → klarar hammare-principen. ⚠ CAVEAT (största neutralitets-
+  reservationen, v0): EXPERT-KODAT (subjektiva bedömningar, Bayesiansk IRT), ej hård räkning → mildras
+  av tecken-only + 10 % vikt + takeffekt (Sverige 0,94–0,995 → bara trend meningsfull; rattsstatsindex
+  i praktiken platt). Transkriberad ur V-Dem v16; verifierad mot V-Dem-datasetet (tools/vdem_transcribe)
+  + OWID (3 av 4 index). Sign-off 2026-06-09. Indexval undviker dubbelräkning (horacc ej diagacc).
 
 ## Allowlistade gap (skäl i `config/coverage_allowlist.yaml`)
 
-30 indikatorer saknar ännu en officiell svensk årsserie. Sammanfattning per skältyp:
+29 indikatorer saknar ännu en officiell svensk årsserie. Sammanfattning per skältyp:
 
 - **target** (ej up/down, ej D-duglig): inflation, statsskuld_underskott, forsvarsanslag_andel_bnp.
 - **derived** (kräver flera serier/beräkning): elprisvolatilitet, effektbrist,
@@ -108,15 +139,21 @@ personal_varnpliktiga (försvarets första D); +1 demokrati 2026-06-07 — fortr
   ej SOM; demokratis första D-serie, Spår D Tier 4.)
 - **future** (källa finns, adapter ej byggd): vard_i_tid,
   realloner (kräver Medlingsinstitutets konjunkturlönestatistik — SCB:s API saknar en ren helekonomi-
-  löneserie, sonderat 2026-05-31), och Brås handläggnings-/återfallstabeller (handlaggningstid,
-  aterfall_i_brott). (uppklaringsgrad + skjutningar_sprangningar inlästa 2026-06-03;
+  löneserie, sonderat 2026-05-31), och Brås handläggningstabell (handlaggningstid). (uppklaringsgrad
+  + skjutningar_sprangningar inlästa 2026-06-03; **aterfall_i_brott inläst 2026-06-09 via Kriminalvården
+  KOS Tabell 6.1** — Brås PDF-väg behövdes ej, KOS ger råtalen;
   naringslivets_investeringar + hushallens_reala_disponibla_inkomst inlästa 2026-06-07;
   sfi_sprakkunskaper inläst 2026-06-07 via SCB TAB1814 — Spår D Tier 2;
   overlevnad_svar_sjukdom inläst 2026-06-08 via Kolada U70471 (30-dagarsöverlevnad tjocktarmscancer) — Spår D natt.)
 - **international** (ej officiell svensk källa, otillåtet enligt CLAUDE.md): korruption (TI), mediefrihet (RSF).
+  (OBS: dessa indikatorers SUBMÅTT får ändå D fr.o.m. 2026-06-09 via NYA V-Dem-indikatorer —
+  yttrandefrihet_medier→yttrandefrihetsindex; de gamla TI/RSF-indikatorerna förblir allowlistade.)
 - **qualitative** (ingen kvantitativ officiell mätserie): merparten av försvars- och demokratiindikatorerna
   (materiel_formaga, civil_beredskap_niva, nato_interoperabilitet, leveranstid_materiel,
-  politisk_transparens, otillborlig_politisering, overvakning_utan_rattssakerhet). (personal_varnpliktiga
+  politisk_transparens, otillborlig_politisering, overvakning_utan_rattssakerhet). (OBS: de fyra
+  demokrati-submåtten rattsstat_maktdelning/yttrandefrihet_medier/personlig_frihet/transparens_ansvar
+  får alla D fr.o.m. 2026-06-09 via nya V-Dem-indikatorer (se ¹²); dessa gamla kvalitativa indikatorer
+  förblir allowlistade som B-/visningsindikatorer.) (personal_varnpliktiga
   inläst 2026-06-07 via Försvarsmaktens ÅR — Spår D Tier 4, försvarets första D-serie; ukraina_stod inläst
   2026-06-08 via Regeringens militära stöd/år — Spår D natt, öppnade submåttet nato_ukraina. civil_beredskap_niva
   bekräftad vägg via MSB ÅR-PDF-läsning 2026-06-08: bara pengar/anslag, inget neutralt utfallsmått.)

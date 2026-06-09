@@ -41,23 +41,24 @@ bredda D flyttar tyngdpunkten mot faktiskt utfall.
 
 ---
 
-## 2. Nuläge (verifierat via `python -m pipeline.tools.coverage_report`, 2026-06-07)
+## 2. Nuläge (verifierat via `python -m pipeline.tools.coverage_report`, 2026-06-09)
 
-**28 D-serier inlästa** (annuell, D-duglig) i **ALLA 7 kategorier** *(56 ursprungliga kanoniska + 2 nya
-kanoniska indikatorer i djupsvepet)*. *(24 efter Tier 4; +`overlevnad_svar_sjukdom` +`ukraina_stod` i
-natt 2026-06-08; +`brukarnojdhet_hemtjanst` (välfärd/omsorg) +`utslappsintensitet` (klimat/kostnadseff) i
-**djupsvepet 2026-06-09**.)* Full logg: [spar_D_svep_2026-06-08.md](spar_D_svep_2026-06-08.md) (90 kandidater)
-+ [nattrapport](spar_D_nattrapport_2026-06-08.md). **omsorg_personal + kostnadseffektivitet öppnade.**
+**34 D-serier inlästa** (annuell, D-duglig) i **ALLA 7 kategorier** *(56 ursprungliga kanoniska + 7 nya
+kanoniska indikatorer)*. *(24 efter Tier 4; +`overlevnad_svar_sjukdom` +`ukraina_stod` natt 2026-06-08;
++`brukarnojdhet_hemtjanst` +`utslappsintensitet` djupsvep 2026-06-09; **+6 färsk session 2026-06-09:**
++`aterfall_i_brott` (trygghet) +`hackande_faglar_skog` (klimat) + 4 V-Dem-index (demokrati).)* Full logg:
+[spar_D_svep_2026-06-08.md §5](spar_D_svep_2026-06-08.md) (byggkö exekverad) + [nattrapport](spar_D_nattrapport_2026-06-08.md).
+**aterfall_kriminalvard + biologisk_mangfald + alla 4 D-tomma demokrati-submått öppnade → ingen kategori D-tom på submåttsnivå utom enstaka.**
 
 | Kategori | D-täckta submått | Inlästa D-serier |
 |----------|:---:|---|
 | ekonomi | **4 / 4 D-bara¹** | sysselsattning, arbetsloshet, bnp_per_capita, produktivitet, **naringslivets_investeringar**, **hushallens_reala_disponibla_inkomst** |
 | valfard | **3 / 4** | vardkoer, overlevnad_svar_sjukdom, skolresultat, behoriga_larare, **brukarnojdhet_hemtjanst** (omsorg_personal öppnat, djupsvep) |
-| trygghet | 3 / 5 | dodligt_vald, skjutningar_sprangningar, brottsutsatthet, upplevd_otrygghet, uppklaringsgrad |
+| trygghet | **4 / 5** | dodligt_vald, skjutningar_sprangningar, brottsutsatthet, upplevd_otrygghet, uppklaringsgrad, **aterfall_i_brott** (aterfall_kriminalvard öppnat, KOS, färsk session) |
 | forsvar | **2 / 5** | personal_varnpliktiga, **ukraina_stod** (nato_ukraina öppnat, natt 2026-06-08) |
-| klimat | **3 / 5** | territoriella_utslapp, konsumtionsbaserade_utslapp, fossil_energianvandning, **utslappsintensitet** (kostnadseffektivitet öppnat, djupsvep) |
+| klimat | **4 / 5** | territoriella_utslapp, konsumtionsbaserade_utslapp, fossil_energianvandning, **utslappsintensitet** (kostnadseff., djupsvep), **hackande_faglar_skog** (biologisk_mangfald öppnat, Svensk Fågeltaxering, färsk session) |
 | integration | 3 / 5 | sysselsattningsgap_inrikes_utrikes, sjalvforsorjningsgrad, bidragsberoende, trangboddhet, **sfi_sprakkunskaper** |
-| demokrati | **1 / 5** | **fortroende_domstolar_myndigheter** (första D — Tier 4; Brå NTU 5A:1, korruption_tillit öppnat) |
+| demokrati | **5 / 5** | fortroende_domstolar_myndigheter (Brå NTU), **rattsstatsindex, yttrandefrihetsindex, privata_friheter, horisontellt_ansvarsutkravande** (V-Dem/Göteborgs univ., 4 D-tomma submått öppnade, färsk session — demokrati-väggen löst på D-sidan) |
 
 ¹ ekonomi har 6 submått men 2 är `target`-only (inflation, offentliga finanser) → ej D-bara.
 

@@ -207,6 +207,21 @@ eller värdeladdad. Ingen kan byggas neutralt. **Starkaste empiriska stödet fö
 
 > Diskussionen avslutad här (kontext slut). Bygg ej nu — exekvera i ny session.
 
+> ### ✅ EXEKVERAT 2026-06-09 (färsk session) — 3 av 4 byggda, försvar hållet
+> Medskicket till färsk session nedgraderade **Försvarsutgifter % BNP → HOLD** (luktar A/dubbel-
+> räkning, ej D — du höll med) och uppgraderade **V-Dem → aktiv**. Resultat (alla flaggade v0,
+> commits 69eda42/014146c/30f2edb + dist 2026-06-09):
+> - ✅ **aterfall_i_brott** (trygghet) — Kriminalvården KOS 2025 **Tabell 6.1** (råtalen fanns! ej bara
+>   figur), 1994–2022, down. Lagrar råtal→beräknar andel (dödzon-skäl). Öppnade aterfall_kriminalvard.
+> - ✅ **hackande_faglar_skog** (klimat) — Svensk Fågeltaxering/Lund via sverigesmiljomal.se Highcharts-
+>   JSON, 2002–2024, up. NY HTML-avläsare (tools/faglar_transcribe). Öppnade biologisk_mangfald. ⚠ brus-caveat.
+> - ✅ **V-Dem demokrati** (Hög 3 löst — sign-off "svensk akademisk D-källa"): 4 index ur V-Dem v16
+>   (rattsstat/yttrandefrihet/personlig frihet/transparens), Sverige 2000–2025, up. **Öppnade alla 4
+>   kvarvarande D-tomma demokrati-submått → demokrati-väggen löst på D-sidan.** ⚠ expert-kodnings-caveat.
+> - ⏸️ **Försvarsutgifter % BNP** — EJ byggd (hold tills D-vs-A-frågan är ren).
+> Effekt: alla små, **ranking oförändrad** (S>L>M>KD>MP>C>SD>V); demokrati-D rebalanserades från
+> uppblåst (1 stigande indikator) till ärlig blandbild. Coverage 24/56 → **34/63 inlästa**.
+
 **🔑 Bärande princip du formulerade (gäller all D framåt):** *D ska mäta VERKLIGA EFFEKTER, inte aktivitet/
 insats.* Din liknelse: "Fler avlyssningstillstånd säger inget om vad avlyssningen bidrar med — som att räkna
 hammare för att veta om huset är byggt." → rena insats-/aktivitetsmått diskvalificeras som D.
