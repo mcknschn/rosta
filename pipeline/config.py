@@ -95,6 +95,11 @@ def hackande_faglar_skog() -> dict[str, Any]:
     return _load("hackande_faglar_skog.yaml")
 
 
+@cache
+def vdem_demokrati() -> dict[str, Any]:
+    return _load("vdem_demokrati.yaml")
+
+
 def party_codes() -> list[str]:
     return [p["code"] for p in categories()["parties"]]
 

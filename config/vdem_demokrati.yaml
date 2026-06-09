@@ -1,0 +1,184 @@
+# V-Dem (Varieties of Democracy) — Sveriges demokrati-/institutionsindex per år (delpoäng D).
+#
+# DELPOÄNG D, kategori demokrati. Fyra NYA kanoniska indikatorer som ger var sitt tidigare D-tomt
+# demokrati-submått sin FÖRSTA D-serie. Spår D, färsk session 2026-06-09. Ditt sign-off-val
+# 2026-06-09 (frågan "Vilket fält ska V-Dem få?"): **Svensk akademisk D-källa**.
+#
+# ── KÄLLREGEL: VARFÖR V-DEM ÄR TILLÅTET ──────────────────────────────────────────────────────
+# 1. V-Dem-institutet är värdat vid GÖTEBORGS UNIVERSITET (Statsvetenskapliga institutionen) →
+#    räknas som *svensk akademisk källa*, vilket CLAUDE.md uttryckligen tillåter "när officiell
+#    statistik saknas". De fyra demokrati-submåtten nedan saknar svensk officiell årsserie
+#    (självutvärdering ur statsapparaten är dessutom metodiskt olämplig här — se p. 3).
+# 2. CLAUDE.md (uppdaterad 2026-06-09, commit 7fa9337) tillåter dessutom *internationella vedertagna
+#    källor när neutraliteten kan antas högre än en svensk myndighetskälla*. En oberoende EXTERN
+#    bedömare av statens egna institutioner är mer neutral än att staten betygsätter sig själv.
+# 3. "HAMMARE"-PRINCIPEN (D = verkliga effekter/tillstånd, ej aktivitet): V-Dem-indexen är
+#    TILLSTÅNDSbedömningar (graden av rättsstat/yttrandefrihet/frihet/ansvarsutkrävande), inte
+#    aktivitets-/insatsräkningar → passar D-principen bra (till skillnad från "antal anmälningar/
+#    granskningar" som ratades i djupsvepet).
+#
+# ── CAVEAT (största neutralitetsreservationen, därför version 0) ──────────────────────────────
+# V-Dem är EXPERT-KODAT: landexperter sätter subjektiva bedömningar som aggregeras via en
+# Bayesiansk mätmodell (IRT) med konfidensintervall — INTE en hård räkning som SCB:s arbetslöshet.
+# Det är den enskilt största invändningen mot objektiviteten. Mildras av att (a) D tar bara TECKEN
+# på årsförändringen och väger 10 %, (b) det är den metodiskt lämpligaste mätningen för en kategori
+# som är svår att mäta objektivt med svensk officiell statistik, (c) flaggad v0 (kräver granskning).
+# TAKEFFEKT: Sverige ligger nära skalans tak (0,94–0,995) → de ABSOLUTA värdena säger lite; bara
+# TRENDEN/tecknet är meningsfullt, vilket är precis vad D använder. rattsstatsindex är i praktiken
+# platt (allt i dödzonen) → dess D ≈ neutralt (ärligt: stabil svensk rättsstat), men submåttet är
+# inte längre D-tomt.
+#
+# ── INDEXVAL (princip: maximalt DISTINKTA signaler, undvik att dubbelräkna samma nedgång) ─────
+#   rattsstat_maktdelning  → v2x_rule          (Rule of Law index)
+#   yttrandefrihet_medier  → v2x_freexp_altinf (Freedom of Expression & Alternative Sources of Info)
+#   personlig_frihet       → v2x_clpriv        (Private Civil Liberties index)
+#   transparens_ansvar     → v2x_horacc_osp    (Horizontal Accountability, OSP 0-1) — institutionellt
+#       ansvarsutkrävande. VALT FRAMFÖR diagonal accountability (v2x_diagacc), som delar medie-
+#       komponenter med yttrandefrihetsindex och skulle dubbelräkna samma 2018-2024-nedgång över två
+#       submått. Transparens-aspekten av submåttsnamnet fångas indirekt. (v1: ompröva mappningen.)
+# AVSTÅR: v2x_corr (politisk korruption) — ingen meningsfull varians för Sverige (0,004-0,009 på
+#   25 år) OCH korruption_tillit har redan en svensk officiell D (Brå NTU förtroende, fortroende_
+#   domstolar_myndigheter). Att tvinga in V-Dem-korruption vore brus utan signal.
+#
+# Riktning för alla fyra: UP (högre index = bättre demokratitillstånd). Alla är 0-1-skala.
+# Reproducerbar avläsning/audit: pipeline/tools/vdem_transcribe.py (laddar V-Dems officiella
+# dataset, filtrerar Sverige, korsverifierar dessa värden). De tre OWID-tillgängliga indexen
+# (rule/freexp/clpriv) korsverifierades dessutom exakt mot Our World in Data 2026-06-09. Pipelinen
+# läser bara denna pinnade config (ingen runtime-parser). v0 → v1 vid expertgranskning av indexvalet.
+version: 0
+producer: "V-Dem Institute, Statsvetenskapliga institutionen, Göteborgs universitet"
+dataset: "V-Dem Country-Year Full+Others, v16 (2025)"
+source: "https://www.v-dem.net/data/the-v-dem-dataset/"
+source_data: "https://raw.githubusercontent.com/vdeminstitute/vdemdata/master/data/vdem.RData"
+license: "CC BY 4.0 (citera Coppedge m.fl. 2025, V-Dem v16)"
+country: "Sweden"
+category: demokrati
+indicators:
+  rattsstatsindex:
+    submeasure: rattsstat_maktdelning
+    vdem_code: v2x_rule
+    vdem_name: "Rule of Law index"
+    unit: "V-Dem Rule of Law index (0-1)"
+    years:
+      2000: 0.995
+      2001: 0.995
+      2002: 0.995
+      2003: 0.995
+      2004: 0.995
+      2005: 0.995
+      2006: 0.994
+      2007: 0.994
+      2008: 0.994
+      2009: 0.994
+      2010: 0.994
+      2011: 0.995
+      2012: 0.995
+      2013: 0.995
+      2014: 0.995
+      2015: 0.992
+      2016: 0.992
+      2017: 0.993
+      2018: 0.993
+      2019: 0.993
+      2020: 0.993
+      2021: 0.992
+      2022: 0.993
+      2023: 0.99
+      2024: 0.99
+      2025: 0.989
+  yttrandefrihetsindex:
+    submeasure: yttrandefrihet_medier
+    vdem_code: v2x_freexp_altinf
+    vdem_name: "Freedom of Expression and Alternative Sources of Information index"
+    unit: "V-Dem Freedom of Expression index (0-1)"
+    years:
+      2000: 0.97
+      2001: 0.97
+      2002: 0.97
+      2003: 0.97
+      2004: 0.97
+      2005: 0.97
+      2006: 0.97
+      2007: 0.97
+      2008: 0.97
+      2009: 0.97
+      2010: 0.97
+      2011: 0.97
+      2012: 0.973
+      2013: 0.972
+      2014: 0.974
+      2015: 0.974
+      2016: 0.972
+      2017: 0.972
+      2018: 0.966
+      2019: 0.966
+      2020: 0.966
+      2021: 0.968
+      2022: 0.964
+      2023: 0.95
+      2024: 0.946
+      2025: 0.946
+  privata_friheter:
+    submeasure: personlig_frihet
+    vdem_code: v2x_clpriv
+    vdem_name: "Private Civil Liberties index"
+    unit: "V-Dem Private Civil Liberties index (0-1)"
+    years:
+      2000: 0.962
+      2001: 0.962
+      2002: 0.962
+      2003: 0.962
+      2004: 0.962
+      2005: 0.962
+      2006: 0.967
+      2007: 0.967
+      2008: 0.967
+      2009: 0.967
+      2010: 0.967
+      2011: 0.966
+      2012: 0.968
+      2013: 0.968
+      2014: 0.968
+      2015: 0.951
+      2016: 0.949
+      2017: 0.946
+      2018: 0.94
+      2019: 0.94
+      2020: 0.943
+      2021: 0.943
+      2022: 0.949
+      2023: 0.948
+      2024: 0.948
+      2025: 0.941
+  horisontellt_ansvarsutkravande:
+    submeasure: transparens_ansvar
+    vdem_code: v2x_horacc_osp
+    vdem_name: "Horizontal Accountability index (OSP, 0-1)"
+    unit: "V-Dem Horizontal Accountability index (0-1)"
+    years:
+      2000: 0.974
+      2001: 0.974
+      2002: 0.974
+      2003: 0.974
+      2004: 0.975
+      2005: 0.975
+      2006: 0.975
+      2007: 0.973
+      2008: 0.975
+      2009: 0.975
+      2010: 0.976
+      2011: 0.976
+      2012: 0.975
+      2013: 0.979
+      2014: 0.98
+      2015: 0.979
+      2016: 0.979
+      2017: 0.979
+      2018: 0.984
+      2019: 0.99
+      2020: 0.99
+      2021: 0.989
+      2022: 0.99
+      2023: 0.989
+      2024: 0.989
+      2025: 0.989

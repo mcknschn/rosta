@@ -22,6 +22,7 @@ from .sources import (
     polisen,
     regeringen,
     sverigesmiljomal,
+    vdem,
 )
 
 
@@ -154,6 +155,24 @@ def main() -> None:
     n = warehouse.upsert(con, "observations", brows)
     span = f"{brows[0]['period']}..{brows[-1]['period']}" if brows else "-"
     print(f"Sverigesmiljomal (transkr.) -> klimat   hackande_faglar_skog: {n:4} obs ({span})")
+
+    # V-Dem (Göteborgs universitet): Sveriges demokrati-/institutionsindex (demokrati, delpoäng D)
+    # — fyra index ur V-Dem v16 (config/vdem_demokrati.yaml; reproducerbart via tools/vdem_transcribe).
+    # Öppnar fyra D-tomma demokrati-submått. Svensk akademisk källa (se config-headern; sign-off
+    # 2026-06-09). source_ref 'vdem:' utanför scb/kolada-purge-scope.
+    vrows = vdem.build_vdem_observations()
+    unlisted = {r["indicator"] for r in vrows} - set(vdem.INDICATORS)
+    if unlisted:
+        raise ValueError(f"V-Dem emitterar indikatorer utanför INDICATORS: {sorted(unlisted)}")
+    for ind in vdem.INDICATORS:
+        expectations.check_series(
+            [r for r in vrows if r["indicator"] == ind], vdem.EXPECT.get(ind), f"V-Dem {ind}"
+        )
+    # Full-replace av vdem-rader (transkriberad, komplett serie).
+    con.execute("DELETE FROM observations WHERE source_ref LIKE 'vdem:%'")
+    n = warehouse.upsert(con, "observations", vrows)
+    span = f"{vrows[0]['period']}..{vrows[-1]['period']}" if vrows else "-"
+    print(f"V-Dem (transkr.) -> demokrati  {len(vdem.INDICATORS)} index: {n:4} obs ({span})")
 
     print("\n-- täckning (klimat, observations) --")
     for cat, ind, n, lo, hi in con.execute(
