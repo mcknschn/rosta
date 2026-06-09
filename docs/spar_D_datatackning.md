@@ -35,9 +35,10 @@ Registrering = en post i `pipeline/build_fas2.py:SCB_SERIES`/`KOLADA_KPIS` (elle
 med verifierade dimensionskoder + en `expect`-ankare (drift-skydd).
 
 **Varför spåret är viktigt (BACKLOG "Varför den här prioriteringen"):** rankingen drivs i dag mest av
-A (aktivitet) + C (makt). D är `not_applicable` i **21 av 56 celler**. Modellen mäter alltså mer
-*vad partierna prioriterar och har styrt* än *om utfallet blev bättre* — tvärtemot grundidén. Att
-bredda D flyttar tyngdpunkten mot faktiskt utfall.
+A (aktivitet) + C (makt). D var `not_applicable` i **21 av 56 celler** — efter Spår D-breddningen (alla
+7 kategorier har nu minst en D-serie) är det nere i **7 av 56 celler** (= enbart `V`, som aldrig haft
+nationell regeringsmakt i fönstret → strukturellt korrekt, ej ett gap). Modellen mäter därmed
+*om utfallet blev bättre där partiet styrde* i betydligt fler celler — närmare grundidén.
 
 ---
 
@@ -68,12 +69,13 @@ inget ansvar att attribuera. Det är **korrekt och rättvist**, inte ett gap.
 
 ---
 
-## 2.1 Mastertabell — D-täckning per indikator (samtliga 56) ⭐
+## 2.1 Mastertabell — D-täckning per indikator (samtliga 63) ⭐
 
 > **Parallell till B-spårets mastertabell** ([done/evidens_trovardighet.md §4.3](done/evidens_trovardighet.md)),
 > fast för **D** (resultat/utfall). Sanningskälla: `python -m pipeline.tools.coverage_report` +
-> [`config/coverage_allowlist.yaml`](../config/coverage_allowlist.yaml). **Verifierad 2026-06-08.**
-> OBS: D-dimensionen i §4.3-tabellen (kolumnen "mäts (D)") är **inaktuell** efter Spår D Tier 1/2/4 —
+> [`config/coverage_allowlist.yaml`](../config/coverage_allowlist.yaml). **Verifierad 2026-06-09.**
+> OBS: D-dimensionen i §4.3-tabellen (kolumnen "mäts (D)") är **inaktuell** efter Spår D Tier 1/2/4 +
+> djupsvep + färsk session —
 > *denna* tabell är den auktoritativa D-vyn. Kanoniska visningsnamn för Kategori/Undermått: §4.3.
 >
 > **D-status:** ✅ **byggd** (officiell svensk annuell up/down-serie inläst, matar `category_d`) ·
@@ -84,25 +86,28 @@ inget ansvar att attribuera. Det är **korrekt och rättvist**, inte ett gap.
 
 ### Sammanfattning (hur stor täckning vi har)
 
-- **26 / 56 indikatorer** har en D-serie (annuell up/down som matar `category_d`). *(+2 i natt 2026-06-08.)*
+- **34 / 63 indikatorer** har en D-serie (annuell up/down som matar `category_d`). *(+2 natt 2026-06-08,
+  +2 djupsvep, +6 färsk session 2026-06-09: aterfall_i_brott, hackande_faglar_skog, 4 V-Dem-index.)*
 - **+4 byggbara/öppna** (🟡; realloner, elprisvolatilitet, effektbrist, utslappsminskning_per_krona) →
-  **realistiskt tak ≈ 30/56**; resten är **3 target** (⚪) + **23 genuina väggar** (🔴) + 1 undermått utan
-  indikator (`industriell_konkurrenskraft`). *(Natt-fynd: flera "väggar" omprövade — civil_beredskap PDF-
-  läst = bara pengar; demokrati = riktnings-tvetydiga aktivitetsmått; se nattrapporten.)*
-- **17 / 35 undermått** har minst en D-serie. *(+1: nato_ukraina öppnat.)*
+  **realistiskt tak ≈ 38/63**; resten är **3 target** (⚪) + **22 genuina väggar** (🔴) + 1 undermått utan
+  indikator (`industriell_konkurrenskraft`).
+- **25 / 35 undermått** har minst en D-serie. *(+8 sedan 2026-06-07: nato_ukraina, omsorg_personal,
+  kostnadseffektivitet, aterfall_kriminalvard, biologisk_mangfald, + alla 4 D-tomma demokrati-submått
+  via V-Dem → **demokrati-väggen löst på D-sidan**.)*
 
 | Kategori | ✅ byggd | 🟡 öppen | 🔴 vägg | ⚪ target | Indikatorer | Undermått m. D |
 |----------|:---:|:---:|:---:|:---:|:---:|:---:|
 | Ekonomi och jobb | 6 | 1 | 0 | 2 | 9 | 4/6 (4/4 D-bara) |
-| Välfärd | **4** | **0** | 5 | 0 | 9 | 2/4 |
-| Lag och trygghet | 5 | 0 | 3 | 0 | 8 | 3/5 |
-| Försvar och beredskap | **2** | 0 | **5** | 1 | 8 | **2/5** |
-| Klimat, miljö och energi | 3 | 3 | 1 | 0 | 7¹ | 2/5 |
+| Välfärd | **5** | 0 | 5 | 0 | 10 | **3/4** |
+| Lag och trygghet | **6** | 0 | **2** | 0 | 8 | **4/5** |
+| Försvar och beredskap | 2 | 0 | 5 | 1 | 8 | 2/5 |
+| Klimat, miljö och energi | **5** | 3 | 1 | 0 | 9 | **4/5** |
 | Integration och social sammanhållning | 5 | 0 | 4 | 0 | 9 | 3/5 |
-| Frihet, demokrati och institutioner | 1 | 0 | 5 | 0 | 6 | 1/5 |
-| **SUMMA** | **26** | **4** | **23** | **3** | **56** | **17/35** |
+| Frihet, demokrati och institutioner | **5** | 0 | **5** | 0 | 10 | **5/5** |
+| **SUMMA** | **34** | **4** | **22** | **3** | **63** | **25/35** |
 
-¹ klimat har 8 undermått-rader men `industriell_konkurrenskraft` saknar indikator (ingen rad i de 56).
+¹ klimat har 5 undermått men `industriell_konkurrenskraft` saknar indikator (ingen rad i de 63);
+  `biologisk_mangfald` är öppnat 2026-06-09 → klimat 4/5 undermått med D.
 
 ### Full mastertabell — alla 56 indikatorer
 
@@ -125,6 +130,7 @@ inget ansvar att attribuera. Det är **korrekt och rättvist**, inte ett gap.
 | Välfärd | Skolans kunskap och likvärdighet | `skillnader_mellan_skolor` | ned | 🔴 vägg | `no_api`: ingen nationell likvärdighetsserie |
 | Välfärd | Omsorg och personalförsörjning | `personalomsattning_omsorg` | ned | 🔴 vägg | `no_api`: ingen omsorgsspecifik serie |
 | Välfärd | Omsorg och personalförsörjning | `kontinuitet_i_omsorgen` | upp | 🔴 vägg | `B-only`: utfallsserie saknas (bidrar bara till B) |
+| Välfärd | Omsorg och personalförsörjning | `brukarnojdhet_hemtjanst` | upp | ✅ byggd | Kolada U21468 brukarnöjdhet hemtjänst, 12 obs 2013–2025 (djupsvep — **öppnade omsorg_personal**) |
 | Välfärd | Finansiering, styrning och anti-fusk | `valfardsbrottslighet` | ned | 🔴 vägg | `no_api`: ingen ren årsserie |
 | Lag och trygghet | Grov brottslighet och våldsbrott | `dodligt_vald` | ned | ✅ byggd | 24 obs · 2002–2025 |
 | Lag och trygghet | Grov brottslighet och våldsbrott | `skjutningar_sprangningar` | ned | ✅ byggd | 8 obs · 2018–2025 (transkriberad) |
@@ -133,7 +139,7 @@ inget ansvar att attribuera. Det är **korrekt och rättvist**, inte ett gap.
 | Lag och trygghet | Rättsväsendets effektivitet | `uppklaringsgrad` | upp | ✅ byggd | 10 obs · 2016–2025 |
 | Lag och trygghet | Rättsväsendets effektivitet | `handlaggningstid` | ned | 🔴 vägg | `future`: bara interaktiv DB/PDF, ingen ren årsserie funnen (sonderat) |
 | Lag och trygghet | Förebyggande arbete | `kommunalt_brottsforebyggande_arbete` | upp | 🔴 vägg | `B-only`: ingen nationell KPI för kommunal kapacitet |
-| Lag och trygghet | Återfall och kriminalvård | `aterfall_i_brott` | ned | 🔴 vägg | `blocked`: bara PDF (prel/slutlig), metodbrott → expertbedömd transkr. |
+| Lag och trygghet | Återfall och kriminalvård | `aterfall_i_brott` | ned | ✅ byggd | Kriminalvården KOS 2025 Tabell 6.1 (råtal→andel), 29 obs 1994–2022 (färsk session — **öppnade aterfall_kriminalvard**; KOS-tabellen gav råtalen, ingen Excel-bilaga behövdes) |
 | Försvar och beredskap | Militär förmåga | `personal_varnpliktiga` | upp | ✅ byggd | 8 obs · 2018–2025 (FM ÅR, transkriberad — Tier 4) |
 | Försvar och beredskap | Militär förmåga | `materiel_formaga` | upp | 🔴 vägg | `qualitative`: sekretess/operativ förmåga |
 | Försvar och beredskap | Ekonomisk ambitionsnivå | `forsvarsanslag_andel_bnp` | mål | ⚪ target | upp till beslutad målnivå |
@@ -148,7 +154,9 @@ inget ansvar att attribuera. Det är **korrekt och rättvist**, inte ett gap.
 | Klimat, miljö och energi | Energiförsörjning och elpriser | `elprisvolatilitet` | ned | 🟡 öppen | `derived`: härleds ur Svk spotpris — **källregel-beslut §5.4** |
 | Klimat, miljö och energi | Energiförsörjning och elpriser | `effektbrist` | ned | 🟡 öppen | `derived`: härleds ur Svk effektbalans — **§5.4** |
 | Klimat, miljö och energi | Omställningens kostnadseffektivitet | `utslappsminskning_per_krona` | upp | 🟡 öppen | `derived`: utsläpp/kostnad — **def. "klimatutgift" §5.5** |
+| Klimat, miljö och energi | Omställningens kostnadseffektivitet | `utslappsintensitet` | ned | ✅ byggd | härledd ratio territoriella utsläpp (TAB4698) ÷ BNP (TAB3610 BNPM), 35 obs 1990–2024 (djupsvep — **öppnade kostnadseffektivitet**) |
 | Klimat, miljö och energi | Biologisk mångfald och natur | `hotade_arter_naturforlust` | ned | 🔴 vägg | `no_api`: SLU rödlistan, ingen årlig maskinläsbar serie |
+| Klimat, miljö och energi | Biologisk mångfald och natur | `hackande_faglar_skog` | upp | ✅ byggd | Svensk Fågeltaxering/Lund (sverigesmiljomal.se Highcharts), 23 obs 2002–2024 (färsk session — **öppnade biologisk_mangfald**; ⚠ brusig/trendlös → D≈neutral) |
 | Klimat, miljö och energi | Industriell konkurrenskraft | _(ingen indikator)_ | — | 🔴 vägg | saknar indikator (steg-1-vägg, §4.2 i B-trackern) |
 | Integration och social sammanhållning | Arbete och självförsörjning | `sysselsattningsgap_inrikes_utrikes` | ned | ✅ byggd | 21 obs · 2005–2025 (härlett) |
 | Integration och social sammanhållning | Arbete och självförsörjning | `sjalvforsorjningsgrad` | upp | ✅ byggd | 21 obs · 2005–2025 |
@@ -159,12 +167,16 @@ inget ansvar att attribuera. Det är **korrekt och rättvist**, inte ett gap.
 | Integration och social sammanhållning | Boendesegregation och trygghet | `segregation` | ned | 🔴 vägg | `no_api`: ingen ren officiell segregationsårsserie |
 | Integration och social sammanhållning | Normer, tillit och samhällsgemenskap | `tillit_valdeltagande` | upp | 🔴 vägg | `no_api/sparse`: valdeltagande bara valår; SOM-tillit ej API |
 | Integration och social sammanhållning | Migrationssystemets hållbarhet | `atervandande_effektivitet` | upp | 🔴 vägg | `B-only`: ingen publik årsserie för kostnad/effektivitet |
-| Frihet, demokrati och institutioner | Rättsstat och maktdelning | `otillborlig_politisering` | ned | 🔴 vägg | `qualitative`: ingen objektiv mätserie |
+| Frihet, demokrati och institutioner | Rättsstat och maktdelning | `otillborlig_politisering` | ned | 🔴 vägg | `qualitative`: ingen objektiv mätserie (submåttet D-täckt via V-Dem nedan) |
+| Frihet, demokrati och institutioner | Rättsstat och maktdelning | `rattsstatsindex` | upp | ✅ byggd | V-Dem `v2x_rule`, 26 obs 2000–2025 (färsk session — **öppnade rattsstat_maktdelning**; nära platt → D≈neutral) |
 | Frihet, demokrati och institutioner | Korruption och myndighetstillit | `fortroende_domstolar_myndigheter` | upp | ✅ byggd | 9 obs · 2017–2025 (Brå NTU 5A:1 — Tier 4) |
 | Frihet, demokrati och institutioner | Korruption och myndighetstillit | `korruption` | ned | 🔴 vägg | `international`: TI CPI ej officiell svensk källa |
-| Frihet, demokrati och institutioner | Yttrandefrihet och medier | `mediefrihet` | upp | 🔴 vägg | `international`: RSF-index ej officiell svensk källa |
-| Frihet, demokrati och institutioner | Personlig frihet och integritet | `overvakning_utan_rattssakerhet` | ned | 🔴 vägg | `qualitative`: ingen objektiv mätserie |
-| Frihet, demokrati och institutioner | Transparens och ansvarsutkrävande | `politisk_transparens` | upp | 🔴 vägg | `qualitative`: ingen kvantitativ officiell årsserie |
+| Frihet, demokrati och institutioner | Yttrandefrihet och medier | `mediefrihet` | upp | 🔴 vägg | `international`: RSF-index ej officiell svensk källa (submåttet D-täckt via V-Dem nedan) |
+| Frihet, demokrati och institutioner | Yttrandefrihet och medier | `yttrandefrihetsindex` | upp | ✅ byggd | V-Dem `v2x_freexp_altinf`, 26 obs 2000–2025 (färsk session — **öppnade yttrandefrihet_medier**; nedgång 2018+2023) |
+| Frihet, demokrati och institutioner | Personlig frihet och integritet | `overvakning_utan_rattssakerhet` | ned | 🔴 vägg | `qualitative`: ingen objektiv mätserie (submåttet D-täckt via V-Dem nedan) |
+| Frihet, demokrati och institutioner | Personlig frihet och integritet | `privata_friheter` | upp | ✅ byggd | V-Dem `v2x_clpriv`, 26 obs 2000–2025 (färsk session — **öppnade personlig_frihet**) |
+| Frihet, demokrati och institutioner | Transparens och ansvarsutkrävande | `politisk_transparens` | upp | 🔴 vägg | `qualitative`: ingen kvantitativ officiell årsserie (submåttet D-täckt via V-Dem nedan) |
+| Frihet, demokrati och institutioner | Transparens och ansvarsutkrävande | `horisontellt_ansvarsutkravande` | upp | ✅ byggd | V-Dem `v2x_horacc_osp`, 26 obs 2000–2025 (färsk session — **öppnade transparens_ansvar**; horacc, ej diagacc, för att ej dubbelräkna media) |
 
 **Partiaxeln (orthogonal mot tabellen ovan):** `V` får `D_not_applicable` i *alla* kategorier
 (aldrig nationell regering 2014–2026) — det är en attributions-egenskap, inte en täckningslucka, och
@@ -176,6 +188,11 @@ påverkar inte raderna ovan. Se §2.
 
 Status: 🔵 nästa · ⚪ planerad · 🟣 designbeslut krävs · 🔴 blockerad/stängd · ✅ klar.
 Effort: `S` återanvänder befintlig adapter · `M` ny adapter · `L` transkribering/research/design.
+
+> **✅ Djupsvepets sign-off-byggkö EXEKVERAD 2026-06-09 (färsk session, utöver Tier 1–4 nedan):**
+> `aterfall_i_brott` (Kriminalvården KOS → aterfall_kriminalvard), `hackande_faglar_skog` (Svensk
+> Fågeltaxering → biologisk_mangfald) och 4 V-Dem-index (Göteborgs univ. → de 4 D-tomma demokrati-
+> submåtten). **Försvarsutgifter % BNP HÅLLS** (luktar A/dubbelräkning, ej D). Full logg: §7.
 
 ### Tier 1 — billigast: återanvänder SCB-adaptern (S) ✅ LEVERERAD 2026-06-07
 
@@ -236,13 +253,16 @@ SOM-transkribering behövdes. CLAUDE.md *kräver* dessutom officiell källa när
 Listade här för fullständighet så de inte återöppnas oavsiktligt. Skäl i allowlisten.
 
 - **`target`-indikatorer** (ingen up/down): `inflation`, `statsskuld_underskott`, `forsvarsanslag_andel_bnp`.
-- **`international`** (otillåtet, CLAUDE.md): `korruption` (TI CPI), `mediefrihet` (RSF).
+- **`international`** (otillåtet som primärkälla, CLAUDE.md): `korruption` (TI CPI), `mediefrihet` (RSF).
+  *(OBS: deras SUBMÅTT är nu D-täckta via V-Dem-syskonindikatorer — yttrandefrihet_medier→`yttrandefrihetsindex`;
+  korruption_tillit har `fortroende_domstolar_myndigheter`. Dessa specifika TI/RSF-index förblir stängda.)*
 - **`qualitative`/sekretess** (försvar/demokrati): `materiel_formaga`, `civil_beredskap_niva`,
-  `ukraina_stod`, `nato_interoperabilitet`, `leveranstid_materiel`, `otillborlig_politisering`,
-  `overvakning_utan_rattssakerhet`, `politisk_transparens`.
+  `nato_interoperabilitet`, `leveranstid_materiel`, `otillborlig_politisering`,
+  `overvakning_utan_rattssakerhet`, `politisk_transparens`. *(OBS: de fyra demokrati-submåtten är nu
+  D-täckta via V-Dem (`rattsstatsindex`/`yttrandefrihetsindex`/`privata_friheter`/`horisontellt_ansvarsutkravande`);
+  dessa gamla kvalitativa indikatorer förblir stängda som B-/visningsindikatorer.)*
 - **`no_api`** (ingen maskinläsbar årsserie): `skillnader_mellan_skolor`, `personalomsattning_omsorg`,
   `valfardsbrottslighet`, `hotade_arter_naturforlust`, `skolresultat_utsatta_omraden`, `segregation`.
-- **`blocked`** (PDF prel/slutlig + metodbrott): `aterfall_i_brott`.
 - **`future`/interaktiv DB** (ingen ren årsserie funnen): `handlaggningstid`.
 - **`low_value`/inkompatibel**: `vard_i_tid` (dubblerar vardkoer, avslutad 2023);
   `overlevnad`-cancer-KPI N79196 (kvinkennial → kräver annuellt alternativ, se Tier 2).
@@ -287,10 +307,10 @@ indikatorns kanoniska riktning (`up` i categories.yaml); progression skulle krä
 flippas, dvs. en omdefiniering av indikatorn — inte "bygg Tier 2". **Beslut: godkäntandel (AA0003EB).**
 Levererat (§7). Metodbrott 2022 hanterades genom att behålla hela serien (sign-only D robust).
 
-### 5.3 `overlevnad_svar_sjukdom`: finns en annuell serie?
+### 5.3 `overlevnad_svar_sjukdom`: finns en annuell serie? ✅ AVGJORT 2026-06-08 (natt — Kolada U70471)
 Cancer-5-årsöverlevnad (Kolada N79196) är kvinkennial → inkompatibel med D:s konsekutiva-år-krav.
-Behöver sonderas om Socialstyrelsen/Kolada har en **annuell** överlevnadsindikator (t.ex.
-28-/30-dygnsöverlevnad efter hjärtinfarkt/stroke) som matchar submåttet utan modellutvidgning.
+**Löst:** Kolada **U70471** (30-dagarsöverlevnad efter akut tjocktarmscancerkirurgi) är den annuella
+officiella serien (16 obs 2010–2025), inläst i natt-bygget (§7). Ingen modellutvidgning behövdes.
 
 ### 5.4 Svk-adapter: håller den källregeln?
 Spotpris (Nord Pool) + operativ effekt-/timdata är gränsfall mot "officiell svensk källa". Lågt
@@ -323,6 +343,54 @@ Spår D anses **färdigt för arkivering** när:
 ## 7. Leveranslogg (append per leverans)
 
 > Format: datum · indikator · kategori→submått · källa · verifiering · betygseffekt · flagga/version.
+
+### ✅ 2026-06-09 — Spår D byggkö (färsk session): +6 D-serier, demokrati-väggen löst (v0, FLAGGADE)
+
+Djupsvepets sign-off-byggkö exekverad (medskick: försvar % BNP nedgraderat till HOLD, V-Dem uppgraderat
+till aktiv). **3 byggen, 6 nya D-serier; coverage 28/58 → 34/63 inlästa; 25/35 undermått har D.**
+Commits `69eda42` (återfall) · `014146c` (fåglar) · `30f2edb` (V-Dem) · `e0408b7` (dist) · `8c05477` (docs).
+
+1. **`aterfall_i_brott`** (trygghet → aterfall_kriminalvard, ned): andel klienter som återfaller i brott
+   inom 3 år, **Kriminalvården KOS 2025 Tabell 6.1** (ingångsår 1994–2022, 29 obs). **Öppnade
+   aterfall_kriminalvard** (var allowlistat `blocked:PDF`). **Korrigering av tidigare antagande:** ingen
+   separat Excel-tabellbilaga behövdes — Tabell 6.1 i huvud-PDF:en bär RÅTALEN (antal klienter + återfall),
+   extraherbara med pdfplumber. Lagrar råtal → loadern beräknar andelen (decimal), eftersom den publicerade
+   heltalsandelen annars gör varje 1 pp-avrundningssteg till ett falskt tecken i platån 2012–2022 (dödzon
+   0,5 %). Loadern korsverifierar mot publicerad andel (hård fail >0,6 pp). Verifierad direkt mot KOS-PDF:en.
+2. **`hackande_faglar_skog`** (klimat → biologisk_mangfald, upp): samlat skogsfågelindex (16 arter, basår
+   2002=100), **Svensk Fågeltaxering, Lunds universitet** (akademisk svensk källa), officiell miljömåls-
+   indikator via sverigesmiljomal.se. **NY kanonisk indikator → öppnade biologisk_mangfald** (hotade_arter
+   förblir no_api). Highcharts-JSON i sid-HTML:en → ny HTML-avläsare `pipeline/tools/faglar_transcribe.py`
+   (verifierade alla 23 år mot live-sidan); pipelinen läser transkriberad config. ⚠ **BRUS-CAVEAT:** trendlös/
+   brusig serie → D (tecken, 10 %, makt-/ansvarsviktat) bidrar netto ≈ neutralt. Skogsindexet (neutralt) valt
+   framför jordbruksindexet (CAP-laddat).
+3. **V-Dem ×4** (demokrati, alla upp): fyra index ur **V-Dem v16** (Sverige 2000–2025, 26 obs/index) →
+   **öppnade ALLA 4 kvarvarande D-tomma demokrati-submått → demokrati-väggen löst på D-sidan (1/5 → 5/5).**
+   `rattsstatsindex` (`v2x_rule`, nära platt → D≈neutral) · `yttrandefrihetsindex` (`v2x_freexp_altinf`,
+   nedgång 2018+2023) · `privata_friheter` (`v2x_clpriv`) · `horisontellt_ansvarsutkravande` (`v2x_horacc_osp`
+   — valt framför diagonal accountability för att ej dubbelräkna medie-signalen). Avstod `v2x_corr` (ingen
+   varians för Sverige; korruption_tillit har redan Brå-NTU-D).
+
+**Källregel — V-Dem (din sign-off 2026-06-09, fält "Svensk akademisk D-källa"):** V-Dem-institutet är värdat
+vid **Göteborgs universitet → svensk akademisk källa** (CLAUDE.md tillåter när officiell statistik saknas) +
+ny intl-neutralitetsklausul (commit 7fa9337: extern bedömare neutralare än statens självvärdering). V-Dem är
+ett TILLSTÅNDS-mått → klarar din hammare-princip (effekt, ej aktivitet). ⚠ **Största caveat (v0):** V-Dem är
+EXPERT-KODAT (subjektiva bedömningar, Bayesiansk IRT), ej hård räkning → mildras av tecken-only + 10 % vikt +
+takeffekt (Sverige 0,94–0,995 → bara trend meningsfull).
+
+**Verifiering:** KOS direkt mot PDF; fåglar mot live-Highcharts (tools/faglar_transcribe); V-Dem läst direkt
+ur officiella v16-datasetet (pyreadr) + korsverifierat mot OWID (3 av 4 index) + auditerat via
+tools/vdem_transcribe (alla 4×26 år). Hela offline-sviten grön; coverage-gaten håller.
+
+**Betygseffekt (score_diff):** alla totaler rör sig ≤0,018, **ranking OFÖRÄNDRAD** (S>L>M>KD>MP>C>SD>V).
+Demokrati-D rebalanserades från uppblåst (~3,9–4,5, en enda stigande indikator) till ärlig blandbild
+(~2,6–2,9; yttrandefrihet/privata friheter sjönk 2015–2024). Klimat-fågelbruset drog mot neutralt som väntat;
+återfalls-platån mest i dödzonen. `V` orörd (D_not_applicable — styrde aldrig nationellt). `dist/` omräknat +
+snapshot re-baselinad.
+
+**Flaggor/version:** alla v0 (KOS platå-signalsvaghet; fågel-brus; V-Dem expert-kodning). v0 → v1 vid expert-
+granskning. Reproducerbara avläsar-/auditverktyg: `faglar_transcribe.py`, `vdem_transcribe.py`,
+`kriminalvarden` korsverifiering i loadern.
 
 ### ✅ 2026-06-09 — Spår D djupsvep: 90 kandidater testade, +2 D-serier (v0, FLAGGADE)
 
