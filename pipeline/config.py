@@ -90,6 +90,11 @@ def aterfall_i_brott() -> dict[str, Any]:
     return _load("aterfall_i_brott.yaml")
 
 
+@cache
+def hackande_faglar_skog() -> dict[str, Any]:
+    return _load("hackande_faglar_skog.yaml")
+
+
 def party_codes() -> list[str]:
     return [p["code"] for p in categories()["parties"]]
 

@@ -1,0 +1,67 @@
+# Häckande fåglar i skogen — samlat populationsindex för 16 skogsfågelarter med höga naturvärden.
+#
+# DELPOÄNG D, kategori klimat, NY kanonisk indikator hackande_faglar_skog (riktning up, högre
+# index = fler fåglar = bättre; submått biologisk_mangfald). Ger biologisk_mangfald sin FÖRSTA
+# D-serie (den befintliga indikatorn hotade_arter_naturforlust är no_api/allowlistad — rödlistan
+# saknar årlig maskinläsbar serie). Spår D, färsk session 2026-06-09.
+#
+# VÄRDEKÄLLA: Svensk Fågeltaxering, Biologiska institutionen, LUNDS UNIVERSITET (akademisk svensk
+# producent → tillåten enligt CLAUDE.md när officiell statistik saknas). Publiceras som officiell
+# miljömålsindikator för "Levande skogar" på Sveriges miljömåls-portal (sverigesmiljomal.se), där
+# tidsserien ligger maskinläsbart som Highcharts-JSON i sid-HTML:en (serienamn "Häckande fåglar i
+# skogen", det SAMLADE indexet — inte ett enskilt habitat-delindex som lövskog/gammal skog/död ved).
+#
+# VARFÖR DETTA INDEX (neutralitet): det samlade skogsfågelindexet är den GÄLLANDE officiella
+# miljömålsindikatorn (till skillnad från jordbrukslandskapets fågelindex, som är mer direkt knutet
+# till jordbrukssubventioner/CAP och därmed politiskt laddat). Det mäter ett äkta biologiskt UTFALL
+# (populationsstorlek), inte en policy-INSATS (jfr "skyddad areal" = insats/hammare, som ratades i
+# djupsvepet). 16 arter över lövskog/gammal skog/dödvedshabitat → bredare biodiversitetsproxy än ett
+# enskilt artindex.
+#
+# METOD (Svensk Fågeltaxering): standardrutter, TRIM-baserat populationsindex, basår 2002 = 100.
+# Indexet är medelvärdet av de ingående arternas individuella index.
+#
+# V0-CAVEAT (BRUS — viktigaste reservationen): serien är trendlös och BRUSIG (svänger ~90–129
+# mellan år; väder, häckningsframgång och samplingsvariation dominerar den enskilda årsförändringen,
+# inte politik). Delpoäng D tar bara TECKEN på den riktningsjusterade årsförändringen, väger 10 %,
+# makt-/ansvarsviktas och medlas över submått — en TRENDLÖS serie bidrar därför netto ≈ neutralt per
+# parti (inget parti straffas/belönas systematiskt; +/−-tecknen tar i stort ut varandra). Det är en
+# ärlig "äkta naturUTFALL men svag årssignal"-indikator, ej ett trendmått. IDEA.md:s konjunktur-
+# caveat (D = tecken, ej magnitud, låg vikt) är just till för detta. v0 → v1 när serien expert-
+# granskats och ev. en utjämnings-/trendbehandling övervägts på modellnivå (görs EJ per-indikator här).
+#
+# Reproducerbar avläsning/audit: pipeline/tools/faglar_transcribe.py (hämtar sid-HTML, extraherar
+# Highcharts-serien "Häckande fåglar i skogen", korsverifierar mot värdena nedan). Ingen runtime-
+# HTML-parser körs i pipelinen — den läser bara denna pinnade config (nätverksfri, golden-testbar).
+version: 0
+indicator: hackande_faglar_skog
+category: klimat
+submeasure: biologisk_mangfald
+unit: "populationsindex (basår 2002 = 100)"
+producer: "Svensk Fågeltaxering, Biologiska institutionen, Lunds universitet"
+source: "https://www.sverigesmiljomal.se/miljomalen/levande-skogar/hackande-faglar-i-skogen/"
+series_name: "Häckande fåglar i skogen"
+years:
+  2002: 100.0
+  2003: 106.42
+  2004: 121.18
+  2005: 114.74
+  2006: 90.92
+  2007: 128.81
+  2008: 109.78
+  2009: 106.49
+  2010: 103.14
+  2011: 102.23
+  2012: 107.26
+  2013: 97.44
+  2014: 110.13
+  2015: 118.1
+  2016: 104.81
+  2017: 108.01
+  2018: 89.54
+  2019: 106.94
+  2020: 102.28
+  2021: 96.96
+  2022: 121.32
+  2023: 101.21
+  2024: 109.07

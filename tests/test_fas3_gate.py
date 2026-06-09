@@ -8,7 +8,15 @@ Kör utan nätverk (läser bara config + modulkonstanter).
 from __future__ import annotations
 
 from pipeline import build_fas2, config, derived
-from pipeline.sources import bra, energimyndigheten, forsvarsmakten, kriminalvarden, polisen, regeringen
+from pipeline.sources import (
+    bra,
+    energimyndigheten,
+    forsvarsmakten,
+    kriminalvarden,
+    polisen,
+    regeringen,
+    sverigesmiljomal,
+)
 
 
 def _all_indicators() -> set[tuple[str, str]]:
@@ -38,6 +46,8 @@ def _ingested() -> set[tuple[str, str]]:
         out.add(("forsvar", ind))
     for ind in kriminalvarden.INDICATORS:
         out.add(("trygghet", ind))
+    for ind in sverigesmiljomal.INDICATORS:
+        out.add(("klimat", ind))
     for d in derived.DERIVED:
         out.add((d["category"], d["indicator"]))
     return out

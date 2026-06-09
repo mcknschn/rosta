@@ -15,7 +15,14 @@ import sys
 from datetime import date
 
 from . import derived, expectations, warehouse
-from .sources import energimyndigheten, forsvarsmakten, kriminalvarden, polisen, regeringen
+from .sources import (
+    energimyndigheten,
+    forsvarsmakten,
+    kriminalvarden,
+    polisen,
+    regeringen,
+    sverigesmiljomal,
+)
 
 
 def main() -> None:
@@ -128,6 +135,25 @@ def main() -> None:
     n = warehouse.upsert(con, "observations", krows)
     span = f"{krows[0]['period']}..{krows[-1]['period']}" if krows else "-"
     print(f"Kriminalvården (transkr.) -> trygghet   aterfall_i_brott: {n:4} obs ({span})")
+
+    # Sveriges miljömål / Svensk Fågeltaxering (Lunds universitet): häckande fåglar i skogen
+    # (klimat, delpoäng D) — transkriberat indexvärde ur portalens Highcharts-serie
+    # (config/hackande_faglar_skog.yaml; reproducerbart via tools/faglar_transcribe.py). Öppnar
+    # submåttet biologisk_mangfald. source_ref 'sverigesmiljomal:' utanför scb/kolada-purge-scope.
+    brows = sverigesmiljomal.build_faglar_observations()
+    unlisted = {r["indicator"] for r in brows} - set(sverigesmiljomal.INDICATORS)
+    if unlisted:
+        raise ValueError(f"Sverigesmiljomal emitterar indikatorer utanför INDICATORS: {sorted(unlisted)}")
+    for ind in sverigesmiljomal.INDICATORS:
+        expectations.check_series(
+            [r for r in brows if r["indicator"] == ind], sverigesmiljomal.EXPECT.get(ind),
+            f"Sverigesmiljomal {ind}",
+        )
+    # Full-replace av sverigesmiljomal-rader (transkriberad, komplett serie).
+    con.execute("DELETE FROM observations WHERE source_ref LIKE 'sverigesmiljomal:%'")
+    n = warehouse.upsert(con, "observations", brows)
+    span = f"{brows[0]['period']}..{brows[-1]['period']}" if brows else "-"
+    print(f"Sverigesmiljomal (transkr.) -> klimat   hackande_faglar_skog: {n:4} obs ({span})")
 
     print("\n-- täckning (klimat, observations) --")
     for cat, ind, n, lo, hi in con.execute(
