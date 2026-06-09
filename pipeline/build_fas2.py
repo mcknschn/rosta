@@ -210,8 +210,8 @@ def main() -> None:
     print("   trygghet: dödligt våld (Tabell 20) + NTU utsatthet/otrygghet + personuppklaring "
           "(10La) inlästa (Brå).")
     print("       Handläggningstid/genomströmning och återfall återstår (separata Brå-tabeller).")
-    print("   forsvar/demokrati: till stor del kvalitativa/internationella indikatorer")
-    print("       -> ingen officiell svensk årsserie matar D (D = ej tillämplig, allowlistad).")
+    print("   forsvar/demokrati: D matas nu i fas 3 (forsvar: FM/regeringen; demokrati: Brå NTU")
+    print("       förtroende + V-Dem 4 index). Återstående indikatorer kvalitativa/sekretess/intl (allowlistade).")
     con.close()
 
 

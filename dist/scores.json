@@ -105,8 +105,8 @@
     "C": {
       "demokrati": {
         "ci": [
-          2.959,
-          3.747
+          2.841,
+          3.629
         ],
         "claim_refs": [
           "claim:action:C:demokrati:motioner",
@@ -125,7 +125,7 @@
           "A": 2.429,
           "B": 5.0,
           "C": 1.429,
-          "D": 4.173
+          "D": 2.994
         },
         "confidence": {
           "A": "high",
@@ -138,7 +138,7 @@
           "B_coverage_7/7",
           "A_a1_active"
         ],
-        "score": 3.353
+        "score": 3.235
       },
       "ekonomi": {
         "ci": [
@@ -254,8 +254,8 @@
       },
       "klimat": {
         "ci": [
-          3.118,
-          3.906
+          3.089,
+          3.876
         ],
         "claim_refs": [
           "claim:action:C:klimat:motioner",
@@ -274,7 +274,7 @@
           "A": 4.143,
           "B": 3.75,
           "C": 1.429,
-          "D": 3.283
+          "D": 2.985
         },
         "confidence": {
           "A": "high",
@@ -287,12 +287,12 @@
           "B_coverage_2/4",
           "A_a1_active"
         ],
-        "score": 3.512
+        "score": 3.482
       },
       "trygghet": {
         "ci": [
-          2.726,
-          3.513
+          2.709,
+          3.496
         ],
         "claim_refs": [
           "claim:action:C:trygghet:motioner",
@@ -311,7 +311,7 @@
           "A": 3.571,
           "B": 3.75,
           "C": 0.714,
-          "D": 2.712
+          "D": 2.542
         },
         "confidence": {
           "A": "high",
@@ -324,7 +324,7 @@
           "B_coverage_3/6",
           "A_a1_active"
         ],
-        "score": 3.119
+        "score": 3.102
       },
       "valfard": {
         "ci": [
@@ -367,8 +367,8 @@
     "KD": {
       "demokrati": {
         "ci": [
-          2.345,
-          3.133
+          2.155,
+          2.943
         ],
         "claim_refs": [
           "claim:action:KD:demokrati:motioner",
@@ -387,7 +387,7 @@
           "A": 1.786,
           "B": 3.571,
           "C": 2.143,
-          "D": 4.534
+          "D": 2.634
         },
         "confidence": {
           "A": "high",
@@ -400,7 +400,7 @@
           "B_coverage_5/7",
           "A_a1_active"
         ],
-        "score": 2.739
+        "score": 2.549
       },
       "ekonomi": {
         "ci": [
@@ -516,8 +516,8 @@
       },
       "klimat": {
         "ci": [
-          2.299,
-          3.087
+          2.344,
+          3.132
         ],
         "claim_refs": [
           "claim:action:KD:klimat:motioner",
@@ -536,7 +536,7 @@
           "A": 1.929,
           "B": 4.118,
           "C": 2.143,
-          "D": 1.589
+          "D": 2.04
         },
         "confidence": {
           "A": "high",
@@ -549,7 +549,7 @@
           "B_coverage_4/4",
           "A_a1_active"
         ],
-        "score": 2.693
+        "score": 2.738
       },
       "trygghet": {
         "ci": [
@@ -629,8 +629,8 @@
     "L": {
       "demokrati": {
         "ci": [
-          2.924,
-          3.712
+          2.762,
+          3.55
         ],
         "claim_refs": [
           "claim:action:L:demokrati:motioner",
@@ -650,7 +650,7 @@
           "A": 2.357,
           "B": 4.0,
           "C": 3.571,
-          "D": 4.392
+          "D": 2.775
         },
         "confidence": {
           "A": "high",
@@ -663,7 +663,7 @@
           "B_coverage_7/7",
           "A_a1_active"
         ],
-        "score": 3.318
+        "score": 3.156
       },
       "ekonomi": {
         "ci": [
@@ -782,8 +782,8 @@
       },
       "klimat": {
         "ci": [
-          2.239,
-          3.026
+          2.247,
+          3.035
         ],
         "claim_refs": [
           "claim:action:L:klimat:motioner",
@@ -803,7 +803,7 @@
           "A": 1.071,
           "B": 4.118,
           "C": 3.571,
-          "D": 2.27
+          "D": 2.357
         },
         "confidence": {
           "A": "high",
@@ -816,12 +816,12 @@
           "B_coverage_4/4",
           "A_a1_active"
         ],
-        "score": 2.632
+        "score": 2.641
       },
       "trygghet": {
         "ci": [
-          3.082,
-          3.869
+          3.048,
+          3.835
         ],
         "claim_refs": [
           "claim:action:L:trygghet:motioner",
@@ -841,7 +841,7 @@
           "A": 2.786,
           "B": 4.167,
           "C": 3.571,
-          "D": 3.67
+          "D": 3.332
         },
         "confidence": {
           "A": "high",
@@ -854,7 +854,7 @@
           "B_coverage_4/6",
           "A_a1_active"
         ],
-        "score": 3.475
+        "score": 3.441
       },
       "valfard": {
         "ci": [
@@ -898,8 +898,8 @@
     "M": {
       "demokrati": {
         "ci": [
-          1.995,
-          2.783
+          1.805,
+          2.593
         ],
         "claim_refs": [
           "claim:action:M:demokrati:motioner",
@@ -918,7 +918,7 @@
           "A": 0.643,
           "B": 3.571,
           "C": 2.857,
-          "D": 4.534
+          "D": 2.634
         },
         "confidence": {
           "A": "high",
@@ -931,7 +931,7 @@
           "B_coverage_5/7",
           "A_a1_active"
         ],
-        "score": 2.389
+        "score": 2.199
       },
       "ekonomi": {
         "ci": [
@@ -1047,8 +1047,8 @@
       },
       "klimat": {
         "ci": [
-          2.635,
-          3.422
+          2.68,
+          3.468
         ],
         "claim_refs": [
           "claim:action:M:klimat:motioner",
@@ -1067,7 +1067,7 @@
           "A": 2.5,
           "B": 4.118,
           "C": 2.857,
-          "D": 1.589
+          "D": 2.04
         },
         "confidence": {
           "A": "high",
@@ -1080,7 +1080,7 @@
           "B_coverage_4/4",
           "A_a1_active"
         ],
-        "score": 3.029
+        "score": 3.074
       },
       "trygghet": {
         "ci": [
@@ -1160,8 +1160,8 @@
     "MP": {
       "demokrati": {
         "ci": [
-          4.095,
-          4.882
+          3.937,
+          4.724
         ],
         "claim_refs": [
           "claim:action:MP:demokrati:motioner",
@@ -1181,7 +1181,7 @@
           "A": 4.429,
           "B": 4.643,
           "C": 4.286,
-          "D": 4.491
+          "D": 2.91
         },
         "confidence": {
           "A": "high",
@@ -1194,7 +1194,7 @@
           "B_coverage_6/7",
           "A_a1_active"
         ],
-        "score": 4.488
+        "score": 4.33
       },
       "ekonomi": {
         "ci": [
@@ -1315,8 +1315,8 @@
       },
       "klimat": {
         "ci": [
-          3.737,
-          4.525
+          3.712,
+          4.499
         ],
         "claim_refs": [
           "claim:action:MP:klimat:motioner",
@@ -1336,7 +1336,7 @@
           "A": 4.714,
           "B": 3.529,
           "C": 4.286,
-          "D": 3.673
+          "D": 3.414
         },
         "confidence": {
           "A": "high",
@@ -1349,12 +1349,12 @@
           "B_coverage_4/4",
           "A_a1_active"
         ],
-        "score": 4.131
+        "score": 4.105
       },
       "trygghet": {
         "ci": [
-          2.123,
-          2.91
+          2.103,
+          2.891
         ],
         "claim_refs": [
           "claim:action:MP:trygghet:motioner",
@@ -1374,7 +1374,7 @@
           "A": 0.0,
           "B": 4.583,
           "C": 4.286,
-          "D": 2.697
+          "D": 2.498
         },
         "confidence": {
           "A": "high",
@@ -1387,7 +1387,7 @@
           "B_coverage_5/6",
           "A_a1_active"
         ],
-        "score": 2.517
+        "score": 2.497
       },
       "valfard": {
         "ci": [
@@ -1431,8 +1431,8 @@
     "S": {
       "demokrati": {
         "ci": [
-          3.059,
-          3.846
+          2.945,
+          3.732
         ],
         "claim_refs": [
           "claim:action:S:demokrati:motioner",
@@ -1453,7 +1453,7 @@
           "A": 2.286,
           "B": 4.0,
           "C": 5.0,
-          "D": 3.883
+          "D": 2.743
         },
         "confidence": {
           "A": "high",
@@ -1466,7 +1466,7 @@
           "B_coverage_7/7",
           "A_a1_active"
         ],
-        "score": 3.453
+        "score": 3.339
       },
       "ekonomi": {
         "ci": [
@@ -1588,8 +1588,8 @@
       },
       "klimat": {
         "ci": [
-          2.488,
-          3.275
+          2.458,
+          3.245
         ],
         "claim_refs": [
           "claim:action:S:klimat:motioner",
@@ -1610,7 +1610,7 @@
           "A": 0.571,
           "B": 4.375,
           "C": 5.0,
-          "D": 3.718
+          "D": 3.418
         },
         "confidence": {
           "A": "high",
@@ -1623,12 +1623,12 @@
           "B_coverage_3/4",
           "A_a1_active"
         ],
-        "score": 2.882
+        "score": 2.852
       },
       "trygghet": {
         "ci": [
-          2.524,
-          3.312
+          2.507,
+          3.295
         ],
         "claim_refs": [
           "claim:action:S:trygghet:motioner",
@@ -1649,7 +1649,7 @@
           "A": 1.143,
           "B": 4.167,
           "C": 5.0,
-          "D": 2.527
+          "D": 2.355
         },
         "confidence": {
           "A": "high",
@@ -1662,7 +1662,7 @@
           "B_coverage_4/6",
           "A_a1_active"
         ],
-        "score": 2.918
+        "score": 2.901
       },
       "valfard": {
         "ci": [
@@ -1707,8 +1707,8 @@
     "SD": {
       "demokrati": {
         "ci": [
-          2.391,
-          3.178
+          2.201,
+          2.988
         ],
         "claim_refs": [
           "claim:action:SD:demokrati:motioner",
@@ -1724,7 +1724,7 @@
           "A": 2.643,
           "B": 3.333,
           "C": 0.714,
-          "D": 4.534
+          "D": 2.634
         },
         "confidence": {
           "A": "high",
@@ -1737,7 +1737,7 @@
           "B_coverage_5/7",
           "A_a1_active"
         ],
-        "score": 2.784
+        "score": 2.594
       },
       "ekonomi": {
         "ci": [
@@ -1844,8 +1844,8 @@
       },
       "klimat": {
         "ci": [
-          1.582,
-          2.369
+          1.627,
+          2.414
         ],
         "claim_refs": [
           "claim:action:SD:klimat:motioner",
@@ -1861,7 +1861,7 @@
           "A": 2.214,
           "B": 2.353,
           "C": 0.714,
-          "D": 1.589
+          "D": 2.04
         },
         "confidence": {
           "A": "high",
@@ -1874,7 +1874,7 @@
           "B_coverage_4/4",
           "A_a1_active"
         ],
-        "score": 1.975
+        "score": 2.02
       },
       "trygghet": {
         "ci": [

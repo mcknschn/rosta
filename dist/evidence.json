@@ -3424,6 +3424,151 @@
     "source_name": "Kolada",
     "statement": "overlevnad_svar_sjukdom = 95.98662207 (valfard, 2025)."
   },
+  "claim:observed_result:obs:kriminalvarden:aterfall_i_brott:1994": {
+    "kind": "claim",
+    "source_name": "kriminalvarden",
+    "statement": "aterfall_i_brott = 39.35 (trygghet, 1994)."
+  },
+  "claim:observed_result:obs:kriminalvarden:aterfall_i_brott:1995": {
+    "kind": "claim",
+    "source_name": "kriminalvarden",
+    "statement": "aterfall_i_brott = 39.26 (trygghet, 1995)."
+  },
+  "claim:observed_result:obs:kriminalvarden:aterfall_i_brott:1996": {
+    "kind": "claim",
+    "source_name": "kriminalvarden",
+    "statement": "aterfall_i_brott = 40.31 (trygghet, 1996)."
+  },
+  "claim:observed_result:obs:kriminalvarden:aterfall_i_brott:1997": {
+    "kind": "claim",
+    "source_name": "kriminalvarden",
+    "statement": "aterfall_i_brott = 39.43 (trygghet, 1997)."
+  },
+  "claim:observed_result:obs:kriminalvarden:aterfall_i_brott:1998": {
+    "kind": "claim",
+    "source_name": "kriminalvarden",
+    "statement": "aterfall_i_brott = 41.08 (trygghet, 1998)."
+  },
+  "claim:observed_result:obs:kriminalvarden:aterfall_i_brott:1999": {
+    "kind": "claim",
+    "source_name": "kriminalvarden",
+    "statement": "aterfall_i_brott = 41.7 (trygghet, 1999)."
+  },
+  "claim:observed_result:obs:kriminalvarden:aterfall_i_brott:2000": {
+    "kind": "claim",
+    "source_name": "kriminalvarden",
+    "statement": "aterfall_i_brott = 39.71 (trygghet, 2000)."
+  },
+  "claim:observed_result:obs:kriminalvarden:aterfall_i_brott:2001": {
+    "kind": "claim",
+    "source_name": "kriminalvarden",
+    "statement": "aterfall_i_brott = 40.11 (trygghet, 2001)."
+  },
+  "claim:observed_result:obs:kriminalvarden:aterfall_i_brott:2002": {
+    "kind": "claim",
+    "source_name": "kriminalvarden",
+    "statement": "aterfall_i_brott = 37.85 (trygghet, 2002)."
+  },
+  "claim:observed_result:obs:kriminalvarden:aterfall_i_brott:2003": {
+    "kind": "claim",
+    "source_name": "kriminalvarden",
+    "statement": "aterfall_i_brott = 37.12 (trygghet, 2003)."
+  },
+  "claim:observed_result:obs:kriminalvarden:aterfall_i_brott:2004": {
+    "kind": "claim",
+    "source_name": "kriminalvarden",
+    "statement": "aterfall_i_brott = 37.31 (trygghet, 2004)."
+  },
+  "claim:observed_result:obs:kriminalvarden:aterfall_i_brott:2005": {
+    "kind": "claim",
+    "source_name": "kriminalvarden",
+    "statement": "aterfall_i_brott = 36.71 (trygghet, 2005)."
+  },
+  "claim:observed_result:obs:kriminalvarden:aterfall_i_brott:2006": {
+    "kind": "claim",
+    "source_name": "kriminalvarden",
+    "statement": "aterfall_i_brott = 35.66 (trygghet, 2006)."
+  },
+  "claim:observed_result:obs:kriminalvarden:aterfall_i_brott:2007": {
+    "kind": "claim",
+    "source_name": "kriminalvarden",
+    "statement": "aterfall_i_brott = 35.86 (trygghet, 2007)."
+  },
+  "claim:observed_result:obs:kriminalvarden:aterfall_i_brott:2008": {
+    "kind": "claim",
+    "source_name": "kriminalvarden",
+    "statement": "aterfall_i_brott = 33.62 (trygghet, 2008)."
+  },
+  "claim:observed_result:obs:kriminalvarden:aterfall_i_brott:2009": {
+    "kind": "claim",
+    "source_name": "kriminalvarden",
+    "statement": "aterfall_i_brott = 33.07 (trygghet, 2009)."
+  },
+  "claim:observed_result:obs:kriminalvarden:aterfall_i_brott:2010": {
+    "kind": "claim",
+    "source_name": "kriminalvarden",
+    "statement": "aterfall_i_brott = 32.17 (trygghet, 2010)."
+  },
+  "claim:observed_result:obs:kriminalvarden:aterfall_i_brott:2011": {
+    "kind": "claim",
+    "source_name": "kriminalvarden",
+    "statement": "aterfall_i_brott = 30.65 (trygghet, 2011)."
+  },
+  "claim:observed_result:obs:kriminalvarden:aterfall_i_brott:2012": {
+    "kind": "claim",
+    "source_name": "kriminalvarden",
+    "statement": "aterfall_i_brott = 29.27 (trygghet, 2012)."
+  },
+  "claim:observed_result:obs:kriminalvarden:aterfall_i_brott:2013": {
+    "kind": "claim",
+    "source_name": "kriminalvarden",
+    "statement": "aterfall_i_brott = 29.4 (trygghet, 2013)."
+  },
+  "claim:observed_result:obs:kriminalvarden:aterfall_i_brott:2014": {
+    "kind": "claim",
+    "source_name": "kriminalvarden",
+    "statement": "aterfall_i_brott = 30.29 (trygghet, 2014)."
+  },
+  "claim:observed_result:obs:kriminalvarden:aterfall_i_brott:2015": {
+    "kind": "claim",
+    "source_name": "kriminalvarden",
+    "statement": "aterfall_i_brott = 29.32 (trygghet, 2015)."
+  },
+  "claim:observed_result:obs:kriminalvarden:aterfall_i_brott:2016": {
+    "kind": "claim",
+    "source_name": "kriminalvarden",
+    "statement": "aterfall_i_brott = 29.75 (trygghet, 2016)."
+  },
+  "claim:observed_result:obs:kriminalvarden:aterfall_i_brott:2017": {
+    "kind": "claim",
+    "source_name": "kriminalvarden",
+    "statement": "aterfall_i_brott = 30.13 (trygghet, 2017)."
+  },
+  "claim:observed_result:obs:kriminalvarden:aterfall_i_brott:2018": {
+    "kind": "claim",
+    "source_name": "kriminalvarden",
+    "statement": "aterfall_i_brott = 29.76 (trygghet, 2018)."
+  },
+  "claim:observed_result:obs:kriminalvarden:aterfall_i_brott:2019": {
+    "kind": "claim",
+    "source_name": "kriminalvarden",
+    "statement": "aterfall_i_brott = 30.67 (trygghet, 2019)."
+  },
+  "claim:observed_result:obs:kriminalvarden:aterfall_i_brott:2020": {
+    "kind": "claim",
+    "source_name": "kriminalvarden",
+    "statement": "aterfall_i_brott = 31.66 (trygghet, 2020)."
+  },
+  "claim:observed_result:obs:kriminalvarden:aterfall_i_brott:2021": {
+    "kind": "claim",
+    "source_name": "kriminalvarden",
+    "statement": "aterfall_i_brott = 30.62 (trygghet, 2021)."
+  },
+  "claim:observed_result:obs:kriminalvarden:aterfall_i_brott:2022": {
+    "kind": "claim",
+    "source_name": "kriminalvarden",
+    "statement": "aterfall_i_brott = 31.11 (trygghet, 2022)."
+  },
   "claim:observed_result:obs:polisen:skjutningar_sprangningar:2018": {
     "kind": "claim",
     "source_name": "polisen",
@@ -4753,6 +4898,641 @@
     "kind": "claim",
     "source_name": "SCB",
     "statement": "trangboddhet = 5.0 (integration, 2025-2025)."
+  },
+  "claim:observed_result:obs:sverigesmiljomal:hackande_faglar_skog:2002": {
+    "kind": "claim",
+    "source_name": "sverigesmiljomal",
+    "statement": "hackande_faglar_skog = 100.0 (klimat, 2002)."
+  },
+  "claim:observed_result:obs:sverigesmiljomal:hackande_faglar_skog:2003": {
+    "kind": "claim",
+    "source_name": "sverigesmiljomal",
+    "statement": "hackande_faglar_skog = 106.42 (klimat, 2003)."
+  },
+  "claim:observed_result:obs:sverigesmiljomal:hackande_faglar_skog:2004": {
+    "kind": "claim",
+    "source_name": "sverigesmiljomal",
+    "statement": "hackande_faglar_skog = 121.18 (klimat, 2004)."
+  },
+  "claim:observed_result:obs:sverigesmiljomal:hackande_faglar_skog:2005": {
+    "kind": "claim",
+    "source_name": "sverigesmiljomal",
+    "statement": "hackande_faglar_skog = 114.74 (klimat, 2005)."
+  },
+  "claim:observed_result:obs:sverigesmiljomal:hackande_faglar_skog:2006": {
+    "kind": "claim",
+    "source_name": "sverigesmiljomal",
+    "statement": "hackande_faglar_skog = 90.92 (klimat, 2006)."
+  },
+  "claim:observed_result:obs:sverigesmiljomal:hackande_faglar_skog:2007": {
+    "kind": "claim",
+    "source_name": "sverigesmiljomal",
+    "statement": "hackande_faglar_skog = 128.81 (klimat, 2007)."
+  },
+  "claim:observed_result:obs:sverigesmiljomal:hackande_faglar_skog:2008": {
+    "kind": "claim",
+    "source_name": "sverigesmiljomal",
+    "statement": "hackande_faglar_skog = 109.78 (klimat, 2008)."
+  },
+  "claim:observed_result:obs:sverigesmiljomal:hackande_faglar_skog:2009": {
+    "kind": "claim",
+    "source_name": "sverigesmiljomal",
+    "statement": "hackande_faglar_skog = 106.49 (klimat, 2009)."
+  },
+  "claim:observed_result:obs:sverigesmiljomal:hackande_faglar_skog:2010": {
+    "kind": "claim",
+    "source_name": "sverigesmiljomal",
+    "statement": "hackande_faglar_skog = 103.14 (klimat, 2010)."
+  },
+  "claim:observed_result:obs:sverigesmiljomal:hackande_faglar_skog:2011": {
+    "kind": "claim",
+    "source_name": "sverigesmiljomal",
+    "statement": "hackande_faglar_skog = 102.23 (klimat, 2011)."
+  },
+  "claim:observed_result:obs:sverigesmiljomal:hackande_faglar_skog:2012": {
+    "kind": "claim",
+    "source_name": "sverigesmiljomal",
+    "statement": "hackande_faglar_skog = 107.26 (klimat, 2012)."
+  },
+  "claim:observed_result:obs:sverigesmiljomal:hackande_faglar_skog:2013": {
+    "kind": "claim",
+    "source_name": "sverigesmiljomal",
+    "statement": "hackande_faglar_skog = 97.44 (klimat, 2013)."
+  },
+  "claim:observed_result:obs:sverigesmiljomal:hackande_faglar_skog:2014": {
+    "kind": "claim",
+    "source_name": "sverigesmiljomal",
+    "statement": "hackande_faglar_skog = 110.13 (klimat, 2014)."
+  },
+  "claim:observed_result:obs:sverigesmiljomal:hackande_faglar_skog:2015": {
+    "kind": "claim",
+    "source_name": "sverigesmiljomal",
+    "statement": "hackande_faglar_skog = 118.1 (klimat, 2015)."
+  },
+  "claim:observed_result:obs:sverigesmiljomal:hackande_faglar_skog:2016": {
+    "kind": "claim",
+    "source_name": "sverigesmiljomal",
+    "statement": "hackande_faglar_skog = 104.81 (klimat, 2016)."
+  },
+  "claim:observed_result:obs:sverigesmiljomal:hackande_faglar_skog:2017": {
+    "kind": "claim",
+    "source_name": "sverigesmiljomal",
+    "statement": "hackande_faglar_skog = 108.01 (klimat, 2017)."
+  },
+  "claim:observed_result:obs:sverigesmiljomal:hackande_faglar_skog:2018": {
+    "kind": "claim",
+    "source_name": "sverigesmiljomal",
+    "statement": "hackande_faglar_skog = 89.54 (klimat, 2018)."
+  },
+  "claim:observed_result:obs:sverigesmiljomal:hackande_faglar_skog:2019": {
+    "kind": "claim",
+    "source_name": "sverigesmiljomal",
+    "statement": "hackande_faglar_skog = 106.94 (klimat, 2019)."
+  },
+  "claim:observed_result:obs:sverigesmiljomal:hackande_faglar_skog:2020": {
+    "kind": "claim",
+    "source_name": "sverigesmiljomal",
+    "statement": "hackande_faglar_skog = 102.28 (klimat, 2020)."
+  },
+  "claim:observed_result:obs:sverigesmiljomal:hackande_faglar_skog:2021": {
+    "kind": "claim",
+    "source_name": "sverigesmiljomal",
+    "statement": "hackande_faglar_skog = 96.96 (klimat, 2021)."
+  },
+  "claim:observed_result:obs:sverigesmiljomal:hackande_faglar_skog:2022": {
+    "kind": "claim",
+    "source_name": "sverigesmiljomal",
+    "statement": "hackande_faglar_skog = 121.32 (klimat, 2022)."
+  },
+  "claim:observed_result:obs:sverigesmiljomal:hackande_faglar_skog:2023": {
+    "kind": "claim",
+    "source_name": "sverigesmiljomal",
+    "statement": "hackande_faglar_skog = 101.21 (klimat, 2023)."
+  },
+  "claim:observed_result:obs:sverigesmiljomal:hackande_faglar_skog:2024": {
+    "kind": "claim",
+    "source_name": "sverigesmiljomal",
+    "statement": "hackande_faglar_skog = 109.07 (klimat, 2024)."
+  },
+  "claim:observed_result:obs:vdem:horisontellt_ansvarsutkravande:2000": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "horisontellt_ansvarsutkravande = 0.974 (demokrati, 2000)."
+  },
+  "claim:observed_result:obs:vdem:horisontellt_ansvarsutkravande:2001": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "horisontellt_ansvarsutkravande = 0.974 (demokrati, 2001)."
+  },
+  "claim:observed_result:obs:vdem:horisontellt_ansvarsutkravande:2002": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "horisontellt_ansvarsutkravande = 0.974 (demokrati, 2002)."
+  },
+  "claim:observed_result:obs:vdem:horisontellt_ansvarsutkravande:2003": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "horisontellt_ansvarsutkravande = 0.974 (demokrati, 2003)."
+  },
+  "claim:observed_result:obs:vdem:horisontellt_ansvarsutkravande:2004": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "horisontellt_ansvarsutkravande = 0.975 (demokrati, 2004)."
+  },
+  "claim:observed_result:obs:vdem:horisontellt_ansvarsutkravande:2005": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "horisontellt_ansvarsutkravande = 0.975 (demokrati, 2005)."
+  },
+  "claim:observed_result:obs:vdem:horisontellt_ansvarsutkravande:2006": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "horisontellt_ansvarsutkravande = 0.975 (demokrati, 2006)."
+  },
+  "claim:observed_result:obs:vdem:horisontellt_ansvarsutkravande:2007": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "horisontellt_ansvarsutkravande = 0.973 (demokrati, 2007)."
+  },
+  "claim:observed_result:obs:vdem:horisontellt_ansvarsutkravande:2008": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "horisontellt_ansvarsutkravande = 0.975 (demokrati, 2008)."
+  },
+  "claim:observed_result:obs:vdem:horisontellt_ansvarsutkravande:2009": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "horisontellt_ansvarsutkravande = 0.975 (demokrati, 2009)."
+  },
+  "claim:observed_result:obs:vdem:horisontellt_ansvarsutkravande:2010": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "horisontellt_ansvarsutkravande = 0.976 (demokrati, 2010)."
+  },
+  "claim:observed_result:obs:vdem:horisontellt_ansvarsutkravande:2011": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "horisontellt_ansvarsutkravande = 0.976 (demokrati, 2011)."
+  },
+  "claim:observed_result:obs:vdem:horisontellt_ansvarsutkravande:2012": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "horisontellt_ansvarsutkravande = 0.975 (demokrati, 2012)."
+  },
+  "claim:observed_result:obs:vdem:horisontellt_ansvarsutkravande:2013": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "horisontellt_ansvarsutkravande = 0.979 (demokrati, 2013)."
+  },
+  "claim:observed_result:obs:vdem:horisontellt_ansvarsutkravande:2014": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "horisontellt_ansvarsutkravande = 0.98 (demokrati, 2014)."
+  },
+  "claim:observed_result:obs:vdem:horisontellt_ansvarsutkravande:2015": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "horisontellt_ansvarsutkravande = 0.979 (demokrati, 2015)."
+  },
+  "claim:observed_result:obs:vdem:horisontellt_ansvarsutkravande:2016": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "horisontellt_ansvarsutkravande = 0.979 (demokrati, 2016)."
+  },
+  "claim:observed_result:obs:vdem:horisontellt_ansvarsutkravande:2017": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "horisontellt_ansvarsutkravande = 0.979 (demokrati, 2017)."
+  },
+  "claim:observed_result:obs:vdem:horisontellt_ansvarsutkravande:2018": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "horisontellt_ansvarsutkravande = 0.984 (demokrati, 2018)."
+  },
+  "claim:observed_result:obs:vdem:horisontellt_ansvarsutkravande:2019": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "horisontellt_ansvarsutkravande = 0.99 (demokrati, 2019)."
+  },
+  "claim:observed_result:obs:vdem:horisontellt_ansvarsutkravande:2020": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "horisontellt_ansvarsutkravande = 0.99 (demokrati, 2020)."
+  },
+  "claim:observed_result:obs:vdem:horisontellt_ansvarsutkravande:2021": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "horisontellt_ansvarsutkravande = 0.989 (demokrati, 2021)."
+  },
+  "claim:observed_result:obs:vdem:horisontellt_ansvarsutkravande:2022": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "horisontellt_ansvarsutkravande = 0.99 (demokrati, 2022)."
+  },
+  "claim:observed_result:obs:vdem:horisontellt_ansvarsutkravande:2023": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "horisontellt_ansvarsutkravande = 0.989 (demokrati, 2023)."
+  },
+  "claim:observed_result:obs:vdem:horisontellt_ansvarsutkravande:2024": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "horisontellt_ansvarsutkravande = 0.989 (demokrati, 2024)."
+  },
+  "claim:observed_result:obs:vdem:horisontellt_ansvarsutkravande:2025": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "horisontellt_ansvarsutkravande = 0.989 (demokrati, 2025)."
+  },
+  "claim:observed_result:obs:vdem:privata_friheter:2000": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "privata_friheter = 0.962 (demokrati, 2000)."
+  },
+  "claim:observed_result:obs:vdem:privata_friheter:2001": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "privata_friheter = 0.962 (demokrati, 2001)."
+  },
+  "claim:observed_result:obs:vdem:privata_friheter:2002": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "privata_friheter = 0.962 (demokrati, 2002)."
+  },
+  "claim:observed_result:obs:vdem:privata_friheter:2003": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "privata_friheter = 0.962 (demokrati, 2003)."
+  },
+  "claim:observed_result:obs:vdem:privata_friheter:2004": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "privata_friheter = 0.962 (demokrati, 2004)."
+  },
+  "claim:observed_result:obs:vdem:privata_friheter:2005": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "privata_friheter = 0.962 (demokrati, 2005)."
+  },
+  "claim:observed_result:obs:vdem:privata_friheter:2006": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "privata_friheter = 0.967 (demokrati, 2006)."
+  },
+  "claim:observed_result:obs:vdem:privata_friheter:2007": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "privata_friheter = 0.967 (demokrati, 2007)."
+  },
+  "claim:observed_result:obs:vdem:privata_friheter:2008": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "privata_friheter = 0.967 (demokrati, 2008)."
+  },
+  "claim:observed_result:obs:vdem:privata_friheter:2009": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "privata_friheter = 0.967 (demokrati, 2009)."
+  },
+  "claim:observed_result:obs:vdem:privata_friheter:2010": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "privata_friheter = 0.967 (demokrati, 2010)."
+  },
+  "claim:observed_result:obs:vdem:privata_friheter:2011": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "privata_friheter = 0.966 (demokrati, 2011)."
+  },
+  "claim:observed_result:obs:vdem:privata_friheter:2012": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "privata_friheter = 0.968 (demokrati, 2012)."
+  },
+  "claim:observed_result:obs:vdem:privata_friheter:2013": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "privata_friheter = 0.968 (demokrati, 2013)."
+  },
+  "claim:observed_result:obs:vdem:privata_friheter:2014": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "privata_friheter = 0.968 (demokrati, 2014)."
+  },
+  "claim:observed_result:obs:vdem:privata_friheter:2015": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "privata_friheter = 0.951 (demokrati, 2015)."
+  },
+  "claim:observed_result:obs:vdem:privata_friheter:2016": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "privata_friheter = 0.949 (demokrati, 2016)."
+  },
+  "claim:observed_result:obs:vdem:privata_friheter:2017": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "privata_friheter = 0.946 (demokrati, 2017)."
+  },
+  "claim:observed_result:obs:vdem:privata_friheter:2018": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "privata_friheter = 0.94 (demokrati, 2018)."
+  },
+  "claim:observed_result:obs:vdem:privata_friheter:2019": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "privata_friheter = 0.94 (demokrati, 2019)."
+  },
+  "claim:observed_result:obs:vdem:privata_friheter:2020": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "privata_friheter = 0.943 (demokrati, 2020)."
+  },
+  "claim:observed_result:obs:vdem:privata_friheter:2021": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "privata_friheter = 0.943 (demokrati, 2021)."
+  },
+  "claim:observed_result:obs:vdem:privata_friheter:2022": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "privata_friheter = 0.949 (demokrati, 2022)."
+  },
+  "claim:observed_result:obs:vdem:privata_friheter:2023": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "privata_friheter = 0.948 (demokrati, 2023)."
+  },
+  "claim:observed_result:obs:vdem:privata_friheter:2024": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "privata_friheter = 0.948 (demokrati, 2024)."
+  },
+  "claim:observed_result:obs:vdem:privata_friheter:2025": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "privata_friheter = 0.941 (demokrati, 2025)."
+  },
+  "claim:observed_result:obs:vdem:rattsstatsindex:2000": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "rattsstatsindex = 0.995 (demokrati, 2000)."
+  },
+  "claim:observed_result:obs:vdem:rattsstatsindex:2001": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "rattsstatsindex = 0.995 (demokrati, 2001)."
+  },
+  "claim:observed_result:obs:vdem:rattsstatsindex:2002": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "rattsstatsindex = 0.995 (demokrati, 2002)."
+  },
+  "claim:observed_result:obs:vdem:rattsstatsindex:2003": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "rattsstatsindex = 0.995 (demokrati, 2003)."
+  },
+  "claim:observed_result:obs:vdem:rattsstatsindex:2004": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "rattsstatsindex = 0.995 (demokrati, 2004)."
+  },
+  "claim:observed_result:obs:vdem:rattsstatsindex:2005": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "rattsstatsindex = 0.995 (demokrati, 2005)."
+  },
+  "claim:observed_result:obs:vdem:rattsstatsindex:2006": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "rattsstatsindex = 0.994 (demokrati, 2006)."
+  },
+  "claim:observed_result:obs:vdem:rattsstatsindex:2007": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "rattsstatsindex = 0.994 (demokrati, 2007)."
+  },
+  "claim:observed_result:obs:vdem:rattsstatsindex:2008": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "rattsstatsindex = 0.994 (demokrati, 2008)."
+  },
+  "claim:observed_result:obs:vdem:rattsstatsindex:2009": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "rattsstatsindex = 0.994 (demokrati, 2009)."
+  },
+  "claim:observed_result:obs:vdem:rattsstatsindex:2010": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "rattsstatsindex = 0.994 (demokrati, 2010)."
+  },
+  "claim:observed_result:obs:vdem:rattsstatsindex:2011": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "rattsstatsindex = 0.995 (demokrati, 2011)."
+  },
+  "claim:observed_result:obs:vdem:rattsstatsindex:2012": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "rattsstatsindex = 0.995 (demokrati, 2012)."
+  },
+  "claim:observed_result:obs:vdem:rattsstatsindex:2013": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "rattsstatsindex = 0.995 (demokrati, 2013)."
+  },
+  "claim:observed_result:obs:vdem:rattsstatsindex:2014": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "rattsstatsindex = 0.995 (demokrati, 2014)."
+  },
+  "claim:observed_result:obs:vdem:rattsstatsindex:2015": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "rattsstatsindex = 0.992 (demokrati, 2015)."
+  },
+  "claim:observed_result:obs:vdem:rattsstatsindex:2016": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "rattsstatsindex = 0.992 (demokrati, 2016)."
+  },
+  "claim:observed_result:obs:vdem:rattsstatsindex:2017": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "rattsstatsindex = 0.993 (demokrati, 2017)."
+  },
+  "claim:observed_result:obs:vdem:rattsstatsindex:2018": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "rattsstatsindex = 0.993 (demokrati, 2018)."
+  },
+  "claim:observed_result:obs:vdem:rattsstatsindex:2019": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "rattsstatsindex = 0.993 (demokrati, 2019)."
+  },
+  "claim:observed_result:obs:vdem:rattsstatsindex:2020": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "rattsstatsindex = 0.993 (demokrati, 2020)."
+  },
+  "claim:observed_result:obs:vdem:rattsstatsindex:2021": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "rattsstatsindex = 0.992 (demokrati, 2021)."
+  },
+  "claim:observed_result:obs:vdem:rattsstatsindex:2022": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "rattsstatsindex = 0.993 (demokrati, 2022)."
+  },
+  "claim:observed_result:obs:vdem:rattsstatsindex:2023": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "rattsstatsindex = 0.99 (demokrati, 2023)."
+  },
+  "claim:observed_result:obs:vdem:rattsstatsindex:2024": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "rattsstatsindex = 0.99 (demokrati, 2024)."
+  },
+  "claim:observed_result:obs:vdem:rattsstatsindex:2025": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "rattsstatsindex = 0.989 (demokrati, 2025)."
+  },
+  "claim:observed_result:obs:vdem:yttrandefrihetsindex:2000": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "yttrandefrihetsindex = 0.97 (demokrati, 2000)."
+  },
+  "claim:observed_result:obs:vdem:yttrandefrihetsindex:2001": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "yttrandefrihetsindex = 0.97 (demokrati, 2001)."
+  },
+  "claim:observed_result:obs:vdem:yttrandefrihetsindex:2002": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "yttrandefrihetsindex = 0.97 (demokrati, 2002)."
+  },
+  "claim:observed_result:obs:vdem:yttrandefrihetsindex:2003": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "yttrandefrihetsindex = 0.97 (demokrati, 2003)."
+  },
+  "claim:observed_result:obs:vdem:yttrandefrihetsindex:2004": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "yttrandefrihetsindex = 0.97 (demokrati, 2004)."
+  },
+  "claim:observed_result:obs:vdem:yttrandefrihetsindex:2005": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "yttrandefrihetsindex = 0.97 (demokrati, 2005)."
+  },
+  "claim:observed_result:obs:vdem:yttrandefrihetsindex:2006": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "yttrandefrihetsindex = 0.97 (demokrati, 2006)."
+  },
+  "claim:observed_result:obs:vdem:yttrandefrihetsindex:2007": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "yttrandefrihetsindex = 0.97 (demokrati, 2007)."
+  },
+  "claim:observed_result:obs:vdem:yttrandefrihetsindex:2008": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "yttrandefrihetsindex = 0.97 (demokrati, 2008)."
+  },
+  "claim:observed_result:obs:vdem:yttrandefrihetsindex:2009": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "yttrandefrihetsindex = 0.97 (demokrati, 2009)."
+  },
+  "claim:observed_result:obs:vdem:yttrandefrihetsindex:2010": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "yttrandefrihetsindex = 0.97 (demokrati, 2010)."
+  },
+  "claim:observed_result:obs:vdem:yttrandefrihetsindex:2011": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "yttrandefrihetsindex = 0.97 (demokrati, 2011)."
+  },
+  "claim:observed_result:obs:vdem:yttrandefrihetsindex:2012": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "yttrandefrihetsindex = 0.973 (demokrati, 2012)."
+  },
+  "claim:observed_result:obs:vdem:yttrandefrihetsindex:2013": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "yttrandefrihetsindex = 0.972 (demokrati, 2013)."
+  },
+  "claim:observed_result:obs:vdem:yttrandefrihetsindex:2014": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "yttrandefrihetsindex = 0.974 (demokrati, 2014)."
+  },
+  "claim:observed_result:obs:vdem:yttrandefrihetsindex:2015": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "yttrandefrihetsindex = 0.974 (demokrati, 2015)."
+  },
+  "claim:observed_result:obs:vdem:yttrandefrihetsindex:2016": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "yttrandefrihetsindex = 0.972 (demokrati, 2016)."
+  },
+  "claim:observed_result:obs:vdem:yttrandefrihetsindex:2017": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "yttrandefrihetsindex = 0.972 (demokrati, 2017)."
+  },
+  "claim:observed_result:obs:vdem:yttrandefrihetsindex:2018": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "yttrandefrihetsindex = 0.966 (demokrati, 2018)."
+  },
+  "claim:observed_result:obs:vdem:yttrandefrihetsindex:2019": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "yttrandefrihetsindex = 0.966 (demokrati, 2019)."
+  },
+  "claim:observed_result:obs:vdem:yttrandefrihetsindex:2020": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "yttrandefrihetsindex = 0.966 (demokrati, 2020)."
+  },
+  "claim:observed_result:obs:vdem:yttrandefrihetsindex:2021": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "yttrandefrihetsindex = 0.968 (demokrati, 2021)."
+  },
+  "claim:observed_result:obs:vdem:yttrandefrihetsindex:2022": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "yttrandefrihetsindex = 0.964 (demokrati, 2022)."
+  },
+  "claim:observed_result:obs:vdem:yttrandefrihetsindex:2023": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "yttrandefrihetsindex = 0.95 (demokrati, 2023)."
+  },
+  "claim:observed_result:obs:vdem:yttrandefrihetsindex:2024": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "yttrandefrihetsindex = 0.946 (demokrati, 2024)."
+  },
+  "claim:observed_result:obs:vdem:yttrandefrihetsindex:2025": {
+    "kind": "claim",
+    "source_name": "vdem",
+    "statement": "yttrandefrihetsindex = 0.946 (demokrati, 2025)."
   },
   "claim:responsibility:C:municipal:2014-2018:government": {
     "kind": "claim",

@@ -183,8 +183,12 @@ def main() -> None:
 
     print("\n-- kända luckor (loggas, ej tysta; se docs/fas3_coverage.md) --")
     print("   klimat: elprisvolatilitet/effektbrist (Svk, härledda) återstår.")
-    print("   forsvar: personal_varnpliktiga (FM ÅR) matar nu D — övriga försvarsindikatorer")
-    print("       kvalitativa/sekretess (allowlistade). demokrati: ingen officiell D-serie ännu.")
+    print("   forsvar: personal_varnpliktiga (FM ÅR) + ukraina_stod matar D — övriga försvars-")
+    print("       indikatorer kvalitativa/sekretess (allowlistade).")
+    print("   trygghet: aterfall_i_brott (Kriminalvården KOS) matar nu D.")
+    print("   klimat: hackande_faglar_skog (Svensk Fågeltaxering) matar nu biologisk_mangfald-D.")
+    print("   demokrati: rattsstat/yttrandefrihet/personlig frihet/transparens matas nu av V-Dem")
+    print("       (4 index, Göteborgs univ.) + förtroende (Brå NTU); korruption-D allowlistad (intl).")
     con.close()
 
 
