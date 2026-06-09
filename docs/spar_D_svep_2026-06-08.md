@@ -200,3 +200,43 @@ eller värdeladdad. Ingen kan byggas neutralt. **Starkaste empiriska stödet fö
 - **Välfärd/Trygghet:** KOS-3årsåterfall via tabellbilaga → aterfall_kriminalvard.
 - **Avstå (mot neutralitet):** ekonomi target-proxyer, demokrati-aktivitetsmått, migration-återvändande → behåll
   target/krymp hellre än tvinga fram värdeladdade D.
+
+---
+
+## 5. BESLUT (din sign-off 2026-06-09) — byggkö för FÄRSK SESSION
+
+> Diskussionen avslutad här (kontext slut). Bygg ej nu — exekvera i ny session.
+
+**🔑 Bärande princip du formulerade (gäller all D framåt):** *D ska mäta VERKLIGA EFFEKTER, inte aktivitet/
+insats.* Din liknelse: "Fler avlyssningstillstånd säger inget om vad avlyssningen bidrar med — som att räkna
+hammare för att veta om huset är byggt." → rena insats-/aktivitetsmått diskvalificeras som D.
+
+### ✅ BYGG (i färsk session)
+1. **Försvarsutgifter (% av BNP) → ekonomisk_ambition** (försvarets 3:e D). JA (Hög 1): "tycker jag försvaret
+   är viktigt är en högre försvarsbudget bra." Källa: statskontoret UO6-utfall ÷ SCB BNP, 2015–2025.
+   ⚠️ **LÖS FÖRST (spänning mot din egen hammare-princip):** försvarsbudget är en INSATS/pengar, och delpoäng
+   **A mäter redan budgetprioritering** → risk för dubbelräkning + krock med "effekt, ej aktivitet". Dubbelkolla
+   i färsk session om detta hör hemma i D eller egentligen är A. Om vi behåller i D: motivera explicit som
+   "utfall av finansieringsambition", ej A-dubblett. (Du sa ja; jag flaggar metodspänningen ärligt.)
+2. **Återfall i brott → aterfall_kriminalvard** (trygghet). JA (Hög 4): hämta Kriminalvårdens **Excel-
+   tabellbilaga** (KOS) för exakta årsvärden (huvud-PDF har bara diagram), bygg sign-only D. Äkta effekt.
+3. **Häckande fåglar-index → biologisk_mangfald** (klimat). JA (Hög 4): bygg HTML-scrape-adapter för
+   sverigesmiljomal.se (Svensk Fågeltaxering). Äkta naturUTFALL (ej "skyddad mark" = insats/hammare).
+
+### 🚫 AVSTÅ (behåll neutralt/target)
+- **Statsskuld/överskott** (ekonomi): NEJ (Hög 1) — ekonomi har redan god täckning, chansa inte. Behåll target.
+- **Migration (återvändande) · övervakning (avlyssningstillstånd) · naturskydd (skyddad mark)**: NEJ (Hög 2) —
+  INSATS/aktivitet, ej effekt. (Notera: detta är samma princip som gör att naturskydd-arealen ratas men
+  fågelindexet byggs.)
+- **Demokrati-aktivitetssiffror** (mutbrott-anmälningar, granskningar, klagomål): NEJ som svenska aktivitetsmått.
+
+### ❓ ÖPPEN DESIGNFRÅGA (eget beslut nästa session) — Hög 3: demokrati via EXTERN utvärderare
+Din poäng: demokrati är till stor del en *självutvärdering ur statsapparatens perspektiv* → en **extern,
+oberoende** bedömare är metodiskt LÄMPLIGARE än att staten betygsätter sig själv. Att utreda:
+- **Stark öppning:** **V-Dem-institutet drivs från Göteborgs universitet** → kan räknas som *svensk akademisk*
+  källa, vilket CLAUDE.md redan tillåter "när officiell statistik saknas" → kanske INGEN regeländring behövs!
+  (Till skillnad från TI CPI / RSF / Freedom House som är utländska.)
+- Frågor att lösa: vilka V-Dem-index? är de neutrala nog (egna metoddebatter)? bara demokrati-kategorin? hur
+  väga extern bedömning mot resten (svensk officiell data)? bryter det "hammare"-principen (V-Dem ÄR en
+  effekt-/tillståndsbedömning, ej aktivitetsräkning → passar principen bra).
+→ Kärnregel-/designbeslut → eget sign-off, ej autobygge. **Högt värde:** skulle kunna lösa demokrati-väggen.
