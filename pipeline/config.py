@@ -85,6 +85,11 @@ def ukraina_stod() -> dict[str, Any]:
     return _load("ukraina_stod.yaml")
 
 
+@cache
+def aterfall_i_brott() -> dict[str, Any]:
+    return _load("aterfall_i_brott.yaml")
+
+
 def party_codes() -> list[str]:
     return [p["code"] for p in categories()["parties"]]
 

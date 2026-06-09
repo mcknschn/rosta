@@ -1,0 +1,75 @@
+# Återfall i brott inom tre år (Kriminalvården) — andel av klienter med starthändelse som
+# återfaller i brott inom 3 år.
+#
+# DELPOÄNG D, kategori trygghet, kanonisk indikator aterfall_i_brott (riktning down, lägre
+# återfall = bättre; submått aterfall_kriminalvard). Öppnar submåttet aterfall_kriminalvard
+# (tidigare D-tomt; tidigare allowlistat "blocked: PDF"). Spår D, färsk session 2026-06-09.
+#
+# VÄRDEKÄLLA: Kriminalvården, "Kriminalvård och statistik" (KOS) 2025, Tabell 6.1 "Återfall i
+# brott inom tre år efter avslutad fängelseverkställighet eller påbörjad verkställighet i frivård
+# 1994–2022" (s. 126; källa KVR, KUM). Officiell svensk myndighetskälla (Kriminalvården).
+#
+# DEFINITION (Tabell 6.1, prosa s. 116): återfall = klient som avslutat en fängelseverkställighet
+# ELLER påbörjat en verkställighet inom frivården, och därefter döms till en NY påföljd inom
+# Kriminalvården (fängelse/frivård) där både nytt brott och dom infaller inom 3 år. Smalare än
+# Brås "återfall i lagförd brottslighet" (böter/villkorlig dom utan samhällstjänst räknas ej här).
+# Konsekvent definition, ingen metodbrytning i serien 1994–2022 (Kriminalvården anger en
+# sammanhängande serie).
+#
+# RÅTAL, EJ AVRUNDAD ANDEL (medveten metodval): KOS publicerar både antalet klienter med
+# starthändelse (`klienter`) OCH antalet av dem som återföll (`aterfall`) per ingångsår, samt en
+# HELTALSAVRUNDAD andel (`andel_publicerad`, t.ex. "31 %"). Vi lagrar råtalen och låter loadern
+# beräkna andelen = aterfall / klienter * 100 (2 dec). Skäl: delpoäng D tar TECKEN på den
+# riktningsjusterade årsförändringen inom en relativ dödzon (scoring.yaml change_dead_zone =
+# 0,5 %). Vid ~30 % motsvarar 0,5 % ≈ 0,15 pp. Den publicerade HELTALSANDELEN skulle göra varje
+# 1 pp-avrundningssteg (≈3,3 % relativt) till ett FALSKT tecken i den platta zonen; råtalsandelen
+# låter platåns äkta brus korrekt falla i dödzonen → tecknet blir både mest källtroget (täljare och
+# nämnare är agenturens egna publicerade tal) och minst brusigt. `andel_publicerad` behålls per år
+# enbart som korsverifiering (loadern jämför och hård-failar vid >0,6 pp avvikelse mot råtalsandelen).
+#
+# EFTERSLÄPNING: senaste ingångsår = 2022 (3-årsuppföljning klar 2025, redovisas i KOS 2025).
+# KOS 2026 (maj 2026) väntas lägga till ingångsår 2023. Transkriberad config → uppdateras manuellt.
+#
+# V0-CAVEAT (riktnings-/signalsvaghet, ej dataproblem): serien föll tydligt 1999→2012 (42 %→29 %),
+# men ligger sedan 2012 på en PLATÅ ~29–32 %. I platåperioden avgörs enskilda årstecken av små
+# rörelser; flera faller i dödzonen (tecken 0, korrekt "oförändrat"). D tar bara tecken, väger 10 %
+# och makt-/ansvarsviktas, så platån bidrar lite — men v0 kvarstår tills serien expertgranskats.
+# v0 → v1 när andelarna korsverifierats mot KOS-statistikens webbtabell post för post.
+version: 0
+indicator: aterfall_i_brott
+category: trygghet
+submeasure: aterfall_kriminalvard
+unit: "% återfall i brott inom 3 år (andel av klienter med starthändelse)"
+source: "https://www.kriminalvarden.se/om-oss/statistik/aterfall/"
+source_pdf: "https://www.kriminalvarden.se/globalassets/dokument/publikationskatalogen/statistik/kos-2025---kriminalvard-och-statistik.pdf"
+source_table: "Kriminalvården, KOS 2025, Tabell 6.1 (s. 126), källa KVR/KUM"
+years:
+  1994: { klienter: 20130, aterfall: 7922, andel_publicerad: 39 }
+  1995: { klienter: 20465, aterfall: 8035, andel_publicerad: 39 }
+  1996: { klienter: 18769, aterfall: 7566, andel_publicerad: 40 }
+  1997: { klienter: 18563, aterfall: 7319, andel_publicerad: 39 }
+  1998: { klienter: 18871, aterfall: 7752, andel_publicerad: 41 }
+  1999: { klienter: 18592, aterfall: 7753, andel_publicerad: 42 }
+  2000: { klienter: 19076, aterfall: 7576, andel_publicerad: 40 }
+  2001: { klienter: 19859, aterfall: 7965, andel_publicerad: 40 }
+  2002: { klienter: 20395, aterfall: 7720, andel_publicerad: 38 }
+  2003: { klienter: 20925, aterfall: 7768, andel_publicerad: 37 }
+  2004: { klienter: 21614, aterfall: 8065, andel_publicerad: 37 }
+  2005: { klienter: 21835, aterfall: 8016, andel_publicerad: 37 }
+  2006: { klienter: 22729, aterfall: 8105, andel_publicerad: 36 }
+  2007: { klienter: 22262, aterfall: 7983, andel_publicerad: 36 }
+  2008: { klienter: 23432, aterfall: 7879, andel_publicerad: 34 }
+  2009: { klienter: 23805, aterfall: 7873, andel_publicerad: 33 }
+  2010: { klienter: 23240, aterfall: 7477, andel_publicerad: 32 }
+  2011: { klienter: 23016, aterfall: 7055, andel_publicerad: 31 }
+  2012: { klienter: 23192, aterfall: 6788, andel_publicerad: 29 }
+  2013: { klienter: 21438, aterfall: 6303, andel_publicerad: 29 }
+  2014: { klienter: 19896, aterfall: 6026, andel_publicerad: 30 }
+  2015: { klienter: 19272, aterfall: 5651, andel_publicerad: 29 }
+  2016: { klienter: 18292, aterfall: 5442, andel_publicerad: 30 }
+  2017: { klienter: 18117, aterfall: 5458, andel_publicerad: 30 }
+  2018: { klienter: 18247, aterfall: 5431, andel_publicerad: 30 }
+  2019: { klienter: 18189, aterfall: 5578, andel_publicerad: 31 }
+  2020: { klienter: 17547, aterfall: 5555, andel_publicerad: 32 }
+  2021: { klienter: 18607, aterfall: 5697, andel_publicerad: 31 }
+  2022: { klienter: 18691, aterfall: 5814, andel_publicerad: 31 }

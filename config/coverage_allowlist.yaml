@@ -36,7 +36,10 @@ allowlist:
   # skjutningar_sprangningar (Polisens skjutningar + sprängningar, config/skjutningar_sprangningar.yaml) inläst via build_fas3 -> ej allowlistad.
   - { category: trygghet, indicator: handlaggningstid,         reason: "future: Brå/Åklagarmyndigheten genomströmningstider — publiceras i statistikdatabasen (interaktiv) / PDF, ingen ren maskinläsbar årsserie hittad (sonderat 2026-06-03)." }
   - { category: trygghet, indicator: kommunalt_brottsforebyggande_arbete, reason: "B-only: ny B-indikator 2026-06-07 (§5.7, lagen 2023:196 om kommuners brottsförebyggande ansvar). Ingen nationell maskinläsbar årsserie för kommunal brottsförebyggande kapacitet (Brå publicerar ej KPI). version 0, sign-off." }
-  - { category: trygghet, indicator: aterfall_i_brott,         reason: "blocked: Brås återfallsstatistik publiceras bara som PDF-rapporter (prel/slutlig per ingångsår, ej ren tabell) med omarbetad metod och flerårig eftersläpning -> kräver expertbedömd transkribering (prel vs slutlig, metodbrott), ej lämplig för automatisk solo-transkribering (sonderat 2026-06-03)." }
+  # aterfall_i_brott inläst via Kriminalvården KOS 2025 Tabell 6.1 (config/aterfall_i_brott.yaml,
+  # transkriberade råtal 1994-2022, build_fas3) -> ej allowlistad fr.o.m. 2026-06-09 (Spår D färsk
+  # session). Det tidigare allowlist-skälet gällde BRÅS PDF-statistik; Kriminalvårdens KOS-tabell
+  # ger i stället antal klienter + antal återfall per ingångsår -> exakt andel (down). Öppnade aterfall_kriminalvard.
   # --- forsvar (till stor del kvalitativt/sekretess) ---
   - { category: forsvar, indicator: forsvarsanslag_andel_bnp, reason: "target: upp till beslutad målnivå, ej up/down -> ej D-duglig." }
   # personal_varnpliktiga inläst via Försvarsmaktens årsredovisning (antal som påbörjade GU per

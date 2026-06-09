@@ -15,7 +15,7 @@ import sys
 from datetime import date
 
 from . import derived, expectations, warehouse
-from .sources import energimyndigheten, forsvarsmakten, polisen, regeringen
+from .sources import energimyndigheten, forsvarsmakten, kriminalvarden, polisen, regeringen
 
 
 def main() -> None:
@@ -110,6 +110,24 @@ def main() -> None:
     n = warehouse.upsert(con, "observations", rrows)
     span = f"{rrows[0]['period']}..{rrows[-1]['period']}" if rrows else "-"
     print(f"Regeringen (transkr.) -> forsvar       ukraina_stod: {n:4} obs ({span})")
+
+    # Kriminalvården: återfall i brott inom 3 år (trygghet, delpoäng D) — transkriberade råtal
+    # (config/aterfall_i_brott.yaml, KOS 2025 Tabell 6.1; loadern beräknar andel + korsverifierar).
+    # Öppnar submåttet aterfall_kriminalvard. source_ref 'kriminalvarden:' utanför scb/kolada-purge.
+    krows = kriminalvarden.build_aterfall_observations()
+    unlisted = {r["indicator"] for r in krows} - set(kriminalvarden.INDICATORS)
+    if unlisted:
+        raise ValueError(f"Kriminalvården emitterar indikatorer utanför INDICATORS: {sorted(unlisted)}")
+    for ind in kriminalvarden.INDICATORS:
+        expectations.check_series(
+            [r for r in krows if r["indicator"] == ind], kriminalvarden.EXPECT.get(ind),
+            f"Kriminalvården {ind}",
+        )
+    # Full-replace av kriminalvarden-rader (transkriberad, komplett serie).
+    con.execute("DELETE FROM observations WHERE source_ref LIKE 'kriminalvarden:%'")
+    n = warehouse.upsert(con, "observations", krows)
+    span = f"{krows[0]['period']}..{krows[-1]['period']}" if krows else "-"
+    print(f"Kriminalvården (transkr.) -> trygghet   aterfall_i_brott: {n:4} obs ({span})")
 
     print("\n-- täckning (klimat, observations) --")
     for cat, ind, n, lo, hi in con.execute(

@@ -104,7 +104,7 @@ categories:
       - { id: upplevd_otrygghet,       submeasure: utsatthet_trygghet, direction: down }
       - { id: uppklaringsgrad,         submeasure: rattsvasendets_effektivitet, direction: up }
       - { id: handlaggningstid,        submeasure: rattsvasendets_effektivitet, direction: down }
-      - { id: aterfall_i_brott,        submeasure: aterfall_kriminalvard, direction: down }
+      - { id: aterfall_i_brott,        submeasure: aterfall_kriminalvard, direction: down, note: "Andel av klienter med starthändelse som återfaller i brott inom 3 år (Kriminalvården, KOS 2025 Tabell 6.1, ingångsår 1994-2022). D-indikator fr.o.m. 2026-06-09 (Spår D färsk session, v0): ger aterfall_kriminalvard sin FÖRSTA D-serie (tidigare allowlistat blocked:PDF). Råtal (antal klienter + antal återfall) transkriberade → loadern beräknar andelen (config/aterfall_i_brott.yaml). Riktning down = lägre återfall bättre. D tar bara TECKEN; platå 2012-2022 → flera årstecken faller i dödzonen (korrekt oförändrat). version 0, sign-off." }
       - { id: kommunalt_brottsforebyggande_arbete, submeasure: forebyggande, direction: up, note: "Kommunalt kunskapsbaserat och samordnat brottsförebyggande arbete (lägesbild + åtgärdsplan + samordningsfunktion enligt lagen 2023:196). Öppnar undermåttet forebyggande (tidigare utan indikator, §4.2-vägg). Mäter förebyggande KAPACITET i kommunen, ej uppklaring (rattsvasendets_effektivitet) eller återfall (aterfall_kriminalvard). Ny indikator 2026-06-07 (§5.7), version 0, sign-off." }
 
   - id: forsvar
