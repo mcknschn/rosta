@@ -5,6 +5,7 @@ Det här är en app som på ett så objektivt sätt som möjligt ska hjälpa anv
 ## Källor
 - Endast officiella svenska källor får användas.
 - Akademiska, vedertagna, svenska källor får användas när officiell statistik saknas.
+- Internationella vedertagna källor får användas i de fall det vore rimligt, exempelvis om neutraliteten av en internationell källa kan antas vara högre än av en svensk källa (t ex om yttrandefrihet ska mätas och en tidning gör mätningen)
 
 ## Dokument
 - Läs IDEA.md för en fullständig beskrivning.
