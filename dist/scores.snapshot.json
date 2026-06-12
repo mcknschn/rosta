@@ -1,11 +1,11 @@
 {
   "totals": {
-    "C": 3.077,
+    "C": 3.075,
     "KD": 3.153,
-    "L": 3.389,
+    "L": 3.388,
     "M": 3.322,
-    "MP": 3.113,
-    "S": 3.684,
+    "MP": 3.111,
+    "S": 3.683,
     "SD": 2.727,
     "V": 2.621
   },
@@ -29,7 +29,7 @@
       ]
     },
     "C/ekonomi": {
-      "score": 2.557,
+      "score": 2.547,
       "flags": [
         "A_a1_active",
         "B_coverage_5/5",
@@ -146,7 +146,7 @@
       ]
     },
     "L/ekonomi": {
-      "score": 3.23,
+      "score": 3.226,
       "flags": [
         "A_a1_active",
         "B_coverage_5/5",
@@ -263,7 +263,7 @@
       ]
     },
     "MP/ekonomi": {
-      "score": 2.799,
+      "score": 2.791,
       "flags": [
         "A_a1_active",
         "B_coverage_5/5",
@@ -323,7 +323,7 @@
       ]
     },
     "S/ekonomi": {
-      "score": 4.192,
+      "score": 4.185,
       "flags": [
         "A_a1_active",
         "B_coverage_5/5",

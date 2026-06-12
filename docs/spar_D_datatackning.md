@@ -44,7 +44,7 @@ nationell regeringsmakt i fönstret → strukturellt korrekt, ej ett gap). Model
 
 ## 2. Nuläge (verifierat via `python -m pipeline.tools.coverage_report`, 2026-06-12)
 
-**39 D-serier inlästa** (annuell, D-duglig) i **ALLA 7 kategorier** *(56 ursprungliga kanoniska + 11 nya
+**40 D-serier inlästa** (annuell, D-duglig) i **ALLA 7 kategorier** *(56 ursprungliga kanoniska + 11 nya
 kanoniska indikatorer)*. *(24 efter Tier 4; +`overlevnad_svar_sjukdom` +`ukraina_stod` natt 2026-06-08;
 +`brukarnojdhet_hemtjanst` +`utslappsintensitet` djupsvep 2026-06-09; **+6 färsk session 2026-06-09:**
 +`aterfall_i_brott` (trygghet) +`hackande_faglar_skog` (klimat) + 4 V-Dem-index (demokrati);
@@ -52,13 +52,14 @@ kanoniska indikatorer)*. *(24 efter Tier 4; +`overlevnad_svar_sjukdom` +`ukraina
 (Migrationsverket) → **integration 3/5 → 5/5 undermått med D**; **+2 försvar 2026-06-12:**
 +`forsvarsvilja` (MPF Opinioner → civil_beredskap) +`personalstyrka_kontinuerligt` (FM ÅR) →
 **försvar 2/5 → 3/5 undermått med D**; **+1 trygghet 2026-06-12 (kväll):** +`handlaggningstid`
-(Domstolsverket DOMstat — 2:a serien i rattsvasendets_effektivitet).)* Full logg:
+(Domstolsverket DOMstat — 2:a serien i rattsvasendets_effektivitet); **+1 ekonomi 2026-06-12 (kväll):**
++`realloner` (Medlingsinstitutets egen PxWeb — 2:a serien i realloner_hushall).)* Full logg:
 [spar_D_svep_2026-06-08.md §5](done/spar_D_svep_2026-06-08.md) (byggkö exekverad) + [nattrapport](done/spar_D_nattrapport_2026-06-08.md).
 **aterfall_kriminalvard + biologisk_mangfald + alla 4 D-tomma demokrati-submått + normer_tillit + migrationssystem öppnade → ingen kategori D-tom på submåttsnivå utom enstaka.**
 
 | Kategori | D-täckta submått | Inlästa D-serier |
 |----------|:---:|---|
-| ekonomi | **4 / 4 D-bara¹** | sysselsattning, arbetsloshet, bnp_per_capita, produktivitet, **naringslivets_investeringar**, **hushallens_reala_disponibla_inkomst** |
+| ekonomi | **4 / 4 D-bara¹** | sysselsattning, arbetsloshet, bnp_per_capita, produktivitet, **naringslivets_investeringar**, **hushallens_reala_disponibla_inkomst**, **realloner** (MI:s egen PxWeb, 2:a serien i realloner_hushall — ekonomi 2026-06-12 kväll) |
 | valfard | **3 / 4** | vardkoer, overlevnad_svar_sjukdom, skolresultat, behoriga_larare, **brukarnojdhet_hemtjanst** (omsorg_personal öppnat, djupsvep) |
 | trygghet | **4 / 5** | dodligt_vald, skjutningar_sprangningar, brottsutsatthet, upplevd_otrygghet, uppklaringsgrad, **handlaggningstid** (Domstolsverket DOMstat, 2:a serien i rattsvasendets_effektivitet — trygghet 2026-06-12), **aterfall_i_brott** (aterfall_kriminalvard öppnat, KOS, färsk session) |
 | forsvar | **3 / 5** | personal_varnpliktiga, ukraina_stod (nato_ukraina), **personalstyrka_kontinuerligt** (FM ÅR, 2:a militar_formaga-serien), **forsvarsvilja** (civil_beredskap öppnat, MPF Opinioner — försvar 2026-06-12) |
@@ -91,12 +92,13 @@ inget ansvar att attribuera. Det är **korrekt och rättvist**, inte ett gap.
 
 ### Sammanfattning (hur stor täckning vi har)
 
-- **39 / 67 indikatorer** har en D-serie (annuell up/down som matar `category_d`). *(+2 natt 2026-06-08,
+- **40 / 67 indikatorer** har en D-serie (annuell up/down som matar `category_d`). *(+2 natt 2026-06-08,
   +2 djupsvep, +6 färsk session 2026-06-09: aterfall_i_brott, hackande_faglar_skog, 4 V-Dem-index;
   **+2 integration 2026-06-12: mellanmansklig_tillit (SCB medborgarunders. N00666) + asyl_handlaggningstid
   (Migrationsverket); +2 försvar 2026-06-12: forsvarsvilja (MPF Opinioner) + personalstyrka_kontinuerligt
-  (FM ÅR); +1 trygghet 2026-06-12 (kväll): handlaggningstid (Domstolsverket DOMstat).**)*
-- **+4 byggbara/öppna** (🟡; realloner, elprisvolatilitet, effektbrist, utslappsminskning_per_krona) →
+  (FM ÅR); +1 trygghet 2026-06-12 (kväll): handlaggningstid (Domstolsverket DOMstat); +1 ekonomi
+  2026-06-12 (kväll): realloner (Medlingsinstitutets egen PxWeb).**)*
+- **+3 byggbara/öppna** (🟡; elprisvolatilitet, effektbrist, utslappsminskning_per_krona) →
   **realistiskt tak ≈ 43/67**; resten är **3 target** (⚪) + **21 genuina väggar** (🔴) + 1 undermått utan
   indikator (`industriell_konkurrenskraft`). *(Internationella försvarskällor testade 2026-06-12: SIPRI
   vapenimport-TIV källan tillåten men årssignal-brus → vägg; SIPRI/NATO milex = pengar → vägg.)*
@@ -107,14 +109,14 @@ inget ansvar att attribuera. Det är **korrekt och rättvist**, inte ett gap.
 
 | Kategori | ✅ byggd | 🟡 öppen | 🔴 vägg | ⚪ target | Indikatorer | Undermått m. D |
 |----------|:---:|:---:|:---:|:---:|:---:|:---:|
-| Ekonomi och jobb | 6 | 1 | 0 | 2 | 9 | 4/6 (4/4 D-bara) |
+| Ekonomi och jobb | **7** | 0 | 0 | 2 | 9 | 4/6 (4/4 D-bara) |
 | Välfärd | **5** | 0 | 5 | 0 | 10 | **3/4** |
 | Lag och trygghet | **7** | 0 | **1** | 0 | 8 | **4/5** |
 | Försvar och beredskap | **4** | 0 | 5 | 1 | 10 | **3/5** |
 | Klimat, miljö och energi | **5** | 3 | 1 | 0 | 9 | **4/5** |
 | Integration och social sammanhållning | **7** | 0 | 4 | 0 | **11** | **5/5** |
 | Frihet, demokrati och institutioner | **5** | 0 | **5** | 0 | 10 | **5/5** |
-| **SUMMA** | **39** | **4** | **21** | **3** | **67** | **28/35** |
+| **SUMMA** | **40** | **3** | **21** | **3** | **67** | **28/35** |
 
 ¹ klimat har 5 undermått men `industriell_konkurrenskraft` saknar indikator (ingen rad i de 63);
   `biologisk_mangfald` är öppnat 2026-06-09 → klimat 4/5 undermått med D.
@@ -128,7 +130,7 @@ inget ansvar att attribuera. Det är **korrekt och rättvist**, inte ett gap.
 | Ekonomi och jobb | BNP per capita och produktivitet | `bnp_per_capita` | upp | ✅ byggd | 45 obs · 1980–2024 |
 | Ekonomi och jobb | BNP per capita och produktivitet | `produktivitet` | upp | ✅ byggd | 45 obs · 1980–2024 |
 | Ekonomi och jobb | Reallöner och hushållens ekonomi | `hushallens_reala_disponibla_inkomst` | upp | ✅ byggd | 75 obs · 1951–2025 (härlett realindex, Tier 1) |
-| Ekonomi och jobb | Reallöner och hushållens ekonomi | `realloner` | upp | 🟡 öppen | `future`: Medlingsinst.-adapter; **låg prio** (submåttet redan D-täckt via syster) |
+| Ekonomi och jobb | Reallöner och hushållens ekonomi | `realloner` | upp | ✅ byggd | Medlingsinstitutets EGEN PxWeb, Realloner_arsdata (Reallön (KPI), Index 1995=100), 66 obs 1960–2025 (ekonomi 2026-06-12 kväll — SCB-API-väggen gällde fel instans; KPI = MI:s huvudserie, dokumenterat val; medveten dubbelbreddning i realloner_hushall) |
 | Ekonomi och jobb | Företagande och investeringar | `naringslivets_investeringar` | upp | ✅ byggd | 45 obs · 1980–2024 (Tier 1) |
 | Ekonomi och jobb | Inflation och prisstabilitet | `inflation` | mål | ⚪ target | nära mål, ingen up/down |
 | Ekonomi och jobb | Offentliga finanser och hållbarhet | `statsskuld_underskott` | mål | ⚪ target | hållbar nivå, ingen up/down |
@@ -229,12 +231,17 @@ och golden-testat (`tests/test_derived.py`).
 |---|-----------|--------------------|-------------|:---:|-----|
 | ☑ | `sfi_sprakkunskaper` | integration → skola_sprak | SCB **TAB1814** `AA0003EB` (andel godkända i sfi %, `build_fas2`) | **S**¹ | ✅ inläst 1997–2023, ur allowlisten. **Öppnade skola_sprak (D-löst submått).** §5.2 avgjort av datan (godkäntandel = enda direktionskonsistenta måttet). v0, sign-only D. |
 | ☐ | `overlevnad_svar_sjukdom` | valfard → vard_tillganglighet | Socialstyrelsen/Kolada — **annuell** överlevnadsserie | M | Submått redan täckt (djup, ej bredd). Cancer-KPI N79196 = kvinkennial/inkompatibel; **annuellt alternativ behöver sonderas** (t.ex. 28-dygnsöverlevnad AMI/stroke) (§5.3). |
-| ☐ | `realloner` | ekonomi → realloner_hushall | Medlingsinstitutets konjunkturlönestatistik | M | Samma submått som Tier 1-posten täcker billigare → låg prio. |
+| ☑ | `realloner` | ekonomi → realloner_hushall | Medlingsinstitutets **egen PxWeb** (Realloner_arsdata, Reallön (KPI) Index 1995=100) | M→S² | ✅ inläst 1960–2025, ur allowlisten (2026-06-12 kväll). v0, sign-only D. |
 
 ¹ Visade sig vara **S, inte M**: SCB (producenten) exponerar sfi-statistiken som en ren PxWeb-v2-
 tabell (TAB1814), så den befintliga `scb.py`-adaptern räckte — ingen egen Skolverket-portaladapter
 behövdes. Allowlistens "ej ren PxWeb"-antagande (Skolverkets portal) var överspelat. Metodbrott 2022
 hanteras genom att hela serien behålls (sign-only D är robust mot magnitudskiftet); se §7 + `build_fas2`-not.
+
+² Samma mönster som ¹: väggen ("SCB:s API saknar ren helekonomi-löneserie", sonderat 2026-05-31) var
+sann men gällde FEL INSTANS — Medlingsinstitutet har en EGEN PxWeb (v1, samma dialekt som Domstols-
+verket/Energimyndigheten) med Realloner_arsdata som ren årsserie 1960–2025. Adapterkostnaden blev S
+(kopia av domstolsverket-mönstret). KPI-valet (MI:s huvudserie, ej KPIF) dokumenterat i adaptern; se §7.
 
 ### Tier 3 — härledd, kräver ny föräldraadapter (M+S) ⚪🟣
 
@@ -298,8 +305,9 @@ Listade här för fullständighet så de inte återöppnas oavsiktligt. Skäl i 
    exit-kriterium §6.2 är därmed uppfyllda.
 4. **Tier 3 Svk-derived** — mest djup (energi-submåttet är redan täckt); lägst prioritet, gränsfall
    mot källregeln. **← nästa om mer D-bredd önskas** (men öppnar inget D-löst submått).
-5. **Tier 2-rest** (`overlevnad_svar_sjukdom` §5.3, `realloner`) — kvar i Tier 2 men kräver sondering/
-   är låg prio (samma submått billigare täckt).
+5. ~~**Tier 2-rest** (`overlevnad_svar_sjukdom` §5.3, `realloner`)~~ ✅ — båda byggda
+   (overlevnad 2026-06-08 via Kolada U70471; realloner 2026-06-12 kväll via MI:s egen PxWeb).
+   Tier 2 är därmed tömd.
 
 > **Ärlig brasklapp:** den billiga rena-API-vågen är i allt väsentligt redan skördad (Fas 2–3). Det
 > som återstår är antingen ett **uppskjutet designbeslut** (Tier 1), **nya adaptrar** (Tier 2–3),
@@ -351,7 +359,7 @@ Spår D anses **färdigt för arkivering** när:
    Alla 7 kategorier har nu D.
 3. `coverage_allowlist.yaml` innehåller bara poster i klasserna `target`/`international`/`qualitative`/
    `blocked`/`no_api` (= genuint ej byggbara) — inga `future`-poster kvar utan beslut. *(Kvar att städa:
-   några `future`-poster — overlevnad_svar_sjukdom, realloner, Svk-derived — kräver sondering/beslut.)*
+   Svk-derived (§5.4-beslut); overlevnad_svar_sjukdom byggd 2026-06-08, realloner byggd 2026-06-12 kväll.)*
 4. `docs/fas3_coverage.md` + `scorerun.py:coverage`-strängen speglar slutläget; testsviten grön. ✅
 
 ---
@@ -359,6 +367,52 @@ Spår D anses **färdigt för arkivering** när:
 ## 7. Leveranslogg (append per leverans)
 
 > Format: datum · indikator · kategori→submått · källa · verifiering · betygseffekt · flagga/version.
+
+### ✅ 2026-06-12 (kväll) — Spår D ekonomi: `realloner` byggd, SCB-väggen gällde fel instans (v0, FLAGGAD)
+
+**1 bygge, 1 ny D-serie; coverage 39/67 → 40/67 inlästa; undermått oförändrat 28/35** (realloner_hushall
+hade redan hushallens_reala_disponibla_inkomst — detta är djup, inte bredd: 2:a serien + 66 konsekutiva år).
+
+1. **`realloner`** (ekonomi → realloner_hushall, upp): reala löner i hela ekonomin som **index
+   (1995=100)**, nominell lön deflaterad med **KPI** — **Medlingsinstitutet** (statlig myndighet,
+   statistikansvarig för den officiella lönestatistiken; tabellunderlag MI/SCB/KI), **MI:s EGEN
+   PxWeb-instans**, tabell `Konjunkturlönestatistik/Reallöneutveckling/Realloner_arsdata.px`
+   (PxWeb v1, samma dialekt som Domstolsverket/Energimyndigheten: POST json-query → json-stat2,
+   årtal ur tidsdimensionens category.label; URL-encodade svenska tecken i tabellvägen, BOM-tolerant
+   avkodning utf-8-sig). 66 obs 1960–2025 (1960: 59,3 → 1995: 100 → 2021: 169,7 → 2023: 153,7 →
+   2025: 160,1; 2025 preliminär tills KLS definitiv). **Korrigering av tidigare antagande:**
+   allowlist-väggen (`future`, sonderat 2026-05-31) gällde **SCB:s API** (ingen ren helekonomi-
+   löneserie där — sant) — **MI:s egen PxWeb var förbisedd**. **MÅTTVAL (dokumenterat i adaptern):**
+   (a) **Reallön (KPI)** = MI:s huvudserie; KPI inkluderar räntekostnader → djupare 2022–23-fall än
+   KPIF (2023: −4,9 % mot −2,3 %) men D tar bara TECKNET, som är identiskt för båda deflatorerna —
+   explicit motiverat val, inte tyst; (b) indexserien (inte %-serien) eftersom D själv bildar
+   år-för-år-tecken ur nivån; (c) **medveten dubbelbreddning**: submåttet hade redan D via
+   hushallens_reala_disponibla_inkomst och serierna är korrelerade (löner = största inkomstkällan) —
+   djup, inte bredd. Ny `medlingsinstitutet`-adapter (`pipeline/sources/medlingsinstitutet.py`) +
+   källpost i sources.yaml.
+
+**Verifiering:** live-extraktion 2026-06-12 matchar publicerade värden exakt (index: 2020=168,9,
+2021=169,7, 2022=161,0, 2023=153,7, 2024=155,5, 2025=160,1; årlig % KPI: 2022=−5,6, 2023=−4,9,
+2024=+1,2, 2025=+2,9). Drift-skydd: ankare 1995=100,0 + 2024=155,5, min_points 60, range [20,250],
+min_latest_year 2025. Serien börjar 1960 — `period_to_year`/årsserielogiken hanterar det (samma
+mönster som hushallens 1951-start); D-attributionen använder ändå bara fönstret med maktdata.
+Oberoende attributionssanity (lag 1 år): 2021→2022 169,7→161,0 fall → år 2021 = S/MP (+C/L stöd
+0,5 t.o.m. nov) ✓; 2022→2023 161,0→153,7 fall → år 2022 = S-majoritet + M/KD/L+SD-del (Tidö fr.
+18 okt) ✓; 2024→2025 155,5→160,1 ökning → år 2024 = M/KD/L + SD ✓ — alla tre tecken bekräftade mot
+scorerun-utfallet. Golden-test (`tests/test_source_medlingsinstitutet.py`, pinnade indexvärden +
+årtal-ej-koder + hård-fail-dimensionsgrind + radform); registrerad i `test_fas3_gate._ingested()`;
+hela offline-sviten grön (249 passed, 4 skipped); coverage-gaten håller (`coverage_report`:
+realloner ✓A, 66 obs 1960..2025, SUMMA 40/67).
+
+**Betygseffekt (score_diff):** endast **ekonomi**-celler rör sig, och serien DIFFERENTIERAR
+(reallönefallet 2022–23 attribueras åren 2021–2022 = S-styre+stöd; uppgången 2024–25 = Tidö):
+C −0,010 · MP −0,008 · S −0,007 · L −0,004 · M ±0,000 · KD ±0,000 · SD ±0,000 · V ±0,000
+(Tidö-parternas 2022-delfall nettas av 2023/2024-uppgångarna; L bär dessutom stödåren 2019–2021;
+V orörd, D_not_applicable). Totaler: C −0,002 · MP −0,002 · S −0,001, övriga ±0. **Ranking
+OFÖRÄNDRAD** (S>L>M>KD>MP>C>SD>V). `dist/` omräknat + snapshot re-baselinad.
+
+**Flaggor/version:** v0 (FLAGGAD — kräver mänsklig granskning; måttvals-caveats ovan: KPI-vs-KPIF-
+deflatorval, preliminärt 2025, korrelerad dubbelbreddning inom undermåttet). v0 → v1 vid expertgranskning.
 
 ### ✅ 2026-06-12 (kväll) — Spår D trygghet: `handlaggningstid` byggd, trygghet-väggen var fel led (v0, FLAGGAD)
 

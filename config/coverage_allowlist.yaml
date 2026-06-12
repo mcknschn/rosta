@@ -17,7 +17,12 @@ allowlist:
   #     naringslivets_investeringar inläst via SCB TAB3610 BNAR (build_fas2) — ej längre allowlistade) ---
   # naringslivets_investeringar: SCB TAB3610 Anvandningstyp=BNAR (näringslivets fasta bruttoinv, fasta priser) -> ej allowlistad fr.o.m. 2026-06-07 (Spår D Tier 1).
   # hushallens_reala_disponibla_inkomst: härlett kumulativt realindex ur SCB TAB4592 B6nRealGrowth S14 (pipeline.derived) -> ej allowlistad fr.o.m. 2026-06-07 (Spår D Tier 1).
-  - { category: ekonomi, indicator: realloner,            reason: "future: kräver Medlingsinstitutets konjunkturlönestatistik (helekonomi-löneindex) som egen adapter — SCB:s API saknar en ren, kontinuerlig helekonomi-löneserie (allt är privat sektor, sektoruppdelat/brutet vid SSYK-revisionen 2014, eller dött). Sonderat 2026-05-31. (realloner är vilande kontext; submåttet realloner_hushall får sin D via hushallens_reala_disponibla_inkomst.)" }
+  # realloner inläst via MI:s egen PxWeb (Realloner_arsdata.px, Reallön KPI Index 1995=100,
+  # 1960-2025, build_fas3) -> ej allowlistad fr.o.m. 2026-06-12 (Spår D kväll). Förra sonderingens
+  # vägg (2026-05-31) gällde SCB:s API — MI:s egen PxWeb-instans var förbisedd. KPI-valet (MI:s
+  # huvudserie; KPIF ger mildare 2022-23-fall men samma TECKEN) dokumenterat i adaptern; 2025
+  # preliminär tills KLS definitiv. Submåttet hade redan D via hushallens_reala_disponibla_inkomst —
+  # serierna är korrelerade (medveten dubbelbreddning inom undermåttet, noteras). v0, FLAGGAD.
   - { category: ekonomi, indicator: inflation,            reason: "target: nära mål (~2 %), ej up/down -> ej D-duglig (kvarstår för B/visning)." }
   - { category: ekonomi, indicator: statsskuld_underskott, reason: "target: hållbar nivå, ej up/down -> ej D-duglig." }
   # --- valfard ---

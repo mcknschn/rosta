@@ -3719,6 +3719,336 @@
     "source_name": "kriminalvarden",
     "statement": "aterfall_i_brott = 31.11 (trygghet, 2022)."
   },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:1960": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 59.3 (ekonomi, 1960)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:1961": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 62.2 (ekonomi, 1961)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:1962": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 65.3 (ekonomi, 1962)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:1963": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 68.1 (ekonomi, 1963)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:1964": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 70.8 (ekonomi, 1964)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:1965": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 73.8 (ekonomi, 1965)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:1966": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 76.0 (ekonomi, 1966)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:1967": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 79.4 (ekonomi, 1967)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:1968": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 82.9 (ekonomi, 1968)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:1969": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 86.3 (ekonomi, 1969)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:1970": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 88.2 (ekonomi, 1970)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:1971": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 90.4 (ekonomi, 1971)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:1972": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 93.3 (ekonomi, 1972)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:1973": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 94.2 (ekonomi, 1973)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:1974": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 94.4 (ekonomi, 1974)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:1975": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 98.8 (ekonomi, 1975)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:1976": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 101.6 (ekonomi, 1976)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:1977": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 100.8 (ekonomi, 1977)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:1978": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 101.6 (ekonomi, 1978)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:1979": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 104.4 (ekonomi, 1979)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:1980": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 100.5 (ekonomi, 1980)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:1981": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 97.8 (ekonomi, 1981)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:1982": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 95.7 (ekonomi, 1982)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:1983": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 93.7 (ekonomi, 1983)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:1984": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 93.5 (ekonomi, 1984)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:1985": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 93.7 (ekonomi, 1985)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:1986": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 97.6 (ekonomi, 1986)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:1987": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 99.6 (ekonomi, 1987)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:1988": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 100.3 (ekonomi, 1988)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:1989": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 103.4 (ekonomi, 1989)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:1990": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 102.9 (ekonomi, 1990)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:1991": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 99.4 (ekonomi, 1991)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:1992": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 100.7 (ekonomi, 1992)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:1993": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 99.0 (ekonomi, 1993)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:1994": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 99.2 (ekonomi, 1994)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:1995": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 100.0 (ekonomi, 1995)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:1996": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 105.5 (ekonomi, 1996)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:1997": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 109.7 (ekonomi, 1997)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:1998": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 113.9 (ekonomi, 1998)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:1999": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 117.3 (ekonomi, 1999)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:2000": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 120.5 (ekonomi, 2000)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:2001": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 122.8 (ekonomi, 2001)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:2002": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 125.1 (ekonomi, 2002)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:2003": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 127.0 (ekonomi, 2003)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:2004": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 130.7 (ekonomi, 2004)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:2005": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 134.2 (ekonomi, 2005)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:2006": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 136.4 (ekonomi, 2006)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:2007": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 137.9 (ekonomi, 2007)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:2008": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 138.9 (ekonomi, 2008)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:2009": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 144.1 (ekonomi, 2009)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:2010": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 146.0 (ekonomi, 2010)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:2011": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 145.7 (ekonomi, 2011)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:2012": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 148.7 (ekonomi, 2012)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:2013": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 152.5 (ekonomi, 2013)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:2014": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 157.0 (ekonomi, 2014)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:2015": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 160.9 (ekonomi, 2015)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:2016": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 163.2 (ekonomi, 2016)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:2017": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 164.0 (ekonomi, 2017)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:2018": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 165.0 (ekonomi, 2018)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:2019": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 166.3 (ekonomi, 2019)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:2020": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 168.9 (ekonomi, 2020)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:2021": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 169.7 (ekonomi, 2021)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:2022": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 161.0 (ekonomi, 2022)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:2023": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 153.7 (ekonomi, 2023)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:2024": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 155.5 (ekonomi, 2024)."
+  },
+  "claim:observed_result:obs:medlingsinstitutet:realloner:2025": {
+    "kind": "claim",
+    "source_name": "medlingsinstitutet",
+    "statement": "realloner = 160.1 (ekonomi, 2025)."
+  },
   "claim:observed_result:obs:migrationsverket:asyl_handlaggningstid:2021": {
     "kind": "claim",
     "source_name": "migrationsverket",

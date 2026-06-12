@@ -137,6 +137,24 @@ sources:
     verified: false
     confidence: low
 
+  medlingsinstitutet:
+    name: Medlingsinstitutet (MI)
+    base_url: https://www.mi.se/PXWeb/api/v1/sv
+    access: api
+    formats: [json-stat2, px]
+    license: "Medlingsinstitutet (statistikansvarig myndighet, officiell lönestatistik) – fri vidareutnyttjning med källangivelse"
+    feeds: [D:ekonomi]
+    datasets:
+      - { id: Realloner_arsdata, path: "Konjunkturl%C3%B6nestatistik/Reall%C3%B6neutveckling/Realloner_arsdata.px", indicator: realloner,
+          note: "Löner, konsumentpriser och reala löner i hela ekonomin, årsdata 1960–2025. realloner = Variabel 'Reallön (KPI)' × 'Typ av data' 'Index(1995=100)'. PxWeb v1: POST json-stat2-query; tidsdim 'Period' (koderna är index '0'..'65', årtal i category.label). 2025 preliminär tills konjunkturlönestatistiken är definitiv." }
+    gotchas:
+      - "PxWeb v1 (som Domstolsverket/Energimyndigheten, inte SCB v2): data via POST med json-query; GET på tabell-id ger metadata."
+      - "Tabellvägen bär URL-encodade svenska tecken (Konjunkturl%C3%B6nestatistik/Reall%C3%B6neutveckling) — behåll encodad form; servern har observerats svara med UTF-8-BOM -> avkoda med utf-8-sig."
+      - "Dimensionskoden 'Typ av data' innehåller mellanslag och värdekoderna är indexsträngar ('0'..'4') — uppslag sker via valueText (svenska namn) så en omkodning inte tyst byter serie."
+      - "Reallön (KPI) är MI:s huvudserie men ger djupare 2022–23-fall än KPIF (KPI inkl. räntekostnader); D tar bara tecknet — valet dokumenterat i pipeline/sources/medlingsinstitutet.py."
+    verified: true
+    confidence: high
+
   bra:
     name: Brå (Brottsförebyggande rådet)
     base_url: https://bra.se

@@ -1,0 +1,100 @@
+{
+ "version": "2.0",
+ "class": "dataset",
+ "label": "Löner, konsumentpriser och reala löner i hela ekonomin, årsdata efter Variabel, Typ av data och Period",
+ "source": "Medlingsinstitutet, SCB, Konjunkturinstitutet",
+ "updated": "2025-04-23T06:00:00Z",
+ "note": [
+  "Reallönerna är beräknade som nominell lön deflaterad med konsumentprisindex. Uppgiften för det senaste året är preliminär tills konjunkturlönestatistiken är definitiv."
+ ],
+ "role": {
+  "time": [
+   "Period"
+  ],
+  "metric": [
+   "Typ av data"
+  ]
+ },
+ "id": [
+  "Variabel",
+  "Typ av data",
+  "Period"
+ ],
+ "size": [
+  1,
+  1,
+  4
+ ],
+ "dimension": {
+  "Variabel": {
+   "label": "Variabel",
+   "category": {
+    "index": {
+     "3": 0
+    },
+    "label": {
+     "3": "Reallön (KPI)"
+    }
+   },
+   "extension": {
+    "elimination": false,
+    "show": "value"
+   }
+  },
+  "Typ av data": {
+   "label": "Typ av data",
+   "category": {
+    "index": {
+     "1": 0
+    },
+    "label": {
+     "1": "Index(1995=100)"
+    },
+    "unit": {
+     "1": {
+      "base": "Index",
+      "decimals": 1
+     }
+    }
+   },
+   "extension": {
+    "elimination": false,
+    "show": "value"
+   }
+  },
+  "Period": {
+   "label": "Period",
+   "category": {
+    "index": {
+     "0": 0,
+     "35": 1,
+     "64": 2,
+     "65": 3
+    },
+    "label": {
+     "0": "1960",
+     "35": "1995",
+     "64": "2024",
+     "65": "2025"
+    }
+   }
+  }
+ },
+ "extension": {
+  "px": {
+   "decimals": 1,
+   "official-statistics": false,
+   "aggregallowed": false,
+   "language": "sv",
+   "description": "Årlig förändring",
+   "matrix": "MIKLTAB3",
+   "subject-code": "TYM"
+  }
+ },
+ "value": [
+  59.3,
+  100,
+  155.5,
+  160.1
+ ]
+}

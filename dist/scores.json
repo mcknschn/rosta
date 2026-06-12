@@ -143,8 +143,8 @@
       },
       "ekonomi": {
         "ci": [
-          2.163,
-          2.951
+          2.153,
+          2.94
         ],
         "claim_refs": [
           "claim:action:C:ekonomi:motioner",
@@ -163,7 +163,7 @@
           "A": 2.0,
           "B": 3.493,
           "C": 1.429,
-          "D": 3.199
+          "D": 3.098
         },
         "confidence": {
           "A": "high",
@@ -177,7 +177,7 @@
           "A_a1_active",
           "D_coverage_73/73"
         ],
-        "score": 2.557
+        "score": 2.547
       },
       "forsvar": {
         "ci": [
@@ -685,8 +685,8 @@
       },
       "ekonomi": {
         "ci": [
-          2.836,
-          3.623
+          2.832,
+          3.62
         ],
         "claim_refs": [
           "claim:action:L:ekonomi:motioner",
@@ -706,7 +706,7 @@
           "A": 2.357,
           "B": 4.199,
           "C": 3.571,
-          "D": 2.813
+          "D": 2.774
         },
         "confidence": {
           "A": "high",
@@ -720,7 +720,7 @@
           "A_a1_active",
           "D_coverage_73/73"
         ],
-        "score": 3.23
+        "score": 3.226
       },
       "forsvar": {
         "ci": [
@@ -1233,8 +1233,8 @@
       },
       "ekonomi": {
         "ci": [
-          2.405,
-          3.193
+          2.397,
+          3.185
         ],
         "claim_refs": [
           "claim:action:MP:ekonomi:motioner",
@@ -1254,7 +1254,7 @@
           "A": 1.0,
           "B": 3.973,
           "C": 4.286,
-          "D": 3.658
+          "D": 3.579
         },
         "confidence": {
           "A": "high",
@@ -1268,7 +1268,7 @@
           "A_a1_active",
           "D_coverage_73/73"
         ],
-        "score": 2.799
+        "score": 2.791
       },
       "forsvar": {
         "ci": [
@@ -1513,8 +1513,8 @@
       },
       "ekonomi": {
         "ci": [
-          3.798,
-          4.586
+          3.791,
+          4.578
         ],
         "claim_refs": [
           "claim:action:S:ekonomi:motioner",
@@ -1535,7 +1535,7 @@
           "A": 4.286,
           "B": 3.973,
           "C": 5.0,
-          "D": 3.375
+          "D": 3.298
         },
         "confidence": {
           "A": "high",
@@ -1549,7 +1549,7 @@
           "A_a1_active",
           "D_coverage_73/73"
         ],
-        "score": 4.192
+        "score": 4.185
       },
       "forsvar": {
         "ci": [

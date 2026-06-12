@@ -20,6 +20,7 @@ from .sources import (
     energimyndigheten,
     forsvarsmakten,
     kriminalvarden,
+    medlingsinstitutet,
     migrationsverket,
     mpf,
     polisen,
@@ -67,6 +68,25 @@ def main() -> None:
     n = warehouse.upsert(con, "observations", dvrows)
     span = f"{dvrows[0]['period']}..{dvrows[-1]['period']}" if dvrows else "-"
     print(f"Domstolsverket 01_Verksamhetsmal_TR -> trygghet  handlaggningstid: {n:4} obs ({span})")
+
+    # Medlingsinstitutet (egen PxWeb-instans, v1, samma dialekt som Domstolsverket/Energimyndig-
+    # heten): reala löner i hela ekonomin, Reallön (KPI) som Index(1995=100), 1960-2025 (ekonomi,
+    # delpoäng D — submåttet realloner_hushall). Måttval dokumenterat i modulen (KPI = MI:s huvud-
+    # serie, tecknet identiskt med KPIF; indexserien, inte %-serien; 2025 preliminär; medveten
+    # dubbelbreddning — submåttet har redan D via hushallens_reala_disponibla_inkomst). v0,
+    # FLAGGAD. source_ref 'medlingsinstitutet:' ligger utanför scb/kolada-purge-scope.
+    mirows = medlingsinstitutet.fetch_realloner(ra)
+    unlisted = {r["indicator"] for r in mirows} - set(medlingsinstitutet.INDICATORS)
+    if unlisted:
+        raise ValueError(f"Medlingsinstitutet emitterar indikatorer utanför INDICATORS: {sorted(unlisted)}")
+    for ind in medlingsinstitutet.INDICATORS:
+        expectations.check_series(
+            [r for r in mirows if r["indicator"] == ind], medlingsinstitutet.EXPECT.get(ind),
+            f"Medlingsinstitutet {ind}",
+        )
+    n = warehouse.upsert(con, "observations", mirows)
+    span = f"{mirows[0]['period']}..{mirows[-1]['period']}" if mirows else "-"
+    print(f"Medlingsinstitutet Realloner_arsdata -> ekonomi  realloner: {n:4} obs ({span})")
 
     # Härledda indikatorer (gap/kvot ur verifierade serier) — source_ref 'derived:' ligger utanför
     # build_fas2:s scb/kolada-purge-scope, så raderna rensas aldrig av SCB/Kolada-bygget.
@@ -245,6 +265,8 @@ def main() -> None:
 
     print("\n-- kända luckor (loggas, ej tysta; se docs/fas3_coverage.md) --")
     print("   klimat: elprisvolatilitet/effektbrist (Svk, härledda) återstår.")
+    print("   ekonomi: realloner (MI Realloner_arsdata, Reallön KPI index 1995=100) matar nu D —")
+    print("       realloner_hushall har 2 serier (medveten dubbelbreddning, se modulen).")
     print("   forsvar: personal_varnpliktiga + personalstyrka_kontinuerligt (FM ÅR) + ukraina_stod")
     print("       + forsvarsvilja (MPF Opinioner -> civil_beredskap) matar D; materiel/leverans")
     print("       kvalitativa/sekretess (allowlistade). 3/5 submått med D.")

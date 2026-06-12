@@ -8,7 +8,7 @@ Invarianten "inget tyst gap" hävdas av `tests/test_fas3_gate.py`. Generera aktu
 python -m pipeline.tools.coverage_report
 ```
 
-Per 2026-06-12: **39 / 67 indikatorer inlästa** (D-dugliga, annuell up/down) i **alla 7 kategorier**
+Per 2026-06-12: **40 / 67 indikatorer inlästa** (D-dugliga, annuell up/down) i **alla 7 kategorier**
 (ekonomi, välfärd, klimat, integration, trygghet, försvar, demokrati). **Ingen kategori är längre D-tom.**
 *(17 per 2026-05-31; +2 trygghet 2026-06-03 — uppklaringsgrad + skjutningar/sprängningar; +2 ekonomi
 2026-06-07 — naringslivets_investeringar + hushallens_reala_disponibla_inkomst, Spår D Tier 1;
@@ -25,7 +25,10 @@ asyl_handlaggningstid (migrationssystem — Migrationsverket). **Integration nu 
 (civil_beredskap — MPF/MSB Opinioner). **Försvar nu 3/5 undermått med D (2 → 4 D-indikatorer).**
 **+1 trygghet 2026-06-12 (Spår D kväll):** handlaggningstid (rattsvasendets_effektivitet —
 Domstolsverket DOMstat 01_Verksamhetsmal_TR, 75-percentil brottmål exkl. förtursmål vid tingsrätt,
-2007–2025). Förra sonderingens vägg gällde Brå/ÅM — domstolsledet var förbisett.)*
+2007–2025). Förra sonderingens vägg gällde Brå/ÅM — domstolsledet var förbisett.
+**+1 ekonomi 2026-06-12 (Spår D kväll):** realloner (realloner_hushall — Medlingsinstitutets EGEN
+PxWeb, Realloner_arsdata, Reallön (KPI) som Index 1995=100, 1960–2025). Förra sonderingens vägg
+gällde SCB:s API — MI:s egen PxWeb-instans var förbisedd.)*
 
 Rapporten visar sedan 2026-06-12 även **D-undermåttsbredd** per kategori (viktad icke-target-täckning
 som styr D:s `coverage_shrink`; tunn bredd grindas via `coverage_allowlist.d_thin_breadth_accepted` —
@@ -41,6 +44,7 @@ i dag endast försvar 70/100). Spec: [done/d_coverage_krympning_spec.md](done/d_
 | ekonomi | produktivitet | SCB NR (härledd) | TAB3610 ÷ TAB5622 | up | 1980–2024⁵ |
 | ekonomi | naringslivets_investeringar | SCB NR | TAB3610 (BNAR, fasta priser) | up | 1980–2024 |
 | ekonomi | hushallens_reala_disponibla_inkomst | SCB NR (härledd index) | TAB4592 (B6nRealGrowth, S14)⁶ | up | 1951–2025 |
+| ekonomi | realloner | Medlingsinstitutet (PxWeb v1) | Realloner_arsdata (Reallön (KPI), Index 1995=100) | up | 1960–2025¹⁸ |
 | valfard | skolresultat | Kolada | N15507 | up | 2015–2025 |
 | valfard | behoriga_larare | Kolada | N15813 | up | 2015–2025 |
 | valfard | vardkoer | Kolada | N79242 | down | 2021–2024 |
@@ -182,9 +186,23 @@ i dag endast försvar 70/100). Spec: [done/d_coverage_krympning_spec.md](done/d_
   samma submått. Förra sonderingens vägg (2026-06-03) gällde Brå/ÅM:s genomströmningsstatistik —
   domstolsledet var förbisett. v0, kräver mänsklig granskning.
 
+¹⁸ Reala löner i hela ekonomin som **index (1995=100)**, nominell lön deflaterad med **KPI** —
+  **Medlingsinstitutets EGEN PxWeb-instans** (MI är statistikansvarig myndighet för den officiella
+  lönestatistiken; tabellen Realloner_arsdata bygger på konjunkturlönestatistiken + KPI, underlag
+  MI/SCB/KI). 66 konsekutiva år 1960–2025; 2025 PRELIMINÄR tills konjunkturlönestatistiken är
+  definitiv (lönerevisioner släpar ~12 mån). MÅTTVAL (v0, flaggad): (a) **Reallön (KPI)** är MI:s
+  huvudserie — KPI inkluderar hushållens räntekostnader, så 2022–23-fallet blir djupare än med KPIF
+  (2023: −4,9 % mot −2,3 %), men D tar bara TECKNET och tecknet är detsamma för båda deflatorerna —
+  explicit val, ej tyst; (b) indexserien (inte %-serien) eftersom D själv bildar år-för-år-tecken ur
+  nivån; (c) submåttet realloner_hushall hade redan D via hushallens_reala_disponibla_inkomst —
+  serierna är korrelerade (löner är största inkomstkällan) → MEDVETEN dubbelbreddning inom under-
+  måttet (djup, inte bredd). Förra sonderingens vägg (2026-05-31) gällde SCB:s API — MI:s egen
+  PxWeb var förbisedd. Serien börjar 1960; D-attributionen använder ändå bara fönstret med maktdata.
+  v0, kräver mänsklig granskning.
+
 ## Allowlistade gap (skäl i `config/coverage_allowlist.yaml`)
 
-28 indikatorer saknar ännu en officiell svensk årsserie. Sammanfattning per skältyp:
+27 indikatorer saknar ännu en officiell svensk årsserie. Sammanfattning per skältyp:
 
 - **target** (ej up/down, ej D-duglig): inflation, statsskuld_underskott, forsvarsanslag_andel_bnp.
 - **derived** (kräver flera serier/beräkning): elprisvolatilitet, effektbrist,
@@ -194,13 +212,13 @@ i dag endast försvar 70/100). Spec: [done/d_coverage_krympning_spec.md](done/d_
   personalomsattning_omsorg, valfardsbrottslighet, hotade_arter_naturforlust, skolresultat_utsatta_omraden,
   segregation. (fortroende_domstolar_myndigheter inläst 2026-06-07 via Brå NTU 5A:1 — officiell källa,
   ej SOM; demokratis första D-serie, Spår D Tier 4.)
-- **future** (källa finns, adapter ej byggd): vard_i_tid,
-  realloner (kräver Medlingsinstitutets konjunkturlönestatistik — SCB:s API saknar en ren helekonomi-
-  löneserie, sonderat 2026-05-31). (uppklaringsgrad
+- **future** (källa finns, adapter ej byggd): vard_i_tid. (uppklaringsgrad
   + skjutningar_sprangningar inlästa 2026-06-03; **aterfall_i_brott inläst 2026-06-09 via Kriminalvården
   KOS Tabell 6.1** — Brås PDF-väg behövdes ej, KOS ger råtalen;
   **handlaggningstid inläst 2026-06-12 via Domstolsverket DOMstat 01_Verksamhetsmal_TR** — Brå/ÅM-väggen
   var fel led, domstolsledet har en ren PxWeb-serie (se ¹⁷);
+  **realloner inläst 2026-06-12 via Medlingsinstitutets egen PxWeb, Realloner_arsdata** — SCB-API-väggen
+  (sonderat 2026-05-31) gällde fel instans, MI:s egen PxWeb var förbisedd (se ¹⁸);
   naringslivets_investeringar + hushallens_reala_disponibla_inkomst inlästa 2026-06-07;
   sfi_sprakkunskaper inläst 2026-06-07 via SCB TAB1814 — Spår D Tier 2;
   overlevnad_svar_sjukdom inläst 2026-06-08 via Kolada U70471 (30-dagarsöverlevnad tjocktarmscancer) — Spår D natt.)
@@ -221,7 +239,7 @@ i dag endast försvar 70/100). Spec: [done/d_coverage_krympning_spec.md](done/d_
 
 1. ~~**Energimyndigheten** (fossil_energianvandning)~~ — **klar** (PxWeb-v1-adapter `pipeline/build_fas3.py`, EN0202_8, fossila energivaror summerade).
 2. ~~**Brå NTU** (brottsutsatthet, upplevd_otrygghet)~~ — **klar** (`bra.fetch_ntu`, Tabellsamling NTU 2007–2025, blad 3A + 4A:1, "Samtliga 16–84 år", nuvarande-metod-fönster). Trygghet har nu 3 D-serier.
-3. ~~**Socialstyrelsen** (overlevnad_svar_sjukdom)~~ **klar 2026-06-08 via Kolada U70471** (ej egen Socialstyrelse-adapter behövdes) + ~~**Skolverket** (sfi_sprakkunskaper)~~ **klar** (SCB TAB1814) + **Medlingsinstitutet** (realloner) — kvarstår, låg prio.
+3. ~~**Socialstyrelsen** (overlevnad_svar_sjukdom)~~ **klar 2026-06-08 via Kolada U70471** (ej egen Socialstyrelse-adapter behövdes) + ~~**Skolverket** (sfi_sprakkunskaper)~~ **klar** (SCB TAB1814) + ~~**Medlingsinstitutet** (realloner)~~ **klar 2026-06-12 via MI:s egen PxWeb** (Realloner_arsdata, Reallön (KPI) Index 1995=100, `pipeline/sources/medlingsinstitutet.py`).
 4. ~~**Loader-stöd för härledda indikatorer** (gap/kvot)~~ — **klar** (`pipeline/derived.py`, ren gap/kvot-beräkning ur verifierade serier, två-tabells-operander + rimlighetsgrind). Inlästa: sysselsattningsgap_inrikes_utrikes (SCB TAB6529 SYSP 13−23) och produktivitet (SCB TAB3610 BNP fast ÷ TAB5622 arbetade timmar). Återstår att härleda: utslappsminskning_per_krona, elprisvolatilitet (kräver nya föräldraserier).
 5. ~~**SOM-institutet** (fortroende_domstolar_myndigheter)~~ — **klar 2026-06-07 via Brå NTU 5A:1** (officiell
    källa, ej SOM; demokratis första D). Återstår ev. SOM för `tillit_valdeltagande` (integration), men den är

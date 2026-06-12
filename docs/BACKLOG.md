@@ -25,7 +25,7 @@
 
 Rankingen drevs vid backloggens start mest av **A (aktivitet) + C (makt)**, eftersom **B krymps
 mot neutralt** vid tunn täckning och D då var "ej tillämplig" i 21 av 56 celler. *(Uppdaterat
-2026-06-12: D matas nu i **alla 7 kategorier** — 39/67 indikatorer, 28/35 undermått — och krymps
+2026-06-12: D matas nu i **alla 7 kategorier** — 40/67 indikatorer, 28/35 undermått — och krymps
 sedan 2026-06-12 efter **viktad undermåttsbredd** i stället för att renormalisera bort saknad
 bredd, se [done/d_coverage_krympning_spec.md](done/d_coverage_krympning_spec.md). B är utrullad
 med ≥2 undermått per kategori. Obalansen är alltså i stort åtgärdad; kvarvarande tyngdpunkt är
@@ -287,7 +287,7 @@ högre coverage → mindre B-krympning → B får faktiskt genomslag.
 ### Levererat (2026-06-07 … 2026-06-12) — sammanfattning, detaljer i trackern
 
 - ✅ **Spår D-expansionen** (tracker: [spar_D_datatackning.md](spar_D_datatackning.md), svep/natt-
-  rapporter arkiverade i [done/](done/)): 24/56 → **39/67 inlästa indikatorer, 28/35 undermått,
+  rapporter arkiverade i [done/](done/)): 24/56 → **40/67 inlästa indikatorer, 28/35 undermått,
   alla 7 kategorier** — bl.a. försvar 1/5 → 3/5 (forsvarsvilja, personalstyrka, ukraina_stod),
   demokrati 1/5 → 5/5 (V-Dem-index ×4), integration 5/5, aterfall_i_brott, overlevnad_svar_sjukdom,
   hackande_faglar_skog. Allt v0, per-indikator `data:`-commits.
@@ -352,7 +352,7 @@ Detaljer + verifiering i [spar_D_datatackning.md](spar_D_datatackning.md).
 
 | Indikator | Kategori → undermått | Källa & metod | Effort | Tag |
 |-----------|--------------------|---------------|--------|-----|
-| `realloner` | ekonomi → reallöner/hushåll | Medlingsinstitutets konjunkturlönestatistik (helekonomi-löneindex; SCB:s API saknar ren serie) | M | future |
+| ~~`realloner`~~ ✅ | ekonomi → reallöner/hushåll | Medlingsinstitutets **egen PxWeb** (Realloner_arsdata, Reallön (KPI) Index 1995=100, 1960–2025) — SCB-API-väggen gällde fel instans | M | ✅ **inläst 2026-06-12 (Spår D kväll, v0); KPI-valet dokumenterat** |
 | ~~`sfi_sprakkunskaper`~~ ✅ | integration → skola/språk | SCB **TAB1814** `AA0003EB` (andel godkända i sfi %) — ej Skolverket-portal, SCB-PxWeb räckte | **S** | ✅ **inläst 2026-06-07 (Tier 2, v0); §5.2 avgjord (godkäntandel)** |
 | *(Svk-källadapter)* | klimat (förkrav för Våg 3-härledda) | Svenska kraftnät, öppna data (spotpris/effektbalans) | M | derived-förkrav |
 
