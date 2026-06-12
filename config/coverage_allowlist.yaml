@@ -73,7 +73,12 @@ allowlist:
   - { category: forsvar, indicator: forsvarsfinansiering_upptrappning_mot_mal, reason: "B-only: ny B-indikator 2026-06-07 (§5.7, åtagande om finansieringsupptrappning mot beslutad målnivå). Inriktnings-/åtagandemått, ej utfallsårsserie (target-syskonet forsvarsanslag_andel_bnp är likaså D-otäckt). version 0, sign-off." }
   # --- klimat (territoriella + konsumtionsbaserade + fossil energianvändning inlästa) ---
   # fossil_energianvandning inläst via Energimyndigheten EN0202_8 (build_fas3) -> ej längre allowlistad.
-  - { category: klimat, indicator: elprisvolatilitet,          reason: "derived: härleds ur Svk/spotpriser, ingen färdig officiell årsserie." }
+  # elprisvolatilitet inläst via Energimyndigheten Energiindikatorer 12.5 EN_IND12-5A (spotpris
+  # månadsmedel SE1-SE4 -> årlig CV, 2012-2025) -> ej allowlistad fr.o.m. 2026-06-12 (Spår D kväll).
+  # §5.4-källregelfrågan UPPLÖST: datakällan är Energimyndighetens officiella statistikdatabas,
+  # inte Nord Pool. CV-val (ddof=0, skalfri — straffar instabilitet, inte prisnivå/inflation) +
+  # likaviktning SE1-SE4 + månadsupplösnings-caveat (tim-/dygnsspikar syns ej; effektproblematik
+  # täcks av syskonet effektbrist när den byggs) dokumenterade i adaptern. v0, FLAGGAD.
   - { category: klimat, indicator: effektbrist,                reason: "derived: härleds ur Svk effektdata, ingen färdig årsserie." }
   - { category: klimat, indicator: utslappsminskning_per_krona, reason: "derived: kräver utsläpp/kostnad-kvot, flera serier." }
   - { category: klimat, indicator: hotade_arter_naturforlust,  reason: "no_api: SLU Artdatabanken (rödlistan), ingen årlig maskinläsbar serie." }

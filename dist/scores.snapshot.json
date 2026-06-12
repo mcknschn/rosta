@@ -1,12 +1,12 @@
 {
   "totals": {
-    "C": 3.075,
-    "KD": 3.153,
-    "L": 3.388,
-    "M": 3.322,
-    "MP": 3.111,
-    "S": 3.683,
-    "SD": 2.727,
+    "C": 3.072,
+    "KD": 3.156,
+    "L": 3.389,
+    "M": 3.325,
+    "MP": 3.11,
+    "S": 3.682,
+    "SD": 2.731,
     "V": 2.621
   },
   "ranking": [
@@ -55,7 +55,7 @@
       ]
     },
     "C/klimat": {
-      "score": 3.475,
+      "score": 3.456,
       "flags": [
         "A_a1_active",
         "B_coverage_2/4",
@@ -113,7 +113,7 @@
       ]
     },
     "KD/klimat": {
-      "score": 2.745,
+      "score": 2.774,
       "flags": [
         "A_a1_active",
         "B_coverage_4/4",
@@ -172,7 +172,7 @@
       ]
     },
     "L/klimat": {
-      "score": 2.643,
+      "score": 2.648,
       "flags": [
         "A_a1_active",
         "B_coverage_4/4",
@@ -230,7 +230,7 @@
       ]
     },
     "M/klimat": {
-      "score": 3.081,
+      "score": 3.11,
       "flags": [
         "A_a1_active",
         "B_coverage_4/4",
@@ -291,7 +291,7 @@
       ]
     },
     "MP/klimat": {
-      "score": 4.092,
+      "score": 4.081,
       "flags": [
         "A_a1_active",
         "B_coverage_4/4",
@@ -349,7 +349,7 @@
       ]
     },
     "S/klimat": {
-      "score": 2.838,
+      "score": 2.831,
       "flags": [
         "A_a1_active",
         "B_coverage_3/4",
@@ -407,7 +407,7 @@
       ]
     },
     "SD/klimat": {
-      "score": 2.027,
+      "score": 2.056,
       "flags": [
         "A_a1_active",
         "B_coverage_4/4",

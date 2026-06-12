@@ -36,7 +36,13 @@ def main() -> None:
     con = warehouse.connect()
     print("== Fas 3 (sektorsadaptrar) ==")
 
-    rows = energimyndigheten.fetch_fossil_energy(ra)
+    # Energimyndigheten (PxWeb v1): två klimatserier ur samma statistikdatabas —
+    # fossil_energianvandning (EN0202_8) + elprisvolatilitet (EN_IND12-5A, Energiindikatorer
+    # 12.5: spotpris månadsmedel SE1-SE4 -> årlig CV beräknad I ADAPTERN, månadsraderna skrivs
+    # aldrig till warehouse). Måttval (CV ddof=0, likaviktning, 12/12-regeln) + v0-caveats
+    # dokumenterade i modulen. §5.4-källregelfrågan UPPLÖST: officiell svensk myndighetskälla,
+    # inte Nord Pool. v0, FLAGGAD.
+    rows = energimyndigheten.fetch_fossil_energy(ra) + energimyndigheten.fetch_elprisvolatilitet(ra)
     # Håll energimyndigheten.INDICATORS (som coverage-gaten läser) i synk med vad som skrivs.
     unlisted = {r["indicator"] for r in rows} - set(energimyndigheten.INDICATORS)
     if unlisted:
@@ -47,8 +53,10 @@ def main() -> None:
             f"Energimyndigheten {ind}",
         )
     n = warehouse.upsert(con, "observations", rows)
-    span = f"{rows[0]['period']}..{rows[-1]['period']}" if rows else "-"
-    print(f"Energimyndigheten EN0202_8 -> klimat       fossil_energianvandning: {n:4} obs ({span})")
+    for ind, table in (("fossil_energianvandning", "EN0202_8"), ("elprisvolatilitet", "EN_IND12-5A")):
+        sub = [r for r in rows if r["indicator"] == ind]
+        span = f"{sub[0]['period']}..{sub[-1]['period']}" if sub else "-"
+        print(f"Energimyndigheten {table:11} -> klimat       {ind}: {len(sub):4} obs ({span})")
 
     # Domstolsverket DOMstat (PxWeb v1, samma dialekt som Energimyndigheten): handläggningstid vid
     # tingsrätt, 75-percentil i månader, brottmål exkl. förtursmål, alla tingsrätter (trygghet,
@@ -264,7 +272,8 @@ def main() -> None:
         print(f"   {cat:12} {ind:24} {n:4}  {lo}..{hi}")
 
     print("\n-- kända luckor (loggas, ej tysta; se docs/fas3_coverage.md) --")
-    print("   klimat: elprisvolatilitet/effektbrist (Svk, härledda) återstår.")
+    print("   klimat: elprisvolatilitet (Energimyndigheten EN_IND12-5A, årlig CV) matar nu D;")
+    print("       effektbrist (Svk, härledd) återstår.")
     print("   ekonomi: realloner (MI Realloner_arsdata, Reallön KPI index 1995=100) matar nu D —")
     print("       realloner_hushall har 2 serier (medveten dubbelbreddning, se modulen).")
     print("   forsvar: personal_varnpliktiga + personalstyrka_kontinuerligt (FM ÅR) + ukraina_stod")

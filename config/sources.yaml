@@ -265,9 +265,12 @@ sources:
     feeds: [D:klimat]
     datasets:
       - { id: EN0202_8, path: "Officiell_energistatistik/Arlig_energibalans/Total_slutlig_energianvandning/EN0202_8.px", note: "Slutlig energianvändning per energivara (TWh, fr.o.m. 1970). fossil_energianvandning = Σ Kol och koks + Petroleumprodukter + Natur- och stadsgas. PxWeb v1: POST json-stat2-query; tidsdim 'År' (koderna är index, årtal i category.label)." }
+      - { id: EN_IND12-5A, path: "Energiindikatorer/12/12.5/EN_IND12-5A.px", indicator: elprisvolatilitet,
+          note: "Elspotpris Sverige (från november 2011), månadsmedelvärden kr/MWh, per elområde SE1–SE4 (Energiindikatorer 12.5). elprisvolatilitet = årlig CV (populations-stdev ddof=0 / medel över årets 12 månadsmedel) per elområde, likaviktat medel SE1–SE4, i %. Endast 12/12-kompletta år (2012–2025; 2011 = nov–dec, utesluts). Beräknas I ADAPTERN — månadsobs skrivs aldrig till warehouse. Tidsdim 'År/Månad' (saknar role.time; koderna är index, perioden YYYYMmm i category.label)." }
     gotchas:
       - "PxWeb v1 (inte SCB v2): data via POST med json-query; GET på tabell-id ger metadata."
       - "Energivara-koder slås upp via valueText (Kol och koks/Petroleumprodukter/Natur- och stadsgas) så en omnumrering inte tyst byter serie."
+      - "EN_IND12-5A: Elområde-koder slås upp via valueText (SE1–SE4); tabellen saknar role.time -> tidsdimmen hittas via namnfallback 'År/Månad'. CV-måttvalet (ddof=0, likaviktning, 12/12-regeln) låst i pipeline/sources/energimyndigheten.py + golden-testet."
     verified: true
     confidence: high
 

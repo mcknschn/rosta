@@ -8,7 +8,7 @@ Invarianten "inget tyst gap" hävdas av `tests/test_fas3_gate.py`. Generera aktu
 python -m pipeline.tools.coverage_report
 ```
 
-Per 2026-06-12: **40 / 67 indikatorer inlästa** (D-dugliga, annuell up/down) i **alla 7 kategorier**
+Per 2026-06-12: **41 / 67 indikatorer inlästa** (D-dugliga, annuell up/down) i **alla 7 kategorier**
 (ekonomi, välfärd, klimat, integration, trygghet, försvar, demokrati). **Ingen kategori är längre D-tom.**
 *(17 per 2026-05-31; +2 trygghet 2026-06-03 — uppklaringsgrad + skjutningar/sprängningar; +2 ekonomi
 2026-06-07 — naringslivets_investeringar + hushallens_reala_disponibla_inkomst, Spår D Tier 1;
@@ -28,7 +28,11 @@ Domstolsverket DOMstat 01_Verksamhetsmal_TR, 75-percentil brottmål exkl. förtu
 2007–2025). Förra sonderingens vägg gällde Brå/ÅM — domstolsledet var förbisett.
 **+1 ekonomi 2026-06-12 (Spår D kväll):** realloner (realloner_hushall — Medlingsinstitutets EGEN
 PxWeb, Realloner_arsdata, Reallön (KPI) som Index 1995=100, 1960–2025). Förra sonderingens vägg
-gällde SCB:s API — MI:s egen PxWeb-instans var förbisedd.)*
+gällde SCB:s API — MI:s egen PxWeb-instans var förbisedd.
+**+1 klimat 2026-06-12 (Spår D kväll):** elprisvolatilitet (energi_elpriser — Energimyndighetens
+statistikdatabas, Energiindikatorer 12.5 EN_IND12-5A: spotpris månadsmedel SE1–SE4 → årlig CV i
+adaptern, 2012–2025). §5.4-källregelfrågan UPPLÖST: officiell svensk myndighetskälla, inte Nord Pool
+— allowlistens "derived/Svk"-antagande var överspelat.)*
 
 Rapporten visar sedan 2026-06-12 även **D-undermåttsbredd** per kategori (viktad icke-target-täckning
 som styr D:s `coverage_shrink`; tunn bredd grindas via `coverage_allowlist.d_thin_breadth_accepted` —
@@ -58,6 +62,7 @@ i dag endast försvar 70/100). Spec: [done/d_coverage_krympning_spec.md](done/d_
 | klimat | territoriella_utslapp | SCB (Naturvårdsverket) | TAB4698 | down | 1990–2024 |
 | klimat | konsumtionsbaserade_utslapp | SCB Miljöräkenskaper | TAB5637 | down | 2008–2023 |
 | klimat | fossil_energianvandning | Energimyndigheten (PxWeb v1) | EN0202_8 | down | 1970–2024 |
+| klimat | elprisvolatilitet | Energimyndigheten (PxWeb v1) | EN_IND12-5A (spotpris månadsmedel → årlig CV) | down | 2012–2025¹⁹ |
 | klimat | hackande_faglar_skog | Svensk Fågeltaxering / Lund (transkr.) | sverigesmiljomal.se Highcharts | up | 2002–2024¹¹ |
 | integration | bidragsberoende | Kolada | N31825 | down | 2010–2024 |
 | integration | trangboddhet | SCB ULF | TAB6439 | down | 2020–2025¹ |
@@ -200,14 +205,35 @@ i dag endast försvar 70/100). Spec: [done/d_coverage_krympning_spec.md](done/d_
   PxWeb var förbisedd. Serien börjar 1960; D-attributionen använder ändå bara fönstret med maktdata.
   v0, kräver mänsklig granskning.
 
+¹⁹ **Årlig elprisvolatilitet** = variationskoefficient **CV = populations-stdev (ddof=0) / medel
+  över årets 12 månadsmedel** av elspotpriset (kr/MWh), per elområde, **likaviktat medel SE1–SE4**,
+  i % — **Energimyndighetens statistikdatabas, Energiindikatorer 12.5, tabell EN_IND12-5A**
+  ("Elspotpris Sverige (från november 2011), månadsmedelvärden"). Källregelfrågan (tracker §5.4)
+  UPPLÖST: datakällan är en statlig myndighets officiella statistikdatabas, INTE Nord Pool direkt.
+  Endast 12/12-kompletta år per elområde (serien är lucka-fri → 14 år 2012–2025; 2011 = nov–dec,
+  utesluts av regeln). MÅTTVAL (v0, flaggad): (a) **CV är skalfri** — straffar inte hög prisNIVÅ
+  eller inflation, bara INSTABILITET (indikatorn heter volatilitet); standard, riktningsneutral
+  utan ideologiskt val; förkastade: rå stdev (nivå-/inflationskänslig), max–min (outlierkänslig);
+  (b) ddof=0 låst i adapter + golden-test (sonderingens referens med ddof=1 ger × √(12/11), t.ex.
+  2022: 65,3 mot våra 62,6 — samma serieform/tecken); (c) **likaviktning SE1–SE4** (inte
+  konsumtionsviktning) — enklare + neutralt; (d) CV beräknas **i adaptern**: månadsobservationer
+  skrivs aldrig till warehouse (period_to_year ger None för YYYYMmm → döda rader; prejudikat
+  kriminalvarden.py). ⚠ CAVEATS (v0): månadsupplösning underskattar tim-/dygnsvolatilitet
+  (negativa timpriser/spotspikar syns ej — måttet fångar säsongs-/strukturell instabilitet;
+  effektproblematik täcks av syskonindikatorn effektbrist när den byggs); volatiliteten drivs
+  starkt av europeiska gaspriser/överföringsläge (2022) — sedvanlig D-konjunktur-caveat
+  (tecken-ej-magnitud + 10 %-vikt + ansvarsviktning). v0, kräver mänsklig granskning.
+
 ## Allowlistade gap (skäl i `config/coverage_allowlist.yaml`)
 
-27 indikatorer saknar ännu en officiell svensk årsserie. Sammanfattning per skältyp:
+26 indikatorer saknar ännu en officiell svensk årsserie. Sammanfattning per skältyp:
 
 - **target** (ej up/down, ej D-duglig): inflation, statsskuld_underskott, forsvarsanslag_andel_bnp.
-- **derived** (kräver flera serier/beräkning): elprisvolatilitet, effektbrist,
+- **derived** (kräver flera serier/beräkning): effektbrist,
   utslappsminskning_per_krona. (produktivitet, sysselsattningsgap_inrikes_utrikes och
-  hushallens_reala_disponibla_inkomst är nu härledda, se ovan.)
+  hushallens_reala_disponibla_inkomst är nu härledda, se ovan; **elprisvolatilitet inläst
+  2026-06-12 via Energimyndigheten EN_IND12-5A** — Svk-/Nord Pool-antagandet var överspelat,
+  CV beräknas i adaptern (se ¹⁹).)
 - **no_api** (officiell/akademisk källa utan maskinläsbar årsserie): skillnader_mellan_skolor,
   personalomsattning_omsorg, valfardsbrottslighet, hotade_arter_naturforlust, skolresultat_utsatta_omraden,
   segregation. (fortroende_domstolar_myndigheter inläst 2026-06-07 via Brå NTU 5A:1 — officiell källa,
@@ -240,7 +266,7 @@ i dag endast försvar 70/100). Spec: [done/d_coverage_krympning_spec.md](done/d_
 1. ~~**Energimyndigheten** (fossil_energianvandning)~~ — **klar** (PxWeb-v1-adapter `pipeline/build_fas3.py`, EN0202_8, fossila energivaror summerade).
 2. ~~**Brå NTU** (brottsutsatthet, upplevd_otrygghet)~~ — **klar** (`bra.fetch_ntu`, Tabellsamling NTU 2007–2025, blad 3A + 4A:1, "Samtliga 16–84 år", nuvarande-metod-fönster). Trygghet har nu 3 D-serier.
 3. ~~**Socialstyrelsen** (overlevnad_svar_sjukdom)~~ **klar 2026-06-08 via Kolada U70471** (ej egen Socialstyrelse-adapter behövdes) + ~~**Skolverket** (sfi_sprakkunskaper)~~ **klar** (SCB TAB1814) + ~~**Medlingsinstitutet** (realloner)~~ **klar 2026-06-12 via MI:s egen PxWeb** (Realloner_arsdata, Reallön (KPI) Index 1995=100, `pipeline/sources/medlingsinstitutet.py`).
-4. ~~**Loader-stöd för härledda indikatorer** (gap/kvot)~~ — **klar** (`pipeline/derived.py`, ren gap/kvot-beräkning ur verifierade serier, två-tabells-operander + rimlighetsgrind). Inlästa: sysselsattningsgap_inrikes_utrikes (SCB TAB6529 SYSP 13−23) och produktivitet (SCB TAB3610 BNP fast ÷ TAB5622 arbetade timmar). Återstår att härleda: utslappsminskning_per_krona, elprisvolatilitet (kräver nya föräldraserier).
+4. ~~**Loader-stöd för härledda indikatorer** (gap/kvot)~~ — **klar** (`pipeline/derived.py`, ren gap/kvot-beräkning ur verifierade serier, två-tabells-operander + rimlighetsgrind). Inlästa: sysselsattningsgap_inrikes_utrikes (SCB TAB6529 SYSP 13−23) och produktivitet (SCB TAB3610 BNP fast ÷ TAB5622 arbetade timmar). ~~elprisvolatilitet~~ **klar 2026-06-12 via Energimyndigheten EN_IND12-5A** (årlig CV i adaptern, ej derived.py — se ¹⁹). Återstår att härleda: utslappsminskning_per_krona (kräver nya föräldraserier).
 5. ~~**SOM-institutet** (fortroende_domstolar_myndigheter)~~ — **klar 2026-06-07 via Brå NTU 5A:1** (officiell
    källa, ej SOM; demokratis första D). Återstår ev. SOM för `tillit_valdeltagande` (integration), men den är
    🔴 BEVAKA/B-only (categories.yaml) — bygg ej som D utan separat sign-off.

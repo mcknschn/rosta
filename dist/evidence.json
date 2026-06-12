@@ -2859,6 +2859,76 @@
     "source_name": "domstolsverket",
     "statement": "handlaggningstid = 3.0 (trygghet, 2025)."
   },
+  "claim:observed_result:obs:energimyndigheten:elprisvolatilitet:2012": {
+    "kind": "claim",
+    "source_name": "energimyndigheten",
+    "statement": "elprisvolatilitet = 26.73 (klimat, 2012)."
+  },
+  "claim:observed_result:obs:energimyndigheten:elprisvolatilitet:2013": {
+    "kind": "claim",
+    "source_name": "energimyndigheten",
+    "statement": "elprisvolatilitet = 9.338 (klimat, 2013)."
+  },
+  "claim:observed_result:obs:energimyndigheten:elprisvolatilitet:2014": {
+    "kind": "claim",
+    "source_name": "energimyndigheten",
+    "statement": "elprisvolatilitet = 9.582 (klimat, 2014)."
+  },
+  "claim:observed_result:obs:energimyndigheten:elprisvolatilitet:2015": {
+    "kind": "claim",
+    "source_name": "energimyndigheten",
+    "statement": "elprisvolatilitet = 26.918 (klimat, 2015)."
+  },
+  "claim:observed_result:obs:energimyndigheten:elprisvolatilitet:2016": {
+    "kind": "claim",
+    "source_name": "energimyndigheten",
+    "statement": "elprisvolatilitet = 23.096 (klimat, 2016)."
+  },
+  "claim:observed_result:obs:energimyndigheten:elprisvolatilitet:2017": {
+    "kind": "claim",
+    "source_name": "energimyndigheten",
+    "statement": "elprisvolatilitet = 6.823 (klimat, 2017)."
+  },
+  "claim:observed_result:obs:energimyndigheten:elprisvolatilitet:2018": {
+    "kind": "claim",
+    "source_name": "energimyndigheten",
+    "statement": "elprisvolatilitet = 16.681 (klimat, 2018)."
+  },
+  "claim:observed_result:obs:energimyndigheten:elprisvolatilitet:2019": {
+    "kind": "claim",
+    "source_name": "energimyndigheten",
+    "statement": "elprisvolatilitet = 16.191 (klimat, 2019)."
+  },
+  "claim:observed_result:obs:energimyndigheten:elprisvolatilitet:2020": {
+    "kind": "claim",
+    "source_name": "energimyndigheten",
+    "statement": "elprisvolatilitet = 43.275 (klimat, 2020)."
+  },
+  "claim:observed_result:obs:energimyndigheten:elprisvolatilitet:2021": {
+    "kind": "claim",
+    "source_name": "energimyndigheten",
+    "statement": "elprisvolatilitet = 41.774 (klimat, 2021)."
+  },
+  "claim:observed_result:obs:energimyndigheten:elprisvolatilitet:2022": {
+    "kind": "claim",
+    "source_name": "energimyndigheten",
+    "statement": "elprisvolatilitet = 62.56 (klimat, 2022)."
+  },
+  "claim:observed_result:obs:energimyndigheten:elprisvolatilitet:2023": {
+    "kind": "claim",
+    "source_name": "energimyndigheten",
+    "statement": "elprisvolatilitet = 40.191 (klimat, 2023)."
+  },
+  "claim:observed_result:obs:energimyndigheten:elprisvolatilitet:2024": {
+    "kind": "claim",
+    "source_name": "energimyndigheten",
+    "statement": "elprisvolatilitet = 53.85 (klimat, 2024)."
+  },
+  "claim:observed_result:obs:energimyndigheten:elprisvolatilitet:2025": {
+    "kind": "claim",
+    "source_name": "energimyndigheten",
+    "statement": "elprisvolatilitet = 36.138 (klimat, 2025)."
+  },
   "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1970": {
     "kind": "claim",
     "source_name": "energimyndigheten",
