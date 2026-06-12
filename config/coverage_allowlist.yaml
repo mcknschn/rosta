@@ -63,10 +63,19 @@ allowlist:
   # --- integration (bidragsberoende, trangboddhet, sjalvforsorjningsgrad, sysselsattningsgap inlästa) ---
   # sysselsattningsgap_inrikes_utrikes härleds nu (pipeline.derived, SCB TAB6529 SYSP 13−23) -> ej allowlistad.
   # sfi_sprakkunskaper inläst via SCB TAB1814 (AA0003EB, andel godkända i sfi %, build_fas2) -> ej allowlistad fr.o.m. 2026-06-07 (Spår D Tier 2; §5.2 avgjort: godkäntandel = enda direktionskonsistenta måttet, up).
+  # mellanmansklig_tillit inläst via Kolada N00666 (SCB:s medborgarundersökning "kan generellt lita på
+  # människor", 2021-2025, build_fas2) -> ej allowlistad fr.o.m. 2026-06-12 (Spår D integration). NY
+  # kanonisk indikator (D-only) -> öppnade normer_tillit (D-tomt). VAL: N00666 mäter mellanmänsklig
+  # (social) tillit = rätt konstrukt, till skillnad från N00665 (förtroende för riksdagspolitiker, fel
+  # fit + överlappar demokrati). tillit_valdeltagande förblir allowlistad (bär B-spåret, ej D).
+  # asyl_handlaggningstid inläst via Migrationsverkets "Avgjorda asylärenden" (deltabell Asyl, exkl.
+  # massflykt; transkriberad config/asyl_handlaggningstid.yaml, build_fas3) -> ej allowlistad fr.o.m.
+  # 2026-06-12 (Spår D integration). NY kanonisk indikator (D-only) -> öppnade migrationssystem (D-tomt).
+  # atervandande_effektivitet förblir allowlistad (B-only, värdeladdat som D). -> integration 5/5 undermått med D.
   - { category: integration, indicator: skolresultat_utsatta_omraden, reason: "no_api: ingen ren nationell årsserie för utsatta områden." }
   - { category: integration, indicator: segregation,                 reason: "no_api: ingen ren officiell segregationsårsserie." }
-  - { category: integration, indicator: tillit_valdeltagande,        reason: "no_api/sparse: valdeltagande bara valår (glest); SOM-tillit ej API." }
-  - { category: integration, indicator: atervandande_effektivitet,   reason: "B-only (integration-svepet 2026-06-07): ingen publik årsserie för kostnad/effektivitet per verkställt återvändande; B via RiR 2020:7 (SfU6 p2)." }
+  - { category: integration, indicator: tillit_valdeltagande,        reason: "no_api/sparse (B-only): valdeltagande bara valår (glest); SOM-tillit ej API. Submåttet normer_tillit är D-täckt via syskonindikatorn mellanmansklig_tillit (SCB medborgarunders. N00666) fr.o.m. 2026-06-12 — denna förblir B-/visningsindikator." }
+  - { category: integration, indicator: atervandande_effektivitet,   reason: "B-only (integration-svepet 2026-06-07): ingen publik årsserie för kostnad/effektivitet per verkställt återvändande; B via RiR 2020:7 (SfU6 p2). Submåttet migrationssystem är D-täckt via syskonindikatorn asyl_handlaggningstid (Migrationsverket) fr.o.m. 2026-06-12." }
   # --- demokrati (helt kvalitativt/internationellt) ---
   - { category: demokrati, indicator: korruption,                       reason: "international/qualitative: ingen officiell svensk kvantitativ korruptionsårsserie (TI:s CPI ej officiell svensk källa)." }
   # fortroende_domstolar_myndigheter inläst via Brå NTU 5A:1 (förtroende för rättsväsendet som helhet,

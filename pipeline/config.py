@@ -86,6 +86,11 @@ def ukraina_stod() -> dict[str, Any]:
 
 
 @cache
+def asyl_handlaggningstid() -> dict[str, Any]:
+    return _load("asyl_handlaggningstid.yaml")
+
+
+@cache
 def aterfall_i_brott() -> dict[str, Any]:
     return _load("aterfall_i_brott.yaml")
 

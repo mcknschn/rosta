@@ -1,0 +1,58 @@
+# Genomsnittlig handläggningstid (dagar) för avgjorda FÖRSTAGÅNGSÄRENDEN om asyl per kalenderår.
+#
+# DELPOÄNG D, kategori integration, kanonisk indikator asyl_handlaggningstid (riktning DOWN, kortare
+# handläggningstid = bättre; submått migrationssystem). Öppnar submåttet migrationssystem (tidigare
+# D-tomt) → integration får sin första D i migrationssystemets hållbarhet. Spår D, integration
+# 2026-06-12.
+#
+# VÄRDEKÄLLA: Migrationsverkets officiella statistik "Avgjorda asylärenden" (per år, xlsx). Bladet
+# "Totalt, förstagångsärenden", DELTABELLEN "Asyl", raden "Totalt", kolumnen "Handläggningstid,
+# dagar". Officiell svensk källa (Migrationsverket, statistikansvarig myndighet).
+#
+# AVGRÄNSNING (kritisk för neutralitet + jämförbarhet): ENDAST deltabellen "Asyl" (reguljära
+# förstagångsärenden) räknas. De separata deltabellerna "Asyl, ukrainska medborgare" och
+# "Massflyktsdirektivet" EXKLUDERAS — de är en near-automatisk process (~20-30 dagars snitt) som
+# aktiverades av EU:s massflyktsdirektiv 2022 och speglar ett EU-beslut, inte svensk handläggnings-
+# effektivitet. Att blanda in dem skulle (a) göra serien ojämförbar före/efter 2022 och (b) dränka
+# signalen i Ukraina-inflödet. 2021-filen har bara "Asyl"-tabellen (massflykt fanns ej än).
+#
+# NEUTRALITET (integration-kategorins caveat "extra tydliga indikatorer"): kortare asylhandläggning
+# är ett av FÅ migrationsmått där båda politiska poler är överens om riktningen — sökande slipper
+# utdraget limbo OCH systemkostnaden/osäkerheten minskar. Till skillnad från återvändandeärenden
+# ("färre = bättre" förutsätter en omtvistad effektiv-återvändande-ram) bär detta ingen given
+# partipreferens. KVARVARANDE CAVEAT (v0): kvalitet-vs-hastighet (tid kan kortas genom sämre beslut
+# → fler överklaganden) + tiden påverkas delvis av inflödesvolym, ej bara effektivitet. Eftersom D
+# bara tar TECKEN på årsförändringen (väger 10 %, makt-/ansvarsviktas) är detta hanterbart och
+# transparent flaggat.
+#
+# SERIE 2021-2025: 257 → 166 → 198 → 187 → 180 dagar. Inte monoton (genuint diskriminerande): stor
+# förbättring 2021→2022, försämring 2022→2023, förbättringar 2023→2024 och 2024→2025. Verifierad
+# direkt ur de officiella per-års-xlsx-filerna 2026-06-12 (pdfplumber/openpyxl-läsning av "Totalt"-
+# raden). v0 kvarstår tills siffrorna formellt expertgranskats (→v1).
+version: 0
+indicator: asyl_handlaggningstid
+category: integration
+submeasure: migrationssystem
+unit: "dagar (genomsnittlig handläggningstid, avgjorda förstagångsärenden om asyl)"
+source_index: "https://www.migrationsverket.se/Om-Migrationsverket/Statistik/Asyl.html"
+years:
+  2021:
+    value: 257
+    source: "https://www.migrationsverket.se/download/18.2cd2e409193b84c506a33208/1738932748805/Avgjorda_asyl%C3%A4renden_2021_-_Asylum_decisions_2021.xlsx"
+    source_note: "Avgjorda asylarenden 2021, blad 'Totalt, forsta ansokan', rad Totalt: handlaggningstid 257 dagar (12804 avgjorda). Enda asyltabellen (massflykt fanns ej an)."
+  2022:
+    value: 166
+    source: "https://www.migrationsverket.se/download/18.2cd2e409193b84c506a331df/1738932798283/Avgjorda%20asyl%C3%A4renden%202022.xlsx"
+    source_note: "Avgjorda asylarenden 2022, blad 'Totalt, forstagangsarenden', deltabell Asyl, rad Totalt: 166 dagar (14245 avgjorda). Massflykt/Ukraina-deltabellerna (49266@19, 1180@68) exkluderade."
+  2023:
+    value: 198
+    source: "https://www.migrationsverket.se/download/18.2cd2e409193b84c506a331e5/1738932844523/Avgjorda%20asyl%C3%A4renden%202023.xlsx"
+    source_note: "Avgjorda asylarenden 2023, blad 'Totalt, forstagangsarenden', deltabell Asyl, rad Totalt: 198 dagar (15905 avgjorda). Massflykt/Ukraina (11864@27, 388@287) exkluderade."
+  2024:
+    value: 187
+    source: "https://www.migrationsverket.se/download/18.2cd2e409193b84c506a33212/1738932893318/Avgjorda%20asyl%C3%A4renden%202024.xlsx"
+    source_note: "Avgjorda asylarenden 2024, blad 'Totalt, forstagangsarenden', deltabell Asyl, rad Totalt: 187 dagar (11456 avgjorda). Massflykt/Ukraina (10743@41, 1235@412) exkluderade."
+  2025:
+    value: 180
+    source: "https://www.migrationsverket.se/download/18.2cd2e409193b84c506a23068/1767963595142/Avgjorda%20asyl%C3%A4renden%202025.xlsx"
+    source_note: "Avgjorda asylarenden 2025, blad 'Totalt, forstagangsarenden', deltabell Asyl, rad Totalt: 180 dagar (8339 avgjorda). Massflykt/Ukraina (9888@26, 304@165) exkluderade."

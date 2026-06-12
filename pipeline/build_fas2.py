@@ -125,6 +125,19 @@ KOLADA_KPIS = [
      "submeasure": "omsorg_personal", "unit": "% (brukarbedömning hemtjänst, helhetssyn)",
      "expect": {"min_points": 8, "value_range": [70, 95], "min_latest_year": 2024,
                 "anchors": {"2015": 89.0}}},
+    # mellanmansklig_tillit (integration -> normer_tillit, riktning up): andel som svarar att man i
+    # allmänhet kan lita på människor ("Till stor del"/"Helt och hållet"), SCB:s medborgarundersökning
+    # via Kolada N00666. D-aktiverad 2026-06-12 (Spår D integration, v0) -> ger normer_tillit sin
+    # FÖRSTA D-serie (social sammanhållning, utfallssida). VAL AV KONSTRUKT: N00666 mäter MELLAN-
+    # MÄNSKLIG (generaliserad) tillit — rätt fit för "Normer, tillit och samhällsgemenskap" — till
+    # skillnad från N00665 (förtroende för riksdagens politiker, fel konstrukt + överlappar demokratis
+    # institutionstillit). 2021-2025 (5 år; ny enkätmetodik 2021 -> serien startar där). Nästan platt
+    # (61,2-62,9) -> D ≈ neutralt; tunt 5-årsunderlag accepterat (sign-off 2026-06-12). D tar bara
+    # TECKEN, väger 10 %. Ny kanonisk indikator (D-only).
+    {"kpi": "N00666", "indicator": "mellanmansklig_tillit", "category": "integration",
+     "submeasure": "normer_tillit", "unit": "% (kan generellt lita på människor, SCB medborgarunders.)",
+     "expect": {"min_points": 5, "value_range": [50, 75], "min_latest_year": 2025,
+                "anchors": {"2021": 62.9}}},
 ]
 
 

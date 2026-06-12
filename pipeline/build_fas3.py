@@ -19,6 +19,7 @@ from .sources import (
     energimyndigheten,
     forsvarsmakten,
     kriminalvarden,
+    migrationsverket,
     polisen,
     regeringen,
     sverigesmiljomal,
@@ -156,6 +157,25 @@ def main() -> None:
     span = f"{brows[0]['period']}..{brows[-1]['period']}" if brows else "-"
     print(f"Sverigesmiljomal (transkr.) -> klimat   hackande_faglar_skog: {n:4} obs ({span})")
 
+    # Migrationsverket: genomsnittlig handläggningstid för avgjorda förstagångsärenden om asyl
+    # (integration, delpoäng D) — transkriberad config (config/asyl_handlaggningstid.yaml, deltabellen
+    # Asyl exkl. massflykt; reproducerbar via tools/asyl_handlaggningstid_verify). Öppnar submåttet
+    # migrationssystem. source_ref 'migrationsverket:' ligger utanför scb/kolada-purge-scope.
+    mrows = migrationsverket.build_asyl_handlaggningstid_observations()
+    unlisted = {r["indicator"] for r in mrows} - set(migrationsverket.INDICATORS)
+    if unlisted:
+        raise ValueError(f"Migrationsverket emitterar indikatorer utanför INDICATORS: {sorted(unlisted)}")
+    for ind in migrationsverket.INDICATORS:
+        expectations.check_series(
+            [r for r in mrows if r["indicator"] == ind], migrationsverket.EXPECT.get(ind),
+            f"Migrationsverket {ind}",
+        )
+    # Full-replace av migrationsverket-rader (transkriberad, komplett serie).
+    con.execute("DELETE FROM observations WHERE source_ref LIKE 'migrationsverket:%'")
+    n = warehouse.upsert(con, "observations", mrows)
+    span = f"{mrows[0]['period']}..{mrows[-1]['period']}" if mrows else "-"
+    print(f"Migrationsverket (transkr.) -> integration asyl_handlaggningstid: {n:4} obs ({span})")
+
     # V-Dem (Göteborgs universitet): Sveriges demokrati-/institutionsindex (demokrati, delpoäng D)
     # — fyra index ur V-Dem v16 (config/vdem_demokrati.yaml; reproducerbart via tools/vdem_transcribe).
     # Öppnar fyra D-tomma demokrati-submått. Svensk akademisk källa (se config-headern; sign-off
@@ -189,6 +209,8 @@ def main() -> None:
     print("   klimat: hackande_faglar_skog (Svensk Fågeltaxering) matar nu biologisk_mangfald-D.")
     print("   demokrati: rattsstat/yttrandefrihet/personlig frihet/transparens matas nu av V-Dem")
     print("       (4 index, Göteborgs univ.) + förtroende (Brå NTU); korruption-D allowlistad (intl).")
+    print("   integration: normer_tillit (SCB medborgarunders. N00666, fas 2) + migrationssystem")
+    print("       (asyl_handlaggningstid, Migrationsverket) matar nu D; segregation/utsatta allowlistade.")
     con.close()
 
 
