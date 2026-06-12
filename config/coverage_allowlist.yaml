@@ -34,7 +34,12 @@ allowlist:
   # brottsutsatthet (NTU 3A) + upplevd_otrygghet (NTU 4A:1) inlästa via build_fas2 -> ej allowlistade.
   # uppklaringsgrad (personuppklaringsprocent, Handlagda brott 10La) inläst via build_fas2 -> ej allowlistad.
   # skjutningar_sprangningar (Polisens skjutningar + sprängningar, config/skjutningar_sprangningar.yaml) inläst via build_fas3 -> ej allowlistad.
-  - { category: trygghet, indicator: handlaggningstid,         reason: "future: Brå/Åklagarmyndigheten genomströmningstider — publiceras i statistikdatabasen (interaktiv) / PDF, ingen ren maskinläsbar årsserie hittad (sonderat 2026-06-03)." }
+  # handlaggningstid inläst via Domstolsverket DOMstat 01_Verksamhetsmal_TR (75-percentil brottmål
+  # exkl. förtursmål, tingsrätt, 2007-2025, PxWeb v1, build_fas3) -> ej allowlistad fr.o.m. 2026-06-12
+  # (Spår D kväll). Förra sonderingens vägg gällde Brå/ÅM — domstolsledet var förbisett. SOS-källa.
+  # MÅTTVAL (v0, flaggad): 75-percentil (regeringens eget verksamhetsmålsmått); exkl. förtursmål ->
+  # snabbspårsreformer biasar kvarvarande mått UPPÅT (icke-smickrande bias, ej smickrande);
+  # domstolsledet — uppströms polis-/åklagartid fångas delvis av uppklaringsgrad (samma submått).
   - { category: trygghet, indicator: kommunalt_brottsforebyggande_arbete, reason: "B-only: ny B-indikator 2026-06-07 (§5.7, lagen 2023:196 om kommuners brottsförebyggande ansvar). Ingen nationell maskinläsbar årsserie för kommunal brottsförebyggande kapacitet (Brå publicerar ej KPI). version 0, sign-off." }
   # aterfall_i_brott inläst via Kriminalvården KOS 2025 Tabell 6.1 (config/aterfall_i_brott.yaml,
   # transkriberade råtal 1994-2022, build_fas3) -> ej allowlistad fr.o.m. 2026-06-09 (Spår D färsk

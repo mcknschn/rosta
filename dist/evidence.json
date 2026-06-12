@@ -2764,6 +2764,101 @@
     "source_name": "SCB",
     "statement": "utslappsintensitet = 8.74 (klimat, 2024)."
   },
+  "claim:observed_result:obs:domstolsverket:handlaggningstid:2007": {
+    "kind": "claim",
+    "source_name": "domstolsverket",
+    "statement": "handlaggningstid = 5.3 (trygghet, 2007)."
+  },
+  "claim:observed_result:obs:domstolsverket:handlaggningstid:2008": {
+    "kind": "claim",
+    "source_name": "domstolsverket",
+    "statement": "handlaggningstid = 5.0 (trygghet, 2008)."
+  },
+  "claim:observed_result:obs:domstolsverket:handlaggningstid:2009": {
+    "kind": "claim",
+    "source_name": "domstolsverket",
+    "statement": "handlaggningstid = 4.9 (trygghet, 2009)."
+  },
+  "claim:observed_result:obs:domstolsverket:handlaggningstid:2010": {
+    "kind": "claim",
+    "source_name": "domstolsverket",
+    "statement": "handlaggningstid = 4.7 (trygghet, 2010)."
+  },
+  "claim:observed_result:obs:domstolsverket:handlaggningstid:2011": {
+    "kind": "claim",
+    "source_name": "domstolsverket",
+    "statement": "handlaggningstid = 4.9 (trygghet, 2011)."
+  },
+  "claim:observed_result:obs:domstolsverket:handlaggningstid:2012": {
+    "kind": "claim",
+    "source_name": "domstolsverket",
+    "statement": "handlaggningstid = 4.6 (trygghet, 2012)."
+  },
+  "claim:observed_result:obs:domstolsverket:handlaggningstid:2013": {
+    "kind": "claim",
+    "source_name": "domstolsverket",
+    "statement": "handlaggningstid = 4.6 (trygghet, 2013)."
+  },
+  "claim:observed_result:obs:domstolsverket:handlaggningstid:2014": {
+    "kind": "claim",
+    "source_name": "domstolsverket",
+    "statement": "handlaggningstid = 4.5 (trygghet, 2014)."
+  },
+  "claim:observed_result:obs:domstolsverket:handlaggningstid:2015": {
+    "kind": "claim",
+    "source_name": "domstolsverket",
+    "statement": "handlaggningstid = 4.3 (trygghet, 2015)."
+  },
+  "claim:observed_result:obs:domstolsverket:handlaggningstid:2016": {
+    "kind": "claim",
+    "source_name": "domstolsverket",
+    "statement": "handlaggningstid = 4.1 (trygghet, 2016)."
+  },
+  "claim:observed_result:obs:domstolsverket:handlaggningstid:2017": {
+    "kind": "claim",
+    "source_name": "domstolsverket",
+    "statement": "handlaggningstid = 4.0 (trygghet, 2017)."
+  },
+  "claim:observed_result:obs:domstolsverket:handlaggningstid:2018": {
+    "kind": "claim",
+    "source_name": "domstolsverket",
+    "statement": "handlaggningstid = 4.0 (trygghet, 2018)."
+  },
+  "claim:observed_result:obs:domstolsverket:handlaggningstid:2019": {
+    "kind": "claim",
+    "source_name": "domstolsverket",
+    "statement": "handlaggningstid = 3.9 (trygghet, 2019)."
+  },
+  "claim:observed_result:obs:domstolsverket:handlaggningstid:2020": {
+    "kind": "claim",
+    "source_name": "domstolsverket",
+    "statement": "handlaggningstid = 4.0 (trygghet, 2020)."
+  },
+  "claim:observed_result:obs:domstolsverket:handlaggningstid:2021": {
+    "kind": "claim",
+    "source_name": "domstolsverket",
+    "statement": "handlaggningstid = 4.2 (trygghet, 2021)."
+  },
+  "claim:observed_result:obs:domstolsverket:handlaggningstid:2022": {
+    "kind": "claim",
+    "source_name": "domstolsverket",
+    "statement": "handlaggningstid = 3.9 (trygghet, 2022)."
+  },
+  "claim:observed_result:obs:domstolsverket:handlaggningstid:2023": {
+    "kind": "claim",
+    "source_name": "domstolsverket",
+    "statement": "handlaggningstid = 3.5 (trygghet, 2023)."
+  },
+  "claim:observed_result:obs:domstolsverket:handlaggningstid:2024": {
+    "kind": "claim",
+    "source_name": "domstolsverket",
+    "statement": "handlaggningstid = 3.1 (trygghet, 2024)."
+  },
+  "claim:observed_result:obs:domstolsverket:handlaggningstid:2025": {
+    "kind": "claim",
+    "source_name": "domstolsverket",
+    "statement": "handlaggningstid = 3.0 (trygghet, 2025)."
+  },
   "claim:observed_result:obs:energimyndigheten:fossil_energianvandning:1970": {
     "kind": "claim",
     "source_name": "energimyndigheten",

@@ -16,6 +16,7 @@ from datetime import date
 
 from . import derived, expectations, warehouse
 from .sources import (
+    domstolsverket,
     energimyndigheten,
     forsvarsmakten,
     kriminalvarden,
@@ -47,6 +48,25 @@ def main() -> None:
     n = warehouse.upsert(con, "observations", rows)
     span = f"{rows[0]['period']}..{rows[-1]['period']}" if rows else "-"
     print(f"Energimyndigheten EN0202_8 -> klimat       fossil_energianvandning: {n:4} obs ({span})")
+
+    # Domstolsverket DOMstat (PxWeb v1, samma dialekt som Energimyndigheten): handläggningstid vid
+    # tingsrätt, 75-percentil i månader, brottmål exkl. förtursmål, alla tingsrätter (trygghet,
+    # delpoäng D — submåttet rattsvasendets_effektivitet). Måttval dokumenterat i modulen
+    # (75-percentil; exkl.-förtursmål-biasen är icke-smickrande; domstolsledet — uppströms
+    # polis-/åklagartid fångas delvis av uppklaringsgrad). v0, FLAGGAD. source_ref
+    # 'domstolsverket:' ligger utanför scb/kolada-purge-scope.
+    dvrows = domstolsverket.fetch_handlaggningstid(ra)
+    unlisted = {r["indicator"] for r in dvrows} - set(domstolsverket.INDICATORS)
+    if unlisted:
+        raise ValueError(f"Domstolsverket emitterar indikatorer utanför INDICATORS: {sorted(unlisted)}")
+    for ind in domstolsverket.INDICATORS:
+        expectations.check_series(
+            [r for r in dvrows if r["indicator"] == ind], domstolsverket.EXPECT.get(ind),
+            f"Domstolsverket {ind}",
+        )
+    n = warehouse.upsert(con, "observations", dvrows)
+    span = f"{dvrows[0]['period']}..{dvrows[-1]['period']}" if dvrows else "-"
+    print(f"Domstolsverket 01_Verksamhetsmal_TR -> trygghet  handlaggningstid: {n:4} obs ({span})")
 
     # Härledda indikatorer (gap/kvot ur verifierade serier) — source_ref 'derived:' ligger utanför
     # build_fas2:s scb/kolada-purge-scope, så raderna rensas aldrig av SCB/Kolada-bygget.
@@ -228,7 +248,8 @@ def main() -> None:
     print("   forsvar: personal_varnpliktiga + personalstyrka_kontinuerligt (FM ÅR) + ukraina_stod")
     print("       + forsvarsvilja (MPF Opinioner -> civil_beredskap) matar D; materiel/leverans")
     print("       kvalitativa/sekretess (allowlistade). 3/5 submått med D.")
-    print("   trygghet: aterfall_i_brott (Kriminalvården KOS) matar nu D.")
+    print("   trygghet: aterfall_i_brott (Kriminalvården KOS) + handlaggningstid (Domstolsverket")
+    print("       DOMstat 01_Verksamhetsmal_TR) matar nu D.")
     print("   klimat: hackande_faglar_skog (Svensk Fågeltaxering) matar nu biologisk_mangfald-D.")
     print("   demokrati: rattsstat/yttrandefrihet/personlig frihet/transparens matas nu av V-Dem")
     print("       (4 index, Göteborgs univ.) + förtroende (Brå NTU); korruption-D allowlistad (intl).")

@@ -1,11 +1,11 @@
 {
   "totals": {
     "C": 3.077,
-    "KD": 3.152,
+    "KD": 3.153,
     "L": 3.389,
-    "M": 3.321,
-    "MP": 3.112,
-    "S": 3.683,
+    "M": 3.322,
+    "MP": 3.113,
+    "S": 3.684,
     "SD": 2.727,
     "V": 2.621
   },
@@ -63,7 +63,7 @@
       ]
     },
     "C/trygghet": {
-      "score": 3.102,
+      "score": 3.101,
       "flags": [
         "A_a1_active",
         "B_coverage_3/6",
@@ -121,7 +121,7 @@
       ]
     },
     "KD/trygghet": {
-      "score": 3.387,
+      "score": 3.391,
       "flags": [
         "A_a1_active",
         "B_coverage_4/6",
@@ -180,7 +180,7 @@
       ]
     },
     "L/trygghet": {
-      "score": 3.429,
+      "score": 3.432,
       "flags": [
         "A_a1_active",
         "B_coverage_4/6",
@@ -238,7 +238,7 @@
       ]
     },
     "M/trygghet": {
-      "score": 3.691,
+      "score": 3.695,
       "flags": [
         "A_a1_active",
         "B_coverage_3/6",
@@ -299,7 +299,7 @@
       ]
     },
     "MP/trygghet": {
-      "score": 2.497,
+      "score": 2.5,
       "flags": [
         "A_a1_active",
         "B_coverage_5/6",
@@ -357,7 +357,7 @@
       ]
     },
     "S/trygghet": {
-      "score": 2.903,
+      "score": 2.912,
       "flags": [
         "A_a1_active",
         "B_coverage_4/6",
@@ -415,7 +415,7 @@
       ]
     },
     "SD/trygghet": {
-      "score": 3.248,
+      "score": 3.253,
       "flags": [
         "A_a1_active",
         "B_coverage_3/6",

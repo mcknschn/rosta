@@ -25,7 +25,7 @@
 
 Rankingen drevs vid backloggens start mest av **A (aktivitet) + C (makt)**, eftersom **B krymps
 mot neutralt** vid tunn täckning och D då var "ej tillämplig" i 21 av 56 celler. *(Uppdaterat
-2026-06-12: D matas nu i **alla 7 kategorier** — 38/67 indikatorer, 28/35 undermått — och krymps
+2026-06-12: D matas nu i **alla 7 kategorier** — 39/67 indikatorer, 28/35 undermått — och krymps
 sedan 2026-06-12 efter **viktad undermåttsbredd** i stället för att renormalisera bort saknad
 bredd, se [done/d_coverage_krympning_spec.md](done/d_coverage_krympning_spec.md). B är utrullad
 med ≥2 undermått per kategori. Obalansen är alltså i stort åtgärdad; kvarvarande tyngdpunkt är
@@ -287,7 +287,7 @@ högre coverage → mindre B-krympning → B får faktiskt genomslag.
 ### Levererat (2026-06-07 … 2026-06-12) — sammanfattning, detaljer i trackern
 
 - ✅ **Spår D-expansionen** (tracker: [spar_D_datatackning.md](spar_D_datatackning.md), svep/natt-
-  rapporter arkiverade i [done/](done/)): 24/56 → **38/67 inlästa indikatorer, 28/35 undermått,
+  rapporter arkiverade i [done/](done/)): 24/56 → **39/67 inlästa indikatorer, 28/35 undermått,
   alla 7 kategorier** — bl.a. försvar 1/5 → 3/5 (forsvarsvilja, personalstyrka, ukraina_stod),
   demokrati 1/5 → 5/5 (V-Dem-index ×4), integration 5/5, aterfall_i_brott, overlevnad_svar_sjukdom,
   hackande_faglar_skog. Allt v0, per-indikator `data:`-commits.
@@ -339,7 +339,7 @@ riktning) och annuella, så de matar `category_d` automatiskt.
 | Indikator | Kategori → undermått | Utfall |
 |-----------|--------------------|--------|
 | ~~`uppklaringsgrad`~~ ✅ | trygghet → rättsväsendets effektivitet | inläst 2026-06-03 (Brå 10La) |
-| `handlaggningstid` 🔴 | trygghet → rättsväsendets effektivitet | vägg (sonderat 2026-06-03: interaktiv DB/PDF, ingen maskinläsbar serie) — allowlistad `future` |
+| ~~`handlaggningstid`~~ ✅ | trygghet → rättsväsendets effektivitet | inläst 2026-06-12 (Domstolsverket DOMstat 01_Verksamhetsmal_TR, PxWeb v1 — 2026-06-03-väggen gällde Brå/ÅM, domstolsledet var förbisett) |
 | ~~`aterfall_i_brott`~~ ✅ | trygghet → återfall/kriminalvård | inläst 2026-06-09 (Kriminalvården KOS Tabell 6.1, transkriberade råtal) |
 | ~~`skjutningar_sprangningar`~~ ✅ | trygghet → grov brottslighet | inläst 2026-06-03 (Polisen, transkriberad) |
 | ~~`overlevnad_svar_sjukdom`~~ ✅ | välfärd → vård tillgänglighet | inläst 2026-06-08 (Kolada U70471, 30-dagarsöverlevnad) |

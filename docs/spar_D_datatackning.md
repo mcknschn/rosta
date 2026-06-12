@@ -42,16 +42,17 @@ nationell regeringsmakt i fönstret → strukturellt korrekt, ej ett gap). Model
 
 ---
 
-## 2. Nuläge (verifierat via `python -m pipeline.tools.coverage_report`, 2026-06-09)
+## 2. Nuläge (verifierat via `python -m pipeline.tools.coverage_report`, 2026-06-12)
 
-**38 D-serier inlästa** (annuell, D-duglig) i **ALLA 7 kategorier** *(56 ursprungliga kanoniska + 11 nya
+**39 D-serier inlästa** (annuell, D-duglig) i **ALLA 7 kategorier** *(56 ursprungliga kanoniska + 11 nya
 kanoniska indikatorer)*. *(24 efter Tier 4; +`overlevnad_svar_sjukdom` +`ukraina_stod` natt 2026-06-08;
 +`brukarnojdhet_hemtjanst` +`utslappsintensitet` djupsvep 2026-06-09; **+6 färsk session 2026-06-09:**
 +`aterfall_i_brott` (trygghet) +`hackande_faglar_skog` (klimat) + 4 V-Dem-index (demokrati);
 **+2 integration 2026-06-12:** +`mellanmansklig_tillit` (SCB medborgarunders. N00666) +`asyl_handlaggningstid`
 (Migrationsverket) → **integration 3/5 → 5/5 undermått med D**; **+2 försvar 2026-06-12:**
 +`forsvarsvilja` (MPF Opinioner → civil_beredskap) +`personalstyrka_kontinuerligt` (FM ÅR) →
-**försvar 2/5 → 3/5 undermått med D**.)* Full logg:
+**försvar 2/5 → 3/5 undermått med D**; **+1 trygghet 2026-06-12 (kväll):** +`handlaggningstid`
+(Domstolsverket DOMstat — 2:a serien i rattsvasendets_effektivitet).)* Full logg:
 [spar_D_svep_2026-06-08.md §5](done/spar_D_svep_2026-06-08.md) (byggkö exekverad) + [nattrapport](done/spar_D_nattrapport_2026-06-08.md).
 **aterfall_kriminalvard + biologisk_mangfald + alla 4 D-tomma demokrati-submått + normer_tillit + migrationssystem öppnade → ingen kategori D-tom på submåttsnivå utom enstaka.**
 
@@ -59,7 +60,7 @@ kanoniska indikatorer)*. *(24 efter Tier 4; +`overlevnad_svar_sjukdom` +`ukraina
 |----------|:---:|---|
 | ekonomi | **4 / 4 D-bara¹** | sysselsattning, arbetsloshet, bnp_per_capita, produktivitet, **naringslivets_investeringar**, **hushallens_reala_disponibla_inkomst** |
 | valfard | **3 / 4** | vardkoer, overlevnad_svar_sjukdom, skolresultat, behoriga_larare, **brukarnojdhet_hemtjanst** (omsorg_personal öppnat, djupsvep) |
-| trygghet | **4 / 5** | dodligt_vald, skjutningar_sprangningar, brottsutsatthet, upplevd_otrygghet, uppklaringsgrad, **aterfall_i_brott** (aterfall_kriminalvard öppnat, KOS, färsk session) |
+| trygghet | **4 / 5** | dodligt_vald, skjutningar_sprangningar, brottsutsatthet, upplevd_otrygghet, uppklaringsgrad, **handlaggningstid** (Domstolsverket DOMstat, 2:a serien i rattsvasendets_effektivitet — trygghet 2026-06-12), **aterfall_i_brott** (aterfall_kriminalvard öppnat, KOS, färsk session) |
 | forsvar | **3 / 5** | personal_varnpliktiga, ukraina_stod (nato_ukraina), **personalstyrka_kontinuerligt** (FM ÅR, 2:a militar_formaga-serien), **forsvarsvilja** (civil_beredskap öppnat, MPF Opinioner — försvar 2026-06-12) |
 | klimat | **4 / 5** | territoriella_utslapp, konsumtionsbaserade_utslapp, fossil_energianvandning, **utslappsintensitet** (kostnadseff., djupsvep), **hackande_faglar_skog** (biologisk_mangfald öppnat, Svensk Fågeltaxering, färsk session) |
 | integration | **5 / 5** | sysselsattningsgap_inrikes_utrikes, sjalvforsorjningsgrad, bidragsberoende, trangboddhet, sfi_sprakkunskaper, **mellanmansklig_tillit** (normer_tillit öppnat, SCB medborgarunders. N00666), **asyl_handlaggningstid** (migrationssystem öppnat, Migrationsverket — integration 2026-06-12) |
@@ -90,13 +91,13 @@ inget ansvar att attribuera. Det är **korrekt och rättvist**, inte ett gap.
 
 ### Sammanfattning (hur stor täckning vi har)
 
-- **38 / 67 indikatorer** har en D-serie (annuell up/down som matar `category_d`). *(+2 natt 2026-06-08,
+- **39 / 67 indikatorer** har en D-serie (annuell up/down som matar `category_d`). *(+2 natt 2026-06-08,
   +2 djupsvep, +6 färsk session 2026-06-09: aterfall_i_brott, hackande_faglar_skog, 4 V-Dem-index;
   **+2 integration 2026-06-12: mellanmansklig_tillit (SCB medborgarunders. N00666) + asyl_handlaggningstid
   (Migrationsverket); +2 försvar 2026-06-12: forsvarsvilja (MPF Opinioner) + personalstyrka_kontinuerligt
-  (FM ÅR).**)*
+  (FM ÅR); +1 trygghet 2026-06-12 (kväll): handlaggningstid (Domstolsverket DOMstat).**)*
 - **+4 byggbara/öppna** (🟡; realloner, elprisvolatilitet, effektbrist, utslappsminskning_per_krona) →
-  **realistiskt tak ≈ 42/67**; resten är **3 target** (⚪) + **22 genuina väggar** (🔴) + 1 undermått utan
+  **realistiskt tak ≈ 43/67**; resten är **3 target** (⚪) + **21 genuina väggar** (🔴) + 1 undermått utan
   indikator (`industriell_konkurrenskraft`). *(Internationella försvarskällor testade 2026-06-12: SIPRI
   vapenimport-TIV källan tillåten men årssignal-brus → vägg; SIPRI/NATO milex = pengar → vägg.)*
 - **28 / 35 undermått** har minst en D-serie. *(+10 sedan 2026-06-07: nato_ukraina, omsorg_personal,
@@ -108,12 +109,12 @@ inget ansvar att attribuera. Det är **korrekt och rättvist**, inte ett gap.
 |----------|:---:|:---:|:---:|:---:|:---:|:---:|
 | Ekonomi och jobb | 6 | 1 | 0 | 2 | 9 | 4/6 (4/4 D-bara) |
 | Välfärd | **5** | 0 | 5 | 0 | 10 | **3/4** |
-| Lag och trygghet | **6** | 0 | **2** | 0 | 8 | **4/5** |
+| Lag och trygghet | **7** | 0 | **1** | 0 | 8 | **4/5** |
 | Försvar och beredskap | **4** | 0 | 5 | 1 | 10 | **3/5** |
 | Klimat, miljö och energi | **5** | 3 | 1 | 0 | 9 | **4/5** |
 | Integration och social sammanhållning | **7** | 0 | 4 | 0 | **11** | **5/5** |
 | Frihet, demokrati och institutioner | **5** | 0 | **5** | 0 | 10 | **5/5** |
-| **SUMMA** | **38** | **4** | **22** | **3** | **67** | **28/35** |
+| **SUMMA** | **39** | **4** | **21** | **3** | **67** | **28/35** |
 
 ¹ klimat har 5 undermått men `industriell_konkurrenskraft` saknar indikator (ingen rad i de 63);
   `biologisk_mangfald` är öppnat 2026-06-09 → klimat 4/5 undermått med D.
@@ -146,7 +147,7 @@ inget ansvar att attribuera. Det är **korrekt och rättvist**, inte ett gap.
 | Lag och trygghet | Utsatthet och upplevd trygghet | `brottsutsatthet` | ned | ✅ byggd | 9 obs · 2016–2024 (Brå NTU) |
 | Lag och trygghet | Utsatthet och upplevd trygghet | `upplevd_otrygghet` | ned | ✅ byggd | 9 obs · 2017–2025 (Brå NTU) |
 | Lag och trygghet | Rättsväsendets effektivitet | `uppklaringsgrad` | upp | ✅ byggd | 10 obs · 2016–2025 |
-| Lag och trygghet | Rättsväsendets effektivitet | `handlaggningstid` | ned | 🔴 vägg | `future`: bara interaktiv DB/PDF, ingen ren årsserie funnen (sonderat) |
+| Lag och trygghet | Rättsväsendets effektivitet | `handlaggningstid` | ned | ✅ byggd | Domstolsverket DOMstat 01_Verksamhetsmal_TR (PxWeb v1), 75-percentil brottmål exkl. förtursmål vid tingsrätt, 19 obs 2007–2025 = 5,3→3,0 mån (trygghet 2026-06-12 kväll — förra väggen gällde Brå/ÅM, domstolsledet var förbisett; exkl.-förtursmål-bias icke-smickrande) |
 | Lag och trygghet | Förebyggande arbete | `kommunalt_brottsforebyggande_arbete` | upp | 🔴 vägg | `B-only`: ingen nationell KPI för kommunal kapacitet |
 | Lag och trygghet | Återfall och kriminalvård | `aterfall_i_brott` | ned | ✅ byggd | Kriminalvården KOS 2025 Tabell 6.1 (råtal→andel), 29 obs 1994–2022 (färsk session — **öppnade aterfall_kriminalvard**; KOS-tabellen gav råtalen, ingen Excel-bilaga behövdes) |
 | Försvar och beredskap | Militär förmåga | `personal_varnpliktiga` | upp | ✅ byggd | 8 obs · 2018–2025 (FM ÅR, transkriberad — Tier 4) |
@@ -276,7 +277,9 @@ Listade här för fullständighet så de inte återöppnas oavsiktligt. Skäl i 
   dessa gamla kvalitativa indikatorer förblir stängda som B-/visningsindikatorer.)*
 - **`no_api`** (ingen maskinläsbar årsserie): `skillnader_mellan_skolor`, `personalomsattning_omsorg`,
   `valfardsbrottslighet`, `hotade_arter_naturforlust`, `skolresultat_utsatta_omraden`, `segregation`.
-- **`future`/interaktiv DB** (ingen ren årsserie funnen): `handlaggningstid`.
+- ~~**`future`/interaktiv DB**: `handlaggningstid`~~ — ✅ ÅTERÖPPNAD OCH BYGGD 2026-06-12 (kväll):
+  väggen gällde Brå/ÅM-ledet; Domstolsverkets DOMstat (SOS) bär en ren PxWeb-årsserie för
+  domstolsledet (se §2.1 + §7).
 - **`low_value`/inkompatibel**: `vard_i_tid` (dubblerar vardkoer, avslutad 2023);
   `overlevnad`-cancer-KPI N79196 (kvinkennial → kräver annuellt alternativ, se Tier 2).
 - **B-only-indikatorer** (utfallsserie saknas, bidrar bara till B): `kommunalt_brottsforebyggande_arbete`,
@@ -356,6 +359,43 @@ Spår D anses **färdigt för arkivering** när:
 ## 7. Leveranslogg (append per leverans)
 
 > Format: datum · indikator · kategori→submått · källa · verifiering · betygseffekt · flagga/version.
+
+### ✅ 2026-06-12 (kväll) — Spår D trygghet: `handlaggningstid` byggd, trygghet-väggen var fel led (v0, FLAGGAD)
+
+**1 bygge, 1 ny D-serie; coverage 38/67 → 39/67 inlästa; undermått oförändrat 28/35** (rattsvasendets_
+effektivitet hade redan uppklaringsgrad — detta är djup, inte bredd: 2:a serien + 19 konsekutiva år).
+
+1. **`handlaggningstid`** (trygghet → rattsvasendets_effektivitet, ned): handläggningstid vid tingsrätt,
+   **75:e percentilen i månader**, **brottmål exkl. förtursmål**, alla tingsrätter — **Domstolsverket,
+   Officiell domstolsstatistik (SOS), statistikdatabasen DOMstat**, tabell `01_Verksamhetsmal_TR.px`
+   (PxWeb v1, samma dialekt som Energimyndigheten: POST json-query → json-stat2, årtal ur tids-
+   dimensionens category.label). 19 obs 2007–2025 = 5,3/5,0/4,9/4,7/4,9/4,6/4,6/4,5/4,3/4,1/4,0/4,0/
+   3,9/4,0/4,2/3,9/3,5/3,1/3,0. **Korrigering av tidigare antagande:** allowlist-väggen (`future`,
+   sonderat 2026-06-03) gällde **Brå/Åklagarmyndighetens** genomströmningstider (interaktiv DB/PDF) —
+   **domstolsledet var förbisett**; Domstolsverkets DOMstat bär en ren maskinläsbar SOS-årsserie.
+   **MÅTTVAL (dokumenterat i adaptern):** (a) 75-percentilen = regeringens/Domstolsverkets eget
+   verksamhetsmålsmått (mål 5 mån), robust mot extremmål; (b) exkl. förtursmål (häktade/15–17-åringar)
+   → snabbspårsreformer som flyttar mål till förtur biasar det KVARVARANDE måttet UPPÅT — en icke-
+   smickrande bias, inte en som belönar sittande regering; (c) serien mäter DOMSTOLSLEDET — uppströms
+   polis-/åklagartid fångas delvis av syskonindikatorn uppklaringsgrad i samma submått. Ny
+   `domstolsverket`-adapter (`pipeline/sources/domstolsverket.py`) + källpost i sources.yaml.
+
+**Verifiering:** live-extraktion 2026-06-12 matchar publicerade värden exakt för alla 19 år (ankare
+2024=3,1 i drift-skyddet, expectations min_points 19 / range [2,8] / min_latest_year 2025). Oberoende
+attributionssanity (lag 1 år): 2021→2022 4,2→3,9 förbättring → år 2021 = S ≈1,0/MP ≈0,92/C+L ≈0,46 ✓;
+2023→2024 3,5→3,1 förbättring → år 2023 = M/KD/L 1,0 + SD 0,5 (Tidö) ✓; 2019→2020 3,9→4,0 försämring →
+år 2019 = S/MP (+C/L stöd) ✓. Serien föll mest under BÅDA regeringstyperna. Golden-test
+(`tests/test_source_domstolsverket.py`, pinnade percentiler + årtal-ej-koder + hård-fail-dimensionsgrind
++ radform); modulen registrerad i `test_fas3_gate._ingested()`; hela offline-sviten grön (244 passed,
+4 skipped); coverage-gaten håller (`coverage_report`: handlaggningstid ✓A, 19 obs 2007..2025).
+
+**Betygseffekt (score_diff):** endast **trygghet**-celler rör sig, alla svagt UPP (förbättringsåren
+dominerar för båda blocken): S +0,009 · SD +0,005 · KD +0,004 · M +0,004 · L +0,003 · MP +0,003 ·
+C ±0,000 (stödåren 2019–2021 nettar ~0). Totaler ≤0,001 (endast S +0,001). **Ranking OFÖRÄNDRAD**
+(S>L>M>KD>MP>C>SD>V). V orörd (D_not_applicable). `dist/` omräknat + snapshot re-baselinad.
+
+**Flaggor/version:** v0 (FLAGGAD — kräver mänsklig granskning; måttvals-caveats ovan: percentilval,
+förtursmåls-exklusion, domstolsledet). v0 → v1 vid expertgranskning.
 
 ### ✅ 2026-06-12 — Spår D försvar: +2 D-serier → försvar 3/5 undermått, 4 D-indikatorer (v0, FLAGGADE)
 

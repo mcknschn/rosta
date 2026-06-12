@@ -297,8 +297,8 @@
       },
       "trygghet": {
         "ci": [
-          2.708,
-          3.496
+          2.707,
+          3.495
         ],
         "claim_refs": [
           "claim:action:C:trygghet:motioner",
@@ -317,7 +317,7 @@
           "A": 3.571,
           "B": 3.75,
           "C": 0.714,
-          "D": 2.536
+          "D": 2.53
         },
         "confidence": {
           "A": "high",
@@ -331,7 +331,7 @@
           "A_a1_active",
           "D_coverage_85/100"
         ],
-        "score": 3.102
+        "score": 3.101
       },
       "valfard": {
         "ci": [
@@ -567,8 +567,8 @@
       },
       "trygghet": {
         "ci": [
-          2.948,
-          3.825
+          2.953,
+          3.83
         ],
         "claim_refs": [
           "claim:action:KD:trygghet:motioner",
@@ -587,7 +587,7 @@
           "A": 3.071,
           "B": 4.167,
           "C": 2.143,
-          "D": 3.783
+          "D": 3.829
         },
         "confidence": {
           "A": "high",
@@ -602,7 +602,7 @@
           "D_coverage_70/100",
           "D_thin_coverage"
         ],
-        "score": 3.387
+        "score": 3.391
       },
       "valfard": {
         "ci": [
@@ -843,8 +843,8 @@
       },
       "trygghet": {
         "ci": [
-          3.035,
-          3.823
+          3.038,
+          3.825
         ],
         "claim_refs": [
           "claim:action:L:trygghet:motioner",
@@ -864,7 +864,7 @@
           "A": 2.786,
           "B": 4.167,
           "C": 3.571,
-          "D": 3.207
+          "D": 3.233
         },
         "confidence": {
           "A": "high",
@@ -878,7 +878,7 @@
           "A_a1_active",
           "D_coverage_85/100"
         ],
-        "score": 3.429
+        "score": 3.432
       },
       "valfard": {
         "ci": [
@@ -1115,8 +1115,8 @@
       },
       "trygghet": {
         "ci": [
-          3.252,
-          4.13
+          3.257,
+          4.134
         ],
         "claim_refs": [
           "claim:action:M:trygghet:motioner",
@@ -1135,7 +1135,7 @@
           "A": 3.929,
           "B": 3.75,
           "C": 2.857,
-          "D": 3.783
+          "D": 3.829
         },
         "confidence": {
           "A": "high",
@@ -1150,7 +1150,7 @@
           "D_coverage_70/100",
           "D_thin_coverage"
         ],
-        "score": 3.691
+        "score": 3.695
       },
       "valfard": {
         "ci": [
@@ -1393,8 +1393,8 @@
       },
       "trygghet": {
         "ci": [
-          2.103,
-          2.891
+          2.106,
+          2.894
         ],
         "claim_refs": [
           "claim:action:MP:trygghet:motioner",
@@ -1414,7 +1414,7 @@
           "A": 0.0,
           "B": 4.583,
           "C": 4.286,
-          "D": 2.498
+          "D": 2.527
         },
         "confidence": {
           "A": "high",
@@ -1428,7 +1428,7 @@
           "A_a1_active",
           "D_coverage_85/100"
         ],
-        "score": 2.497
+        "score": 2.5
       },
       "valfard": {
         "ci": [
@@ -1675,8 +1675,8 @@
       },
       "trygghet": {
         "ci": [
-          2.509,
-          3.297
+          2.518,
+          3.306
         ],
         "claim_refs": [
           "claim:action:S:trygghet:motioner",
@@ -1697,7 +1697,7 @@
           "A": 1.143,
           "B": 4.167,
           "C": 5.0,
-          "D": 2.376
+          "D": 2.463
         },
         "confidence": {
           "A": "high",
@@ -1711,7 +1711,7 @@
           "A_a1_active",
           "D_coverage_85/100"
         ],
-        "score": 2.903
+        "score": 2.912
       },
       "valfard": {
         "ci": [
@@ -1934,8 +1934,8 @@
       },
       "trygghet": {
         "ci": [
-          2.809,
-          3.687
+          2.814,
+          3.691
         ],
         "claim_refs": [
           "claim:action:SD:trygghet:motioner",
@@ -1951,7 +1951,7 @@
           "A": 3.357,
           "B": 3.75,
           "C": 1.429,
-          "D": 3.783
+          "D": 3.829
         },
         "confidence": {
           "A": "high",
@@ -1966,7 +1966,7 @@
           "D_coverage_70/100",
           "D_thin_coverage"
         ],
-        "score": 3.248
+        "score": 3.253
       },
       "valfard": {
         "ci": [

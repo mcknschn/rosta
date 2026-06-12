@@ -8,7 +8,7 @@ Invarianten "inget tyst gap" hävdas av `tests/test_fas3_gate.py`. Generera aktu
 python -m pipeline.tools.coverage_report
 ```
 
-Per 2026-06-12: **38 / 67 indikatorer inlästa** (D-dugliga, annuell up/down) i **alla 7 kategorier**
+Per 2026-06-12: **39 / 67 indikatorer inlästa** (D-dugliga, annuell up/down) i **alla 7 kategorier**
 (ekonomi, välfärd, klimat, integration, trygghet, försvar, demokrati). **Ingen kategori är längre D-tom.**
 *(17 per 2026-05-31; +2 trygghet 2026-06-03 — uppklaringsgrad + skjutningar/sprängningar; +2 ekonomi
 2026-06-07 — naringslivets_investeringar + hushallens_reala_disponibla_inkomst, Spår D Tier 1;
@@ -22,7 +22,10 @@ KOS), hackande_faglar_skog (klimat, biologisk_mangfald — Svensk Fågeltaxering
 **+2 integration 2026-06-12:** mellanmansklig_tillit (normer_tillit — SCB medborgarunders. N00666) +
 asyl_handlaggningstid (migrationssystem — Migrationsverket). **Integration nu 5/5 undermått med D.**
 **+2 försvar 2026-06-12:** personalstyrka_kontinuerligt (militar_formaga — FM ÅR) + forsvarsvilja
-(civil_beredskap — MPF/MSB Opinioner). **Försvar nu 3/5 undermått med D (2 → 4 D-indikatorer).**)*
+(civil_beredskap — MPF/MSB Opinioner). **Försvar nu 3/5 undermått med D (2 → 4 D-indikatorer).**
+**+1 trygghet 2026-06-12 (Spår D kväll):** handlaggningstid (rattsvasendets_effektivitet —
+Domstolsverket DOMstat 01_Verksamhetsmal_TR, 75-percentil brottmål exkl. förtursmål vid tingsrätt,
+2007–2025). Förra sonderingens vägg gällde Brå/ÅM — domstolsledet var förbisett.)*
 
 Rapporten visar sedan 2026-06-12 även **D-undermåttsbredd** per kategori (viktad icke-target-täckning
 som styr D:s `coverage_shrink`; tunn bredd grindas via `coverage_allowlist.d_thin_breadth_accepted` —
@@ -46,6 +49,7 @@ i dag endast försvar 70/100). Spec: [done/d_coverage_krympning_spec.md](done/d_
 | trygghet | brottsutsatthet | Brå NTU | Tabell 3A | down | 2016–2024² |
 | trygghet | upplevd_otrygghet | Brå NTU | Tabell 4A:1 | down | 2017–2025³ |
 | trygghet | uppklaringsgrad | Brå (Handlagda 10La) | personuppkl.% | up | 2016–2025 |
+| trygghet | handlaggningstid | Domstolsverket DOMstat (PxWeb v1) | 01_Verksamhetsmal_TR (75-perc., brottmål exkl. förtursmål) | down | 2007–2025¹⁷ |
 | trygghet | aterfall_i_brott | Kriminalvården KOS (transkr.) | Tabell 6.1 (råtal→andel) | down | 1994–2022¹⁰ |
 | klimat | territoriella_utslapp | SCB (Naturvårdsverket) | TAB4698 | down | 1990–2024 |
 | klimat | konsumtionsbaserade_utslapp | SCB Miljöräkenskaper | TAB5637 | down | 2008–2023 |
@@ -166,9 +170,21 @@ i dag endast försvar 70/100). Spec: [done/d_coverage_krympning_spec.md](done/d_
   Källkontinuitet SPF→MSB→MPF (myndighetsbyte 2022, samma serie). ⚠ CAVEAT (v0): 2021→2022-hoppet invasions-
   drivet → D tar bara tecknet, väger 10 %. Försvar 2026-06-12, v0.
 
+¹⁷ Handläggningstid vid tingsrätt i månader, **75:e percentilen**, för **brottmål exkl. förtursmål**,
+  alla tingsrätter — **Domstolsverkets statistikdatabas DOMstat** (Officiell domstolsstatistik, SOS),
+  tabell 01_Verksamhetsmal_TR (PxWeb v1, samma dialekt som Energimyndigheten). Öppnar inget nytt
+  submått (rattsvasendets_effektivitet hade redan uppklaringsgrad) men ger andra D-serien + 19
+  konsekutiva år (2007–2025: 5,3 → 3,0). MÅTTVAL (v0, flaggad): (a) 75-percentilen är regeringens/
+  Domstolsverkets eget verksamhetsmålsmått (mål 5 mån) — robust mot extremmål; (b) förtursmål
+  (häktade/15–17-åringar) är exkluderade → snabbspårsreformer som flyttar mål till förtur biasar det
+  kvarvarande måttet UPPÅT (icke-smickrande bias, belönar inte sittande regering); (c) serien mäter
+  DOMSTOLSLEDET — uppströms polis-/åklagartid fångas delvis av syskonindikatorn uppklaringsgrad i
+  samma submått. Förra sonderingens vägg (2026-06-03) gällde Brå/ÅM:s genomströmningsstatistik —
+  domstolsledet var förbisett. v0, kräver mänsklig granskning.
+
 ## Allowlistade gap (skäl i `config/coverage_allowlist.yaml`)
 
-29 indikatorer saknar ännu en officiell svensk årsserie. Sammanfattning per skältyp:
+28 indikatorer saknar ännu en officiell svensk årsserie. Sammanfattning per skältyp:
 
 - **target** (ej up/down, ej D-duglig): inflation, statsskuld_underskott, forsvarsanslag_andel_bnp.
 - **derived** (kräver flera serier/beräkning): elprisvolatilitet, effektbrist,
@@ -180,9 +196,11 @@ i dag endast försvar 70/100). Spec: [done/d_coverage_krympning_spec.md](done/d_
   ej SOM; demokratis första D-serie, Spår D Tier 4.)
 - **future** (källa finns, adapter ej byggd): vard_i_tid,
   realloner (kräver Medlingsinstitutets konjunkturlönestatistik — SCB:s API saknar en ren helekonomi-
-  löneserie, sonderat 2026-05-31), och Brås handläggningstabell (handlaggningstid). (uppklaringsgrad
+  löneserie, sonderat 2026-05-31). (uppklaringsgrad
   + skjutningar_sprangningar inlästa 2026-06-03; **aterfall_i_brott inläst 2026-06-09 via Kriminalvården
   KOS Tabell 6.1** — Brås PDF-väg behövdes ej, KOS ger råtalen;
+  **handlaggningstid inläst 2026-06-12 via Domstolsverket DOMstat 01_Verksamhetsmal_TR** — Brå/ÅM-väggen
+  var fel led, domstolsledet har en ren PxWeb-serie (se ¹⁷);
   naringslivets_investeringar + hushallens_reala_disponibla_inkomst inlästa 2026-06-07;
   sfi_sprakkunskaper inläst 2026-06-07 via SCB TAB1814 — Spår D Tier 2;
   overlevnad_svar_sjukdom inläst 2026-06-08 via Kolada U70471 (30-dagarsöverlevnad tjocktarmscancer) — Spår D natt.)

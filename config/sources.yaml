@@ -159,6 +159,23 @@ sources:
     verified: true
     confidence: high
 
+  domstolsverket:
+    name: Domstolsverket (DOMstat)
+    base_url: https://pxweb.etjanst.domstol.se/PxWeb/api/v1/sv/DOMstat
+    access: api
+    formats: [json-stat2, px]
+    license: "Sveriges officiella statistik – fri vidareutnyttjning med källangivelse (Domstolsverket)"
+    feeds: [D:trygghet]
+    datasets:
+      - { id: 01_Verksamhetsmal_TR, path: "Verksamhetsmal/01_Verksamhetsmal_TR.px", indicator: handlaggningstid,
+          note: "Verksamhetsmål vid tingsrätt: handläggningstid 75-percentil i månader, 2007–2025. handlaggningstid = Domstol 'Alla tingsrätter' × 'Brottmål exkl. förtursmål'. PxWeb v1: POST json-stat2-query; tidsdim 'År' (koderna är index, årtal i category.label)." }
+    gotchas:
+      - "PxWeb v1 (som Energimyndigheten, inte SCB v2): data via POST med json-query; GET på tabell-id ger metadata."
+      - "Dimensionskoderna är engelska strängar ('All district courts'); uppslag sker via valueText (svenska namn) så en omkodning inte tyst byter serie."
+      - "Förtursmål (häktade/minderåriga) är exkluderade ur serien — snabbspårsreformer biasar måttet UPPÅT (icke-smickrande), se pipeline/sources/domstolsverket.py."
+    verified: true
+    confidence: high
+
   kolada:
     name: Kolada (RKA)
     base_url: https://api.kolada.se/v3
