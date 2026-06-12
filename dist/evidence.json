@@ -384,6 +384,11 @@
     "source_name": "Votering bet. 2022/23",
     "statement": "C driver nato_medlemskap; evidens (authority_evaluation) talar för riktning positive på nato_interoperabilitet."
   },
+  "claim:evidence_effect:C:nedtrappad_ersattningsprofil_akassa:ekonomi:arbetsloshet": {
+    "kind": "claim",
+    "source_name": "Votering bet. 2023/24",
+    "statement": "C driver nedtrappad_ersattningsprofil_akassa; evidens (authority_evaluation) talar för riktning positive på arbetsloshet."
+  },
   "claim:evidence_effect:C:reduktionsplikt_drivmedel:klimat:territoriella_utslapp": {
     "kind": "claim",
     "source_name": "Votering bet. 2023/24",
@@ -433,6 +438,11 @@
     "kind": "claim",
     "source_name": "Riksdagen",
     "statement": "C driver tidiga_insatser_lagstadiet; evidens (systematic_review) talar för riktning positive på skolresultat."
+  },
+  "claim:evidence_effect:C:uppsokande_forskoleerbjudande_nyanlandas_barn:integration:skolresultat_utsatta_omraden": {
+    "kind": "claim",
+    "source_name": "Votering bet. 2021/22",
+    "statement": "C driver uppsokande_forskoleerbjudande_nyanlandas_barn; evidens (authority_evaluation) talar för riktning positive på skolresultat_utsatta_omraden."
   },
   "claim:evidence_effect:C:upptrappning_forsvarsanslag_mot_mal:forsvar:forsvarsfinansiering_upptrappning_mot_mal": {
     "kind": "claim",
@@ -548,6 +558,11 @@
     "kind": "claim",
     "source_name": "Votering bet. 2022/23",
     "statement": "KD driver nato_medlemskap; evidens (authority_evaluation) talar för riktning positive på nato_interoperabilitet."
+  },
+  "claim:evidence_effect:KD:nedtrappad_ersattningsprofil_akassa:ekonomi:arbetsloshet": {
+    "kind": "claim",
+    "source_name": "Votering bet. 2023/24",
+    "statement": "KD driver nedtrappad_ersattningsprofil_akassa; evidens (authority_evaluation) talar för riktning positive på arbetsloshet."
   },
   "claim:evidence_effect:KD:ny_karnkraft:klimat:effektbrist": {
     "kind": "claim",
@@ -724,6 +739,11 @@
     "source_name": "Votering bet. 2022/23",
     "statement": "L driver nato_medlemskap; evidens (authority_evaluation) talar för riktning positive på nato_interoperabilitet."
   },
+  "claim:evidence_effect:L:nedtrappad_ersattningsprofil_akassa:ekonomi:arbetsloshet": {
+    "kind": "claim",
+    "source_name": "Votering bet. 2023/24",
+    "statement": "L driver nedtrappad_ersattningsprofil_akassa; evidens (authority_evaluation) talar för riktning positive på arbetsloshet."
+  },
   "claim:evidence_effect:L:ny_karnkraft:klimat:effektbrist": {
     "kind": "claim",
     "source_name": "Riksdagen",
@@ -778,6 +798,11 @@
     "kind": "claim",
     "source_name": "Riksdagen",
     "statement": "L driver tydlig_statlig_styrning_civilt_forsvar; evidens (authority_evaluation) talar för riktning positive på civil_beredskap_niva."
+  },
+  "claim:evidence_effect:L:uppsokande_forskoleerbjudande_nyanlandas_barn:integration:skolresultat_utsatta_omraden": {
+    "kind": "claim",
+    "source_name": "Votering bet. 2021/22",
+    "statement": "L driver uppsokande_forskoleerbjudande_nyanlandas_barn; evidens (authority_evaluation) talar för riktning positive på skolresultat_utsatta_omraden."
   },
   "claim:evidence_effect:L:upptrappning_forsvarsanslag_mot_mal:forsvar:forsvarsfinansiering_upptrappning_mot_mal": {
     "kind": "claim",
@@ -894,6 +919,11 @@
     "source_name": "Votering bet. 2022/23",
     "statement": "M driver nato_medlemskap; evidens (authority_evaluation) talar för riktning positive på nato_interoperabilitet."
   },
+  "claim:evidence_effect:M:nedtrappad_ersattningsprofil_akassa:ekonomi:arbetsloshet": {
+    "kind": "claim",
+    "source_name": "Votering bet. 2023/24",
+    "statement": "M driver nedtrappad_ersattningsprofil_akassa; evidens (authority_evaluation) talar för riktning positive på arbetsloshet."
+  },
   "claim:evidence_effect:M:ny_karnkraft:klimat:effektbrist": {
     "kind": "claim",
     "source_name": "Riksdagen",
@@ -943,6 +973,11 @@
     "kind": "claim",
     "source_name": "Riksdagen",
     "statement": "M driver tydlig_statlig_styrning_civilt_forsvar; evidens (authority_evaluation) talar för riktning positive på civil_beredskap_niva."
+  },
+  "claim:evidence_effect:M:uppsokande_forskoleerbjudande_nyanlandas_barn:integration:skolresultat_utsatta_omraden": {
+    "kind": "claim",
+    "source_name": "Votering bet. 2021/22",
+    "statement": "M driver uppsokande_forskoleerbjudande_nyanlandas_barn; evidens (authority_evaluation) talar för riktning positive på skolresultat_utsatta_omraden."
   },
   "claim:evidence_effect:M:upptrappning_forsvarsanslag_mot_mal:forsvar:forsvarsfinansiering_upptrappning_mot_mal": {
     "kind": "claim",
@@ -1044,6 +1079,11 @@
     "source_name": "Enhälligt betänkande 2025/26",
     "statement": "MP driver lagstadgat_oberoende_public_service; evidens (authority_evaluation) talar för riktning positive på mediefrihet."
   },
+  "claim:evidence_effect:MP:nedtrappad_ersattningsprofil_akassa:ekonomi:arbetsloshet": {
+    "kind": "claim",
+    "source_name": "Votering bet. 2023/24",
+    "statement": "MP driver nedtrappad_ersattningsprofil_akassa; evidens (authority_evaluation) talar för riktning positive på arbetsloshet."
+  },
   "claim:evidence_effect:MP:ny_karnkraft:klimat:effektbrist": {
     "kind": "claim",
     "source_name": "Riksdagen",
@@ -1088,6 +1128,11 @@
     "kind": "claim",
     "source_name": "Riksdagen",
     "statement": "MP driver tidiga_insatser_lagstadiet; evidens (systematic_review) talar för riktning positive på skolresultat."
+  },
+  "claim:evidence_effect:MP:uppsokande_forskoleerbjudande_nyanlandas_barn:integration:skolresultat_utsatta_omraden": {
+    "kind": "claim",
+    "source_name": "Votering bet. 2021/22",
+    "statement": "MP driver uppsokande_forskoleerbjudande_nyanlandas_barn; evidens (authority_evaluation) talar för riktning positive på skolresultat_utsatta_omraden."
   },
   "claim:evidence_effect:MP:upptrappning_forsvarsanslag_mot_mal:forsvar:forsvarsfinansiering_upptrappning_mot_mal": {
     "kind": "claim",
@@ -1199,6 +1244,11 @@
     "source_name": "Votering bet. 2022/23",
     "statement": "S driver nato_medlemskap; evidens (authority_evaluation) talar för riktning positive på nato_interoperabilitet."
   },
+  "claim:evidence_effect:S:nedtrappad_ersattningsprofil_akassa:ekonomi:arbetsloshet": {
+    "kind": "claim",
+    "source_name": "Votering bet. 2023/24",
+    "statement": "S driver nedtrappad_ersattningsprofil_akassa; evidens (authority_evaluation) talar för riktning positive på arbetsloshet."
+  },
   "claim:evidence_effect:S:ny_karnkraft:klimat:effektbrist": {
     "kind": "claim",
     "source_name": "Riksdagen",
@@ -1248,6 +1298,11 @@
     "kind": "claim",
     "source_name": "Riksdagen",
     "statement": "S driver tydlig_statlig_styrning_civilt_forsvar; evidens (authority_evaluation) talar för riktning positive på civil_beredskap_niva."
+  },
+  "claim:evidence_effect:S:uppsokande_forskoleerbjudande_nyanlandas_barn:integration:skolresultat_utsatta_omraden": {
+    "kind": "claim",
+    "source_name": "Votering bet. 2021/22",
+    "statement": "S driver uppsokande_forskoleerbjudande_nyanlandas_barn; evidens (authority_evaluation) talar för riktning positive på skolresultat_utsatta_omraden."
   },
   "claim:evidence_effect:S:upptrappning_forsvarsanslag_mot_mal:forsvar:forsvarsfinansiering_upptrappning_mot_mal": {
     "kind": "claim",
@@ -1353,6 +1408,11 @@
     "kind": "claim",
     "source_name": "Votering bet. 2022/23",
     "statement": "SD driver nato_medlemskap; evidens (authority_evaluation) talar för riktning positive på nato_interoperabilitet."
+  },
+  "claim:evidence_effect:SD:nedtrappad_ersattningsprofil_akassa:ekonomi:arbetsloshet": {
+    "kind": "claim",
+    "source_name": "Votering bet. 2023/24",
+    "statement": "SD driver nedtrappad_ersattningsprofil_akassa; evidens (authority_evaluation) talar för riktning positive på arbetsloshet."
   },
   "claim:evidence_effect:SD:ny_karnkraft:klimat:effektbrist": {
     "kind": "claim",
@@ -1529,6 +1589,11 @@
     "source_name": "Votering bet. 2022/23",
     "statement": "V motsätter sig nato_medlemskap; evidens (authority_evaluation) talar för riktning negative på nato_interoperabilitet."
   },
+  "claim:evidence_effect:V:nedtrappad_ersattningsprofil_akassa:ekonomi:arbetsloshet": {
+    "kind": "claim",
+    "source_name": "Votering bet. 2023/24",
+    "statement": "V motsätter sig nedtrappad_ersattningsprofil_akassa; evidens (authority_evaluation) talar för riktning negative på arbetsloshet."
+  },
   "claim:evidence_effect:V:ny_karnkraft:klimat:effektbrist": {
     "kind": "claim",
     "source_name": "Riksdagen",
@@ -1573,6 +1638,11 @@
     "kind": "claim",
     "source_name": "Riksdagen",
     "statement": "V driver tydlig_statlig_styrning_civilt_forsvar; evidens (authority_evaluation) talar för riktning positive på civil_beredskap_niva."
+  },
+  "claim:evidence_effect:V:uppsokande_forskoleerbjudande_nyanlandas_barn:integration:skolresultat_utsatta_omraden": {
+    "kind": "claim",
+    "source_name": "Votering bet. 2021/22",
+    "statement": "V driver uppsokande_forskoleerbjudande_nyanlandas_barn; evidens (authority_evaluation) talar för riktning positive på skolresultat_utsatta_omraden."
   },
   "claim:evidence_effect:V:upptrappning_forsvarsanslag_mot_mal:forsvar:forsvarsfinansiering_upptrappning_mot_mal": {
     "kind": "claim",

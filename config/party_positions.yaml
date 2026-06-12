@@ -2824,3 +2824,180 @@ entries:
   date: '2020-11-11'
   confidence: high
   mapping_note: "MP formell medreservant i reservation 3 och nej-röst -> försvarar status quo-avgränsningen -> opposes på instrumentet. TIDSNOT (§10.5): primärkälla 2020/21. OMVERIFIERAD 2026-06-07 (sign-off): bred sökning i innevarande mandatperiod (SfU-motioner, MP-plattformen hd023362, prop. 2025/26:263 + MP:s följdmotion hd024173 som avslår propositionen på integritetsgrund) gav INGEN nyare instrument-exakt MP-källa om ansvarsfördelningen för återvändande. Kodningen vilar fortsatt på SfU6 2020/21 (MP var då regeringsparti) — BEHÅLLEN (användarbeslut 2026-06-07), symmetriskt flaggad föråldrad."
+# ---------------------------------------------------------------------------------------------------
+# ekonomi -> arbetsloshet: nedtrappad ersättningsprofil i a-kassan (prop. 2023/24:128-designen).
+# TILLAGD 2026-06-12 (B3 differentiering, FLAGGAD v0 — kräver mänsklig slutgranskning). Alla 8
+# partier votering-belagda (roll-call, samma provenans-tyngd som reduktionsplikt/FoU-avdraget):
+# bet. 2023/24:AU9 punkt 1 (prop. 2023/24:128 "En arbetslöshetsförsäkring baserad på inkomster",
+# inkl. nedtrappning av ersättningsnivån med 10 pe efter 100 dagar + 5 pe efter 200 dagar),
+# votering 2024-06-18: 283 Ja / 20 Nej. 7 supports (S/M/SD/C/KD/L/MP), V opposes (Nej + res. 1 +
+# kommittémotion 2023/24:2881 yrk. 1). EJ BLOCKARTEFAKT: S+MP+C röstade Ja med regeringsunderlaget.
+# Votering + citat omverifierade mot data.riksdagen.se (votering-API + .text) 2026-06-12.
+# Evidens: evidence_ledger nedtrappad_ersattningsprofil_akassa -> arbetsloshet (IFAU R 2008:12 m.fl.).
+# ---------------------------------------------------------------------------------------------------
+- party: S
+  policy_type: nedtrappad_ersattningsprofil_akassa
+  stance: supports
+  source: 'Votering bet. 2023/24:AU9 punkt 1 (prop. 2023/24:128), sakfrågan'
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HB01AU9.html
+  doc_id: 'HB01AU9 / votering 20D6BDDC-B9AC-47E8-B286-48CF613D7276'
+  quote: 'Röst: Ja (partiets samtliga närvarande) — antog regeringens förslag till ny lag om arbetslöshetsförsäkring (prop. 2023/24:128), inkl. nedtrappningen av ersättningsnivån, och avslog V:s avslagsyrkande (res. 1).'
+  date: '2024-06-18'
+  confidence: high
+  mapping_note: 'FLAGGAD v0 (B3 2026-06-12, kräver mänsklig slutgranskning). INSTRUMENT-EXAKT: lagförslaget innehåller uttryckligen nedtrappningsprofilen — betänkandet ordagrant: "Regeringen föreslår också en nedtrappning av ersättningsnivån efter en viss tid med arbetslöshetsersättning. Enligt förslaget ska ersättningsnivån trappas ned med 10 procentenheter efter 100 ersättningsdagar och med ytterligare 5 procentenheter efter 200 ersättningsdagar." Röst Ja på lagförslaget som BUNT inkluderar nedtrappningen = supports (bunten-regeln §2). NYANS (§2, ändrar ej stance): S:s särskilda yttrande p1 — "Vi är positiva till den övergång från ett arbetsvillkor till ett inkomstvillkor ... Vi ställer oss därför bakom regeringens proposition" — och S-reservation 2 (punkt 2, FRAMTIDA utformning, motion 2023/24:2884 yrk. 1 och 4) önskar framtida förbättringar av tak/nivåer; gäller framtida ändringar, inte nej till nedtrappningsdesignen. EJ BLOCKARTEFAKT: S röstade Ja med regeringsunderlaget. Votering 2024-06-18: S 93 Ja / 0 Nej.'
+- party: M
+  policy_type: nedtrappad_ersattningsprofil_akassa
+  stance: supports
+  source: 'Votering bet. 2023/24:AU9 punkt 1 (prop. 2023/24:128), sakfrågan'
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HB01AU9.html
+  doc_id: 'HB01AU9 / votering 20D6BDDC-B9AC-47E8-B286-48CF613D7276'
+  quote: 'Röst: Ja (partiets samtliga närvarande) — antog regeringens förslag till ny lag om arbetslöshetsförsäkring (prop. 2023/24:128), inkl. nedtrappningen av ersättningsnivån, och avslog V:s avslagsyrkande (res. 1).'
+  date: '2024-06-18'
+  confidence: high
+  mapping_note: 'FLAGGAD v0 (B3 2026-06-12, kräver mänsklig slutgranskning). Regeringsparti (M) bakom prop. 2023/24:128 med nedtrappningsprofilen ("ersättningsnivån trappas ned med 10 procentenheter efter 100 ersättningsdagar och med ytterligare 5 procentenheter efter 200 ersättningsdagar", bet. AU9). Formell avsändare + röst Ja = supports. Votering 2024-06-18: M 60 Ja / 0 Nej.'
+- party: SD
+  policy_type: nedtrappad_ersattningsprofil_akassa
+  stance: supports
+  source: 'Votering bet. 2023/24:AU9 punkt 1 (prop. 2023/24:128), sakfrågan'
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HB01AU9.html
+  doc_id: 'HB01AU9 / votering 20D6BDDC-B9AC-47E8-B286-48CF613D7276'
+  quote: 'Röst: Ja (partiets samtliga närvarande) — antog regeringens förslag till ny lag om arbetslöshetsförsäkring (prop. 2023/24:128), inkl. nedtrappningen av ersättningsnivån, och avslog V:s avslagsyrkande (res. 1).'
+  date: '2024-06-18'
+  confidence: high
+  mapping_note: 'FLAGGAD v0 (B3 2026-06-12, kräver mänsklig slutgranskning). SD (samarbetsparti, Tidöavtalet) attribueras via EXPLICIT votering (metoddok §5): röst Ja på lagförslaget med nedtrappningsprofilen ("trappas ned med 10 procentenheter efter 100 ersättningsdagar och med ytterligare 5 procentenheter efter 200 ersättningsdagar", bet. AU9) = supports. Ingen SD-reservation i ärendet. Votering 2024-06-18: SD 63 Ja / 0 Nej.'
+- party: C
+  policy_type: nedtrappad_ersattningsprofil_akassa
+  stance: supports
+  source: 'Votering bet. 2023/24:AU9 punkt 1 (prop. 2023/24:128), sakfrågan'
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HB01AU9.html
+  doc_id: 'HB01AU9 / votering 20D6BDDC-B9AC-47E8-B286-48CF613D7276'
+  quote: 'Röst: Ja (partiets samtliga närvarande) — antog regeringens förslag till ny lag om arbetslöshetsförsäkring (prop. 2023/24:128), inkl. nedtrappningen av ersättningsnivån, och avslog V:s avslagsyrkande (res. 1).'
+  date: '2024-06-18'
+  confidence: high
+  mapping_note: 'FLAGGAD v0 (B3 2026-06-12, kräver mänsklig slutgranskning). Röst Ja på lagförslaget som inkluderar nedtrappningsprofilen ("trappas ned med 10 procentenheter efter 100 ersättningsdagar och med ytterligare 5 procentenheter efter 200 ersättningsdagar", bet. AU9) = supports (bunten-regeln §2). NYANS (§2, ändrar ej stance): C-reservation 4 (punkt 2, FRAMTIDA utformning, kommittémotion 2023/24:2886) önskar framtida justeringar; C framhåller där att den nya försäkringen "kommer att moderniseras på en rad viktiga punkter" och bygger på en utredning C var med och tillsatte. EJ BLOCKARTEFAKT: C röstade Ja trots oppositionsroll. Votering 2024-06-18: C 21 Ja / 0 Nej.'
+- party: V
+  policy_type: nedtrappad_ersattningsprofil_akassa
+  stance: opposes
+  source: 'Votering bet. 2023/24:AU9 punkt 1 (prop. 2023/24:128), sakfrågan + reservation 1 (V) + kommittémotion 2023/24:2881 yrk. 1'
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HB01AU9.html
+  doc_id: 'HB01AU9 / votering 20D6BDDC-B9AC-47E8-B286-48CF613D7276; motion HB022881 yrk. 1'
+  quote: 'Röst: Nej (partiets samtliga närvarande) — yrkade via reservation 1 att "Riksdagen avslår regeringens förslag. Därmed bifaller riksdagen motion 2023/24:2881 av Ciczie Weidby m.fl. (V) yrkande 1 och avslår proposition 2023/24:128 punkterna 1–12."'
+  date: '2024-06-18'
+  confidence: high
+  mapping_note: 'FLAGGAD v0 (B3 2026-06-12, kräver mänsklig slutgranskning). INSTRUMENT-EXAKT opposes på just nedtrappningsprofilen — kommittémotion 2023/24:2881 (Ciczie Weidby m.fl., V) ordagrant: "den successiva nedtrappningen av arbetslöshetsersättningen bör slopas" samt "Vi vill därför höja den högsta dagpenningen och grundbeloppet (tak och golv), indexera ersättningsbeloppen till löneutvecklingen, höja ersättningsnivån till 80 procent för hela ersättningsperioden samt för tid med aktivitetsstöd" och "att ersättningsnivån bör vara 80 procent under hela ersättningsperioden" (i likhet med LO; motionen kritiserar uttryckligen att "Regeringens förslag innebär en snabbare nedtrappning av ersättningsnivån"). Nej-röst + avslagsreservation = opposes (_FLIP -> negativt B-bidrag på arbetsloshet). Citaten omverifierade ordagrant mot motionens fulltext (.text) 2026-06-12. Votering 2024-06-18: V 0 Ja / 20 Nej.'
+- party: KD
+  policy_type: nedtrappad_ersattningsprofil_akassa
+  stance: supports
+  source: 'Votering bet. 2023/24:AU9 punkt 1 (prop. 2023/24:128), sakfrågan'
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HB01AU9.html
+  doc_id: 'HB01AU9 / votering 20D6BDDC-B9AC-47E8-B286-48CF613D7276'
+  quote: 'Röst: Ja (partiets samtliga närvarande) — antog regeringens förslag till ny lag om arbetslöshetsförsäkring (prop. 2023/24:128), inkl. nedtrappningen av ersättningsnivån, och avslog V:s avslagsyrkande (res. 1).'
+  date: '2024-06-18'
+  confidence: high
+  mapping_note: 'FLAGGAD v0 (B3 2026-06-12, kräver mänsklig slutgranskning). Regeringsparti (KD) bakom prop. 2023/24:128 med nedtrappningsprofilen ("trappas ned med 10 procentenheter efter 100 ersättningsdagar och med ytterligare 5 procentenheter efter 200 ersättningsdagar", bet. AU9). Formell avsändare + röst Ja = supports. Votering 2024-06-18: KD 16 Ja / 0 Nej.'
+- party: L
+  policy_type: nedtrappad_ersattningsprofil_akassa
+  stance: supports
+  source: 'Votering bet. 2023/24:AU9 punkt 1 (prop. 2023/24:128), sakfrågan'
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HB01AU9.html
+  doc_id: 'HB01AU9 / votering 20D6BDDC-B9AC-47E8-B286-48CF613D7276'
+  quote: 'Röst: Ja (partiets samtliga närvarande) — antog regeringens förslag till ny lag om arbetslöshetsförsäkring (prop. 2023/24:128), inkl. nedtrappningen av ersättningsnivån, och avslog V:s avslagsyrkande (res. 1).'
+  date: '2024-06-18'
+  confidence: high
+  mapping_note: 'FLAGGAD v0 (B3 2026-06-12, kräver mänsklig slutgranskning). Regeringsparti (L) bakom prop. 2023/24:128 med nedtrappningsprofilen ("trappas ned med 10 procentenheter efter 100 ersättningsdagar och med ytterligare 5 procentenheter efter 200 ersättningsdagar", bet. AU9). Formell avsändare + röst Ja = supports. Votering 2024-06-18: L 13 Ja / 0 Nej.'
+- party: MP
+  policy_type: nedtrappad_ersattningsprofil_akassa
+  stance: supports
+  source: 'Votering bet. 2023/24:AU9 punkt 1 (prop. 2023/24:128), sakfrågan'
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HB01AU9.html
+  doc_id: 'HB01AU9 / votering 20D6BDDC-B9AC-47E8-B286-48CF613D7276'
+  quote: 'Röst: Ja (partiets samtliga närvarande) — antog regeringens förslag till ny lag om arbetslöshetsförsäkring (prop. 2023/24:128), inkl. nedtrappningen av ersättningsnivån, och avslog V:s avslagsyrkande (res. 1).'
+  date: '2024-06-18'
+  confidence: high
+  mapping_note: 'FLAGGAD v0 (B3 2026-06-12, kräver mänsklig slutgranskning). Röst Ja på lagförslaget som inkluderar nedtrappningsprofilen ("trappas ned med 10 procentenheter efter 100 ersättningsdagar och med ytterligare 5 procentenheter efter 200 ersättningsdagar", bet. AU9) = supports (bunten-regeln §2). NYANS (§2, ändrar ej stance): MP:s särskilda yttrande p1 — "Jag ställer mig därför bakom regeringens proposition" — och MP-reservationer på punkt 2-4 (FRAMTIDA utformning m.m., kommittémotion 2023/24:2888) önskar framtida förbättringar av nivåer/tak; gäller framtida ändringar, inte nej till nedtrappningsdesignen. EJ BLOCKARTEFAKT: MP röstade Ja med regeringsunderlaget. Votering 2024-06-18: MP 15 Ja / 0 Nej.'
+# ---------------------------------------------------------------------------------------------------
+# integration -> skolresultat_utsatta_omraden: uppsökande verksamhet + direkt/obligatoriskt
+# förskoleerbjudande för nyanländas barn (prop. 2021/22:132 "Förskola för fler barn", skollagen
+# 8 kap. 12 a-12 c §§). TILLAGD 2026-06-12 (B3, FLAGGAD v0 — kräver mänsklig slutgranskning).
+# 6 partier votering-belagda: bet. 2021/22:UbU24 punkt 1 (avslagsfrågan), votering 2022-06-08:
+# 228 Ja / 70 Nej. supports S/M/C/V/L/MP (Ja = avslog SD:s+KD:s avslagsyrkanden -> antog
+# lagförslaget via p2/p3). SD och KD KODAS INTE (ej opposes): 2022-nej mot prop-132-designen +
+# Tidö-dir. 2024:113 (snävare instrument i samma familj) -> MP/Nato-prejudikatet, se
+# REJECTED-CANDIDATE-NOTE i evidence_ledger-postens note. Votering + citat omverifierade mot
+# data.riksdagen.se (votering-API + .text) 2026-06-12. Evidens: evidence_ledger
+# uppsokande_forskoleerbjudande_nyanlandas_barn -> skolresultat_utsatta_omraden (SOU 2020:67).
+# ---------------------------------------------------------------------------------------------------
+- party: S
+  policy_type: uppsokande_forskoleerbjudande_nyanlandas_barn
+  stance: supports
+  source: 'Votering bet. 2021/22:UbU24 punkt 1 (prop. 2021/22:132 Förskola för fler barn), avslagsfrågan'
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/H901UbU24.html
+  doc_id: 'H901UbU24 / votering 13F52F92-6597-473E-B912-4C7BB0EEE42F'
+  quote: 'Röst: Ja (partiets samtliga närvarande) — avslog SD:s och KD:s avslagsyrkanden på prop. 2021/22:132, vars förslag är att hemkommunen ska "genom uppsökande verksamhet ta kontakt med vårdnadshavare till de barn som inte har en plats i förskolan" och att det blir "obligatoriskt för hemkommunen att erbjuda förskola till barn som har bott i Sverige kort tid eller som har vårdnadshavare som har bott i Sverige kort tid".'
+  date: '2022-06-08'
+  confidence: high
+  mapping_note: 'FLAGGAD v0 (B3 2026-06-12, kräver mänsklig slutgranskning). Regeringsparti (S) som lade fram prop. 2021/22:132; röst Ja p1 (mot avslagsreservation 1 SD/KD) + Ja p2 (lagförslaget om uppsökande verksamhet, 8 kap. 12 a §, votering BBBB09FC: S 89 Ja) + p3 (lagförslaget i övrigt, 12 b-12 c §§, acklamation) = supports hela instrumentet. TIDSREGEL §4: rm 2021/22, en session före föredragen period; ingen nyare votering om samma instrument (U 2024:04 ej redovisad/lagstiftad) — symmetriskt för alla 6 kodade partier. Votering p1 2022-06-08: S 89 Ja / 0 Nej.'
+- party: M
+  policy_type: uppsokande_forskoleerbjudande_nyanlandas_barn
+  stance: supports
+  source: 'Votering bet. 2021/22:UbU24 punkt 1 (prop. 2021/22:132 Förskola för fler barn), avslagsfrågan'
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/H901UbU24.html
+  doc_id: 'H901UbU24 / votering 13F52F92-6597-473E-B912-4C7BB0EEE42F'
+  quote: 'Röst: Ja (partiets samtliga närvarande) — avslog SD:s och KD:s avslagsyrkanden på prop. 2021/22:132, vars förslag är att hemkommunen ska "genom uppsökande verksamhet ta kontakt med vårdnadshavare till de barn som inte har en plats i förskolan" och att det blir "obligatoriskt för hemkommunen att erbjuda förskola till barn som har bott i Sverige kort tid eller som har vårdnadshavare som har bott i Sverige kort tid".'
+  date: '2022-06-08'
+  confidence: high
+  mapping_note: 'FLAGGAD v0 (B3 2026-06-12, kräver mänsklig slutgranskning). M röstade Ja p1 (mot avslag) och accepterade kärninstrumentet för nyanländas barn — det direkta/obligatoriska förskoleerbjudandet (12 b-12 c §§) antogs i p3 (lagförslaget i övrigt) i ACKLAMATION utan M-reservation. NYANS (bunten-regeln §2, ändrar ej stance): M reserverade sig på p2 (12 a § uppsökande verksamhet; röstade Nej i votering BBBB09FC: M 62 Nej) — MEN reservation 2 motsätter sig inte uppsökande verksamhet i sig utan dess AVGRÄNSNING: "den uppsökande verksamheten ska ges till föräldrar som varken valt förskola eller pedagogisk omsorg" (M vill undanta dem som valt pedagogisk omsorg). Intern design-nyans i samma instrumentfamilj -> noteras, förkastar ej raden (§2). TIDSREGEL §4: rm 2021/22, en session före föredragen period; ingen nyare votering om samma instrument. Votering p1 2022-06-08: M 62 Ja / 0 Nej.'
+- party: C
+  policy_type: uppsokande_forskoleerbjudande_nyanlandas_barn
+  stance: supports
+  source: 'Votering bet. 2021/22:UbU24 punkt 1 (prop. 2021/22:132 Förskola för fler barn), avslagsfrågan'
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/H901UbU24.html
+  doc_id: 'H901UbU24 / votering 13F52F92-6597-473E-B912-4C7BB0EEE42F'
+  quote: 'Röst: Ja (partiets samtliga närvarande) — avslog SD:s och KD:s avslagsyrkanden på prop. 2021/22:132, vars förslag är att hemkommunen ska "genom uppsökande verksamhet ta kontakt med vårdnadshavare till de barn som inte har en plats i förskolan" och att det blir "obligatoriskt för hemkommunen att erbjuda förskola till barn som har bott i Sverige kort tid eller som har vårdnadshavare som har bott i Sverige kort tid".'
+  date: '2022-06-08'
+  confidence: high
+  mapping_note: 'FLAGGAD v0 (B3 2026-06-12, kräver mänsklig slutgranskning). Röst Ja p1 (mot avslagsreservation 1 SD/KD) + Ja p2 (12 a § uppsökande verksamhet, votering BBBB09FC: C 26 Ja) + p3 (12 b-12 c §§, acklamation) = supports hela instrumentet. TIDSREGEL §4: rm 2021/22, en session före föredragen period; ingen nyare votering om samma instrument. Votering p1 2022-06-08: C 26 Ja / 0 Nej.'
+- party: V
+  policy_type: uppsokande_forskoleerbjudande_nyanlandas_barn
+  stance: supports
+  source: 'Votering bet. 2021/22:UbU24 punkt 1 (prop. 2021/22:132 Förskola för fler barn), avslagsfrågan'
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/H901UbU24.html
+  doc_id: 'H901UbU24 / votering 13F52F92-6597-473E-B912-4C7BB0EEE42F'
+  quote: 'Röst: Ja (partiets samtliga närvarande) — avslog SD:s och KD:s avslagsyrkanden på prop. 2021/22:132, vars förslag är att hemkommunen ska "genom uppsökande verksamhet ta kontakt med vårdnadshavare till de barn som inte har en plats i förskolan" och att det blir "obligatoriskt för hemkommunen att erbjuda förskola till barn som har bott i Sverige kort tid eller som har vårdnadshavare som har bott i Sverige kort tid".'
+  date: '2022-06-08'
+  confidence: high
+  mapping_note: 'FLAGGAD v0 (B3 2026-06-12, kräver mänsklig slutgranskning). Röst Ja p1 (mot avslagsreservation 1 SD/KD) + Ja p2 (12 a § uppsökande verksamhet, votering BBBB09FC: V 21 Ja) + p3 (12 b-12 c §§, acklamation) = supports hela instrumentet. Ingen V-reservation mot lagförslaget. TIDSREGEL §4: rm 2021/22, en session före föredragen period; ingen nyare votering om samma instrument. Votering p1 2022-06-08: V 21 Ja / 0 Nej.'
+- party: L
+  policy_type: uppsokande_forskoleerbjudande_nyanlandas_barn
+  stance: supports
+  source: 'Votering bet. 2021/22:UbU24 punkt 1 (prop. 2021/22:132 Förskola för fler barn), avslagsfrågan'
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/H901UbU24.html
+  doc_id: 'H901UbU24 / votering 13F52F92-6597-473E-B912-4C7BB0EEE42F'
+  quote: 'Röst: Ja (partiets samtliga närvarande) — avslog SD:s och KD:s avslagsyrkanden på prop. 2021/22:132, vars förslag är att hemkommunen ska "genom uppsökande verksamhet ta kontakt med vårdnadshavare till de barn som inte har en plats i förskolan" och att det blir "obligatoriskt för hemkommunen att erbjuda förskola till barn som har bott i Sverige kort tid eller som har vårdnadshavare som har bott i Sverige kort tid".'
+  date: '2022-06-08'
+  confidence: high
+  mapping_note: 'FLAGGAD v0 (B3 2026-06-12, kräver mänsklig slutgranskning). Röst Ja p1 (mot avslagsreservation 1 SD/KD) + Ja p2 (12 a § uppsökande verksamhet, votering BBBB09FC: L 15 Ja) + p3 (12 b-12 c §§, acklamation) = supports hela instrumentet. L:s reservationer i ärendet (p4 språkförskola, p6 personalens språkkunskaper) vill GÅ LÄNGRE i samma riktning, inte avslå. TIDSREGEL §4: rm 2021/22, en session före föredragen period; ingen nyare votering om samma instrument. Votering p1 2022-06-08: L 15 Ja / 0 Nej.'
+- party: MP
+  policy_type: uppsokande_forskoleerbjudande_nyanlandas_barn
+  stance: supports
+  source: 'Votering bet. 2021/22:UbU24 punkt 1 (prop. 2021/22:132 Förskola för fler barn), avslagsfrågan'
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/H901UbU24.html
+  doc_id: 'H901UbU24 / votering 13F52F92-6597-473E-B912-4C7BB0EEE42F'
+  quote: 'Röst: Ja (partiets samtliga närvarande) — avslog SD:s och KD:s avslagsyrkanden på prop. 2021/22:132, vars förslag är att hemkommunen ska "genom uppsökande verksamhet ta kontakt med vårdnadshavare till de barn som inte har en plats i förskolan" och att det blir "obligatoriskt för hemkommunen att erbjuda förskola till barn som har bott i Sverige kort tid eller som har vårdnadshavare som har bott i Sverige kort tid".'
+  date: '2022-06-08'
+  confidence: high
+  mapping_note: 'FLAGGAD v0 (B3 2026-06-12, kräver mänsklig slutgranskning). MP satt i regeringen som lade fram prop. 2021/22:132; röst Ja p1 (mot avslagsreservation 1 SD/KD) + Ja p2 (12 a § uppsökande verksamhet, votering BBBB09FC: MP 14 Ja) + p3 (12 b-12 c §§, acklamation) = supports hela instrumentet. TIDSREGEL §4: rm 2021/22, en session före föredragen period; ingen nyare votering om samma instrument. Votering p1 2022-06-08: MP 14 Ja / 0 Nej.'

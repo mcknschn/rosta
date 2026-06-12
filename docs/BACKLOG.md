@@ -423,8 +423,20 @@ företagande/investeringar samt hushållens disponibla inkomst → ekonomi 4/6 t
   och **reallöner** (`realloner_hushall`) — de enda up-indikatorerna. (Inflation + offentliga finanser är
   target-indikatorer → tar inget riktat B-bidrag; B4-grinden bekräftar detta.) Fler åtgärdstyper/kategori
   → fler täckta undermått → mindre binäritet (och högre `coverage` → mindre B-krympning).
-- **B3 — Fler omstridda/differentierande åtgärdstyper** ⚪ — återanvänd Plan A-mönstret
+- **B3 — Fler omstridda/differentierande åtgärdstyper** 🟡 — återanvänd Plan A-mönstret
   (Fas 4c): kandidatregister → endast intersektionen *omstridd ∧ evidensbelagd* → negativ-grind.
+  **2 poster levererade 2026-06-12** (v0 FLAGGADE, kräver mänsklig slutgranskning; codex BUILD-WITH-CHANGES ×2,
+  voteringar + citat omverifierade mot data.riksdagen.se): **(1) `nedtrappad_ersattningsprofil_akassa`**
+  (ekonomi → arbetsloshet; IFAU 'Om a-kassa och löner' som syntes av R 2008:12/WP 2007:21/R 2013:10/R 2005:16;
+  votering bet. 2023/24:AU9 p1: 7 supports / V opposes — instrument-exakt via motion 2023/24:2881; spegelpost-
+  notering mot `inkomststarkande_hushallspolitik` = metodneutralitet) och **(2) `uppsokande_forskoleerbjudande_nyanlandas_barn`**
+  (integration → skolresultat_utsatta_omraden; SOU 2020:67; votering bet. 2021/22:UbU24 p1: 6 supports
+  S/M/C/V/L/MP; **SD/KD ej kodade** per MP/Nato-prejudikatet — 2022-nej + Tidö-dir. 2024:113 visar nuvarande
+  stöd för snävare instrument i samma familj → none tills instrument-exakt aktuell källa). Scoreeffekt
+  (förklarbar, ranking OFÖRÄNDRAD S>L>M>KD>MP>C>SD>V): ekonomi-B rör alla 8 (V −0,22 via opposes-flip);
+  integration: KD −0,15 / SD −0,09 (coverage-nämnare 5→6 utan ny rad = modellkonsekvent 'vet ej'-krympning
+  mot neutral), MP +0,13 (thin-coverage-flaggan släckt). **C2 DCA + C4 preventiva = HOLD för sign-off**
+  (se [beslutsunderlag_hold_2026-06-12.md](beslutsunderlag_hold_2026-06-12.md)).
 - **B4 — Kategori-täckningsaudit (anti-binär garanti)** ⚪ *(ny 2026-06-05)* — säkerställ att **ingen
   kategoris B vilar på ett enda undermått**. Täckningsaudit 2026-06-05 (aktiva åtgärdstyper × undermått de matar):
 

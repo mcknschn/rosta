@@ -1,13 +1,13 @@
 {
   "totals": {
-    "C": 3.07,
-    "KD": 3.158,
-    "L": 3.389,
-    "M": 3.327,
-    "MP": 3.107,
-    "S": 3.678,
-    "SD": 2.733,
-    "V": 2.621
+    "C": 3.094,
+    "KD": 3.156,
+    "L": 3.405,
+    "M": 3.33,
+    "MP": 3.136,
+    "S": 3.703,
+    "SD": 2.735,
+    "V": 2.576
   },
   "ranking": [
     "S",
@@ -29,10 +29,10 @@
       ]
     },
     "C/ekonomi": {
-      "score": 2.547,
+      "score": 2.669,
       "flags": [
         "A_a1_active",
-        "B_coverage_5/5",
+        "B_coverage_6/6",
         "D_coverage_73/73"
       ]
     },
@@ -50,7 +50,7 @@
       "score": 2.717,
       "flags": [
         "A_a1_active",
-        "B_coverage_5/5",
+        "B_coverage_6/6",
         "D_coverage_100/100"
       ]
     },
@@ -87,10 +87,10 @@
       ]
     },
     "KD/ekonomi": {
-      "score": 3.087,
+      "score": 3.151,
       "flags": [
         "A_a1_active",
-        "B_coverage_5/5",
+        "B_coverage_6/6",
         "D_coverage_73/73"
       ]
     },
@@ -105,10 +105,10 @@
       ]
     },
     "KD/integration": {
-      "score": 2.986,
+      "score": 2.84,
       "flags": [
         "A_a1_active",
-        "B_coverage_5/5",
+        "B_coverage_5/6",
         "D_coverage_100/100"
       ]
     },
@@ -146,10 +146,10 @@
       ]
     },
     "L/ekonomi": {
-      "score": 3.226,
+      "score": 3.291,
       "flags": [
         "A_a1_active",
-        "B_coverage_5/5",
+        "B_coverage_6/6",
         "D_coverage_73/73"
       ]
     },
@@ -164,10 +164,10 @@
       ]
     },
     "L/integration": {
-      "score": 3.186,
+      "score": 3.216,
       "flags": [
         "A_a1_active",
-        "B_coverage_4/5",
+        "B_coverage_5/6",
         "D_coverage_100/100"
       ]
     },
@@ -207,7 +207,7 @@
       "score": 3.588,
       "flags": [
         "A_a1_active",
-        "B_coverage_5/5",
+        "B_coverage_6/6",
         "D_coverage_73/73"
       ]
     },
@@ -222,10 +222,10 @@
       ]
     },
     "M/integration": {
-      "score": 2.803,
+      "score": 2.833,
       "flags": [
         "A_a1_active",
-        "B_coverage_4/5",
+        "B_coverage_5/6",
         "D_coverage_100/100"
       ]
     },
@@ -263,10 +263,10 @@
       ]
     },
     "MP/ekonomi": {
-      "score": 2.791,
+      "score": 2.874,
       "flags": [
         "A_a1_active",
-        "B_coverage_5/5",
+        "B_coverage_6/6",
         "D_coverage_73/73"
       ]
     },
@@ -282,11 +282,10 @@
       ]
     },
     "MP/integration": {
-      "score": 3.678,
+      "score": 3.806,
       "flags": [
         "A_a1_active",
-        "B_coverage_2/5",
-        "B_thin_coverage",
+        "B_coverage_3/6",
         "D_coverage_100/100"
       ]
     },
@@ -323,10 +322,10 @@
       ]
     },
     "S/ekonomi": {
-      "score": 4.185,
+      "score": 4.268,
       "flags": [
         "A_a1_active",
-        "B_coverage_5/5",
+        "B_coverage_6/6",
         "D_coverage_73/73"
       ]
     },
@@ -341,10 +340,10 @@
       ]
     },
     "S/integration": {
-      "score": 3.663,
+      "score": 3.749,
       "flags": [
         "A_a1_active",
-        "B_coverage_3/5",
+        "B_coverage_4/6",
         "D_coverage_100/100"
       ]
     },
@@ -381,10 +380,10 @@
       ]
     },
     "SD/ekonomi": {
-      "score": 2.448,
+      "score": 2.505,
       "flags": [
         "A_a1_active",
-        "B_coverage_5/5",
+        "B_coverage_6/6",
         "D_coverage_73/73"
       ]
     },
@@ -399,10 +398,10 @@
       ]
     },
     "SD/integration": {
-      "score": 2.536,
+      "score": 2.448,
       "flags": [
         "A_a1_active",
-        "B_coverage_3/5",
+        "B_coverage_3/6",
         "D_coverage_100/100"
       ]
     },
@@ -440,10 +439,10 @@
       ]
     },
     "V/ekonomi": {
-      "score": 2.523,
+      "score": 2.301,
       "flags": [
         "A_a1_active",
-        "B_coverage_5/5",
+        "B_coverage_6/6",
         "D_not_applicable"
       ]
     },
@@ -457,10 +456,10 @@
       ]
     },
     "V/integration": {
-      "score": 3.094,
+      "score": 3.091,
       "flags": [
         "A_a1_active",
-        "B_coverage_3/5",
+        "B_coverage_4/6",
         "D_not_applicable"
       ]
     },
