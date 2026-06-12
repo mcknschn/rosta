@@ -120,7 +120,7 @@ b_near_binary_accepted:
   []
 
 # ---------------------------------------------------------------------------------------------------
-# D-BREDD — kategorier under thin_coverage_threshold (docs/d_coverage_krympning_spec.md)
+# D-BREDD — kategorier under thin_coverage_threshold (docs/done/d_coverage_krympning_spec.md)
 # ---------------------------------------------------------------------------------------------------
 # Kategorier vars viktade D-undermåttsbredd (icke-target-undermått med D-duglig serie) ligger under
 # scoring.D_resultat.thin_coverage_threshold. Sådana celler får D_thin_coverage + sänkt säkerhet i

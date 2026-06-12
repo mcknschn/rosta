@@ -178,7 +178,7 @@ def _submeasure_weights() -> dict[str, dict[str, float]]:
 
 
 def _d_denominator_submeasures() -> dict[str, set[str]]:
-    """kategori -> icke-target-undermått (D-breddens nämnare, spec docs/d_coverage_krympning_spec.md).
+    """kategori -> icke-target-undermått (D-breddens nämnare, spec docs/done/d_coverage_krympning_spec.md).
 
     Target-only = undermåttet har minst en indikator OCH alla dess indikatorer har
     direction 'target'. Undermått UTAN indikatorer är inte target-only — de är en del av
@@ -214,7 +214,7 @@ def category_d(con: object, parties: list[str], cats: list[str]) -> dict[tuple[s
     indikatorernas net, sedan submåttsviktat medel -> net i [-1,1] -> betyg. Gate: kategorins
     net finns OCH partiets maktandel av fönstret >= min_responsibility, annars ej tillämplig.
 
-    D-bredd (coverage_shrink, spec docs/d_coverage_krympning_spec.md): D mäter kategorins
+    D-bredd (coverage_shrink, spec docs/done/d_coverage_krympning_spec.md): D mäter kategorins
     utfall, inte bara de undermått som råkar ha en serie. Med coverage_shrink aktiv bidrar
     saknade icke-target-undermått neutralt (net 0) i en FAST nämnare i stället för att
     renormaliseras bort. Numeratorn är per (parti, kategori): korta serier/glapp kan göra

@@ -128,7 +128,7 @@ D_resultat:
   min_responsibility: 0.15     # kategorins ansvarsunderlag (Σ maktvikt) under detta -> ej tillämplig
   change_dead_zone: 0.005      # |relativ årsförändring| <= 0.5 % räknas som oförändrad (brus)
   thin_basis_threshold: 1.0    # ansvarsunderlag (Σ maktvikt) under detta -> flagga D_thin_basis
-  # D-undermåttsbredd (docs/d_coverage_krympning_spec.md): saknade icke-target-undermått
+  # D-undermåttsbredd (docs/done/d_coverage_krympning_spec.md): saknade icke-target-undermått
   # bidrar neutralt (net 0) i D-rollupen i stället för att renormaliseras bort ur nämnaren —
   # D gör då inget oavkortat kategorianspråk utifrån en delmängd av kategorin. Nämnaren är
   # viktsumman av kategorins icke-target-undermått (target-only = alla indikatorer 'target');

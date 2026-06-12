@@ -24,6 +24,10 @@ asyl_handlaggningstid (migrationssystem — Migrationsverket). **Integration nu 
 **+2 försvar 2026-06-12:** personalstyrka_kontinuerligt (militar_formaga — FM ÅR) + forsvarsvilja
 (civil_beredskap — MPF/MSB Opinioner). **Försvar nu 3/5 undermått med D (2 → 4 D-indikatorer).**)*
 
+Rapporten visar sedan 2026-06-12 även **D-undermåttsbredd** per kategori (viktad icke-target-täckning
+som styr D:s `coverage_shrink`; tunn bredd grindas via `coverage_allowlist.d_thin_breadth_accepted` —
+i dag endast försvar 70/100). Spec: [done/d_coverage_krympning_spec.md](done/d_coverage_krympning_spec.md).
+
 ## Inlästa indikatorer (matar D)
 
 | Kategori | Indikator | Källa | Tabell/KPI | Riktning | Span |

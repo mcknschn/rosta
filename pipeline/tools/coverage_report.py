@@ -103,7 +103,7 @@ def coverage(con: Any | None = None) -> dict[str, Any]:
 
 
 def d_submeasure_breadth() -> dict[str, Any]:
-    """D-undermåttsbredd (docs/d_coverage_krympning_spec.md): viktad icke-target-täckning per kategori.
+    """D-undermåttsbredd (docs/done/d_coverage_krympning_spec.md): viktad icke-target-täckning per kategori.
 
     Offline-härledning (endast config, jfr b_submeasure_spread): ett undermått räknas D-täckt
     om det har minst en up/down-indikator som INTE är coverage-allowlistad — per Fas 3-gatens

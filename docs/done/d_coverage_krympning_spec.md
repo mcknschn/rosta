@@ -1,7 +1,9 @@
 # Rösta - Spec: D-täckningskrympning via viktad undermåttsbredd
 
-> **Status: IMPLEMENTERAD 2026-06-12 bakom `coverage_shrink: false` — väntar diff-granskning
-> innan flaggan slås på och `dist/` rebaselinas (§10-besluten signade, se §11).**
+> **Status: ✅ KLAR — LEVERERAD I SIN HELHET 2026-06-12 (arkiverad i `done/`).** Implementerad
+> bakom `coverage_shrink`, diff granskad och godkänd, flaggan **påslagen** och `dist/` + snapshot
+> rebaselinade (§9 steg 1–8 klara; §10-besluten signade, se §11). Kvarvarande sidospår: det
+> parallella B-breddsproblemet (§8) specas separat — trackat i BACKLOG (Spår B).
 >
 > v2 ersätter den äldre 1/5-bilden för försvar/demokrati. Dagens täckningsläge är bredare
 > (verifierat med `python -m pipeline.tools.coverage_report`, 2026-06-12), men kodens principiella
@@ -9,9 +11,9 @@
 > saknade delar av en kategori försvinna ur nämnaren. Den här specen gör D mer epistemiskt ärligt
 > genom att saknade icke-target-undermått bidrar neutralt i stället för att renormaliseras bort.
 >
-> Relaterat: [spar_D_datatackning.md](spar_D_datatackning.md), [done/evidens_trovardighet.md](done/evidens_trovardighet.md),
-> [../config/scoring.yaml](../config/scoring.yaml), [../pipeline/scorerun.py](../pipeline/scorerun.py),
-> [../pipeline/score.py](../pipeline/score.py).
+> Relaterat: [../spar_D_datatackning.md](../spar_D_datatackning.md), [evidens_trovardighet.md](evidens_trovardighet.md),
+> [../../config/scoring.yaml](../../config/scoring.yaml), [../../pipeline/scorerun.py](../../pipeline/scorerun.py),
+> [../../pipeline/score.py](../../pipeline/score.py).
 >
 > Begreppsmodell: **Kategori -> Undermått -> Indikator -> Riktning**.
 
@@ -41,14 +43,14 @@ som lika stor som en täckt 5-procentsdel.
 
 ## 1. Problemet i dagens kod
 
-`category_d` i [pipeline/scorerun.py](../pipeline/scorerun.py) gör i dag:
+`category_d` i [pipeline/scorerun.py](../../pipeline/scorerun.py) gör i dag:
 
 ```python
 sub_nets = {sub: sum(v) / len(v) for sub, v in by_sub.items()}
 cat_net = score.submeasure_weighted_mean(sub_nets, sub_w.get(c, {}))
 ```
 
-`submeasure_weighted_mean` i [pipeline/score.py](../pipeline/score.py) summerar vikten bara över
+`submeasure_weighted_mean` i [pipeline/score.py](../../pipeline/score.py) summerar vikten bara över
 **närvarande** undermått. Saknade undermått är varken täljare eller nämnare.
 
 Det är rätt beteende för vissa generiska rolluper, men fel semantik för D som kategoriutfall:

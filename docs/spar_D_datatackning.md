@@ -52,7 +52,7 @@ kanoniska indikatorer)*. *(24 efter Tier 4; +`overlevnad_svar_sjukdom` +`ukraina
 (Migrationsverket) → **integration 3/5 → 5/5 undermått med D**; **+2 försvar 2026-06-12:**
 +`forsvarsvilja` (MPF Opinioner → civil_beredskap) +`personalstyrka_kontinuerligt` (FM ÅR) →
 **försvar 2/5 → 3/5 undermått med D**.)* Full logg:
-[spar_D_svep_2026-06-08.md §5](spar_D_svep_2026-06-08.md) (byggkö exekverad) + [nattrapport](spar_D_nattrapport_2026-06-08.md).
+[spar_D_svep_2026-06-08.md §5](done/spar_D_svep_2026-06-08.md) (byggkö exekverad) + [nattrapport](done/spar_D_nattrapport_2026-06-08.md).
 **aterfall_kriminalvard + biologisk_mangfald + alla 4 D-tomma demokrati-submått + normer_tillit + migrationssystem öppnade → ingen kategori D-tom på submåttsnivå utom enstaka.**
 
 | Kategori | D-täckta submått | Inlästa D-serier |
@@ -488,7 +488,7 @@ granskning. Reproducerbara avläsar-/auditverktyg: `faglar_transcribe.py`, `vdem
 ### ✅ 2026-06-09 — Spår D djupsvep: 90 kandidater testade, +2 D-serier (v0, FLAGGADE)
 
 Fullt djuptest av **5 kandidater per D-tomt undermått (18 × 5 = 90)**, varje kandidat hämtad mot källan.
-Full logg: [spar_D_svep_2026-06-08.md](spar_D_svep_2026-06-08.md). Byggt (rena/neutrala/officiella/riktningsklara):
+Full logg: [spar_D_svep_2026-06-08.md](done/spar_D_svep_2026-06-08.md). Byggt (rena/neutrala/officiella/riktningsklara):
 
 1. **`brukarnojdhet_hemtjanst`** (välfärd → omsorg_personal, up): Kolada U21468 brukarbedömning hemtjänst
    helhet, 2013-2025. **Öppnar omsorg_personal (D-tomt).** Ny kanonisk indikator (D-only). Commit `1cd6f56`.
@@ -505,7 +505,7 @@ m.fl. — se svep-rapporten §4.
 ### ✅ 2026-06-08 — Spår D natt: +2 D-serier + PDF-verifiering (v0, FLAGGADE)
 
 Full försökslogg (alla försök, lyckade + misslyckade, 5 parallella källsondering-agenter):
-[spar_D_nattrapport_2026-06-08.md](spar_D_nattrapport_2026-06-08.md). Sammanfattning:
+[spar_D_nattrapport_2026-06-08.md](done/spar_D_nattrapport_2026-06-08.md). Sammanfattning:
 
 1. **`overlevnad_svar_sjukdom`** (välfärd → vard_tillganglighet, up): Kolada **U70471** 30-dagarsöverlevnad
    tjocktarmscancer, 16 obs 2010-2025. **Välfärd 3→4 D-indikatorer.** Löser §5.3 (kvinkennial-problemet).

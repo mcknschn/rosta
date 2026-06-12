@@ -1,4 +1,4 @@
-"""D-undermåttsbredd (docs/d_coverage_krympning_spec.md): nämnare, krympning, flaggor och grind.
+"""D-undermåttsbredd (docs/done/d_coverage_krympning_spec.md): nämnare, krympning, flaggor och grind.
 
 Grinden speglar fas4b-mönstret (test_fas4b_coverage): varje kategori under
 thin_coverage_threshold är ANTINGEN åtgärdad ELLER explicit accepterad i

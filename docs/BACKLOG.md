@@ -23,10 +23,13 @@
 
 ## Varför den här prioriteringen
 
-Rankingen drivs i dag mest av **A (aktivitet) + C (makt)**, eftersom **B krymps mot
-neutralt** vid tunn täckning och **D är "ej tillämplig" i 21 av 56 celler**. Modellen mäter
-alltså än så länge mer *vad partierna prioriterar och har styrt* än *om utfallet blivit
-bättre* — tvärtemot grundidén (objektivt utfall, IDEA.md).
+Rankingen drevs vid backloggens start mest av **A (aktivitet) + C (makt)**, eftersom **B krymps
+mot neutralt** vid tunn täckning och D då var "ej tillämplig" i 21 av 56 celler. *(Uppdaterat
+2026-06-12: D matas nu i **alla 7 kategorier** — 38/67 indikatorer, 28/35 undermått — och krymps
+sedan 2026-06-12 efter **viktad undermåttsbredd** i stället för att renormalisera bort saknad
+bredd, se [done/d_coverage_krympning_spec.md](done/d_coverage_krympning_spec.md). B är utrullad
+med ≥2 undermått per kategori. Obalansen är alltså i stort åtgärdad; kvarvarande tyngdpunkt är
+trovärdighets-/breddarbete, inte strukturella nollor.)*
 
 **Mål med backloggen:** flytta tyngdpunkten mot **B (evidens/träffsäkerhet)** och
 **D (resultat)** så att betygen speglar utfall, inte bara emfas. Vald strategi: **balans** —
@@ -281,7 +284,24 @@ högre coverage → mindre B-krympning → B får faktiskt genomslag.
   2022→2023-dippen; SD/M/KD +0,81 Tidö; L +0,76; C +0,67; S +0,55 bär längsta fönstret + dippen); **V = NA**. **Isolerad effekt: endast demokrati rörd** (+0,139…+0,203,
   TOTAL +0,010…+0,015), **ranking OFÖRÄNDRAD** (S>L>M>KD>MP>C>SD>V). Generaliserad adapter golden-testad (NTU-fixtur fick 5A:1), hela sviten grön, ruff rent.
 
-### Status per spår efter nattkörning 2026-06-04 (A-raden uppdaterad 2026-06-05)
+### Levererat (2026-06-07 … 2026-06-12) — sammanfattning, detaljer i trackern
+
+- ✅ **Spår D-expansionen** (tracker: [spar_D_datatackning.md](spar_D_datatackning.md), svep/natt-
+  rapporter arkiverade i [done/](done/)): 24/56 → **38/67 inlästa indikatorer, 28/35 undermått,
+  alla 7 kategorier** — bl.a. försvar 1/5 → 3/5 (forsvarsvilja, personalstyrka, ukraina_stod),
+  demokrati 1/5 → 5/5 (V-Dem-index ×4), integration 5/5, aterfall_i_brott, overlevnad_svar_sjukdom,
+  hackande_faglar_skog. Allt v0, per-indikator `data:`-commits.
+- ✅ **D-täckningskrympning (2026-06-12)** ([done/d_coverage_krympning_spec.md](done/d_coverage_krympning_spec.md)):
+  D krymps mot neutral efter **viktad icke-target-undermåttsbredd** per (parti, kategori) i stället
+  för att renormalisera bort saknad bredd. `D_coverage_<täckt>/<total>` + `D_thin_coverage`-flagga
+  (tröskel 0,75) + säkerhetssteg; **D-breddgrind** enligt allowlist-mönstret
+  (`coverage_allowlist.d_thin_breadth_accepted`, i dag endast försvar 70/100;
+  [test_d_breadth_gate](../tests/test_d_breadth_gate.py)); `coverage_report` visar D-bredd per
+  kategori. Diff granskad + godkänd: ingen rankingändring, totaler −0,008…−0,017. **Sidospår öppnat:**
+  det parallella B-breddsproblemet (spec §8) — en extra B-undermåttskrympning riskerar dubbelrabatt
+  och ska specas separat nu när D-ändringen är mätt (se Spår B nedan).
+
+### Status per spår — ögonblicksbild 2026-06-04/05 (D- och B-raderna delvis överspelade; aktuellt D-läge i [spar_D_datatackning.md](spar_D_datatackning.md))
 
 | Spår | Status |
 |------|--------|
@@ -314,21 +334,19 @@ Mål: fler kanoniska årsserier som matar D-attributionen, så fler kategorier/u
 faktiskt utfall. Alla nya serier ska vara kanoniska (finnas i `categories.yaml` med rätt
 riktning) och annuella, så de matar `category_d` automatiskt.
 
-### Våg 1 — billig bredd (återanvänder befintliga mönster) 🔵
+### Våg 1 — billig bredd (återanvänder befintliga mönster) ✅ AVSLUTAD 2026-06-09
 
-| Indikator | Kategori → undermått | Källa & metod | Återanvänder | Tag |
-|-----------|--------------------|---------------|--------------|-----|
-| `uppklaringsgrad` | trygghet → rättsväsendets effektivitet | Brå, handlagda brott (Excel) | `bra.fetch_*`-mönster | future |
-| `handlaggningstid` | trygghet → rättsväsendets effektivitet | Brå / Åklagarmyndigheten (Excel) | `bra.fetch_*` | future |
-| `aterfall_i_brott` | trygghet → återfall/kriminalvård | Brå / Kriminalvården, återfallsstatistik (Excel) | `bra.fetch_*` | future |
-| `skjutningar_sprangningar` | trygghet → grov brottslighet | Polisens statistik (CSV/Excel) | liten ny adapter | future |
-| `overlevnad_svar_sjukdom` | välfärd → vård tillgänglighet/kvalitet | Socialstyrelsens statistikdatabas (PxWeb-likt) | SCB-likt PxWeb-mönster | future |
-| `vard_i_tid` | välfärd → vård tillgänglighet | Kolada-KPI (kräver val av up-polaritets-KPI) | `kolada.fetch_kpi_series` | future |
+| Indikator | Kategori → undermått | Utfall |
+|-----------|--------------------|--------|
+| ~~`uppklaringsgrad`~~ ✅ | trygghet → rättsväsendets effektivitet | inläst 2026-06-03 (Brå 10La) |
+| `handlaggningstid` 🔴 | trygghet → rättsväsendets effektivitet | vägg (sonderat 2026-06-03: interaktiv DB/PDF, ingen maskinläsbar serie) — allowlistad `future` |
+| ~~`aterfall_i_brott`~~ ✅ | trygghet → återfall/kriminalvård | inläst 2026-06-09 (Kriminalvården KOS Tabell 6.1, transkriberade råtal) |
+| ~~`skjutningar_sprangningar`~~ ✅ | trygghet → grov brottslighet | inläst 2026-06-03 (Polisen, transkriberad) |
+| ~~`overlevnad_svar_sjukdom`~~ ✅ | välfärd → vård tillgänglighet | inläst 2026-06-08 (Kolada U70471, 30-dagarsöverlevnad) |
+| `vard_i_tid` ⛔ | välfärd → vård tillgänglighet | stängd som `low_value` (Kolada U79142 avslutad 2023 + dubblerar vardkoer) |
 
-**Varför först:** trygghet har i dag 3 D-serier men bara på *utsatthet/grovt våld* — de fyra
-första lyfter rättsväsende + förebyggande + återfall, så **trygghets-D går från ~halv till
-nästan full undermåttstäckning**. Det är en kategori vars betyg i dag drivs av A/C. Allt utom
-Polisen/Socialstyrelsen återanvänder Brå-Excel-mönstret som redan finns.
+Trygghet gick därmed till 4/5 D-täckta undermått (förebyggande saknar indikator); välfärd 3/4.
+Detaljer + verifiering i [spar_D_datatackning.md](spar_D_datatackning.md).
 
 ### Våg 2 — nya adaptrar (källa finns men ej rent öppet API) ⚪
 
@@ -434,6 +452,14 @@ företagande/investeringar samt hushållens disponibla inkomst → ekonomi 4/6 t
     är `enskild_motion`). Riktningen är låg-risk (alla stödjer antikorruption), men demokrati-B vilar på den svagaste
     provenansen i hela modellen → bör antingen få bredare/bättre källor eller redovisas med uttryckligt lågt förtroende.
 
+- **B5 — B-undermåttsbreddskrympning (parallellen till D:s coverage_shrink)** 🟣 *(öppnad 2026-06-12
+  ur [done/d_coverage_krympning_spec.md §8](done/d_coverage_krympning_spec.md))* — B har redan
+  åtgärdstyps-coverage-krympning + `b_submeasure_spread`-grind, men ingen krympning efter
+  **undermåttsbredd** (en kategori med B-evidens i 2/5 undermått gör ändå oavkortat kategorianspråk).
+  En extra B-krympning riskerar **dubbelrabatt** mot den befintliga åtgärdstyps-krympningen → kräver
+  egen spec med samma metodik (viktad icke-target-bredd, per parti/kategori) nu när D-ändringen är
+  mätt och kan jämföras. Designfråga, ej byggbar utan spec + sign-off.
+
 ---
 
 ## Spår A — Agerande (delpoäng A)
@@ -466,16 +492,14 @@ företagande/investeringar samt hushållens disponibla inkomst → ekonomi 4/6 t
 
 ---
 
-## Spår O — Drift, robusthet & ops
+## Spår O — Drift, robusthet & ops ✅ KOMPLETT (O1–O4, 2026-06-03/05)
 
-- **O1 — Serie-drift-skydd** 🔵 — SCB-serier isoleras via hårdkodade dimensionskoder (`fixed`).
-  Om SCB byter tabell-/dimensionskod kan pipelinen tyst hämta *fel* serie. Lägg en
-  rimlighets-/förväntansassertion per serie (ungefär som `derived.py`:s nivå-grind). Billigt,
-  skyddar allt annat datalager.
-- **O2 — Schemalagd ominhämtning + dist-versionering** ⚪ — diff mellan körningar så
-  utfallsändringar syns; undviker tyst regression.
-- **O3 — Live-fetch smoke test** ⚪ — opt-in `network`-markör finns redan; lägg ett cron-/manuellt
-  jobb som bekräftar att källornas endpoints fortfarande svarar med förväntad form.
+- ~~**O1 — Serie-drift-skydd**~~ ✅ — [pipeline/expectations.py](../pipeline/expectations.py),
+  förväntansassertion per inläst serie (se Levererat 2026-06-03).
+- ~~**O2 — Snapshot/diff**~~ ✅ — [score_diff.py](../pipeline/tools/score_diff.py) mot
+  `dist/scores.snapshot.json` (se Levererat 2026-06-03).
+- ~~**O3 — Live-fetch smoke test**~~ ✅ — [test_sources_live.py](../tests/test_sources_live.py),
+  opt-in `ROSTA_LIVE=1` (se Levererat 2026-06-03). *(O4 reproducerbar dist ✅ 2026-06-05.)*
 
 ---
 
@@ -483,9 +507,9 @@ företagande/investeringar samt hushållens disponibla inkomst → ekonomi 4/6 t
 
 | Sprint | Data (D) | Evidens (B) | Övrigt |
 |--------|----------|-------------|--------|
-| **1** | Våg 1: Brå (uppklaring/handläggning/återfall) + Socialstyrelsen (överlevnad) | **B1: starta expertgranskning** | **O1: drift-skydd** |
-| **2** | Våg 2: Medlingsinstitutet (reallöner) + ~~Skolverket (sfi)~~ ✅ (SCB TAB1814, Tier 2) + Svk-adapter | B2: bredda liggaren | ~~A1: fler budgetår~~ ✅ klar |
-| **3** | Våg 3: härledda klimat (elpris/effekt) + demokrati/försvar-design | B3: omstridda åtgärdstyper | A2 votering · C2/C3 · F1/F2 |
+| **1** | ~~Våg 1: Brå (uppklaring/handläggning/återfall) + Socialstyrelsen (överlevnad)~~ ✅ avslutad 2026-06-09 | ~~**B1: starta expertgranskning**~~ ✅ sign-off 2026-06-05 | ~~**O1: drift-skydd**~~ ✅ |
+| **2** | Våg 2: Medlingsinstitutet (reallöner, låg prio) + ~~Skolverket (sfi)~~ ✅ (SCB TAB1814, Tier 2) + Svk-adapter (gränsfall källregel) | B2: bredda liggaren *(kvar: valfard/integration HOLD-beslut, transparens_ansvar-bevakning KU39 2026-06-15)* | ~~A1: fler budgetår~~ ✅ klar |
+| **3** | Våg 3: härledda klimat (elpris/effekt/utsläpp-per-krona) — enda öppna D-byggen | B3: omstridda åtgärdstyper · B5: B-breddskrympning (spec) | A2 votering · C2/C3 · F1/F2 |
 
 > Varje levererat steg: flytta indikatorn ur `coverage_allowlist.yaml`, uppdatera täckningssiffran
 > i `scorerun.py:coverage`-strängen, och bocka av posten här (✅ → kort rad i ROADMAP.md).
