@@ -87,7 +87,7 @@
   ],
   "meta": {
     "coverage": "Preliminär: A=agerande (a2 motionsprioritering, andel av egna motioner, full; a1 budgetprioritering gated — aktiv för 7/7 kategorier ur officiella utgiftsramar (2023–2025), expertgranskad v1 2026-06-05, annars a2-fallback); C=makt per kategori: nationell regeringsmakt blandad med subnationell makt (SKR-styren, 21 regioner + 290 kommuner × 3 mandatperioder) via en per-kategori region/kommun-split efter lagstadgat ansvar; forsvar nationellt per design; c2 finansiering ännu ej byggd (C=c1 makt); D=resultatattribution från officiella årsserier för ALLA 7 kategorier (ekonomi/välfärd/trygghet/klimat/integration/försvar/demokrati) där partiet haft nationell makt (medel säkerhet, ej tillämplig för partier utan makt i fönstret, t.ex. V). B är AKTIVERAD för ALLA 7 kategorier via 247 källbelagda, adversariellt verifierade + panel-harmoniserade partiståndpunkter (riksdagsvotering/motion, Fas 4c); coverage-viktad (B krymps mot neutral efter andel kodade åtgärdstyper, B_thin_coverage-flagga vid tunn täckning). party_positions + evidence_ledger expertgranskade v1 (mänsklig sign-off 2026-06-05).",
-    "generated": "2026-06-09",
+    "generated": "2026-06-12",
     "model_version": 1,
     "parties": [
       "S",
@@ -217,8 +217,8 @@
       },
       "integration": {
         "ci": [
-          2.306,
-          3.093
+          2.324,
+          3.111
         ],
         "claim_refs": [
           "claim:action:C:integration:motioner",
@@ -237,7 +237,7 @@
           "A": 1.143,
           "B": 5.0,
           "C": 1.429,
-          "D": 2.778
+          "D": 2.959
         },
         "confidence": {
           "A": "high",
@@ -250,7 +250,7 @@
           "B_coverage_5/5",
           "A_a1_active"
         ],
-        "score": 2.699
+        "score": 2.717
       },
       "klimat": {
         "ci": [
@@ -479,8 +479,8 @@
       },
       "integration": {
         "ci": [
-          2.587,
-          3.375
+          2.592,
+          3.379
         ],
         "claim_refs": [
           "claim:action:KD:integration:motioner",
@@ -499,7 +499,7 @@
           "A": 1.357,
           "B": 5.0,
           "C": 2.143,
-          "D": 3.667
+          "D": 3.714
         },
         "confidence": {
           "A": "high",
@@ -512,7 +512,7 @@
           "B_coverage_5/5",
           "A_a1_active"
         ],
-        "score": 2.981
+        "score": 2.986
       },
       "klimat": {
         "ci": [
@@ -744,8 +744,8 @@
       },
       "integration": {
         "ci": [
-          2.768,
-          3.555
+          2.793,
+          3.58
         ],
         "claim_refs": [
           "claim:action:L:integration:motioner",
@@ -765,7 +765,7 @@
           "A": 1.929,
           "B": 4.5,
           "C": 3.571,
-          "D": 2.793
+          "D": 3.043
         },
         "confidence": {
           "A": "high",
@@ -778,7 +778,7 @@
           "B_coverage_4/5",
           "A_a1_active"
         ],
-        "score": 3.161
+        "score": 3.186
       },
       "klimat": {
         "ci": [
@@ -1010,8 +1010,8 @@
       },
       "integration": {
         "ci": [
-          2.405,
-          3.193
+          2.41,
+          3.197
         ],
         "claim_refs": [
           "claim:action:M:integration:motioner",
@@ -1030,7 +1030,7 @@
           "A": 1.071,
           "B": 4.5,
           "C": 2.857,
-          "D": 3.667
+          "D": 3.714
         },
         "confidence": {
           "A": "high",
@@ -1043,7 +1043,7 @@
           "B_coverage_4/5",
           "A_a1_active"
         ],
-        "score": 2.799
+        "score": 2.803
       },
       "klimat": {
         "ci": [
@@ -1276,8 +1276,8 @@
       },
       "integration": {
         "ci": [
-          3.101,
-          4.203
+          3.127,
+          4.23
         ],
         "claim_refs": [
           "claim:action:MP:integration:motioner",
@@ -1297,7 +1297,7 @@
           "A": 4.286,
           "B": 3.0,
           "C": 4.286,
-          "D": 2.449
+          "D": 2.712
         },
         "confidence": {
           "A": "high",
@@ -1311,7 +1311,7 @@
           "B_thin_coverage",
           "A_a1_active"
         ],
-        "score": 3.652
+        "score": 3.678
       },
       "klimat": {
         "ci": [
@@ -1549,8 +1549,8 @@
       },
       "integration": {
         "ci": [
-          3.282,
-          4.07
+          3.269,
+          4.057
         ],
         "claim_refs": [
           "claim:action:S:integration:motioner",
@@ -1571,7 +1571,7 @@
           "A": 3.571,
           "B": 3.571,
           "C": 5.0,
-          "D": 2.475
+          "D": 2.344
         },
         "confidence": {
           "A": "high",
@@ -1584,7 +1584,7 @@
           "B_coverage_3/5",
           "A_a1_active"
         ],
-        "score": 3.676
+        "score": 3.663
       },
       "klimat": {
         "ci": [
@@ -1810,8 +1810,8 @@
       },
       "integration": {
         "ci": [
-          2.137,
-          2.925
+          2.142,
+          2.929
         ],
         "claim_refs": [
           "claim:action:SD:integration:motioner",
@@ -1827,7 +1827,7 @@
           "A": 1.643,
           "B": 4.0,
           "C": 0.714,
-          "D": 3.667
+          "D": 3.714
         },
         "confidence": {
           "A": "high",
@@ -1840,7 +1840,7 @@
           "B_coverage_3/5",
           "A_a1_active"
         ],
-        "score": 2.531
+        "score": 2.536
       },
       "klimat": {
         "ci": [

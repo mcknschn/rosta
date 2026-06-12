@@ -3079,6 +3079,31 @@
     "source_name": "forsvarsmakten",
     "statement": "personal_varnpliktiga = 8136.0 (forsvar, 2025)."
   },
+  "claim:observed_result:obs:kolada:N00666:0000:2021": {
+    "kind": "claim",
+    "source_name": "Kolada",
+    "statement": "mellanmansklig_tillit = 62.9 (integration, 2021)."
+  },
+  "claim:observed_result:obs:kolada:N00666:0000:2022": {
+    "kind": "claim",
+    "source_name": "Kolada",
+    "statement": "mellanmansklig_tillit = 62.6 (integration, 2022)."
+  },
+  "claim:observed_result:obs:kolada:N00666:0000:2023": {
+    "kind": "claim",
+    "source_name": "Kolada",
+    "statement": "mellanmansklig_tillit = 61.2 (integration, 2023)."
+  },
+  "claim:observed_result:obs:kolada:N00666:0000:2024": {
+    "kind": "claim",
+    "source_name": "Kolada",
+    "statement": "mellanmansklig_tillit = 62.9 (integration, 2024)."
+  },
+  "claim:observed_result:obs:kolada:N00666:0000:2025": {
+    "kind": "claim",
+    "source_name": "Kolada",
+    "statement": "mellanmansklig_tillit = 62.8 (integration, 2025)."
+  },
   "claim:observed_result:obs:kolada:N15507:0000:2015": {
     "kind": "claim",
     "source_name": "Kolada",
@@ -3568,6 +3593,31 @@
     "kind": "claim",
     "source_name": "kriminalvarden",
     "statement": "aterfall_i_brott = 31.11 (trygghet, 2022)."
+  },
+  "claim:observed_result:obs:migrationsverket:asyl_handlaggningstid:2021": {
+    "kind": "claim",
+    "source_name": "migrationsverket",
+    "statement": "asyl_handlaggningstid = 257.0 (integration, 2021)."
+  },
+  "claim:observed_result:obs:migrationsverket:asyl_handlaggningstid:2022": {
+    "kind": "claim",
+    "source_name": "migrationsverket",
+    "statement": "asyl_handlaggningstid = 166.0 (integration, 2022)."
+  },
+  "claim:observed_result:obs:migrationsverket:asyl_handlaggningstid:2023": {
+    "kind": "claim",
+    "source_name": "migrationsverket",
+    "statement": "asyl_handlaggningstid = 198.0 (integration, 2023)."
+  },
+  "claim:observed_result:obs:migrationsverket:asyl_handlaggningstid:2024": {
+    "kind": "claim",
+    "source_name": "migrationsverket",
+    "statement": "asyl_handlaggningstid = 187.0 (integration, 2024)."
+  },
+  "claim:observed_result:obs:migrationsverket:asyl_handlaggningstid:2025": {
+    "kind": "claim",
+    "source_name": "migrationsverket",
+    "statement": "asyl_handlaggningstid = 180.0 (integration, 2025)."
   },
   "claim:observed_result:obs:polisen:skjutningar_sprangningar:2018": {
     "kind": "claim",
