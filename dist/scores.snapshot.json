@@ -1,12 +1,12 @@
 {
   "totals": {
-    "C": 3.081,
-    "KD": 3.184,
-    "L": 3.407,
-    "M": 3.353,
-    "MP": 3.126,
-    "S": 3.694,
-    "SD": 2.758,
+    "C": 3.09,
+    "KD": 3.169,
+    "L": 3.4,
+    "M": 3.338,
+    "MP": 3.124,
+    "S": 3.691,
+    "SD": 2.744,
     "V": 2.621
   },
   "ranking": [
@@ -35,7 +35,7 @@
       ]
     },
     "C/forsvar": {
-      "score": 3.293,
+      "score": 3.354,
       "flags": [
         "A_a1_active",
         "B_coverage_3/4",
@@ -85,7 +85,7 @@
       ]
     },
     "KD/forsvar": {
-      "score": 3.978,
+      "score": 3.881,
       "flags": [
         "A_a1_active",
         "B_coverage_3/4",
@@ -135,7 +135,7 @@
       ]
     },
     "L/forsvar": {
-      "score": 4.085,
+      "score": 4.034,
       "flags": [
         "A_a1_active",
         "B_coverage_4/4",
@@ -185,7 +185,7 @@
       ]
     },
     "M/forsvar": {
-      "score": 3.396,
+      "score": 3.299,
       "flags": [
         "A_a1_active",
         "B_coverage_4/4",
@@ -235,7 +235,7 @@
       ]
     },
     "MP/forsvar": {
-      "score": 2.577,
+      "score": 2.564,
       "flags": [
         "A_a1_active",
         "B_coverage_1/4",
@@ -287,7 +287,7 @@
       ]
     },
     "S/forsvar": {
-      "score": 3.498,
+      "score": 3.483,
       "flags": [
         "A_a1_active",
         "B_coverage_4/4",
@@ -337,7 +337,7 @@
       ]
     },
     "SD/forsvar": {
-      "score": 3.579,
+      "score": 3.481,
       "flags": [
         "A_a1_active",
         "B_coverage_4/4",

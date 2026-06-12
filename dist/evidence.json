@@ -3079,6 +3079,36 @@
     "source_name": "forsvarsmakten",
     "statement": "personal_varnpliktiga = 8136.0 (forsvar, 2025)."
   },
+  "claim:observed_result:obs:forsvarsmakten:personalstyrka_kontinuerligt:2019": {
+    "kind": "claim",
+    "source_name": "forsvarsmakten",
+    "statement": "personalstyrka_kontinuerligt = 22751.0 (forsvar, 2019)."
+  },
+  "claim:observed_result:obs:forsvarsmakten:personalstyrka_kontinuerligt:2020": {
+    "kind": "claim",
+    "source_name": "forsvarsmakten",
+    "statement": "personalstyrka_kontinuerligt = 24094.0 (forsvar, 2020)."
+  },
+  "claim:observed_result:obs:forsvarsmakten:personalstyrka_kontinuerligt:2021": {
+    "kind": "claim",
+    "source_name": "forsvarsmakten",
+    "statement": "personalstyrka_kontinuerligt = 24353.0 (forsvar, 2021)."
+  },
+  "claim:observed_result:obs:forsvarsmakten:personalstyrka_kontinuerligt:2022": {
+    "kind": "claim",
+    "source_name": "forsvarsmakten",
+    "statement": "personalstyrka_kontinuerligt = 25011.0 (forsvar, 2022)."
+  },
+  "claim:observed_result:obs:forsvarsmakten:personalstyrka_kontinuerligt:2023": {
+    "kind": "claim",
+    "source_name": "forsvarsmakten",
+    "statement": "personalstyrka_kontinuerligt = 26195.0 (forsvar, 2023)."
+  },
+  "claim:observed_result:obs:forsvarsmakten:personalstyrka_kontinuerligt:2024": {
+    "kind": "claim",
+    "source_name": "forsvarsmakten",
+    "statement": "personalstyrka_kontinuerligt = 27734.0 (forsvar, 2024)."
+  },
   "claim:observed_result:obs:kolada:N00666:0000:2021": {
     "kind": "claim",
     "source_name": "Kolada",
@@ -3618,6 +3648,61 @@
     "kind": "claim",
     "source_name": "migrationsverket",
     "statement": "asyl_handlaggningstid = 180.0 (integration, 2025)."
+  },
+  "claim:observed_result:obs:mpf:forsvarsvilja:2014": {
+    "kind": "claim",
+    "source_name": "mpf",
+    "statement": "forsvarsvilja = 75.0 (forsvar, 2014)."
+  },
+  "claim:observed_result:obs:mpf:forsvarsvilja:2015": {
+    "kind": "claim",
+    "source_name": "mpf",
+    "statement": "forsvarsvilja = 75.0 (forsvar, 2015)."
+  },
+  "claim:observed_result:obs:mpf:forsvarsvilja:2016": {
+    "kind": "claim",
+    "source_name": "mpf",
+    "statement": "forsvarsvilja = 72.0 (forsvar, 2016)."
+  },
+  "claim:observed_result:obs:mpf:forsvarsvilja:2017": {
+    "kind": "claim",
+    "source_name": "mpf",
+    "statement": "forsvarsvilja = 71.0 (forsvar, 2017)."
+  },
+  "claim:observed_result:obs:mpf:forsvarsvilja:2018": {
+    "kind": "claim",
+    "source_name": "mpf",
+    "statement": "forsvarsvilja = 72.0 (forsvar, 2018)."
+  },
+  "claim:observed_result:obs:mpf:forsvarsvilja:2020": {
+    "kind": "claim",
+    "source_name": "mpf",
+    "statement": "forsvarsvilja = 70.0 (forsvar, 2020)."
+  },
+  "claim:observed_result:obs:mpf:forsvarsvilja:2021": {
+    "kind": "claim",
+    "source_name": "mpf",
+    "statement": "forsvarsvilja = 70.0 (forsvar, 2021)."
+  },
+  "claim:observed_result:obs:mpf:forsvarsvilja:2022": {
+    "kind": "claim",
+    "source_name": "mpf",
+    "statement": "forsvarsvilja = 78.0 (forsvar, 2022)."
+  },
+  "claim:observed_result:obs:mpf:forsvarsvilja:2023": {
+    "kind": "claim",
+    "source_name": "mpf",
+    "statement": "forsvarsvilja = 79.0 (forsvar, 2023)."
+  },
+  "claim:observed_result:obs:mpf:forsvarsvilja:2024": {
+    "kind": "claim",
+    "source_name": "mpf",
+    "statement": "forsvarsvilja = 79.0 (forsvar, 2024)."
+  },
+  "claim:observed_result:obs:mpf:forsvarsvilja:2025": {
+    "kind": "claim",
+    "source_name": "mpf",
+    "statement": "forsvarsvilja = 75.0 (forsvar, 2025)."
   },
   "claim:observed_result:obs:polisen:skjutningar_sprangningar:2018": {
     "kind": "claim",
