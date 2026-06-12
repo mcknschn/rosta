@@ -3314,6 +3314,31 @@
     "source_name": "energimyndigheten",
     "statement": "fossil_energianvandning = 101.607 (klimat, 2024)."
   },
+  "claim:observed_result:obs:fmv:materielleveransutfall:2021": {
+    "kind": "claim",
+    "source_name": "fmv",
+    "statement": "materielleveransutfall = 79.0 (forsvar, 2021)."
+  },
+  "claim:observed_result:obs:fmv:materielleveransutfall:2022": {
+    "kind": "claim",
+    "source_name": "fmv",
+    "statement": "materielleveransutfall = 97.0 (forsvar, 2022)."
+  },
+  "claim:observed_result:obs:fmv:materielleveransutfall:2023": {
+    "kind": "claim",
+    "source_name": "fmv",
+    "statement": "materielleveransutfall = 72.0 (forsvar, 2023)."
+  },
+  "claim:observed_result:obs:fmv:materielleveransutfall:2024": {
+    "kind": "claim",
+    "source_name": "fmv",
+    "statement": "materielleveransutfall = 73.0 (forsvar, 2024)."
+  },
+  "claim:observed_result:obs:fmv:materielleveransutfall:2025": {
+    "kind": "claim",
+    "source_name": "fmv",
+    "statement": "materielleveransutfall = 53.0 (forsvar, 2025)."
+  },
   "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2018": {
     "kind": "claim",
     "source_name": "forsvarsmakten",

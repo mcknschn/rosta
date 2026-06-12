@@ -8,7 +8,7 @@ Invarianten "inget tyst gap" hävdas av `tests/test_fas3_gate.py`. Generera aktu
 python -m pipeline.tools.coverage_report
 ```
 
-Per 2026-06-12: **42 / 67 indikatorer inlästa** (D-dugliga, annuell up/down) i **alla 7 kategorier**
+Per 2026-06-12: **43 / 68 indikatorer inlästa** (D-dugliga, annuell up/down) i **alla 7 kategorier**
 (ekonomi, välfärd, klimat, integration, trygghet, försvar, demokrati). **Ingen kategori är längre D-tom.**
 *(17 per 2026-05-31; +2 trygghet 2026-06-03 — uppklaringsgrad + skjutningar/sprängningar; +2 ekonomi
 2026-06-07 — naringslivets_investeringar + hushallens_reala_disponibla_inkomst, Spår D Tier 1;
@@ -37,11 +37,16 @@ adaptern, 2012–2025). §5.4-källregelfrågan UPPLÖST: officiell svensk myndi
 kraftnäts lagstadgade "Kraftbalansen på den svenska elmarknaden": nettoimport vid vinterns
 topplasttimme, transkriberad config, vintrar 2019/20–2025/26). §5.4-RESTEN AVGJORD: löst via
 kraftbalansrapporten (rapporterade årsvärden), inte tim-/effektdata — Mimer/eSett-gränsfallet
-behövdes aldrig öppnas.)*
+behövdes aldrig öppnas.
+**+1 försvar 2026-06-12 (H6-uppföljning, sen kväll):** materielleveransutfall (NY kanonisk indikator —
+genomforbarhet_leverans — FMV:s leveransindex ap. 1:3.1, jämförbar serie 2021–2025). Öppnar försvarets
+sista D-tomma icke-target-undermått → **försvar 4/5 undermått med D, D-bredd 70→75/100 = tröskeln
+passerad, försvar ur `d_thin_breadth_accepted`.**)*
 
 Rapporten visar sedan 2026-06-12 även **D-undermåttsbredd** per kategori (viktad icke-target-täckning
 som styr D:s `coverage_shrink`; tunn bredd grindas via `coverage_allowlist.d_thin_breadth_accepted` —
-i dag endast försvar 70/100). Spec: [done/d_coverage_krympning_spec.md](done/d_coverage_krympning_spec.md).
+**tom sedan 2026-06-12 sen kväll**: försvar, sist kvar med 70/100, lyftes till 75/100 av
+materielleveransutfall och togs ur listan). Spec: [done/d_coverage_krympning_spec.md](done/d_coverage_krympning_spec.md).
 
 ## Inlästa indikatorer (matar D)
 
@@ -80,6 +85,7 @@ i dag endast försvar 70/100). Spec: [done/d_coverage_krympning_spec.md](done/d_
 | forsvar | personal_varnpliktiga | Försvarsmakten (ÅR) | transkr. config-yaml | up | 2018–2025⁸ |
 | forsvar | personalstyrka_kontinuerligt | Försvarsmakten (ÅR bilaga Tabell 1) | transkr. config-yaml | up | 2019–2024¹⁵ |
 | forsvar | forsvarsvilja | MPF/MSB Opinioner (transkr.) | väpnat motstånd, andel JA | up | 2014–2025¹⁶ |
+| forsvar | materielleveransutfall | FMV ÅR (transkr.) | leveransindex ap. 1:3.1 | up | 2021–2025²¹ |
 | demokrati | fortroende_domstolar_myndigheter | Brå NTU | blad 5A:1 | up | 2017–2025⁹ |
 | demokrati | rattsstatsindex | V-Dem / Göteborgs univ. (transkr.) | v2x_rule | up | 2000–2025¹² |
 | demokrati | yttrandefrihetsindex | V-Dem / Göteborgs univ. (transkr.) | v2x_freexp_altinf | up | 2000–2025¹² |
@@ -251,6 +257,27 @@ i dag endast försvar 70/100). Spec: [done/d_coverage_krympning_spec.md](done/d_
   2025/26) visar samma underliggande förlopp utan väderbrus (PROGNOS — matar EJ D). v0, kräver
   mänsklig granskning.
 
+²¹ **FMV:s leveransindex anslagspost 1:3.1**: andel av årets planerade materielleveranser till
+  Försvarsmakten som levererats i enlighet med årets leveransplan, **värdeviktat** (kan överstiga
+  100 när tidigarelagda leveranser överträffar planen) — **FMV:s årsredovisningar**, NY kanonisk
+  indikator materielleveransutfall (H6-sonderingsmandat, modellbeslut signat 2026-06-12, "Bygg nu,
+  flaggad v0"). **JÄMFÖRBARHETSSTART 2021**: FMV intygar själv kedjan (ÅR 2022 PDF s.38 "Resultaten
+  för 2022 är jämförbara med ... 2021" + "inte möjligt att göra jämförelser med ... 2020 och
+  tidigare år"; ÅR 2024 PDF s.22 + ÅR 2025 PDF s.27 bekräftar "inte tidigare än 2021") → serien är
+  2021–2025 = 79/97/72/73/53, ALLA 5 värden MASKINVERIFIERADE ur FMV:s original-PDF:er (PyMuPDF)
+  2026-06-12. Öppnar genomforbarhet_leverans (försvarets sista D-tomma icke-target-undermått;
+  syskonet leveranstid_materiel förblir 🔴 BEVAKA-allowlistat — annat mått, annan riktning).
+  ⚠ CAVEATS (v0, flaggade — centrala för neutraliteten): (1) **självreferentiell måttstock** —
+  indexet mäter utfall mot FMV:s EGEN leveransplan; 2025-raset (53) beror delvis på FMV:s
+  ÖVERPLANERING (tidigarelagda leveranser höjde målvärdet, ÅR 2025 PDF s.28) + JAS 39E-/armé-
+  förseningar ~8,3 mdkr ≈ 24 % av leveransplanen → EJ entydigt regeringsutfall (attribution:
+  industrins kapacitet + FMV:s planering); (2) **kalenderårskänsligt** (decemberförsening slår
+  hårt på indexet utan motsvarande förmågetapp — FMV:s egen varning, ÅR 2025 PDF s.27);
+  (3) ordalydelseskift i viktningsbas 2022→2023 ("objektsbudget" → "leveransens värde") — FMV
+  intygar själv jämförbarheten över skiftet; (4) endast ap. 1:3.1 (anskaffning till FM) —
+  Ukraina-donationer ingår ej. Skadan begränsad: D tar bara TECKEN + 10 %-vikt + ansvarsviktning.
+  v0, kräver mänsklig granskning.
+
 ## Allowlistade gap (skäl i `config/coverage_allowlist.yaml`)
 
 25 indikatorer saknar ännu en officiell svensk årsserie. Sammanfattning per skältyp:
@@ -288,7 +315,10 @@ i dag endast försvar 70/100). Spec: [done/d_coverage_krympning_spec.md](done/d_
   förblir allowlistade som B-/visningsindikatorer.) (personal_varnpliktiga
   inläst 2026-06-07 via Försvarsmaktens ÅR — Spår D Tier 4, försvarets första D-serie; ukraina_stod inläst
   2026-06-08 via Regeringens militära stöd/år — Spår D natt, öppnade submåttet nato_ukraina. civil_beredskap_niva
-  bekräftad vägg via MSB ÅR-PDF-läsning 2026-06-08: bara pengar/anslag, inget neutralt utfallsmått.)
+  bekräftad vägg via MSB ÅR-PDF-läsning 2026-06-08: bara pengar/anslag, inget neutralt utfallsmått.
+  **Submåttet genomforbarhet_leverans fick D 2026-06-12 via NYA indikatorn materielleveransutfall (FMV
+  leveransindex ap. 1:3.1, se ²¹)** — leveranstid_materiel förblir allowlistad som B-/visningsindikator,
+  ej återanvänd: annat mått, annan riktning.)
 
 ## Nästa steg för att krympa allowlisten
 

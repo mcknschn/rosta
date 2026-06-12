@@ -1,11 +1,11 @@
 {
   "totals": {
-    "C": 3.101,
-    "KD": 3.163,
+    "C": 3.103,
+    "KD": 3.162,
     "L": 3.405,
     "M": 3.33,
-    "MP": 3.116,
-    "S": 3.703,
+    "MP": 3.118,
+    "S": 3.704,
     "SD": 2.735,
     "V": 2.576
   },
@@ -37,12 +37,12 @@
       ]
     },
     "C/forsvar": {
-      "score": 3.33,
+      "score": 3.342,
       "flags": [
         "A_a1_active",
         "B_coverage_4/5",
         "C_national_only_by_design",
-        "D_coverage_55/100",
+        "D_coverage_60/100",
         "D_thin_coverage"
       ]
     },
@@ -95,13 +95,12 @@
       ]
     },
     "KD/forsvar": {
-      "score": 3.878,
+      "score": 3.877,
       "flags": [
         "A_a1_active",
         "B_coverage_4/5",
         "C_national_only_by_design",
-        "D_coverage_70/100",
-        "D_thin_coverage"
+        "D_coverage_75/100"
       ]
     },
     "KD/integration": {
@@ -154,13 +153,12 @@
       ]
     },
     "L/forsvar": {
-      "score": 3.987,
+      "score": 3.988,
       "flags": [
         "A_a1_active",
         "B_coverage_5/5",
         "C_national_only_by_design",
-        "D_coverage_70/100",
-        "D_thin_coverage"
+        "D_coverage_75/100"
       ]
     },
     "L/integration": {
@@ -212,13 +210,12 @@
       ]
     },
     "M/forsvar": {
-      "score": 3.253,
+      "score": 3.252,
       "flags": [
         "A_a1_active",
         "B_coverage_5/5",
         "C_national_only_by_design",
-        "D_coverage_70/100",
-        "D_thin_coverage"
+        "D_coverage_75/100"
       ]
     },
     "M/integration": {
@@ -271,13 +268,13 @@
       ]
     },
     "MP/forsvar": {
-      "score": 2.379,
+      "score": 2.391,
       "flags": [
         "A_a1_active",
         "B_coverage_2/5",
         "B_thin_coverage",
         "C_national_only_by_design",
-        "D_coverage_55/100",
+        "D_coverage_60/100",
         "D_thin_coverage"
       ]
     },
@@ -330,13 +327,12 @@
       ]
     },
     "S/forsvar": {
-      "score": 3.435,
+      "score": 3.436,
       "flags": [
         "A_a1_active",
         "B_coverage_5/5",
         "C_national_only_by_design",
-        "D_coverage_70/100",
-        "D_thin_coverage"
+        "D_coverage_75/100"
       ]
     },
     "S/integration": {
@@ -388,13 +384,12 @@
       ]
     },
     "SD/forsvar": {
-      "score": 3.436,
+      "score": 3.434,
       "flags": [
         "A_a1_active",
         "B_coverage_5/5",
         "C_national_only_by_design",
-        "D_coverage_70/100",
-        "D_thin_coverage"
+        "D_coverage_75/100"
       ]
     },
     "SD/integration": {

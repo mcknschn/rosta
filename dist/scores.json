@@ -181,8 +181,8 @@
       },
       "forsvar": {
         "ci": [
-          2.891,
-          3.769
+          2.904,
+          3.781
         ],
         "claim_refs": [
           "claim:action:C:forsvar:motioner",
@@ -193,15 +193,15 @@
           "claim:responsibility:C:regional:2014-2018:government",
           "claim:responsibility:C:regional:2018-2022:government",
           "claim:responsibility:C:regional:2022-2026:government",
-          "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2018",
-          "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2019",
-          "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2020"
+          "claim:observed_result:obs:fmv:materielleveransutfall:2021",
+          "claim:observed_result:obs:fmv:materielleveransutfall:2022",
+          "claim:observed_result:obs:fmv:materielleveransutfall:2023"
         ],
         "components": {
           "A": 3.286,
           "B": 4.5,
           "C": 0.714,
-          "D": 3.334
+          "D": 3.459
         },
         "confidence": {
           "A": "high",
@@ -214,10 +214,10 @@
           "B_coverage_4/5",
           "A_a1_active",
           "C_national_only_by_design",
-          "D_coverage_55/100",
+          "D_coverage_60/100",
           "D_thin_coverage"
         ],
-        "score": 3.33
+        "score": 3.342
       },
       "integration": {
         "ci": [
@@ -451,8 +451,8 @@
       },
       "forsvar": {
         "ci": [
-          3.44,
-          4.317
+          3.484,
+          4.271
         ],
         "claim_refs": [
           "claim:action:KD:forsvar:motioner",
@@ -463,31 +463,30 @@
           "claim:responsibility:KD:regional:2014-2018:government",
           "claim:responsibility:KD:regional:2018-2022:government",
           "claim:responsibility:KD:regional:2022-2026:government",
-          "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2018",
-          "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2019",
-          "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2020"
+          "claim:observed_result:obs:fmv:materielleveransutfall:2021",
+          "claim:observed_result:obs:fmv:materielleveransutfall:2022",
+          "claim:observed_result:obs:fmv:materielleveransutfall:2023"
         ],
         "components": {
           "A": 3.929,
           "B": 4.5,
           "C": 2.5,
-          "D": 3.57
+          "D": 3.558
         },
         "confidence": {
           "A": "high",
           "B": "medium",
           "C": "high",
-          "D": "low"
+          "D": "medium"
         },
         "evidence_refs": [],
         "flags": [
           "B_coverage_4/5",
           "A_a1_active",
           "C_national_only_by_design",
-          "D_coverage_70/100",
-          "D_thin_coverage"
+          "D_coverage_75/100"
         ],
-        "score": 3.878
+        "score": 3.877
       },
       "integration": {
         "ci": [
@@ -724,8 +723,8 @@
       },
       "forsvar": {
         "ci": [
-          3.548,
-          4.426
+          3.595,
+          4.382
         ],
         "claim_refs": [
           "claim:action:L:forsvar:motioner",
@@ -737,31 +736,30 @@
           "claim:responsibility:L:regional:2014-2018:government",
           "claim:responsibility:L:regional:2018-2022:government",
           "claim:responsibility:L:regional:2022-2026:government",
-          "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2018",
-          "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2019",
-          "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2020"
+          "claim:observed_result:obs:fmv:materielleveransutfall:2021",
+          "claim:observed_result:obs:fmv:materielleveransutfall:2022",
+          "claim:observed_result:obs:fmv:materielleveransutfall:2023"
         ],
         "components": {
           "A": 3.357,
           "B": 5.0,
           "C": 3.571,
-          "D": 3.587
+          "D": 3.598
         },
         "confidence": {
           "A": "high",
           "B": "medium",
           "C": "high",
-          "D": "low"
+          "D": "medium"
         },
         "evidence_refs": [],
         "flags": [
           "B_coverage_5/5",
           "A_a1_active",
           "C_national_only_by_design",
-          "D_coverage_70/100",
-          "D_thin_coverage"
+          "D_coverage_75/100"
         ],
-        "score": 3.987
+        "score": 3.988
       },
       "integration": {
         "ci": [
@@ -999,8 +997,8 @@
       },
       "forsvar": {
         "ci": [
-          2.815,
-          3.692
+          2.859,
+          3.646
         ],
         "claim_refs": [
           "claim:action:M:forsvar:motioner",
@@ -1011,31 +1009,30 @@
           "claim:responsibility:M:regional:2014-2018:government",
           "claim:responsibility:M:regional:2018-2022:government",
           "claim:responsibility:M:regional:2022-2026:government",
-          "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2018",
-          "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2019",
-          "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2020"
+          "claim:observed_result:obs:fmv:materielleveransutfall:2021",
+          "claim:observed_result:obs:fmv:materielleveransutfall:2022",
+          "claim:observed_result:obs:fmv:materielleveransutfall:2023"
         ],
         "components": {
           "A": 1.929,
           "B": 5.0,
           "C": 2.5,
-          "D": 3.57
+          "D": 3.558
         },
         "confidence": {
           "A": "high",
           "B": "medium",
           "C": "high",
-          "D": "low"
+          "D": "medium"
         },
         "evidence_refs": [],
         "flags": [
           "B_coverage_5/5",
           "A_a1_active",
           "C_national_only_by_design",
-          "D_coverage_70/100",
-          "D_thin_coverage"
+          "D_coverage_75/100"
         ],
-        "score": 3.253
+        "score": 3.252
       },
       "integration": {
         "ci": [
@@ -1272,8 +1269,8 @@
       },
       "forsvar": {
         "ci": [
-          1.782,
-          2.975
+          1.795,
+          2.987
         ],
         "claim_refs": [
           "claim:action:MP:forsvar:motioner",
@@ -1285,15 +1282,15 @@
           "claim:responsibility:MP:regional:2014-2018:government",
           "claim:responsibility:MP:regional:2018-2022:government",
           "claim:responsibility:MP:regional:2022-2026:government",
-          "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2018",
-          "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2019",
-          "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2020"
+          "claim:observed_result:obs:fmv:materielleveransutfall:2021",
+          "claim:observed_result:obs:fmv:materielleveransutfall:2022",
+          "claim:observed_result:obs:fmv:materielleveransutfall:2023"
         ],
         "components": {
           "A": 1.143,
           "B": 2.75,
           "C": 4.286,
-          "D": 3.162
+          "D": 3.287
         },
         "confidence": {
           "A": "high",
@@ -1307,10 +1304,10 @@
           "B_thin_coverage",
           "A_a1_active",
           "C_national_only_by_design",
-          "D_coverage_55/100",
+          "D_coverage_60/100",
           "D_thin_coverage"
         ],
-        "score": 2.379
+        "score": 2.391
       },
       "integration": {
         "ci": [
@@ -1552,8 +1549,8 @@
       },
       "forsvar": {
         "ci": [
-          2.996,
-          3.874
+          3.042,
+          3.83
         ],
         "claim_refs": [
           "claim:action:S:forsvar:motioner",
@@ -1566,31 +1563,30 @@
           "claim:responsibility:S:regional:2014-2018:government",
           "claim:responsibility:S:regional:2018-2022:government",
           "claim:responsibility:S:regional:2022-2026:government",
-          "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2018",
-          "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2019",
-          "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2020"
+          "claim:observed_result:obs:fmv:materielleveransutfall:2021",
+          "claim:observed_result:obs:fmv:materielleveransutfall:2022",
+          "claim:observed_result:obs:fmv:materielleveransutfall:2023"
         ],
         "components": {
           "A": 1.429,
           "B": 5.0,
           "C": 5.0,
-          "D": 3.633
+          "D": 3.648
         },
         "confidence": {
           "A": "high",
           "B": "medium",
           "C": "high",
-          "D": "low"
+          "D": "medium"
         },
         "evidence_refs": [],
         "flags": [
           "B_coverage_5/5",
           "A_a1_active",
           "C_national_only_by_design",
-          "D_coverage_70/100",
-          "D_thin_coverage"
+          "D_coverage_75/100"
         ],
-        "score": 3.435
+        "score": 3.436
       },
       "integration": {
         "ci": [
@@ -1826,8 +1822,8 @@
       },
       "forsvar": {
         "ci": [
-          2.997,
-          3.874
+          3.041,
+          3.828
         ],
         "claim_refs": [
           "claim:action:SD:forsvar:motioner",
@@ -1835,31 +1831,30 @@
           "claim:responsibility:SD:municipal:2022-2026:government",
           "claim:responsibility:SD:national:2022-10-18/pagaende:support",
           "claim:responsibility:SD:regional:2022-2026:government",
-          "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2018",
-          "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2019",
-          "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2020"
+          "claim:observed_result:obs:fmv:materielleveransutfall:2021",
+          "claim:observed_result:obs:fmv:materielleveransutfall:2022",
+          "claim:observed_result:obs:fmv:materielleveransutfall:2023"
         ],
         "components": {
           "A": 2.786,
           "B": 5.0,
           "C": 1.429,
-          "D": 3.57
+          "D": 3.558
         },
         "confidence": {
           "A": "high",
           "B": "medium",
           "C": "high",
-          "D": "low"
+          "D": "medium"
         },
         "evidence_refs": [],
         "flags": [
           "B_coverage_5/5",
           "A_a1_active",
           "C_national_only_by_design",
-          "D_coverage_70/100",
-          "D_thin_coverage"
+          "D_coverage_75/100"
         ],
-        "score": 3.436
+        "score": 3.434
       },
       "integration": {
         "ci": [
@@ -2091,9 +2086,9 @@
           "claim:responsibility:V:regional:2014-2018:government",
           "claim:responsibility:V:regional:2018-2022:government",
           "claim:responsibility:V:regional:2022-2026:government",
-          "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2018",
-          "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2019",
-          "claim:observed_result:obs:forsvarsmakten:personal_varnpliktiga:2020"
+          "claim:observed_result:obs:fmv:materielleveransutfall:2021",
+          "claim:observed_result:obs:fmv:materielleveransutfall:2022",
+          "claim:observed_result:obs:fmv:materielleveransutfall:2023"
         ],
         "components": {
           "A": 2.143,

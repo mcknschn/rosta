@@ -18,6 +18,7 @@ from . import derived, expectations, warehouse
 from .sources import (
     domstolsverket,
     energimyndigheten,
+    fmv,
     forsvarsmakten,
     kriminalvarden,
     medlingsinstitutet,
@@ -191,6 +192,27 @@ def main() -> None:
     span = f"{rrows[0]['period']}..{rrows[-1]['period']}" if rrows else "-"
     print(f"Regeringen (transkr.) -> forsvar       ukraina_stod: {n:4} obs ({span})")
 
+    # FMV: leveransindex ap. 1:3.1 (forsvar, delpoäng D) — transkriberad config
+    # (config/materielleveransutfall.yaml, FMV ÅR 2021-2025, maskinverifierad PyMuPDF). Öppnar
+    # submåttet genomforbarhet_leverans (försvarets sista D-tomma icke-target-undermått ->
+    # D-bredd 70->75/100, forsvar ur d_thin_breadth_accepted). Serien börjar 2021 (FMV: 2020-
+    # explicit ojämförbara). v0-caveats (FMV:s egen leveransplan som måttstock/överplanering
+    # 2025, kalenderårskänslighet, viktningsbas-skifte, endast ap. 1:3.1) i configen. v0,
+    # FLAGGAD. source_ref 'fmv:' ligger utanför scb/kolada-purge-scope.
+    fmvrows = fmv.build_materielleveransutfall_observations()
+    unlisted = {r["indicator"] for r in fmvrows} - set(fmv.INDICATORS)
+    if unlisted:
+        raise ValueError(f"FMV emitterar indikatorer utanför INDICATORS: {sorted(unlisted)}")
+    for ind in fmv.INDICATORS:
+        expectations.check_series(
+            [r for r in fmvrows if r["indicator"] == ind], fmv.EXPECT.get(ind), f"FMV {ind}"
+        )
+    # Full-replace av fmv-rader (transkriberad, komplett serie).
+    con.execute("DELETE FROM observations WHERE source_ref LIKE 'fmv:%'")
+    n = warehouse.upsert(con, "observations", fmvrows)
+    span = f"{fmvrows[0]['period']}..{fmvrows[-1]['period']}" if fmvrows else "-"
+    print(f"FMV (transkr.) -> forsvar  materielleveransutfall: {n:4} obs ({span})")
+
     # Kriminalvården: återfall i brott inom 3 år (trygghet, delpoäng D) — transkriberade råtal
     # (config/aterfall_i_brott.yaml, KOS 2025 Tabell 6.1; loadern beräknar andel + korsverifierar).
     # Öppnar submåttet aterfall_kriminalvard. source_ref 'kriminalvarden:' utanför scb/kolada-purge.
@@ -298,8 +320,9 @@ def main() -> None:
     print("   ekonomi: realloner (MI Realloner_arsdata, Reallön KPI index 1995=100) matar nu D —")
     print("       realloner_hushall har 2 serier (medveten dubbelbreddning, se modulen).")
     print("   forsvar: personal_varnpliktiga + personalstyrka_kontinuerligt (FM ÅR) + ukraina_stod")
-    print("       + forsvarsvilja (MPF Opinioner -> civil_beredskap) matar D; materiel/leverans")
-    print("       kvalitativa/sekretess (allowlistade). 3/5 submått med D.")
+    print("       + forsvarsvilja (MPF Opinioner -> civil_beredskap) + materielleveransutfall")
+    print("       (FMV leveransindex -> genomforbarhet_leverans) matar D; materiel_formaga m.fl.")
+    print("       kvalitativa/sekretess (allowlistade). 4/5 submått med D (ekon_ambition target/B-only).")
     print("   trygghet: aterfall_i_brott (Kriminalvården KOS) + handlaggningstid (Domstolsverket")
     print("       DOMstat 01_Verksamhetsmal_TR) matar nu D.")
     print("   klimat: hackande_faglar_skog (Svensk Fågeltaxering) matar nu biologisk_mangfald-D.")

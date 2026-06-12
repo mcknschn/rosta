@@ -120,6 +120,11 @@ def effektbrist() -> dict[str, Any]:
     return _load("effektbrist.yaml")
 
 
+@cache
+def materielleveransutfall() -> dict[str, Any]:
+    return _load("materielleveransutfall.yaml")
+
+
 def party_codes() -> list[str]:
     return [p["code"] for p in categories()["parties"]]
 

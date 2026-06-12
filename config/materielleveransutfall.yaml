@@ -1,0 +1,70 @@
+# FMV:s leveransindex anslagspost 1:3.1: andel av årets planerade materielleveranser till
+# Försvarsmakten som levererats i enlighet med årets leveransplan, värdeviktat. Kan överstiga 100
+# när tidigarelagda leveranser överträffar planen (FMV ÅR 2022/2023 explicit).
+#
+# DELPOÄNG D, kategori forsvar, kanonisk indikator materielleveransutfall (riktning UP; submått
+# genomforbarhet_leverans). ÖPPNAR undermåttet på D-sidan (tidigare D-tomt: leveranstid_materiel
+# är 🔴 BEVAKA/allowlistad "qualitative: sekretess" och ÅTERANVÄNDS INTE — annat mått [ledtid],
+# annan riktning [down]). MODELLBESLUT signat 2026-06-12 (H6-uppföljning: "Bygg nu, flaggad v0";
+# sonderingsmandatet beviljades i beslutsunderlag_hold_2026-06-12 H6 VAL A+B).
+#
+# VÄRDEKÄLLA (spine): FMV:s årsredovisning per år, resultatredovisningens leveransindex-avsnitt
+# (FMV = anskaffningsmyndigheten; indexet är myndighetens eget huvudmått på leveransförmåga).
+#
+# JÄMFÖRBARHETSKEDJA (serien BÖRJAR 2021 — 2020− är EXPLICIT ojämförbara):
+#   ÅR 2022 (PDF s.38): "Resultaten för 2022 är jämförbara med resultaten som redovisades i FMV:s
+#     årsredovisning 2021" + (PDF s.42): "Det är däremot inte möjligt att göra jämförelser med
+#     resultaten i årsredovisningen för 2020 och tidigare år eftersom tidigare indikatorerna
+#     baserades på andra principer och indata."
+#   ÅR 2023 (PDF s.48): "möjligt att jämföra ... med ... 2022 och 2021 men inte tidigare år".
+#   ÅR 2024 (PDF s.22): "möjligt att jämföra ... med ... 2023 och 2022 men inte tidigare än 2021".
+#   ÅR 2025 (PDF s.27): "möjligt att jämföra ... med ... 2024 och 2023 men inte tidigare än 2021".
+#
+# KÄLLSPÅRNING (MASKINVERIFIERAD 2026-06-12, PyMuPDF): ALLA 5 årsvärden + samtliga kedje- och
+# caveatcitat är direkt verifierade ur FMV:s original-PDF:er (lokala kopior c:\tmp\fmv_probe\);
+# alla 5 käll-URL:er på fmv.se HTTP 200-verifierade samma datum. Sidhänvisningar = PDF-sidor.
+#
+# v0-CAVEATS (FLAGGADE — obligatoriska, centrala för neutraliteten):
+# 1. SJÄLVREFERENTIELL MÅTTSTOCK: indexet mäter utfall mot FMV:s EGEN leveransplan. 2025-raset
+#    (53) beror delvis på FMV:s ÖVERPLANERING — tidigarelagda leveranser i målvärdet höjde ribban
+#    (ÅR 2025 PDF s.28: "Denna överplanering har bidragit till ett högre målvärde och därmed till
+#    ett lägre leveransindex jämfört med 2024") — plus försenade högvärdesleveranser (JAS 39E +
+#    armémateriel, ~8,3 mdkr ≈ 24 % av leveransplanen, ÅR 2025 PDF s.28). EJ entydigt
+#    regeringsutfall: attributionen delas av industrins kapacitet + FMV:s egen planering.
+# 2. KALENDERÅRSKÄNSLIGT: "en försening på några veckor i december till nästkommande år kan
+#    medföra stor påverkan på FMV:s leveransindex men kan samtidigt ha begränsad påverkan på
+#    Försvarsmaktens förmåga" (FMV:s egen varning, ÅR 2025 PDF s.27; samma lydelse ÅR 2022-2024).
+# 3. ORDALYDELSESKIFT I VIKTNINGSBAS 2022->2023: "viktat efter objektsbudget i investeringsplanen"
+#    (ÅR 2021-2022) -> "viktat efter leveransens värde" (ÅR 2023-). FMV intygar själv
+#    jämförbarheten över skiftet (kedjecitaten ovan spänner över bytet).
+# 4. AVGRÄNSNING: endast ap. 1:3.1 (anskaffning till Försvarsmakten); Ukraina-donationer ingår EJ
+#    (FMV redovisar donationsanskaffning separat).
+# Skadan begränsad av modellens standard: D tar bara TECKNET på årsförändringen + 10 %-vikt +
+# makt-/ansvarsviktning. v0 tills formell sign-off (->v1).
+version: 0
+indicator: materielleveransutfall
+category: forsvar
+submeasure: genomforbarhet_leverans
+unit: "index (andel av leveransplan, %)"
+fmv_arsredovisning_index: "https://www.fmv.se/om-fmv/publikationer/broschyrer-och-arsredovisning/"
+years:
+  2021:
+    value: 79
+    source: "https://www.fmv.se/globalassets/dokument/om-fmv/fmv-arsredovisning-2021.pdf"
+    source_note: "FMV AR 2021 (PDF s.42-43), Tabell 5 Leveransindex anslagspost 1.3.1, MASKINVERIFIERAD: 'I tabell 5 nedan redovisas 2021 ars leveransindex for 1:3.1. Det totala indexvardet for 2021 ar 79.' Forsta aret med nuvarande indikator (viktat efter objektsbudget); AR 2021 PDF s.48: inga jamforelsetal 2019/2020. Korsbekraftad i AR 2022 (PDF s.45): 'ett hogre varde an 2021 (79)' + Tabell 8-jamforelsekolumnen."
+  2022:
+    value: 97
+    source: "https://www.fmv.se/globalassets/dokument/om-fmv/fmv-arsredovisning-2022.pdf"
+    source_note: "FMV AR 2022 (PDF s.43), Tabell 8 Leveransindex anslagspost 1:3.1, MASKINVERIFIERAD: 'Vardet for arets leveransindex for materielleveranser som belastar anslagspost 1:3.1 uppgar till 97.' + (PDF s.45): 'FMV:s leveransindex for 2022 ar 97 vilket ar ett hogre varde an 2021 (79).' Hogt 2022 delvis gynnsamma faktorer (tidigarelagda leveranser + hogvardiga forseningar fran 2021 levererade, jfr AR 2024 PDF s.23-24). Korsbekraftad i AR 2023 Tabell 9-jamforelsekolumnen. EXPECT-ankare."
+  2023:
+    value: 72
+    source: "https://www.fmv.se/globalassets/dokument/om-fmv/fmv-arsredovisning-2023.pdf"
+    source_note: "FMV AR 2023 (PDF s.48-49), Tabell 9 Leveransindex anslagspost 1:3.1, MASKINVERIFIERAD: 'Vardet for arets leveransindex for materielleveranser som belastar anslagspost 1:3.1 uppgar till 72.' ORDALYDELSESKIFT (caveat 3): 'viktat efter leveransens varde' ersatter 'objektsbudget'; FMV intygar jamforbarhet med 2022 och 2021 (PDF s.48). Korsbekraftad i AR 2024 Tabell 4-jamforelsekolumnen."
+  2024:
+    value: 73
+    source: "https://www.fmv.se/globalassets/dokument/om-fmv/fmv-arsredovisning-2024_web_04.pdf"
+    source_note: "FMV AR 2024 (PDF s.23), Tabell 4 Leveransindex anslagspost 1:3.1 for 2024, MASKINVERIFIERAD: 'Vardet for arets leveransindex for FMV:s materielleveranser som belastar anslagspost 1:3.1 uppgar till 73.' Kedjebekraftelse (PDF s.22): jamforbart med 2023/2022 'men inte tidigare an 2021'. Korsbekraftad i AR 2025 (PDF s.13): leveransindex '53 (-20)' implicerar 2024=73."
+  2025:
+    value: 53
+    source: "https://www.fmv.se/globalassets/dokument/fmv_arsredovisning_2025.pdf"
+    source_note: "FMV AR 2025 (PDF s.13 + s.27), MASKINVERIFIERAD: 'Leveransindex ap. 1.3.1: 53 (-20)' (resultatoversikten) + 'Vardet for arets leveransindex for FMV:s materielleveranser till Forsvarsmakten uppgar till 53. Resultatet for 2025 ar lagre an resultaten for 2024 och 2023.' SERIENS LAGSTA - se caveat 1: delvis FMV:s overplanering (hojt malvarde, PDF s.27-28) + JAS 39E-/armeforseningar ~8,3 mdkr = ~24 % av leveransplanen (PDF s.28); over halften av arets forseningar harleds till industrins kapacitet. Ej entydigt regeringsutfall."

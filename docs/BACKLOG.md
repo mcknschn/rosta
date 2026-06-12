@@ -25,7 +25,7 @@
 
 Rankingen drevs vid backloggens start mest av **A (aktivitet) + C (makt)**, eftersom **B krymps
 mot neutralt** vid tunn täckning och D då var "ej tillämplig" i 21 av 56 celler. *(Uppdaterat
-2026-06-12: D matas nu i **alla 7 kategorier** — 42/67 indikatorer, 28/35 undermått — och krymps
+2026-06-12: D matas nu i **alla 7 kategorier** — 43/68 indikatorer, 29/35 undermått — och krymps
 sedan 2026-06-12 efter **viktad undermåttsbredd** i stället för att renormalisera bort saknad
 bredd, se [done/d_coverage_krympning_spec.md](done/d_coverage_krympning_spec.md). B är utrullad
 med ≥2 undermått per kategori. Obalansen är alltså i stort åtgärdad; kvarvarande tyngdpunkt är
@@ -287,15 +287,29 @@ högre coverage → mindre B-krympning → B får faktiskt genomslag.
 ### Levererat (2026-06-07 … 2026-06-12) — sammanfattning, detaljer i trackern
 
 - ✅ **Spår D-expansionen** (tracker: [spar_D_datatackning.md](done/spar_D_datatackning.md), svep/natt-
-  rapporter arkiverade i [done/](done/)): 24/56 → **42/67 inlästa indikatorer, 28/35 undermått,
-  alla 7 kategorier** — bl.a. försvar 1/5 → 3/5 (forsvarsvilja, personalstyrka, ukraina_stod),
-  demokrati 1/5 → 5/5 (V-Dem-index ×4), integration 5/5, aterfall_i_brott, overlevnad_svar_sjukdom,
-  hackande_faglar_skog. Allt v0, per-indikator `data:`-commits.
+  rapporter arkiverade i [done/](done/)): 24/56 → **43/68 inlästa indikatorer, 29/35 undermått,
+  alla 7 kategorier** — bl.a. försvar 1/5 → 4/5 (forsvarsvilja, personalstyrka, ukraina_stod,
+  materielleveransutfall), demokrati 1/5 → 5/5 (V-Dem-index ×4), integration 5/5, aterfall_i_brott,
+  overlevnad_svar_sjukdom, hackande_faglar_skog. Allt v0, per-indikator `data:`-commits.
+- ✅ **H6-uppföljning (2026-06-12 sen kväll): materielleveransutfall** — NY kanonisk D-indikator
+  (forsvar → genomforbarhet_leverans, riktning up; modellbeslut signat "Bygg nu, flaggad v0").
+  **FMV:s leveransindex ap. 1:3.1** (andel av årets planerade materielleveranser till FM som
+  levererats enligt leveransplan, värdeviktat), jämförbar serie **2021–2025 = 79/97/72/73/53**
+  (FMV intygar kedjan ÅR 2022 s.38 → ÅR 2025 s.27; 2020− explicit ojämförbara), transkriberad
+  config + `pipeline/sources/fmv.py`, alla värden + citat maskinverifierade (PyMuPDF). Byggd efter
+  **sonderingsmandatet i H6** ([beslutsunderlag_hold_2026-06-12.md](beslutsunderlag_hold_2026-06-12.md)).
+  Öppnade försvarets sista D-tomma icke-target-undermått → **D-bredd 70→75/100 = tröskeln passerad →
+  försvar BORTTAGEN ur `d_thin_breadth_accepted`** (listan nu tom; D_thin_coverage-flaggan släcks för
+  partier med försvarsattribution). v0-caveats (självreferentiell måttstock/FMV-överplanering 2025 +
+  JAS 39E/armé ~8,3 mdkr, kalenderårskänslighet, viktningsbas-skifte 2022→2023, endast ap. 1:3.1 —
+  Ukraina-donationer ingår ej) i config + fas3_coverage ²¹. `leveranstid_materiel` orörd/vilande
+  (annat mått, annan riktning). B-sidan av H6 kvarstår BEVAKA (FöU3-utvärderingstriggern).
 - ✅ **D-täckningskrympning (2026-06-12)** ([done/d_coverage_krympning_spec.md](done/d_coverage_krympning_spec.md)):
   D krymps mot neutral efter **viktad icke-target-undermåttsbredd** per (parti, kategori) i stället
   för att renormalisera bort saknad bredd. `D_coverage_<täckt>/<total>` + `D_thin_coverage`-flagga
   (tröskel 0,75) + säkerhetssteg; **D-breddgrind** enligt allowlist-mönstret
-  (`coverage_allowlist.d_thin_breadth_accepted`, i dag endast försvar 70/100;
+  (`coverage_allowlist.d_thin_breadth_accepted` — försvar 70/100 enda posten t.o.m. 2026-06-12 sen
+  kväll, då materielleveransutfall lyfte bredden till 75/100 och grinden tvingade bort posten;
   [test_d_breadth_gate](../tests/test_d_breadth_gate.py)); `coverage_report` visar D-bredd per
   kategori. Diff granskad + godkänd: ingen rankingändring, totaler −0,008…−0,017. **Sidospår öppnat:**
   det parallella B-breddsproblemet (spec §8) — en extra B-undermåttskrympning riskerar dubbelrabatt
@@ -454,7 +468,8 @@ företagande/investeringar samt hushållens disponibla inkomst → ekonomi 4/6 t
   *(Tabellen avstämd mot live `b_submeasure_spread` 2026-06-12 kväll: integration 3/5, ekonomi 4/6,
   valfard 4/4, forsvar 4/5, klimat 4/5, trygghet 5/5, demokrati 5/5 — inga nära-binära. Kvarvarande
   otäckta: integrations boendesegregation+normer_tillit (HOLD H3/H4), försvarets genomforbarhet_leverans
-  (HOLD H6), klimats industriell_konkurrenskraft + trygghets/valfards target-/indikatorlösa — se
+  (HOLD H6 på B-sidan — D-sidan LÖST 2026-06-12 via materielleveransutfall, se Levererat),
+  klimats industriell_konkurrenskraft + trygghets/valfards target-/indikatorlösa — se
   [beslutsunderlag_hold_2026-06-12.md](beslutsunderlag_hold_2026-06-12.md).)*
 
   | Kategori | Undermått m. B-evidens | Andel kat-vikt | Status |
@@ -462,7 +477,7 @@ företagande/investeringar samt hushållens disponibla inkomst → ekonomi 4/6 t
   | ekonomi | ~~1/5~~ **4/6** | ~~25 %~~ **73 %** | ✅ åtgärdad 2026-06-05 (FoU→produktivitet + företagande/investeringar + hushållens disponibla inkomst). 4 av 4 B-möjliga täckta; inflation/off.finanser = target (vilande) |
   | demokrati | ~~1/5 → 4/5~~ **5/5** *(2026-06-12: transparens_ansvar täckt via insyn_partifinansiering — låg/2018, KU39-uppgradering 2026-06-15)* | **100 %** | ✅ åtgärdad 2026-06-05/06: (1) grundlagsskydd domstolarnas oberoende → otillborlig_politisering (votering KU2), (2) begränsa biometrisk realtidsövervakning m. rättssäkerhet → overvakning_utan_rattssakerhet (votering JuU28, **blocköverskridande**, Lagrådet-ankrat), **(3) lagstadgat oberoende public service → mediefrihet (enhälligt bet. 2025/26:KrU2 p1, prop. 2024/25:166 ur parlamentarisk kommitté SOU 2024:34 → alla 8 supports; codex BUILD-WITH-CHANGES, mekanism-/designevidens low/low; demokrati 3/5 → 4/5)**. Kvar otäckt: transparens_ansvar (**stark återöppning: prop. 2025/26:258 insyn i politiska processer, bet. KU39, beslut 2026-06-15**) |
   | valfard | ~~2/4~~ **4/4** *(2026-06-12: live-mätaren — kontinuitet/NHV-byggena 2026-06-07 täckte resten)* | **100 %** | tunn — vard_tillganglighet + omsorg_personal HOLD 2026-06-06, **djupsvep §5.8 (11 instrument) bekräftar**: vårdplats-slutrapport 2026:3 föll *nedåt* (villkor konsumerat), cancerscreening klarar steg 1 men faller på neutralitet (avslag/opp-reservationer); omsorg_personal = fel konstrukt (kompetens/heltid/kontinuitet ≠ omsättning). HOLD:arna STÄNGDA som BEVAKA med triggrar (sign-off 2026-06-12, beslutsunderlag H1+H2: cancerstrategi-enighet resp. Socialstyrelse-omsättningsmått) |
-  | forsvar | ~~2/5 → 3/5~~ **4/5** *(2026-06-12: +ekonomisk_ambition via forsvarsfinansiering-posten 2026-06-07)* | **95 %** | ✅ nato_ukraina tillagt 2026-06-06 (nato_medlemskap, votering UU16, Försvarsberedningen-källa, codex-granskat: V=opposes, MP=none pga reversering). Kvar: ekonomisk_ambition=target (ej B-bar), genomforbarhet_leverans (HOLD, **djupsvep §5.8/7 instrument bekräftar äkta steg-1-vägg**: ingen svensk källa kopplar instrument → kortad *leveranstid*, bara kapacitet/kostnad; sign-off 2026-06-12 (H6, A+B): BEVAKA utvärderings-triggern + FMV-leveransindex-sondering BEVILJAD och igångsatt) |
+  | forsvar | ~~2/5 → 3/5~~ **4/5** *(2026-06-12: +ekonomisk_ambition via forsvarsfinansiering-posten 2026-06-07)* | **95 %** | ✅ nato_ukraina tillagt 2026-06-06 (nato_medlemskap, votering UU16, Försvarsberedningen-källa, codex-granskat: V=opposes, MP=none pga reversering). Kvar: ekonomisk_ambition=target (ej B-bar), genomforbarhet_leverans (HOLD, **djupsvep §5.8/7 instrument bekräftar äkta steg-1-vägg**: ingen svensk källa kopplar instrument → kortad *leveranstid*, bara kapacitet/kostnad; sign-off 2026-06-12 (H6, A+B): BEVAKA utvärderings-triggern + FMV-leveransindex-sondering BEVILJAD → **sonderingen LEVERERADE på D-sidan 2026-06-12 sen kväll: materielleveransutfall (FMV leveransindex ap. 1:3.1, NY kanonisk D-only-indikator, v0) öppnade genomforbarhet_leverans i D — försvar ur `d_thin_breadth_accepted` (70→75/100). B-sidan kvarstår BEVAKA** (FöU3-utvärderingstriggern; tabellens 4/5 avser B-evidens, oförändrat)) |
   | integration | ~~2/5~~ **3/5** *(2026-06-12: +skola_sprak via uppsokande_forskoleerbjudande, B3)* | **65 %** | tunn — normer_tillit + boendesegregation HOLD 2026-06-06, **djupsvep §5.8 (11 instrument) bekräftar**: boendesegr. = äkta steg-1-vägg (allt beskrivande/mixed), normer_tillit/KU4-tillgänglighet = perfekt steg 2 men fel konstrukt (förmåga att rösta ≠ uppmätt valdeltagande). Högsta bias-risk; HOLD/BEVAKA bekräftad med loggade mandat-undantag (sign-off 2026-06-12, beslutsunderlag H3+H4; triggrar: enig GOTV/UbU-behandling resp. bosättningslag-betänkandet ~2027) |
   | trygghet | ~~3/5 → 4/5~~ **5/5** *(2026-06-12: +forebyggande via kommunalt_brottsforebyggande 2026-06-07)* | **100 %** | ✅ snabbforfarande_lagforing 2026-06-06 (handlaggningstid, Brå 2020:3, enhälligt bet. JuU2 p1 → alla 8 supports, codex BUILD-WITH-CHANGES). Kvar: forebyggande (saknar indikator) |
   | klimat | ~~3/5~~ **4/5** | ~~70 %~~ **85 %** | ✅ atgarder_mot_invasiva_frammande_arter 2026-06-06 (hotade_arter_naturforlust, Naturvårdsverket, enhälligt bet. MJU13 p1 → alla 8 supports). **SIGN-OFF 2026-06-12 (H5, VAL A): BEHÅLL + AVFLAGGAD, v0→v1** (konsensus-mått, low/low kvarstår). Kvar: industriell_konkurrenskraft (saknar indikator) |
