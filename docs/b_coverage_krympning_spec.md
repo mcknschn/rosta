@@ -1,9 +1,11 @@
 # Rösta - Spec: B-undermåttsbreddskrympning (BACKLOG B5)
 
-> **Status: 🟡 IMPLEMENTERAD bakom `coverage_mode: policy_type_count` (legacy default,
-> byte-identiskt verifierat 2026-06-12: `dist/` oförändrad + `score_diff` ren efter
-> scorerun) — det nya läget `weighted_submeasure_depth` är byggt, testat och aktiveras
-> ENDAST via config; default-switch väntar mänsklig sign-off av §10.**
+> **Status: 🟡 IMPLEMENTERAD + GRINDAD bakom `coverage_mode: policy_type_count` (legacy
+> default, byte-identiskt verifierat 2026-06-12: `dist/` oförändrad + `score_diff` ren
+> efter scorerun). §10.1–10.6 SIGNADE 2026-06-12 (design, nämnare, KD↔MP-flip i princip,
+> tröskel 0,5, flaggformat, B-breddgrind — grinden byggd, se §11). KVAR: ENDAST §10.7 —
+> default-switchen till `weighted_submeasure_depth` + rebaselina sker först efter
+> människogranskad faktisk switch-diff (per cell/kategori/total + CI-/rankingnot).**
 >
 > Systerspec till den levererade D-specen
 > [done/d_coverage_krympning_spec.md](done/d_coverage_krympning_spec.md) och speglar dess
@@ -634,6 +636,24 @@ testfel. Gör B-väggarnas kostnad människosignerad i stället för tyst. (Sign
   KD/integration 52,5/100 (B3-posterna breddade täckningen), KD↔MP-flippen kvarstår
   (MP 3,148 > KD 3,119 i lokal testkörning) — effektbilden ska räknas om vid
   §10-granskningen.
+- 2026-06-12: **§10.1–10.6 SIGNADE** (mänsklig sign-off): (1) ERSÄTT med enhetlig `cov_B`
+  godkänd; (2) D:s icke-target-nämnare godkänd, ingen `b_breadth_exclude` vid start;
+  (3) KD↔MP-flippen accepterad i princip (faktisk diff granskas i §10.7); (4)
+  `thin_coverage_threshold` behålls 0,5 (verifierad i config); (5) viktflaggan ersätter
+  antalsflaggan; (6) bygg B-breddgrinden. **§9 steg 5 LEVERERAT** (Claude) per §10.6:
+  `coverage_report.b_submeasure_breadth` (viktat cov_B-TAK per kategori; delar
+  `_non_target_submeasures` + T_s-reglerna via `_b_codable_types_by_submeasure` — ingen
+  duplicerad definition) + rapportsektion i `main()` (spegel av D-sektionen); grind
+  `tests/test_b_breadth_gate.py` (spegel av `test_d_breadth_gate`: no-unaccounted/
+  shrinks/valid/partition-bounds) mot `coverage_allowlist.b_thin_breadth_accepted`,
+  grindtröskel 0,75 (§6.4); `b_submeasure_spread`-docstring uppdaterad per §3.5.
+  Första människosignerade posten: **integration 65/100** (B-väggarna boendesegregation +
+  normer_tillit = loggade mandat-undantag H4/H3 med triggrar, beslutsunderlag_hold_
+  2026-06-12); forsvar 95/100 och klimat 85/100 ligger ÖVER grindtröskeln (H6 gällde
+  D-sidan; B-väggen genomforbarhet_leverans väger bara 5). Verifierat: pytest 292 grönt,
+  `dist/` fortsatt byte-identisk i legacy-läget (git diff tom + score_diff ren).
+  KVAR: endast §10.7 — default-switch + rebaselina efter människogranskad switch-diff
+  (per cell/kategori/total + CI-överlapp-/rankingnot).
 
 ---
 

@@ -16,10 +16,19 @@ import sys
 from typing import Any
 
 from .. import config, score, warehouse
-from ..scorerun import _d_denominator_submeasures
+from ..scorerun import (
+    _b_codable_types_by_submeasure,
+    _d_denominator_submeasures,
+    _non_target_submeasures,
+)
 
 NATIONAL = ("Riket", "0000")
 EVIDENCE_TARGET = 3  # ROADMAP T3.9: >=3 evidence_effect-poster per kategori
+# B5-spec §6.4: kategori vars viktade cov_B-TAK ligger under denna grindtröskel måste stå i
+# coverage_allowlist.b_thin_breadth_accepted med skäl (tests/test_b_breadth_gate.py). Samma
+# nivå som D-grinden (0.75) — taket är kategori-globalt och strängare än runtime-flaggans
+# per-parti-tröskel (B_evidens.thin_coverage_threshold 0.5 på cov_B).
+B_BREADTH_GATE_THRESHOLD = 0.75
 
 
 def _observed_series(con: Any) -> dict[tuple[str, str], dict[str, Any]]:
@@ -137,15 +146,53 @@ def d_submeasure_breadth() -> dict[str, Any]:
     return {"threshold": thr, "categories": cats_out}
 
 
+def b_submeasure_breadth() -> dict[str, Any]:
+    """B-undermåttsbredd (docs/b_coverage_krympning_spec.md §6.3–6.4): viktat cov_B-TAK per kategori.
+
+    Offline-spegel av d_submeasure_breadth (endast config): ett icke-target-undermått räknas
+    B-täckbart om det har minst en kodbar åtgärdstyp (T_s != tom mängd — DELADE regler med
+    scoringen via scorerun._b_codable_types_by_submeasure: signed_direction != 0, ej
+    coverage_exclude). Viktad andel täckbara undermått = kategorins cov_B-TAK: det värde
+    scoringens per-parti-täckning når när ALLA kodbara typer är kodade — B-väggar (T_s tom)
+    sänker taket permanent tills de byggs bort (Spår B/B2). Nämnaren = icke-target-undermått
+    (scorerun._non_target_submeasures, samma som D). Kategori-global översikt; scoringens
+    cov_B är per (parti, kategori) och har dessutom djupledet |K_s|/|T_s|.
+    """
+    t_by_cat = _b_codable_types_by_submeasure()
+    nontarget = _non_target_submeasures()
+    thr = B_BREADTH_GATE_THRESHOLD
+    cats_out: list[dict[str, Any]] = []
+    for cat in config.categories()["categories"]:
+        cid = cat["id"]
+        weights = {s["id"]: float(s["weight"]) for s in cat["submeasures"]}
+        den = nontarget[cid]
+        t_subs = t_by_cat.get(cid, {})
+        covered = {s for s in den if t_subs.get(s)}
+        total_w = sum(weights[s] for s in den)
+        covered_w = sum(weights[s] for s in covered)
+        ratio = covered_w / total_w if total_w else 0.0
+        cats_out.append({
+            "id": cid,
+            "covered_weight": covered_w, "total_weight": total_w, "ratio": ratio,
+            "covered_submeasures": sorted(covered),
+            "uncovered_submeasures": sorted(den - covered),
+            "thin": ratio < thr,
+        })
+    return {"threshold": thr, "categories": cats_out}
+
+
 def b_submeasure_spread() -> dict[str, Any]:
     """BACKLOG B4 — anti-binär audit: hur många DISTINKTA submått har AKTIV B-evidens per kategori?
 
     Bakgrund: score.aggregate_B är submåttsviktat (b_raw = submåttsviktat medel över de
     indikatorer som har en effekt). Vilar all aktiv evidens i en kategori på ETT submått kan
     en enda ståndpunkt svinga b_raw mellan ytterlägen (0/2.5/5) — kategorin blir "nära-binär".
-    Coverage-krympningen (scorerun: num/den på åtgärdstyps-nivå) dämpar tunn täckning men löser
-    inte detta: även vid full täckning av ett enda submått är B binär. Den här mätaren är därför
-    en KOMPLETTERANDE lins till num/den och reproducerar BACKLOG-tabellen.
+    Hur mycket coverage-krympningen dämpar detta beror på B_evidens.coverage_mode (B5-spec
+    §3.5): i legacy-läget (policy_type_count) är även ett fullkodat enda submått binärt (full
+    åtgärdstyps-täckning -> oavkortat anspråk); i weighted_submeasure_depth är gaming
+    ekonomiskt verkningslöst (cov_B <= max(w_s)/W -> B kan som mest nå 2.5 ± 0.875). Grinden
+    behålls i båda lägena som offline-/sign-off-lager (b_near_binary_accepted) och
+    reproducerar BACKLOG-tabellen.
 
     Aktiv B-evidens i ett submått = en åtgärdstyp som
       (1) har en evidensliggar-post med signed_direction != 0 (ej mixed/unclear) och
@@ -236,6 +283,21 @@ def main() -> None:
     print("  Viktad icke-target-undermåttstäckning per kategori (kategori-global översikt;"
           " scoringens\n  numerator är per parti/kategori). ⚠ = under tröskeln (D_thin_coverage).\n")
     for c in dsb["categories"]:
+        thin = "  ⚠ THIN" if c["thin"] else ""
+        print(f"  {c['id']:12} {c['covered_weight']:>4g}/{c['total_weight']:<4g}"
+              f"  {c['ratio']:.2f}{thin}")
+        if c["uncovered_submeasures"]:
+            print(f"        otäckta: {', '.join(c['uncovered_submeasures'])}")
+
+    # --- B-undermåttsbredd (B5): viktat cov_B-tak per kategori (icke-target-nämnare) ---
+    bsb = b_submeasure_breadth()
+    b_mode = config.scoring()["B_evidens"].get("coverage_mode", "policy_type_count")
+    print(f"\n== B-undermåttsbredd (coverage_mode: {b_mode},"
+          f" grindtröskel {bsb['threshold']}) ==")
+    print("  Viktat cov_B-TAK per kategori (alla kodbara åtgärdstyper kodade; nämnare ="
+          " icke-target,\n  delad med D). ⚠ = tak under grindtröskeln"
+          " (b_thin_breadth_accepted, spec §6.4).\n")
+    for c in bsb["categories"]:
         thin = "  ⚠ THIN" if c["thin"] else ""
         print(f"  {c['id']:12} {c['covered_weight']:>4g}/{c['total_weight']:<4g}"
               f"  {c['ratio']:.2f}{thin}")

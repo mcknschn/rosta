@@ -160,3 +160,18 @@ d_thin_breadth_accepted:
   # ekonomisk_ambition 25 (forsvarsfinansiering_upptrappning_mot_mal B-only,
   # forsvarsanslag_andel_bnp target — utanför D per design).
   []
+
+# ---------------------------------------------------------------------------------------------------
+# B-BREDD — kategorier vars viktade cov_B-TAK ligger under grindtröskeln (B5, docs/b_coverage_krympning_spec.md §6.4)
+# ---------------------------------------------------------------------------------------------------
+# Taket = viktad andel icke-target-undermått med >=1 kodbar åtgärdstyp (mätare
+# pipeline.tools.coverage_report.b_submeasure_breadth, samma nämnare som D) — det värde
+# per-parti-cov_B aldrig kan överstiga ens vid full kodning. B-väggar sänker taket permanent
+# tills de byggs bort (Spår B/B2); här listas kategorier under grindtröskeln (0.75) EXPLICIT
+# med skäl så B-väggarnas kostnad är människosignerad, aldrig tyst.
+# Invariant (tests/test_b_breadth_gate.py, spegel av test_d_breadth_gate):
+#   - varje kategori under grindtröskeln MÅSTE stå här (annars tyst regression), OCH
+#   - varje post här MÅSTE fortfarande vara under tröskeln (listan krymper när B-väggar byggs bort).
+b_thin_breadth_accepted:
+  - category: integration
+    reason: "B-väggar: boendesegregation (20) + normer_tillit (15) saknar kodbar åtgärdstyp -> cov_B-tak 65/100. Människosignerade mandat-undantag från B-grön-mandatet (beslutsunderlag_hold_2026-06-12, sign-off 2026-06-12): H4 JA — boendesegregation HOLD/BEVAKA med trigger bosättningslag-betänkandet (~2027, Dir 2024:22; varje dagens kandidat faller på tilt, SD-självstyre-axeln); H3 JA — normer_tillit HOLD/BEVAKA med dubbla triggrar (GOTV-anslag där oppositionen ej avstår -> Delmi 2025:5; acklamerad UbU-behandling av yrkesprogram -> IFAU 2017:12). Tiltad evidens byggs ALDRIG; posten tas bort när en trigger faller ut och väggen byggs bort."
