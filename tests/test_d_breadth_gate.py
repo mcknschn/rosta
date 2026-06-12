@@ -116,15 +116,20 @@ ARBETSLOSHET = {2014: 8.0, 2015: 7.5, 2016: 7.0, 2017: 6.7, 2018: 6.5, 2019: 6.4
 BNP = {2021: 100.0, 2022: 102.0, 2023: 104.0, 2024: 106.0, 2025: 108.0}
 
 
-def _shrink_on(monkeypatch: pytest.MonkeyPatch) -> None:
+def _set_shrink(monkeypatch: pytest.MonkeyPatch, on: bool) -> None:
     sc = copy.deepcopy(config.scoring())
-    sc["D_resultat"]["coverage_shrink"] = True
+    sc["D_resultat"]["coverage_shrink"] = on
     monkeypatch.setattr(config, "scoring", lambda: sc)
+
+
+def _shrink_on(monkeypatch: pytest.MonkeyPatch) -> None:
+    _set_shrink(monkeypatch, True)
 
 
 def test_coverage_shrink_krymper_d_och_flaggar(monkeypatch: pytest.MonkeyPatch) -> None:
     con = _seed_con()
     warehouse.upsert(con, "observations", _obs("arbetsloshet", "sysselsattning_arbetsloshet", ARBETSLOSHET))
+    _set_shrink(monkeypatch, False)  # legacy-gren oavsett config-default
     base = scorerun.build(con)["scores"]["scores"]["S"]["ekonomi"]
     # legacy-grenen (shrink av, default) sätter inga D-breddflaggor
     assert not [f for f in base["flags"] if f.startswith("D_coverage") or f == "D_thin_coverage"]

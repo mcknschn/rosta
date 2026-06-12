@@ -134,7 +134,7 @@ D_resultat:
   # viktsumman av kategorins icke-target-undermått (target-only = alla indikatorer 'target');
   # numeratorn är per (parti, kategori) eftersom attribution kan saknas i korta serier.
   # false = legacy-beteende (renormalisering över observerade undermått), byte-identisk baseline.
-  coverage_shrink: false
+  coverage_shrink: true
   coverage_denominator: non_target_submeasure_weight  # dokumenterar nämnarens semantik
   thin_coverage_threshold: 0.75  # viktad D-täckning under detta -> D_thin_coverage + säkerhetssteg ned
   not_applicable_score: 2.5    # rättvisa: opposition straffas inte för utfall den ej rådde över

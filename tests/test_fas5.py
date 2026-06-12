@@ -91,10 +91,14 @@ def test_scorerun_d_attribution_credits_governing_party() -> None:
     sc = scorerun.build(con)["scores"]["scores"]
     s_eco = sc["S"]["ekonomi"]
     v_eco = sc["V"]["ekonomi"]
-    # S styrde när arbetslösheten föll (förbättring) -> D uppmätt, > 2.5, medel säkerhet.
+    # S styrde när arbetslösheten föll (förbättring) -> D uppmätt, > 2.5. Med coverage_shrink
+    # (default på) täcker den ensamma serien bara 22/73 av ekonomins icke-target-vikt ->
+    # D_thin_coverage + säkerhet sänkt ett steg (medium -> low). Se test_d_breadth_gate.
     assert s_eco["components"]["D"] > 2.5
     assert "D_not_applicable" not in s_eco["flags"]
-    assert s_eco["confidence"]["D"] == "medium"
+    assert "D_coverage_22/73" in s_eco["flags"]
+    assert "D_thin_coverage" in s_eco["flags"]
+    assert s_eco["confidence"]["D"] == "low"
     # V satt aldrig i regering -> D ej tillämplig (neutral 2.5, flaggad, låg säkerhet).
     assert v_eco["components"]["D"] == 2.5
     assert "D_not_applicable" in v_eco["flags"]
