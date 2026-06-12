@@ -44,12 +44,14 @@ nationell regeringsmakt i fönstret → strukturellt korrekt, ej ett gap). Model
 
 ## 2. Nuläge (verifierat via `python -m pipeline.tools.coverage_report`, 2026-06-09)
 
-**36 D-serier inlästa** (annuell, D-duglig) i **ALLA 7 kategorier** *(56 ursprungliga kanoniska + 9 nya
+**38 D-serier inlästa** (annuell, D-duglig) i **ALLA 7 kategorier** *(56 ursprungliga kanoniska + 11 nya
 kanoniska indikatorer)*. *(24 efter Tier 4; +`overlevnad_svar_sjukdom` +`ukraina_stod` natt 2026-06-08;
 +`brukarnojdhet_hemtjanst` +`utslappsintensitet` djupsvep 2026-06-09; **+6 färsk session 2026-06-09:**
 +`aterfall_i_brott` (trygghet) +`hackande_faglar_skog` (klimat) + 4 V-Dem-index (demokrati);
 **+2 integration 2026-06-12:** +`mellanmansklig_tillit` (SCB medborgarunders. N00666) +`asyl_handlaggningstid`
-(Migrationsverket) → **integration 3/5 → 5/5 undermått med D**.)* Full logg:
+(Migrationsverket) → **integration 3/5 → 5/5 undermått med D**; **+2 försvar 2026-06-12:**
++`forsvarsvilja` (MPF Opinioner → civil_beredskap) +`personalstyrka_kontinuerligt` (FM ÅR) →
+**försvar 2/5 → 3/5 undermått med D**.)* Full logg:
 [spar_D_svep_2026-06-08.md §5](spar_D_svep_2026-06-08.md) (byggkö exekverad) + [nattrapport](spar_D_nattrapport_2026-06-08.md).
 **aterfall_kriminalvard + biologisk_mangfald + alla 4 D-tomma demokrati-submått + normer_tillit + migrationssystem öppnade → ingen kategori D-tom på submåttsnivå utom enstaka.**
 
@@ -58,7 +60,7 @@ kanoniska indikatorer)*. *(24 efter Tier 4; +`overlevnad_svar_sjukdom` +`ukraina
 | ekonomi | **4 / 4 D-bara¹** | sysselsattning, arbetsloshet, bnp_per_capita, produktivitet, **naringslivets_investeringar**, **hushallens_reala_disponibla_inkomst** |
 | valfard | **3 / 4** | vardkoer, overlevnad_svar_sjukdom, skolresultat, behoriga_larare, **brukarnojdhet_hemtjanst** (omsorg_personal öppnat, djupsvep) |
 | trygghet | **4 / 5** | dodligt_vald, skjutningar_sprangningar, brottsutsatthet, upplevd_otrygghet, uppklaringsgrad, **aterfall_i_brott** (aterfall_kriminalvard öppnat, KOS, färsk session) |
-| forsvar | **2 / 5** | personal_varnpliktiga, **ukraina_stod** (nato_ukraina öppnat, natt 2026-06-08) |
+| forsvar | **3 / 5** | personal_varnpliktiga, ukraina_stod (nato_ukraina), **personalstyrka_kontinuerligt** (FM ÅR, 2:a militar_formaga-serien), **forsvarsvilja** (civil_beredskap öppnat, MPF Opinioner — försvar 2026-06-12) |
 | klimat | **4 / 5** | territoriella_utslapp, konsumtionsbaserade_utslapp, fossil_energianvandning, **utslappsintensitet** (kostnadseff., djupsvep), **hackande_faglar_skog** (biologisk_mangfald öppnat, Svensk Fågeltaxering, färsk session) |
 | integration | **5 / 5** | sysselsattningsgap_inrikes_utrikes, sjalvforsorjningsgrad, bidragsberoende, trangboddhet, sfi_sprakkunskaper, **mellanmansklig_tillit** (normer_tillit öppnat, SCB medborgarunders. N00666), **asyl_handlaggningstid** (migrationssystem öppnat, Migrationsverket — integration 2026-06-12) |
 | demokrati | **5 / 5** | fortroende_domstolar_myndigheter (Brå NTU), **rattsstatsindex, yttrandefrihetsindex, privata_friheter, horisontellt_ansvarsutkravande** (V-Dem/Göteborgs univ., 4 D-tomma submått öppnade, färsk session — demokrati-väggen löst på D-sidan) |
@@ -71,7 +73,7 @@ inget ansvar att attribuera. Det är **korrekt och rättvist**, inte ett gap.
 
 ---
 
-## 2.1 Mastertabell — D-täckning per indikator (samtliga 65) ⭐
+## 2.1 Mastertabell — D-täckning per indikator (samtliga 67) ⭐
 
 > **Parallell till B-spårets mastertabell** ([done/evidens_trovardighet.md §4.3](done/evidens_trovardighet.md)),
 > fast för **D** (resultat/utfall). Sanningskälla: `python -m pipeline.tools.coverage_report` +
@@ -88,28 +90,30 @@ inget ansvar att attribuera. Det är **korrekt och rättvist**, inte ett gap.
 
 ### Sammanfattning (hur stor täckning vi har)
 
-- **36 / 65 indikatorer** har en D-serie (annuell up/down som matar `category_d`). *(+2 natt 2026-06-08,
+- **38 / 67 indikatorer** har en D-serie (annuell up/down som matar `category_d`). *(+2 natt 2026-06-08,
   +2 djupsvep, +6 färsk session 2026-06-09: aterfall_i_brott, hackande_faglar_skog, 4 V-Dem-index;
   **+2 integration 2026-06-12: mellanmansklig_tillit (SCB medborgarunders. N00666) + asyl_handlaggningstid
-  (Migrationsverket).**)*
+  (Migrationsverket); +2 försvar 2026-06-12: forsvarsvilja (MPF Opinioner) + personalstyrka_kontinuerligt
+  (FM ÅR).**)*
 - **+4 byggbara/öppna** (🟡; realloner, elprisvolatilitet, effektbrist, utslappsminskning_per_krona) →
-  **realistiskt tak ≈ 40/65**; resten är **3 target** (⚪) + **22 genuina väggar** (🔴) + 1 undermått utan
-  indikator (`industriell_konkurrenskraft`).
-- **27 / 35 undermått** har minst en D-serie. *(+10 sedan 2026-06-07: nato_ukraina, omsorg_personal,
+  **realistiskt tak ≈ 42/67**; resten är **3 target** (⚪) + **22 genuina väggar** (🔴) + 1 undermått utan
+  indikator (`industriell_konkurrenskraft`). *(Internationella försvarskällor testade 2026-06-12: SIPRI
+  vapenimport-TIV källan tillåten men årssignal-brus → vägg; SIPRI/NATO milex = pengar → vägg.)*
+- **28 / 35 undermått** har minst en D-serie. *(+10 sedan 2026-06-07: nato_ukraina, omsorg_personal,
   kostnadseffektivitet, aterfall_kriminalvard, biologisk_mangfald, + alla 4 D-tomma demokrati-submått
   via V-Dem → **demokrati-väggen löst på D-sidan**; **+normer_tillit +migrationssystem 2026-06-12 →
-  integration 5/5 (alla undermått D-täckta)**.)*
+  integration 5/5; +civil_beredskap 2026-06-12 (MPF försvarsvilja) → försvar 2/5 → 3/5**.)*
 
 | Kategori | ✅ byggd | 🟡 öppen | 🔴 vägg | ⚪ target | Indikatorer | Undermått m. D |
 |----------|:---:|:---:|:---:|:---:|:---:|:---:|
 | Ekonomi och jobb | 6 | 1 | 0 | 2 | 9 | 4/6 (4/4 D-bara) |
 | Välfärd | **5** | 0 | 5 | 0 | 10 | **3/4** |
 | Lag och trygghet | **6** | 0 | **2** | 0 | 8 | **4/5** |
-| Försvar och beredskap | 2 | 0 | 5 | 1 | 8 | 2/5 |
+| Försvar och beredskap | **4** | 0 | 5 | 1 | 10 | **3/5** |
 | Klimat, miljö och energi | **5** | 3 | 1 | 0 | 9 | **4/5** |
 | Integration och social sammanhållning | **7** | 0 | 4 | 0 | **11** | **5/5** |
 | Frihet, demokrati och institutioner | **5** | 0 | **5** | 0 | 10 | **5/5** |
-| **SUMMA** | **36** | **4** | **22** | **3** | **65** | **27/35** |
+| **SUMMA** | **38** | **4** | **22** | **3** | **67** | **28/35** |
 
 ¹ klimat har 5 undermått men `industriell_konkurrenskraft` saknar indikator (ingen rad i de 63);
   `biologisk_mangfald` är öppnat 2026-06-09 → klimat 4/5 undermått med D.
@@ -146,10 +150,12 @@ inget ansvar att attribuera. Det är **korrekt och rättvist**, inte ett gap.
 | Lag och trygghet | Förebyggande arbete | `kommunalt_brottsforebyggande_arbete` | upp | 🔴 vägg | `B-only`: ingen nationell KPI för kommunal kapacitet |
 | Lag och trygghet | Återfall och kriminalvård | `aterfall_i_brott` | ned | ✅ byggd | Kriminalvården KOS 2025 Tabell 6.1 (råtal→andel), 29 obs 1994–2022 (färsk session — **öppnade aterfall_kriminalvard**; KOS-tabellen gav råtalen, ingen Excel-bilaga behövdes) |
 | Försvar och beredskap | Militär förmåga | `personal_varnpliktiga` | upp | ✅ byggd | 8 obs · 2018–2025 (FM ÅR, transkriberad — Tier 4) |
-| Försvar och beredskap | Militär förmåga | `materiel_formaga` | upp | 🔴 vägg | `qualitative`: sekretess/operativ förmåga |
+| Försvar och beredskap | Militär förmåga | `personalstyrka_kontinuerligt` | upp | ✅ byggd | FM ÅR bilaga Tabell 1 (Summa kontinuerligt tjänstgörande), 6 obs 2019–2024 = 22751→27734 (försvar 2026-06-12 — 2:a militar_formaga-serien; strikt monoton; bemannad numerär ≠ pengar) |
+| Försvar och beredskap | Militär förmåga | `materiel_formaga` | upp | 🔴 vägg | `qualitative`: sekretess/operativ förmåga (SIPRI vapenimport-TIV testad 2026-06-12: källan tillåten men årssignal-brus → vägg) |
 | Försvar och beredskap | Ekonomisk ambitionsnivå | `forsvarsanslag_andel_bnp` | mål | ⚪ target | upp till beslutad målnivå |
 | Försvar och beredskap | Ekonomisk ambitionsnivå | `forsvarsfinansiering_upptrappning_mot_mal` | upp | 🔴 vägg | `B-only`: åtagande-/inriktningsmått, ej utfallsårsserie |
-| Försvar och beredskap | Civil beredskap | `civil_beredskap_niva` | upp | 🔴 vägg | `qualitative`: MSB-bedömning, ingen årsserie |
+| Försvar och beredskap | Civil beredskap | `civil_beredskap_niva` | upp | 🔴 vägg | `qualitative`: MSB-bedömning, ingen årsserie (submåttet D-täckt via `forsvarsvilja` nedan) |
+| Försvar och beredskap | Civil beredskap | `forsvarsvilja` | upp | ✅ byggd | MPF/MSB Opinioner (väpnat motstånd även om utgången oviss), 11 obs 2014–2025 (lucka 2019) (försvar 2026-06-12 — **öppnade civil_beredskap**; psykologiskt försvar/resiliensutfall; caveat 2022-toppen invasionsdriven) |
 | Försvar och beredskap | Nato, Ukraina, trovärdighet | `ukraina_stod` | upp | ✅ byggd | Regeringens militära stöd/år, 4 obs 2022-2025 (natt 2026-06-08) |
 | Försvar och beredskap | Nato, Ukraina, trovärdighet | `nato_interoperabilitet` | upp | 🔴 vägg | `qualitative`: ingen öppen mätserie |
 | Försvar och beredskap | Genomförbarhet och leveranstakt | `leveranstid_materiel` | ned | 🔴 vägg | `qualitative`: sekretess |
@@ -350,6 +356,47 @@ Spår D anses **färdigt för arkivering** när:
 ## 7. Leveranslogg (append per leverans)
 
 > Format: datum · indikator · kategori→submått · källa · verifiering · betygseffekt · flagga/version.
+
+### ✅ 2026-06-12 — Spår D försvar: +2 D-serier → försvar 3/5 undermått, 4 D-indikatorer (v0, FLAGGADE)
+
+Din beställning: brett källsvep (inkl. internationella källor) efter fler försvars-D; "1 till bra, 2 till
+fantastiskt, även tunna/osäkra OK". Fyra parallella källsondrings-agenter (FM ÅR / MSB-MPF / internationellt /
+lateralt Kolada-SCB-FMV). **2 byggen, 2 nya D-serier; coverage 36/65 → 38/67 inlästa; 27/35 → 28/35 undermått;
+försvar 2/5 → 3/5 undermått, 2 → 4 D-indikatorer.**
+
+1. **`forsvarsvilja`** (försvar → civil_beredskap, upp): andel som anser att Sverige bör göra väpnat motstånd
+   även om utgången är oviss, **MPF/MSB Opinioner** (psykologiskt försvar = del av totalförsvaret). **Öppnade
+   civil_beredskap** (var allowlistat `qualitative`). 2014–2025 (lucka 2019, ingen mätning): 75/75/72/71/72/–/
+   70/70/78/79/79/75 %. **Utanför-boxen-vinsten:** den gamla väggen kom av att man läste MSB:s *årsredovisning*
+   (pengar/anslag); utfallsserien finns i stället i *Opinioner*-undersökningen. Verifierad direkt ur MPF
+   Opinioner 2025 s.87 (andel JA = ja_absolut+ja_kanske). Hammare-test: befolkningens faktiska vilja
+   (tillstånd/resiliens), ej anslag. ⚠ CAVEAT (v0): hoppet 2021→2022 invasionsdrivet → D tar bara tecknet.
+   Ny `mpf`-adapter + config/forsvarsvilja.yaml. Samma tillstånds-logik som löste demokrati-väggen med V-Dem.
+2. **`personalstyrka_kontinuerligt`** (försvar → militar_formaga, upp): antal kontinuerligt tjänstgörande i FM
+   (yrkesoff. + GSS/K + civila), **FM ÅR bilaga Tabell 1**. Andra D-serien i militar_formaga (utöver
+   värnpliktiga). 2019–2024 = 22751/24094/24353/25011/26195/27734 (**strikt monoton**, alla tecken +).
+   Verifierad ur FM ÅR 2021+2022+2024 bilagor (korsbekräftad; 2021 = rättat +720-värde). Hammare-test:
+   bemannad numerär (förmågeutfall), ej pengar. Transkriberad config + utökad `forsvarsmakten`-adapter.
+
+**Internationellt svep (testat, blev väggar — ärliga nej):** SIPRI vapenimport-TIV (materiel_formaga) — källan
+**tillåten** (Stockholm/V-Dem-logiken, kringgår sekretess) men **årssignalen är brus** (enstaka storleveranser,
+net −3 under upprustningsåren) → vägg. SIPRI milex %BNP + NATO utrustningsandel = **pengar** → hammare/A-dubbel-
+räkning, bekräftar ert HOLD. Lateralt: Kolada/FMV = pengar/platt; Pliktverket inskrivna = policy/regleringsbrev
+(insats). **Blockeraren är måttens natur (sekretess/pengar/brus), ej datatillgång.** Kvar D-tomma: ekonomisk_
+ambition + genomforbarhet_leverans (pengar-väggar).
+
+**Verifiering:** försvarsvilja direkt ur MPF Opinioner 2025-PDF (s.87); personalstyrka ur FM ÅR-bilagornas
+Tabell 1 (pdfplumber, korsbekräftad över bilagor). Golden-test för mpf-adaptern + personalstyrka (pinnade
+värden, monotoni, lucka-2019, radform); hela offline-sviten grön (228 passed, 4 skipped); coverage-gaten håller.
+
+**Betygseffekt (score_diff):** endast **försvar** rörd (≤0,10/kategori), totaler ≤0,015. Försvars-D rebalanserades
+från uppblåst (bara stigande militar_formaga+ukraina) till ärlig blandbild: den invasionsdrivna försvarsvilje-
+toppen 2021→2022 landar på S (regering 2021); Tidö (M/KD/SD −0,10) får den flacka/sjunkande senaste försvarsvilje-
+trenden men behåller stigande personalstyrka. **Ranking OFÖRÄNDRAD** (S>L>M>KD>MP>C>SD>V). V orörd
+(D_not_applicable). `dist/` omräknat + snapshot re-baselinad.
+
+**Flaggor/version:** båda v0 (försvarsvilja survey + invasions-caveat; personalstyrka monoton men militar_formaga-
+djup). v0 → v1 vid expertgranskning.
 
 ### ✅ 2026-06-12 — Spår D integration: +2 D-serier → integration 5/5 undermått (v0, FLAGGADE)
 

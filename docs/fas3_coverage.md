@@ -8,7 +8,7 @@ Invarianten "inget tyst gap" hävdas av `tests/test_fas3_gate.py`. Generera aktu
 python -m pipeline.tools.coverage_report
 ```
 
-Per 2026-06-12: **36 / 65 indikatorer inlästa** (D-dugliga, annuell up/down) i **alla 7 kategorier**
+Per 2026-06-12: **38 / 67 indikatorer inlästa** (D-dugliga, annuell up/down) i **alla 7 kategorier**
 (ekonomi, välfärd, klimat, integration, trygghet, försvar, demokrati). **Ingen kategori är längre D-tom.**
 *(17 per 2026-05-31; +2 trygghet 2026-06-03 — uppklaringsgrad + skjutningar/sprängningar; +2 ekonomi
 2026-06-07 — naringslivets_investeringar + hushallens_reala_disponibla_inkomst, Spår D Tier 1;
@@ -20,7 +20,9 @@ KOS), hackande_faglar_skog (klimat, biologisk_mangfald — Svensk Fågeltaxering
 (demokrati — rattsstatsindex/yttrandefrihetsindex/privata_friheter/horisontellt_ansvarsutkravande,
 öppnar alla 4 kvarvarande D-tomma demokrati-submått). **Inget demokrati-submått är längre D-tomt.**
 **+2 integration 2026-06-12:** mellanmansklig_tillit (normer_tillit — SCB medborgarunders. N00666) +
-asyl_handlaggningstid (migrationssystem — Migrationsverket). **Integration nu 5/5 undermått med D.**)*
+asyl_handlaggningstid (migrationssystem — Migrationsverket). **Integration nu 5/5 undermått med D.**
+**+2 försvar 2026-06-12:** personalstyrka_kontinuerligt (militar_formaga — FM ÅR) + forsvarsvilja
+(civil_beredskap — MPF/MSB Opinioner). **Försvar nu 3/5 undermått med D (2 → 4 D-indikatorer).**)*
 
 ## Inlästa indikatorer (matar D)
 
@@ -53,6 +55,8 @@ asyl_handlaggningstid (migrationssystem — Migrationsverket). **Integration nu 
 | integration | mellanmansklig_tillit | SCB medborgarunders. (Kolada) | N00666 | up | 2021–2025¹³ |
 | integration | asyl_handlaggningstid | Migrationsverket (transkr.) | Avgjorda asylärenden (Asyl) | down | 2021–2025¹⁴ |
 | forsvar | personal_varnpliktiga | Försvarsmakten (ÅR) | transkr. config-yaml | up | 2018–2025⁸ |
+| forsvar | personalstyrka_kontinuerligt | Försvarsmakten (ÅR bilaga Tabell 1) | transkr. config-yaml | up | 2019–2024¹⁵ |
+| forsvar | forsvarsvilja | MPF/MSB Opinioner (transkr.) | väpnat motstånd, andel JA | up | 2014–2025¹⁶ |
 | demokrati | fortroende_domstolar_myndigheter | Brå NTU | blad 5A:1 | up | 2017–2025⁹ |
 | demokrati | rattsstatsindex | V-Dem / Göteborgs univ. (transkr.) | v2x_rule | up | 2000–2025¹² |
 | demokrati | yttrandefrihetsindex | V-Dem / Göteborgs univ. (transkr.) | v2x_freexp_altinf | up | 2000–2025¹² |
@@ -143,6 +147,20 @@ asyl_handlaggningstid (migrationssystem — Migrationsverket). **Integration nu 
   (integration 2026-06-12). NEUTRALITET: kortare = bättre är ett av få migrationsmått där båda poler är
   överens (vs återvändande, värdeladdat); kvarvarande caveat: kvalitet-vs-hastighet + inflödesberoende → D
   tar bara TECKEN. Transkriberad config (källrad/år); revisionsspår `tools/asyl_handlaggningstid_verify.py`.
+
+¹⁵ Antal **kontinuerligt tjänstgörande** i Försvarsmakten (yrkesoff. + GSS/K + civila), **FM ÅR bilaga 1
+  "Personalberättelsen", Tabell 1** ("Summa kontinuerligt tjänstgörande", per 31 dec). 2019–2024 =
+  22751/24094/24353/25011/26195/27734 (strikt monoton). Andra D-serien i militar_formaga (stående styrka,
+  distinkt från personal_varnpliktiga = rekryteringsbas). Hammare: bemannad numerär (förmågeutfall), ej
+  pengar. 2021 = rättat +720-värde (felsummering i FM ÅR 2021, korr. i ÅR 2022). Korsbekräftad över bilagor
+  2021/2022/2024. 2025 saknas än (bilaga ej publicerad). Försvar 2026-06-12, v0.
+
+¹⁶ **Försvarsvilja**: andel som anser att Sverige bör göra väpnat motstånd vid ett angrepp även om utgången
+  är oviss (andel JA = "Ja, absolut" + "Ja, kanske"), **MPF/MSB Opinioner** (s.87 i Opinioner 2025). 2014–2025
+  (lucka 2019, ingen mätning): 75/75/72/71/72/–/70/70/78/79/79/75 %. **Öppnar civil_beredskap** (psykologiskt
+  försvar = del av totalförsvaret; resiliens-/tillståndsutfall, ej anslag → klarar hammaren som V-Dem).
+  Källkontinuitet SPF→MSB→MPF (myndighetsbyte 2022, samma serie). ⚠ CAVEAT (v0): 2021→2022-hoppet invasions-
+  drivet → D tar bara tecknet, väger 10 %. Försvar 2026-06-12, v0.
 
 ## Allowlistade gap (skäl i `config/coverage_allowlist.yaml`)
 
