@@ -128,6 +128,15 @@ D_resultat:
   min_responsibility: 0.15     # kategorins ansvarsunderlag (Σ maktvikt) under detta -> ej tillämplig
   change_dead_zone: 0.005      # |relativ årsförändring| <= 0.5 % räknas som oförändrad (brus)
   thin_basis_threshold: 1.0    # ansvarsunderlag (Σ maktvikt) under detta -> flagga D_thin_basis
+  # D-undermåttsbredd (docs/d_coverage_krympning_spec.md): saknade icke-target-undermått
+  # bidrar neutralt (net 0) i D-rollupen i stället för att renormaliseras bort ur nämnaren —
+  # D gör då inget oavkortat kategorianspråk utifrån en delmängd av kategorin. Nämnaren är
+  # viktsumman av kategorins icke-target-undermått (target-only = alla indikatorer 'target');
+  # numeratorn är per (parti, kategori) eftersom attribution kan saknas i korta serier.
+  # false = legacy-beteende (renormalisering över observerade undermått), byte-identisk baseline.
+  coverage_shrink: false
+  coverage_denominator: non_target_submeasure_weight  # dokumenterar nämnarens semantik
+  thin_coverage_threshold: 0.75  # viktad D-täckning under detta -> D_thin_coverage + säkerhetssteg ned
   not_applicable_score: 2.5    # rättvisa: opposition straffas inte för utfall den ej rådde över
   not_applicable_confidence: low   # ej-tillämplig D -> BRED osäkerhet (markeras som flagga i utdata)
   measured_confidence: medium      # uppmätt D med faktiskt ansvar -> smalare

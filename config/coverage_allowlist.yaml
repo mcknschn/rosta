@@ -118,3 +118,21 @@ b_near_binary_accepted:
   # transparens_ansvar) är coverage-luckor men EJ nära-binär-blockerare (>=2 submått aktiva).
   # Status/skäl för varför de hålls: docs/BACKLOG.md (B2 demokrati).
   []
+
+# ---------------------------------------------------------------------------------------------------
+# D-BREDD — kategorier under thin_coverage_threshold (docs/d_coverage_krympning_spec.md)
+# ---------------------------------------------------------------------------------------------------
+# Kategorier vars viktade D-undermåttsbredd (icke-target-undermått med D-duglig serie) ligger under
+# scoring.D_resultat.thin_coverage_threshold. Sådana celler får D_thin_coverage + sänkt säkerhet i
+# scores.json; här listas de EXPLICIT med skäl så tunn D-bredd aldrig passerar tyst.
+# Invariant (tests/test_d_breadth_gate.py, mätare pipeline.tools.coverage_report.d_submeasure_breadth):
+#   - varje kategori under tröskeln MÅSTE stå här (annars tyst regression), OCH
+#   - varje post här MÅSTE fortfarande vara under tröskeln (listan krymper när D-täckningen breddas).
+d_thin_breadth_accepted:
+  - category: forsvar
+    reason: >-
+      70/100 (täckta: militar_formaga 35 + civil_beredskap 20 + nato_ukraina 15; otäckta:
+      ekonomisk_ambition 25 — forsvarsfinansiering_upptrappning_mot_mal är B-only och
+      forsvarsanslag_andel_bnp target — samt genomforbarhet_leverans 5, kvalitativ sekretessvägg).
+      Sign-off 2026-06-12: måttlig krympning accepterad (spec §10.4); D-sweep 2026-06-09 fann ingen
+      neutral attribuerbar årsserie för luckorna (SIPRI-TIV = brus, %BNP = target/dubbelräkning).

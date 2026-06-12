@@ -80,6 +80,48 @@ def test_submeasure_weighted_mean_skips_none() -> None:
     assert score.submeasure_weighted_mean({"a": 1.0, "b": -1.0}, {"a": 30, "b": 10}) == pytest.approx(0.5)
 
 
+def test_coverage_shrink_endpoints() -> None:
+    assert score.coverage_shrink(4.0, 1.0) == pytest.approx(4.0)   # full täckning -> oförändrat
+    assert score.coverage_shrink(4.0, 0.0) == pytest.approx(2.5)   # ingen täckning -> neutral
+    assert score.coverage_shrink(1.0, 0.5) == pytest.approx(1.75)
+
+
+def test_coverage_shrink_monoton_och_symmetrisk_runt_neutral() -> None:
+    # mer täckning -> närmare råvärdet, från båda håll
+    assert score.coverage_shrink(4.5, 0.3) < score.coverage_shrink(4.5, 0.7) < 4.5
+    assert score.coverage_shrink(0.5, 0.3) > score.coverage_shrink(0.5, 0.7) > 0.5
+    # symmetri: lika stort avstånd över/under 2.5 krymper lika mycket
+    over = score.coverage_shrink(3.5, 0.4) - 2.5
+    under = 2.5 - score.coverage_shrink(1.5, 0.4)
+    assert over == pytest.approx(under)
+
+
+def test_weighted_mean_with_neutral_missing() -> None:
+    # saknad key i nämnaren bidrar neutralt 0: (1.0*30 + 0*10)/40 = 0.75
+    out = score.weighted_mean_with_neutral_missing({"a": 1.0}, {"a": 30, "b": 10}, ["a", "b"])
+    assert out == pytest.approx(0.75)
+    # full täckning -> vanligt viktat medel: (1.0*30 - 1.0*10)/40 = 0.5
+    out = score.weighted_mean_with_neutral_missing(
+        {"a": 1.0, "b": -1.0}, {"a": 30, "b": 10}, ["a", "b"]
+    )
+    assert out == pytest.approx(0.5)
+    # tom nämnarvikt -> None; värden utanför nämnaren ignoreras
+    assert score.weighted_mean_with_neutral_missing({"a": 1.0}, {}, ["a"]) is None
+    out = score.weighted_mean_with_neutral_missing({"a": 1.0, "x": -1.0}, {"a": 30, "x": 99}, ["a"])
+    assert out == pytest.approx(1.0)
+
+
+def test_neutral_missing_rollup_ekvivalent_med_coverage_shrink() -> None:
+    # spec §3.3: direkt neutral-missing-rollup == krympning av det renormaliserade betyget,
+    # eftersom net_support_to_score är linjär.
+    vals = {"a": 0.8, "b": -0.2}
+    w = {"a": 35, "b": 20, "c": 30, "d": 15}
+    den = ["a", "b", "c", "d"]
+    just = score.net_support_to_score(score.weighted_mean_with_neutral_missing(vals, w, den))
+    raw = score.net_support_to_score(score.submeasure_weighted_mean(vals, w))
+    assert just == pytest.approx(score.coverage_shrink(raw, (35 + 20) / 100))
+
+
 # --- D-attribution -------------------------------------------------------------
 
 def test_period_to_year_handles_formats() -> None:

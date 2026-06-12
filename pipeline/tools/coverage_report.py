@@ -16,6 +16,7 @@ import sys
 from typing import Any
 
 from .. import config, score, warehouse
+from ..scorerun import _d_denominator_submeasures
 
 NATIONAL = ("Riket", "0000")
 EVIDENCE_TARGET = 3  # ROADMAP T3.9: >=3 evidence_effect-poster per kategori
@@ -99,6 +100,41 @@ def coverage(con: Any | None = None) -> dict[str, Any]:
             "evidence_target_per_cat": EVIDENCE_TARGET,
         },
     }
+
+
+def d_submeasure_breadth() -> dict[str, Any]:
+    """D-undermåttsbredd (docs/d_coverage_krympning_spec.md): viktad icke-target-täckning per kategori.
+
+    Offline-härledning (endast config, jfr b_submeasure_spread): ett undermått räknas D-täckt
+    om det har minst en up/down-indikator som INTE är coverage-allowlistad — per Fas 3-gatens
+    invariant (test_fas3_gate: inläst ELLER allowlistad, aldrig båda) är en sådan indikator
+    inläst med D-duglig serie. Nämnaren = icke-target-undermått (scorerun). Kategori-global
+    översikt; scoringens numerator är per (parti, kategori) eftersom attribution kan saknas
+    i korta serier.
+    """
+    allow = {(e["category"], e["indicator"]) for e in config.coverage_allowlist()["allowlist"]}
+    d_den = _d_denominator_submeasures()
+    thr = float(config.scoring()["D_resultat"].get("thin_coverage_threshold", 0.75))
+    cats_out: list[dict[str, Any]] = []
+    for cat in config.categories()["categories"]:
+        cid = cat["id"]
+        weights = {s["id"]: float(s["weight"]) for s in cat["submeasures"]}
+        den = d_den[cid]
+        covered = {
+            ind["submeasure"] for ind in cat.get("indicators", [])
+            if ind["direction"] in ("up", "down") and (cid, ind["id"]) not in allow
+        } & den
+        total_w = sum(weights[s] for s in den)
+        covered_w = sum(weights[s] for s in covered)
+        ratio = covered_w / total_w if total_w else 0.0
+        cats_out.append({
+            "id": cid,
+            "covered_weight": covered_w, "total_weight": total_w, "ratio": ratio,
+            "covered_submeasures": sorted(covered),
+            "uncovered_submeasures": sorted(den - covered),
+            "thin": ratio < thr,
+        })
+    return {"threshold": thr, "categories": cats_out}
 
 
 def b_submeasure_spread() -> dict[str, Any]:
@@ -191,6 +227,20 @@ def main() -> None:
     missing_ev = [c["id"] for c in rep["categories"] if not c["evidence_ok"]]
     print(f"Evidensliggaren: {t['evidence_entries']} poster totalt; "
           f"kategorier under målet ({t['evidence_target_per_cat']}/kat): {', '.join(missing_ev) or 'inga'}")
+
+    # --- D-undermåttsbredd (coverage-krympning): viktad icke-target-täckning per kategori ---
+    dsb = d_submeasure_breadth()
+    d_on = bool(config.scoring()["D_resultat"].get("coverage_shrink", False))
+    print(f"\n== D-undermåttsbredd (coverage_shrink: {'på' if d_on else 'av'},"
+          f" tröskel {dsb['threshold']}) ==")
+    print("  Viktad icke-target-undermåttstäckning per kategori (kategori-global översikt;"
+          " scoringens\n  numerator är per parti/kategori). ⚠ = under tröskeln (D_thin_coverage).\n")
+    for c in dsb["categories"]:
+        thin = "  ⚠ THIN" if c["thin"] else ""
+        print(f"  {c['id']:12} {c['covered_weight']:>4g}/{c['total_weight']:<4g}"
+              f"  {c['ratio']:.2f}{thin}")
+        if c["uncovered_submeasures"]:
+            print(f"        otäckta: {', '.join(c['uncovered_submeasures'])}")
 
     # --- B-anti-binär audit (BACKLOG B4): submåttsspridning i partikopplad evidens ---
     accepted = {

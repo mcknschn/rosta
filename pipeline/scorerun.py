@@ -14,6 +14,7 @@ from __future__ import annotations
 import json
 import sys
 from datetime import date
+from typing import NamedTuple
 
 from . import DIST_DIR, budget, config, effects, positions, schema, score, warehouse
 from . import claims as claims_mod
@@ -176,15 +177,49 @@ def _submeasure_weights() -> dict[str, dict[str, float]]:
     }
 
 
-def category_d(
-    con: object, parties: list[str], cats: list[str]
-) -> dict[tuple[str, str], tuple[float, bool, bool]]:
-    """D per (parti, kategori): (betyg, uppmätt?, tunt_underlag?).
+def _d_denominator_submeasures() -> dict[str, set[str]]:
+    """kategori -> icke-target-undermått (D-breddens nämnare, spec docs/d_coverage_krympning_spec.md).
+
+    Target-only = undermåttet har minst en indikator OCH alla dess indikatorer har
+    direction 'target'. Undermått UTAN indikatorer är inte target-only — de är en del av
+    kategorianspråket och ingår i nämnaren (t.ex. klimats industriell_konkurrenskraft).
+    """
+    out: dict[str, set[str]] = {}
+    for cat in config.categories()["categories"]:
+        dirs: dict[str, list[str]] = {s["id"]: [] for s in cat["submeasures"]}
+        for ind in cat.get("indicators", []):
+            dirs[ind["submeasure"]].append(ind["direction"])
+        out[cat["id"]] = {
+            sid for sid, ds in dirs.items() if not (ds and all(d == "target" for d in ds))
+        }
+    return out
+
+
+class DCell(NamedTuple):
+    """D-resultat för en (parti, kategori)-cell (jfr category_d)."""
+
+    score: float
+    measured: bool
+    thin_basis: bool        # ansvarsunderlag (Σ maktvikt) under thin_basis_threshold
+    covered_weight: float   # Σ vikt för icke-target-undermått med faktiskt D-underlag för partiet
+    total_weight: float     # Σ vikt för kategorins icke-target-undermått (nämnaren)
+    thin_coverage: bool     # viktad täckning under thin_coverage_threshold
+
+
+def category_d(con: object, parties: list[str], cats: list[str]) -> dict[tuple[str, str], DCell]:
+    """D per (parti, kategori) som DCell.
 
     För varje nationell årsindikator tillskrivs riktningsjusterade årsförändringar den
     regering som satt lag-år tidigare (score.attribute_series). Per submått medelvärdesbildas
     indikatorernas net, sedan submåttsviktat medel -> net i [-1,1] -> betyg. Gate: kategorins
     net finns OCH partiets maktandel av fönstret >= min_responsibility, annars ej tillämplig.
+
+    D-bredd (coverage_shrink, spec docs/d_coverage_krympning_spec.md): D mäter kategorins
+    utfall, inte bara de undermått som råkar ha en serie. Med coverage_shrink aktiv bidrar
+    saknade icke-target-undermått neutralt (net 0) i en FAST nämnare i stället för att
+    renormaliseras bort. Numeratorn är per (parti, kategori): korta serier/glapp kan göra
+    att ett parti saknar attribution i en serie andra partier täcks av. Gaten använder
+    fortsatt det renormaliserade nätet — saknad bredd ska inte göra en tom kategori measured.
     """
     cfg = config.scoring()["D_resultat"]
     lag = int(cfg["attribution_lag_years"])
@@ -192,13 +227,17 @@ def category_d(
     min_resp = float(cfg["min_responsibility"])
     thin = float(cfg["thin_basis_threshold"])
     na_score = float(cfg["not_applicable_score"])
+    shrink = bool(cfg.get("coverage_shrink", False))
+    thin_cov = float(cfg.get("thin_coverage_threshold", 0.75))
 
     yp = year_power_fractions()
     series = _annual_series(con)
     meta = _indicator_meta()
     sub_w = _submeasure_weights()
+    d_den = _d_denominator_submeasures()
+    total_w = {c: sum(sub_w.get(c, {}).get(s, 0.0) for s in d_den.get(c, ())) for c in cats}
 
-    out: dict[tuple[str, str], tuple[float, bool, bool]] = {}
+    out: dict[tuple[str, str], DCell] = {}
     for p in parties:
         for c in cats:
             by_sub: dict[str, list[float]] = {}
@@ -218,10 +257,24 @@ def category_d(
             # storhet som thin-flaggan. Konsekvent: < min_resp = ej tillämplig, [min_resp, thin) =
             # uppmätt men tunt, >= thin = uppmätt. (Partier utan ansvarsår får cat_net=None.)
             measured = cat_net is not None and basis >= min_resp
-            if measured:
-                out[(p, c)] = (score.net_support_to_score(cat_net), True, basis < thin)
-            else:
-                out[(p, c)] = (na_score, False, False)
+            if not measured:
+                out[(p, c)] = DCell(na_score, False, False, 0.0, total_w[c], False)
+                continue
+            covered_w = sum(
+                sub_w.get(c, {}).get(s, 0.0) for s in sub_nets if s in d_den.get(c, ())
+            )
+            coverage = covered_w / total_w[c] if total_w[c] else 0.0
+            final_net = cat_net
+            if shrink:
+                net_just = score.weighted_mean_with_neutral_missing(
+                    sub_nets, sub_w.get(c, {}), d_den.get(c, ())
+                )
+                if net_just is not None:  # guard: tom nämnare -> behåll legacy-nätet
+                    final_net = net_just
+            out[(p, c)] = DCell(
+                score.net_support_to_score(final_net), True, basis < thin,
+                covered_w, total_w[c], coverage < thin_cov,
+            )
     return out
 
 
@@ -350,6 +403,7 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
     d_cfg = config.scoring()["D_resultat"]
     d_measured_conf = d_cfg["measured_confidence"]
     d_na_conf = d_cfg["not_applicable_confidence"]
+    d_shrink = bool(d_cfg.get("coverage_shrink", False))
 
     # B: partikopplad evidens (Fas 4b). Tom party_positions -> inga effekter -> neutral fallback.
     ee_claims = positions.build_evidence_effect_claims()
@@ -424,15 +478,27 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
                 b_val, b_conf = b_missing, b_missing_conf
                 b_flags.append("B_no_party_evidence")
 
-            d_score, d_measured, d_thin = d_res[(p, c)]
-            comps = {"A": a_by_cat[c][p], "B": b_val, "C": c_by_cat[c][p], "D": d_score}
+            d_cell = d_res[(p, c)]
+            comps = {"A": a_by_cat[c][p], "B": b_val, "C": c_by_cat[c][p], "D": d_cell.score}
             overrides = {"B": b_conf, "C": c_conf_by_cat[c]}
             flags = list(b_flags)
             flags.append(a_flag_by_cat[c])
             flags += c_flags_by_cat[c]
-            if d_measured:
-                overrides["D"] = d_measured_conf
-                if d_thin:
+            if d_cell.measured:
+                if d_shrink:
+                    # D-bredd synlig per cell; säkerheten sänks kumulativt — tunt
+                    # ansvarsunderlag (thin_basis) och tunn bredd (thin_coverage) är
+                    # ortogonala. Legacy-grenen (shrink av) förblir byte-identisk.
+                    flags.append(
+                        f"D_coverage_{d_cell.covered_weight:g}/{d_cell.total_weight:g}"
+                    )
+                    if d_cell.thin_coverage:
+                        flags.append("D_thin_coverage")
+                    steps = int(d_cell.thin_basis) + int(d_cell.thin_coverage)
+                    overrides["D"] = _step_down_confidence(d_measured_conf, steps)
+                else:
+                    overrides["D"] = d_measured_conf
+                if d_cell.thin_basis:
                     flags.append("D_thin_basis")
             else:
                 overrides["D"] = d_na_conf

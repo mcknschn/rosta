@@ -12,7 +12,7 @@ B och D är ABSOLUTA (net_support=0 -> 2.5 oberoende av andra partier).
 from __future__ import annotations
 
 import re
-from collections.abc import Mapping
+from collections.abc import Iterable, Mapping
 
 from . import config
 
@@ -122,6 +122,35 @@ def submeasure_weighted_mean(
     if not present or wsum == 0:
         return None
     return sum(v * weights.get(k, 0.0) for k, v in present.items()) / wsum
+
+
+def coverage_shrink(raw: float, coverage: float, neutral: float = 2.5) -> float:
+    """Krymper ett betyg mot neutral proportionellt mot täckning i [0,1].
+
+    coverage=1 -> oförändrat, coverage=0 -> neutral. Samma matte som B:s inline-krympning
+    (scorerun) och ekvivalent med D:s neutral-missing-rollup (se spec §3.3) eftersom
+    net_support_to_score är linjär.
+    """
+    return neutral + (raw - neutral) * coverage
+
+
+def weighted_mean_with_neutral_missing(
+    values: Mapping[str, float],
+    weights: Mapping[str, float],
+    denominator_keys: Iterable[str],
+    neutral: float = 0.0,
+) -> float | None:
+    """Viktat medel över en FAST nämnare där saknade keys bidrar med neutral.
+
+    Till skillnad från submeasure_weighted_mean (som renormaliserar över närvarande keys)
+    behåller denna hela nämnaren: saknad bredd drar mot neutral i stället för att försvinna.
+    Keys i values utanför nämnaren ignoreras. None om nämnarens totalvikt är 0.
+    """
+    den = list(denominator_keys)
+    wsum = sum(weights.get(k, 0.0) for k in den)
+    if wsum == 0:
+        return None
+    return sum(weights.get(k, 0.0) * values.get(k, neutral) for k in den) / wsum
 
 
 # --- D-attribution (absolut delpoäng): rörde sig indikatorn rätt under partiets ansvar? ---
