@@ -1,297 +1,357 @@
-# Rösta — Spec: D-täckningskrympning (undermåttsbredd i delpoäng D) 🟡 UTKAST v1
+# Rösta - Spec: D-täckningskrympning via viktad undermåttsbredd
 
-> **Status: 🟡 UTKAST — väntar Codex-granskning + användarens sign-off.** Adresserar en verifierad
-> asymmetri: delpoäng **D** låter ett enda täckt Undermått tala för hela Kategorins utfall, oavkortat
-> och med oförtjänt confidence. Ingen kod ändrad ännu; detta är designen för diskussion.
+> **Status: GUL UTKAST v2 - redo för implementeringsdesign, väntar mänsklig sign-off.**
 >
-> Relaterat: [spar_D_datatackning.md](spar_D_datatackning.md) (D-trackern + §2.1 mastertabellen),
-> [done/viktad_stance_spec.md](done/viktad_stance_spec.md) (parallell scoring-spec, mall för detta dok),
-> [done/evidens_trovardighet.md §4.3](done/evidens_trovardighet.md) (B/D-mastertabell, begreppsmodell),
+> v2 ersätter den äldre 1/5-bilden för försvar/demokrati. Dagens täckningsläge är bredare
+> (verifierat med `python -m pipeline.tools.coverage_report`, 2026-06-12), men kodens principiella
+> problem kvarstår: delpoäng **D** renormaliserar över observerade undermått och låter därmed
+> saknade delar av en kategori försvinna ur nämnaren. Den här specen gör D mer epistemiskt ärligt
+> genom att saknade icke-target-undermått bidrar neutralt i stället för att renormaliseras bort.
+>
+> Relaterat: [spar_D_datatackning.md](spar_D_datatackning.md), [done/evidens_trovardighet.md](done/evidens_trovardighet.md),
 > [../config/scoring.yaml](../config/scoring.yaml), [../pipeline/scorerun.py](../pipeline/scorerun.py),
-> [../pipeline/score.py](../pipeline/score.py), [../IDEA.md](../../IDEA.md), [../DATA.md](../../DATA.md).
+> [../pipeline/score.py](../pipeline/score.py).
 >
-> Begreppsmodell (kanonisk, §4.3): **Kategori → Undermått → Indikator → Riktning.**
+> Begreppsmodell: **Kategori -> Undermått -> Indikator -> Riktning**.
 
 ---
 
-## 0. Kärnbeslutet (läs först)
+## 0. Kärnbeslut
 
-D påstår sig mäta **Kategorins** utfall ("förbättrades de objektiva indikatorerna där partiet hade
-ansvar?"). Men D beräknas som ett renormaliserat medel över **bara de Undermått som har en serie** —
-utan någon rabatt för hur stor andel av Kategorin det faktiskt är. Försvar har D i **1 av 5** Undermått
-(`militar_formaga` via `personal_varnpliktiga`); de övriga fyra (materiel, civil beredskap, Nato/Ukraina,
-leverans) är osynliga för D. Ändå presenteras försvars-D med `measured_confidence: medium` och utan en
-enda flagga om att det är en femtedel.
+D ska fortsatt mäta utfallet i en **kategori**, inte bara utfallet i de undermått där vi råkar ha en
+årsserie. Därför ska D inte längre renormalisera bort saknade icke-target-undermått.
 
-**Konsekvens (verifierad, §1):** ett parti som driver upp värnpliktssiffran men samtidigt försvårar
-materielinköp, drar ner Ukrainastöd och skär i civilförsvaret får ändå **hög försvars-D** — och appen
-"hävdar att utfallet blev bra".
+**Rekommendation för implementering:**
 
-**Det enda beslut som avgör allt annat i denna spec:** ska D krympas mot neutral efter
-**undermåttsbredd**, och i så fall med vilken **nämnare**? (§4 är crux.) Rekommendation: **ja — krymp +
-sänkt confidence, nämnare = icke-target Undermått (N_b, §4).** Det ger försvar/demokrati den ödmjukhet
-de ska ha utan att röra väl täckta Kategorier (ekonomi oförändrad).
+1. Inför runtime-krympning för D.
+2. Använd **viktad undermåttstäckning**, inte antal undermått.
+3. Låt täckningen vara **per parti och kategori**, eftersom vissa serier kan sakna attribuerade år för
+   ett visst parti.
+4. Behandla saknade icke-target-undermått som **neutral net = 0** i D-rollupen.
+5. Lägg till `D_thin_coverage` och `D_coverage_<covered_weight>/<total_weight>` i `scores.json`.
+6. Lägg till en D-breddgrind/test så framtida tunn D-bredd inte passerar tyst.
+7. Lämna B orört i denna iteration.
+
+Det här är bättre än den tidigare v1-formeln `D = 2.5 + (D_raw - 2.5) * antalstäckning`, eftersom
+`categories.yaml` redan innehåller vikten för varje undermått. En täckt 35-procentsdel ska inte räknas
+som lika stor som en täckt 5-procentsdel.
 
 ---
 
-## 1. Problemet — verifierad mekanik
+## 1. Problemet i dagens kod
 
-### 1.1 D renormaliserar bort, men rabatterar aldrig
-
-[`category_d`](../pipeline/scorerun.py#L215-L222):
+`category_d` i [pipeline/scorerun.py](../pipeline/scorerun.py) gör i dag:
 
 ```python
-sub_nets = {sub: sum(v) / len(v) for sub, v in by_sub.items()}     # bara Undermått med serie
-cat_net  = score.submeasure_weighted_mean(sub_nets, sub_w.get(c, {}))  # renormaliserar över NÄRVARANDE
-measured = cat_net is not None and basis >= min_resp
-out[(p, c)] = (score.net_support_to_score(cat_net), True, basis < thin)
+sub_nets = {sub: sum(v) / len(v) for sub, v in by_sub.items()}
+cat_net = score.submeasure_weighted_mean(sub_nets, sub_w.get(c, {}))
 ```
 
-[`submeasure_weighted_mean`](../pipeline/score.py#L120-L124) summerar vikten **bara över närvarande**
-Undermått (`wsum = Σ present`). Ett saknat Undermått försvinner spårlöst — varken täljare eller nämnare.
-Så `cat_net` är medlet av *de täckta* Undermåtten, skalat 1:1 till [0,5]. **Ingen term beror på hur många
-Undermått Kategorin egentligen har.**
+`submeasure_weighted_mean` i [pipeline/score.py](../pipeline/score.py) summerar vikten bara över
+**närvarande** undermått. Saknade undermått är varken täljare eller nämnare.
 
-### 1.2 Asymmetri mot B — och B:s eget bredd-hål
+Det är rätt beteende för vissa generiska rolluper, men fel semantik för D som kategoriutfall:
 
-B *har* en coverage-krympning ([scorerun.py:416](../pipeline/scorerun.py#L416)):
-`b_val = 2.5 + (b_raw - 2.5) * coverage`. Men nämnaren är **partiets kodbara åtgärdstyper**
-([scorerun.py:373-381](../pipeline/scorerun.py#L373-L381)) — den mäter *"hur många av de instrument vi
-kodat har partiet en ståndpunkt på"*, **inte** *"hur stor andel av Kategorins Undermått mäter vi"*.
+- Om D bara har sett en del av kategorin ska punktskattningen vara mer neutral.
+- Om D har sett hela den icke-target-del som kategorin faktiskt betygssätter ska den vara oförändrad.
+- `D_thin_basis` räcker inte, eftersom den mäter ansvarsunderlag, inte kategoribredd.
 
-Det betyder att **B har samma bredd-hål som D**: om en Kategori bara har liggar-poster under 1 Undermått
-blir `cov_den` litet, ett välpositionerat parti får `coverage ≈ 1`, och det enda Undermåttet talar för
-hela B oavkortat. B:s skydd mot detta är inte runtime utan en **grind** — `b_submeasure_spread` +
-allowlisten [`b_near_binary_accepted`](../config/coverage_allowlist.yaml#L83-L95) (test
-`tests/test_fas4b_coverage.py`), som tvingar mänsklig uppmärksamhet när en Kategori vilar på ≤1 Undermått.
+Problemet är alltså inte längre främst att försvar/demokrati är 1/5. Det var ett äldre dataläge.
+Problemet är att kodvägen fortfarande gör ett oavkortat kategorianspråk utifrån en delmängd.
 
-**D har varken runtime-rabatt ELLER bredd-grind.** Det är helt oskyddat. Det är hålet denna spec stänger.
+---
 
-### 1.3 `D_thin_basis` mäter fel sak
+## 2. Aktuellt täckningsläge
 
-Flaggan ([scorerun.py:220-222](../pipeline/scorerun.py#L220-L222), `basis < thin`) mäter **ansvars­underlag**
-= Σ maktvikt över de år partiet attribueras. Det är en *attributions*-storhet (styrde partiet länge nog?),
-**inte** en *bredd*-storhet (mäter vi nog av Kategorin?). De är oberoende: ett parti kan ha starkt
-ansvarsunderlag på `militar_formaga` (ingen `D_thin_basis`) och ändå representera 1/5 av försvaret. Vi
-behöver en **ny, ortogonal** flagga för bredd, inte en omdefiniering av basis.
+Verifierat 2026-06-12 med `python -m pipeline.tools.coverage_report`:
 
-### 1.4 Arbetat exempel — försvar idag (Tier 4-leveransloggen)
-
-| Parti | D_raw idag | net | Kommentar |
+| Kategori | D-täckta undermått | Icke-target-undermått | Kommentar |
 |---|---:|---:|---|
-| M / KD / SD | **5,00** | +1,00 | Tidö-eran, värnplikt upp varje år |
-| L | 4,37 | +0,75 | JÖK-stöd + Tidö |
-| S | 3,96 | +0,58 | bär 2018–2021-rampen + 2022-dippen |
-| MP | 3,83 | +0,53 | |
-| C | 3,40 | +0,36 | |
-| V | 2,50 | NA | aldrig regering (korrekt) |
+| ekonomi | 4 | 4 | full D-bredd; target-only inflation/offentliga finanser exkluderas |
+| valfard | 3 | 4 | finansiering/styrning saknar D |
+| trygghet | 4 | 5 | förebyggande saknar D |
+| forsvar | 3 | 5 | militär förmåga, civil beredskap, Nato/Ukraina täckta |
+| klimat | 4 | 5 | industriell konkurrenskraft saknar indikator/D |
+| integration | 5 | 5 | full D-bredd |
+| demokrati | 5 | 5 | full D-bredd |
 
-Spridning 3,40–5,00 på en **enda** värnpliktsserie, presenterad som uppmätt försvarsutfall. Det är det
-magstarka påståendet.
-
----
-
-## 2. Mål & icke-mål
-
-**Mål:** D ska vara **ödmjukt i proportion till hur stor andel av Kategorin det faktiskt observerat.**
-När D bara sett en femtedel ska det (a) regrediera mot neutral 2,5 och (b) bära bredare osäkerhet — så
-att en ensam serie inte kan hävda ett helt Kategoriutfall.
-
-**Icke-mål:**
-- Inte att "laga" döda Undermått (de är ofarliga; se [spar_D_datatackning.md §2.1](spar_D_datatackning.md)).
-- Inte att straffa partier — krympningen är **partineutral** (kategori-egenskap, rör inte inbördes ordning,
-  bara spridningen) och drar mot **neutral**, inte nedåt.
-- Inte att fabricera bredd. En Kategori som genuint bara kan mätas tunt (försvar, demokrati — mestadels
-  kvalitativt/sekretess) **ska** ha ett permanent ödmjukt D. Det är korrekt, inte en brist.
-- Inte att röra B i denna iteration (men §8 öppnar frågan — användaren bad uttryckligen om den).
+Viktig korrigering från v1: **demokrati ska inte krympas på bredd i nuvarande dataläge** om alla fem
+icke-target-undermått har D-attribuerbar serie. Försvar ska krympas, men måttligt, inte som 1/5.
 
 ---
 
-## 3. Designval — fyra alternativ
+## 3. Formell modell
 
-| # | Ansats | Rör punktskattningen? | Rör confidence/CI? | Mönster i repo |
-|---|---|:---:|:---:|---|
-| **A** | **Confidence-only** — behåll D_raw, sänk confidence + flagga vid tunn bredd | nej | ja | — |
-| **B** | **Krympning** — `D = 2.5 + (D_raw−2.5)·d_cov` + sänkt confidence + flagga | ja | ja | speglar B [scorerun.py:416](../pipeline/scorerun.py#L416) |
-| **C** | **Omviktning** — under bredd-tröskel: dra D:s 0,10-vikt, fördela på A/B/C + flagga | binärt (på/av) | indirekt | speglar C `missing_subnational` [scoring.yaml:109-111](../config/scoring.yaml#L109-L111) |
-| **D** | **Grind-only** — ingen runtime-ändring; nytt test som tvingar allowlist vid ≤1 D-Undermått | nej | nej | speglar `b_submeasure_spread` |
+### 3.1 Denominator: viktade icke-target-undermått
 
-**Avvägning:**
-- **Alt A** är minst ingripande och löser *falsk confidence*, men inte användarens *substantiella*
-  invändning: D=5,0 syns fortfarande som rubrik (bara med bred CI). Användaren ifrågasätter magnituden,
-  inte bara säkerheten.
-- **Alt B** löser båda och är epistemiskt symmetriskt med B ("frånvaro av observation → vet ej → mot
-  neutral"). Risk: inför en avsiktlig bias mot 2,5 på en serie som *genuint* förbättrades — men det är
-  rätt: vi vet inte om de övriga 4/5 förbättrades, så Kategori-skattningen *ska* regrediera.
-- **Alt C** undviker att injicera en 2,5-pseudoobservation, men är trubbig (allt-eller-inget) och gör D:s
-  vikt Kategori-beroende, vilket komplicerar totalpoängens tolkning.
-- **Alt D** är billigast och mest konservativt men ändrar inget betyg — det gör bara hålet *synligt*. Bra
-  som komplement, otillräckligt ensamt (användaren vill att betyget blir ärligt, inte bara flaggat).
+För en kategori `c`, definiera `D_den(c)` som alla undermått i `categories.yaml` som inte är target-only.
 
-**Rekommendation: Alt B + Alt D.** Krymp punktskattningen och sänk confidence (B), OCH lägg en bredd-grind
-(D) så att en framtida tunt täckt Kategori inte tyst slinker förbi. Alt A är fallback om Codex/användaren
-inte vill röra punktskattningen.
+Ett undermått är **target-only** endast om:
 
----
+- undermåttet har minst en indikator, och
+- alla indikatorer i undermåttet har `direction: target`.
 
-## 4. Nämnaren i `d_cov` — specens crux ⭐
+Konsekvenser:
 
-`d_cov ∈ [0,1]` = täckta Undermått / **(nämnare)**. Allt hänger på nämnaren:
+- Ekonomins `inflation_prisstabilitet` och `offentliga_finanser` exkluderas från D-denominatorn.
+- Ett undermått utan indikatorer är **inte** target-only per automatik. Det ingår i denominatorn om det
+  är en del av kategorianspråket. Detta fångar t.ex. klimatets `industriell_konkurrenskraft`.
+- Target-indikatorer i ett annars icke-target-undermått ger inte D-serier, men undermåttet kan ändå
+  täckas av en systerindikator med `up`/`down`.
 
-| Nämnare | Definition | Försvar | Effekt |
-|---|---|:---:|---|
-| **N_a** | Undermått som **kan** ha en serie (D-bara) | **1/1 = 1,00** | ingen krympning — **löser inte problemet** (övriga försvars-Undermått är kvalitativa/target → exkluderas → 100 %) |
-| **N_b** | **Icke-target** Undermått (alla som "betyder något") | **1/5 = 0,20** | kraftig, ärlig krympning — **rekommenderad** |
-| **N_d** | Undermått med **B eller D** (allt modellen fångar alls) | **1/4 = 0,25** | mellanläge; exkluderar helt ofångade Undermått |
+### 3.2 Numerator: faktiskt attribuerade undermått per parti och kategori
 
-**Varför N_b (icke-target):** D:s semantiska anspråk är *Kategorins* utfall. Kategorin **definieras** av
-sina icke-target Undermått (target = "kontext, betygssätts ej", korrekt exkluderad). Att försvar inte
-*kan* mäta materiel med en officiell serie gör inte materiel mindre till en del av vad "försvarsutfall"
-betyder — så D ska vara ödmjukt om det det inte ser, även när blindheten är oundviklig. Konsekvensen
-(försvar/demokrati får ett permanent capat D) är **korrekt**: utfallsdata ser bara en flik av dessa
-Kategorier, och D väger ändå bara 10 % — Kategorin bärs av A/B/C.
+För varje `(parti p, kategori c)` räknas ett undermått som D-täckt om `category_d` faktiskt fick minst
+en attribuerbar D-serie i det undermåttet för partiet. Praktiskt är detta `by_sub.keys()` efter att
+`score.attribute_series(...)` har returnerat `net is not None`.
 
-**Motargument (för N_a / N_d), som Codex bör pröva:** B:s coverage-nämnare är "kodbara åtgärdstyper" =
-*det vi byggt*, vilket liknar N_a/N_d (det modellen fångar), inte N_b (allt som betyder något). En strikt
-*symmetri-med-B*-läsning pekar mot N_d. Men N_a/N_d återinför delvis problemet (de exkluderar just de
-ofångade Undermåtten som gör att appen överskattar försvar). **Avgör medvetet, dokumentera valet.**
+Det gör täckningen parti/kategori-specifik. Det är mer korrekt än kategori-global täckning eftersom
+korta serier, glapp och `min_responsibility` kan göra att ett parti saknar verkligt underlag i en serie
+som andra partier kan attribueras.
 
-**`d_cov` per Kategori under N_b** (täckta från [spar_D §2.1](spar_D_datatackning.md), icke-target nämnare):
+### 3.3 Rollup med neutral för saknad bredd
 
-| Kategori | Täckta D-Undermått | Icke-target Undermått | d_cov (N_b) | Krympning? |
-|---|:---:|:---:|:---:|---|
-| ekonomi | 4 | 4 | **1,00** | nej (oförändrad) |
-| integration | 3 | 5 | 0,60 | måttlig |
-| trygghet | 3 | 5 | 0,60 | måttlig |
-| valfard | 2 | 4 | 0,50 | måttlig |
-| klimat | 2 | 5 | 0,40 | tydlig |
-| **forsvar** | 1 | 5 | **0,20** | kraftig |
-| **demokrati** | 1 | 5 | **0,20** | kraftig |
+Låt:
 
-Notera: ekonomi rörs inte (full bredd), exakt som önskat. Krympningen träffar precis de Kategorier
-användaren pekade på.
+- `w_s` = undermåttets vikt i `categories.yaml`
+- `net_s` = medelnet för D-serier i undermåttet, i `[-1, 1]`
+- saknat `net_s` = `0.0` (neutral)
+- `S_den` = alla icke-target-undermått i kategorin
+- `S_obs(p,c)` = undermått med faktiskt D-underlag för partiet i kategorin
 
-**Per-parti vs per-Kategori:** `d_cov` är en **Kategori-egenskap** (vilka Undermått som har serie är samma
-för alla partier). Partispecifik attribution hanteras redan av `min_responsibility`/`basis`. Så krympningen
-komprimerar alla partiers D i Kategorin likformigt mot 2,5 → bevarar inbördes ordning, minskar spridningen.
-(Öppen fråga §10: ska numeratorn vara partispecifik — bara Undermått där *partiet* har attribution?)
+Ny D-rollup:
 
----
-
-## 5. Formell definition (rekommendation: Alt B + Alt D)
-
-För varje (parti `p`, Kategori `c`) där D är `measured` (befintlig grind oförändrad):
-
-```
-d_cov(c)   = |{Undermått i c med ≥1 attribuerad D-serie}| / |{icke-target Undermått i c}|     # N_b
-D_just     = 2.5 + (D_raw - 2.5) * d_cov(c)
+```text
+cat_net_just(p,c) =
+    sum(w_s * net_s for s in S_obs(p,c)) / sum(w_s for s in S_den)
 ```
 
-- **Stege på bredd** (parallellt med basis-stegen): `d_cov < d_thin_coverage_threshold` (förslag **0,5**)
-  → flagga `D_thin_coverage` + sänk D-confidence ett steg (`measured`→`low` via `_step_down_confidence`,
-  [scorerun.py:231-234](../pipeline/scorerun.py#L231-L234)). `d_cov ≥ tröskel` → behåll `measured_confidence`.
-- **Ortogonal mot basis:** `D_thin_basis` (attributionsunderlag) och `D_thin_coverage` (bredd) kan flagga
-  oberoende; båda får stega ner confidence (de mäter olika osäkerheter → ej dubbelräkning).
-- `not_applicable` (D ej uppmätt) är oförändrat — `d_cov` appliceras bara när `measured=True`.
-- **Invariant:** Kategori med `d_cov = 1` (ekonomi) → `D_just = D_raw`, dvs. byte-identiskt utfall.
+Det är ekvivalent med:
 
-### Arbetat exempel — försvar med N_b (d_cov = 0,20)
+```text
+D_raw_present = renormaliserat D över observerade undermått, dagens beteende
+weighted_d_cov = sum(w_s for s in S_obs) / sum(w_s for s in S_den)
+D_just = 2.5 + (D_raw_present - 2.5) * weighted_d_cov
+```
 
-| Parti | D_raw | D_just = 2,5+(D_raw−2,5)·0,20 | Δ försvarskat. (D-vikt 0,10) |
-|---|---:|---:|---:|
-| M / KD / SD | 5,00 | **3,00** | −0,20 |
-| L | 4,37 | 2,87 | −0,15 |
-| S | 3,96 | 2,79 | −0,12 |
-| MP | 3,83 | 2,77 | −0,11 |
-| C | 3,40 | 2,68 | −0,07 |
-| V | 2,50 | 2,50 | 0 |
+Men implementeringen bör helst beräkna `cat_net_just` direkt, eftersom den gör neutral-pseudoobservationen
+explicit och undviker avrundnings-/renormaliseringsförvirring.
 
-D-spridningen kollapsar 3,40–5,00 → 2,68–3,00: D slutar vara en stor differentiator i en Kategori den
-knappt mäter, exakt som avsett. Rankingeffekten måste mätas (§9) — D väger 10 %, men flera Kategorier
-rörs samtidigt.
+### 3.4 Gate och NA
+
+`min_responsibility` ska vara oförändrad:
+
+- Om `cat_net_present is None` eller `basis < min_responsibility`: D är `not_applicable`, score `2.5`,
+  flagga `D_not_applicable`, confidence `low`.
+- Om D är measured: använd `cat_net_just` för komponentvärdet.
+
+`D_thin_basis` fortsätter mäta ansvarsunderlag. `D_thin_coverage` mäter bredd. De är ortogonala.
+
+---
+
+## 4. Confidence och flaggor
+
+Nya konfigvärden i `config/scoring.yaml` under `D_resultat`:
+
+```yaml
+coverage_shrink: true
+coverage_denominator: non_target_submeasure_weight
+thin_coverage_threshold: 0.75
+```
+
+Rekommenderad confidence-logik:
+
+- measured D börjar på `measured_confidence` (`medium` i dag).
+- Om `basis < thin_basis_threshold`: sänk ett steg och flagga `D_thin_basis`.
+- Om `weighted_d_cov < thin_coverage_threshold`: sänk ett steg och flagga `D_thin_coverage`.
+- Steg sänks kumulativt men klampas till `low`.
+
+Med `thin_coverage_threshold: 0.75` kommer måttligt ofullständig D-bredd att synas. Med `0.5` skulle
+nästan allt aktuellt dataläge passera utan coverage-flagga, vilket gör flaggan mindre användbar.
+
+Flaggor i `scores.json`:
+
+- `D_coverage_<covered_weight>/<total_weight>` där vikterna är heltal från `categories.yaml`.
+- `D_thin_coverage` om viktad täckning understiger tröskeln.
+- `D_thin_basis` oförändrad.
+- `D_not_applicable` oförändrad.
+
+Exempel:
+
+```text
+D_coverage_70/100
+D_thin_coverage
+```
+
+för försvar om täckta undermått är `militar_formaga` 35, `civil_beredskap` 20 och `nato_ukraina` 15.
+
+---
+
+## 5. Förväntad effekt med v2
+
+Eftersom D väger 10 procent av kategoribetyget blir totalpåverkan begränsad. Det här ändrar främst
+översäkerheten i D-komponenten.
+
+Förväntad per-kategori-bild:
+
+| Kategori | Viktad D-täckning, ungefär | Effekt |
+|---|---:|---|
+| ekonomi | 1.00 | oförändrad |
+| integration | 1.00 | oförändrad |
+| demokrati | 1.00 | oförändrad |
+| klimat | ca 0.85 | liten krympning, ingen thin om tröskel 0.75 |
+| trygghet | ca 0.85 | liten krympning, ingen thin om tröskel 0.75 |
+| valfard | ca 0.80 | liten/måttlig krympning, ingen thin om tröskel 0.75 |
+| forsvar | ca 0.70 | måttlig krympning + `D_thin_coverage` vid tröskel 0.75 |
+
+Exempel försvar:
+
+- Dagens täckta försvarsundermått: `militar_formaga` 35, `civil_beredskap` 20, `nato_ukraina` 15.
+- Denominator: 100, eftersom `ekonomisk_ambition` inte är target-only (har även en `up`-indikator) och
+  `genomforbarhet_leverans` är ett icke-target-undermått.
+- Viktad täckning: `70/100 = 0.70`.
+- Ett försvars-D på `4.03` krymper ungefär till `2.5 + (4.03 - 2.5) * 0.70 = 3.57`.
+
+Det är en helt annan och rimligare effekt än v1:s gamla 1/5-exempel.
 
 ---
 
 ## 6. Teknisk design
 
-- **`config/scoring.yaml` → `D_resultat`:** nya nycklar
-  `coverage_shrink: true`, `coverage_denominator: non_target_submeasures` (enum: `non_target_submeasures` |
-  `d_eligible_submeasures` | `b_or_d_submeasures`, motsvarar N_b/N_a/N_d), `thin_coverage_threshold: 0.5`.
-  Dokumentera valet i en kommentar precis som B:s `coverage_exclude_reasons`.
-- **`pipeline/scorerun.py` → `category_d`:** beräkna `non_target_submeasures` per Kategori ur
-  `categories.yaml` (ett Undermått är target endast om *alla* dess Indikatorer har `direction: target`);
-  räkna täckta Undermått ur `by_sub.keys()`; returnera även `d_cov` och `thin_coverage`-boolean i tupeln.
-  Applicera `D_just` + flaggor i huvudloopen ([scorerun.py:427-439](../pipeline/scorerun.py#L427-L439)).
-- **`pipeline/score.py`:** ren hjälpfunktion `coverage_shrink(raw, cov, neutral=2.5)` (golden-testbar);
-  `weighted_category_score`/`category_score_from_components` oförändrade.
-- **Utdata:** `D_thin_coverage` + `D_coverage_k/n` i `scores.json`-flaggorna (provenans, jfr `B_coverage_n/m`).
-- **`coverage_report`:** visa `d_cov` per Kategori så bredd-tunnheten blir synlig i trackern.
+### 6.1 `pipeline/score.py`
 
-**Invarianter (test):** (1) `coverage_shrink: false` ⇒ `dist/` byte-identiskt. (2) `d_cov=1` ⇒ D oförändrat.
-(3) `d_cov=0` omöjligt när `measured` (minst ett täckt Undermått ⇒ täljare ≥1). (4) krympning bevarar
-inbördes partiordning på D inom Kategorin. (5) target-Undermått aldrig i nämnaren.
+Lägg till rena hjälpfunktioner:
+
+```python
+def coverage_shrink(raw: float, coverage: float, neutral: float = 2.5) -> float:
+    return neutral + (raw - neutral) * coverage
+```
+
+och helst även en net-baserad helper:
+
+```python
+def weighted_mean_with_neutral_missing(
+    values: Mapping[str, float],
+    weights: Mapping[str, float],
+    denominator_keys: Iterable[str],
+    neutral: float = 0.0,
+) -> float | None:
+    ...
+```
+
+Den senare bör:
+
+- summera över `denominator_keys`
+- använda `neutral` för saknade keys
+- returnera `None` om denominatorn saknar total vikt
+- inte ändra `submeasure_weighted_mean`, eftersom den används för annan renormaliserande semantik.
+
+### 6.2 `pipeline/scorerun.py`
+
+Lägg till helpers:
+
+- `_submeasure_indicator_directions()`: kategori -> undermått -> lista riktningar
+- `_d_denominator_submeasures()`: kategori -> list/set icke-target-undermått
+- eventuellt `_weighted_coverage(covered, denominator, weights)`
+
+Uppdatera `category_d` att returnera mer data:
+
+```python
+(score, measured, thin_basis, coverage, covered_weight, total_weight, thin_coverage)
+```
+
+eller en liten dataclass om repo-stilen tillåter. Om tuple används, dokumentera ordningen tydligt.
+
+Rollup:
+
+1. Bygg `by_sub` som i dag.
+2. Bygg `sub_nets` som i dag för observerade undermått.
+3. Beräkna `cat_net_present` med dagens `submeasure_weighted_mean` bara för measured-gate.
+4. Om measured: beräkna `cat_net_just` över D-denominator med saknade undermått som neutral net `0`.
+5. Konvertera `cat_net_just` till score med `net_support_to_score`.
+
+Varför behålla `cat_net_present` för gaten? För att `None` fortsatt betyder "ingen observerad D alls";
+saknade undermått ska inte göra en helt tom kategori measured.
+
+### 6.3 `coverage_report`
+
+Utöka rapporten med D-bredd per kategori:
+
+```text
+== D-undermåttsbredd ==
+  ekonomi      100/100  1.00
+  valfard       80/100  0.80
+  trygghet      85/100  0.85
+  forsvar       70/100  0.70  THIN om threshold=0.75
+  klimat        85/100  0.85
+  integration  100/100  1.00
+  demokrati    100/100  1.00
+```
+
+Denna rapport kan vara kategori-global, eftersom den är en översikt. Själva scoringens numerator ska
+fortfarande vara per parti/kategori.
 
 ---
 
-## 7. Bakåtkompatibilitet & förväntad betygseffekt
+## 7. Tester och acceptanskriterier
 
-- Default-flagga gör beteendet **opt-in**; `false` ⇒ exakt dagens betyg (golden-grind).
-- Förväntat med N_b: **ekonomi oförändrad**; försvar/demokrati D komprimeras kraftigt mot neutral;
-  valfard/klimat/integration/trygghet måttligt. Eftersom V redan är NA i allt påverkas inte V.
-- **Ranking:** måste köras och granskas (`score_diff` + `coverage_report`) före sign-off. Hypotes: topp
-  rörs lite (D är 10 %, krympningen drar mot neutral snarare än åt ett håll), men det är en empirisk fråga,
-  inte ett antagande — re-baselina `dist/` först efter granskning (jfr B-grön-svepets re-baselining).
-
----
-
-## 8. Ska samma bredd-rabatt gälla B? (användarens uttryckliga fråga)
-
-B har **två** mekanismer redan: positions-coverage-krympning (runtime, [scorerun.py:416](../pipeline/scorerun.py#L416))
-+ `b_submeasure_spread`-grinden (test). En **tredje**, undermåttsbredd-krympning på B, skulle:
-- **+** stänga B:s bredd-hål på samma runtime-sätt som D, konsekvent modell;
-- **−** riskera **dubbelräkning** mot den befintliga positions-coverage-krympningen (båda drar mot neutral;
-  produkten `coverage · d_cov` kan överstraffa), och interagera oklart med grinden.
-
-**Rekommendation:** **scope:a denna spec till D** (som är helt oskyddat) och behandla "utvidga bredd-rabatt
-till B" som en **separat, senare** fråga — först efter att D-varianten verifierats och vi sett om
-interaktionen med B:s två mekanismer går att hålla ren. Markerad som öppen fråga, inte avfärdad.
+- `coverage_shrink(raw, cov)` testas för `cov=1`, `cov=0`, monotoni och symmetri runt 2.5.
+- Ny helper för neutral-missing-rollup testas med viktade undermått.
+- Target-only-undermått exkluderas från D-denominator.
+- Undermått utan indikatorer blir inte felaktigt target-only.
+- `coverage_shrink: false` ger byte-identiskt `dist/scores.json` mot före ändringen.
+- `weighted_d_cov=1` ger oförändrad D.
+- D-krympning bevarar partiordning inom en kategori när alla partier har samma coverage.
+- Parti/kategori-specifik coverage kan skilja sig när attribution saknas i korta serier.
+- `D_thin_basis` och `D_thin_coverage` kan trigga oberoende.
+- `scores.json` innehåller `D_coverage_<covered>/<total>` för measured D.
+- `D_not_applicable`-celler förblir neutral 2.5 och får inte `D_coverage_*`.
+- `coverage_report` visar D-bredd per kategori.
+- `pytest -q` grönt.
+- `python -m pipeline.scorerun` körs och ranking-/score-diff redovisas innan `dist/` rebaselinas.
 
 ---
 
-## 9. Acceptanskriterier & verifiering
+## 8. B ska inte ändras nu
 
-- [ ] `coverage_shrink: false` ⇒ `dist/scores.json` **byte-identisk** (golden-test).
-- [ ] `coverage_shrink(raw, cov)` golden-testad: `cov=1`→raw; `cov=0`→2,5; symmetri kring 2,5
-      (supports och opposes krymper lika mycket); monotoni i `cov`.
-- [ ] `category_d`: target-Undermått aldrig i nämnaren; täljare = distinkta täckta Undermått; tupeln bär
-      `d_cov`+`thin_coverage`.
-- [ ] Flaggor `D_thin_coverage` + `D_coverage_k/n` i `scores.json`; `D_thin_basis` oförändrad och oberoende.
-- [ ] Confidence stegas ner vid `d_cov < tröskel`; CI breddas (golden på `category_score_from_components`).
-- [ ] **Arbetat exempel (försvar)** reproducerat: M/KD/SD D 5,00→3,00 vid N_b; ekonomi oförändrad.
-- [ ] `score_diff` + `coverage_report` granskade per Kategori; **ranking-effekt redovisad** före re-baseline.
-- [ ] `pytest -q` grönt, `ruff` rent, cyrillisk-koll 0, codex BUILD/KEEP, `dist/` re-baselinad efter granskning.
-- [ ] `spar_D_datatackning.md` + `scoring.yaml`-kommentar uppdaterade; v0→v1-status noterad.
+B har redan:
+
+- runtime-krympning mot neutral efter partiets kodade åtgärdstypstäckning
+- `B_thin_coverage`
+- `b_submeasure_spread`-grind mot nära-binär kategoribredd
+
+Det finns ett verkligt parallellt B-breddsproblem, men en extra B-undermåttskrympning riskerar
+dubbelrabatt och bör specas separat efter att D-ändringen är mätt. Denna spec gäller endast D.
 
 ---
 
-## 10. Öppna frågor för sign-off
+## 9. Implementeringsordning
 
-1. **Ansats:** Alt B + Alt D (rek.), eller bara Alt A (confidence-only, rör ej punktskattningen)?
-2. **Nämnare (§4, crux):** N_b (icke-target, rek.), N_d (B-eller-D-täckta), eller N_a (D-bara)?
-3. **`thin_coverage_threshold`:** 0,5 (förslag) eller annat?
-4. **Numerator partispecifik?** Bara Undermått där *partiet* har attribution, eller Kategori-globalt (rek.)?
-5. **B (§8):** lämna B orört nu (rek.), eller speca bredd-rabatt på B parallellt?
-6. **Permanent capat försvars-/demokrati-D** under N_b är *avsett* — accepteras det som korrekt ödmjukhet?
+1. Lägg in config-nycklar med `coverage_shrink: false` som första commit/patch om en golden-baseline behövs.
+2. Lägg till rena helpers och tester i `score.py`.
+3. Lägg till D-denominator-helpers i `scorerun.py`.
+4. Ändra `category_d` och huvudloopen så flags/confidence följer med.
+5. Utöka `coverage_report`.
+6. Kör testsvit.
+7. Kör scorerun och redovisa score-diff/ranking-diff.
+8. Efter sign-off: slå på `coverage_shrink: true` och rebaselina `dist/`.
+
+---
+
+## 10. Öppna sign-off-frågor
+
+1. Ska `thin_coverage_threshold` vara `0.75` enligt denna v2-rekommendation, eller mer konservativa `0.5`?
+2. Ska `D_coverage_<covered>/<total>` använda heltalsvikter från config (`70/100`) eller även lägga till
+   decimalflagga/metadata (`D_coverage_ratio_0.70`)? Rekommendation: bara heltalsflagga + rapport.
+3. Ska `coverage_shrink` initialt defaulta `false` för byte-identisk baseline, eller slås på direkt efter
+   testerna? Rekommendation: börja `false`, verifiera, slå på efter diff-granskning.
+4. Accepteras att försvar blir måttligt krympt (`70/100`) i stället för kraftigt krympt? Rekommendation: ja,
+   eftersom det följer kategoriens egna vikter.
 
 ---
 
 ## 11. Codex-granskningslogg
 
-- *(väntar v1-granskning)*
-
-## 12. Relaterat
-
-- [spar_D_datatackning.md](spar_D_datatackning.md) — D-tracker, §2.1 mastertabell (täckningsläget)
-- [done/evidens_trovardighet.md](done/evidens_trovardighet.md) — B-spårets logg, §4.3 begreppsmodell/mastertabell
-- [done/viktad_stance_spec.md](done/viktad_stance_spec.md) — parallell scoring-spec (mall, abandon-utfall)
-- [../config/scoring.yaml](../config/scoring.yaml) · [../pipeline/scorerun.py](../pipeline/scorerun.py) · [../pipeline/score.py](../pipeline/score.py)
+- 2026-06-12: v2 omarbetad efter Codex-granskning. Huvudändringar: rebasat mot aktuell D-täckning,
+  ersatt antalbaserad krympning med viktad icke-target-undermåttsrollup, gjort numerator per
+  parti/kategori, behållit B utanför scope.
