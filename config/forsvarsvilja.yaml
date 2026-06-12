@@ -1,0 +1,53 @@
+# Försvarsvilja: andel av befolkningen som anser att Sverige BÖR göra väpnat motstånd vid ett
+# militärt angrepp ÄVEN OM UTGÅNGEN ter sig oviss, per mätår (procent).
+#
+# DELPOÄNG D, kategori forsvar, kanonisk indikator forsvarsvilja (riktning UP, starkare
+# försvarsvilja = starkare totalförsvar; submått civil_beredskap). Öppnar submåttet civil_beredskap
+# (tidigare D-tomt, allowlistat "qualitative: MSB-bedömning, ingen kvantitativ årsserie"). Försvars-
+# kategorins TREDJE D-serie och första utfallsmått för civil/totalförsvar. Spår D, försvar 2026-06-12.
+#
+# VARFÖR DETTA ÄR UTFALL (hammare-principen): försvarsvilja är ett RESILIENS-/TILLSTÅNDS-mått —
+# befolkningens faktiska vilja att försvara landet, kärnan i psykologiskt försvar / totalförsvar — inte
+# anslag, antal övningar eller utbildade (insats). Det är samma "tillstånds, ej aktivitets"-logik som
+# gjorde V-Dem tillåtet för demokrati-väggen.
+#
+# VÄRDEKÄLLA: Myndigheten för psykologiskt försvar (MPF), "Opinioner 2025", sida 87 (tabell). Frågan
+# (i princip oförändrad sedan 1950-talet): "Antag att Sverige utsätts för ett militärt angrepp. Tycker
+# du att vi bör göra väpnat motstånd även om utgången för oss verkar oviss?" VÄRDET = andel JA =
+# "Ja, absolut" + "Ja, kanske". Alla årsvärden kommer ur SAMMA tabell (Opinioner 2025 s.87), som
+# redovisar hela tidsserien — därför en gemensam källa (source_index) + per-år-uppdelning för audit.
+#
+# KÄLLKONTINUITET: serien har mätts av Styrelsen för psykologiskt försvar → MSB → MPF (myndighetsbyte
+# MSB→MPF 2022), men det är samma kontinuerliga mätserie och fråga. Officiell svensk myndighetskälla.
+#
+# LUCKA 2019: ingen mätning gjordes 2019 → året utelämnas. D beräknar bara konsekutiva årsövergångar,
+# så 2018→2020-spannet hoppas tyst över (samma hantering som brukarnojdhet_hemtjanst 2021-luckan).
+#
+# 2025: från 2025 redovisas vår- (VT) och höstmätning (HT) separat. HÖSTMÄTNINGEN (HT 2025 = 75) väljs
+# som årsvärde för kontinuitet med den historiska höstserien (VT 2025 = 75, dvs. samma tecken oavsett).
+#
+# CAVEAT (v0): hoppet 2021→2022 (70→78) är invasionsdrivet (Rysslands fullskaliga invasion feb 2022)
+# snarare än svensk-politik-drivet. D tar bara TECKEN på årsförändringen och attribuerar till sittande
+# regering enligt modellens standard (gäller alla survey-D); väger 10 %, makt-/ansvarsviktas. v0 tills
+# formell sign-off (→v1).
+version: 0
+indicator: forsvarsvilja
+category: forsvar
+submeasure: civil_beredskap
+unit: "% (andel JA: Sverige bör göra väpnat motstånd även om utgången är oviss)"
+source_index: "https://mpf.se/download/18.b36cf7b19b2bf1256d4c58/1768224568818/Opinioner-2025_tga.pdf"
+source_page: "MPF Opinioner 2025, s.87 (tabell: 'Antag att Sverige utsätts för ett militärt angrepp ... väpnat motstånd även om utgången ... oviss')"
+# value = ja_absolut + ja_kanske (procent). ja_* bevarade för audit/reproducerbarhet.
+years:
+  2014: { value: 75, ja_absolut: 51, ja_kanske: 24 }
+  2015: { value: 75, ja_absolut: 50, ja_kanske: 25 }
+  2016: { value: 72, ja_absolut: 48, ja_kanske: 24 }
+  2017: { value: 71, ja_absolut: 48, ja_kanske: 23 }
+  2018: { value: 72, ja_absolut: 49, ja_kanske: 23 }
+  # 2019: ingen mätning (utelämnad)
+  2020: { value: 70, ja_absolut: 43, ja_kanske: 27 }
+  2021: { value: 70, ja_absolut: 41, ja_kanske: 29 }
+  2022: { value: 78, ja_absolut: 55, ja_kanske: 23 }
+  2023: { value: 79, ja_absolut: 55, ja_kanske: 24 }
+  2024: { value: 79, ja_absolut: 56, ja_kanske: 23 }
+  2025: { value: 75, ja_absolut: 52, ja_kanske: 23 }   # HT 2025 (höstmätning)

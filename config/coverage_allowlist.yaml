@@ -45,8 +45,15 @@ allowlist:
   # personal_varnpliktiga inläst via Försvarsmaktens årsredovisning (antal som påbörjade GU per
   # kalenderår 2018-2025, transkriberad config/personal_varnpliktiga.yaml, korsverifierad mot
   # Pliktverkets inskrivna) -> ej allowlistad fr.o.m. 2026-06-07 (Spår D Tier 4). FÖRSVARETS FÖRSTA D.
-  - { category: forsvar, indicator: materiel_formaga,         reason: "qualitative: sekretess/operativ förmåga, ingen öppen mätserie." }
-  - { category: forsvar, indicator: civil_beredskap_niva,     reason: "qualitative: MSB-bedömning, ingen kvantitativ årsserie." }
+  # personalstyrka_kontinuerligt inläst via FM ÅR bilaga Tabell 1 (Summa kontinuerligt tjänstgörande,
+  # 2019-2024, transkriberad config/personalstyrka_forsvarsmakten.yaml) -> ej allowlistad fr.o.m.
+  # 2026-06-12 (Spår D försvar). NY kanonisk indikator (D-only) — andra D-serien i militar_formaga.
+  - { category: forsvar, indicator: materiel_formaga,         reason: "qualitative: sekretess/operativ förmåga, ingen öppen mätserie. (Submåttet militar_formaga D-täckt via personal_varnpliktiga + personalstyrka_kontinuerligt; SIPRI vapenimport-TIV testad 2026-06-12 — källan tillåten men årssignalen brus -> vägg.)" }
+  - { category: forsvar, indicator: civil_beredskap_niva,     reason: "qualitative: MSB-bedömning, ingen kvantitativ årsserie. (Submåttet civil_beredskap D-täckt via syskonindikatorn forsvarsvilja (MPF Opinioner) fr.o.m. 2026-06-12 — denna förblir kvalitativ vägg.)" }
+  # forsvarsvilja inläst via MPF/MSB Opinioner (andel som vill göra väpnat motstånd även om utgången är
+  # oviss, 2014-2025, transkriberad config/forsvarsvilja.yaml) -> ej allowlistad fr.o.m. 2026-06-12 (Spår
+  # D försvar). NY kanonisk indikator (D-only) -> ÖPPNADE civil_beredskap (psykologiskt försvar = del av
+  # totalförsvaret; resiliensutfall, ej anslag). försvar 2/5 -> 3/5 submått med D.
   # ukraina_stod inläst via Regeringens samlade redovisning av militärt stöd till Ukraina per år
   # (config/ukraina_stod.yaml, 2022-2025, transkriberad) -> ej allowlistad fr.o.m. 2026-06-08
   # (Spår D natt). Öppnade submåttet nato_ukraina. Tidigare antagande "ad hoc, ingen objektiv

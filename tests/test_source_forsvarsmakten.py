@@ -94,3 +94,49 @@ def test_audit_fangar_ovantad_nedgang() -> None:
         },
     }
     assert varnpliktiga_audit.audit(bad)  # icke-tom -> avvikelse upptäckt
+
+
+# --- personalstyrka_kontinuerligt (FM ÅR bilaga Tabell 1, 'Summa kontinuerligt tjänstgörande') ---
+
+# Facit: stående personalvolym per 31 dec, korsverifierad ur FM ÅR-bilagorna 2026-06-12 (2021 = rättat
+# +720-värdet ur FM ÅR 2022; 2020/2022 korsbekräftade över två bilagor).
+GOLDEN_PERSONALSTYRKA = {
+    "2019": 22751, "2020": 24094, "2021": 24353,
+    "2022": 25011, "2023": 26195, "2024": 27734,
+}
+
+
+def test_personalstyrka_matchar_pinnade_varden() -> None:
+    rows = forsvarsmakten.build_personalstyrka_observations()
+    by_year = {r["period"]: int(r["value"]) for r in rows}
+    assert by_year == GOLDEN_PERSONALSTYRKA
+
+
+def test_personalstyrka_strikt_monoton_upp() -> None:
+    """Strikt monoton uppåt 2019->2024 -> alla D-tecken +, robust mot sifferosäkerhet."""
+    rows = sorted(forsvarsmakten.build_personalstyrka_observations(), key=lambda r: r["period"])
+    vals = [r["value"] for r in rows]
+    assert all(b > a for a, b in zip(vals, vals[1:], strict=False))
+
+
+def test_personalstyrka_radform_kanonisk() -> None:
+    r = next(r for r in forsvarsmakten.build_personalstyrka_observations() if r["period"] == "2024")
+    assert r["indicator"] == "personalstyrka_kontinuerligt"
+    assert r["category"] == "forsvar"
+    assert r["submeasure"] == "militar_formaga"
+    assert r["id"] == "obs:forsvarsmakten:personalstyrka_kontinuerligt:2024"
+    assert r["source_ref"] == "forsvarsmakten:personalstyrka_kontinuerligt:2024"
+    assert "personalstyrka_kontinuerligt" in forsvarsmakten.INDICATORS
+
+
+def test_personalstyrka_indikator_kanonisk_riktning_up() -> None:
+    forsvar = next(c for c in config.categories()["categories"] if c["id"] == "forsvar")
+    ind = next(i for i in forsvar["indicators"] if i["id"] == "personalstyrka_kontinuerligt")
+    assert ind["direction"] == "up"
+    assert ind["submeasure"] == "militar_formaga"
+
+
+def test_build_all_omfattar_bada_serierna() -> None:
+    """build_all_observations() (build_fas3:s full-replace-källa) bär båda FM-serierna."""
+    inds = {r["indicator"] for r in forsvarsmakten.build_all_observations()}
+    assert inds == set(forsvarsmakten.INDICATORS)

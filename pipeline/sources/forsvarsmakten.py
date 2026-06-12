@@ -20,31 +20,47 @@ from typing import Any
 from .. import config
 
 # Kanoniska indikatorer denna modul levererar (för täcknings-gaten i tests/test_fas3_gate.py).
-INDICATORS = ("personal_varnpliktiga",)
+INDICATORS = ("personal_varnpliktiga", "personalstyrka_kontinuerligt")
 
 # Serie-drift-förväntan (pipeline.expectations). Ankare = stabila publicerade värden (±rel_tol).
-# Antal som påbörjade GU per kalenderår 2018-2025 (riktning up).
 EXPECT = {
+    # Antal som påbörjade GU per kalenderår 2018-2025 (riktning up).
     "personal_varnpliktiga": {"min_points": 7, "value_range": [3000, 12000],
                               "min_latest_year": 2024, "anchors": {"2018": 3750, "2021": 5873}},
+    # Summa kontinuerligt tjänstgörande per 31 dec 2019-2024 (riktning up; FM ÅR bilaga Tabell 1).
+    "personalstyrka_kontinuerligt": {"min_points": 5, "value_range": [18000, 35000],
+                                     "min_latest_year": 2024, "anchors": {"2019": 22751, "2024": 27734}},
 }
+
+
+def _build_from_config(cfg: dict[str, Any]) -> list[dict[str, Any]]:
+    """Transkriberade årsvärden -> observations-rader (Riket). Ren funktion (golden-testbar)."""
+    cat, sub, ind, unit = cfg["category"], cfg["submeasure"], cfg["indicator"], cfg["unit"]
+    return [
+        {
+            "id": f"obs:forsvarsmakten:{ind}:{year}",
+            "category": cat, "submeasure": sub, "indicator": ind, "period": str(year),
+            "value": float(entry["value"]), "unit": unit, "geography": "Riket",
+            "source_ref": f"forsvarsmakten:{ind}:{year}",
+        }
+        for year, entry in sorted(cfg["years"].items())
+    ]
 
 
 def build_personal_varnpliktiga_observations(
     cfg: dict[str, Any] | None = None,
 ) -> list[dict[str, Any]]:
-    """Transkriberade årstotaler -> observations-rader (Riket); värde = antal påbörjade GU.
+    """Antal påbörjade GU per kalenderår -> observations (militar_formaga)."""
+    return _build_from_config(config.personal_varnpliktiga() if cfg is None else cfg)
 
-    Ren funktion med injicerbar cfg -> golden-testbar utan fil-IO.
-    """
-    cfg = config.personal_varnpliktiga() if cfg is None else cfg
-    cat, sub, ind, unit = cfg["category"], cfg["submeasure"], cfg["indicator"], cfg["unit"]
-    rows: list[dict[str, Any]] = []
-    for year, entry in sorted(cfg["years"].items()):
-        rows.append({
-            "id": f"obs:forsvarsmakten:{ind}:{year}",
-            "category": cat, "submeasure": sub, "indicator": ind, "period": str(year),
-            "value": float(entry["value"]), "unit": unit, "geography": "Riket",
-            "source_ref": f"forsvarsmakten:personal_varnpliktiga:{year}",
-        })
-    return rows
+
+def build_personalstyrka_observations(
+    cfg: dict[str, Any] | None = None,
+) -> list[dict[str, Any]]:
+    """Summa kontinuerligt tjänstgörande per 31 dec -> observations (militar_formaga)."""
+    return _build_from_config(config.personalstyrka_forsvarsmakten() if cfg is None else cfg)
+
+
+def build_all_observations() -> list[dict[str, Any]]:
+    """Alla FM-transkriberade serier (för build_fas3:s full-replace av 'forsvarsmakten:%')."""
+    return build_personal_varnpliktiga_observations() + build_personalstyrka_observations()

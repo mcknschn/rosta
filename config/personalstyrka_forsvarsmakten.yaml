@@ -1,0 +1,56 @@
+# Antal kontinuerligt tjänstgörande i Försvarsmakten (stående personalvolym) per 31 dec, per år.
+#
+# DELPOÄNG D, kategori forsvar, kanonisk indikator personalstyrka_kontinuerligt (riktning UP, större
+# stående personalvolym = mer bemannad förmåga; submått militar_formaga). Försvarets FJÄRDE D-serie.
+# Spår D, försvar 2026-06-12.
+#
+# KONSTRUKT: "Summa kontinuerligt tjänstgörande" = yrkesofficerare + GSS/K (gruppbefäl/soldater/
+# sjömän, kontinuerligt) + civila arbetstagare. Detta är den STÅENDE styrkan (faktisk bemannad
+# numerär), distinkt från personal_varnpliktiga (rekryteringsbasen — antal som påbörjar GU) och från
+# "tidvis tjänstgörande" (reservofficerare + GSS/T, mer volatil). Hammare-test: en bemannad numerär
+# är ett FÖRMÅGEUTFALL (hur många faktiskt tjänstgör), inte pengar/anslag (delpoäng A) eller aktivitet.
+#
+# VÄRDEKÄLLA: Försvarsmaktens årsredovisning (FM ÅR), bilaga 1 "Personalberättelsen", Tabell 1 "Antal
+# anställda per personalkategori per 31 dec", raden "Summa kontinuerligt tjänstgörande". Varje års-
+# tabell redovisar 3 år (innevarande + 2 bakåt), vilket ger ÖVERLAPPANDE KORSVERIFIERING. Officiell
+# svensk myndighetskälla. Värdena transkriberade direkt ur PDF-tabellerna (pdfplumber), korsverifierade.
+#
+# SERIE 2019-2024 (6 år, STRIKT MONOTON uppåt): värnpliktsåtertagandet + upprustningen gav en stadigt
+# växande stående styrka. 2025 ÄNNU EJ publicerad i separat Personalberättelse-bilaga (endast huvud-
+# dokumentet finns) → serien slutar 2024 tills 2025 års bilaga kommer. D tar bara TECKEN; alla
+# årsövergångar är + (robust mot sifferosäkerhet).
+#
+# REVIDERING 2021: värdet reviderades +720 (23 633 → 24 353) pga en felsummering i FM ÅR 2021, rättad i
+# FM ÅR 2022 (not 4 i Tabell 1). Vi lagrar det RÄTTADE värdet (24 353). Påverkar inget D-tecken
+# (monoton upp oavsett). v0 tills formell sign-off (→v1).
+version: 0
+indicator: personalstyrka_kontinuerligt
+category: forsvar
+submeasure: militar_formaga
+unit: "antal kontinuerligt tjänstgörande i Försvarsmakten (yrkesoff. + GSS/K + civila), per 31 dec"
+fm_arsredovisning_index: "https://www.forsvarsmakten.se/sv/om-forsvarsmakten/dokument/arsredovisningar/"
+years:
+  2019:
+    value: 22751
+    source: "https://www.forsvarsmakten.se/globalassets/02-om-forsvarsmakten/myndighetsinformation/dokument/arsredovisningar/2021/forsvarsmaktens-arsredovisning-2021-bilagor.pdf"
+    source_note: "FM AR 2021 bilaga 1 Tabell 1 (per 2021-12-31), raden 'Summa kontinuerligt tjanstgorande', kolumn 2019 = 22 751. Korsbekraftad: dess 2020-kolumn (24 094) matchar FM AR 2022."
+  2020:
+    value: 24094
+    source: "https://www.forsvarsmakten.se/globalassets/02-om-forsvarsmakten/myndighetsinformation/dokument/arsredovisningar/2022/fm2021-22412.41-fm-ar-2022_bilagor.pdf"
+    source_note: "FM AR 2022 bilaga 1 Tabell 1 (per 2022-12-31), kolumn 2020 = 24 094. Korsbekraftad mot FM AR 2021 bilaga (24 094)."
+  2021:
+    value: 24353
+    source: "https://www.forsvarsmakten.se/globalassets/02-om-forsvarsmakten/myndighetsinformation/dokument/arsredovisningar/2022/fm2021-22412.41-fm-ar-2022_bilagor.pdf"
+    source_note: "FM AR 2022 bilaga 1 Tabell 1, kolumn 2021 = 24 353 (RATTAT +720 fran 23 633 pga felsummering i FM AR 2021; not 4 i tabellen)."
+  2022:
+    value: 25011
+    source: "https://www.forsvarsmakten.se/globalassets/02-om-forsvarsmakten/myndighetsinformation/dokument/arsredovisningar/2024/forsvarsmaktens-arsredovisning-2024-bilaga-1-2-och-5.pdf"
+    source_note: "FM AR 2024 bilaga 1 Tabell 1 (per 2024-12-31), kolumn 2022 = 25 011. Korsbekraftad mot FM AR 2022 bilaga (25 011)."
+  2023:
+    value: 26195
+    source: "https://www.forsvarsmakten.se/globalassets/02-om-forsvarsmakten/myndighetsinformation/dokument/arsredovisningar/2024/forsvarsmaktens-arsredovisning-2024-bilaga-1-2-och-5.pdf"
+    source_note: "FM AR 2024 bilaga 1 Tabell 1 (per 2024-12-31), kolumn 2023 = 26 195."
+  2024:
+    value: 27734
+    source: "https://www.forsvarsmakten.se/globalassets/02-om-forsvarsmakten/myndighetsinformation/dokument/arsredovisningar/2024/forsvarsmaktens-arsredovisning-2024-bilaga-1-2-och-5.pdf"
+    source_note: "FM AR 2024 bilaga 1 Tabell 1 (per 2024-12-31), raden 'Summa kontinuerligt tjanstgorande', kolumn 2024 = 27 734."

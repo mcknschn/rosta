@@ -20,6 +20,7 @@ from .sources import (
     forsvarsmakten,
     kriminalvarden,
     migrationsverket,
+    mpf,
     polisen,
     regeringen,
     sverigesmiljomal,
@@ -82,11 +83,12 @@ def main() -> None:
     span = f"{prows[0]['period']}..{prows[-1]['period']}" if prows else "-"
     print(f"Polisen (transkr.) -> trygghet    skjutningar_sprangningar: {n:4} obs ({span})")
 
-    # Försvarsmakten: antal värnpliktiga som påbörjade grundutbildning (forsvar, delpoäng D) —
-    # transkriberad config (config/personal_varnpliktiga.yaml; reproducerbar via
-    # tools/varnpliktiga_audit), korsverifierad mot Pliktverkets inskrivna. source_ref
-    # 'forsvarsmakten:' ligger utanför scb/kolada-purge-scope. Försvarets FÖRSTA D-serie.
-    frows = forsvarsmakten.build_personal_varnpliktiga_observations()
+    # Försvarsmakten (forsvar, delpoäng D) — transkriberade configar (källrad per värde, ingen
+    # runtime-PDF-parser). TVÅ serier i militar_formaga: personal_varnpliktiga (antal som påbörjade GU,
+    # korsverifierad mot Pliktverket; reproducerbar via tools/varnpliktiga_audit) och
+    # personalstyrka_kontinuerligt (stående personalvolym, FM ÅR bilaga Tabell 1). source_ref
+    # 'forsvarsmakten:' ligger utanför scb/kolada-purge-scope.
+    frows = forsvarsmakten.build_all_observations()
     unlisted = {r["indicator"] for r in frows} - set(forsvarsmakten.INDICATORS)
     if unlisted:
         raise ValueError(f"Försvarsmakten emitterar indikatorer utanför INDICATORS: {sorted(unlisted)}")
@@ -95,12 +97,32 @@ def main() -> None:
             [r for r in frows if r["indicator"] == ind], forsvarsmakten.EXPECT.get(ind),
             f"Försvarsmakten {ind}",
         )
-    # Full-replace av forsvarsmakten-rader (transkriberad, komplett serie): tar bort ev.
+    # Full-replace av forsvarsmakten-rader (transkriberade, kompletta serier): tar bort ev.
     # föråldrade rader om årsuppsättning/source_ref ändrats.
     con.execute("DELETE FROM observations WHERE source_ref LIKE 'forsvarsmakten:%'")
     n = warehouse.upsert(con, "observations", frows)
-    span = f"{frows[0]['period']}..{frows[-1]['period']}" if frows else "-"
-    print(f"Försvarsmakten (transkr.) -> forsvar  personal_varnpliktiga: {n:4} obs ({span})")
+    for ind in forsvarsmakten.INDICATORS:
+        sub = [r for r in frows if r["indicator"] == ind]
+        span = f"{sub[0]['period']}..{sub[-1]['period']}" if sub else "-"
+        print(f"Försvarsmakten (transkr.) -> forsvar  {ind:28}: {len(sub):4} obs ({span})")
+
+    # MPF (Myndigheten för psykologiskt försvar): försvarsvilja (forsvar, delpoäng D) — transkriberad
+    # config (config/forsvarsvilja.yaml, MPF Opinioner-tabellen). Öppnar submåttet civil_beredskap
+    # (resiliens-/attitydutfall; psykologiskt försvar = del av totalförsvaret). source_ref 'mpf:'
+    # ligger utanför scb/kolada-purge-scope.
+    morows = mpf.build_forsvarsvilja_observations()
+    unlisted = {r["indicator"] for r in morows} - set(mpf.INDICATORS)
+    if unlisted:
+        raise ValueError(f"MPF emitterar indikatorer utanför INDICATORS: {sorted(unlisted)}")
+    for ind in mpf.INDICATORS:
+        expectations.check_series(
+            [r for r in morows if r["indicator"] == ind], mpf.EXPECT.get(ind), f"MPF {ind}"
+        )
+    # Full-replace av mpf-rader (transkriberad, komplett serie).
+    con.execute("DELETE FROM observations WHERE source_ref LIKE 'mpf:%'")
+    n = warehouse.upsert(con, "observations", morows)
+    span = f"{morows[0]['period']}..{morows[-1]['period']}" if morows else "-"
+    print(f"MPF (transkr.) -> forsvar  forsvarsvilja: {n:4} obs ({span})")
 
     # Regeringen/Försvarsdepartementet: Sveriges militära stöd till Ukraina per år (forsvar,
     # delpoäng D) — transkriberad config (config/ukraina_stod.yaml). Öppnar submåttet nato_ukraina.
@@ -203,8 +225,9 @@ def main() -> None:
 
     print("\n-- kända luckor (loggas, ej tysta; se docs/fas3_coverage.md) --")
     print("   klimat: elprisvolatilitet/effektbrist (Svk, härledda) återstår.")
-    print("   forsvar: personal_varnpliktiga (FM ÅR) + ukraina_stod matar D — övriga försvars-")
-    print("       indikatorer kvalitativa/sekretess (allowlistade).")
+    print("   forsvar: personal_varnpliktiga + personalstyrka_kontinuerligt (FM ÅR) + ukraina_stod")
+    print("       + forsvarsvilja (MPF Opinioner -> civil_beredskap) matar D; materiel/leverans")
+    print("       kvalitativa/sekretess (allowlistade). 3/5 submått med D.")
     print("   trygghet: aterfall_i_brott (Kriminalvården KOS) matar nu D.")
     print("   klimat: hackande_faglar_skog (Svensk Fågeltaxering) matar nu biologisk_mangfald-D.")
     print("   demokrati: rattsstat/yttrandefrihet/personlig frihet/transparens matas nu av V-Dem")

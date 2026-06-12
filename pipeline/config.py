@@ -91,6 +91,16 @@ def asyl_handlaggningstid() -> dict[str, Any]:
 
 
 @cache
+def personalstyrka_forsvarsmakten() -> dict[str, Any]:
+    return _load("personalstyrka_forsvarsmakten.yaml")
+
+
+@cache
+def forsvarsvilja() -> dict[str, Any]:
+    return _load("forsvarsvilja.yaml")
+
+
+@cache
 def aterfall_i_brott() -> dict[str, Any]:
     return _load("aterfall_i_brott.yaml")
 

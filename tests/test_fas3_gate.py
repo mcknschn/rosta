@@ -14,6 +14,7 @@ from pipeline.sources import (
     forsvarsmakten,
     kriminalvarden,
     migrationsverket,
+    mpf,
     polisen,
     regeringen,
     sverigesmiljomal,
@@ -43,6 +44,8 @@ def _ingested() -> set[tuple[str, str]]:
     for ind in polisen.INDICATORS:
         out.add(("trygghet", ind))
     for ind in forsvarsmakten.INDICATORS:
+        out.add(("forsvar", ind))
+    for ind in mpf.INDICATORS:
         out.add(("forsvar", ind))
     for ind in regeringen.INDICATORS:
         out.add(("forsvar", ind))
