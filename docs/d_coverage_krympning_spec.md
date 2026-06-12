@@ -1,6 +1,7 @@
 # Rösta - Spec: D-täckningskrympning via viktad undermåttsbredd
 
-> **Status: GUL UTKAST v2 - redo för implementeringsdesign, väntar mänsklig sign-off.**
+> **Status: IMPLEMENTERAD 2026-06-12 bakom `coverage_shrink: false` — väntar diff-granskning
+> innan flaggan slås på och `dist/` rebaselinas (§10-besluten signade, se §11).**
 >
 > v2 ersätter den äldre 1/5-bilden för försvar/demokrati. Dagens täckningsläge är bredare
 > (verifierat med `python -m pipeline.tools.coverage_report`, 2026-06-12), men kodens principiella
@@ -279,7 +280,7 @@ Utöka rapporten med D-bredd per kategori:
 
 ```text
 == D-undermåttsbredd ==
-  ekonomi      100/100  1.00
+  ekonomi       73/73   1.00
   valfard       80/100  0.80
   trygghet      85/100  0.85
   forsvar       70/100  0.70  THIN om threshold=0.75
@@ -287,6 +288,10 @@ Utöka rapporten med D-bredd per kategori:
   integration  100/100  1.00
   demokrati    100/100  1.00
 ```
+
+Observera att ekonomi blir `73/73` (inte `100/100`): nämnaren är heltalsvikterna ur
+`categories.yaml` och ekonomins icke-target-vikter summerar till 73 (22+18+18+15) eftersom
+target-only-undermåtten (12+15) lyfts ur nämnaren. Kvoten är ändå 1.00.
 
 Denna rapport kan vara kategori-global, eftersom den är en översikt. Själva scoringens numerator ska
 fortfarande vara per parti/kategori.
@@ -338,15 +343,18 @@ dubbelrabatt och bör specas separat efter att D-ändringen är mätt. Denna spe
 
 ---
 
-## 10. Öppna sign-off-frågor
+## 10. Sign-off-frågor — AVGJORDA 2026-06-12
 
-1. Ska `thin_coverage_threshold` vara `0.75` enligt denna v2-rekommendation, eller mer konservativa `0.5`?
-2. Ska `D_coverage_<covered>/<total>` använda heltalsvikter från config (`70/100`) eller även lägga till
-   decimalflagga/metadata (`D_coverage_ratio_0.70`)? Rekommendation: bara heltalsflagga + rapport.
-3. Ska `coverage_shrink` initialt defaulta `false` för byte-identisk baseline, eller slås på direkt efter
-   testerna? Rekommendation: börja `false`, verifiera, slå på efter diff-granskning.
-4. Accepteras att försvar blir måttligt krympt (`70/100`) i stället för kraftigt krympt? Rekommendation: ja,
-   eftersom det följer kategoriens egna vikter.
+1. `thin_coverage_threshold` = **0.75** (rekommendationen). Följdfråga besvarad: när ett nytt
+   D-mått byggs för t.ex. försvar bumpas täckningen **automatiskt** vid nästa scorerun —
+   numeratorn beräknas i runtime ur attribuerade serier och nämnaren ur `categories.yaml`,
+   ingen kodändring krävs. (En ny serie i ett redan täckt undermått ändrar dock inte bredden;
+   det är undermåttsbredd som mäts, inte antal indikatorer.)
+2. **Bara heltalsflagga** `D_coverage_<covered>/<total>` + kvot i rapporten (rekommendationen).
+3. **Börja `false`** för byte-identisk baseline; slå på + rebaselina efter diff-granskning
+   (rekommendationen).
+4. **Ja** — försvar krymps måttligt (`70/100`) enligt kategorins egna vikter (rekommendationen).
+   Accepterat i `coverage_allowlist.d_thin_breadth_accepted` (grind: tests/test_d_breadth_gate.py).
 
 ---
 
@@ -355,3 +363,11 @@ dubbelrabatt och bör specas separat efter att D-ändringen är mätt. Denna spe
 - 2026-06-12: v2 omarbetad efter Codex-granskning. Huvudändringar: rebasat mot aktuell D-täckning,
   ersatt antalbaserad krympning med viktad icke-target-undermåttsrollup, gjort numerator per
   parti/kategori, behållit B utanför scope.
+- 2026-06-12: spec verifierad av Claude mot kod/config (alla §2/§5-anspråk reproducerade;
+  §3.3-ekvivalensen bekräftad linjär; §6.3-exemplet rättat till `73/73` för ekonomi) och
+  IMPLEMENTERAD enligt §9 steg 1-7 med `coverage_shrink: false`. Tillägg utöver spec:
+  D-breddgrind som allowlist-mönster (`coverage_allowlist.d_thin_breadth_accepted`, spegel av
+  B4-grinden) med offline-mätare `coverage_report.d_submeasure_breadth`. Verifierat:
+  `pytest -q` grönt, `dist/` byte-identiskt med flaggan av, score-/rankingdiff med flaggan på
+  redovisad (81 ändringar, ingen rankingändring, totaler -0.008..-0.017). Steg 8 (slå på +
+  rebaselina) väntar diff-granskning.
