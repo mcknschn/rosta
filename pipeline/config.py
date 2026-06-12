@@ -230,6 +230,15 @@ def _validate_scoring(sub_w: dict[str, Any], tolerance: float) -> None:
         if level is not None and level not in conf:
             raise ConfigError(f"scoring.{name}='{level}' saknas i confidence_numeric")
 
+    # B5: täckningsmått-läget måste vara ett känt värde — ogiltigt läge får ALDRIG tyst
+    # falla tillbaka till legacy (docs/b_coverage_krympning_spec.md §7).
+    b_mode = s.get("B_evidens", {}).get("coverage_mode")
+    if b_mode is not None and b_mode not in ("policy_type_count", "weighted_submeasure_depth"):
+        raise ConfigError(
+            f"B_evidens.coverage_mode={b_mode!r} är ogiltigt "
+            "(tillåtna: policy_type_count, weighted_submeasure_depth)"
+        )
+
     # neutral i normalisering måste matcha score.py-defaulten (2.5) för att undvika drift.
     neutral = s.get("normalization", {}).get("default", {}).get("neutral")
     if neutral is not None and abs(neutral - 2.5) > tolerance:

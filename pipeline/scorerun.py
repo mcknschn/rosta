@@ -177,8 +177,9 @@ def _submeasure_weights() -> dict[str, dict[str, float]]:
     }
 
 
-def _d_denominator_submeasures() -> dict[str, set[str]]:
-    """kategori -> icke-target-undermått (D-breddens nämnare, spec docs/done/d_coverage_krympning_spec.md).
+def _non_target_submeasures() -> dict[str, set[str]]:
+    """kategori -> icke-target-undermått (täckningsnämnaren som B och D DELAR,
+    spec docs/done/d_coverage_krympning_spec.md §3.1 / docs/b_coverage_krympning_spec.md §3.4).
 
     Target-only = undermåttet har minst en indikator OCH alla dess indikatorer har
     direction 'target'. Undermått UTAN indikatorer är inte target-only — de är en del av
@@ -193,6 +194,44 @@ def _d_denominator_submeasures() -> dict[str, set[str]]:
             sid for sid, ds in dirs.items() if not (ds and all(d == "target" for d in ds))
         }
     return out
+
+
+# B och D ska bevisligen dela nämnardefinition, inte duplicera den (B5-spec §6.2).
+# Aliaset behåller D-namnet för D-anrop/tester; tests/test_b_coverage_mode.py låser identiteten.
+_d_denominator_submeasures = _non_target_submeasures
+
+
+def _b_codable_types_by_submeasure() -> dict[str, dict[str, set[str]]]:
+    """kategori -> {undermått -> kodbara åtgärdstyper T_s} (B5-spec §3.1).
+
+    Kodbar = samma regler som legacy-nämnaren cov_den (signed_direction != 0, ej
+    coverage_exclude), men struktureras per undermått via liggarpostens indikator.
+    En policy_type vars liggarposter pekar på indikatorer i FLERA undermått ingår i
+    varje (koldioxidskatt-fallet): ståndpunkten informerar båda anspråken. Mängd-
+    semantiken deduplicerar dubblerade poster inom samma undermått (anti-gaming, §7).
+    """
+    signed = config.claims()["aggregation"]["signed_direction"]
+    b_exclude = set(config.scoring()["B_evidens"].get("coverage_exclude", []))
+    meta = _indicator_meta()
+    out: dict[str, dict[str, set[str]]] = {}
+    for e in config.evidence_ledger()["entries"]:
+        if signed.get(e["direction"], 0) == 0 or e["policy_type"] in b_exclude:
+            continue
+        key = (e["category"], e["indicator"])
+        if key not in meta:
+            continue
+        out.setdefault(e["category"], {}).setdefault(meta[key][0], set()).add(e["policy_type"])
+    return out
+
+
+def _b_coverage_flag(covered_weight: float, total_weight: float) -> str:
+    """B_coverage-flaggan i nya moden — formatet är LÅST (B5-spec §4).
+
+    covered_weight kan bli icke-heltal pga |K_s|/|T_s|-bråken och avrundas till 1 decimal;
+    :g skriver heltal utan decimal (86.666… -> '86.7', 73.0 -> '73', aldrig '73.0').
+    total_weight är alltid heltal ur categories.yaml.
+    """
+    return f"B_coverage_{round(covered_weight, 1):g}/{total_weight:g}"
 
 
 class DCell(NamedTuple):
@@ -435,6 +474,20 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
             cov_num.setdefault((pos["party"], cc), set()).add(pt)
     thin_cov = float(b_evidens.get("thin_coverage_threshold", 0.5))
 
+    # B5 (docs/b_coverage_krympning_spec.md): täckningsmått-läge. policy_type_count = legacy
+    # (byte-identisk baseline, antal kodade åtgärdstyper / kategorins kodbara). weighted_
+    # submeasure_depth = viktad undermåttsdjuptäckning cov_B = Σ w_s·|K_s|/|T_s| / Σ w_s
+    # över kategorins icke-target-undermått (SAMMA nämnare som D). Okänt läge hard-failar —
+    # aldrig tyst fallback till legacy (spec §7).
+    b_mode = b_evidens.get("coverage_mode", "policy_type_count")
+    if b_mode not in ("policy_type_count", "weighted_submeasure_depth"):
+        raise config.ConfigError(
+            f"B_evidens.coverage_mode={b_mode!r} är ogiltigt "
+            "(tillåtna: policy_type_count, weighted_submeasure_depth)"
+        )
+    b_codable = _b_codable_types_by_submeasure()  # kategori -> {undermått -> T_s}
+    b_nontarget = _non_target_submeasures()       # delad B/D-nämnare (icke-target)
+
     # Claims (provenance för evidence.json) + index. Sorteras på id så provenansen (claim_refs,
     # särskilt obs_by_cat[:3]-urvalet) blir REPRODUCERBAR — claims byggs annars i hash-randomiserad
     # ordning (set-iteration), vilket gjorde dist/ icke-deterministisk mellan körningar och kunde
@@ -455,11 +508,25 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
     for p in parties:
         scores[p] = {}
         for c in cats:
-            # B: partikopplad evidens, coverage-viktad krympning mot neutral (Fas 4b').
+            # B: partikopplad evidens, coverage-viktad krympning mot neutral (Fas 4b'/B5).
             b_inputs = b_net.get((p, c))
-            den = len(cov_den.get(c, ()))
-            num = len(cov_num.get((p, c), ()))
-            coverage = (num / den) if den else 0.0
+            if b_mode == "weighted_submeasure_depth":
+                # B5: viktad undermåttsdjuptäckning över den delade icke-target-nämnaren
+                # (spec §3.3). Gaten nedan använder cov_B: en kodad typ mot ett target-only-
+                # undermått ligger utanför nämnaren och gör inte kategorin täckt (spec §3.6).
+                t_by_sub = b_codable.get(c, {})
+                coded = cov_num.get((p, c), set())
+                covered_w, total_w = score.weighted_depth_coverage(
+                    {s: ts & coded for s, ts in t_by_sub.items()},
+                    t_by_sub, sub_w.get(c, {}), b_nontarget.get(c, ()),
+                )
+                coverage = covered_w / total_w if total_w else 0.0
+                cov_flag = _b_coverage_flag(covered_w, total_w)
+            else:  # policy_type_count — legacy, byte-identisk (antal kodade åtgärdstyper)
+                den = len(cov_den.get(c, ()))
+                num = len(cov_num.get((p, c), ()))
+                coverage = (num / den) if den else 0.0
+                cov_flag = f"B_coverage_{num}/{den}"
             b_flags: list[str] = []
             if b_inputs and coverage > 0:
                 b_weights = {
@@ -467,8 +534,8 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
                     for ind in b_inputs if (c, ind) in meta
                 }
                 b_raw = score.aggregate_B(b_inputs, b_weights, missing_all_score=b_missing)
-                b_val = 2.5 + (b_raw - 2.5) * coverage  # krymp mot neutral efter täckning
-                b_flags.append(f"B_coverage_{num}/{den}")
+                b_val = score.coverage_shrink(b_raw, coverage)  # krymp mot neutral efter täckning
+                b_flags.append(cov_flag)
                 if coverage < thin_cov:
                     b_conf = "low"
                     b_flags.append("B_thin_coverage")

@@ -60,6 +60,22 @@ B_evidens:
   # coverage = kodade åtgärdstyper / kategorins kodbara åtgärdstyper. Frånvaro av ståndpunkt =
   # "vet ej" och drar B mot neutral (straffar ej, belönar ej tom täckning); ett ensamt
   # supports-claim ger alltså inte längre maxbetyg. Tunn täckning -> låg säkerhet + B_thin_coverage.
+  # B5 — täckningsmått-läge (docs/b_coverage_krympning_spec.md). Två lägen:
+  #   policy_type_count:         legacy (byte-identisk baseline). coverage = kodade åtgärdstyper /
+  #                              kategorins kodbara åtgärdstyper (ANTAL; nämnaren = liggarens
+  #                              innehåll, undermått utan kodbart instrument osynliga). Flagga:
+  #                              B_coverage_<num>/<den> (antal).
+  #   weighted_submeasure_depth: viktad undermåttsdjuptäckning (spec §3.3). cov_B =
+  #                              Σ w_s·|K_s|/|T_s| / Σ w_s över kategorins icke-target-undermått
+  #                              (SAMMA nämnare som D, _non_target_submeasures); B-väggar stannar
+  #                              i nämnaren med bidrag 0. Flagga: B_coverage_<covered_weight>/
+  #                              <total_weight> (LÅST format, spec §4). thin_coverage_threshold
+  #                              mäts då på cov_B.
+  # OBS: switch till weighted_submeasure_depth kräver mänsklig sign-off av spec §10 —
+  # ändringen är RANKINGRELEVANT (byter KD<->MP i totalranking, spec Bilaga A). Ogiltigt
+  # värde hard-failar i config.validate (aldrig tyst fallback till legacy).
+  coverage_mode: policy_type_count
+  coverage_denominator: non_target_submeasure_weight  # nämnarens semantik i nya moden (samma som D)
   thin_coverage_threshold: 0.5
   # Åtgärdstyper som lyfts ur coverage-nämnaren. GENERALISERAD regel (docs/fas4c_rubrik.md §7):
   # en policy_type får exkluderas ENDAST på en principiell grund, som måste anges i

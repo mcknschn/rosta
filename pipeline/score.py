@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import re
 from collections.abc import Iterable, Mapping
+from collections.abc import Set as AbstractSet
 
 from . import config
 
@@ -151,6 +152,36 @@ def weighted_mean_with_neutral_missing(
     if wsum == 0:
         return None
     return sum(weights.get(k, 0.0) * values.get(k, neutral) for k in den) / wsum
+
+
+def weighted_depth_coverage(
+    coded: Mapping[str, AbstractSet[str]],
+    codable: Mapping[str, AbstractSet[str]],
+    weights: Mapping[str, float],
+    denominator_keys: Iterable[str],
+) -> tuple[float, float]:
+    """(covered_weight, total_weight) för viktad undermåttsdjuptäckning (B5-spec §3.3).
+
+    covered_weight = Σ w_s · |K_s| / |T_s| över en FAST nämnare (denominator_keys), där
+    T_s = kodbara åtgärdstyper i undermåttet och K_s = partiets kodade av dem (K_s snittas
+    mot T_s — typer utanför den kodbara mängden kan aldrig bidra). Undermått utan kodbar
+    typ (T_s = ∅, B-vägg) bidrar 0 i täljaren men behåller sin vikt i nämnaren: B vet
+    faktiskt ingenting om den delen av kategorianspråket. Undermått utanför nämnaren
+    (target-only) ignoreras helt, även om de har kodade typer (spec §3.6). Mängdsemantiken
+    gör måttet dedup-säkert: dubblerade liggarposter inom samma undermått ändrar varken
+    |T_s| eller |K_s| (spec §7, anti-gaming).
+    """
+    covered = 0.0
+    total = 0.0
+    for s in denominator_keys:
+        w = weights.get(s, 0.0)
+        total += w
+        t_s = codable.get(s) or frozenset()
+        if not t_s:
+            continue
+        k_s = set(coded.get(s) or frozenset()) & set(t_s)
+        covered += w * len(k_s) / len(t_s)
+    return covered, total
 
 
 # --- D-attribution (absolut delpoäng): rörde sig indikatorn rätt under partiets ansvar? ---

@@ -464,13 +464,18 @@ företagande/investeringar samt hushållens disponibla inkomst → ekonomi 4/6 t
     är `enskild_motion`). Riktningen är låg-risk (alla stödjer antikorruption), men demokrati-B vilar på den svagaste
     provenansen i hela modellen → bör antingen få bredare/bättre källor eller redovisas med uttryckligt lågt förtroende.
 
-- **B5 — B-undermåttsbreddskrympning (parallellen till D:s coverage_shrink)** 🟣 *(öppnad 2026-06-12
-  ur [done/d_coverage_krympning_spec.md §8](done/d_coverage_krympning_spec.md))* — B har redan
-  åtgärdstyps-coverage-krympning + `b_submeasure_spread`-grind, men ingen krympning efter
-  **undermåttsbredd** (en kategori med B-evidens i 2/5 undermått gör ändå oavkortat kategorianspråk).
-  En extra B-krympning riskerar **dubbelrabatt** mot den befintliga åtgärdstyps-krympningen → kräver
-  egen spec med samma metodik (viktad icke-target-bredd, per parti/kategori) nu när D-ändringen är
-  mätt och kan jämföras. Designfråga, ej byggbar utan spec + sign-off.
+- **B5 — B-undermåttsbreddskrympning (parallellen till D:s coverage_shrink)** 🟡 *(öppnad 2026-06-12
+  ur [done/d_coverage_krympning_spec.md §8](done/d_coverage_krympning_spec.md); spec
+  [b_coverage_krympning_spec.md](b_coverage_krympning_spec.md) v2 Codex-granskad
+  APPROVE-WITH-CHANGES)* — **IMPLEMENTERAD BAKOM FLAGGA 2026-06-12**: enhetlig viktad
+  undermåttsdjuptäckning `cov_B` (spec §3.3 — ERSÄTTER antalsmåttet så dubbelrabatten aldrig
+  uppstår) ligger bakom `B_evidens.coverage_mode` med legacy-default `policy_type_count`
+  (byte-identiskt verifierat: `dist/` oförändrad + `score_diff` ren); nya läget
+  `weighted_submeasure_depth` delar D:s icke-target-nämnare (`_non_target_submeasures`) och
+  är testat i [test_b_coverage_mode.py](../tests/test_b_coverage_mode.py). **VÄNTAR mänsklig
+  sign-off av spec §10** (rankingrelevant: byter KD↔MP i totalranking, Bilaga A) innan
+  default-switch + `dist/`-rebaselina; `coverage_report.b_submeasure_breadth` + ev.
+  B-breddgrind (spec §6.4/§9 steg 5) byggs vid/efter sign-off.
 
 ---
 
