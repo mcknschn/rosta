@@ -8,7 +8,7 @@ Invarianten "inget tyst gap" hävdas av `tests/test_fas3_gate.py`. Generera aktu
 python -m pipeline.tools.coverage_report
 ```
 
-Per 2026-06-12: **41 / 67 indikatorer inlästa** (D-dugliga, annuell up/down) i **alla 7 kategorier**
+Per 2026-06-12: **42 / 67 indikatorer inlästa** (D-dugliga, annuell up/down) i **alla 7 kategorier**
 (ekonomi, välfärd, klimat, integration, trygghet, försvar, demokrati). **Ingen kategori är längre D-tom.**
 *(17 per 2026-05-31; +2 trygghet 2026-06-03 — uppklaringsgrad + skjutningar/sprängningar; +2 ekonomi
 2026-06-07 — naringslivets_investeringar + hushallens_reala_disponibla_inkomst, Spår D Tier 1;
@@ -32,7 +32,12 @@ gällde SCB:s API — MI:s egen PxWeb-instans var förbisedd.
 **+1 klimat 2026-06-12 (Spår D kväll):** elprisvolatilitet (energi_elpriser — Energimyndighetens
 statistikdatabas, Energiindikatorer 12.5 EN_IND12-5A: spotpris månadsmedel SE1–SE4 → årlig CV i
 adaptern, 2012–2025). §5.4-källregelfrågan UPPLÖST: officiell svensk myndighetskälla, inte Nord Pool
-— allowlistens "derived/Svk"-antagande var överspelat.)*
+— allowlistens "derived/Svk"-antagande var överspelat.
+**+1 klimat 2026-06-12 (Spår D kväll, effektbrist):** effektbrist (energi_elpriser — Svenska
+kraftnäts lagstadgade "Kraftbalansen på den svenska elmarknaden": nettoimport vid vinterns
+topplasttimme, transkriberad config, vintrar 2019/20–2025/26). §5.4-RESTEN AVGJORD: löst via
+kraftbalansrapporten (rapporterade årsvärden), inte tim-/effektdata — Mimer/eSett-gränsfallet
+behövdes aldrig öppnas.)*
 
 Rapporten visar sedan 2026-06-12 även **D-undermåttsbredd** per kategori (viktad icke-target-täckning
 som styr D:s `coverage_shrink`; tunn bredd grindas via `coverage_allowlist.d_thin_breadth_accepted` —
@@ -63,6 +68,7 @@ i dag endast försvar 70/100). Spec: [done/d_coverage_krympning_spec.md](done/d_
 | klimat | konsumtionsbaserade_utslapp | SCB Miljöräkenskaper | TAB5637 | down | 2008–2023 |
 | klimat | fossil_energianvandning | Energimyndigheten (PxWeb v1) | EN0202_8 | down | 1970–2024 |
 | klimat | elprisvolatilitet | Energimyndigheten (PxWeb v1) | EN_IND12-5A (spotpris månadsmedel → årlig CV) | down | 2012–2025¹⁹ |
+| klimat | effektbrist | Svenska kraftnät, Kraftbalansen (transkr.) | nettoimport vid vinterns topplasttimme | down | 2020–2026²⁰ |
 | klimat | hackande_faglar_skog | Svensk Fågeltaxering / Lund (transkr.) | sverigesmiljomal.se Highcharts | up | 2002–2024¹¹ |
 | integration | bidragsberoende | Kolada | N31825 | down | 2010–2024 |
 | integration | trangboddhet | SCB ULF | TAB6439 | down | 2020–2025¹ |
@@ -220,20 +226,43 @@ i dag endast försvar 70/100). Spec: [done/d_coverage_krympning_spec.md](done/d_
   skrivs aldrig till warehouse (period_to_year ger None för YYYYMmm → döda rader; prejudikat
   kriminalvarden.py). ⚠ CAVEATS (v0): månadsupplösning underskattar tim-/dygnsvolatilitet
   (negativa timpriser/spotspikar syns ej — måttet fångar säsongs-/strukturell instabilitet;
-  effektproblematik täcks av syskonindikatorn effektbrist när den byggs); volatiliteten drivs
-  starkt av europeiska gaspriser/överföringsläge (2022) — sedvanlig D-konjunktur-caveat
+  effektproblematik täcks av syskonindikatorn effektbrist, byggd samma kväll, se ²⁰); volatiliteten
+  drivs starkt av europeiska gaspriser/överföringsläge (2022) — sedvanlig D-konjunktur-caveat
   (tecken-ej-magnitud + 10 %-vikt + ansvarsviktning). v0, kräver mänsklig granskning.
+
+²⁰ **Nettoimport vid vinterns topplasttimme** (MWh/h; positivt = nettoimport, negativt = nettoexport),
+  **Svenska kraftnäts** lagstadgade regeringsrapport **"Kraftbalansen på den svenska elmarknaden"**
+  (3 § förordning 2007:1119), UTFALLS-kapitlet "Vinterns topplasttimme". MÅTTVAL: faktisk effektbrist
+  (lastfrånkoppling) har ALDRIG inträffat (Svk rapport 2025 s.30 explicit) → konstant 0 bär inget
+  D-tecken; nettoimporten under årets mest ansträngda timme är den trogna närliggande bäraren (högre
+  importberoende = mindre inhemsk effektmarginal = närmare effektbrist) och riktningen **down matchar
+  direkt** (lägre nettoimport/mer export = bättre), ingen teckenmappning. VINTERÅR → SLUTÅR: vintern
+  2024/25 etiketteras 2025 (topplasttimmen infaller normalt i jan–feb; decemberundantagen 2019/20 +
+  2021/22 etiketteras ändå på slutåret enligt Svk:s vinterkonvention; ankarreferens: Svk:s HTML-tabell
+  över topplasttimmen). 7 vintrar 2019/20–2025/26 = −1700/+500/+1600/+3290/+2430/−2690/+200.
+  Transkriberad config (`config/effektbrist.yaml`, källrad per värde) — ALLA 7 värden MASKIN-
+  VERIFIERADE ur Svk-original-PDF:erna (PyMuPDF; 2020–2023 via web.archive.org-snapshots av
+  originalen, 404 på svk.se) + varje övergång korsbekräftad av påföljande års rapport ("förra
+  vintern var det ..."). ⚠ CAVEATS (v0): VÄDERDRIVEN (kall vinter ⇒ högre import oavsett politik;
+  mild-2025-outliern: mild + blåsig vinter, vind 62 % av installerad effekt, gav ovanlig netto-
+  export) + delvis prisdriven (Svk: import sker oftast för att importerad el är billigare, inte för
+  att inhemska resurser är uttömda) → sign-only D + 10 %-vikt + ansvarsviktning mildrar; robusthets-
+  referens i configen: Svk:s vädernormerade normalvinter-prognosserie (−1700..−1300 → +600 inför
+  2025/26) visar samma underliggande förlopp utan väderbrus (PROGNOS — matar EJ D). v0, kräver
+  mänsklig granskning.
 
 ## Allowlistade gap (skäl i `config/coverage_allowlist.yaml`)
 
-26 indikatorer saknar ännu en officiell svensk årsserie. Sammanfattning per skältyp:
+25 indikatorer saknar ännu en officiell svensk årsserie. Sammanfattning per skältyp:
 
 - **target** (ej up/down, ej D-duglig): inflation, statsskuld_underskott, forsvarsanslag_andel_bnp.
-- **derived** (kräver flera serier/beräkning): effektbrist,
-  utslappsminskning_per_krona. (produktivitet, sysselsattningsgap_inrikes_utrikes och
+- **derived** (kräver flera serier/beräkning): utslappsminskning_per_krona.
+  (produktivitet, sysselsattningsgap_inrikes_utrikes och
   hushallens_reala_disponibla_inkomst är nu härledda, se ovan; **elprisvolatilitet inläst
   2026-06-12 via Energimyndigheten EN_IND12-5A** — Svk-/Nord Pool-antagandet var överspelat,
-  CV beräknas i adaptern (se ¹⁹).)
+  CV beräknas i adaptern (se ¹⁹); **effektbrist inläst 2026-06-12 via Svk Kraftbalansen** —
+  "derived/ingen färdig årsserie"-antagandet var överspelat: rapporten publicerar nettoimporten
+  vid topplasttimmen som färdigt årsvärde, ingen härledning ur tim-/effektdata behövdes (se ²⁰).)
 - **no_api** (officiell/akademisk källa utan maskinläsbar årsserie): skillnader_mellan_skolor,
   personalomsattning_omsorg, valfardsbrottslighet, hotade_arter_naturforlust, skolresultat_utsatta_omraden,
   segregation. (fortroende_domstolar_myndigheter inläst 2026-06-07 via Brå NTU 5A:1 — officiell källa,
@@ -266,7 +295,7 @@ i dag endast försvar 70/100). Spec: [done/d_coverage_krympning_spec.md](done/d_
 1. ~~**Energimyndigheten** (fossil_energianvandning)~~ — **klar** (PxWeb-v1-adapter `pipeline/build_fas3.py`, EN0202_8, fossila energivaror summerade).
 2. ~~**Brå NTU** (brottsutsatthet, upplevd_otrygghet)~~ — **klar** (`bra.fetch_ntu`, Tabellsamling NTU 2007–2025, blad 3A + 4A:1, "Samtliga 16–84 år", nuvarande-metod-fönster). Trygghet har nu 3 D-serier.
 3. ~~**Socialstyrelsen** (overlevnad_svar_sjukdom)~~ **klar 2026-06-08 via Kolada U70471** (ej egen Socialstyrelse-adapter behövdes) + ~~**Skolverket** (sfi_sprakkunskaper)~~ **klar** (SCB TAB1814) + ~~**Medlingsinstitutet** (realloner)~~ **klar 2026-06-12 via MI:s egen PxWeb** (Realloner_arsdata, Reallön (KPI) Index 1995=100, `pipeline/sources/medlingsinstitutet.py`).
-4. ~~**Loader-stöd för härledda indikatorer** (gap/kvot)~~ — **klar** (`pipeline/derived.py`, ren gap/kvot-beräkning ur verifierade serier, två-tabells-operander + rimlighetsgrind). Inlästa: sysselsattningsgap_inrikes_utrikes (SCB TAB6529 SYSP 13−23) och produktivitet (SCB TAB3610 BNP fast ÷ TAB5622 arbetade timmar). ~~elprisvolatilitet~~ **klar 2026-06-12 via Energimyndigheten EN_IND12-5A** (årlig CV i adaptern, ej derived.py — se ¹⁹). Återstår att härleda: utslappsminskning_per_krona (kräver nya föräldraserier).
+4. ~~**Loader-stöd för härledda indikatorer** (gap/kvot)~~ — **klar** (`pipeline/derived.py`, ren gap/kvot-beräkning ur verifierade serier, två-tabells-operander + rimlighetsgrind). Inlästa: sysselsattningsgap_inrikes_utrikes (SCB TAB6529 SYSP 13−23) och produktivitet (SCB TAB3610 BNP fast ÷ TAB5622 arbetade timmar). ~~elprisvolatilitet~~ **klar 2026-06-12 via Energimyndigheten EN_IND12-5A** (årlig CV i adaptern, ej derived.py — se ¹⁹). ~~effektbrist~~ **klar 2026-06-12 via Svk Kraftbalansen** (transkriberad config, ej härledning — se ²⁰). Återstår att härleda: utslappsminskning_per_krona (kräver nya föräldraserier).
 5. ~~**SOM-institutet** (fortroende_domstolar_myndigheter)~~ — **klar 2026-06-07 via Brå NTU 5A:1** (officiell
    källa, ej SOM; demokratis första D). Återstår ev. SOM för `tillit_valdeltagande` (integration), men den är
    🔴 BEVAKA/B-only (categories.yaml) — bygg ej som D utan separat sign-off.

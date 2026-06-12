@@ -276,19 +276,22 @@ sources:
 
   svenska_kraftnat:
     name: Svenska kraftnät
-    base_url: https://mimer.svk.se
+    base_url: https://www.svk.se/
+    base_url_mimer: https://mimer.svk.se
     base_url_esett: https://api.opendata.esett.com
-    access: api
-    formats: [json, csv]
-    license: "Öppna data"
+    access: bulk_file
+    formats: [pdf, json, csv]
+    license: "Offentlig (lagstadgad regeringsrapport) / Öppna data"
     feeds: [D:klimat]
     datasets:
-      - { id: mimer, note: "Effektbalans/elpriser historiskt t.o.m. ~2025-03-18" }
-      - { id: esett_opendata, note: "Från 2025-03-18 och framåt (eSett Open Data)" }
+      - { id: kraftbalansen_rapport, note: "Kraftbalansen på den svenska elmarknaden (årlig lagstadgad regeringsrapport, 3 § förordning 2007:1119). UTFALLS-kapitlet 'Vinterns topplasttimme' bär effektbrist (nettoimport MWh/h, vinterår -> slutår) -> config/effektbrist.yaml. INGEN runtime-parser: värden transkriberade + maskinverifierade (PyMuPDF); 2020-2023 års PDF:er 404 på svk.se -> wayback-hämtväg i configen." }
+      - { id: mimer, note: "Effektbalans/elpriser historiskt t.o.m. ~2025-03-18 (timdata — EJ använd; §5.4-resten löstes via kraftbalansrapporten i stället)" }
+      - { id: esett_opendata, note: "Från 2025-03-18 och framåt (eSett Open Data; timdata — EJ använd, se ovan)" }
     gotchas:
-      - "Tidslinjen är DELAD: en enda källa täcker inte hela 2014-2026 — kombinera Mimer + eSett."
-    verified: false
-    confidence: low
+      - "Tim-/effektdatans tidslinje är DELAD (Mimer + eSett) — undveks helt genom kraftbalansrapportens årsvärden."
+      - "Äldre rapportårgångar flyttas/404:ar på svk.se — citera rapporttitel + år; web.archive.org-snapshot av Svk-originalet som hämtväg."
+    verified: true
+    confidence: high
 
   forsvarsmakten:
     name: Försvarsmakten

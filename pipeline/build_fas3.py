@@ -26,6 +26,7 @@ from .sources import (
     polisen,
     regeringen,
     sverigesmiljomal,
+    svk,
     vdem,
 )
 
@@ -227,6 +228,26 @@ def main() -> None:
     span = f"{brows[0]['period']}..{brows[-1]['period']}" if brows else "-"
     print(f"Sverigesmiljomal (transkr.) -> klimat   hackande_faglar_skog: {n:4} obs ({span})")
 
+    # Svenska kraftnät: nettoimport vid vinterns topplasttimme (klimat, delpoäng D) — transkriberad
+    # config (config/effektbrist.yaml, ur lagstadgade Kraftbalansen-rapportens utfallskapitel;
+    # maskinverifierad PyMuPDF, vinterår -> slutår). Effektbrist-bäraren: lastfrånkoppling har aldrig
+    # inträffat -> nettoimport vid topplast = närliggande bärare, riktning down direkt. Väder-caveat
+    # + normalvinter-prognos som robusthetsreferens i configen. source_ref 'svk:' utanför
+    # scb/kolada-purge-scope. v0, FLAGGAD.
+    srows = svk.build_effektbrist_observations()
+    unlisted = {r["indicator"] for r in srows} - set(svk.INDICATORS)
+    if unlisted:
+        raise ValueError(f"Svk emitterar indikatorer utanför INDICATORS: {sorted(unlisted)}")
+    for ind in svk.INDICATORS:
+        expectations.check_series(
+            [r for r in srows if r["indicator"] == ind], svk.EXPECT.get(ind), f"Svk {ind}"
+        )
+    # Full-replace av svk-rader (transkriberad, komplett serie).
+    con.execute("DELETE FROM observations WHERE source_ref LIKE 'svk:%'")
+    n = warehouse.upsert(con, "observations", srows)
+    span = f"{srows[0]['period']}..{srows[-1]['period']}" if srows else "-"
+    print(f"Svenska kraftnät (transkr.) -> klimat   effektbrist: {n:4} obs ({span})")
+
     # Migrationsverket: genomsnittlig handläggningstid för avgjorda förstagångsärenden om asyl
     # (integration, delpoäng D) — transkriberad config (config/asyl_handlaggningstid.yaml, deltabellen
     # Asyl exkl. massflykt; reproducerbar via tools/asyl_handlaggningstid_verify). Öppnar submåttet
@@ -273,7 +294,7 @@ def main() -> None:
 
     print("\n-- kända luckor (loggas, ej tysta; se docs/fas3_coverage.md) --")
     print("   klimat: elprisvolatilitet (Energimyndigheten EN_IND12-5A, årlig CV) matar nu D;")
-    print("       effektbrist (Svk, härledd) återstår.")
+    print("       effektbrist (Svk Kraftbalansen, nettoimport vid topplasttimmen) matar nu D.")
     print("   ekonomi: realloner (MI Realloner_arsdata, Reallön KPI index 1995=100) matar nu D —")
     print("       realloner_hushall har 2 serier (medveten dubbelbreddning, se modulen).")
     print("   forsvar: personal_varnpliktiga + personalstyrka_kontinuerligt (FM ÅR) + ukraina_stod")

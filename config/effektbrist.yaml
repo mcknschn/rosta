@@ -1,0 +1,104 @@
+# Effektbrist (närliggande bärare): NETTOIMPORT VID VINTERNS TOPPLASTTIMME i Sverige, MWh/h.
+# Positivt värde = nettoimport, negativt = nettoexport.
+#
+# DELPOÄNG D, kategori klimat, kanonisk indikator effektbrist (riktning DOWN; submått
+# energi_elpriser). Tidigare allowlistad "derived: härleds ur Svk effektdata, ingen färdig
+# årsserie" — löst via kraftbalansrapporten (ej timdata; data.svk.se saknar ännu ett
+# förbruknings-/effektbalansdataset). Spår D kväll 2026-06-12.
+#
+# MÅTTVAL (sonderat och avgjort): faktisk effektbrist (lastfrånkoppling) har ALDRIG inträffat i
+# Sverige — Svk rapport 2025 s.30 explicit: "Svenska kraftnät har därför aldrig behövt koppla
+# bort elförbrukning på grund av effektbrist" (maskinverifierat citat). En konstant 0-serie bär
+# inget D-tecken. NETTOIMPORT VID VINTERNS TOPPLASTTIMME (årets mest ansträngda timme) är den
+# trogna närliggande bäraren: högre importberoende under topplasttimmen = mindre inhemsk
+# effektmarginal = närmare effektbrist. Riktningen DOWN matchar DIREKT (lägre nettoimport/mer
+# export = bättre) — ingen teckenmappning behövs.
+#
+# VÄRDEKÄLLA (spine): Svenska kraftnät (statligt affärsverk = officiell svensk källa),
+# "Kraftbalansen på den svenska elmarknaden" — årlig LAGSTADGAD rapport till regeringen enligt
+# 3 § förordning (2007:1119) med instruktion för Affärsverket svenska kraftnät. Värdet hämtas ur
+# rapportens UTFALLS-kapitel "Vinterns topplasttimme" (tabellen "Effektbalans, vinterns
+# topplasttimme [MWh/h]" + prosa "Nettoimporten (skillnaden mellan import och export) var ...").
+#
+# VINTERÅR -> SLUTÅR-REGELN: varje värde gäller EN vinter (t.ex. 2024/2025) och etiketteras på
+# vinterns SLUTÅR (2025). Topplasttimmen infaller normalt i januari–februari (dvs. i slutåret);
+# undantagen 2019/20 (2019-12-10) och 2021/22 (2021-12-07) inföll i december men etiketteras
+# ändå konsekvent på slutåret enligt Svk:s egen vinterkonvention (rapport N redovisar utfallet
+# för vintern N−1/N). Ankar-/rimlighetsreferens: Svk:s HTML-tabell över topplasttimmen
+# (svk_topplast_referens nedan, 2002/03–2024/25) bekräftar datum/topplast per vinter.
+#
+# KÄLLSPÅRNING (MASKINVERIFIERAD 2026-06-12, PyMuPDF): ALLA 7 årsvärden är direkt verifierade ur
+# Svk:s original-PDF:er. 2024/2025/vår-2026 ligger live på svk.se; 2020–2023 års utgåvor är
+# flyttade/404 på svk.se och hämtades som web.archive.org-snapshots AV SVK-ORIGINALEN (fältet
+# wayback = hämtväg; källan förblir Svk:s rapport, titel + år). Varje övergång är dessutom
+# korsbekräftad av PÅFÖLJANDE års rapport ("förra vintern var det ..."), så alla 6 D-tecken är
+# dubbelkällade inom samma rapportserie.
+#
+# CAVEAT (v0, FLAGGAD): serien är VÄDERDRIVEN — en kall vinter ger högre topplast och därmed
+# högre nettoimport oavsett förd politik (mild-2025-outliern: vintern 2024/25 var mild + blåsig,
+# 62 % vindutnyttjande under topplasttimmen -> ovanlig nettoexport −2690). Importutfallet är
+# dessutom delvis PRISDRIVET (Svk: import sker oftast för att importerad el är billigare, inte
+# för att inhemska resurser är uttömda). Mildras av modellens standard: sign-only D + 10 %-vikt
+# + makt-/ansvarsviktning. ROBUSTHETSREFERENS: prognos_normalvinter nedan (Svk:s prognostiserade
+# nationella effektbalans vid normalvinter, väderNORMERAD) visar samma underliggande förlopp
+# (underskott −1700..−1300 sedan 2020, vändning till +600 inför 2025/26) utan väderbrus — den
+# serien MATAR INTE D (prognos, ej utfall) utan dokumenteras som kommentar. v0 tills formell
+# sign-off (->v1).
+version: 0
+indicator: effektbrist
+category: klimat
+submeasure: energi_elpriser
+unit: "MWh/h (nettoimport topplasttimme)"
+svk_rapportindex: "https://www.svk.se/om-oss/rapporter-och-remissvar/"
+svk_topplast_referens: "https://www.svk.se/om-kraftsystemet/kraftsystemdata/topplasttimmen/"
+years:
+  2020:
+    value: -1700
+    source: "https://www.svk.se/siteassets/om-oss/rapporter/2020/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2020.pdf"
+    wayback: "https://web.archive.org/web/20200716175536/https://www.svk.se/siteassets/om-oss/rapporter/2020/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2020.pdf"
+    source_note: "Kraftbalansen pa den svenska elmarknaden, rapport 2020, kap. Vinterns topplasttimme 2019/2020 (PDF s.23), MASKINVERIFIERAD ur wayback-snapshot av Svk-originalet (404 pa svk.se): 'Nettoexport radde med ca 1 700 MWh/h (skillnaden mellan import och export).' Topplasttimme 2019-12-10 kl. 17-18 (decemberundantag, etiketteras pa slutaret 2020)."
+  2021:
+    value: 500
+    source: "https://www.svk.se/siteassets/om-oss/rapporter/2021/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2021.pdf"
+    wayback: "https://web.archive.org/web/20210531131054/https://www.svk.se/siteassets/om-oss/rapporter/2021/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2021.pdf"
+    source_note: "Kraftbalansen pa den svenska elmarknaden, rapport 2021, kap. 2 Topplasttimmen vintern 2020/2021 (s.22, Tabell 6), MASKINVERIFIERAD ur wayback-snapshot av Svk-originalet: 'Nettoimport (skillnaden mellan import och export) radde med ca 500 MWh/h' (12 feb 2021 kl. 8-9). Korsbekraftad i rapport 2022: '(forra vintern 500 MWh/h)'."
+  2022:
+    value: 1600
+    source: "https://www.svk.se/siteassets/om-oss/rapporter/2022/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2022.pdf"
+    wayback: "https://web.archive.org/web/20220601091449/https://www.svk.se/siteassets/om-oss/rapporter/2022/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2022.pdf"
+    source_note: "Kraftbalansen pa den svenska elmarknaden, rapport 2022, s.25 (Tabell 7, vinterns topplasttimme 2021/2022), MASKINVERIFIERAD ur wayback-snapshot av Svk-originalet: 'Nettoimporten ... var 1 600 MWh/h (forra vintern 500 MWh/h)' (7 dec 2021 kl. 17-18; decemberundantag, etiketteras pa slutaret 2022). Korsbekraftad i rapport 2023."
+  2023:
+    value: 3290
+    source: "https://www.svk.se/siteassets/om-oss/rapporter/2023/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2023.pdf"
+    wayback: "https://web.archive.org/web/20230607205701/https://www.svk.se/siteassets/om-oss/rapporter/2023/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2023.pdf"
+    source_note: "Kraftbalansen pa den svenska elmarknaden, rapport 2023, s.29 (Tabell 7, vinterns topplasttimme 2022/2023), MASKINVERIFIERAD ur wayback-snapshot av Svk-originalet: 'Nettoimporten ... var 3 290 MWh/h (forra vintern 1 600 MWh/h)' (16 dec 2022 kl. 9-10). Korsbekraftad i rapport 2024: '(forra vintern 3 290 MWh/h)'. Seriens hogsta importberoende. EXPECT-ankare."
+  2024:
+    value: 2430
+    source: "https://www.svk.se/49bb53/siteassets/om-oss/rapporter/2024/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2024.pdf"
+    source_note: "Kraftbalansen pa den svenska elmarknaden, rapport 2024, s.27 (Tabell 7, vinterns topplasttimme 2023/2024), MASKINVERIFIERAD ur live-PDF pa svk.se: 'Nettoimporten (import minus export) var 2430 MWh/h (forra vintern 3 290 MWh/h)' (16 jan 2024 kl. 9-10). Korsbekraftad i rapport 2025."
+  2025:
+    value: -2690
+    source: "https://www.svk.se/49bb53/siteassets/om-oss/rapporter/2025/kraftbalansen-pa-den-svenska-elmarknaden-rapport-2025.pdf"
+    source_note: "Kraftbalansen pa den svenska elmarknaden, rapport 2025, s.29 (Tabell 7, vinterns topplasttimme 2024/2025), MASKINVERIFIERAD ur live-PDF pa svk.se: 'Sverige hade ovanligt nog en nettoexport pa 2 690 MWh/h under topplasttimmen (forra vintern var det en nettoimport pa 2 430 MWh/h)' (13 jan 2025 kl. 8-9). MILD-OUTLIER: mild + blasig vinter (vind 62 % av installerad effekt). Korsbekraftad i rapport var 2026."
+  2026:
+    value: 200
+    source: "https://www.svk.se/49bb53/siteassets/om-oss/rapporter/2026/kraftbalansen-pa-den-svenska-elmarknaden-rapport-var-2026.pdf"
+    source_note: "Kraftbalansen pa den svenska elmarknaden, rapport var 2026, s.24 (Tabell 6, vinterns topplasttimme 2025/2026), MASKINVERIFIERAD ur live-PDF pa svk.se: 'Under topplasttimmen hade Sverige en nettoimport pa ca 200 MWh/h. Foregaende vinter hade Sverige en nettoexport ... pa 2 690 MWh/h' (12 jan 2026 kl. 8-9)."
+
+# SEKUNDÄRSERIE (ROBUSTHETSREFERENS — MATAR INTE D): Svk:s prognostiserade NATIONELLA EFFEKTBALANS
+# vid topplasttimmen för en NORMALVINTER (MWh/h; negativt = underskott/importbehov), ur rapporten
+# året FÖRE respektive vinter, etiketterad på samma slutår som utfallsserien ovan. Vädernormerad
+# (normalvinter-antagande) -> visar det underliggande förloppet utan utfallsseriens väderbrus:
+# stabilt underskott −1700..−1300 sedan 2020, vändning till ÖVERSKOTT +600 inför vintern 2025/26
+# (rapport 2025 s.8: "plus 600 MWh/h vid en normalvinter ... minus 600 MWh/h vid en tioarsvinter").
+# Alla 6 värden MASKINVERIFIERADE ur samma PDF:er som ovan: 2021 = rapport 2020 s.7 (−1700);
+# 2022 = rapport 2021 s.7 (−1600); 2023 = rapport 2022 s.6 (−1400); 2024 = rapport 2023 s.7
+# (−1400); 2025 = rapport 2024 s.7 (−1300); 2026 = rapport 2025 s.8 (+600). PROGNOS, ej utfall —
+# därför dokumentation/kommentar här, ingen observations-rad (readern läser bara 'years').
+prognos_normalvinter:
+  2021: -1700
+  2022: -1600
+  2023: -1400
+  2024: -1400
+  2025: -1300
+  2026: 600

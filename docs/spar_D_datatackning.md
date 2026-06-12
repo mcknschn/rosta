@@ -44,7 +44,7 @@ nationell regeringsmakt i fönstret → strukturellt korrekt, ej ett gap). Model
 
 ## 2. Nuläge (verifierat via `python -m pipeline.tools.coverage_report`, 2026-06-12)
 
-**41 D-serier inlästa** (annuell, D-duglig) i **ALLA 7 kategorier** *(56 ursprungliga kanoniska + 11 nya
+**42 D-serier inlästa** (annuell, D-duglig) i **ALLA 7 kategorier** *(56 ursprungliga kanoniska + 11 nya
 kanoniska indikatorer)*. *(24 efter Tier 4; +`overlevnad_svar_sjukdom` +`ukraina_stod` natt 2026-06-08;
 +`brukarnojdhet_hemtjanst` +`utslappsintensitet` djupsvep 2026-06-09; **+6 färsk session 2026-06-09:**
 +`aterfall_i_brott` (trygghet) +`hackande_faglar_skog` (klimat) + 4 V-Dem-index (demokrati);
@@ -55,7 +55,9 @@ kanoniska indikatorer)*. *(24 efter Tier 4; +`overlevnad_svar_sjukdom` +`ukraina
 (Domstolsverket DOMstat — 2:a serien i rattsvasendets_effektivitet); **+1 ekonomi 2026-06-12 (kväll):**
 +`realloner` (Medlingsinstitutets egen PxWeb — 2:a serien i realloner_hushall); **+1 klimat 2026-06-12
 (kväll):** +`elprisvolatilitet` (Energimyndigheten EN_IND12-5A, spotpris → årlig CV — 2:a serien i
-energi_elpriser, §5.4 upplöst).)* Full logg:
+energi_elpriser, §5.4 upplöst); **+1 klimat 2026-06-12 (kväll, effektbrist):** +`effektbrist`
+(Svk Kraftbalansen, nettoimport vid vinterns topplasttimme — 3:e serien i energi_elpriser,
+§5.4-RESTEN avgjord: rapporten, ej timdata).)* Full logg:
 [spar_D_svep_2026-06-08.md §5](done/spar_D_svep_2026-06-08.md) (byggkö exekverad) + [nattrapport](done/spar_D_nattrapport_2026-06-08.md).
 **aterfall_kriminalvard + biologisk_mangfald + alla 4 D-tomma demokrati-submått + normer_tillit + migrationssystem öppnade → ingen kategori D-tom på submåttsnivå utom enstaka.**
 
@@ -65,7 +67,7 @@ energi_elpriser, §5.4 upplöst).)* Full logg:
 | valfard | **3 / 4** | vardkoer, overlevnad_svar_sjukdom, skolresultat, behoriga_larare, **brukarnojdhet_hemtjanst** (omsorg_personal öppnat, djupsvep) |
 | trygghet | **4 / 5** | dodligt_vald, skjutningar_sprangningar, brottsutsatthet, upplevd_otrygghet, uppklaringsgrad, **handlaggningstid** (Domstolsverket DOMstat, 2:a serien i rattsvasendets_effektivitet — trygghet 2026-06-12), **aterfall_i_brott** (aterfall_kriminalvard öppnat, KOS, färsk session) |
 | forsvar | **3 / 5** | personal_varnpliktiga, ukraina_stod (nato_ukraina), **personalstyrka_kontinuerligt** (FM ÅR, 2:a militar_formaga-serien), **forsvarsvilja** (civil_beredskap öppnat, MPF Opinioner — försvar 2026-06-12) |
-| klimat | **4 / 5** | territoriella_utslapp, konsumtionsbaserade_utslapp, fossil_energianvandning, **elprisvolatilitet** (Energimyndigheten EN_IND12-5A spotpris → årlig CV, 2:a serien i energi_elpriser — klimat 2026-06-12 kväll), **utslappsintensitet** (kostnadseff., djupsvep), **hackande_faglar_skog** (biologisk_mangfald öppnat, Svensk Fågeltaxering, färsk session) |
+| klimat | **4 / 5** | territoriella_utslapp, konsumtionsbaserade_utslapp, fossil_energianvandning, **elprisvolatilitet** (Energimyndigheten EN_IND12-5A spotpris → årlig CV, 2:a serien i energi_elpriser — klimat 2026-06-12 kväll), **effektbrist** (Svk Kraftbalansen, nettoimport vid topplasttimmen — 3:e serien i energi_elpriser, klimat 2026-06-12 kväll), **utslappsintensitet** (kostnadseff., djupsvep), **hackande_faglar_skog** (biologisk_mangfald öppnat, Svensk Fågeltaxering, färsk session) |
 | integration | **5 / 5** | sysselsattningsgap_inrikes_utrikes, sjalvforsorjningsgrad, bidragsberoende, trangboddhet, sfi_sprakkunskaper, **mellanmansklig_tillit** (normer_tillit öppnat, SCB medborgarunders. N00666), **asyl_handlaggningstid** (migrationssystem öppnat, Migrationsverket — integration 2026-06-12) |
 | demokrati | **5 / 5** | fortroende_domstolar_myndigheter (Brå NTU), **rattsstatsindex, yttrandefrihetsindex, privata_friheter, horisontellt_ansvarsutkravande** (V-Dem/Göteborgs univ., 4 D-tomma submått öppnade, färsk session — demokrati-väggen löst på D-sidan) |
 
@@ -94,14 +96,15 @@ inget ansvar att attribuera. Det är **korrekt och rättvist**, inte ett gap.
 
 ### Sammanfattning (hur stor täckning vi har)
 
-- **41 / 67 indikatorer** har en D-serie (annuell up/down som matar `category_d`). *(+2 natt 2026-06-08,
+- **42 / 67 indikatorer** har en D-serie (annuell up/down som matar `category_d`). *(+2 natt 2026-06-08,
   +2 djupsvep, +6 färsk session 2026-06-09: aterfall_i_brott, hackande_faglar_skog, 4 V-Dem-index;
   **+2 integration 2026-06-12: mellanmansklig_tillit (SCB medborgarunders. N00666) + asyl_handlaggningstid
   (Migrationsverket); +2 försvar 2026-06-12: forsvarsvilja (MPF Opinioner) + personalstyrka_kontinuerligt
   (FM ÅR); +1 trygghet 2026-06-12 (kväll): handlaggningstid (Domstolsverket DOMstat); +1 ekonomi
   2026-06-12 (kväll): realloner (Medlingsinstitutets egen PxWeb); +1 klimat 2026-06-12 (kväll):
-  elprisvolatilitet (Energimyndigheten EN_IND12-5A — §5.4 upplöst).**)*
-- **+2 byggbara/öppna** (🟡; effektbrist, utslappsminskning_per_krona) →
+  elprisvolatilitet (Energimyndigheten EN_IND12-5A — §5.4 upplöst); +1 klimat 2026-06-12 (kväll,
+  effektbrist): effektbrist (Svk Kraftbalansen, nettoimport vid topplasttimmen — §5.4-resten avgjord).**)*
+- **+1 byggbar/öppen** (🟡; utslappsminskning_per_krona) →
   **realistiskt tak ≈ 43/67**; resten är **3 target** (⚪) + **21 genuina väggar** (🔴) + 1 undermått utan
   indikator (`industriell_konkurrenskraft`). *(Internationella försvarskällor testade 2026-06-12: SIPRI
   vapenimport-TIV källan tillåten men årssignal-brus → vägg; SIPRI/NATO milex = pengar → vägg.)*
@@ -116,10 +119,10 @@ inget ansvar att attribuera. Det är **korrekt och rättvist**, inte ett gap.
 | Välfärd | **5** | 0 | 5 | 0 | 10 | **3/4** |
 | Lag och trygghet | **7** | 0 | **1** | 0 | 8 | **4/5** |
 | Försvar och beredskap | **4** | 0 | 5 | 1 | 10 | **3/5** |
-| Klimat, miljö och energi | **6** | 2 | 1 | 0 | 9 | **4/5** |
+| Klimat, miljö och energi | **7** | 1 | 1 | 0 | 9 | **4/5** |
 | Integration och social sammanhållning | **7** | 0 | 4 | 0 | **11** | **5/5** |
 | Frihet, demokrati och institutioner | **5** | 0 | **5** | 0 | 10 | **5/5** |
-| **SUMMA** | **41** | **2** | **21** | **3** | **67** | **28/35** |
+| **SUMMA** | **42** | **1** | **21** | **3** | **67** | **28/35** |
 
 ¹ klimat har 5 undermått men `industriell_konkurrenskraft` saknar indikator (ingen rad i de 63);
   `biologisk_mangfald` är öppnat 2026-06-09 → klimat 4/5 undermått med D.
@@ -169,7 +172,7 @@ inget ansvar att attribuera. Det är **korrekt och rättvist**, inte ett gap.
 | Klimat, miljö och energi | Utsläppsminskningar | `konsumtionsbaserade_utslapp` | ned | ✅ byggd | 16 obs · 2008–2023 |
 | Klimat, miljö och energi | Energiförsörjning och elpriser | `fossil_energianvandning` | ned | ✅ byggd | 55 obs · 1970–2024 (Energimynd.) |
 | Klimat, miljö och energi | Energiförsörjning och elpriser | `elprisvolatilitet` | ned | ✅ byggd | Energimyndigheten Energiindikatorer 12.5 **EN_IND12-5A** (spotpris månadsmedel SE1–SE4 → årlig CV i adaptern, ddof=0, likaviktat), 14 obs 2012–2025 (klimat 2026-06-12 kväll — **§5.4 upplöst**: officiell myndighetskälla, inte Nord Pool; 2:a serien i energi_elpriser) |
-| Klimat, miljö och energi | Energiförsörjning och elpriser | `effektbrist` | ned | 🟡 öppen | `derived`: härleds ur Svk effektbalans — **§5.4-resten** (spotpris-delen upplöst; effektdata kvarstår Svk) |
+| Klimat, miljö och energi | Energiförsörjning och elpriser | `effektbrist` | ned | ✅ byggd | Svk **Kraftbalansen** (lagstadgad regeringsrapport, 3 § förordning 2007:1119): nettoimport vid vinterns topplasttimme MWh/h, vinterår → slutår, 7 obs 2020–2026 = −1700/+500/+1600/+3290/+2430/−2690/+200 (klimat 2026-06-12 kväll — **§5.4-resten avgjord**: rapportens årsvärden, ej timdata; lastfrånkoppling aldrig inträffad → nettoimport = närliggande bärare, down direkt; ⚠ väderdriven, normalvinter-prognos som robusthetsreferens) |
 | Klimat, miljö och energi | Omställningens kostnadseffektivitet | `utslappsminskning_per_krona` | upp | 🟡 öppen | `derived`: utsläpp/kostnad — **def. "klimatutgift" §5.5** |
 | Klimat, miljö och energi | Omställningens kostnadseffektivitet | `utslappsintensitet` | ned | ✅ byggd | härledd ratio territoriella utsläpp (TAB4698) ÷ BNP (TAB3610 BNPM), 35 obs 1990–2024 (djupsvep — **öppnade kostnadseffektivitet**) |
 | Klimat, miljö och energi | Biologisk mångfald och natur | `hotade_arter_naturforlust` | ned | 🔴 vägg | `no_api`: SLU rödlistan, ingen årlig maskinläsbar serie |
@@ -250,9 +253,9 @@ verket/Energimyndigheten) med Realloner_arsdata som ren årsserie 1960–2025. A
 
 | ☐ | Indikator | Kategori → submått | Metod | Effort | Not |
 |---|-----------|--------------------|-------|:---:|-----|
-| ☐ | *(Svk-källadapter)* | förkrav klimat-energi | Svenska kraftnät öppna data (effektbalans) | M | Förkrav för effektbrist. **Gränsfall mot officiell-källa-regeln** → §5.4-resten. *(Spotpris-delen behövs INTE längre — Energimyndigheten täcker den, se elprisvolatilitet.)* |
+| ☑ | *(Svk-källadapter)* | ~~förkrav klimat-energi~~ | ~~Svenska kraftnät öppna data (effektbalans)~~ | ~~M~~ | ✅ FÖRKRAVET STÄNGT 2026-06-12 (kväll): effektbrist byggdes via Svk:s KRAFTBALANSRAPPORT (transkriberad config + tunn reader `pipeline/sources/svk.py`) — ingen tim-/effektdata-adapter (Mimer/eSett) behövdes, §5.4-gränsfallet upplöst utan att öppnas. |
 | ☑ | `elprisvolatilitet` | klimat → energi_elpriser | ~~härled ur Svk spotpris~~ → **Energimyndigheten EN_IND12-5A** (årlig CV i adaptern, befintlig PxWeb-v1-adapter utökad) | M+S→**S** | ✅ inläst 2012–2025, ur allowlisten (2026-06-12 kväll). Svk-förkravet föll bort — myndighetskällan täcker spotpriset (§5.4). Submått redan täckt (djup). v0, sign-only D. |
-| ☐ | `effektbrist` | klimat → energi_elpriser | härled ur Svk effektbalans | S | Submått redan täckt (djup). |
+| ☑ | `effektbrist` | klimat → energi_elpriser | ~~härled ur Svk effektbalans~~ → **Svk Kraftbalansen-rapporten** (nettoimport vid vinterns topplasttimme, transkriberad config) | S→**L** | ✅ inläst 2020–2026 (vintrar 2019/20–2025/26), ur allowlisten (2026-06-12 kväll). Ingen härledning behövdes — rapporten publicerar årsvärdet färdigt. Submått redan täckt (djup — 3:e serien). Tier 3 därmed tömd sånär som på utslappsminskning_per_krona (§5.5). v0, sign-only D. |
 | ☐ | `utslappsminskning_per_krona` | klimat → kostnadseffektivitet | utsläpp ÷ klimatutgift | L | Öppnar D-löst submått, men "klimatutgift" är metodiskt omtvistad (vilket UO?) → §5.5. |
 
 ### Tier 4 — transkribering med källrad, fyller strukturella nollor (L) 🟣 (varnpliktiga LEVERERAD 2026-06-07)
@@ -306,10 +309,11 @@ Listade här för fullständighet så de inte återöppnas oavsiktligt. Skäl i 
    gav **försvar** sin första D; `fortroende_domstolar_myndigheter` (Brå NTU 5A:1 — officiell, ej SOM)
    gav **demokrati** sin första D. **Alla 7 kategorier har nu D.** Båda strukturella nollorna ur
    exit-kriterium §6.2 är därmed uppfyllda.
-4. **Tier 3 Svk-derived** — mest djup (energi-submåttet är redan täckt); lägst prioritet, gränsfall
-   mot källregeln. *(Uppdaterat 2026-06-12 kväll: `elprisvolatilitet` ✅ byggd UTAN Svk —
-   Energimyndigheten EN_IND12-5A täckte spotpriset, §5.4 upplöst för pris-delen. Kvar i Tier 3:
-   `effektbrist` (Svk effektbalans, §5.4-resten) + `utslappsminskning_per_krona` (§5.5).)*
+4. ~~**Tier 3 Svk-derived**~~ ✅ — *(Uppdaterat 2026-06-12 kväll: `elprisvolatilitet` ✅ byggd UTAN Svk —
+   Energimyndigheten EN_IND12-5A täckte spotpriset, §5.4 upplöst för pris-delen. `effektbrist` ✅ byggd
+   samma kväll via Svk:s KRAFTBALANSRAPPORT (transkriberad config, ej timdata) — §5.4-resten avgjord
+   utan att Mimer/eSett-gränsfallet behövde öppnas. Kvar i Tier 3: endast `utslappsminskning_per_krona`
+   (§5.5, designfråga).)*
 5. ~~**Tier 2-rest** (`overlevnad_svar_sjukdom` §5.3, `realloner`)~~ ✅ — båda byggda
    (overlevnad 2026-06-08 via Kolada U70471; realloner 2026-06-12 kväll via MI:s egen PxWeb).
    Tier 2 är därmed tömd.
@@ -341,14 +345,18 @@ Cancer-5-årsöverlevnad (Kolada N79196) är kvinkennial → inkompatibel med D:
 **Löst:** Kolada **U70471** (30-dagarsöverlevnad efter akut tjocktarmscancerkirurgi) är den annuella
 officiella serien (16 obs 2010–2025), inläst i natt-bygget (§7). Ingen modellutvidgning behövdes.
 
-### 5.4 Svk-adapter: håller den källregeln? ✅ AVGJORT 2026-06-12 (av sonderingen — officiell svensk källa funnen, jfr §5.3-mönstret)
+### 5.4 Svk-adapter: håller den källregeln? ✅ AVGJORT 2026-06-12 (av sonderingen — officiell svensk källa funnen, jfr §5.3-mönstret); §5.4-RESTEN ✅ AVGJORT 2026-06-12 (kväll)
 Spotpris (Nord Pool) + operativ effekt-/timdata var gränsfall mot "officiell svensk källa".
 **UPPLÖST för spotpris-delen:** Energimyndighetens statistikdatabas (statlig myndighet) publicerar
 elspotpriset som officiell månadsserie — **Energiindikatorer 12.5, tabell EN_IND12-5A** (SE1–SE4,
 2011M11–) — så `elprisvolatilitet` byggdes 2026-06-12 (kväll) direkt mot myndighetskällan, helt utan
 Nord Pool/Svk (§7). Samma mönster som §5.3: sonderingen fann en officiell väg som gjorde gränsfallet
-irrelevant. **KVARSTÅR (§5.4-resten):** effektbalans-/timdata för `effektbrist` finns bara hos Svk
-(Mimer/eSett) — det gränsfallet är fortfarande oavgjort och kräver sign-off innan en Svk-adapter byggs.
+irrelevant. **§5.4-RESTEN ✅ AVGJORT samma kväll:** `effektbrist` löstes via **Svk:s lagstadgade
+KRAFTBALANSRAPPORT** ("Kraftbalansen på den svenska elmarknaden", 3 § förordning 2007:1119) — UTFALLS-
+kapitlet "Vinterns topplasttimme" publicerar nettoimporten som färdigt årsvärde, så ingen tim-/
+effektdata behövdes (data.svk.se saknar ännu ett förbruknings-/effektbalansdataset; Mimer/eSett-
+gränsfallet blev aldrig aktuellt — Svk själv, ett statligt affärsverk, är källan rakt av).
+Transkriberad config + tunn reader (§7). §5.4 är därmed HELT stängd.
 
 ### 5.5 `utslappsminskning_per_krona`: hur definieras "klimatutgift"?
 Kräver en officiell, riktningsneutral nämnare (vilka UO/anslag räknas som klimatutgift?). Metodiskt
@@ -369,8 +377,9 @@ Spår D anses **färdigt för arkivering** när:
    Alla 7 kategorier har nu D.
 3. `coverage_allowlist.yaml` innehåller bara poster i klasserna `target`/`international`/`qualitative`/
    `blocked`/`no_api` (= genuint ej byggbara) — inga `future`-poster kvar utan beslut. *(Kvar att städa:
-   effektbrist (Svk, §5.4-resten) + utslappsminskning_per_krona (§5.5); overlevnad_svar_sjukdom byggd
-   2026-06-08, realloner byggd 2026-06-12 kväll, elprisvolatilitet byggd 2026-06-12 kväll (§5.4 upplöst).)*
+   endast utslappsminskning_per_krona (§5.5, designfråga); overlevnad_svar_sjukdom byggd 2026-06-08,
+   realloner byggd 2026-06-12 kväll, elprisvolatilitet byggd 2026-06-12 kväll (§5.4 upplöst),
+   effektbrist byggd 2026-06-12 kväll (§5.4-resten avgjord — Svk Kraftbalansen, ej timdata).)*
 4. `docs/fas3_coverage.md` + `scorerun.py:coverage`-strängen speglar slutläget; testsviten grön. ✅
 
 ---
@@ -378,6 +387,65 @@ Spår D anses **färdigt för arkivering** när:
 ## 7. Leveranslogg (append per leverans)
 
 > Format: datum · indikator · kategori→submått · källa · verifiering · betygseffekt · flagga/version.
+
+### ✅ 2026-06-12 (kväll) — Spår D klimat: `effektbrist` byggd via Svk Kraftbalansen, §5.4-resten avgjord (v0, FLAGGAD)
+
+**1 bygge, 1 ny D-serie; coverage 41/67 → 42/67 inlästa; undermått oförändrat 28/35** (energi_elpriser
+hade redan fossil_energianvandning + elprisvolatilitet — detta är djup, inte bredd: 3:e serien; Tier 3
+därmed tömd sånär som på utslappsminskning_per_krona, och Svk-adapter-förkravet stängt).
+
+1. **`effektbrist`** (klimat → energi_elpriser, ned): **nettoimport vid vinterns topplasttimme**
+   (MWh/h; positivt = nettoimport, negativt = nettoexport) — **Svenska kraftnät** (statligt
+   affärsverk = officiell svensk källa), **"Kraftbalansen på den svenska elmarknaden"**, årlig
+   LAGSTADGAD regeringsrapport (3 § förordning 2007:1119), UTFALLS-kapitlet "Vinterns topplasttimme".
+   7 obs, vintrarna 2019/20–2025/26 etiketterade på SLUTÅRET: 2020: −1700 · 2021: +500 · 2022: +1600 ·
+   2023: +3290 · 2024: +2430 · 2025: −2690 · 2026: +200. **MÅTTVAL (sonderat och avgjort):** faktisk
+   effektbrist (lastfrånkoppling) har ALDRIG inträffat — Svk rapport 2025 s.30 explicit ("Svenska
+   kraftnät har därför aldrig behövt koppla bort elförbrukning på grund av effektbrist") → konstant 0
+   bär inget D-tecken; nettoimporten under årets mest ansträngda timme = trogen närliggande bärare
+   (högre importberoende = mindre inhemsk effektmarginal = närmare effektbrist), och riktningen
+   **down matchar DIREKT** (lägre nettoimport/mer export = bättre), ingen teckenmappning.
+   **Korrigering av tidigare antagande:** allowlist-posten (`derived`, "härleds ur Svk effektdata,
+   ingen färdig årsserie") och Tier 3-Svk-adapter-förkravet var överspelade — rapporten publicerar
+   årsvärdet FÄRDIGT, ingen härledning ur tim-/effektdata (Mimer/eSett-gränsfallet blev aldrig
+   aktuellt; data.svk.se saknar ännu förbrukningsdataset) → **§5.4 HELT stängd**. Transkriberad
+   config (`config/effektbrist.yaml`, källrad + rapportutgåva per värde) + tunn reader
+   (`pipeline/sources/svk.py`, config → observations, nätverksfri) — samma mönster som
+   personal_varnpliktiga/ukraina_stod/skjutningar_sprangningar.
+
+**Verifiering:** ALLA 7 årsvärden MASKINVERIFIERADE 2026-06-12 ur Svk:s original-PDF:er (PyMuPDF):
+2024/2025/vår-2026 ur live-PDF:erna på svk.se; 2020–2023 ur web.archive.org-snapshots AV SVK-
+ORIGINALEN (utgåvorna 404 på svk.se; wayback-URL = hämtväg i configen, källan förblir rapporttitel
++ år). Varje övergång dessutom korsbekräftad av påföljande års rapport ("förra vintern var det ...")
+→ alla 6 D-tecken dubbelkällade inom rapportserien. SEKUNDÄRSERIE (robusthetsreferens, matar EJ D):
+Svk:s vädernormerade prognos för nationell effektbalans normalvinter, även den maskinverifierad
+(2021: −1700 · 2022: −1600 · 2023: −1400 · 2024: −1400 · 2025: −1300 · 2026: +600) — samma
+underliggande förlopp utan väderbrus, dokumenterad som kommentarsblock i configen. Ankarreferens:
+Svk:s HTML-tabell över topplasttimmen (datum/topplast per vinter 2002/03–2024/25; decemberundantagen
+2019/20 + 2021/22 noterade). Drift-skydd: min_points 7, range [−6000, 8000], min_latest_year 2026,
+ankare 2023=3290. Oberoende attributionssanity (lag 1 år, ned-indikator, handräknad): 2024→2025
++2430→−2690 stort fall (förbättring) → år 2024 = M/KD/L+SD ✓; 2020→2021 −1700→+500 försämring →
+år 2020 = S/MP ✓; 2025→2026 −2690→+200 försämring → år 2025 = M/KD/L+SD ✓ — bekräftade mot
+scorerun-utfallet (Tidö netto upp: 2 förbättringar + 1 försämring; S/MP/C netto ned). Golden-test
+(`tests/test_source_svk.py`: pinnade årsvärden, teckenbevarande för nettoexport-åren, 7 konsekutiva
+slutår, radform/id-mönster, prognosserie-läckagegrind, kanonisk riktning down, källrad per år +
+wayback-krav för 404-årgångarna); registrerad i `test_fas3_gate._ingested()` (svk.INDICATORS →
+klimat); hela offline-sviten grön (264 passed, 4 skipped); coverage-gaten håller (`coverage_report`:
+effektbrist ✓A, 7 obs 2020..2026, SUMMA 42/67).
+
+**Betygseffekt (score_diff):** endast **klimat**-celler rör sig, och serien DIFFERENTIERAR (S bär
+försämringarna 2020→21/2021→22/2022→23, Tidö krediteras förbättringarna 2023→24/2024→25 men bär
+försämringen 2025→26): S −0,027 · MP −0,026 · C −0,020 · KD +0,013 · SD +0,013 · M +0,012 ·
+L +0,002 (Tidö-vinsterna nettas mot stödåren 2019–2021) · V ±0 (D_not_applicable). Totaler:
+S −0,004 · MP −0,003 · C −0,002 · KD/M/SD +0,002 · L/V ±0. **Ranking OFÖRÄNDRAD**
+(S>L>M>KD>MP>C>SD>V). `dist/` omräknat + snapshot re-baselinad.
+
+**Flaggor/version:** v0 (FLAGGAD — kräver mänsklig granskning; caveats: VÄDERDRIVEN serie — kall
+vinter ⇒ högre topplast/import oavsett politik (mild-2025-outliern: mild + blåsig, vind 62 % av
+installerad effekt → ovanlig nettoexport); delvis prisdriven import (Svk: oftast billigare el, inte
+uttömda inhemska resurser); kort serie (6 förändringar) → sign-only D + 10 %-vikt + makt-/ansvars-
+viktning mildrar; normalvinter-prognosserien som vädernormerad robusthetsreferens i configen).
+v0 → v1 vid expertgranskning.
 
 ### ✅ 2026-06-12 (kväll) — Spår D klimat: `elprisvolatilitet` byggd, §5.4-källregelfrågan upplöst (v0, FLAGGAD)
 

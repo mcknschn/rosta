@@ -259,8 +259,8 @@
       },
       "klimat": {
         "ci": [
-          3.063,
-          3.85
+          3.042,
+          3.829
         ],
         "claim_refs": [
           "claim:action:C:klimat:motioner",
@@ -279,7 +279,7 @@
           "A": 4.143,
           "B": 3.75,
           "C": 1.429,
-          "D": 2.725
+          "D": 2.517
         },
         "confidence": {
           "A": "high",
@@ -293,7 +293,7 @@
           "A_a1_active",
           "D_coverage_85/100"
         ],
-        "score": 3.456
+        "score": 3.436
       },
       "trygghet": {
         "ci": [
@@ -529,8 +529,8 @@
       },
       "klimat": {
         "ci": [
-          2.38,
-          3.168
+          2.393,
+          3.18
         ],
         "claim_refs": [
           "claim:action:KD:klimat:motioner",
@@ -549,7 +549,7 @@
           "A": 1.929,
           "B": 4.118,
           "C": 2.143,
-          "D": 2.398
+          "D": 2.526
         },
         "confidence": {
           "A": "high",
@@ -563,7 +563,7 @@
           "A_a1_active",
           "D_coverage_85/100"
         ],
-        "score": 2.774
+        "score": 2.787
       },
       "trygghet": {
         "ci": [
@@ -804,8 +804,8 @@
       },
       "klimat": {
         "ci": [
-          2.254,
-          3.042
+          2.257,
+          3.044
         ],
         "claim_refs": [
           "claim:action:L:klimat:motioner",
@@ -825,7 +825,7 @@
           "A": 1.071,
           "B": 4.118,
           "C": 3.571,
-          "D": 2.427
+          "D": 2.448
         },
         "confidence": {
           "A": "high",
@@ -839,7 +839,7 @@
           "A_a1_active",
           "D_coverage_85/100"
         ],
-        "score": 2.648
+        "score": 2.65
       },
       "trygghet": {
         "ci": [
@@ -1077,8 +1077,8 @@
       },
       "klimat": {
         "ci": [
-          2.716,
-          3.503
+          2.729,
+          3.516
         ],
         "claim_refs": [
           "claim:action:M:klimat:motioner",
@@ -1097,7 +1097,7 @@
           "A": 2.5,
           "B": 4.118,
           "C": 2.857,
-          "D": 2.398
+          "D": 2.526
         },
         "confidence": {
           "A": "high",
@@ -1111,7 +1111,7 @@
           "A_a1_active",
           "D_coverage_85/100"
         ],
-        "score": 3.11
+        "score": 3.122
       },
       "trygghet": {
         "ci": [
@@ -1354,8 +1354,8 @@
       },
       "klimat": {
         "ci": [
-          3.688,
-          4.475
+          3.661,
+          4.449
         ],
         "claim_refs": [
           "claim:action:MP:klimat:motioner",
@@ -1375,7 +1375,7 @@
           "A": 4.714,
           "B": 3.529,
           "C": 4.286,
-          "D": 3.176
+          "D": 2.909
         },
         "confidence": {
           "A": "high",
@@ -1389,7 +1389,7 @@
           "A_a1_active",
           "D_coverage_85/100"
         ],
-        "score": 4.081
+        "score": 4.055
       },
       "trygghet": {
         "ci": [
@@ -1635,8 +1635,8 @@
       },
       "klimat": {
         "ci": [
-          2.438,
-          3.225
+          2.41,
+          3.198
         ],
         "claim_refs": [
           "claim:action:S:klimat:motioner",
@@ -1657,7 +1657,7 @@
           "A": 0.571,
           "B": 4.375,
           "C": 5.0,
-          "D": 3.215
+          "D": 2.944
         },
         "confidence": {
           "A": "high",
@@ -1671,7 +1671,7 @@
           "A_a1_active",
           "D_coverage_85/100"
         ],
-        "score": 2.831
+        "score": 2.804
       },
       "trygghet": {
         "ci": [
@@ -1899,8 +1899,8 @@
       },
       "klimat": {
         "ci": [
-          1.662,
-          2.45
+          1.675,
+          2.463
         ],
         "claim_refs": [
           "claim:action:SD:klimat:motioner",
@@ -1916,7 +1916,7 @@
           "A": 2.214,
           "B": 2.353,
           "C": 0.714,
-          "D": 2.398
+          "D": 2.526
         },
         "confidence": {
           "A": "high",
@@ -1930,7 +1930,7 @@
           "A_a1_active",
           "D_coverage_85/100"
         ],
-        "score": 2.056
+        "score": 2.069
       },
       "trygghet": {
         "ci": [

@@ -79,7 +79,11 @@ allowlist:
   # inte Nord Pool. CV-val (ddof=0, skalfri — straffar instabilitet, inte prisnivå/inflation) +
   # likaviktning SE1-SE4 + månadsupplösnings-caveat (tim-/dygnsspikar syns ej; effektproblematik
   # täcks av syskonet effektbrist när den byggs) dokumenterade i adaptern. v0, FLAGGAD.
-  - { category: klimat, indicator: effektbrist,                reason: "derived: härleds ur Svk effektdata, ingen färdig årsserie." }
+  # effektbrist inläst via Svk Kraftbalansen (nettoimport vid vinterns topplasttimme, transkriberad
+  # config/effektbrist.yaml, vintrar 2019/20-2025/26) -> ej allowlistad fr.o.m. 2026-06-12 (Spår D
+  # kväll). Faktisk lastfrånkoppling aldrig inträffad (konstant 0) -> nettoimport vid topplast =
+  # trogen närliggande bärare, riktning down direkt. Väderkänslighets-caveat + normalvinter-
+  # prognosserien som robusthetsreferens i configen.
   - { category: klimat, indicator: utslappsminskning_per_krona, reason: "derived: kräver utsläpp/kostnad-kvot, flera serier." }
   - { category: klimat, indicator: hotade_arter_naturforlust,  reason: "no_api: SLU Artdatabanken (rödlistan), ingen årlig maskinläsbar serie." }
   # --- integration (bidragsberoende, trangboddhet, sjalvforsorjningsgrad, sysselsattningsgap inlästa) ---

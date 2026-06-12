@@ -5644,6 +5644,41 @@
     "source_name": "sverigesmiljomal",
     "statement": "hackande_faglar_skog = 109.07 (klimat, 2024)."
   },
+  "claim:observed_result:obs:svk:effektbrist:2020": {
+    "kind": "claim",
+    "source_name": "svk",
+    "statement": "effektbrist = -1700.0 (klimat, 2020)."
+  },
+  "claim:observed_result:obs:svk:effektbrist:2021": {
+    "kind": "claim",
+    "source_name": "svk",
+    "statement": "effektbrist = 500.0 (klimat, 2021)."
+  },
+  "claim:observed_result:obs:svk:effektbrist:2022": {
+    "kind": "claim",
+    "source_name": "svk",
+    "statement": "effektbrist = 1600.0 (klimat, 2022)."
+  },
+  "claim:observed_result:obs:svk:effektbrist:2023": {
+    "kind": "claim",
+    "source_name": "svk",
+    "statement": "effektbrist = 3290.0 (klimat, 2023)."
+  },
+  "claim:observed_result:obs:svk:effektbrist:2024": {
+    "kind": "claim",
+    "source_name": "svk",
+    "statement": "effektbrist = 2430.0 (klimat, 2024)."
+  },
+  "claim:observed_result:obs:svk:effektbrist:2025": {
+    "kind": "claim",
+    "source_name": "svk",
+    "statement": "effektbrist = -2690.0 (klimat, 2025)."
+  },
+  "claim:observed_result:obs:svk:effektbrist:2026": {
+    "kind": "claim",
+    "source_name": "svk",
+    "statement": "effektbrist = 200.0 (klimat, 2026)."
+  },
   "claim:observed_result:obs:vdem:horisontellt_ansvarsutkravande:2000": {
     "kind": "claim",
     "source_name": "vdem",

@@ -115,6 +115,11 @@ def vdem_demokrati() -> dict[str, Any]:
     return _load("vdem_demokrati.yaml")
 
 
+@cache
+def effektbrist() -> dict[str, Any]:
+    return _load("effektbrist.yaml")
+
+
 def party_codes() -> list[str]:
     return [p["code"] for p in categories()["parties"]]
 
