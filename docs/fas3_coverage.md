@@ -8,7 +8,7 @@ Invarianten "inget tyst gap" hävdas av `tests/test_fas3_gate.py`. Generera aktu
 python -m pipeline.tools.coverage_report
 ```
 
-Per 2026-06-09: **34 / 63 indikatorer inlästa** (D-dugliga, annuell up/down) i **alla 7 kategorier**
+Per 2026-06-12: **36 / 65 indikatorer inlästa** (D-dugliga, annuell up/down) i **alla 7 kategorier**
 (ekonomi, välfärd, klimat, integration, trygghet, försvar, demokrati). **Ingen kategori är längre D-tom.**
 *(17 per 2026-05-31; +2 trygghet 2026-06-03 — uppklaringsgrad + skjutningar/sprängningar; +2 ekonomi
 2026-06-07 — naringslivets_investeringar + hushallens_reala_disponibla_inkomst, Spår D Tier 1;
@@ -18,7 +18,9 @@ personal_varnpliktiga (försvarets första D); +1 demokrati 2026-06-07 — fortr
 djupsvep); **+6 färsk session 2026-06-09 (Spår D byggkö):** aterfall_i_brott (trygghet, Kriminalvården
 KOS), hackande_faglar_skog (klimat, biologisk_mangfald — Svensk Fågeltaxering), och 4 V-Dem-index
 (demokrati — rattsstatsindex/yttrandefrihetsindex/privata_friheter/horisontellt_ansvarsutkravande,
-öppnar alla 4 kvarvarande D-tomma demokrati-submått). **Inget demokrati-submått är längre D-tomt.**)*
+öppnar alla 4 kvarvarande D-tomma demokrati-submått). **Inget demokrati-submått är längre D-tomt.**
+**+2 integration 2026-06-12:** mellanmansklig_tillit (normer_tillit — SCB medborgarunders. N00666) +
+asyl_handlaggningstid (migrationssystem — Migrationsverket). **Integration nu 5/5 undermått med D.**)*
 
 ## Inlästa indikatorer (matar D)
 
@@ -48,6 +50,8 @@ KOS), hackande_faglar_skog (klimat, biologisk_mangfald — Svensk Fågeltaxering
 | integration | sjalvforsorjningsgrad | SCB AKU (utrikes födda) | TAB6529 | up | 2005–2025 |
 | integration | sysselsattningsgap_inrikes_utrikes | SCB AKU (härledd) | TAB6529 SYSP 13−23 | down | 2005–2025⁴ |
 | integration | sfi_sprakkunskaper | SCB (Skolverket) | TAB1814 (AA0003EB) | up | 1997–2023⁷ |
+| integration | mellanmansklig_tillit | SCB medborgarunders. (Kolada) | N00666 | up | 2021–2025¹³ |
+| integration | asyl_handlaggningstid | Migrationsverket (transkr.) | Avgjorda asylärenden (Asyl) | down | 2021–2025¹⁴ |
 | forsvar | personal_varnpliktiga | Försvarsmakten (ÅR) | transkr. config-yaml | up | 2018–2025⁸ |
 | demokrati | fortroende_domstolar_myndigheter | Brå NTU | blad 5A:1 | up | 2017–2025⁹ |
 | demokrati | rattsstatsindex | V-Dem / Göteborgs univ. (transkr.) | v2x_rule | up | 2000–2025¹² |
@@ -124,6 +128,21 @@ KOS), hackande_faglar_skog (klimat, biologisk_mangfald — Svensk Fågeltaxering
   av tecken-only + 10 % vikt + takeffekt (Sverige 0,94–0,995 → bara trend meningsfull; rattsstatsindex
   i praktiken platt). Transkriberad ur V-Dem v16; verifierad mot V-Dem-datasetet (tools/vdem_transcribe)
   + OWID (3 av 4 index). Sign-off 2026-06-09. Indexval undviker dubbelräkning (horacc ej diagacc).
+
+¹³ Andel som svarar att man i allmänhet kan lita på människor ("Till stor del"/"Helt och hållet"),
+  **SCB:s medborgarundersökning** via Kolada **N00666**, 2021–2025 (ny enkätmetodik fr.o.m. 2021 → 5 år).
+  Öppnar normer_tillit (integration 2026-06-12). KONSTRUKTVAL: N00666 mäter MELLANMÄNSKLIG (social) tillit
+  = rätt fit, till skillnad från N00665 (förtroende för riksdagspolitiker → fel konstrukt, överlappar
+  demokratis institutionstillit). ⚠ Nära platt (61,2–62,9 %) → D≈neutral; tunt 5-årsunderlag (sign-off).
+  D tar bara TECKEN, väger 10 %. D-only (tillit_valdeltagande bär B-spåret).
+
+¹⁴ Genomsnittlig handläggningstid (dagar) för avgjorda FÖRSTAGÅNGSÄRENDEN om asyl, **Migrationsverkets**
+  "Avgjorda asylärenden" (bladet "Totalt, förstagångsärenden", deltabellen **Asyl**, raden Totalt). 2021–2025
+  = 257/166/198/187/180. EXKL. massflyktsdirektivet/ukrainska medborgare (near-automatisk EU-process ~20–30 d,
+  ej svensk handläggningseffektivitet; gör serien ojämförbar och dränker signalen). Öppnar migrationssystem
+  (integration 2026-06-12). NEUTRALITET: kortare = bättre är ett av få migrationsmått där båda poler är
+  överens (vs återvändande, värdeladdat); kvarvarande caveat: kvalitet-vs-hastighet + inflödesberoende → D
+  tar bara TECKEN. Transkriberad config (källrad/år); revisionsspår `tools/asyl_handlaggningstid_verify.py`.
 
 ## Allowlistade gap (skäl i `config/coverage_allowlist.yaml`)
 

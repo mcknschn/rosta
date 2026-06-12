@@ -44,12 +44,14 @@ nationell regeringsmakt i fönstret → strukturellt korrekt, ej ett gap). Model
 
 ## 2. Nuläge (verifierat via `python -m pipeline.tools.coverage_report`, 2026-06-09)
 
-**34 D-serier inlästa** (annuell, D-duglig) i **ALLA 7 kategorier** *(56 ursprungliga kanoniska + 7 nya
+**36 D-serier inlästa** (annuell, D-duglig) i **ALLA 7 kategorier** *(56 ursprungliga kanoniska + 9 nya
 kanoniska indikatorer)*. *(24 efter Tier 4; +`overlevnad_svar_sjukdom` +`ukraina_stod` natt 2026-06-08;
 +`brukarnojdhet_hemtjanst` +`utslappsintensitet` djupsvep 2026-06-09; **+6 färsk session 2026-06-09:**
-+`aterfall_i_brott` (trygghet) +`hackande_faglar_skog` (klimat) + 4 V-Dem-index (demokrati).)* Full logg:
++`aterfall_i_brott` (trygghet) +`hackande_faglar_skog` (klimat) + 4 V-Dem-index (demokrati);
+**+2 integration 2026-06-12:** +`mellanmansklig_tillit` (SCB medborgarunders. N00666) +`asyl_handlaggningstid`
+(Migrationsverket) → **integration 3/5 → 5/5 undermått med D**.)* Full logg:
 [spar_D_svep_2026-06-08.md §5](spar_D_svep_2026-06-08.md) (byggkö exekverad) + [nattrapport](spar_D_nattrapport_2026-06-08.md).
-**aterfall_kriminalvard + biologisk_mangfald + alla 4 D-tomma demokrati-submått öppnade → ingen kategori D-tom på submåttsnivå utom enstaka.**
+**aterfall_kriminalvard + biologisk_mangfald + alla 4 D-tomma demokrati-submått + normer_tillit + migrationssystem öppnade → ingen kategori D-tom på submåttsnivå utom enstaka.**
 
 | Kategori | D-täckta submått | Inlästa D-serier |
 |----------|:---:|---|
@@ -58,7 +60,7 @@ kanoniska indikatorer)*. *(24 efter Tier 4; +`overlevnad_svar_sjukdom` +`ukraina
 | trygghet | **4 / 5** | dodligt_vald, skjutningar_sprangningar, brottsutsatthet, upplevd_otrygghet, uppklaringsgrad, **aterfall_i_brott** (aterfall_kriminalvard öppnat, KOS, färsk session) |
 | forsvar | **2 / 5** | personal_varnpliktiga, **ukraina_stod** (nato_ukraina öppnat, natt 2026-06-08) |
 | klimat | **4 / 5** | territoriella_utslapp, konsumtionsbaserade_utslapp, fossil_energianvandning, **utslappsintensitet** (kostnadseff., djupsvep), **hackande_faglar_skog** (biologisk_mangfald öppnat, Svensk Fågeltaxering, färsk session) |
-| integration | 3 / 5 | sysselsattningsgap_inrikes_utrikes, sjalvforsorjningsgrad, bidragsberoende, trangboddhet, **sfi_sprakkunskaper** |
+| integration | **5 / 5** | sysselsattningsgap_inrikes_utrikes, sjalvforsorjningsgrad, bidragsberoende, trangboddhet, sfi_sprakkunskaper, **mellanmansklig_tillit** (normer_tillit öppnat, SCB medborgarunders. N00666), **asyl_handlaggningstid** (migrationssystem öppnat, Migrationsverket — integration 2026-06-12) |
 | demokrati | **5 / 5** | fortroende_domstolar_myndigheter (Brå NTU), **rattsstatsindex, yttrandefrihetsindex, privata_friheter, horisontellt_ansvarsutkravande** (V-Dem/Göteborgs univ., 4 D-tomma submått öppnade, färsk session — demokrati-väggen löst på D-sidan) |
 
 ¹ ekonomi har 6 submått men 2 är `target`-only (inflation, offentliga finanser) → ej D-bara.
@@ -69,13 +71,13 @@ inget ansvar att attribuera. Det är **korrekt och rättvist**, inte ett gap.
 
 ---
 
-## 2.1 Mastertabell — D-täckning per indikator (samtliga 63) ⭐
+## 2.1 Mastertabell — D-täckning per indikator (samtliga 65) ⭐
 
 > **Parallell till B-spårets mastertabell** ([done/evidens_trovardighet.md §4.3](done/evidens_trovardighet.md)),
 > fast för **D** (resultat/utfall). Sanningskälla: `python -m pipeline.tools.coverage_report` +
-> [`config/coverage_allowlist.yaml`](../config/coverage_allowlist.yaml). **Verifierad 2026-06-09.**
+> [`config/coverage_allowlist.yaml`](../config/coverage_allowlist.yaml). **Verifierad 2026-06-12.**
 > OBS: D-dimensionen i §4.3-tabellen (kolumnen "mäts (D)") är **inaktuell** efter Spår D Tier 1/2/4 +
-> djupsvep + färsk session —
+> djupsvep + färsk session + integration 2026-06-12 —
 > *denna* tabell är den auktoritativa D-vyn. Kanoniska visningsnamn för Kategori/Undermått: §4.3.
 >
 > **D-status:** ✅ **byggd** (officiell svensk annuell up/down-serie inläst, matar `category_d`) ·
@@ -86,14 +88,17 @@ inget ansvar att attribuera. Det är **korrekt och rättvist**, inte ett gap.
 
 ### Sammanfattning (hur stor täckning vi har)
 
-- **34 / 63 indikatorer** har en D-serie (annuell up/down som matar `category_d`). *(+2 natt 2026-06-08,
-  +2 djupsvep, +6 färsk session 2026-06-09: aterfall_i_brott, hackande_faglar_skog, 4 V-Dem-index.)*
+- **36 / 65 indikatorer** har en D-serie (annuell up/down som matar `category_d`). *(+2 natt 2026-06-08,
+  +2 djupsvep, +6 färsk session 2026-06-09: aterfall_i_brott, hackande_faglar_skog, 4 V-Dem-index;
+  **+2 integration 2026-06-12: mellanmansklig_tillit (SCB medborgarunders. N00666) + asyl_handlaggningstid
+  (Migrationsverket).**)*
 - **+4 byggbara/öppna** (🟡; realloner, elprisvolatilitet, effektbrist, utslappsminskning_per_krona) →
-  **realistiskt tak ≈ 38/63**; resten är **3 target** (⚪) + **22 genuina väggar** (🔴) + 1 undermått utan
+  **realistiskt tak ≈ 40/65**; resten är **3 target** (⚪) + **22 genuina väggar** (🔴) + 1 undermått utan
   indikator (`industriell_konkurrenskraft`).
-- **25 / 35 undermått** har minst en D-serie. *(+8 sedan 2026-06-07: nato_ukraina, omsorg_personal,
+- **27 / 35 undermått** har minst en D-serie. *(+10 sedan 2026-06-07: nato_ukraina, omsorg_personal,
   kostnadseffektivitet, aterfall_kriminalvard, biologisk_mangfald, + alla 4 D-tomma demokrati-submått
-  via V-Dem → **demokrati-väggen löst på D-sidan**.)*
+  via V-Dem → **demokrati-väggen löst på D-sidan**; **+normer_tillit +migrationssystem 2026-06-12 →
+  integration 5/5 (alla undermått D-täckta)**.)*
 
 | Kategori | ✅ byggd | 🟡 öppen | 🔴 vägg | ⚪ target | Indikatorer | Undermått m. D |
 |----------|:---:|:---:|:---:|:---:|:---:|:---:|
@@ -102,9 +107,9 @@ inget ansvar att attribuera. Det är **korrekt och rättvist**, inte ett gap.
 | Lag och trygghet | **6** | 0 | **2** | 0 | 8 | **4/5** |
 | Försvar och beredskap | 2 | 0 | 5 | 1 | 8 | 2/5 |
 | Klimat, miljö och energi | **5** | 3 | 1 | 0 | 9 | **4/5** |
-| Integration och social sammanhållning | 5 | 0 | 4 | 0 | 9 | 3/5 |
+| Integration och social sammanhållning | **7** | 0 | 4 | 0 | **11** | **5/5** |
 | Frihet, demokrati och institutioner | **5** | 0 | **5** | 0 | 10 | **5/5** |
-| **SUMMA** | **34** | **4** | **22** | **3** | **63** | **25/35** |
+| **SUMMA** | **36** | **4** | **22** | **3** | **65** | **27/35** |
 
 ¹ klimat har 5 undermått men `industriell_konkurrenskraft` saknar indikator (ingen rad i de 63);
   `biologisk_mangfald` är öppnat 2026-06-09 → klimat 4/5 undermått med D.
@@ -165,8 +170,10 @@ inget ansvar att attribuera. Det är **korrekt och rättvist**, inte ett gap.
 | Integration och social sammanhållning | Skola, språk och utbildning | `skolresultat_utsatta_omraden` | upp | 🔴 vägg | `no_api`: ingen ren nationell årsserie |
 | Integration och social sammanhållning | Boendesegregation och trygghet | `trangboddhet` | ned | ✅ byggd | 15 obs · 1988–2025 |
 | Integration och social sammanhållning | Boendesegregation och trygghet | `segregation` | ned | 🔴 vägg | `no_api`: ingen ren officiell segregationsårsserie |
-| Integration och social sammanhållning | Normer, tillit och samhällsgemenskap | `tillit_valdeltagande` | upp | 🔴 vägg | `no_api/sparse`: valdeltagande bara valår; SOM-tillit ej API |
-| Integration och social sammanhållning | Migrationssystemets hållbarhet | `atervandande_effektivitet` | upp | 🔴 vägg | `B-only`: ingen publik årsserie för kostnad/effektivitet |
+| Integration och social sammanhållning | Normer, tillit och samhällsgemenskap | `tillit_valdeltagande` | upp | 🔴 vägg | `no_api/sparse`: valdeltagande bara valår; SOM-tillit ej API (submåttet D-täckt via `mellanmansklig_tillit` nedan) |
+| Integration och social sammanhållning | Normer, tillit och samhällsgemenskap | `mellanmansklig_tillit` | upp | ✅ byggd | SCB:s medborgarundersökning "kan generellt lita på människor" (Kolada N00666), 5 obs 2021–2025 (integration 2026-06-12 — **öppnade normer_tillit**; rätt konstrukt vs N00665 politikerförtroende; nära platt 61–63 % → D≈neutral) |
+| Integration och social sammanhållning | Migrationssystemets hållbarhet | `atervandande_effektivitet` | upp | 🔴 vägg | `B-only`: ingen publik årsserie för kostnad/effektivitet (submåttet D-täckt via `asyl_handlaggningstid` nedan) |
+| Integration och social sammanhållning | Migrationssystemets hållbarhet | `asyl_handlaggningstid` | ned | ✅ byggd | Migrationsverket "Avgjorda asylärenden" (förstagångs-Asyl, exkl. massflykt), 5 obs 2021–2025 = 257/166/198/187/180 dgr (integration 2026-06-12 — **öppnade migrationssystem**; genuin teckenväxling; neutralt vs återvändande, kvalitet-vs-hastighet-caveat) |
 | Frihet, demokrati och institutioner | Rättsstat och maktdelning | `otillborlig_politisering` | ned | 🔴 vägg | `qualitative`: ingen objektiv mätserie (submåttet D-täckt via V-Dem nedan) |
 | Frihet, demokrati och institutioner | Rättsstat och maktdelning | `rattsstatsindex` | upp | ✅ byggd | V-Dem `v2x_rule`, 26 obs 2000–2025 (färsk session — **öppnade rattsstat_maktdelning**; nära platt → D≈neutral) |
 | Frihet, demokrati och institutioner | Korruption och myndighetstillit | `fortroende_domstolar_myndigheter` | upp | ✅ byggd | 9 obs · 2017–2025 (Brå NTU 5A:1 — Tier 4) |
@@ -343,6 +350,45 @@ Spår D anses **färdigt för arkivering** när:
 ## 7. Leveranslogg (append per leverans)
 
 > Format: datum · indikator · kategori→submått · källa · verifiering · betygseffekt · flagga/version.
+
+### ✅ 2026-06-12 — Spår D integration: +2 D-serier → integration 5/5 undermått (v0, FLAGGADE)
+
+Din beställning: bygg BÅDE asyl-handläggningstid och SCB:s medborgarundersökning (tunt 1-av-5-mått OK).
+**2 byggen, 2 nya D-serier; coverage 34/63 → 36/65 inlästa; 25/35 → 27/35 undermått med D; integration
+3/5 → 5/5 undermått (alla undermått D-täckta).**
+
+1. **`mellanmansklig_tillit`** (integration → normer_tillit, upp): andel som svarar att man i allmänhet
+   kan lita på människor, **SCB:s medborgarundersökning** via **Kolada N00666**, 2021–2025 (5 obs,
+   62,9/62,6/61,2/62,9/62,8 %). **Öppnade normer_tillit** (var allowlistat `no_api/sparse`). **Korrigering
+   av antagande:** den uppenbara kandidaten N00665 visade sig vara "förtroende för riksdagens politiker"
+   (fel konstrukt + överlappar demokratis institutionstillit) — N00666 är den *mellanmänskliga* tillits-
+   frågan (rätt fit för social sammanhållning). Ren Kolada-väg (`build_fas2`). ⚠ Nästan platt → D≈neutral;
+   tunt 5-årsunderlag (sign-off). Ny kanonisk indikator (D-only; `tillit_valdeltagande` bär B-spåret).
+2. **`asyl_handlaggningstid`** (integration → migrationssystem, ned): genomsnittlig handläggningstid (dagar)
+   för avgjorda **förstagångsärenden om asyl**, **Migrationsverket "Avgjorda asylärenden"** (deltabellen
+   **Asyl**, EXKL. massflyktsdirektivet/ukrainska medborgare — near-automatisk EU-process, ej svensk
+   handläggningseffektivitet). 2021–2025 = **257/166/198/187/180** dgr. **Öppnade migrationssystem** (var
+   allowlistat `B-only`). **Korrigering:** svepets 257/166/**194/162/178** var fel cut — verifierade tal
+   hämtade direkt ur per-årsfilernas xlsx (`tools/asyl_handlaggningstid_verify.py` korsverifierar Asyl-
+   tabellens Totalt-rad). Transkriberad config (källrad/år) + ny `migrationsverket`-adapter. Genuin
+   teckenväxling (förbättring 2021→22, försämring 2022→23, förbättringar 2023→25). v0.
+
+**Neutralitet (din fråga om asyl):** kortare asylhandläggning är ett av få migrationsmått där båda poler
+är överens (sökande slipper limbo + lägre systemkostnad) — till skillnad från återvändandeärenden
+(värdeladdat, avstått). Kvarvarande caveat (v0): kvalitet-vs-hastighet + inflödesvolym-beroende → D tar
+bara TECKEN, väger 10 %.
+
+**Verifiering:** N00666 live via Kolada-adaptern; asyl direkt ur Migrationsverkets per-års-xlsx (openpyxl,
+Asyl-deltabellens Totalt-rad, massflykt exkluderad). Golden-test för migrationsverket-adaptern (pinnade
+årsvärden + teckenväxling + radform); hela offline-sviten grön (217 passed, 4 skipped); coverage-gaten håller.
+
+**Betygseffekt (score_diff):** endast **integration** rörd (≤0,026/kategori), totaler ≤0,003. S/integration
+−0,013 (höll regeringen 2021 när tilliten började falla; får kredit för asyl-förbättringen 2021→22);
+MP/C/L +0,02–0,03 (JÖK-eran, 2021-asylförbättringen); Tidö marginellt upp. **Ranking OFÖRÄNDRAD**
+(S>L>M>KD>MP>C>SD>V). V orörd (D_not_applicable). `dist/` omräknat + snapshot re-baselinad.
+
+**Flaggor/version:** båda v0 (tillit nästan platt + tunt; asyl kvalitet-vs-hastighet). v0 → v1 vid expert-
+granskning. Reproducerbart revisionsspår: `tools/asyl_handlaggningstid_verify.py`.
 
 ### ✅ 2026-06-09 — Spår D byggkö (färsk session): +6 D-serier, demokrati-väggen löst (v0, FLAGGADE)
 
