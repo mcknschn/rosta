@@ -8,7 +8,8 @@
 # Skälkategorier: target (ej D-duglig, ingen riktning up/down) · derived (kräver flera serier/
 # beräkning som loadern ej stöder) · no_api (officiell/akademisk källa utan maskinläsbar serie)
 # · international (ej officiell svensk källa, otillåtet enligt CLAUDE.md) · qualitative
-# (saknar kvantitativ officiell mätserie) · future (källa finns men adaptern är inte byggd än).
+# (saknar kvantitativ officiell mätserie) · future (källa finns men adaptern är inte byggd än)
+# · design_closed (byggbar i princip men stängd som designbeslut av neutralitetsskäl, med sign-off).
 
 version: 1
 
@@ -84,7 +85,7 @@ allowlist:
   # kväll). Faktisk lastfrånkoppling aldrig inträffad (konstant 0) -> nettoimport vid topplast =
   # trogen närliggande bärare, riktning down direkt. Väderkänslighets-caveat + normalvinter-
   # prognosserien som robusthetsreferens i configen.
-  - { category: klimat, indicator: utslappsminskning_per_krona, reason: "derived: kräver utsläpp/kostnad-kvot, flera serier." }
+  - { category: klimat, indicator: utslappsminskning_per_krona, reason: "design_closed (sign-off 2026-06-12, beslutsunderlag D1): stängd som designbeslut efter djupsondering — kvoten Δutsläpp/utgift premierar strukturellt skattetung instrumentmix (CO2-skatt ≈ 0 kr på utgiftssidan) = ideologisk metodpreferens i strid med IDEA.md, och ingen officiell heltäckande klimatutgift-definition finns (ESV UO20 ~60 % icke-klimat; klimatredovisningen kvalitativ; KPR definierar ingen ram; SCB MI1301H endast subventioner). Undermåttet kostnadseffektivitet är D-täckt via utslappsintensitet (CO2/BNP). Full genomgång: docs/done/spar_D_datatackning.md §5.5." }
   - { category: klimat, indicator: hotade_arter_naturforlust,  reason: "no_api: SLU Artdatabanken (rödlistan), ingen årlig maskinläsbar serie." }
   # --- integration (bidragsberoende, trangboddhet, sjalvforsorjningsgrad, sysselsattningsgap inlästa) ---
   # sysselsattningsgap_inrikes_utrikes härleds nu (pipeline.derived, SCB TAB6529 SYSP 13−23) -> ej allowlistad.

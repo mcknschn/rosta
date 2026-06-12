@@ -16,7 +16,7 @@ Levererar TVÅ klimatindikatorer ur samma PxWeb-instans (olika db-vägar, samma 
    elspotpriset ur tabell EN_IND12-5A "Elspotpris Sverige (från november 2011), månads-
    medelvärden, kr/MWh" (Energiindikatorer 12.5), per elområde SE1-SE4. Datakällan är
    Energimyndighetens OFFICIELLA statistikdatabas (statlig myndighet) — inte Nord Pool
-   direkt — vilket UPPLÖSER källregelfrågan i docs/spar_D_datatackning.md §5.4.
+   direkt — vilket UPPLÖSER källregelfrågan i docs/done/spar_D_datatackning.md §5.4.
 
    MÅTTVAL (v0, dokumenterat och LÅST):
    - Årlig volatilitet = CV = stdev/medel över årets 12 månadsmedel, per elområde,

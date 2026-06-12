@@ -29,9 +29,9 @@ granskad och förkastad med skäl (kvar i loggen för återöppning).
 | Kandidat | Kategori → indikator | Verdikt (research) | Codex-verdikt | Status |
 |---|---|---|---|---|
 | `nedtrappad_ersattningsprofil_akassa` | ekonomi → `arbetsloshet` | STRONG | BUILD-WITH-CHANGES | **Byggd 2026-06-12, flaggad v0** |
-| `dca_avtal_usa` | forsvar → `nato_interoperabilitet` | STRONG | HOLD | **Väntar sign-off (B1)** |
+| `dca_avtal_usa` | forsvar → `nato_interoperabilitet` | STRONG | HOLD | **Sign-off 2026-06-12: BYGG med Codex-villkoren — verkställd, flaggad v0** |
 | `uppsokande_forskoleerbjudande_nyanlandas_barn` | integration → `skolresultat_utsatta_omraden` | STRONG | BUILD-WITH-CHANGES | **Byggd 2026-06-12, flaggad v0; SD/KD = none** |
-| `rattssakerhetsgarantier_preventiva_tvangsmedel` | demokrati → `overvakning_utan_rattssakerhet` | STRONG | HOLD | **Väntar sign-off (B2)** |
+| `rattssakerhetsgarantier_preventiva_tvangsmedel` | demokrati → `overvakning_utan_rattssakerhet` | STRONG | HOLD | **Sign-off 2026-06-12: HOLD bekräftad — vänta (kandidaten kvar färdigberedd)** |
 | `likvardiga_urvalsgrunder_skolval` | valfard → `skillnader_mellan_skolor` | WEAK | — | Bevakning (Tidö-utredningen, IFAU-remiss 2025-11-28) |
 | `karriarsteg_forstelarare` | valfard → `skolresultat` | WEAK | — | Bevakning (uppgraderas till trolig STRONG om V:s avskaffa-yrkande voteras) |
 | `sakerhetszoner_visitationszoner` | trygghet → `skjutningar_sprangningar` | REJECT | — | Återöppningstrigger: lagstadgad utvärdering ~2027 |

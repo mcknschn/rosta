@@ -1,15 +1,17 @@
 # Spår D — Datatäckning (delpoäng D, resultat)
 
-> **Roll:** Aktiv arbets- och trackinglogg för Spår D (utfall/resultat). Bryter ut Spår D ur
-> [BACKLOG.md](BACKLOG.md) så arbetet kan trackas per indikator och **flyttas till `docs/done/`**
-> när exit-kriterierna nedan är uppfyllda. Samma livscykel som B-spårets logg
-> ([done/evidens_trovardighet.md](done/evidens_trovardighet.md)).
+> **Status: ✅ ARKIVERAD 2026-06-12 — Spår D klart (alla exit-kriterier §6 uppfyllda efter D1-sign-off).**
 >
-> **Sanningskälla för vad som saknas:** [`config/coverage_allowlist.yaml`](../config/coverage_allowlist.yaml)
+> **Roll:** Arbets- och trackinglogg för Spår D (utfall/resultat). Bryter ut Spår D ur
+> [BACKLOG.md](../BACKLOG.md) så arbetet kan trackas per indikator och **flyttas till `docs/done/`**
+> när exit-kriterierna nedan är uppfyllda. Samma livscykel som B-spårets logg
+> ([done/evidens_trovardighet.md](evidens_trovardighet.md)).
+>
+> **Sanningskälla för vad som saknas:** [`config/coverage_allowlist.yaml`](../../config/coverage_allowlist.yaml)
 > (maskinläsbar, grindad av `tests/test_fas3_gate.py`). Detta dokument **duplicerar inte** skälen
 > där — det är *planen och trackern*. När en indikator byggs: ta bort den ur allowlisten, uppdatera
 > `scorerun.py:coverage`-strängen + `docs/fas3_coverage.md`, bocka av här, och skriv en kort rad i
-> [done/ROADMAP.md](done/ROADMAP.md).
+> [done/ROADMAP.md](ROADMAP.md).
 >
 > **Bärande princip (CLAUDE.md):** endast officiella svenska källor; svensk akademi när officiell
 > statistik saknas. Inga internationella index. All data spårbar till källrad. Ingen tyst lucka.
@@ -58,7 +60,7 @@ kanoniska indikatorer)*. *(24 efter Tier 4; +`overlevnad_svar_sjukdom` +`ukraina
 energi_elpriser, §5.4 upplöst); **+1 klimat 2026-06-12 (kväll, effektbrist):** +`effektbrist`
 (Svk Kraftbalansen, nettoimport vid vinterns topplasttimme — 3:e serien i energi_elpriser,
 §5.4-RESTEN avgjord: rapporten, ej timdata).)* Full logg:
-[spar_D_svep_2026-06-08.md §5](done/spar_D_svep_2026-06-08.md) (byggkö exekverad) + [nattrapport](done/spar_D_nattrapport_2026-06-08.md).
+[spar_D_svep_2026-06-08.md §5](spar_D_svep_2026-06-08.md) (byggkö exekverad) + [nattrapport](spar_D_nattrapport_2026-06-08.md).
 **aterfall_kriminalvard + biologisk_mangfald + alla 4 D-tomma demokrati-submått + normer_tillit + migrationssystem öppnade → ingen kategori D-tom på submåttsnivå utom enstaka.**
 
 | Kategori | D-täckta submått | Inlästa D-serier |
@@ -81,9 +83,9 @@ inget ansvar att attribuera. Det är **korrekt och rättvist**, inte ett gap.
 
 ## 2.1 Mastertabell — D-täckning per indikator (samtliga 67) ⭐
 
-> **Parallell till B-spårets mastertabell** ([done/evidens_trovardighet.md §4.3](done/evidens_trovardighet.md)),
+> **Parallell till B-spårets mastertabell** ([done/evidens_trovardighet.md §4.3](evidens_trovardighet.md)),
 > fast för **D** (resultat/utfall). Sanningskälla: `python -m pipeline.tools.coverage_report` +
-> [`config/coverage_allowlist.yaml`](../config/coverage_allowlist.yaml). **Verifierad 2026-06-12.**
+> [`config/coverage_allowlist.yaml`](../../config/coverage_allowlist.yaml). **Verifierad 2026-06-12.**
 > OBS: D-dimensionen i §4.3-tabellen (kolumnen "mäts (D)") är **inaktuell** efter Spår D Tier 1/2/4 +
 > djupsvep + färsk session + integration 2026-06-12 —
 > *denna* tabell är den auktoritativa D-vyn. Kanoniska visningsnamn för Kategori/Undermått: §4.3.
@@ -358,7 +360,7 @@ effektdata behövdes (data.svk.se saknar ännu ett förbruknings-/effektbalansda
 gränsfallet blev aldrig aktuellt — Svk själv, ett statligt affärsverk, är källan rakt av).
 Transkriberad config + tunn reader (§7). §5.4 är därmed HELT stängd.
 
-### 5.5 `utslappsminskning_per_krona`: hur definieras "klimatutgift"? 🟡 SONDERAD 2026-06-12 — REKOMMENDATION: STÄNG (bygg inte)
+### 5.5 `utslappsminskning_per_krona`: hur definieras "klimatutgift"? ✅ AVGJORT 2026-06-12 — STÄNGD som designbeslut (sign-off, beslutsunderlag D1)
 Kräver en officiell, riktningsneutral nämnare (vilka UO/anslag räknas som klimatutgift?). Metodiskt
 omtvistat → designfråga, inte ren databredd.
 
@@ -377,19 +379,19 @@ attributionslagg, tecken-kollaps vid negativt Δutsläpp och belöning av låg u
 **Rekommendation: STÄNG som designbeslut** — undermåttet kostnadseffektivitet är redan D-täckt via
 `utslappsintensitet` (CO2/BNP) som fångar konceptet utan instrumentmix-bias. Om kvoten ändå önskas:
 minst dålig konstruktion = rullande 3-års Δterritoriella_utslapp ÷ MI1301H (flaggad v0) — avrådes.
-**Beslutsfråga: [beslutsunderlag_hold_2026-06-12.md](beslutsunderlag_hold_2026-06-12.md) (D1).**
+**Beslutsfråga: [beslutsunderlag_hold_2026-06-12.md](../beslutsunderlag_hold_2026-06-12.md) (D1).**
 
 ---
 
 ## 6. Exit-kriterier (när flyttas dokumentet till `docs/done/`?)
 
-> **Exit-utvärdering 2026-06-12 (kväll):** §6.1 ✅ (Tier 1–4 byggda/beslutade; Tier 2-resten och
-> Tier 3 levererade i kväll), §6.2 ✅, §6.4 ✅, §6.3 ✅ *så när som på en post*: enda kvarvarande
-> icke-vägg-posten är `utslappsminskning_per_krona` (derived), som nu har en dokumenterad
-> stängningsrekommendation (§5.5) men väntar mänsklig sign-off (beslutsunderlag D1).
-> **Dokumentet arkiveras till `docs/done/` direkt efter D1-beslutet.** Inga `future`-poster
-> kvarstår i allowlisten (verifierat 2026-06-12: endast target/international/qualitative/no_api/
-> B-only/low_value + denna derived-post).
+> **✅ ALLA EXIT-KRITERIER UPPFYLLDA — ARKIVERAD 2026-06-12.** §6.1 ✅ (Tier 1–4
+> byggda/beslutade), §6.2 ✅, §6.4 ✅, §6.3 ✅ — sista posten `utslappsminskning_per_krona`
+> stängdes som designbeslut via sign-off (beslutsunderlag D1, 2026-06-12; allowlist-klass
+> `design_closed`). Inga `future`-poster kvarstår; allowlisten innehåller endast
+> target/international/qualitative/no_api/B-only/low_value/design_closed. Spår D:s slutläge:
+> **42/67 indikatorer inlästa, 29/35 undermått, alla 7 kategorier.** Kvarvarande bevakningar
+> (FMV-leveransindex H6, omsättningsmåttet H2 m.fl.) trackas i BACKLOG + beslutsunderlaget.
 
 Spår D anses **färdigt för arkivering** när:
 
@@ -741,7 +743,7 @@ granskning. Reproducerbara avläsar-/auditverktyg: `faglar_transcribe.py`, `vdem
 ### ✅ 2026-06-09 — Spår D djupsvep: 90 kandidater testade, +2 D-serier (v0, FLAGGADE)
 
 Fullt djuptest av **5 kandidater per D-tomt undermått (18 × 5 = 90)**, varje kandidat hämtad mot källan.
-Full logg: [spar_D_svep_2026-06-08.md](done/spar_D_svep_2026-06-08.md). Byggt (rena/neutrala/officiella/riktningsklara):
+Full logg: [spar_D_svep_2026-06-08.md](spar_D_svep_2026-06-08.md). Byggt (rena/neutrala/officiella/riktningsklara):
 
 1. **`brukarnojdhet_hemtjanst`** (välfärd → omsorg_personal, up): Kolada U21468 brukarbedömning hemtjänst
    helhet, 2013-2025. **Öppnar omsorg_personal (D-tomt).** Ny kanonisk indikator (D-only). Commit `1cd6f56`.
@@ -758,7 +760,7 @@ m.fl. — se svep-rapporten §4.
 ### ✅ 2026-06-08 — Spår D natt: +2 D-serier + PDF-verifiering (v0, FLAGGADE)
 
 Full försökslogg (alla försök, lyckade + misslyckade, 5 parallella källsondering-agenter):
-[spar_D_nattrapport_2026-06-08.md](done/spar_D_nattrapport_2026-06-08.md). Sammanfattning:
+[spar_D_nattrapport_2026-06-08.md](spar_D_nattrapport_2026-06-08.md). Sammanfattning:
 
 1. **`overlevnad_svar_sjukdom`** (välfärd → vard_tillganglighet, up): Kolada **U70471** 30-dagarsöverlevnad
    tjocktarmscancer, 16 obs 2010-2025. **Välfärd 3→4 D-indikatorer.** Löser §5.3 (kvinkennial-problemet).

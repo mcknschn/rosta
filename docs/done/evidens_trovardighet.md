@@ -197,7 +197,7 @@ kräver ny indikator, §5.7) · ⚪ **target** (kontext, ingen riktning, betygss
 > ⚠️ **D-kolumnen ("mäts (D)") är INAKTUELL** efter Spår D (Tier 1–4 + djupsvep + V-Dem + integration +
 > försvar, t.o.m. 2026-06-12). Denna tabell behålls som **B-/begreppsmodell-vy och historik**; den
 > **auktoritativa, aktuella D-täckningsvyn** (38 serier / 28 av 35 undermått, alla 7 kategorier) är
-> [spar_D_datatackning.md §2.1](../spar_D_datatackning.md). Läs D-status därifrån, ej härifrån.
+> [spar_D_datatackning.md §2.1](spar_D_datatackning.md). Läs D-status därifrån, ej härifrån.
 *B-grön-svepet 2026-06-07 lade till 3 nya indikatorer (forsvarsfinansiering_upptrappning_mot_mal,
 kommunalt_brottsforebyggande_arbete, kontinuitet_i_omsorgen) och grönmarkerade 5 undermått (de 5 raderna
 markerade "byggt 2026-06-07"). Kvar utan B-grön: 2 undermått som **saknar indikator** (Industriell

@@ -243,7 +243,7 @@ högre coverage → mindre B-krympning → B får faktiskt genomslag.
   M/SD/L +0,04…0,09 — korrekt riktningsmönster för systemeffektivitet); 167 tester gröna, ruff rent, 0 cyrilliska. snapshot ej re-baselinad.
   **Sign-off-frågor: [evidens_trovardighet.md §8.7](done/evidens_trovardighet.md).** Väntar mänsklig sign-off.
 
-- ✅ **SPÅR D — Tier 1: ekonomi-D till full submåttstäckning 2026-06-07 (v0, FLAGGAD; tracker [spar_D_datatackning.md](spar_D_datatackning.md))** —
+- ✅ **SPÅR D — Tier 1: ekonomi-D till full submåttstäckning 2026-06-07 (v0, FLAGGAD; tracker [spar_D_datatackning.md](done/spar_D_datatackning.md))** —
   två SCB-NR-serier byggda (§5.1 B-only-beslutet hävt, din sign-off): **(1)** `naringslivets_investeringar` (ekonomi → foretagande_investeringar, up)
   ur SCB NR **TAB3610** Anvandningstyp=`BNAR` (näringslivets fasta bruttoinv, **fasta priser** ref 2020), ren `SCB_SERIES`-post, 1980–2024;
   **(2)** `hushallens_reala_disponibla_inkomst` (ekonomi → realloner_hushall, up) som kumulativt **realindex** ur SCB:s officiella reala tillväxttakt
@@ -254,7 +254,7 @@ högre coverage → mindre B-krympning → B får faktiskt genomslag.
   V/ekonomi NA korrekt. 170 tester gröna (+3 nya derived-tester), ruff rent, 0 främmande tecken. Coverage-strängen rättad (trygghet var felaktigt listad D-tom). snapshot
   re-baselinad + committad 2026-06-07 (`data:`-commit). v0 kvarstår tills formell granskning bumpar v0→v1.
 
-- ✅ **SPÅR D — Tier 2: `sfi_sprakkunskaper` → integration får sin första skola_sprak-D 2026-06-07 (v0, FLAGGAD; tracker [spar_D_datatackning.md](spar_D_datatackning.md))** —
+- ✅ **SPÅR D — Tier 2: `sfi_sprakkunskaper` → integration får sin första skola_sprak-D 2026-06-07 (v0, FLAGGAD; tracker [spar_D_datatackning.md](done/spar_D_datatackning.md))** —
   andel personer **godkända i sfi** (%, riktning up) ur SCB:s officiella sfi-statistik **TAB1814** ContentsCode `AA0003EB`, 1997–2023 (27 obs). Visade sig vara
   **S, inte M:** SCB (producenten) exponerar serien som ren PxWeb v2 → befintliga `scb.py`-adaptern räckte, ingen Skolverket-portaladapter behövdes (allowlistens
   "ej ren PxWeb"-antagande överspelat). **§5.2-semantiken avgjord av datan:** TAB1814 har båda §5.2-måtten som var sin ContentsCode — godkäntandel (`AA0003EB`, up) och
@@ -263,7 +263,7 @@ högre coverage → mindre B-krympning → B får faktiskt genomslag.
   (skola_sprak öppnat);** total D-täckning **21 → 22/56**. **Adversariell teckenkontroll:** sfi-godkäntandelen föll 2015→2020 under S+MP → S net −0,49 / MP −0,65
   (genuint negativt integrationsutfall på deras vakt); Tidö-partierna +1,0 men tunt underlag (ej överkrediterade); V = NA. **Isolerad effekt: endast integration rörd**
   (S −0,060, MP −0,079, M/KD/SD +0,067), TOTAL ±0,004…0,008, **ranking OFÖRÄNDRAD** (S>L>M>KD>MP>C>SD>V). ≈170 tester gröna, fas3-gate-invarianten håller. v0.
-- ✅ **SPÅR D — Tier 4: `personal_varnpliktiga` → FÖRSVARET FÅR SIN FÖRSTA D 2026-06-07 (v0, FLAGGAD; tracker [spar_D_datatackning.md](spar_D_datatackning.md))** —
+- ✅ **SPÅR D — Tier 4: `personal_varnpliktiga` → FÖRSVARET FÅR SIN FÖRSTA D 2026-06-07 (v0, FLAGGAD; tracker [spar_D_datatackning.md](done/spar_D_datatackning.md))** —
   antal värnpliktiga som **påbörjade grundutbildning** per kalenderår (riktning up) ur **Försvarsmaktens årsredovisning**, 2018–2025 (8 obs, 3 750→8 136). **Fyllde den
   strukturella nollan forsvar (0 → 1 D-täckt submått, militar_formaga); 6/7 kategorier har nu D (bara demokrati kvar). Total D-täckning 22 → 23/56.** **Designbeslut
   "varför inte båda" (sign-off):** FM (kalenderårsrent förmågemått) = värdebärande serie, **Plikt- och prövningsverkets inskrivna = oberoende korsverifiering** varje år
@@ -273,7 +273,7 @@ högre coverage → mindre B-krympning → B får faktiskt genomslag.
   M/KD/SD +1,0 Tidö-eran; L +0,75; C +0,36); **V = NA** (aldrig regering). **Isolerad effekt: endast forsvar rörd** (kategori +0,09…+0,25, TOTAL +0,014…+0,038),
   **ranking OFÖRÄNDRAD** (S>L>M>KD>MP>C>SD>V). Hela testsviten grön (8 nya golden + fas3-gate). **Källgräns v0:** 2018+2025 direkt ur FM ÅR, 2019/2021/2022/2024 korsverif.
   Pliktverket, 2020+2023 (inre monotona punkter) via Wikipedias FM-ÅR-citerade tabell → v1 vid direkt PDF-transkribering.
-- ✅ **SPÅR D — Tier 4: `fortroende_domstolar_myndigheter` → DEMOKRATIN FÅR SIN FÖRSTA D 2026-06-07 (v0, FLAGGAD; tracker [spar_D_datatackning.md](spar_D_datatackning.md))** —
+- ✅ **SPÅR D — Tier 4: `fortroende_domstolar_myndigheter` → DEMOKRATIN FÅR SIN FÖRSTA D 2026-06-07 (v0, FLAGGAD; tracker [spar_D_datatackning.md](done/spar_D_datatackning.md))** —
   andel med ganska/mycket stort **förtroende för rättsväsendet som helhet** (domstolar + polis/åklagare/kriminalvård, riktning up) ur **Brå NTU blad 5A:1**, 2017–2025
   (9 obs, 44→54 %). **Fyllde den sista strukturella nollan demokrati (0 → 1 D-täckt submått, korruption_tillit); ALLA 7 kategorier har nu D — exit-kriterium §6.2 uppfyllt.
   Total D-täckning 23 → 24/56.** **Källval S inte L (samma mönster som sfi):** trackern antog SOM (akademiskt, L-transkribering), men Brå NTU — *officiell* källa — har
@@ -286,7 +286,7 @@ högre coverage → mindre B-krympning → B får faktiskt genomslag.
 
 ### Levererat (2026-06-07 … 2026-06-12) — sammanfattning, detaljer i trackern
 
-- ✅ **Spår D-expansionen** (tracker: [spar_D_datatackning.md](spar_D_datatackning.md), svep/natt-
+- ✅ **Spår D-expansionen** (tracker: [spar_D_datatackning.md](done/spar_D_datatackning.md), svep/natt-
   rapporter arkiverade i [done/](done/)): 24/56 → **42/67 inlästa indikatorer, 28/35 undermått,
   alla 7 kategorier** — bl.a. försvar 1/5 → 3/5 (forsvarsvilja, personalstyrka, ukraina_stod),
   demokrati 1/5 → 5/5 (V-Dem-index ×4), integration 5/5, aterfall_i_brott, overlevnad_svar_sjukdom,
@@ -301,11 +301,11 @@ högre coverage → mindre B-krympning → B får faktiskt genomslag.
   det parallella B-breddsproblemet (spec §8) — en extra B-undermåttskrympning riskerar dubbelrabatt
   och ska specas separat nu när D-ändringen är mätt (se Spår B nedan).
 
-### Status per spår — ögonblicksbild 2026-06-04/05 (D- och B-raderna delvis överspelade; aktuellt D-läge i [spar_D_datatackning.md](spar_D_datatackning.md))
+### Status per spår — ögonblicksbild 2026-06-04/05 (D- och B-raderna delvis överspelade; aktuellt D-läge i [spar_D_datatackning.md](done/spar_D_datatackning.md))
 
 | Spår | Status |
 |------|--------|
-| **D** (datatäckning) | **Egen tracker: [spar_D_datatackning.md](spar_D_datatackning.md).** uppklaringsgrad + skjutningar/sprängningar (2026-06-03) + **Tier 1 ekonomi: naringslivets_investeringar + hushallens_reala_disponibla_inkomst (2026-06-07, v0)** + **Tier 2: sfi_sprakkunskaper (SCB TAB1814, integration→skola_sprak, 2026-06-07, v0)** + **Tier 4: personal_varnpliktiga (Försvarsmaktens ÅR, forsvar→militar_formaga) + fortroende_domstolar_myndigheter (Brå NTU 5A:1, demokrati→korruption_tillit), 2026-06-07, v0 — FÖRSVARETS + DEMOKRATINS FÖRSTA D** levererade → **24/56 D-serier i ALLA 7 kategorier (ingen längre D-tom; båda strukturella nollorna fyllda, exit-§6.2 ✅); ekonomi 4/4 D-bara, integration 3/5, försvar 1/5, demokrati 1/5 submått**. *(sfi: §5.2 avgjord av datan. varnpliktiga: "varför inte båda" = FM + Pliktverket korsverif. domstolsförtroende: S inte L — Brå NTU officiell krävs framför SOM akademisk.)* Återstående D-källor **uttömda/blockerade eller kräver M/L-bygge** (se [coverage_allowlist](../config/coverage_allowlist.yaml) + tracker Tier 3): overlevnad annuell (Socialstyrelsen, M, §5.3), realloner (Medlingsinstitutet, M, låg prio), Svk-derived klimat (gränsfall källregel, öppnar inget D-löst submått), samt blockerade (återfall PDF, handläggning interaktiv DB, demokrati int. index förbjudna, försvar sekretess). **De rena SCB/Kolada-årsserierna skördades i Fas 2–3; resten kräver ny adapter, transkribering, eller är otillåten.** |
+| **D** (datatäckning) | **Egen tracker: [spar_D_datatackning.md](done/spar_D_datatackning.md).** uppklaringsgrad + skjutningar/sprängningar (2026-06-03) + **Tier 1 ekonomi: naringslivets_investeringar + hushallens_reala_disponibla_inkomst (2026-06-07, v0)** + **Tier 2: sfi_sprakkunskaper (SCB TAB1814, integration→skola_sprak, 2026-06-07, v0)** + **Tier 4: personal_varnpliktiga (Försvarsmaktens ÅR, forsvar→militar_formaga) + fortroende_domstolar_myndigheter (Brå NTU 5A:1, demokrati→korruption_tillit), 2026-06-07, v0 — FÖRSVARETS + DEMOKRATINS FÖRSTA D** levererade → **24/56 D-serier i ALLA 7 kategorier (ingen längre D-tom; båda strukturella nollorna fyllda, exit-§6.2 ✅); ekonomi 4/4 D-bara, integration 3/5, försvar 1/5, demokrati 1/5 submått**. *(sfi: §5.2 avgjord av datan. varnpliktiga: "varför inte båda" = FM + Pliktverket korsverif. domstolsförtroende: S inte L — Brå NTU officiell krävs framför SOM akademisk.)* Återstående D-källor **uttömda/blockerade eller kräver M/L-bygge** (se [coverage_allowlist](../config/coverage_allowlist.yaml) + tracker Tier 3): overlevnad annuell (Socialstyrelsen, M, §5.3), realloner (Medlingsinstitutet, M, låg prio), Svk-derived klimat (gränsfall källregel, öppnar inget D-löst submått), samt blockerade (återfall PDF, handläggning interaktiv DB, demokrati int. index förbjudna, försvar sekretess). **De rena SCB/Kolada-årsserierna skördades i Fas 2–3; resten kräver ny adapter, transkribering, eller är otillåten.** |
 | **B** (evidens) | ✅ **B1 expertgranskad + sign-off 2026-06-05 → `version 1`** (se B1 nedan): party_positions (4 SUSPECT + 79-raders screening) och evidence_ledger (30 poster triade, 6 fixar) genomgångna; skarp betygsättning aktiverad. **B4-verktyg/grind ✅** + **B2 ekonomi ✅** (4/6) + **B2 demokrati ✅** (rättsstat: grundlagsskydd domstolarnas oberoende, votering KU2; personlig frihet: begränsa biometrisk realtidsövervakning, votering JuU28/Lagrådet, codex-granskat) levererade 2026-06-05 → demokrati **1/5 → 3/5**, **inga nära-binära kategorier kvar** (`b_near_binary_accepted` tom). Återstår otäckta (ej blockerare): transparens_ansvar (offentlighetsprincip = dubbelräkning, skippat) + yttrandefrihet_medier (acklamation/regeringslägesartefakt) — inget värdeneutralt mått funnet utan tilt/dubbelräkning. **Natt 2026-06-06:** B2 utvidgad till de 5 övriga kategorierna — **1 byggt** (forsvar/nato_medlemskap → försvar 3/5); välfärd (2/4), trygghet (3/5), klimat (3/5), integration (2/5) gav **0 rena mått** (alla föll på "sakreform=acklamation / namnupprop=vänster-höger-tilt"); kandidatlistor för morgondiskussion (se B2-natt-blocket nedan). **Dag 2026-06-06 (enhällighet-som-källa, [evidens_trovardighet.md](done/evidens_trovardighet.md)):** den nya tvåstegsmetoden (måttet ≠ positioneringen; acklamation slår bara ut *voteringskällan*, enhälligt betänkande = alla 8 supports) byggde **2 till** — **snabbforfarande → trygghet 4/5** och **invasiva arter → klimat 4/5** (FLAGGAD, codex förordade HOLD). 5 andra kandidater HOLD (steg-1-evidens saknas/mixed). 36 evidensposter / 192 ståndpunkter; 167 tester gröna. |
 | **A** (agerande) | **A1 (fler budgetår) ✅ LEVERERAD 2026-06-05** — budget 2023 + 2024 tillagda (snitt över 3 år), fyrlagrigt adversariellt verifierat (invariant + pandas + Codex + roll-call); se Levererat ovan. Korruptionsrisken som blockerade solo-körningen löstes via den oberoende cell-för-cell-kontrollen. A2 (votering→A) är en designfråga (viktning utan dubbelräkning av a2) → kräver beslut, deferrad. |
 | **C** (ansvar) | c2 finansiering uppskjutet (designbeslut, ej neutralt byggbart). C2 (mandatperiodskiften) + C3 (subnationell D) är modellutvidgningar utanför ren databredd → deferrade. |
@@ -325,7 +325,7 @@ nu utfördes — det var precis det villkoret planen ställde.*
 
 ## Spår D — Datatäckning (utfall, delpoäng D)
 
-> **📍 Aktiv tracker:** [spar_D_datatackning.md](spar_D_datatackning.md) — utbruten arbets-/
+> **📍 Aktiv tracker:** [spar_D_datatackning.md](done/spar_D_datatackning.md) — utbruten arbets-/
 > trackinglogg för Spår D (verifierat nuläge, byggbarhetsverdikt per indikator, öppna beslut,
 > exit-kriterier). Flyttas till `docs/done/` när spåret är klart. Vågtabellerna nedan behålls
 > som översikt; trackern är sanningskällan för status.
@@ -346,7 +346,7 @@ riktning) och annuella, så de matar `category_d` automatiskt.
 | `vard_i_tid` ⛔ | välfärd → vård tillgänglighet | stängd som `low_value` (Kolada U79142 avslutad 2023 + dubblerar vardkoer) |
 
 Trygghet gick därmed till 4/5 D-täckta undermått (förebyggande saknar indikator); välfärd 3/4.
-Detaljer + verifiering i [spar_D_datatackning.md](spar_D_datatackning.md).
+Detaljer + verifiering i [spar_D_datatackning.md](done/spar_D_datatackning.md).
 
 ### Våg 2 — nya adaptrar (källa finns men ej rent öppet API) ⚪
 
@@ -450,11 +450,11 @@ företagande/investeringar samt hushållens disponibla inkomst → ekonomi 4/6 t
   |---|---|---|---|
   | ekonomi | ~~1/5~~ **4/6** | ~~25 %~~ **73 %** | ✅ åtgärdad 2026-06-05 (FoU→produktivitet + företagande/investeringar + hushållens disponibla inkomst). 4 av 4 B-möjliga täckta; inflation/off.finanser = target (vilande) |
   | demokrati | ~~1/5 → 4/5~~ **5/5** *(2026-06-12: transparens_ansvar täckt via insyn_partifinansiering — låg/2018, KU39-uppgradering 2026-06-15)* | **100 %** | ✅ åtgärdad 2026-06-05/06: (1) grundlagsskydd domstolarnas oberoende → otillborlig_politisering (votering KU2), (2) begränsa biometrisk realtidsövervakning m. rättssäkerhet → overvakning_utan_rattssakerhet (votering JuU28, **blocköverskridande**, Lagrådet-ankrat), **(3) lagstadgat oberoende public service → mediefrihet (enhälligt bet. 2025/26:KrU2 p1, prop. 2024/25:166 ur parlamentarisk kommitté SOU 2024:34 → alla 8 supports; codex BUILD-WITH-CHANGES, mekanism-/designevidens low/low; demokrati 3/5 → 4/5)**. Kvar otäckt: transparens_ansvar (**stark återöppning: prop. 2025/26:258 insyn i politiska processer, bet. KU39, beslut 2026-06-15**) |
-  | valfard | ~~2/4~~ **4/4** *(2026-06-12: live-mätaren — kontinuitet/NHV-byggena 2026-06-07 täckte resten)* | **100 %** | tunn — vard_tillganglighet + omsorg_personal HOLD 2026-06-06, **djupsvep §5.8 (11 instrument) bekräftar**: vårdplats-slutrapport 2026:3 föll *nedåt* (villkor konsumerat), cancerscreening klarar steg 1 men faller på neutralitet (avslag/opp-reservationer); omsorg_personal = fel konstrukt (kompetens/heltid/kontinuitet ≠ omsättning). Väg till 4 kräver modellutvidgning → sign-off |
-  | forsvar | ~~2/5 → 3/5~~ **4/5** *(2026-06-12: +ekonomisk_ambition via forsvarsfinansiering-posten 2026-06-07)* | **95 %** | ✅ nato_ukraina tillagt 2026-06-06 (nato_medlemskap, votering UU16, Försvarsberedningen-källa, codex-granskat: V=opposes, MP=none pga reversering). Kvar: ekonomisk_ambition=target (ej B-bar), genomforbarhet_leverans (HOLD, **djupsvep §5.8/7 instrument bekräftar äkta steg-1-vägg**: ingen svensk källa kopplar instrument → kortad *leveranstid*, bara kapacitet/kostnad; ev. indikatorbyte FMV leveransindex → sign-off) |
-  | integration | ~~2/5~~ **3/5** *(2026-06-12: +skola_sprak via uppsokande_forskoleerbjudande, B3)* | **65 %** | tunn — normer_tillit + boendesegregation HOLD 2026-06-06, **djupsvep §5.8 (11 instrument) bekräftar**: boendesegr. = äkta steg-1-vägg (allt beskrivande/mixed), normer_tillit/KU4-tillgänglighet = perfekt steg 2 men fel konstrukt (förmåga att rösta ≠ uppmätt valdeltagande). Högsta bias-risk; väg till 4 kräver modellutvidgning → sign-off |
+  | valfard | ~~2/4~~ **4/4** *(2026-06-12: live-mätaren — kontinuitet/NHV-byggena 2026-06-07 täckte resten)* | **100 %** | tunn — vard_tillganglighet + omsorg_personal HOLD 2026-06-06, **djupsvep §5.8 (11 instrument) bekräftar**: vårdplats-slutrapport 2026:3 föll *nedåt* (villkor konsumerat), cancerscreening klarar steg 1 men faller på neutralitet (avslag/opp-reservationer); omsorg_personal = fel konstrukt (kompetens/heltid/kontinuitet ≠ omsättning). HOLD:arna STÄNGDA som BEVAKA med triggrar (sign-off 2026-06-12, beslutsunderlag H1+H2: cancerstrategi-enighet resp. Socialstyrelse-omsättningsmått) |
+  | forsvar | ~~2/5 → 3/5~~ **4/5** *(2026-06-12: +ekonomisk_ambition via forsvarsfinansiering-posten 2026-06-07)* | **95 %** | ✅ nato_ukraina tillagt 2026-06-06 (nato_medlemskap, votering UU16, Försvarsberedningen-källa, codex-granskat: V=opposes, MP=none pga reversering). Kvar: ekonomisk_ambition=target (ej B-bar), genomforbarhet_leverans (HOLD, **djupsvep §5.8/7 instrument bekräftar äkta steg-1-vägg**: ingen svensk källa kopplar instrument → kortad *leveranstid*, bara kapacitet/kostnad; sign-off 2026-06-12 (H6, A+B): BEVAKA utvärderings-triggern + FMV-leveransindex-sondering BEVILJAD och igångsatt) |
+  | integration | ~~2/5~~ **3/5** *(2026-06-12: +skola_sprak via uppsokande_forskoleerbjudande, B3)* | **65 %** | tunn — normer_tillit + boendesegregation HOLD 2026-06-06, **djupsvep §5.8 (11 instrument) bekräftar**: boendesegr. = äkta steg-1-vägg (allt beskrivande/mixed), normer_tillit/KU4-tillgänglighet = perfekt steg 2 men fel konstrukt (förmåga att rösta ≠ uppmätt valdeltagande). Högsta bias-risk; HOLD/BEVAKA bekräftad med loggade mandat-undantag (sign-off 2026-06-12, beslutsunderlag H3+H4; triggrar: enig GOTV/UbU-behandling resp. bosättningslag-betänkandet ~2027) |
   | trygghet | ~~3/5 → 4/5~~ **5/5** *(2026-06-12: +forebyggande via kommunalt_brottsforebyggande 2026-06-07)* | **100 %** | ✅ snabbforfarande_lagforing 2026-06-06 (handlaggningstid, Brå 2020:3, enhälligt bet. JuU2 p1 → alla 8 supports, codex BUILD-WITH-CHANGES). Kvar: forebyggande (saknar indikator) |
-  | klimat | ~~3/5~~ **4/5** | ~~70 %~~ **85 %** | ✅ atgarder_mot_invasiva_frammande_arter 2026-06-06 (hotade_arter_naturforlust, Naturvårdsverket, enhälligt bet. MJU13 p1 → alla 8 supports). **FLAGGAD: codex förordade HOLD; byggt v0 low/low — sign-off avgör.** Kvar: industriell_konkurrenskraft (saknar indikator) |
+  | klimat | ~~3/5~~ **4/5** | ~~70 %~~ **85 %** | ✅ atgarder_mot_invasiva_frammande_arter 2026-06-06 (hotade_arter_naturforlust, Naturvårdsverket, enhälligt bet. MJU13 p1 → alla 8 supports). **SIGN-OFF 2026-06-12 (H5, VAL A): BEHÅLL + AVFLAGGAD, v0→v1** (konsensus-mått, low/low kvarstår). Kvar: industriell_konkurrenskraft (saknar indikator) |
 
   Mål: ≥2–3 undermått med evidens per kategori; ingen kategori där en enda åtgärdstyp (eller ett undermått) kan
   svänga betyget mellan ytterlägen. **Verktyg/grind ✅ levererad 2026-06-05** (se B4-verktyg under Levererat):

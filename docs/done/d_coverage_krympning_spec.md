@@ -11,7 +11,7 @@
 > saknade delar av en kategori försvinna ur nämnaren. Den här specen gör D mer epistemiskt ärligt
 > genom att saknade icke-target-undermått bidrar neutralt i stället för att renormaliseras bort.
 >
-> Relaterat: [../spar_D_datatackning.md](../spar_D_datatackning.md), [evidens_trovardighet.md](evidens_trovardighet.md),
+> Relaterat: [../spar_D_datatackning.md](spar_D_datatackning.md), [evidens_trovardighet.md](evidens_trovardighet.md),
 > [../../config/scoring.yaml](../../config/scoring.yaml), [../../pipeline/scorerun.py](../../pipeline/scorerun.py),
 > [../../pipeline/score.py](../../pipeline/score.py).
 >

@@ -2105,7 +2105,8 @@ entries:
 # + inregränslagen, prop. 2025/26:41) togs i ACKLAMATION (@antal=0); utskottet: "inte väckts någon
 # motion som går emot regeringens lagförslag" -> alla 8 partier supports. Tiltade avslagspunkten (p2,
 # split C Nej / MP avstår) UTESLUTEN. Källa/riktning: Naturvårdsverket. Codex förordade HOLD ->
-# byggd som version 0 med konservativ kalibrering (low/low), FLAGGAD för sign-off (se evidensliggaren).
+# byggd med konservativ kalibrering (low/low). SIGN-OFF 2026-06-12 (beslutsunderlag H5, VAL A):
+# BEHÅLL + AVFLAGGAD, version 0 -> 1 (konsensus-mått, kan inte tilta).
 # ---------------------------------------------------------------------------------------------------
 - party: S
   policy_type: atgarder_mot_invasiva_frammande_arter
