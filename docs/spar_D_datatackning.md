@@ -358,13 +358,38 @@ effektdata behövdes (data.svk.se saknar ännu ett förbruknings-/effektbalansda
 gränsfallet blev aldrig aktuellt — Svk själv, ett statligt affärsverk, är källan rakt av).
 Transkriberad config + tunn reader (§7). §5.4 är därmed HELT stängd.
 
-### 5.5 `utslappsminskning_per_krona`: hur definieras "klimatutgift"?
+### 5.5 `utslappsminskning_per_krona`: hur definieras "klimatutgift"? 🟡 SONDERAD 2026-06-12 — REKOMMENDATION: STÄNG (bygg inte)
 Kräver en officiell, riktningsneutral nämnare (vilka UO/anslag räknas som klimatutgift?). Metodiskt
 omtvistat → designfråga, inte ren databredd.
+
+**Djupsondering 2026-06-12 (alla vägar faktiskt nedladdade + parsade):** (A) ESV/Statskontorets
+årsutfall UO20 1997–2025 extraherat — men UO20 är ~60 % icke-klimat (naturvård/havsmiljö/kemikalier)
+och missar UO21/UO22/UO7 + hela skattesidan; (B) eget anslags-urval = icke-officiell definition +
+seriebrott (Klimatbonus 2018–2024); (C) regeringens klimatredovisning (BP2026 bilaga 4, parsad) =
+kvalitativ, ingen utgiftsserie; (D) Klimatpolitiska rådet definierar ingen utgiftsram — visar tvärtom
+kärnproblemet: periodens största klimatfiskala beslut var SÄNKTA skatter (−17 mdkr, osynligt på
+utgiftssidan); (E) bonusfynd: SCB Miljöräkenskaper MI1301H (miljömotiverade subventioner, CEPA "luft
+och klimat", SOS-definierad, API, 2016–2025) = bästa möjliga nämnare men täcker enbart subventioner.
+**Kvarstående blockerare (gäller ALLA nämnare):** kvoten Δutsläpp/utgift premierar skattetung
+instrumentmix (CO2-skatt ≈ 0 kr på utgiftssidan — per egna liggaren det mest kostnadseffektiva
+instrumentet) → **ideologisk metodpreferens inbyggd i måttet, i strid med IDEA.md**; därtill
+attributionslagg, tecken-kollaps vid negativt Δutsläpp och belöning av låg utgift i sig.
+**Rekommendation: STÄNG som designbeslut** — undermåttet kostnadseffektivitet är redan D-täckt via
+`utslappsintensitet` (CO2/BNP) som fångar konceptet utan instrumentmix-bias. Om kvoten ändå önskas:
+minst dålig konstruktion = rullande 3-års Δterritoriella_utslapp ÷ MI1301H (flaggad v0) — avrådes.
+**Beslutsfråga: [beslutsunderlag_hold_2026-06-12.md](beslutsunderlag_hold_2026-06-12.md) (D1).**
 
 ---
 
 ## 6. Exit-kriterier (när flyttas dokumentet till `docs/done/`?)
+
+> **Exit-utvärdering 2026-06-12 (kväll):** §6.1 ✅ (Tier 1–4 byggda/beslutade; Tier 2-resten och
+> Tier 3 levererade i kväll), §6.2 ✅, §6.4 ✅, §6.3 ✅ *så när som på en post*: enda kvarvarande
+> icke-vägg-posten är `utslappsminskning_per_krona` (derived), som nu har en dokumenterad
+> stängningsrekommendation (§5.5) men väntar mänsklig sign-off (beslutsunderlag D1).
+> **Dokumentet arkiveras till `docs/done/` direkt efter D1-beslutet.** Inga `future`-poster
+> kvarstår i allowlisten (verifierat 2026-06-12: endast target/international/qualitative/no_api/
+> B-only/low_value + denna derived-post).
 
 Spår D anses **färdigt för arkivering** när:
 
