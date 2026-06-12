@@ -3002,3 +3002,109 @@ entries:
   date: '2022-06-08'
   confidence: high
   mapping_note: 'FLAGGAD v0 (B3 2026-06-12, kräver mänsklig slutgranskning). MP satt i regeringen som lade fram prop. 2021/22:132; röst Ja p1 (mot avslagsreservation 1 SD/KD) + Ja p2 (12 a § uppsökande verksamhet, votering BBBB09FC: MP 14 Ja) + p3 (12 b-12 c §§, acklamation) = supports hela instrumentet. TIDSREGEL §4: rm 2021/22, en session före föredragen period; ingen nyare votering om samma instrument. Votering p1 2022-06-08: MP 14 Ja / 0 Nej.'
+# ---------------------------------------------------------------------------------------------------
+# forsvar -> nato_interoperabilitet: DCA-avtalet med USA (prop. 2023/24:141, bet. 2023/24:UFöU1).
+# TILLAGD 2026-06-12 (B3 differentiering, beslutsunderlag B1, FLAGGAD v0 — kräver mänsklig
+# slutgranskning; användar-sign-off BYGG med Codex-villkoren). KÄLLHÄNVISNINGSKONSTRUKTION p1
+# (Codex-villkor 2): huvudvoteringen (punkt 1, 2024-06-18, 266 Ja / 37 Nej, kvalificerad 3/4-
+# majoritet enligt 10 kap. 6 § andra stycket RF) finns INTE i voteringlista-API:t (verifierat live
+# 2026-06-12: punkt=1 ger @antal=0; dokumentstatus HB01UFöU1 visar beslutstyp 'röstning', vinnare
+# 'utskottet', men tomt votering_id) -> källhänvisning via riksdagens beslutsnotis/dokumentstatus
+# HB01UFöU1 ('Kammaren biföll utskottets förslag') + korroboration från följdvoteringarna i samma
+# betänkande, OMVERIFIERADE LIVE via data.riksdagen.se/voteringlista (gruppering parti) 2026-06-12:
+# p5 'Nedrustning' (A1C914E0-4544-4389-A757-A5BEDDACBFD9): 266 Ja (S 93, M 60, SD 63, C 21, KD 16,
+# L 13) / 37 Nej (V 20, MP 15, 2 partilösa) — samma 266/37-konstellation som huvudvoteringen;
+# p3 'Kärnvapen' (A52E4273-06BE-4869-9C8D-078E3607B40F): V 20 Nej, MP 15 Avstår. STANCE-CONFIDENCE
+# max medium på alla p1-härledda rader (Codex-villkor 3). ANTI-STACKNING (Codex-villkor 1): DCA =
+# BILATERALT basavtal, nato_medlemskap = MULTILATERALT alliansmedlemskap — två distinkta instrument
+# på samma indikator (prejudikat: territoriella_utslapp). EJ BLOCKARTEFAKT: S röstade Ja med högern.
+# Evidens: evidence_ledger dca_avtal_usa -> nato_interoperabilitet (Försvarsberedningen Ds 2024:6).
+# ---------------------------------------------------------------------------------------------------
+- party: S
+  policy_type: dca_avtal_usa
+  stance: supports
+  source: 'Bet. 2023/24:UFöU1 punkt 1 (prop. 2023/24:141), riksdagens beslut 2024-06-18 + följdvoteringar p5/p3'
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HB01UFöU1.html
+  doc_id: 'HB01UFöU1 punkt 1 (huvudvotering saknas i votering-API) / korroboration: votering A1C914E0-4544-4389-A757-A5BEDDACBFD9 (p5) + A52E4273-06BE-4869-9C8D-078E3607B40F (p3)'
+  quote: 'Röst: Ja (p1) — "Riksdagen godkänner avtalet om försvarssamarbete mellan Konungariket Sveriges regering och Amerikas förenta staters regering (DCA-avtalet) och antar regeringens lagförslag." Kammaren biföll utskottets förslag 2024-06-18 (266 Ja / 37 Nej, kvalificerad 3/4-majoritet).'
+  date: '2024-06-18'
+  confidence: medium
+  mapping_note: 'FLAGGAD v0 (B3 2026-06-12, kräver mänsklig slutgranskning). S röstade Ja på godkännandet av DCA-avtalet. DCA -> kontinuerligt operativt försvarssamarbete med USA, förhandslagring, rättsliga förutsättningar för amerikanska styrkor -> nato_interoperabilitet UPP => supports. CONFIDENCE MEDIUM (Codex-villkor 3, ej high): p1-fördelningen härledd via beslutsnotis/dokumentstatus + följdvoteringskorroboration (p5 live-verifierad 2026-06-12: S 93 Ja), ej direkt ur roll-call-API (API-lucka för p1). EJ BLOCKARTEFAKT: S i opposition röstade Ja med regeringsunderlaget. ANTI-STACKNING: distinkt instrument från nato_medlemskap (bilateralt basavtal vs multilateralt alliansmedlemskap), se liggarposten.'
+- party: M
+  policy_type: dca_avtal_usa
+  stance: supports
+  source: 'Bet. 2023/24:UFöU1 punkt 1 (prop. 2023/24:141), riksdagens beslut 2024-06-18 + följdvoteringar p5/p3'
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HB01UFöU1.html
+  doc_id: 'HB01UFöU1 punkt 1 (huvudvotering saknas i votering-API) / korroboration: votering A1C914E0-4544-4389-A757-A5BEDDACBFD9 (p5) + A52E4273-06BE-4869-9C8D-078E3607B40F (p3)'
+  quote: 'Röst: Ja (p1) — "Riksdagen godkänner avtalet om försvarssamarbete mellan Konungariket Sveriges regering och Amerikas förenta staters regering (DCA-avtalet) och antar regeringens lagförslag." Kammaren biföll utskottets förslag 2024-06-18 (266 Ja / 37 Nej, kvalificerad 3/4-majoritet).'
+  date: '2024-06-18'
+  confidence: medium
+  mapping_note: 'FLAGGAD v0 (B3 2026-06-12, kräver mänsklig slutgranskning). Regeringsparti (M) bakom prop. 2023/24:141 (undertecknade avtalet 2023-12-05) + röst Ja på godkännandet => supports. CONFIDENCE MEDIUM (Codex-villkor 3): p1-fördelningen härledd via beslutsnotis + följdvoteringskorroboration (p5 live-verifierad 2026-06-12: M 60 Ja), ej direkt ur roll-call-API.'
+- party: SD
+  policy_type: dca_avtal_usa
+  stance: supports
+  source: 'Bet. 2023/24:UFöU1 punkt 1 (prop. 2023/24:141), riksdagens beslut 2024-06-18 + följdvoteringar p5/p3'
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HB01UFöU1.html
+  doc_id: 'HB01UFöU1 punkt 1 (huvudvotering saknas i votering-API) / korroboration: votering A1C914E0-4544-4389-A757-A5BEDDACBFD9 (p5) + A52E4273-06BE-4869-9C8D-078E3607B40F (p3)'
+  quote: 'Röst: Ja (p1) — "Riksdagen godkänner avtalet om försvarssamarbete mellan Konungariket Sveriges regering och Amerikas förenta staters regering (DCA-avtalet) och antar regeringens lagförslag." Kammaren biföll utskottets förslag 2024-06-18 (266 Ja / 37 Nej, kvalificerad 3/4-majoritet).'
+  date: '2024-06-18'
+  confidence: medium
+  mapping_note: 'FLAGGAD v0 (B3 2026-06-12, kräver mänsklig slutgranskning). SD (samarbetsparti, Tidöavtalet) attribueras via röst Ja på godkännandet (metoddok §5: explicit votering) => supports. Ingen SD-reservation i ärendet. CONFIDENCE MEDIUM (Codex-villkor 3): p1-fördelningen härledd via beslutsnotis + följdvoteringskorroboration (p5 live-verifierad 2026-06-12: SD 63 Ja), ej direkt ur roll-call-API.'
+- party: C
+  policy_type: dca_avtal_usa
+  stance: supports
+  source: 'Bet. 2023/24:UFöU1 punkt 1 (prop. 2023/24:141), riksdagens beslut 2024-06-18 + följdvoteringar p5/p3'
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HB01UFöU1.html
+  doc_id: 'HB01UFöU1 punkt 1 (huvudvotering saknas i votering-API) / korroboration: votering A1C914E0-4544-4389-A757-A5BEDDACBFD9 (p5) + A52E4273-06BE-4869-9C8D-078E3607B40F (p3)'
+  quote: 'Röst: Ja (p1) — "Riksdagen godkänner avtalet om försvarssamarbete mellan Konungariket Sveriges regering och Amerikas förenta staters regering (DCA-avtalet) och antar regeringens lagförslag." Kammaren biföll utskottets förslag 2024-06-18 (266 Ja / 37 Nej, kvalificerad 3/4-majoritet).'
+  date: '2024-06-18'
+  confidence: medium
+  mapping_note: 'FLAGGAD v0 (B3 2026-06-12, kräver mänsklig slutgranskning). C röstade Ja på godkännandet av DCA-avtalet => supports. CONFIDENCE MEDIUM (Codex-villkor 3): p1-fördelningen härledd via beslutsnotis + följdvoteringskorroboration (p5 live-verifierad 2026-06-12: C 21 Ja), ej direkt ur roll-call-API.'
+- party: V
+  policy_type: dca_avtal_usa
+  stance: opposes
+  source: 'Avvikande mening (V), Försvarsberedningen Ds 2024:6 bilaga 4 + bet. 2023/24:UFöU1 punkt 1 (nej-röst, korroborerad via följdvoteringar p5/p3)'
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HCB46.html
+  doc_id: 'HCB46 (Ds 2024:6 bilaga 4, avvikande mening V) + HB01UFöU1 punkt 1 / korroboration: votering A1C914E0-4544-4389-A757-A5BEDDACBFD9 (p5: V 20 Nej) + A52E4273-06BE-4869-9C8D-078E3607B40F (p3: V 20 Nej)'
+  quote: 'Vänsterpartiet är motståndare till det så kallade DCA-avtalet, om försvarssamarbete med USA. Avtalet öppnar för att amerikanska soldater kan baseras i Sverige, dessutom med straffrihet om de begår brott, och innebär inte ett tydligt nej till kärnvapen på svenskt territorium.'
+  date: '2024-06-18'
+  confidence: medium
+  mapping_note: 'FLAGGAD v0 (B3 2026-06-12, kräver mänsklig slutgranskning). INSTRUMENT-EXAKT opposes: V:s avvikande mening i Ds 2024:6 bilaga 4, citat ordagrant omverifierat mot fulltexten 2026-06-12 (fulltextens radbrytning avstavar "DCA-avtalet"). Nej-röst p1 korroborerad via följdvoteringarna (live-verifierade 2026-06-12): p5 V 20 Nej, p3 V 20 Nej. Opposes -> _FLIP -> negativt B-bidrag på nato_interoperabilitet. CONFIDENCE MEDIUM (Codex-villkor 3): p1-härledd rad. ANTI-STACKNING (Codex-villkor 1, sign-off:ad avvägning 2026-06-12): detta är V:s ANDRA opposes-post på indikatorn (utöver nato_medlemskap) — godtagbart eftersom DCA (bilateralt basavtal) och Nato-medlemskap (multilateralt alliansmedlemskap) är två distinkta instrument med var sitt distinkt V-ställningstagande (prejudikat: territoriella_utslapp med reduktionsplikt + koldioxidskatt); differentieringsvinsten MP vägde tyngre. V:s DCA-motstånd är AKTUELLT (Ds 2024:6 april 2024 + nej-röster juni 2024), ej föråldrat.'
+- party: KD
+  policy_type: dca_avtal_usa
+  stance: supports
+  source: 'Bet. 2023/24:UFöU1 punkt 1 (prop. 2023/24:141), riksdagens beslut 2024-06-18 + följdvoteringar p5/p3'
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HB01UFöU1.html
+  doc_id: 'HB01UFöU1 punkt 1 (huvudvotering saknas i votering-API) / korroboration: votering A1C914E0-4544-4389-A757-A5BEDDACBFD9 (p5) + A52E4273-06BE-4869-9C8D-078E3607B40F (p3)'
+  quote: 'Röst: Ja (p1) — "Riksdagen godkänner avtalet om försvarssamarbete mellan Konungariket Sveriges regering och Amerikas förenta staters regering (DCA-avtalet) och antar regeringens lagförslag." Kammaren biföll utskottets förslag 2024-06-18 (266 Ja / 37 Nej, kvalificerad 3/4-majoritet).'
+  date: '2024-06-18'
+  confidence: medium
+  mapping_note: 'FLAGGAD v0 (B3 2026-06-12, kräver mänsklig slutgranskning). Regeringsparti (KD) bakom prop. 2023/24:141 + röst Ja på godkännandet => supports. CONFIDENCE MEDIUM (Codex-villkor 3): p1-fördelningen härledd via beslutsnotis + följdvoteringskorroboration (p5 live-verifierad 2026-06-12: KD 16 Ja), ej direkt ur roll-call-API.'
+- party: L
+  policy_type: dca_avtal_usa
+  stance: supports
+  source: 'Bet. 2023/24:UFöU1 punkt 1 (prop. 2023/24:141), riksdagens beslut 2024-06-18 + följdvoteringar p5/p3'
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HB01UFöU1.html
+  doc_id: 'HB01UFöU1 punkt 1 (huvudvotering saknas i votering-API) / korroboration: votering A1C914E0-4544-4389-A757-A5BEDDACBFD9 (p5) + A52E4273-06BE-4869-9C8D-078E3607B40F (p3)'
+  quote: 'Röst: Ja (p1) — "Riksdagen godkänner avtalet om försvarssamarbete mellan Konungariket Sveriges regering och Amerikas förenta staters regering (DCA-avtalet) och antar regeringens lagförslag." Kammaren biföll utskottets förslag 2024-06-18 (266 Ja / 37 Nej, kvalificerad 3/4-majoritet).'
+  date: '2024-06-18'
+  confidence: medium
+  mapping_note: 'FLAGGAD v0 (B3 2026-06-12, kräver mänsklig slutgranskning). Regeringsparti (L) bakom prop. 2023/24:141 + röst Ja på godkännandet => supports. CONFIDENCE MEDIUM (Codex-villkor 3): p1-fördelningen härledd via beslutsnotis + följdvoteringskorroboration (p5 live-verifierad 2026-06-12: L 13 Ja), ej direkt ur roll-call-API.'
+- party: MP
+  policy_type: dca_avtal_usa
+  stance: opposes
+  source: 'Avvikande mening (MP), Försvarsberedningen Ds 2024:6 bilaga 4 + bet. 2023/24:UFöU1 punkt 1 (nej-röst, korroborerad via följdvoteringar p5/p3)'
+  source_type: votering
+  source_url: https://data.riksdagen.se/dokument/HCB46.html
+  doc_id: 'HCB46 (Ds 2024:6 bilaga 4, avvikande mening MP) + HB01UFöU1 punkt 1 / korroboration: votering A1C914E0-4544-4389-A757-A5BEDDACBFD9 (p5: MP 15 Nej) + A52E4273-06BE-4869-9C8D-078E3607B40F (p3: MP 15 Avstår)'
+  quote: 'Regeringen undertecknade ett försvarssamarbetsavtal (Defence Cooperation Agreement, DCA), med USA i december. Riksdagen kommer att rösta om avtalet i juni. Miljöpartiet kommer att rösta nej till avtalet.'
+  date: '2024-06-18'
+  confidence: medium
+  mapping_note: 'FLAGGAD v0 (B3 2026-06-12, kräver mänsklig slutgranskning). INSTRUMENT-EXAKT opposes: MP:s avvikande mening i Ds 2024:6 bilaga 4, citat ordagrant omverifierat mot fulltexten 2026-06-12. Nej-röst p1 korroborerad via följdvoteringarna (live-verifierade 2026-06-12): p5 MP 15 Nej, p3 MP 15 Avstår. VILLKORAT NEJ (bunten-regeln §2, nyansen ändrar inte stance): MP:s nej är villkorat av en kärnvapenförbudslag — bilaga 4 ordagrant: "Miljöpartiet kan inte stödja ett avtal som lämnar en avgörande fråga som kärnvapenfrågan öppen" och "Vi vill se en lagstiftning som förbjuder införsel av kärnvapen på svenskt territorium för att kunna stå bakom avtalet" — partiet motsatte sig instrumentet i den form det beslutades. Detta är MP:s FÖRSTA AKTUELLA position på indikatorn nato_interoperabilitet (nato_medlemskap = none pga reversering till Nato-stöd; DCA-motståndet är däremot aktuellt: april + juni 2024, ingen senare reversering funnen). Opposes -> _FLIP -> negativt B-bidrag. CONFIDENCE MEDIUM (Codex-villkor 3): p1-härledd rad. ANTI-STACKNING: DCA distinkt instrument från nato_medlemskap (bilateralt basavtal vs multilateralt alliansmedlemskap) — MP illustrerar själva distinktionen (stödjer medlemskapet, röstade nej till DCA), se liggarposten.'

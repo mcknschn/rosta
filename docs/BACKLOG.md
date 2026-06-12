@@ -435,8 +435,19 @@ företagande/investeringar samt hushållens disponibla inkomst → ekonomi 4/6 t
   stöd för snävare instrument i samma familj → none tills instrument-exakt aktuell källa). Scoreeffekt
   (förklarbar, ranking OFÖRÄNDRAD S>L>M>KD>MP>C>SD>V): ekonomi-B rör alla 8 (V −0,22 via opposes-flip);
   integration: KD −0,15 / SD −0,09 (coverage-nämnare 5→6 utan ny rad = modellkonsekvent 'vet ej'-krympning
-  mot neutral), MP +0,13 (thin-coverage-flaggan släckt). **C2 DCA + C4 preventiva = HOLD för sign-off**
-  (se [beslutsunderlag_hold_2026-06-12.md](beslutsunderlag_hold_2026-06-12.md)).
+  mot neutral), MP +0,13 (thin-coverage-flaggan släckt). **(3) `dca_avtal_usa`** (forsvar →
+  nato_interoperabilitet; Försvarsberedningen Ds 2024:6, medium/high) **byggd 2026-06-12 efter
+  användar-sign-off av beslutsfråga B1** med Codex-villkoren (anti-stacknings-not: DCA bilateralt
+  basavtal ≠ nato_medlemskap multilateralt alliansmedlemskap, prejudikat territoriella_utslapp;
+  p1-källkonstruktion: huvudvoteringen bet. 2023/24:UFöU1 p1 [266–37, 3/4-majoritet] saknas i
+  voteringlista-API:t → beslutsnotis HB01UFöU1 + följdvoteringarna p5/p3 live-omverifierade;
+  stance-confidence max medium): 6 supports S/M/SD/C/KD/L, **V + MP opposes** (avvikande meningar
+  Ds 2024:6 bilaga 4, citat ordagrant verifierade; MP:s villkorade nej = bunten-regeln §2, MP:s
+  FÖRSTA aktuella position på indikatorn). Scoreeffekt (förklarbar, ranking OFÖRÄNDRAD): C/KD
+  forsvar +0,04 (coverage 3/4→4/5), MP forsvar −0,13 (ny opposes + 1/4→2/5), S/M/SD/L/V oförändrade
+  (indikatorcell redan mättad ±1, coverage-kvot 1,0). **Kvar endast B2 = `rattssakerhetsgarantier_preventiva_tvangsmedel`
+  HOLD** (se [beslutsunderlag_hold_2026-06-12.md](beslutsunderlag_hold_2026-06-12.md) +
+  [b3_kandidatregister_2026-06-12.md](b3_kandidatregister_2026-06-12.md) §9.2).
 - **B4 — Kategori-täckningsaudit (anti-binär garanti)** ⚪ *(ny 2026-06-05)* — säkerställ att **ingen
   kategoris B vilar på ett enda undermått**. Täckningsaudit 2026-06-05 (aktiva åtgärdstyper × undermått de matar):
 

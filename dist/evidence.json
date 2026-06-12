@@ -319,6 +319,11 @@
     "source_name": "Riksdagen",
     "statement": "C driver behandlingsprogram_kriminalvard; evidens (authority_evaluation) talar för riktning positive på aterfall_i_brott."
   },
+  "claim:evidence_effect:C:dca_avtal_usa:forsvar:nato_interoperabilitet": {
+    "kind": "claim",
+    "source_name": "Riksdagen",
+    "statement": "C driver dca_avtal_usa; evidens (authority_evaluation) talar för riktning positive på nato_interoperabilitet."
+  },
   "claim:evidence_effect:C:fast_omsorgskontakt:valfard:kontinuitet_i_omsorgen": {
     "kind": "claim",
     "source_name": "Bet. 2021/22",
@@ -483,6 +488,11 @@
     "kind": "claim",
     "source_name": "Riksdagen",
     "statement": "KD driver behandlingsprogram_kriminalvard; evidens (authority_evaluation) talar för riktning positive på aterfall_i_brott."
+  },
+  "claim:evidence_effect:KD:dca_avtal_usa:forsvar:nato_interoperabilitet": {
+    "kind": "claim",
+    "source_name": "Riksdagen",
+    "statement": "KD driver dca_avtal_usa; evidens (authority_evaluation) talar för riktning positive på nato_interoperabilitet."
   },
   "claim:evidence_effect:KD:fast_omsorgskontakt:valfard:kontinuitet_i_omsorgen": {
     "kind": "claim",
@@ -664,6 +674,11 @@
     "source_name": "Riksdagen",
     "statement": "L driver behandlingsprogram_kriminalvard; evidens (authority_evaluation) talar för riktning positive på aterfall_i_brott."
   },
+  "claim:evidence_effect:L:dca_avtal_usa:forsvar:nato_interoperabilitet": {
+    "kind": "claim",
+    "source_name": "Riksdagen",
+    "statement": "L driver dca_avtal_usa; evidens (authority_evaluation) talar för riktning positive på nato_interoperabilitet."
+  },
   "claim:evidence_effect:L:fast_omsorgskontakt:valfard:kontinuitet_i_omsorgen": {
     "kind": "claim",
     "source_name": "Bet. 2021/22",
@@ -844,6 +859,11 @@
     "source_name": "Riksdagen",
     "statement": "M driver behandlingsprogram_kriminalvard; evidens (authority_evaluation) talar för riktning positive på aterfall_i_brott."
   },
+  "claim:evidence_effect:M:dca_avtal_usa:forsvar:nato_interoperabilitet": {
+    "kind": "claim",
+    "source_name": "Riksdagen",
+    "statement": "M driver dca_avtal_usa; evidens (authority_evaluation) talar för riktning positive på nato_interoperabilitet."
+  },
   "claim:evidence_effect:M:fast_omsorgskontakt:valfard:kontinuitet_i_omsorgen": {
     "kind": "claim",
     "source_name": "Bet. 2021/22",
@@ -1008,6 +1028,11 @@
     "kind": "claim",
     "source_name": "Riksdagen",
     "statement": "MP driver behandlingsprogram_kriminalvard; evidens (authority_evaluation) talar för riktning positive på aterfall_i_brott."
+  },
+  "claim:evidence_effect:MP:dca_avtal_usa:forsvar:nato_interoperabilitet": {
+    "kind": "claim",
+    "source_name": "Avvikande mening (MP), Försvarsberedningen Ds 2024",
+    "statement": "MP motsätter sig dca_avtal_usa; evidens (authority_evaluation) talar för riktning negative på nato_interoperabilitet."
   },
   "claim:evidence_effect:MP:fast_omsorgskontakt:valfard:kontinuitet_i_omsorgen": {
     "kind": "claim",
@@ -1179,6 +1204,11 @@
     "source_name": "Riksdagen",
     "statement": "S driver behandlingsprogram_kriminalvard; evidens (authority_evaluation) talar för riktning positive på aterfall_i_brott."
   },
+  "claim:evidence_effect:S:dca_avtal_usa:forsvar:nato_interoperabilitet": {
+    "kind": "claim",
+    "source_name": "Riksdagen",
+    "statement": "S driver dca_avtal_usa; evidens (authority_evaluation) talar för riktning positive på nato_interoperabilitet."
+  },
   "claim:evidence_effect:S:fast_omsorgskontakt:valfard:kontinuitet_i_omsorgen": {
     "kind": "claim",
     "source_name": "Bet. 2021/22",
@@ -1338,6 +1368,11 @@
     "kind": "claim",
     "source_name": "Votering bet. 2025/26",
     "statement": "SD motsätter sig begransa_biometrisk_realtidsovervakning_rattssakerhet; evidens (authority_evaluation) talar för riktning negative på overvakning_utan_rattssakerhet."
+  },
+  "claim:evidence_effect:SD:dca_avtal_usa:forsvar:nato_interoperabilitet": {
+    "kind": "claim",
+    "source_name": "Riksdagen",
+    "statement": "SD driver dca_avtal_usa; evidens (authority_evaluation) talar för riktning positive på nato_interoperabilitet."
   },
   "claim:evidence_effect:SD:fast_omsorgskontakt:valfard:kontinuitet_i_omsorgen": {
     "kind": "claim",
@@ -1508,6 +1543,11 @@
     "kind": "claim",
     "source_name": "Riksdagen",
     "statement": "V driver behandlingsprogram_kriminalvard; evidens (authority_evaluation) talar för riktning positive på aterfall_i_brott."
+  },
+  "claim:evidence_effect:V:dca_avtal_usa:forsvar:nato_interoperabilitet": {
+    "kind": "claim",
+    "source_name": "Avvikande mening (V), Försvarsberedningen Ds 2024",
+    "statement": "V motsätter sig dca_avtal_usa; evidens (authority_evaluation) talar för riktning negative på nato_interoperabilitet."
   },
   "claim:evidence_effect:V:fast_omsorgskontakt:valfard:kontinuitet_i_omsorgen": {
     "kind": "claim",

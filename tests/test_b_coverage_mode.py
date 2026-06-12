@@ -206,10 +206,11 @@ def test_ny_mode_ger_viktad_djuptackning_handraknat(monkeypatch: pytest.MonkeyPa
     s_eco = sc["S"]["ekonomi"]
     assert "B_coverage_73/73" in s_eco["flags"]
     assert not any("73.0" in f for f in s_eco["flags"])
-    # MP/forsvar: 1/4 kodbara typer, ett per undermått à 35/25/20/15 + B-vägg (5) -> cov_B
-    # = 0.25 < 0.5 -> tunn täckning, säkerhet låg
+    # MP/forsvar: ekonomisk_ambition fullt kodad (25) + nato_ukraina 1/2 kodbara typer
+    # (dca_avtal_usa kodad opposes, nato_medlemskap=none -> 15 * 1/2 = 7.5; B3
+    # dca_avtal_usa 2026-06-12) -> cov_B = 0.325 < 0.5 -> tunn täckning, säkerhet låg
     mp_for = sc["MP"]["forsvar"]
-    assert "B_coverage_25/100" in mp_for["flags"]
+    assert "B_coverage_32.5/100" in mp_for["flags"]
     assert "B_thin_coverage" in mp_for["flags"]
     assert mp_for["confidence"]["B"] == "low"
     con.close()

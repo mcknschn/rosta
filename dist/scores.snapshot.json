@@ -1,10 +1,10 @@
 {
   "totals": {
-    "C": 3.094,
-    "KD": 3.156,
+    "C": 3.101,
+    "KD": 3.163,
     "L": 3.405,
     "M": 3.33,
-    "MP": 3.136,
+    "MP": 3.116,
     "S": 3.703,
     "SD": 2.735,
     "V": 2.576
@@ -37,10 +37,10 @@
       ]
     },
     "C/forsvar": {
-      "score": 3.286,
+      "score": 3.33,
       "flags": [
         "A_a1_active",
-        "B_coverage_3/4",
+        "B_coverage_4/5",
         "C_national_only_by_design",
         "D_coverage_55/100",
         "D_thin_coverage"
@@ -95,10 +95,10 @@
       ]
     },
     "KD/forsvar": {
-      "score": 3.835,
+      "score": 3.878,
       "flags": [
         "A_a1_active",
-        "B_coverage_3/4",
+        "B_coverage_4/5",
         "C_national_only_by_design",
         "D_coverage_70/100",
         "D_thin_coverage"
@@ -157,7 +157,7 @@
       "score": 3.987,
       "flags": [
         "A_a1_active",
-        "B_coverage_4/4",
+        "B_coverage_5/5",
         "C_national_only_by_design",
         "D_coverage_70/100",
         "D_thin_coverage"
@@ -215,7 +215,7 @@
       "score": 3.253,
       "flags": [
         "A_a1_active",
-        "B_coverage_4/4",
+        "B_coverage_5/5",
         "C_national_only_by_design",
         "D_coverage_70/100",
         "D_thin_coverage"
@@ -271,10 +271,10 @@
       ]
     },
     "MP/forsvar": {
-      "score": 2.51,
+      "score": 2.379,
       "flags": [
         "A_a1_active",
-        "B_coverage_1/4",
+        "B_coverage_2/5",
         "B_thin_coverage",
         "C_national_only_by_design",
         "D_coverage_55/100",
@@ -333,7 +333,7 @@
       "score": 3.435,
       "flags": [
         "A_a1_active",
-        "B_coverage_4/4",
+        "B_coverage_5/5",
         "C_national_only_by_design",
         "D_coverage_70/100",
         "D_thin_coverage"
@@ -391,7 +391,7 @@
       "score": 3.436,
       "flags": [
         "A_a1_active",
-        "B_coverage_4/4",
+        "B_coverage_5/5",
         "C_national_only_by_design",
         "D_coverage_70/100",
         "D_thin_coverage"
@@ -450,7 +450,7 @@
       "score": 2.581,
       "flags": [
         "A_a1_active",
-        "B_coverage_4/4",
+        "B_coverage_5/5",
         "C_national_only_by_design",
         "D_not_applicable"
       ]

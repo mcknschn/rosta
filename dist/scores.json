@@ -86,7 +86,7 @@
     }
   ],
   "meta": {
-    "coverage": "Preliminär: A=agerande (a2 motionsprioritering, andel av egna motioner, full; a1 budgetprioritering gated — aktiv för 7/7 kategorier ur officiella utgiftsramar (2023–2025), expertgranskad v1 2026-06-05, annars a2-fallback); C=makt per kategori: nationell regeringsmakt blandad med subnationell makt (SKR-styren, 21 regioner + 290 kommuner × 3 mandatperioder) via en per-kategori region/kommun-split efter lagstadgat ansvar; forsvar nationellt per design; c2 finansiering ännu ej byggd (C=c1 makt); D=resultatattribution från officiella årsserier för ALLA 7 kategorier (ekonomi/välfärd/trygghet/klimat/integration/försvar/demokrati) där partiet haft nationell makt (medel säkerhet, ej tillämplig för partier utan makt i fönstret, t.ex. V). B är AKTIVERAD för ALLA 7 kategorier via 261 källbelagda, adversariellt verifierade + panel-harmoniserade partiståndpunkter (riksdagsvotering/motion, Fas 4c); coverage-viktad (B krymps mot neutral efter andel kodade åtgärdstyper, B_thin_coverage-flagga vid tunn täckning). party_positions + evidence_ledger expertgranskade v1 (mänsklig sign-off 2026-06-05).",
+    "coverage": "Preliminär: A=agerande (a2 motionsprioritering, andel av egna motioner, full; a1 budgetprioritering gated — aktiv för 7/7 kategorier ur officiella utgiftsramar (2023–2025), expertgranskad v1 2026-06-05, annars a2-fallback); C=makt per kategori: nationell regeringsmakt blandad med subnationell makt (SKR-styren, 21 regioner + 290 kommuner × 3 mandatperioder) via en per-kategori region/kommun-split efter lagstadgat ansvar; forsvar nationellt per design; c2 finansiering ännu ej byggd (C=c1 makt); D=resultatattribution från officiella årsserier för ALLA 7 kategorier (ekonomi/välfärd/trygghet/klimat/integration/försvar/demokrati) där partiet haft nationell makt (medel säkerhet, ej tillämplig för partier utan makt i fönstret, t.ex. V). B är AKTIVERAD för ALLA 7 kategorier via 269 källbelagda, adversariellt verifierade + panel-harmoniserade partiståndpunkter (riksdagsvotering/motion, Fas 4c); coverage-viktad (B krymps mot neutral efter andel kodade åtgärdstyper, B_thin_coverage-flagga vid tunn täckning). party_positions + evidence_ledger expertgranskade v1 (mänsklig sign-off 2026-06-05).",
     "generated": "2026-06-12",
     "model_version": 1,
     "parties": [
@@ -181,8 +181,8 @@
       },
       "forsvar": {
         "ci": [
-          2.847,
-          3.725
+          2.891,
+          3.769
         ],
         "claim_refs": [
           "claim:action:C:forsvar:motioner",
@@ -199,7 +199,7 @@
         ],
         "components": {
           "A": 3.286,
-          "B": 4.375,
+          "B": 4.5,
           "C": 0.714,
           "D": 3.334
         },
@@ -211,13 +211,13 @@
         },
         "evidence_refs": [],
         "flags": [
-          "B_coverage_3/4",
+          "B_coverage_4/5",
           "A_a1_active",
           "C_national_only_by_design",
           "D_coverage_55/100",
           "D_thin_coverage"
         ],
-        "score": 3.286
+        "score": 3.33
       },
       "integration": {
         "ci": [
@@ -451,8 +451,8 @@
       },
       "forsvar": {
         "ci": [
-          3.396,
-          4.273
+          3.44,
+          4.317
         ],
         "claim_refs": [
           "claim:action:KD:forsvar:motioner",
@@ -469,7 +469,7 @@
         ],
         "components": {
           "A": 3.929,
-          "B": 4.375,
+          "B": 4.5,
           "C": 2.5,
           "D": 3.57
         },
@@ -481,13 +481,13 @@
         },
         "evidence_refs": [],
         "flags": [
-          "B_coverage_3/4",
+          "B_coverage_4/5",
           "A_a1_active",
           "C_national_only_by_design",
           "D_coverage_70/100",
           "D_thin_coverage"
         ],
-        "score": 3.835
+        "score": 3.878
       },
       "integration": {
         "ci": [
@@ -755,7 +755,7 @@
         },
         "evidence_refs": [],
         "flags": [
-          "B_coverage_4/4",
+          "B_coverage_5/5",
           "A_a1_active",
           "C_national_only_by_design",
           "D_coverage_70/100",
@@ -1029,7 +1029,7 @@
         },
         "evidence_refs": [],
         "flags": [
-          "B_coverage_4/4",
+          "B_coverage_5/5",
           "A_a1_active",
           "C_national_only_by_design",
           "D_coverage_70/100",
@@ -1272,8 +1272,8 @@
       },
       "forsvar": {
         "ci": [
-          1.914,
-          3.106
+          1.782,
+          2.975
         ],
         "claim_refs": [
           "claim:action:MP:forsvar:motioner",
@@ -1291,7 +1291,7 @@
         ],
         "components": {
           "A": 1.143,
-          "B": 3.125,
+          "B": 2.75,
           "C": 4.286,
           "D": 3.162
         },
@@ -1303,14 +1303,14 @@
         },
         "evidence_refs": [],
         "flags": [
-          "B_coverage_1/4",
+          "B_coverage_2/5",
           "B_thin_coverage",
           "A_a1_active",
           "C_national_only_by_design",
           "D_coverage_55/100",
           "D_thin_coverage"
         ],
-        "score": 2.51
+        "score": 2.379
       },
       "integration": {
         "ci": [
@@ -1584,7 +1584,7 @@
         },
         "evidence_refs": [],
         "flags": [
-          "B_coverage_4/4",
+          "B_coverage_5/5",
           "A_a1_active",
           "C_national_only_by_design",
           "D_coverage_70/100",
@@ -1853,7 +1853,7 @@
         },
         "evidence_refs": [],
         "flags": [
-          "B_coverage_4/4",
+          "B_coverage_5/5",
           "A_a1_active",
           "C_national_only_by_design",
           "D_coverage_70/100",
@@ -2109,7 +2109,7 @@
         },
         "evidence_refs": [],
         "flags": [
-          "B_coverage_4/4",
+          "B_coverage_5/5",
           "A_a1_active",
           "C_national_only_by_design",
           "D_not_applicable"

@@ -8,7 +8,7 @@
 > | # | Kandidat | Codex-verdikt | Utfall |
 > |---|----------|---------------|--------|
 > | C1 | `nedtrappad_ersattningsprofil_akassa` (ekonomi) | **BUILD-WITH-CHANGES** | **Byggd i kväll**, flaggad v0 |
-> | C2 | `dca_avtal_usa` (forsvar) | **HOLD** | Väntar sign-off — NATO-stackningsrisk på `nato_interoperabilitet` (V skulle få andra opposes-posten på samma indikator) + p1-roll-call saknas i voterings-API:t. Se beslutsfråga B1 nedan. |
+> | C2 | `dca_avtal_usa` (forsvar) | **HOLD** | **BYGGD 2026-06-12** efter användar-sign-off (beslutsfråga B1 = **JA**, med Codex-villkoren: anti-stacknings-not + p1-källkonstruktion via beslutsnotis/följdvoteringar + stance-confidence max medium), flaggad v0. Se §9.1. |
 > | C3 | `uppsokande_forskoleerbjudande_nyanlandas_barn` (integration) | **BUILD-WITH-CHANGES** | **Byggd i kväll**, flaggad v0; **SD/KD = none** per aktualitetsprejudikatet (MP/Nato) |
 > | C4 | `rattssakerhetsgarantier_preventiva_tvangsmedel` (demokrati) | **HOLD** | Väntar sign-off — S-kodningen kräver instrumentlåsning + panel; andra rättssäkerhetsposten i `personlig_frihet` = stackning. Se beslutsfråga B2 nedan. |
 >
@@ -29,7 +29,7 @@ granskad och förkastad med skäl (kvar i loggen för återöppning).
 | Kandidat | Kategori → indikator | Verdikt (research) | Codex-verdikt | Status |
 |---|---|---|---|---|
 | `nedtrappad_ersattningsprofil_akassa` | ekonomi → `arbetsloshet` | STRONG | BUILD-WITH-CHANGES | **Byggd 2026-06-12, flaggad v0** |
-| `dca_avtal_usa` | forsvar → `nato_interoperabilitet` | STRONG | HOLD | **Sign-off 2026-06-12: BYGG med Codex-villkoren — verkställd, flaggad v0** |
+| `dca_avtal_usa` | forsvar → `nato_interoperabilitet` | STRONG | HOLD | **Sign-off 2026-06-12: BYGG med Codex-villkoren — BYGGD 2026-06-12, flaggad v0 (se §9.1; commit `data: B3 — dca_avtal_usa …`)** |
 | `uppsokande_forskoleerbjudande_nyanlandas_barn` | integration → `skolresultat_utsatta_omraden` | STRONG | BUILD-WITH-CHANGES | **Byggd 2026-06-12, flaggad v0; SD/KD = none** |
 | `rattssakerhetsgarantier_preventiva_tvangsmedel` | demokrati → `overvakning_utan_rattssakerhet` | STRONG | HOLD | **Sign-off 2026-06-12: HOLD bekräftad — vänta (kandidaten kvar färdigberedd)** |
 | `likvardiga_urvalsgrunder_skolval` | valfard → `skillnader_mellan_skolor` | WEAK | — | Bevakning (Tidö-utredningen, IFAU-remiss 2025-11-28) |
@@ -771,6 +771,20 @@ två-poster-i-personlig_frihet-flaggan, båda utskrivna i neutrality_assessment.
 [beslutsunderlag_hold_2026-06-12.md](beslutsunderlag_hold_2026-06-12.md) — svara JA/NEJ.
 
 ### 9.1 Beslutsfråga B1 — forsvar / `dca_avtal_usa` (Codex HOLD)
+
+> **✅ AVGJORD 2026-06-12: JA (alternativ A) — BYGGD samma dag, flaggad v0** (commit
+> `data: B3 — dca_avtal_usa …`, samma commit som denna statusrad; hash i git-loggen).
+> Verkställd med alla tre Codex-villkoren: (1) anti-stacknings-not i liggarposten (DCA =
+> bilateralt basavtal vs nato_medlemskap = multilateralt alliansmedlemskap; prejudikat
+> territoriella_utslapp; V:s andra opposes-post = sign-off:ad avvägning, differentieringsvinsten
+> MP vägde tyngre); (2) p1-källkonstruktion (beslutsnotis 'Kammaren biföll utskottets förslag' +
+> dokumentstatus HB01UFöU1 [punkt 1: beslutstyp 'röstning', vinnare 'utskottet', tomt votering_id —
+> API-luckan omverifierad @antal=0] + följdvoteringarna p5 'Nedrustning' A1C914E0 [266/37: V 20 +
+> MP 15 Nej] och p3 'Kärnvapen' A52E4273 [V 20 Nej, MP 15 Avstår], båda OMVERIFIERADE LIVE via
+> data.riksdagen.se/voteringlista gruppering=parti 2026-06-12); (3) stance-confidence medium på
+> alla 8 rader. Citaten (3 Ds-utsagor + V:s och MP:s avvikande meningar) ordagrant omverifierade
+> mot HCB46-fulltexten. Resultat: 6 supports S/M/SD/C/KD/L, V + MP opposes; ranking oförändrad
+> (C/KD forsvar +0,04 via coverage 3/4→4/5, MP forsvar −0,13, övriga mättade ±1).
 
 - **Läge:** research-STRONG med komplett steg 1 (Ds 2024:6, Försvarsberedningen — samma neutrala
   ankare som nato_medlemskap) och steg 2 (UFöU1 p1 266–37, blocköverskridande, V/MP Nej belagt i
