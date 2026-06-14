@@ -1,6 +1,6 @@
 # Fas 4c Plan B — harmoniserings-audit
 > Genererad 2026-05-30 ur panel-harmoniserings-workflowen (19 åtgärdstyper × 8 partier, 289 agenter)
-> under den frysta rubriken [fas4c_rubrik.md](../fas4c_rubrik.md). Klimat (koldioxidskatt,
+> under den frysta rubriken [fas4c_rubrik.md](fas4c_rubrik.md). Klimat (koldioxidskatt,
 > reduktionsplikt_drivmedel) ingick EJ — votering-förankrat, ingen isolerings-asymmetri.
 
 ## Sammanfattning

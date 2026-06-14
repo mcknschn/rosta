@@ -2,13 +2,13 @@
 #
 # VIKTIGT — INTEGRITET: ingen ståndpunkt fabriceras. Varje rad citerar partiets faktiska
 # ställningstagande i en officiell svensk källa (riksdagsvotering/motion/budgetmotion) med
-# ordagrant utdrag (quote) + dokument-id (doc_id). Metod: docs/fas4b_partistandpunkter_metod.md.
+# ordagrant utdrag (quote) + dokument-id (doc_id). Metod: docs/done/fas4b_partistandpunkter_metod.md.
 #
 # Pipeline joinar BARA på party + policy_type + stance. Övriga fält är spårbarhet.
 #
 # HÄRKOMST: klimat-raderna handkurerades (votering bet. 2023/24:MJU5 + koldioxidskatt) och är
 # OFÖRÄNDRADE. Övriga kategorier PANEL-HARMONISERADES 2026-05-30 (Fas 4c, Plan B) under den frysta
-# rubriken docs/fas4c_rubrik.md: per åtgärdstyp bedömdes alla 8 partier SIDA VID SIDA under EN
+# rubriken docs/done/fas4c_rubrik.md: per åtgärdstyp bedömdes alla 8 partier SIDA VID SIDA under EN
 # gemensam standard (bunten-regel: en buntad motion räknas för det namngivna instrumentet, intern
 # nyans förkastar ej raden), och varje keep/add re-verifierades ORDAGRANT mot källans fulltext (.text)
 # av en oberoende skeptiker. Endast confirmed=true admitterades. Beslut + skäl: docs/fas4c_planB_audit.md.

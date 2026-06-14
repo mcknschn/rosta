@@ -81,7 +81,7 @@ committee_to_category:
 # 2022-perioden korsverifierad mot SKR:s separata fil "Styren i regioner efter valet 2022"
 # (matchar 1994-2022-filen exakt, 21/21 regioner) och kontrollsummorna nedan matchar SKR:s
 # halvtidsuppföljnings-PDF (2024-11-30) "efter valet"-tal exakt. Ingen runtime-parser —
-# config är källan till sanning (jfr config/budget_ramar.yaml). Metod: docs/fas1c_subnational_metod.md.
+# config är källan till sanning (jfr config/budget_ramar.yaml). Metod: docs/done/fas1c_subnational_metod.md.
 #
 # leading_parties = de av de 8 riksdagspartierna (S,M,SD,C,V,KD,L,MP) som ingår i styret.
 # Lokala partier (ÖP/"Övrigt parti", t.ex. Sjukvårdspartiet) noteras i local_parties men
@@ -252,5 +252,5 @@ subnational_governance:
     # Datan ligger i en EGEN fil (290 poster) för att hålla mappings.yaml läsbar; genereras ur
     # den officiella CSV:n av pipeline/tools/skr_municipalities_transcribe.py. Subnationell C bärs
     # nu av BÅDE regioner och kommuner (per-kategori region/kommun-split i scoring.yaml:C_ansvar).
-    # Se docs/fas1c_subnational_metod.md.
+    # Se docs/done/fas1c_subnational_metod.md.
     file: config/subnational_municipalities.yaml

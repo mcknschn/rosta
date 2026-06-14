@@ -5,8 +5,8 @@ Utfall: H1 JA · H2 JA · H3 JA · H4 JA · H5 VAL A · H6 VAL A+B · D1 JA (ST�
 arkiverad) · B1 BYGG med Codex-villkoren (verkställd, flaggad v0) · B2 HOLD (vänta). Verkställt i
 config + docs samma kväll; FMV-sonderingen (H6 B-delen) igångsatt. **Datum:** 2026-06-12 · **Varifrån:** djupsvepet §5.8 +
 kandidat-pipeline §7 (2026-06-06) samt nedstigningarna/svepen 2026-06-07, alla dokumenterade i
-[done/evidens_trovardighet.md](done/evidens_trovardighet.md) (§6 statustavla, §8.7, §9 beslutslogg)
-och [BACKLOG.md B4-tabellen](BACKLOG.md). §8.8-sign-offen 2026-06-07 stängde de **byggda** måtten
+[done/evidens_trovardighet.md](evidens_trovardighet.md) (§6 statustavla, §8.7, §9 beslutslogg)
+och [BACKLOG.md B4-tabellen](../BACKLOG.md). §8.8-sign-offen 2026-06-07 stängde de **byggda** måtten
 (6 st → v2); det här dokumentet samlar det som **inte** stängdes: kvarvarande HOLD-väggar samt den
 fortfarande FLAGGADE invasiva-arter-posten. Varje paket avslutas med en fråga att svara
 **JA/NEJ/VAL** på.
@@ -166,7 +166,7 @@ fortfarande FLAGGADE invasiva-arter-posten. Varje paket avslutas med en fråga a
 
 - **Läge:** enda kvarvarande icke-vägg-posten i `coverage_allowlist` (klass `derived`). Djupsonderad
   2026-06-12 med alla nämnarvägar nedladdade + parsade — full genomgång i
-  [spar_D_datatackning.md §5.5](done/spar_D_datatackning.md). Kärnfyndet: ingen officiell källa definierar
+  [spar_D_datatackning.md §5.5](spar_D_datatackning.md). Kärnfyndet: ingen officiell källa definierar
   "klimatutgift" heltäckande, och kvoten Δutsläpp/utgift premierar strukturellt skattetung
   instrumentmix (CO2-skatt ≈ 0 kr på utgiftssidan) → ideologisk metodpreferens inbyggd i måttet,
   i strid med IDEA.md. Undermåttet kostnadseffektivitet är dessutom redan D-täckt via

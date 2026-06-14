@@ -85,7 +85,7 @@ högre coverage → mindre B-krympning → B får faktiskt genomslag.
   **Codex oberoende re-extraktion** (0 avvikelser, bekräftade roll-call + split-span-cell), samt
   reservationsstrukturen i källan. a1 aktiv för **7/7 kategorier** (snitt-skärning håller). Hela
   testsviten grön; `dist/` omräknat + snapshot-baslinjen uppdaterad (`score_diff --write`). Version 0
-  (kräver fortfarande mänsklig slutgranskning som 2025). [Metod uppdaterad](fas1b_budget_metod.md).
+  (kräver fortfarande mänsklig slutgranskning som 2025). [Metod uppdaterad](done/fas1b_budget_metod.md).
   *Ny ranking (standardvikter): S 3,73 · L 3,33 · M 3,28 · MP 3,11 · KD 3,05 · C 2,66 · V 2,65 · SD 2,38.*
   *Caveat: ekonomi-a1 är nära oavgjort (alla ~23 %) → rang-noise; treårssnittet dämpar men löser ej
   modellegenskapen (se metoddok).*
@@ -304,7 +304,7 @@ högre coverage → mindre B-krympning → B får faktiskt genomslag.
   levererats enligt leveransplan, värdeviktat), jämförbar serie **2021–2025 = 79/97/72/73/53**
   (FMV intygar kedjan ÅR 2022 s.38 → ÅR 2025 s.27; 2020− explicit ojämförbara), transkriberad
   config + `pipeline/sources/fmv.py`, alla värden + citat maskinverifierade (PyMuPDF). Byggd efter
-  **sonderingsmandatet i H6** ([beslutsunderlag_hold_2026-06-12.md](beslutsunderlag_hold_2026-06-12.md)).
+  **sonderingsmandatet i H6** ([beslutsunderlag_hold_2026-06-12.md](done/beslutsunderlag_hold_2026-06-12.md)).
   Öppnade försvarets sista D-tomma icke-target-undermått → **D-bredd 70→75/100 = tröskeln passerad →
   försvar BORTTAGEN ur `d_thin_breadth_accepted`** (listan nu tom; D_thin_coverage-flaggan släcks för
   partier med försvarsattribution). v0-caveats (självreferentiell måttstock/FMV-överplanering 2025 +
@@ -348,8 +348,11 @@ nu utfördes — det var precis det villkoret planen ställde.*
 
 > **📍 Aktiv tracker:** [spar_D_datatackning.md](done/spar_D_datatackning.md) — utbruten arbets-/
 > trackinglogg för Spår D (verifierat nuläge, byggbarhetsverdikt per indikator, öppna beslut,
-> exit-kriterier). Flyttas till `docs/done/` när spåret är klart. Vågtabellerna nedan behålls
-> som översikt; trackern är sanningskällan för status.
+> exit-kriterier). Vågtabellerna nedan behålls som översikt; trackern är sanningskällan för status.
+>
+> **Aktuell D-täckning** genereras alltid live med `python -m pipeline.tools.coverage_report`; luckor
+> med skäl i `config/coverage_allowlist.yaml` (maskinläsbar sanningskälla, grindad av
+> `tests/test_fas3_gate.py`). Den gamla narrativa matrisen är fryst i [done/fas3_coverage.md](done/fas3_coverage.md).
 
 Mål: fler kanoniska årsserier som matar D-attributionen, så fler kategorier/undermått mäts på
 faktiskt utfall. Alla nya serier ska vara kanoniska (finnas i `categories.yaml` med rätt
@@ -407,7 +410,7 @@ företagande/investeringar samt hushållens disponibla inkomst → ekonomi 4/6 t
 (försvar) + snabbförfarande (trygghet 4/5) + invasiva arter (klimat 4/5, avflaggad v1) via enhällighet-som-källa**.
 
 - **B1 — Expertgranska version-0-config** ✅ *(mänsklig sign-off 2026-06-05 — `version 0 → 1`)* —
-  gransknings­paketet i [expertgranskning/](expertgranskning/) genomgånget; `party_positions.yaml` +
+  gransknings­paketet i [expertgranskning/](done/expertgranskning/) genomgånget; `party_positions.yaml` +
   `evidence_ledger.yaml` är nu `version: 2` (denna B1-sign-off gav v1; §8.8-sign-offen 2026-06-07 → v2),
   `budget_ramar.yaml` `version: 1`; alla `status: expert_reviewed`, coverage-
   strängen uppdaterad (version-0-varningen borttagen), `dist/` ombyggt, snapshot re-baselinad, testsviten
@@ -468,8 +471,8 @@ företagande/investeringar samt hushållens disponibla inkomst → ekonomi 4/6 t
   FÖRSTA aktuella position på indikatorn). Scoreeffekt (förklarbar, ranking OFÖRÄNDRAD): C/KD
   forsvar +0,04 (coverage 3/4→4/5), MP forsvar −0,13 (ny opposes + 1/4→2/5), S/M/SD/L/V oförändrade
   (indikatorcell redan mättad ±1, coverage-kvot 1,0). **Kvar endast B2 = `rattssakerhetsgarantier_preventiva_tvangsmedel`
-  HOLD** (se [beslutsunderlag_hold_2026-06-12.md](beslutsunderlag_hold_2026-06-12.md) +
-  [b3_kandidatregister_2026-06-12.md](b3_kandidatregister_2026-06-12.md) §9.2).
+  HOLD** (se [beslutsunderlag_hold_2026-06-12.md](done/beslutsunderlag_hold_2026-06-12.md) +
+  [b3_kandidatregister_2026-06-12.md](done/b3_kandidatregister_2026-06-12.md) §9.2).
 - **B4 — Kategori-täckningsaudit (anti-binär garanti)** ⚪ *(ny 2026-06-05)* — säkerställ att **ingen
   kategoris B vilar på ett enda undermått**. Täckningsaudit 2026-06-05 (aktiva åtgärdstyper × undermått de matar):
 
@@ -478,7 +481,7 @@ företagande/investeringar samt hushållens disponibla inkomst → ekonomi 4/6 t
   otäckta: integrations boendesegregation+normer_tillit (HOLD H3/H4), försvarets genomforbarhet_leverans
   (HOLD H6 på B-sidan — D-sidan LÖST 2026-06-12 via materielleveransutfall, se Levererat),
   klimats industriell_konkurrenskraft + trygghets/valfards target-/indikatorlösa — se
-  [beslutsunderlag_hold_2026-06-12.md](beslutsunderlag_hold_2026-06-12.md).)*
+  [beslutsunderlag_hold_2026-06-12.md](done/beslutsunderlag_hold_2026-06-12.md).)*
 
   | Kategori | Undermått m. B-evidens | Andel kat-vikt | Status |
   |---|---|---|---|
@@ -524,7 +527,7 @@ företagande/investeringar samt hushållens disponibla inkomst → ekonomi 4/6 t
 - **A1 — Fler budgetår** ✅ *(levererad 2026-06-05)* — `budget_ramar.yaml` täcker nu **budget
   2023 + 2024 + 2025** (samma trogna transkriberingsmönster, källrad per frame). a1 är ett snitt
   över åren i stället för en enda mätpunkt. Fyrlagrigt verifierad (invariant + pandas + Codex +
-  roll-call); se Levererat ovan + [metod](fas1b_budget_metod.md).
+  roll-call); se Levererat ovan + [metod](done/fas1b_budget_metod.md).
 - **A2 — Aktivera voteringsprovet** 🟣 — röster hämtas redan (12 riksmöten) men matar inget
   betyg. Designfråga: hur väga faktiskt röstbeteende per kategori in i A utan att dubbelräkna a2.
 
@@ -533,7 +536,7 @@ företagande/investeringar samt hushållens disponibla inkomst → ekonomi 4/6 t
 ## Spår C — Ansvar (delpoäng C)
 
 - **C1 — c2 (finansiering)** 🟣 — uppskjutet: inget objektivt, riktningsneutralt mått går att
-  bygga ur officiell data (se [fas1c_subnational_metod.md](fas1c_subnational_metod.md) §c2).
+  bygga ur officiell data (se [fas1c_subnational_metod.md](done/fas1c_subnational_metod.md) §c2).
   Hålls öppen tills en neutral källa uppstår; komponentvikt 0.7/0.3 behålls som avsikt.
 - **C2 — Mandatperiodskiften mitt i period** ⚪ — regeringsbyte mitt i ett år hanteras grovt i dag.
 - **C3 — Subnationell D-resultatdata** ⚪ — D attribueras i dag bara på nationell makt; region/

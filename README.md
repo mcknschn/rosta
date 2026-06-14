@@ -72,24 +72,27 @@ Hela pipelinen kör lokalt end-to-end (Fas 0–6 + b-faser). Datatäckningen är
 och loggad**: **A = 0,6·a1 + 0,4·a2** — a2 (motionsprioritering, andel av egna motioner) har full
 täckning, och **a1 (budgetprioritering) är nu byggd och gated**: partiernas föreslagna utgiftsramar
 per UO ur officiella källor (budget 2025, bet. 2024/25:FiU1; troget transkriberade, ingen runtime-
-parser; [metod](docs/fas1b_budget_metod.md)) — a1 vägs in bara när alla 8 partier har verifierad ram
+parser; [metod](docs/done/fas1b_budget_metod.md)) — a1 vägs in bara när alla 8 partier har verifierad ram
 för kategorins UO, annars faller A på a2. **C (ansvar/makt) blandar nu nationell regeringsmakt med
 subnationell makt** (SKR-styren: 21 regioner + 290 kommuner × 3 mandatperioder, Fas 1c) per kategori
 via en region/kommun-split efter lagstadgat ansvar — full täckning, hög säkerhet (c2 finansiering
-uppskjutet, ej neutralt byggbart → C = c1; [metod](docs/fas1c_subnational_metod.md)); **D (resultat)
+uppskjutet, ej neutralt byggbart → C = c1; [metod](docs/done/fas1c_subnational_metod.md)); **D (resultat)
 attribueras** från officiella årsserier i **alla 7 kategorier** (43/68 indikatorer, 29/35 undermått —
-försvar och demokrati fick D-data 2026-06-09/12; [docs/fas3_coverage.md](docs/fas3_coverage.md)) där partiet
+försvar och demokrati fick D-data 2026-06-09/12; [docs/done/fas3_coverage.md](docs/done/fas3_coverage.md)) där partiet
 haft nationell makt, sedan 2026-06-12 krympt mot neutral efter viktad undermåttsbredd. **B (evidens)
 är aktiverad för alla 7 kategorier** via 269 källbelagda partiståndpunkter (riksdagsvotering/motion),
 coverage-viktade så tunn täckning drar mot neutral (expertgranskad, `version 2`;
-[metod](docs/fas4b_partistandpunkter_metod.md)). Ståndpunkterna är **panel-harmoniserade** (Fas 4c, alla
+[metod](docs/done/fas4b_partistandpunkter_metod.md)). Ståndpunkterna är **panel-harmoniserade** (Fas 4c, alla
 8 partier per åtgärdstyp bedömda mot en gemensam frusen rubrik) och liggaren utökad med den enda omstridda
 åtgärdstyp som passerade evidens-/negativ-grinden av 8 skannade (`ny_karnkraft` → effektbrist; 7 hade för
 blandad officiell evidens och lämnades inerta – [Fas 4c](docs/done/ROADMAP.md)). **Inga ståndpunkter fabriceras**
 — varje rad citerar en riksdagskälla och är adversariellt verifierad mot fulltext. **Frontenden (Fas 6) är byggd** — en statisk, byggfri väljarkompass i [web/](web/) som viktar kategorierna
 client-side, rangordnar partierna med osäkerhetsband och expanderbart bevisspår, delar vikter via URL och
-visar en tydlig version-0-varning. Den är **Playwright-e2e-testad** (8 fall) och har genomgått en
-**WCAG 2.2 AA-granskning** ([docs/fas6_wcag.md](docs/fas6_wcag.md)). Kör `python -m http.server 8000` och
+visar en tydlig förbehållsbanner. Den är **Playwright-e2e-testad** (8 fall).
+**Frontenden uppfyller WCAG 2.2 nivå AA** för de granskade kriterierna (kontrast ≥4,5:1, reflow,
+fokushantering; det enda blockerande felet — fokus-/expanderingsförlust vid omräkning — är åtgärdat
+och regressionstestat; manuell skärmläsartest återstår). Detaljerad audit arkiverad i
+[docs/done/fas6_wcag.md](docs/done/fas6_wcag.md). Kör `python -m http.server 8000` och
 öppna `/web/`. Per-fas status:
 [DATA.md §6](DATA.md). Full exekveringsplan: [docs/ROADMAP.md](docs/done/ROADMAP.md).
 

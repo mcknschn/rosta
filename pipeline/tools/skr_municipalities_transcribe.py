@@ -68,7 +68,7 @@ def render(by_code: dict, tally: dict) -> str:
         "# (catalog.skl.se, CSV resource/127) via pipeline/tools/skr_municipalities_transcribe.py.",
         "# Källan till sanning; ingen runtime-parser. Endast de 8 riksdagspartierna; lokala partier",
         "# (ÖP) räknas ej. terms = [2014-2018, 2018-2022, 2022-2026] (post-val-styre per period).",
-        "# kod = SCB:s 4-siffriga kommunkod (Kolada-format). Se docs/fas1c_subnational_metod.md.",
+        "# kod = SCB:s 4-siffriga kommunkod (Kolada-format). Se docs/done/fas1c_subnational_metod.md.",
         "#",
         "# Kontrollsummor (antal kommuner med partiet i styret per valår; ±2 mot SKR:s",
         "# halvtidsuppföljnings-PDF \"efter valet 2022\" pga ögonblicksvariation mellan SKR-produkter):",

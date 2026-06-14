@@ -11,7 +11,7 @@
 >
 > Relaterat: [done/evidens_trovardighet.md §5.6](evidens_trovardighet.md) (gränserna för steg 2),
 > [done/evidens_trovardighet.md §2](evidens_trovardighet.md) (tvåstegsmodellen),
-> [fas4b_partistandpunkter_metod.md](../fas4b_partistandpunkter_metod.md) (källhierarki/grindar),
+> [fas4b_partistandpunkter_metod.md](fas4b_partistandpunkter_metod.md) (källhierarki/grindar),
 > [../DATA.md](../../DATA.md), [../IDEA.md](../../IDEA.md).
 
 ---
@@ -266,6 +266,6 @@ utan neutral nivå-källa stannar binärt utan kostnad.
 
 ## 13. Relaterat
 - [done/evidens_trovardighet.md](evidens_trovardighet.md) — B-spårets arbetslogg (§5.6, §8 fråga 2, §9 Beslut 12)
-- [fas4b_partistandpunkter_metod.md](../fas4b_partistandpunkter_metod.md) — källhierarki, instrument-regeln, grindar
+- [fas4b_partistandpunkter_metod.md](fas4b_partistandpunkter_metod.md) — källhierarki, instrument-regeln, grindar
 - [../IDEA.md](../../IDEA.md), [../DATA.md](../../DATA.md) — grundprincip & datamodell
 - [../config/scoring.yaml](../../config/scoring.yaml), [../pipeline/effects.py](../../pipeline/effects.py), [../pipeline/score.py](../../pipeline/score.py)

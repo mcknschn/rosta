@@ -219,7 +219,7 @@ def main() -> None:
     ).fetchall():
         print(f"   {cat:12} {ind:22} {n:4}  {lo}..{hi}")
 
-    print("\n-- kända luckor (loggas, ej tysta; se docs/fas3_coverage.md) --")
+    print("\n-- kända luckor (loggas, ej tysta; se docs/done/fas3_coverage.md) --")
     print("   trygghet: dödligt våld (Tabell 20) + NTU utsatthet/otrygghet + personuppklaring "
           "(10La) inlästa (Brå).")
     print("       Handläggningstid/genomströmning och återfall återstår (separata Brå-tabeller).")

@@ -3,7 +3,7 @@
 party_positions.yaml (B), evidence_ledger.yaml (B) och budget_ramar.yaml (A:a1) är alla
 AI-utkast (version 0) som projektets disciplin flaggar som "kräver mänsklig slutgranskning
 innan skarp betygsättning". Det här verktyget läser dem deterministiskt och skriver ett
-granskningspaket till docs/expertgranskning/ som fokuserar mänsklig granskning på de rader
+granskningspaket till docs/done/expertgranskning/ som fokuserar mänsklig granskning på de rader
 som faktiskt rör betygen och på den högrisk-delmängd (opposes/laddade/lågkonfidens) där fel
 gör störst skada.
 
@@ -23,7 +23,7 @@ from typing import Any
 from pipeline import budget, config
 from pipeline.positions import _FLIP, build_evidence_effect_claims
 
-DOCS_DIR = config.CONFIG_DIR.parent / "docs" / "expertgranskning"
+DOCS_DIR = config.CONFIG_DIR.parent / "docs" / "done" / "expertgranskning"
 
 # Föredragen källperiod (senaste mandatperioden+). Äldre källor flaggas för tidskontroll.
 _PREFERRED_FROM_YEAR = 2022

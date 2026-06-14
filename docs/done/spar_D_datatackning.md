@@ -379,7 +379,7 @@ attributionslagg, tecken-kollaps vid negativt Δutsläpp och belöning av låg u
 **Rekommendation: STÄNG som designbeslut** — undermåttet kostnadseffektivitet är redan D-täckt via
 `utslappsintensitet` (CO2/BNP) som fångar konceptet utan instrumentmix-bias. Om kvoten ändå önskas:
 minst dålig konstruktion = rullande 3-års Δterritoriella_utslapp ÷ MI1301H (flaggad v0) — avrådes.
-**Beslutsfråga: [beslutsunderlag_hold_2026-06-12.md](../beslutsunderlag_hold_2026-06-12.md) (D1).**
+**Beslutsfråga: [beslutsunderlag_hold_2026-06-12.md](beslutsunderlag_hold_2026-06-12.md) (D1).**
 
 ---
 

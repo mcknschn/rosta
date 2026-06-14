@@ -1,6 +1,6 @@
 # Fas 6 — WCAG 2.2-genomgång (tillgänglighet)
 
-Genomgång av frontenden i [`web/`](../web/) mot **WCAG 2.2 nivå AA**. Målnivån i ROADMAP
+Genomgång av frontenden i [`web/`](../../web/) mot **WCAG 2.2 nivå AA**. Målnivån i ROADMAP
 (task 6.6) är AA. Genomgången är gjord på källkoden + automatiserad mätning (kontrast och
 reflow via Playwright/Chromium). Punkter markerade **TODO (manuell)** kräver test med riktig
 skärmläsare och täcks inte automatiskt.

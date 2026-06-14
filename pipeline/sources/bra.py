@@ -28,7 +28,7 @@ Implementerat:
       "SAMTLIGA BROTT". Personuppklaring = Brås officiella huvudmått för uppklaring sedan 2014;
       pre-2014-data är inte jämförbart (handlagda-brott-reformen) men 10La-serien är post-reform.
 
-Återstår (separata Brå-produkter/tabeller, se docs/fas3_coverage.md): handläggningstid/
+Återstår (separata Brå-produkter/tabeller, se docs/done/fas3_coverage.md): handläggningstid/
 genomströmningstid, återfall i brott.
 """
 

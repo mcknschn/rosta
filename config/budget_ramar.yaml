@@ -1,5 +1,5 @@
 # Rösta — föreslagna utgiftsramar per utgiftsområde (UO), per parti, per budgetår.
-# Matar delpoäng A:s a1 (budgetprioritering). Se pipeline/budget.py + docs/fas1b_budget_metod.md.
+# Matar delpoäng A:s a1 (budgetprioritering). Se pipeline/budget.py + docs/done/fas1b_budget_metod.md.
 #
 # VERSION 1 — expertgranskad + mänsklig sign-off 2026-06-05 (budgetår 2023–2025; fyrlagrigt
 # adversariellt verifierad: intern invariant + pandas + Codex + roll-call). Beloppen är transkriberade

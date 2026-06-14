@@ -19,7 +19,7 @@
 >
 > Detta dokument bevarar **hela** researchen (inkl. WEAK/REJECT och rejected-candidate-loggarna)
 > som granskningsbart register, efter samma mönster som
-> [done/fas4c_planA_kandidatregister.md](done/fas4c_planA_kandidatregister.md): inget fynd får gå
+> [done/fas4c_planA_kandidatregister.md](fas4c_planA_kandidatregister.md): inget fynd får gå
 > förlorat, och en människa ska kunna granska, ompröva eller återuppta varje spår. Voterings-id:n,
 > betänkandenummer, partifördelningar och källcitat är bevarade exakt som agenterna levererade dem.
 

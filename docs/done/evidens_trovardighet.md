@@ -13,7 +13,7 @@
 > Bärande omtag (2026-06-06): **måttet och positioneringen är två skilda steg** (§2). Mycket av
 > det vi kallade "väggen" var i själva verket ett källval i steg 2, inte ett fel i måttet.
 >
-> Relaterat: metoden i [fas4b_partistandpunkter_metod.md](../fas4b_partistandpunkter_metod.md)
+> Relaterat: metoden i [fas4b_partistandpunkter_metod.md](fas4b_partistandpunkter_metod.md)
 > (källhierarki, instrument-regeln, verifiering), planen i [BACKLOG.md](../BACKLOG.md) (Spår B),
 > grundprincipen i [../IDEA.md](../../IDEA.md), datamodellen i [../DATA.md](../../DATA.md).
 
@@ -294,7 +294,7 @@ target/kontext. De 8 gula är frivilliga bonus-indikatorer på redan täckta und
 ## 5. Steg 2 — metodregister för positionering
 
 Alla källor lyder under samma grindar (§10): instrument-exakthet, ordagrant citat + dok-id,
-neutralitet. `source_type`-enumet i [fas4b §7](../fas4b_partistandpunkter_metod.md) tillåter redan hela
+neutralitet. `source_type`-enumet i [fas4b §7](fas4b_partistandpunkter_metod.md) tillåter redan hela
 stegen — vi har bara underutnyttjat allt utom votering.
 
 ### 5.1 Källstegen och vad varje källa är bra på
@@ -316,7 +316,7 @@ Confidence speglar var på stegen raden sitter; coverage-krympning + flagga bär
 *mot* punkten) är det belägg för att alla 8 partier står bakom. Koda samtliga `supports`,
 `source_type: betankande`, `quote` = meningen som visar enhällighet/utskottets förslag.
 
-**Varför tillåtet:** [fas4b §5](../fas4b_partistandpunkter_metod.md) säger redan att stance får sättas när
+**Varför tillåtet:** [fas4b §5](fas4b_partistandpunkter_metod.md) säger redan att stance får sättas när
 partiet är formell avsändare, röstat för, eller står bakom via utskott. Ett enhälligt betänkande är de
 facto kollektiv stance — och den **renaste neutraliteten**: alla kodas lika, inget straffas.
 
@@ -863,8 +863,8 @@ forward-korrekt om modellen senare använder confidence för CI), version ej bum
 
 ## 10. Verifierings- & provenansstandard (grindar varje mått måste passera)
 
-Sammanfattar grindarna — fullständigt i [fas4b §4, §8](../fas4b_partistandpunkter_metod.md) och
-[fas4c_rubrik.md](../fas4c_rubrik.md).
+Sammanfattar grindarna — fullständigt i [fas4b §4, §8](fas4b_partistandpunkter_metod.md) och
+[fas4c_rubrik.md](fas4c_rubrik.md).
 
 1. **Riktningsgrind (steg 1)** — instrumentets effekt på indikatorn belagd av officiell svensk källa
    (akademisk svensk om officiell saknas). Negativt B-bidrag kräver `authority_evaluation`/

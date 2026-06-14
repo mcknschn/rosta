@@ -42,7 +42,7 @@ A_agerande:
   # officiella källor (config/budget_ramar.yaml, version 0). HÅRD GRIND (pipeline/budget.py): a1 vägs
   # in för en (budgetår, kategori) endast när alla 8 partier har verifierad ram för varje kategori-UO;
   # annars A = a2 (flagga A_a2_only). Saknad/ogiltig cell -> hård fail, aldrig tyst 0. Se
-  # docs/fas1b_budget_metod.md. A = a1*0.6 + a2*0.4 där a1 aktiv, annars A = a2.
+  # docs/done/fas1b_budget_metod.md. A = a1*0.6 + a2*0.4 där a1 aktiv, annars A = a2.
   notes: Mäter prioritering relativt partiets storlek, inte om politiken är rätt. Rättheten fångas av B och D.
 
 # B — Evidens/träffsäkerhet. Har förslagen källstöd för påstådd indikatoreffekt?
@@ -77,7 +77,7 @@ B_evidens:
   coverage_mode: weighted_submeasure_depth
   coverage_denominator: non_target_submeasure_weight  # nämnarens semantik i nya moden (samma som D)
   thin_coverage_threshold: 0.5
-  # Åtgärdstyper som lyfts ur coverage-nämnaren. GENERALISERAD regel (docs/fas4c_rubrik.md §7):
+  # Åtgärdstyper som lyfts ur coverage-nämnaren. GENERALISERAD regel (docs/done/fas4c_rubrik.md §7):
   # en policy_type får exkluderas ENDAST på en principiell grund, som måste anges i
   # coverage_exclude_reasons nedan. Inga ad hoc-undantag. Grunder:
   #   E1 = sidoeffekt-negativ (direction:negative men evidensen avser en sidoeffekt, inte
@@ -99,7 +99,7 @@ C_ansvar:
   # saldo-/ramverksmått skulle gynna åtstramning => bryter neutraliteten (CLAUDE.md); och
   # "driver de det de lovar" fångas redan distribuerat av A (prioritering) + B (källbelagda
   # ståndpunkter) + D (resultat under makt). Komponentvikterna behålls som dokumenterad
-  # avsikt om en neutral källa skulle uppstå. Se docs/fas1c_subnational_metod.md §c2.
+  # avsikt om en neutral källa skulle uppstå. Se docs/done/fas1c_subnational_metod.md §c2.
   # Nationellt vs regionalt/kommunalt ansvar vägs per kategori.
   level_weights_default:
     national: 0.7

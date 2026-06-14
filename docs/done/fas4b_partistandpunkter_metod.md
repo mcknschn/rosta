@@ -8,7 +8,7 @@
 
 Delpoäng B (väger 0,35 av varje kategoripoäng) mäter om ett partis **faktiskt drivna åtgärder** rör
 kategorins indikatorer åt rätt håll *enligt officiell svensk evidens*. Maskineriet
-([pipeline/positions.py](../pipeline/positions.py)) joinar:
+([pipeline/positions.py](../../pipeline/positions.py)) joinar:
 
 ```
 config/party_positions.yaml   (parti -> åtgärdstyp, stance, KÄLLA)
@@ -21,7 +21,7 @@ config/evidence_ledger.yaml    (åtgärdstyp -> indikatoreffekt enligt officiell
 - B kan **bara** byggas för de ~25 `policy_type` som finns i evidensliggaren. En rad med okänd
   `policy_type` ger noll claims (ofarlig no-op).
 - Saknas rader för (parti, kategori) faller B tillbaka på **neutral 2,5 / låg säkerhet / flagga
-  `B_no_party_evidence`** ([config/scoring.yaml](../config/scoring.yaml)).
+  `B_no_party_evidence`** ([config/scoring.yaml](../../config/scoring.yaml)).
 
 ## 2. Bärande integritetsprincip
 
@@ -157,7 +157,7 @@ Status: `party_positions.yaml` **version 2, expertgranskad** (källkontroll + bi
 
 ## 11. Fas 4c — harmonisering + differentiering (2026-05-30)
 
-Efter utrullningen identifierades två svagheter (se [ROADMAP Fas 4c](done/ROADMAP.md)): (1) isolerings-inducerade
+Efter utrullningen identifierades två svagheter (se [ROADMAP Fas 4c](ROADMAP.md)): (1) isolerings-inducerade
 verifierar-asymmetrier (samma slags källa bedömdes olika strängt för olika partier, t.ex. M/L på
 `subventionerade_anstallningar`), och (2) svag särskiljning. Åtgärder, under den frysta rubriken
 [fas4c_rubrik.md](fas4c_rubrik.md):
@@ -165,11 +165,11 @@ verifierar-asymmetrier (samma slags källa bedömdes olika strängt för olika p
 - **Plan B — panel-harmonisering:** varje åtgärdstyp re-verifierades med alla 8 partier bedömda SIDA VID SIDA
   under en gemensam standard (bunten-regeln: en buntad motion räknas för det namngivna instrumentet, intern
   nyans förkastar ej raden). 109 non-klimat-rader admitterades (panel keep/add ∧ verifierad confirmed).
-  Audit + rejected-log: [fas4c_planB_audit.md](done/fas4c_planB_audit.md). `status: harmonized_alla_kategorier_unreviewed`.
+  Audit + rejected-log: [fas4c_planB_audit.md](fas4c_planB_audit.md). `status: harmonized_alla_kategorier_unreviewed`.
 - **Plan A — omstridda åtgärdstyper:** 8 instrument systematiskt evidens-skannades; **bara `ny_karnkraft`
   → effektbrist** (Svenska kraftnät, Kraftbalansen 2025) passerade evidens-/negativ-grinden. 7 lämnades
   **inerta** (blandad officiell evidens — a-kassa, vårdval/LOV, bonus-malus, bidragstak m.fl.), inkl. den
-  enda negativa kandidaten (a-kassa) som korrekt stoppades av negativ-grinden. [kandidatregister + A3/A5](done/fas4c_planA_kandidatregister.md).
+  enda negativa kandidaten (a-kassa) som korrekt stoppades av negativ-grinden. [kandidatregister + A3/A5](fas4c_planA_kandidatregister.md).
 - **Negativ-riktnings-grind (§5 i rubriken):** ett negativt B-bidrag kräver authority_evaluation/systematic_review
   + confidence ≥ medium + exakt indikator. Modellen har **0 admitterade negativ-riktnings-poster** som bidrar
   till B; negativa bidrag uppstår bara när `opposes` vänder en *positiv* evidenspost.

@@ -1,5 +1,10 @@
 # Fas 3 — täckning (coverage)
 
+> **❄️ FRYST SNAPSHOT (arkiverad 2026-06-14).** Den *levande* D-täckningen bor i verktyget
+> (`python -m pipeline.tools.coverage_report`) + `config/coverage_allowlist.yaml` (maskinläsbar
+> sanningskälla, grindad av `tests/test_fas3_gate.py`). Siffrorna nedan är ett ögonblick per
+> 2026-06-12 och uppdateras inte längre här — kör verktyget för aktuellt läge.
+
 Status per kanonisk indikator (`config/categories.yaml`): **inläst** = officiell svensk årsserie
 matar delpoäng D, eller **allowlistad** = explicit gap med skäl (`config/coverage_allowlist.yaml`).
 Invarianten "inget tyst gap" hävdas av `tests/test_fas3_gate.py`. Generera aktuell matris med:
@@ -46,7 +51,7 @@ passerad, försvar ur `d_thin_breadth_accepted`.**)*
 Rapporten visar sedan 2026-06-12 även **D-undermåttsbredd** per kategori (viktad icke-target-täckning
 som styr D:s `coverage_shrink`; tunn bredd grindas via `coverage_allowlist.d_thin_breadth_accepted` —
 **tom sedan 2026-06-12 sen kväll**: försvar, sist kvar med 70/100, lyftes till 75/100 av
-materielleveransutfall och togs ur listan). Spec: [done/d_coverage_krympning_spec.md](done/d_coverage_krympning_spec.md).
+materielleveransutfall och togs ur listan). Spec: [done/d_coverage_krympning_spec.md](d_coverage_krympning_spec.md).
 
 ## Inlästa indikatorer (matar D)
 

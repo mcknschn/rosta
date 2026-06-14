@@ -1,7 +1,7 @@
 # Fas 1b — a1 budgetprioritering (delpoäng A)
 
 Metod för **a1**, budgetdelen av delpoäng A (faktiskt agerande). A väger 0,40 — den tyngsta
-delpoängen — och `A = 0,6·a1 + 0,4·a2` (vikter i [`config/scoring.yaml`](../config/scoring.yaml)
+delpoängen — och `A = 0,6·a1 + 0,4·a2` (vikter i [`config/scoring.yaml`](../../config/scoring.yaml)
 `A_agerande.components`). a2 (motionsprioritering) byggdes i Fas 1; a1 var **medvetet uppskjuten**
 tills den kunde byggas utan att en bräcklig parser korrumperar A. Detta dokument beskriver hur a1
 nu byggts robust och gated.
@@ -17,7 +17,7 @@ andel(parti, kat) = Σ_UO ( ram(parti, UO) · UO→kat-vikt ) / Σ_UO ram(parti,
 a1(kat) = rank_normalize_över_8_partier( andel(·, kat) )
 ```
 
-UO→kategori-vikterna ligger i [`config/mappings.yaml`](../config/mappings.yaml) `expenditure_areas`
+UO→kategori-vikterna ligger i [`config/mappings.yaml`](../../config/mappings.yaml) `expenditure_areas`
 (ett UO kan delas mellan flera kategorier). Nämnaren är partiets **totala** föreslagna ram (Σ alla
 27 UO), så måttet är storleksoberoende: ett stort parti blir inte högt i varje kategori.
 
@@ -32,8 +32,8 @@ medvetet undvek för A.
 
 Lösningen följer projektets etablerade mönster (`party_positions.yaml`, `subnational_governance`):
 de officiella, publicerade ramtalen **transkriberas till versionsstyrd config**
-([`config/budget_ramar.yaml`](../config/budget_ramar.yaml)), där varje frame **citerar sin källrad**,
-och deterministisk kod ([`pipeline/budget.py`](../pipeline/budget.py)) konsumerar configen. Detta är
+([`config/budget_ramar.yaml`](../../config/budget_ramar.yaml)), där varje frame **citerar sin källrad**,
+och deterministisk kod ([`pipeline/budget.py`](../../pipeline/budget.py)) konsumerar configen. Detta är
 en **trogen kopia** av officiella tal — inga belopp imputeras, jämkas eller gissas. Det är
 strukturering av en officiell källa, inte fabrikation. **Version 1 — expertgranskad + mänsklig sign-off 2026-06-05; a1 aktiv i skarp betygsättning.**
 
@@ -92,7 +92,7 @@ som täcker **varje** UO i kategorin, i **alla** inkluderade budgetår (snitt-sk
 A tillbaka på a2 helt för den kategorin (flagga `A_a2_only`; aktiv = `A_a1_active`). En saknad eller
 icke-numerisk cell ger **hård fail** (aldrig tyst 0), och a1 rang-normaliseras aldrig över färre än 8
 partier. Tom `budget_years` → a1 inaktiv överallt → A = a2 (ingen regression). Testat i
-[`tests/test_budget.py`](../tests/test_budget.py) + [`tests/test_fas5.py`](../tests/test_fas5.py).
+[`tests/test_budget.py`](../../tests/test_budget.py) + [`tests/test_fas5.py`](../../tests/test_fas5.py).
 
 ## Effekt på rangordningen (standardvikter)
 

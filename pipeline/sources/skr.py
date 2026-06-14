@@ -3,7 +3,7 @@
 Deterministiskt — kräver ingen hämtning. Styresdatan (regioner i config/mappings.yaml,
 kommuner i config/subnational_municipalities.yaml) är troget transkriberad ur SKR:s officiella
 öppna data ("Styren i regioner 1994-2022" + "Styren i kommuner 1994-2022"); se
-docs/fas1c_subnational_metod.md. Ingen handsatt poäng: en rad per (parti, geografi, mandatperiod)
+docs/done/fas1c_subnational_metod.md. Ingen handsatt poäng: en rad per (parti, geografi, mandatperiod)
 där partiet ingår i det ledande styret.
 
 strength = 1 / antal ledande riksdagspartier (1.0 vid enpartistyre) — lokala partier (ÖP)

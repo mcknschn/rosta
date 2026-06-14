@@ -314,7 +314,7 @@ def main() -> None:
     ).fetchall():
         print(f"   {cat:12} {ind:24} {n:4}  {lo}..{hi}")
 
-    print("\n-- kända luckor (loggas, ej tysta; se docs/fas3_coverage.md) --")
+    print("\n-- kända luckor (loggas, ej tysta; se docs/done/fas3_coverage.md) --")
     print("   klimat: elprisvolatilitet (Energimyndigheten EN_IND12-5A, årlig CV) matar nu D;")
     print("       effektbrist (Svk Kraftbalansen, nettoimport vid topplasttimmen) matar nu D.")
     print("   ekonomi: realloner (MI Realloner_arsdata, Reallön KPI index 1995=100) matar nu D —")

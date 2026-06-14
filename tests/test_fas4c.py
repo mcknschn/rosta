@@ -1,4 +1,4 @@
-"""Fas 4c — testtvingad förregistrerad rubrik (docs/fas4c_rubrik.md).
+"""Fas 4c — testtvingad förregistrerad rubrik (docs/done/fas4c_rubrik.md).
 
 Dessa invarianter låser de delar av rubriken som kan kontrolleras mekaniskt:
 negativ-riktnings-grinden (§5), den generaliserade exkluderingsregeln (§7) och att
@@ -10,7 +10,7 @@ from __future__ import annotations
 
 from pipeline import ROOT, config
 
-_RUBRIK = ROOT / "docs" / "fas4c_rubrik.md"
+_RUBRIK = ROOT / "docs" / "done" / "fas4c_rubrik.md"
 _STRONG_LEVELS = {"authority_evaluation", "systematic_review"}
 _OK_CONFIDENCE = {"medium", "high"}
 
@@ -66,7 +66,7 @@ def test_coverage_exclude_is_principled() -> None:
 def test_rubrik_doc_present_and_pins_negative_gate() -> None:
     # Rubriken är den förregistrerade referensen båda spåren citerar. Den får inte tyst försvinna,
     # och negativ-grindens trösklar ska stå skrivna i den (skydd mot drift).
-    assert _RUBRIK.exists(), "docs/fas4c_rubrik.md saknas (förregistrerad rubrik)"
+    assert _RUBRIK.exists(), "docs/done/fas4c_rubrik.md saknas (förregistrerad rubrik)"
     text = _RUBRIK.read_text(encoding="utf-8")
     for needle in ("authority_evaluation", "systematic_review", "negativ-riktnings-grinden"):
         assert needle in text, f"rubriken pinnar inte '{needle}'"

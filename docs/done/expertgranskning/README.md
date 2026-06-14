@@ -28,7 +28,7 @@ python -m pipeline.tools.review_packet
 
 > **Historisk statusnotis (2026-06-03, vid paketets skapande):** Datatäckningen och driftrobustheten
 > hade byggts ut sedan paketet skapades (nya D-serier: trygghet uppklaringsgrad + skjutningar/sprängningar;
-> serie-drift-skydd, snapshot-diff och live-smoke-test — se [BACKLOG.md](../BACKLOG.md)). De tre
+> serie-drift-skydd, snapshot-diff och live-smoke-test — se [BACKLOG.md](../../BACKLOG.md)). De tre
 > configfilerna var då oförändrade v0 och utgjorde granskningsgrinden. **Den grinden är sedan passerad**
 > (se status-bannern överst — sign-off 2026-06-05/06-07).
 
@@ -49,7 +49,7 @@ python -m pipeline.tools.review_packet
    fyra rader var SUSPECT (S kärnkraft, V välfärdsbrott, C tidiga insatser, M kärnkraft-källtyp) —
    **alla avgjorda i sign-offen 2026-06-05** (V `kontroller_mot_valfardsbrott` → supports/förbehåll,
    C `tidiga_insatser` → supports/omattribuerad, S/M m.fl. `ny_karnkraft` behållna med dokumenterad
-   källtyps-asymmetri; se beslutsloggen i [done/evidens_trovardighet.md §9](../done/evidens_trovardighet.md) + BACKLOG B1).
+   källtyps-asymmetri; se beslutsloggen i [done/evidens_trovardighet.md §9](../evidens_trovardighet.md) + BACKLOG B1).
 2. **[B_partistandpunkter.md](B_partistandpunkter.md) → "⚑ Prioriterad granskning"** — 79 rader där
    fel gör störst skada (opposes, prop_avslag, ny_karnkraft, low_confidence, single_member, äldre
    källa). Sätt verdikt (✅/✏️/❌) i OK?-kolumnen.
@@ -73,7 +73,7 @@ Detta protokoll FÖLJDES vid sign-offen och bevaras som referens. När en fil va
    väntat; uppdatera `meta.coverage`-strängen (ta bort "version 0 – kräver mänsklig slutgranskning").
 4. Kör `python -m pytest` (ska vara grönt) och `python -m pipeline.tools.review_packet` (regenererar
    paketet mot den granskade configen).
-5. Notera granskningsbeslutet i [BACKLOG.md](../BACKLOG.md) under **Spår B (B1)** — ROADMAP.md är
+5. Notera granskningsbeslutet i [BACKLOG.md](../../BACKLOG.md) under **Spår B (B1)** — ROADMAP.md är
    fryst historik och uppdateras inte längre.
 
 > **Princip:** detta paket *ändrade ingen config* — det var beslutsunderlag. De fyra SUSPECT-fynden
