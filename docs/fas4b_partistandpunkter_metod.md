@@ -1,7 +1,8 @@
 # Fas 4b — kureringsmetod för partiståndpunkter (delpoäng B)
 
-> Status: **version 0 / pilot**. Metoden är fastlagd i samråd (andra-åsikt via Codex, 2026-05-30) men
-> varje kurerad rad kräver **mänsklig slutgranskning** innan B används för skarp betygsättning.
+> Status: **version 2 — expertgranskad och aktiv**. Metoden lades fast i samråd (andra-åsikt via Codex,
+> 2026-05-30); `party_positions.yaml` slutgranskades och signades (v1 2026-06-05, §8.8-sign-off → v2
+> 2026-06-07) och B används nu för skarp betygsättning. Avsnitten nedan beskriver kureringsprincipen.
 
 ## 1. Vad B är och varför ståndpunkter behövs
 
@@ -136,7 +137,7 @@ Varje rad granskas av en **oberoende** part som hämtar den citerade källan och
 sökte data.riksdagen.se; en oberoende granskare hämtade källans fulltext `.text` och bekräftade citat
 + riktning deterministiskt). **Endast `confirmed=true` togs med** — verifieringen fångade och förkastade
 fabricerade/oprecisa citat. Resultat: **111 rader** totalt (99 supports / 12 opposes). *(Detta var den
-initiala utrullningen; ståndpunkterna panel-harmoniserades och utökades senare till **130 rader** — se §11.)*
+initiala utrullningen; ståndpunkterna panel-harmoniserades och utökades senare (B2/B3 t.o.m. 2026-06-14) till **269 rader** — se §11.)*
 
 **Inerta åtgärdstyper kodades inte** (mixed/unclear-riktning → `signed_direction = 0` → ingen B-effekt):
 `kamerabevakning`, `jobbskatteavdrag`, `riktat_likvardighetsbidrag`. **Exkluderad:**
@@ -151,8 +152,8 @@ klasstorlek) och integration (1: V mot aktiveringskrav). Detta + coverage-viktni
 särskiljer måttligt; **evidensliggaren kan behöva fler omstridda åtgärdstyper** för att B ska bli en
 starkare differentiator. Flaggat för granskning.
 
-Status: `party_positions.yaml` version 0. **Kräver mänsklig slutgranskning** (källkontroll + bias) innan
-skarp betygsättning.
+Status: `party_positions.yaml` **version 2, expertgranskad** (källkontroll + bias slutförda; sign-off
+2026-06-05 v1, §8.8 2026-06-07 v2). Skarp betygsättning aktiverad.
 
 ## 11. Fas 4c — harmonisering + differentiering (2026-05-30)
 
@@ -175,4 +176,4 @@ verifierar-asymmetrier (samma slags källa bedömdes olika strängt för olika p
 
 **Centralt fynd:** de flesta värde-omstridda instrument saknar robust riktad officiell evidens på exakt
 kategori-indikatorn — då tiger B (rubrik §6). B mäter *evidens-kodbar instrumentell träffsäkerhet*, inte all
-viktig politik. Totalt 130 ståndpunkter, version 0, kräver fortfarande mänsklig slutgranskning.
+viktig politik. Totalt 269 ståndpunkter (version 2, expertgranskad — sign-off 2026-06-05 v1, §8.8 2026-06-07 v2).

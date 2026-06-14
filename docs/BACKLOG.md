@@ -65,6 +65,13 @@ högre coverage → mindre B-krympning → B får faktiskt genomslag.
 
 ### Levererat (2026-06-05)
 
+> **Reconciliation 2026-06-14:** flera poster nedan är daterade 2026-06-05/06 och säger "väntar
+> mänsklig sign-off", "snapshot ej re-baselinad" eller "din sign-off avgör". **Alla lösta sedan dess:**
+> B-spårets §8.8-sign-off 2026-06-07 (config → `version 2` / `expert_reviewed`, snapshot rebaselinad)
+> + beslutsunderlaget 2026-06-12 (invasiva arter BEHÅLL/avflaggad v1; H1-H6/D1/B1/B2 avgjorda).
+> Siffertal i era-entries ("36 poster / 192 ståndpunkter" m.fl.) är ögonblicksvärden — aktuellt läge:
+> **46 poster / 269 ståndpunkter, version 2**.
+
 - ✅ **A1 — fler budgetår (2023 + 2024)** ([config/budget_ramar.yaml](../config/budget_ramar.yaml)):
   `a1` budgetprioritering går från **en mätpunkt (budget 2025) till ett snitt över tre budgetår
   (2023–2025)**, vilket fångar mandatperioden bredare och dämpar enårsbrus. Ramtalen för budget 2024
@@ -394,14 +401,15 @@ Detaljer + verifiering i [spar_D_datatackning.md](done/spar_D_datatackning.md).
 
 ## Spår B — Evidens & trovärdighet (delpoäng B)
 
-Störst hävstång på trovärdighet. B väger 35 % och vilar på **36 evidensposter + 192 ståndpunkter,
-expertgranskade och bumpade till `version 1` (mänsklig sign-off 2026-06-05); B2 samma dag: FoU-avdrag, undermåttet
+Störst hävstång på trovärdighet. B väger 35 % och vilar på **46 evidensposter + 269 ståndpunkter,
+expertgranskade (`version 2`; sign-off 2026-06-05 v1 → §8.8-sign-off 2026-06-07 v2); B2 samma dag: FoU-avdrag, undermåttet
 företagande/investeringar samt hushållens disponibla inkomst → ekonomi 4/6 täckta undermått. 2026-06-06: nato
-(försvar) + snabbförfarande (trygghet 4/5) + invasiva arter (klimat 4/5, FLAGGAD) via enhällighet-som-källa**.
+(försvar) + snabbförfarande (trygghet 4/5) + invasiva arter (klimat 4/5, avflaggad v1) via enhällighet-som-källa**.
 
 - **B1 — Expertgranska version-0-config** ✅ *(mänsklig sign-off 2026-06-05 — `version 0 → 1`)* —
-  gransknings­paketet i [expertgranskning/](expertgranskning/) genomgånget; `party_positions.yaml`,
-  `evidence_ledger.yaml` (+ `budget_ramar.yaml`) är nu `version: 1` / `status: expert_reviewed`, coverage-
+  gransknings­paketet i [expertgranskning/](expertgranskning/) genomgånget; `party_positions.yaml` +
+  `evidence_ledger.yaml` är nu `version: 2` (denna B1-sign-off gav v1; §8.8-sign-offen 2026-06-07 → v2),
+  `budget_ramar.yaml` `version: 1`; alla `status: expert_reviewed`, coverage-
   strängen uppdaterad (version-0-varningen borttagen), `dist/` ombyggt, snapshot re-baselinad, testsviten
   grön. **Skarp betygsättning aktiverad.** Granskningsbesluten (vad som ändrades och varför) nedan:
   - **Granskningssession 2026-06-05 (beslut införda i config, version kvar 0):**
@@ -439,7 +447,7 @@ företagande/investeringar samt hushållens disponibla inkomst → ekonomi 4/6 t
   → fler täckta undermått → mindre binäritet (och högre `coverage` → mindre B-krympning).
 - **B3 — Fler omstridda/differentierande åtgärdstyper** 🟡 — återanvänd Plan A-mönstret
   (Fas 4c): kandidatregister → endast intersektionen *omstridd ∧ evidensbelagd* → negativ-grind.
-  **2 poster levererade 2026-06-12** (v0 FLAGGADE, kräver mänsklig slutgranskning; codex BUILD-WITH-CHANGES ×2,
+  **3 poster levererade 2026-06-12** (alla slutgranskade v0→v1 2026-06-14, avflaggade; codex BUILD-WITH-CHANGES ×2,
   voteringar + citat omverifierade mot data.riksdagen.se): **(1) `nedtrappad_ersattningsprofil_akassa`**
   (ekonomi → arbetsloshet; IFAU 'Om a-kassa och löner' som syntes av R 2008:12/WP 2007:21/R 2013:10/R 2005:16;
   votering bet. 2023/24:AU9 p1: 7 supports / V opposes — instrument-exakt via motion 2023/24:2881; spegelpost-
@@ -557,8 +565,8 @@ företagande/investeringar samt hushållens disponibla inkomst → ekonomi 4/6 t
 | Sprint | Data (D) | Evidens (B) | Övrigt |
 |--------|----------|-------------|--------|
 | **1** | ~~Våg 1: Brå (uppklaring/handläggning/återfall) + Socialstyrelsen (överlevnad)~~ ✅ avslutad 2026-06-09 | ~~**B1: starta expertgranskning**~~ ✅ sign-off 2026-06-05 | ~~**O1: drift-skydd**~~ ✅ |
-| **2** | ~~Våg 2: Medlingsinstitutet (reallöner)~~ ✅ (MI:s egen PxWeb, 2026-06-12) + ~~Skolverket (sfi)~~ ✅ (SCB TAB1814, Tier 2) + ~~Svk-adapter (gränsfall källregel)~~ ✅ stängt 2026-06-12 (Kraftbalansrapporten, ej adapter) | B2: bredda liggaren *(kvar: valfard/integration HOLD-beslut, transparens_ansvar-bevakning KU39 2026-06-15)* | ~~A1: fler budgetår~~ ✅ klar |
-| **3** | Våg 3: härledda klimat — ~~elpris~~ ✅ + ~~effekt~~ ✅ (båda 2026-06-12 kväll); kvar: utsläpp-per-krona (§5.5, designfråga) — enda öppna D-bygget | B3: omstridda åtgärdstyper · B5: B-breddskrympning (spec) | A2 votering · C2/C3 · F1/F2 |
+| **2** | ~~Våg 2: Medlingsinstitutet (reallöner)~~ ✅ (MI:s egen PxWeb, 2026-06-12) + ~~Skolverket (sfi)~~ ✅ (SCB TAB1814, Tier 2) + ~~Svk-adapter (gränsfall källregel)~~ ✅ stängt 2026-06-12 (Kraftbalansrapporten, ej adapter) | B2: bredda liggaren *(valfard/integration HOLD-beslut avgjorda 2026-06-12 (H1-H4); kvar: transparens_ansvar-bygge efter KU39-voteringen 2026-06-15)* | ~~A1: fler budgetår~~ ✅ klar |
+| **3** | Våg 3: härledda klimat — ~~elpris~~ ✅ + ~~effekt~~ ✅ (båda 2026-06-12 kväll); ~~utsläpp-per-krona~~ ✅ stängt 2026-06-12 (D1, design_closed) → **Spår D klart** | ~~B3: omstridda åtgärdstyper~~ ✅ (3 byggen avflaggade v1 2026-06-14; kvar endast B2 HOLD) · ~~B5: B-breddskrympning~~ ✅ aktiverad 2026-06-14 | A2 votering · C2/C3 · F1/F2 |
 
 > Varje levererat steg: flytta indikatorn ur `coverage_allowlist.yaml`, uppdatera täckningssiffran
 > i `scorerun.py:coverage`-strängen, och bocka av posten här (✅ → kort rad i ROADMAP.md).

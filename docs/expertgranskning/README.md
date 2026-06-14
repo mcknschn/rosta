@@ -1,10 +1,17 @@
-# Expertgranskningspaket — version-0-config
+# Expertgranskningspaket — B/A-config (granskning genomförd)
 
-Rösta-pipelinen är komplett (Fas 0–6 + b-faser), men tre configfiler är **AI-utkast (version 0)**
-som projektets disciplin flaggar som *"kräver mänsklig slutgranskning innan skarp betygsättning"*.
-Eftersom hela appens värde är **objektivitet**, är granskningen av dessa filer den faktiska grinden
-mellan fungerande prototyp och trovärdig produkt. Det här paketet gör granskningen spårbar och
-fokuserar den på de rader som faktiskt rör betygen.
+> **✅ Status 2026-06-14: granskningen är GENOMFÖRD och alla tre configfiler är signerade.**
+> `budget_ramar.yaml` → version 1 (sign-off 2026-06-05); `party_positions.yaml` + `evidence_ledger.yaml`
+> → version 2 / `expert_reviewed` (v1 2026-06-05, §8.8-sign-off 2026-06-07 → v2). Skarp betygsättning
+> är aktiverad. Paketet bevaras som **granskningshistorik och beslutsunderlag**; siffrorna nedan är
+> ögonblicksvärden från när paketet skapades (2026-06-03/06) och speglar inte senare B2-/B3-tillägg
+> (aktuellt: **269 ståndpunkter / 46 evidensposter**).
+
+När paketet skapades var Rösta-pipelinen komplett (Fas 0–6 + b-faser) men tre configfiler var
+**AI-utkast (version 0)** som projektets disciplin flaggade som *"kräver mänsklig slutgranskning innan
+skarp betygsättning"*. Eftersom hela appens värde är **objektivitet** var granskningen av dessa filer
+den faktiska grinden mellan fungerande prototyp och trovärdig produkt. Det här paketet gjorde
+granskningen spårbar och fokuserade den på de rader som faktiskt rör betygen.
 
 | Fil | Driver delpoäng | Vikt | Granskningsdok |
 |-----|-----------------|------|----------------|
@@ -19,11 +26,11 @@ Allt under `docs/expertgranskning/` (utom denna README + [adversariell_verifieri
 python -m pipeline.tools.review_packet
 ```
 
-> **Status (2026-06-03):** Datatäckningen och driftrobustheten har byggts ut sedan paketet skapades
-> (nya D-serier: trygghet uppklaringsgrad + skjutningar/sprängningar; serie-drift-skydd, snapshot-diff
-> och live-smoke-test — se [BACKLOG.md](../BACKLOG.md)). **De tre version-0-configfilerna nedan är
-> oförändrade** av det arbetet och är fortfarande den faktiska granskningsgrinden. Paketet är
-> regenererat mot aktuell config (inga ändringar i de granskade raderna).
+> **Historisk statusnotis (2026-06-03, vid paketets skapande):** Datatäckningen och driftrobustheten
+> hade byggts ut sedan paketet skapades (nya D-serier: trygghet uppklaringsgrad + skjutningar/sprängningar;
+> serie-drift-skydd, snapshot-diff och live-smoke-test — se [BACKLOG.md](../BACKLOG.md)). De tre
+> configfilerna var då oförändrade v0 och utgjorde granskningsgrinden. **Den grinden är sedan passerad**
+> (se status-bannern överst — sign-off 2026-06-05/06-07).
 
 ## Vad granskningen redan vet (deterministiskt härlett)
 
@@ -39,8 +46,10 @@ python -m pipeline.tools.review_packet
 1. **[adversariell_verifiering.md](adversariell_verifiering.md)** — börja här. En oberoende skeptisk
    omverifiering av högrisk-delmängden (propositionsavslags-opposes + `ny_karnkraft`) mot riksdagens
    fulltext är redan gjord. De evidens-*vändande* opposes som spelar störst roll är **bekräftade**;
-   **fyra rader är SUSPECT** och väntar på ditt beslut (S kärnkraft, V välfärdsbrott, C tidiga insatser,
-   M kärnkraft-källtyp).
+   fyra rader var SUSPECT (S kärnkraft, V välfärdsbrott, C tidiga insatser, M kärnkraft-källtyp) —
+   **alla avgjorda i sign-offen 2026-06-05** (V `kontroller_mot_valfardsbrott` → supports/förbehåll,
+   C `tidiga_insatser` → supports/omattribuerad, S/M m.fl. `ny_karnkraft` behållna med dokumenterad
+   källtyps-asymmetri; se beslutsloggen i [done/evidens_trovardighet.md §9](../done/evidens_trovardighet.md) + BACKLOG B1).
 2. **[B_partistandpunkter.md](B_partistandpunkter.md) → "⚑ Prioriterad granskning"** — 79 rader där
    fel gör störst skada (opposes, prop_avslag, ny_karnkraft, low_confidence, single_member, äldre
    källa). Sätt verdikt (✅/✏️/❌) i OK?-kolumnen.
@@ -52,9 +61,9 @@ python -m pipeline.tools.review_packet
 5. **[A_budgetramar.md](A_budgetramar.md)** — jämför de transkriberade UO-beloppen cell för cell mot
    bet. 2024/25:FiU1 tabell 35 (källrad anges per frame). Feltranskribering korrumperar A.
 
-## Sign-off-protokoll
+## Sign-off-protokoll (genomfört 2026-06-05 → §8.8 2026-06-07)
 
-När en fil är granskad och eventuella rättelser införda:
+Detta protokoll FÖLJDES vid sign-offen och bevaras som referens. När en fil var granskad och eventuella rättelser införda:
 
 1. Inför rättelser **i `config/*.yaml`** (inte i granskningsdoken — de regenereras).
 2. Höj filens `version: 0 → 1` och uppdatera `status:`
@@ -67,6 +76,6 @@ När en fil är granskad och eventuella rättelser införda:
 5. Notera granskningsbeslutet i [BACKLOG.md](../BACKLOG.md) under **Spår B (B1)** — ROADMAP.md är
    fryst historik och uppdateras inte längre.
 
-> **Princip:** detta paket *ändrar ingen config* — det är beslutsunderlag. De fyra SUSPECT-fynden
-> i adversariell_verifiering.md är medvetet INTE rättade i koden; det är expertens beslut om de ska
-> omkodas, kvalificeras eller tas bort.
+> **Princip:** detta paket *ändrade ingen config* — det var beslutsunderlag. De fyra SUSPECT-fynden
+> i adversariell_verifiering.md lämnades medvetet orättade i koden tills expertbeslutet; **de avgjordes
+> sedan i sign-offen 2026-06-05** (se ovan + beslutsloggen).

@@ -1,5 +1,10 @@
 # B3 — kandidatregister (omstridda ∧ evidensbelagda åtgärdstyper, 2026-06-12)
 
+> **✅ UPPDATERING 2026-06-14:** de tre byggda posterna (C1 `nedtrappad_ersattningsprofil_akassa`,
+> C2 `dca_avtal_usa`, C3 `uppsokande_forskoleerbjudande_nyanlandas_barn`) är **slutgranskade v0→v1
+> och avflaggade**; C4 (`rattssakerhetsgarantier_preventiva_tvangsmedel`, beslutsfråga B2) = **HOLD/vänta**.
+> Statustexterna nedan ("flaggad v0" / "Väntar sign-off") är historik från 2026-06-12.
+>
 > **Status:** research genomförd **2026-06-12** med 7 parallella kategoriagenter (läs-bara; alla
 > voteringar API-verifierade live mot data.riksdagen.se — dokumentlista → dokumentstatus →
 > votering/voteringlista, partifördelningar hämtade per ledamot aggregerat). Därefter
@@ -28,9 +33,9 @@ granskad och förkastad med skäl (kvar i loggen för återöppning).
 
 | Kandidat | Kategori → indikator | Verdikt (research) | Codex-verdikt | Status |
 |---|---|---|---|---|
-| `nedtrappad_ersattningsprofil_akassa` | ekonomi → `arbetsloshet` | STRONG | BUILD-WITH-CHANGES | **Byggd 2026-06-12, flaggad v0** |
-| `dca_avtal_usa` | forsvar → `nato_interoperabilitet` | STRONG | HOLD | **Sign-off 2026-06-12: BYGG med Codex-villkoren — BYGGD 2026-06-12, flaggad v0 (se §9.1; commit `data: B3 — dca_avtal_usa …`)** |
-| `uppsokande_forskoleerbjudande_nyanlandas_barn` | integration → `skolresultat_utsatta_omraden` | STRONG | BUILD-WITH-CHANGES | **Byggd 2026-06-12, flaggad v0; SD/KD = none** |
+| `nedtrappad_ersattningsprofil_akassa` | ekonomi → `arbetsloshet` | STRONG | BUILD-WITH-CHANGES | **Byggd 2026-06-12, v0→v1 avflaggad 2026-06-14** |
+| `dca_avtal_usa` | forsvar → `nato_interoperabilitet` | STRONG | HOLD | **Sign-off 2026-06-12: BYGG med Codex-villkoren — BYGGD 2026-06-12, v0→v1 avflaggad 2026-06-14 (se §9.1; commit `data: B3 — dca_avtal_usa …`)** |
+| `uppsokande_forskoleerbjudande_nyanlandas_barn` | integration → `skolresultat_utsatta_omraden` | STRONG | BUILD-WITH-CHANGES | **Byggd 2026-06-12, v0→v1 avflaggad 2026-06-14; SD/KD = none** |
 | `rattssakerhetsgarantier_preventiva_tvangsmedel` | demokrati → `overvakning_utan_rattssakerhet` | STRONG | HOLD | **Sign-off 2026-06-12: HOLD bekräftad — vänta (kandidaten kvar färdigberedd)** |
 | `likvardiga_urvalsgrunder_skolval` | valfard → `skillnader_mellan_skolor` | WEAK | — | Bevakning (Tidö-utredningen, IFAU-remiss 2025-11-28) |
 | `karriarsteg_forstelarare` | valfard → `skolresultat` | WEAK | — | Bevakning (uppgraderas till trolig STRONG om V:s avskaffa-yrkande voteras) |

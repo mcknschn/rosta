@@ -77,14 +77,11 @@ för kategorins UO, annars faller A på a2. **C (ansvar/makt) blandar nu natione
 subnationell makt** (SKR-styren: 21 regioner + 290 kommuner × 3 mandatperioder, Fas 1c) per kategori
 via en region/kommun-split efter lagstadgat ansvar — full täckning, hög säkerhet (c2 finansiering
 uppskjutet, ej neutralt byggbart → C = c1; [metod](docs/fas1c_subnational_metod.md)); **D (resultat)
-attribueras** från 17 officiella årsserier (15 direkta + 2 härledda) i ekonomi/välfärd/klimat/integration/trygghet
-där partiet haft nationell makt (klimat har 3 D-serier inkl. fossil energianvändning från Energimyndigheten,
-trygghet 3: dödligt våld + NTU-utsatthet + NTU-otrygghet från Brå, och två härledda SCB-serier:
-integrations-sysselsättningsgapet inrikes/utrikes födda samt arbetsproduktiviteten i hela ekonomin,
-BNP i fasta priser per arbetad timme) —
-försvar/demokrati saknar ännu D-data (explicit allowlistade, [docs/fas3_coverage.md](docs/fas3_coverage.md)). **B (evidens)
-är aktiverad för alla 7 kategorier** via 130 källbelagda partiståndpunkter (riksdagsvotering/motion),
-coverage-viktade så tunn täckning drar mot neutral (version 0 – kräver granskning;
+attribueras** från officiella årsserier i **alla 7 kategorier** (43/68 indikatorer, 29/35 undermått —
+försvar och demokrati fick D-data 2026-06-09/12; [docs/fas3_coverage.md](docs/fas3_coverage.md)) där partiet
+haft nationell makt, sedan 2026-06-12 krympt mot neutral efter viktad undermåttsbredd. **B (evidens)
+är aktiverad för alla 7 kategorier** via 269 källbelagda partiståndpunkter (riksdagsvotering/motion),
+coverage-viktade så tunn täckning drar mot neutral (expertgranskad, `version 2`;
 [metod](docs/fas4b_partistandpunkter_metod.md)). Ståndpunkterna är **panel-harmoniserade** (Fas 4c, alla
 8 partier per åtgärdstyp bedömda mot en gemensam frusen rubrik) och liggaren utökad med den enda omstridda
 åtgärdstyp som passerade evidens-/negativ-grinden av 8 skannade (`ny_karnkraft` → effektbrist; 7 hade för

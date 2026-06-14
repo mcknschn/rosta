@@ -35,7 +35,7 @@ de officiella, publicerade ramtalen **transkriberas till versionsstyrd config**
 ([`config/budget_ramar.yaml`](../config/budget_ramar.yaml)), där varje frame **citerar sin källrad**,
 och deterministisk kod ([`pipeline/budget.py`](../pipeline/budget.py)) konsumerar configen. Detta är
 en **trogen kopia** av officiella tal — inga belopp imputeras, jämkas eller gissas. Det är
-strukturering av en officiell källa, inte fabrikation. **Version 0 — kräver mänsklig slutgranskning.**
+strukturering av en officiell källa, inte fabrikation. **Version 1 — expertgranskad + mänsklig sign-off 2026-06-05; a1 aktiv i skarp betygsättning.**
 
 ## Källor (budgetår 2023–2025)
 
@@ -115,13 +115,13 @@ Regeringsblocket (M/KD/L/SD) delar samma ram → identiskt a1-bidrag; deras A sk
 > rangar) jämfört med ettårsmätningen, men grundkänsligheten kvarstår som en modellegenskap (ej en
 > A1-defekt). Kandidat för framtida förfining: en dödzon/min–max på a1 för nära-oavgjorda kategorier.
 
-## Begränsningar (version 0)
+## Begränsningar (version 1)
 
 - **Tre budgetår (2023–2025).** Fler år kan läggas till; grinden kräver fullständig 8-parti-täckning
   per år (snitt-skärning), och varje nytt år ska köras genom samma fyrlagriga verifiering.
 - **UO26 (statsskuldsräntor → ekonomi)** och **UO27 (EU-avgift → ingen kategori)** ingår i nämnaren
   (total budget); UO26 är ~lika för alla partier och påverkar den *relativa* a1 marginellt.
-- **Kräver mänsklig slutgranskning** innan skarp betygsättning (som party_positions).
+- **Slutgranskad** (mänsklig sign-off 2026-06-05) och aktiv i skarp betygsättning, som party_positions.
 
 ## Reproduktion / verifiering
 
