@@ -186,13 +186,18 @@ fortfarande FLAGGADE invasiva-arter-posten. Varje paket avslutas med en fråga a
 
 Kvällens B3-research (7 kategorier, allt API-verifierat) gav 4 STRONG-kandidater. Två byggdes efter
 Codex-triage (a-kassenedtrappningen → ekonomi/arbetsloshet; uppsökande förskoleerbjudande →
-integration, SD/KD=none) — flaggade v0, din slutgranskning kvarstår. Två är **HOLD för din sign-off**,
+integration, SD/KD=none) — flaggade v0. Två var **HOLD för din sign-off**,
 fullt beredda med beslutsfrågor i [b3_kandidatregister_2026-06-12.md](b3_kandidatregister_2026-06-12.md):
 - **B1: `dca_avtal_usa`** (forsvar → nato_interoperabilitet) — Codex HOLD pga NATO-stackning (V skulle
-  få andra opposes-posten på samma indikator) + p1-roll-call utanför voterings-API:t.
+  få andra opposes-posten på samma indikator) + p1-roll-call utanför voterings-API:t. → **BYGGD** (sign-off B1).
 - **B2: `rattssakerhetsgarantier_preventiva_tvangsmedel`** (demokrati → overvakning_utan_rattssakerhet)
   — Codex HOLD pga S-kodningen (kräver instrumentlåsning före kodning) + andra rättssäkerhetsposten
-  i personlig_frihet.
+  i personlig_frihet. → **HOLD/vänta** (sign-off B2).
+
+> **✅ SLUTGRANSKNING 2026-06-14:** de tre byggda B3-posterna (nedtrappad_ersattningsprofil_akassa,
+> uppsokande_forskoleerbjudande_nyanlandas_barn, dca_avtal_usa) gicks igenom en i taget och
+> **godkändes oförändrade — AVFLAGGADE v0→v1**. Ingen betygsändring (`dist/` byte-identisk; de var redan
+> inräknade). B2 (preventiva tvångsmedel) kvar på HOLD/vänta enligt B2-sign-offen.
 
 ---
 
