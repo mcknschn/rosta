@@ -147,7 +147,7 @@ def d_submeasure_breadth() -> dict[str, Any]:
 
 
 def b_submeasure_breadth() -> dict[str, Any]:
-    """B-undermåttsbredd (docs/b_coverage_krympning_spec.md §6.3–6.4): viktat cov_B-TAK per kategori.
+    """B-undermåttsbredd (docs/done/b_coverage_krympning_spec.md §6.3–6.4): viktat cov_B-TAK per kategori.
 
     Offline-spegel av d_submeasure_breadth (endast config): ett icke-target-undermått räknas
     B-täckbart om det har minst en kodbar åtgärdstyp (T_s != tom mängd — DELADE regler med

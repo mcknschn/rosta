@@ -1,4 +1,4 @@
-"""B-undermåttsbredd (docs/b_coverage_krympning_spec.md §6.4): cov_B-takets grind.
+"""B-undermåttsbredd (docs/done/b_coverage_krympning_spec.md §6.4): cov_B-takets grind.
 
 Grinden speglar tests/test_d_breadth_gate.py (allowlist-mönstret): varje kategori vars
 viktade cov_B-TAK ligger under grindtröskeln är ANTINGEN åtgärdad (B-väggen byggd bort,

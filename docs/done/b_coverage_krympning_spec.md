@@ -1,14 +1,14 @@
 # Rösta - Spec: B-undermåttsbreddskrympning (BACKLOG B5)
 
-> **Status: 🟡 IMPLEMENTERAD + GRINDAD bakom `coverage_mode: policy_type_count` (legacy
-> default, byte-identiskt verifierat 2026-06-12: `dist/` oförändrad + `score_diff` ren
-> efter scorerun). §10.1–10.6 SIGNADE 2026-06-12 (design, nämnare, KD↔MP-flip i princip,
-> tröskel 0,5, flaggformat, B-breddgrind — grinden byggd, se §11). KVAR: ENDAST §10.7 —
-> default-switchen till `weighted_submeasure_depth` + rebaselina sker först efter
-> människogranskad faktisk switch-diff (per cell/kategori/total + CI-/rankingnot).**
+> **Status: ✅ LEVERERAD OCH AKTIVERAD. `coverage_mode: weighted_submeasure_depth` är default
+> i config sedan §10.7-sign-offen 2026-06-14; `dist/` omräknad och snapshot rebaselinad
+> (ranking S > L > M > MP > KD > C > SD > V). §10.1–10.7 SIGNADE (design, nämnare, KD↔MP-flip,
+> tröskel 0,5, flaggformat, B-breddgrind, default-switch — se §11). Legacy `policy_type_count`
+> finns kvar via config-override (byte-identisk med sig själv). Arkiverad till done/ — ingen
+> öppen fråga kvar.**
 >
 > Systerspec till den levererade D-specen
-> [done/d_coverage_krympning_spec.md](done/d_coverage_krympning_spec.md) och speglar dess
+> [d_coverage_krympning_spec.md](d_coverage_krympning_spec.md) och speglar dess
 > struktur och beslutsmodell. B har redan en runtime-krympning (åtgärdstyps-täckning, Fas 4b'),
 > men den krymper efter **antal kodade åtgärdstyper**, inte efter **undermåttsbredd** — en
 > kategori vars B-evidens bara når en delmängd av undermåtten gör ändå ett oavkortat
@@ -21,10 +21,10 @@
 > av kategoribetyget, och den rekommenderade formeln flyttar totaler upp till ±0,06 och
 > byter en rankingplats (KD↔MP, se §5 och Bilaga A). Det måste accepteras explicit i §10.
 >
-> Relaterat: [done/d_coverage_krympning_spec.md](done/d_coverage_krympning_spec.md),
-> [BACKLOG.md B5/B4](BACKLOG.md), [done/evidens_trovardighet.md](done/evidens_trovardighet.md),
-> [../config/scoring.yaml](../config/scoring.yaml), [../pipeline/scorerun.py](../pipeline/scorerun.py),
-> [../pipeline/score.py](../pipeline/score.py), [../pipeline/tools/coverage_report.py](../pipeline/tools/coverage_report.py).
+> Relaterat: [d_coverage_krympning_spec.md](d_coverage_krympning_spec.md),
+> [BACKLOG.md B5/B4](../BACKLOG.md), [evidens_trovardighet.md](evidens_trovardighet.md),
+> [../../config/scoring.yaml](../../config/scoring.yaml), [../../pipeline/scorerun.py](../../pipeline/scorerun.py),
+> [../../pipeline/score.py](../../pipeline/score.py), [../../pipeline/tools/coverage_report.py](../../pipeline/tools/coverage_report.py).
 >
 > Begreppsmodell: **Kategori -> Undermått -> Indikator -> Riktning**.
 
@@ -73,7 +73,7 @@ efter liggarens instrumentantal, vilket är en källartefakt, inte en modellvikt
 
 ## 1. Problemet i dagens kod
 
-B-vägen i [pipeline/scorerun.py](../pipeline/scorerun.py) bygger täckningen på
+B-vägen i [pipeline/scorerun.py](../../pipeline/scorerun.py) bygger täckningen på
 ÅTGÄRDSTYPS-nivå (Fas 4b'):
 
 ```python
@@ -91,7 +91,7 @@ b_raw = score.aggregate_B(b_inputs, b_weights, missing_all_score=b_missing)
 b_val = 2.5 + (b_raw - 2.5) * coverage  # krymp mot neutral efter täckning
 ```
 
-`aggregate_B` i [pipeline/score.py](../pipeline/score.py) renormaliserar samtidigt B-värdet
+`aggregate_B` i [pipeline/score.py](../../pipeline/score.py) renormaliserar samtidigt B-värdet
 över de indikatorer som har effekt:
 
 ```python
@@ -601,7 +601,7 @@ testfel. Gör B-väggarnas kostnad människosignerad i stället för tyst. (Sign
 ## 11. Granskningslogg
 
 - 2026-06-12: v1-utkast skrivet (Claude) som systerspec till
-  [done/d_coverage_krympning_spec.md](done/d_coverage_krympning_spec.md). §2 verifierat
+  [d_coverage_krympning_spec.md](d_coverage_krympning_spec.md). §2 verifierat
   mot körd `coverage_report` (B4-tabellen i BACKLOG konstaterad delvis inaktuell:
   integration 3/5, valfard 4/4, forsvar 4/5, trygghet 5/5, demokrati 5/5); §3.2- och
   §5-siffrorna reproducerade read-only ur config + `dist/scores.json` (cov_pt/cov_bredd/
@@ -654,6 +654,21 @@ testfel. Gör B-väggarnas kostnad människosignerad i stället för tyst. (Sign
   `dist/` fortsatt byte-identisk i legacy-läget (git diff tom + score_diff ren).
   KVAR: endast §10.7 — default-switch + rebaselina efter människogranskad switch-diff
   (per cell/kategori/total + CI-överlapp-/rankingnot).
+- 2026-06-14: **§10.7 SIGNAD — DEFAULT-SWITCH AKTIVERAD** (mänsklig sign-off på
+  människogranskad switch-diff, GO). `config/scoring.yaml` `coverage_mode`
+  `policy_type_count` → `weighted_submeasure_depth`. `python -m pipeline.scorerun` skrev om
+  `dist/` och `score_diff --write` rebaselinade `scores.snapshot.json`. Den granskade
+  switch-diffen (mot committad snapshot): **106 ändringar, allt B-drivet** (D/A/C orörda).
+  Totaler/ranking: S 3,704→3,660; L 3,405→3,370; M 3,330→3,284; **MP 3,118→3,127**;
+  **KD 3,162→3,119**; C 3,103→3,034; SD 2,735→2,720; V 2,576→2,600 — ranking
+  S > L > M > **KD > MP** > C > SD > V → S > L > M > **MP > KD** > C > SD > V (KD↔MP-flippen
+  verkställd; ny marginal 0,0085 inom det öppet redovisade 80 % CI-överlappet). Största
+  kategori-Δ: C/integration −0,306, KD/integration −0,270, S/integration −0,167,
+  S+C/klimat −0,175; lossningen demokrati V +0,134 / M+KD +0,080 (antalsviktning av
+  korruption_tillit ersatt av modellvikt). 8 tunnhetsflaggor (mot 1 i legacy). Två tester
+  i `test_b_coverage_mode.py` som pinnade default==legacy uppdaterade till default==weighted
+  (legacy-garantierna kvar via explicit override). Verifierat: **pytest 292 grönt** (4
+  skip), ruff rent, `score_diff` ren mot ny baslinje. Specen arkiverad till done/.
 
 ---
 

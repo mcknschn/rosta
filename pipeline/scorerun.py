@@ -179,7 +179,7 @@ def _submeasure_weights() -> dict[str, dict[str, float]]:
 
 def _non_target_submeasures() -> dict[str, set[str]]:
     """kategori -> icke-target-undermått (täckningsnämnaren som B och D DELAR,
-    spec docs/done/d_coverage_krympning_spec.md §3.1 / docs/b_coverage_krympning_spec.md §3.4).
+    spec docs/done/d_coverage_krympning_spec.md §3.1 / docs/done/b_coverage_krympning_spec.md §3.4).
 
     Target-only = undermåttet har minst en indikator OCH alla dess indikatorer har
     direction 'target'. Undermått UTAN indikatorer är inte target-only — de är en del av
@@ -474,7 +474,7 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
             cov_num.setdefault((pos["party"], cc), set()).add(pt)
     thin_cov = float(b_evidens.get("thin_coverage_threshold", 0.5))
 
-    # B5 (docs/b_coverage_krympning_spec.md): täckningsmått-läge. policy_type_count = legacy
+    # B5 (docs/done/b_coverage_krympning_spec.md): täckningsmått-läge. policy_type_count = legacy
     # (byte-identisk baseline, antal kodade åtgärdstyper / kategorins kodbara). weighted_
     # submeasure_depth = viktad undermåttsdjuptäckning cov_B = Σ w_s·|K_s|/|T_s| / Σ w_s
     # över kategorins icke-target-undermått (SAMMA nämnare som D). Okänt läge hard-failar —

@@ -1,10 +1,11 @@
-"""B5 — B-undermåttsbreddskrympning (docs/b_coverage_krympning_spec.md): formel, nämnare,
+"""B5 — B-undermåttsbreddskrympning (docs/done/b_coverage_krympning_spec.md): formel, nämnare,
 flaggformat, gate och mode-växel.
 
 Mönstret speglar tests/test_d_breadth_gate.py (monkeypatch-deepcopy för mode-override,
-seedat in-memory-warehouse för end-to-end). Default-läget är `policy_type_count` (legacy,
-byte-identisk baseline — verifieras även mot dist/ i leveransen); `weighted_submeasure_depth`
-aktiveras endast via config-override här. Ekvivalenstesterna räknar cov_B oberoende per cell
+seedat in-memory-warehouse för end-to-end). Default-läget är `weighted_submeasure_depth`
+(committat efter §10.7-sign-offen 2026-06-14); legacy `policy_type_count` finns kvar och
+aktiveras via config-override här (byte-identisk med sig själv + antalsbaserad flagga).
+Ekvivalenstesterna räknar cov_B oberoende per cell
 och låser att krympningen är exakt `2.5 + (B_raw - 2.5) * cov_B` (spec §3.3) med D:s
 icke-target-nämnare (spec §3.4). Anti-gaming-testerna låser set-semantiken för |K_s|/|T_s|
 (dedup inom undermått, bidrag en gång PER undermått — koldioxidskatt-fallet, spec §7).
@@ -171,17 +172,21 @@ def _b_cells(scores: dict) -> dict[tuple[str, str], dict]:
     return {(p, c): scores[p][c] for p in scores for c in scores[p]}
 
 
-def test_default_ar_legacy_och_byte_identisk_med_explicit_mode(monkeypatch: pytest.MonkeyPatch) -> None:
-    """Committad config (coverage_mode: policy_type_count) ger EXAKT samma utdata som
-    explicit legacy-override, och legacy-flaggan förblir antalsbaserad (heltal/heltal)."""
-    assert config.scoring()["B_evidens"]["coverage_mode"] == "policy_type_count"
+def test_default_ar_weighted_och_byte_identisk_med_explicit_mode(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Committad config (coverage_mode: weighted_submeasure_depth efter §10.7-switchen) ger
+    EXAKT samma utdata som explicit weighted-override; legacy finns kvar via override och
+    behåller sin antalsbaserade flagga (heltal/heltal)."""
+    assert config.scoring()["B_evidens"]["coverage_mode"] == "weighted_submeasure_depth"
     con = _seed_con()
     base = scorerun.build(con)["scores"]["scores"]
-    _set_mode(monkeypatch, "policy_type_count")
+    _set_mode(monkeypatch, "weighted_submeasure_depth")
     explicit = scorerun.build(con)["scores"]["scores"]
     assert explicit == base
+    # legacy-vägen orörd: explicit override ger fortfarande antalsbaserade flaggor
+    _set_mode(monkeypatch, "policy_type_count")
+    legacy = scorerun.build(con)["scores"]["scores"]
     cov_flags = [
-        f for cell in _b_cells(base).values()
+        f for cell in _b_cells(legacy).values()
         for f in cell["flags"] if f.startswith("B_coverage_")
     ]
     assert cov_flags
@@ -243,6 +248,7 @@ def test_formelekvivalens_mellan_moderna(monkeypatch: pytest.MonkeyPatch) -> Non
     oberoende; cov_pt läses ur legacy-flaggan. Låser också att cov_B = 1 <=> B_just = B_raw
     och att flaggan matchar den oberoende omräkningen."""
     con = _seed_con()
+    _set_mode(monkeypatch, "policy_type_count")  # default är nu weighted -> tvinga legacy explicit
     legacy = scorerun.build(con)["scores"]["scores"]
     _set_mode(monkeypatch, "weighted_submeasure_depth")
     new = scorerun.build(con)["scores"]["scores"]
