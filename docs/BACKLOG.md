@@ -146,17 +146,16 @@ företagande/investeringar samt hushållens disponibla inkomst → ekonomi 4/6 t
       klasserna (alla opposes, enskild-motion, lågkonfidens) är genomgångna; övriga supports-rader är riktnings-
       bevarande och instrument-exakta enligt sina mapping_notes men har inte var för sig återhämtats mot källa.
       *Kvarstående B-arbete flyttat till B2/B4 (täckning) — ej en blockerare för v1.*
-- **B2 — Bredda evidensliggaren (anti-binär)** 🟡 *(ekonomi ✅ 4/6 täckta = alla 4 B-möjliga, 2026-06-05: FoU→produktivitet + företagande/investeringar + hushållens disponibla inkomst; kvar: demokrati)* — flera
-  kategoriers B vilar på för få undermått (se B4). **Ekonomi är värst: 1/5 undermått (25 % av kat-vikten), bara
-  2 aktiva åtgärdstyper som båda matar `sysselsattning`** → B blir nästan binär (5,0 / ~2,5 / 0,0 efter två
-  jobbpolitiska ställningstaganden; BNP/produktivitet + reallöner + inflation + offentliga finanser = 75 % har
-  **noll** B-evidens). Demokrati lika illa (1/5, 20 %, dessutom enbart `expert_opinion`). Åtgärd: källbelagda
-  åtgärdstyper för de otäckta undermåtten — **ekonomi först**, och då **produktivitet** (`bnp_produktivitet`)
-  och **reallöner** (`realloner_hushall`) — de enda up-indikatorerna. (Inflation + offentliga finanser är
-  target-indikatorer → tar inget riktat B-bidrag; B4-grinden bekräftar detta.) Fler åtgärdstyper/kategori
-  → fler täckta undermått → mindre binäritet (och högre `coverage` → mindre B-krympning).
-- **B3 — Fler omstridda/differentierande åtgärdstyper** 🟡 — återanvänd Plan A-mönstret
-  (Fas 4c): kandidatregister → endast intersektionen *omstridd ∧ evidensbelagd* → negativ-grind.
+- **B2 — Bredda evidensliggaren (anti-binär)** ✅ **i allt väsentligt LEVERERAD** *(status 2026-06-14)* —
+  målet (ingen kategoris B vilar på för få undermått) är uppnått. Live `b_submeasure_breadth`: ekonomi
+  73/73, valfard/trygghet/demokrati **100/100**, forsvar 95/100, klimat 85/100 — **inga nära-binära
+  kategorier**. Ekonomi (1/5→4/6) och demokrati (1/5→5/5), de två "värsta" 2026-06-05, är nu fullt täckta.
+  **Enda kvarvarande sub-tröskel: integration 65/100** (B-väggarna boendesegregation + normer_tillit) —
+  ett **signat, accepterat undantag** (H3/H4, `b_thin_breadth_accepted`) med trigger ~2027 (bosättningslag),
+  inte aktivt byggarbete. Per-kategori-detaljer i B4-tabellen nedan.
+- **B3 — Fler omstridda/differentierande åtgärdstyper** ✅ **aktuell omgång LEVERERAD** *(2026-06-14)* —
+  återanvänd Plan A-mönstret (Fas 4c): kandidatregister → endast intersektionen *omstridd ∧ evidensbelagd*
+  → negativ-grind. Recurring: nya kandidater återöppnas via triggrar (b3_kandidatregister §9.4).
   **3 poster levererade 2026-06-12** (alla slutgranskade v0→v1 2026-06-14, avflaggade; codex BUILD-WITH-CHANGES ×2,
   voteringar + citat omverifierade mot data.riksdagen.se): **(1) `nedtrappad_ersattningsprofil_akassa`**
   (ekonomi → arbetsloshet; IFAU 'Om a-kassa och löner' som syntes av R 2008:12/WP 2007:21/R 2013:10/R 2005:16;
@@ -177,11 +176,16 @@ företagande/investeringar samt hushållens disponibla inkomst → ekonomi 4/6 t
   Ds 2024:6 bilaga 4, citat ordagrant verifierade; MP:s villkorade nej = bunten-regeln §2, MP:s
   FÖRSTA aktuella position på indikatorn). Scoreeffekt (förklarbar, ranking OFÖRÄNDRAD): C/KD
   forsvar +0,04 (coverage 3/4→4/5), MP forsvar −0,13 (ny opposes + 1/4→2/5), S/M/SD/L/V oförändrade
-  (indikatorcell redan mättad ±1, coverage-kvot 1,0). **Kvar endast B2 = `rattssakerhetsgarantier_preventiva_tvangsmedel`
-  HOLD** (se [beslutsunderlag_hold_2026-06-12.md](done/beslutsunderlag_hold_2026-06-12.md) +
-  [b3_kandidatregister_2026-06-12.md](done/b3_kandidatregister_2026-06-12.md) §9.2).
-- **B4 — Kategori-täckningsaudit (anti-binär garanti)** ⚪ *(ny 2026-06-05)* — säkerställ att **ingen
-  kategoris B vilar på ett enda undermått**. Täckningsaudit 2026-06-05 (aktiva åtgärdstyper × undermått de matar):
+  (indikatorcell redan mättad ±1, coverage-kvot 1,0). **`rattssakerhetsgarantier_preventiva_tvangsmedel`
+  ⏸️ HOLD MED TRIGGER (beslut 2026-06-14: behåll HOLD)** — stacknings-tilt (andra rättssäkerhetsposten i
+  personlig_frihet) + S-kodningens neutralitetsfälla i en bias-känslig kategori; Codex förordade HOLD.
+  Inte aktivt arbete; underlaget bevarat för direkt återupptag (voterings-id:n, Lagrådscitat). **Återöppnas**
+  vid preventivlagens lagstadgade oberoende utvärdering (~2028). Se
+  [beslutsunderlag_hold_2026-06-12.md](done/beslutsunderlag_hold_2026-06-12.md) +
+  [b3_kandidatregister_2026-06-12.md §9.2](done/b3_kandidatregister_2026-06-12.md).
+- **B4 — Kategori-täckningsaudit (anti-binär garanti)** ✅ **LEVERERAD** *(grind 2026-06-05; audit aktuell)* —
+  garantin "ingen kategoris B vilar på ett enda undermått" är aktiv: `b_submeasure_spread()`-grinden flaggar
+  nära-binär kategori offline, och live-auditen visar **inga nära-binära**. Täckningsaudit (aktiva åtgärdstyper × undermått de matar):
 
   *(Tabellen avstämd mot live `b_submeasure_spread` 2026-06-12 kväll: integration 3/5, ekonomi 4/6,
   valfard 4/4, forsvar 4/5, klimat 4/5, trygghet 5/5, demokrati 5/5 — inga nära-binära. Kvarvarande
@@ -242,9 +246,13 @@ företagande/investeringar samt hushållens disponibla inkomst → ekonomi 4/6 t
 
 ## Spår C — Ansvar (delpoäng C)
 
-- **C1 — c2 (finansiering)** 🟣 — uppskjutet: inget objektivt, riktningsneutralt mått går att
-  bygga ur officiell data (se [fas1c_subnational_metod.md](done/fas1c_subnational_metod.md) §c2).
-  Hålls öppen tills en neutral källa uppstår; komponentvikt 0.7/0.3 behålls som avsikt.
+- **C1 — c2 (finansiering)** ⏸️ **PARKERAD (designbeslut 2026-06-14)** — inget objektivt,
+  riktningsneutralt finansieringsmått går att bygga ur officiell svensk data: alla partibudgetar är
+  formellt fullt finansierade (rambeslutsmodellen) → likformigt, och ett saldo-/ramverksmått skulle
+  gynna åtstramning → bryter neutraliteten (CLAUDE.md). C = c1 (makt) tills vidare; komponentvikten
+  0.7/0.3 behålls som dokumenterad avsikt. **Inte aktivt arbete** — återöppnas endast om en neutral
+  officiell källa uppstår (samma klass som D1: stängd på princip, inte på datatillgång). Detalj:
+  [fas1c_subnational_metod.md §c2](done/fas1c_subnational_metod.md).
 - **C2 — Mandatperiodskiften mitt i period** ⚪ — regeringsbyte mitt i ett år hanteras grovt i dag.
 - **C3 — Subnationell D-resultatdata** ⚪ — D attribueras i dag bara på nationell makt; region/
   kommun-utfall (Kolada finns) skulle koppla subnationell makt till subnationellt resultat.
