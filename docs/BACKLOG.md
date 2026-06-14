@@ -239,8 +239,16 @@ företagande/investeringar samt hushållens disponibla inkomst → ekonomi 4/6 t
   2023 + 2024 + 2025** (samma trogna transkriberingsmönster, källrad per frame). a1 är ett snitt
   över åren i stället för en enda mätpunkt. Fyrlagrigt verifierad (invariant + pandas + Codex +
   roll-call); se Levererat ovan + [metod](done/fas1b_budget_metod.md).
-- **A2 — Aktivera voteringsprovet** 🟣 — röster hämtas redan (12 riksmöten) men matar inget
-  betyg. Designfråga: hur väga faktiskt röstbeteende per kategori in i A utan att dubbelräkna a2.
+- **A2 — Aktivera voteringsprovet** ⏸️ **PARKERAD (designbeslut 2026-06-14)** — designfrågan är
+  utredd och löser sig mot park på princip (samma klass som C1/D1): det finns ingen neutral,
+  icke-redundant signal att väga in i A. (a) Röst*riktningen* (ja/nej) är **stance**, och stance
+  fångas redan fullständigt av **B** (party_positions.yaml är byggd ur exakt dessa voteringar, 802
+  källrader) — A är dessutom medvetet `Direktionsneutralt` ("rättheten fångas av B och D",
+  scoring.yaml). Att poängsätta röstriktning i A vore att dubbelräkna B och bryta A/B-separationen.
+  (b) Röst*volym/deltagande* per kategori är agendadrivet (alla partier röstar på samma ärenden)
+  → odifferentierande och redundant med a2 (motionsandel). Voteringsprovet behålls som **källa**
+  (matar B/provenans), inte som egen A-komponent. Återöppnas bara om ett neutralt emfas-mått ur
+  röstdata identifieras som a2 inte redan fångar. A = 0,6·a1 + 0,4·a2 (oförändrat).
 
 ---
 
@@ -253,7 +261,14 @@ företagande/investeringar samt hushållens disponibla inkomst → ekonomi 4/6 t
   0.7/0.3 behålls som dokumenterad avsikt. **Inte aktivt arbete** — återöppnas endast om en neutral
   officiell källa uppstår (samma klass som D1: stängd på princip, inte på datatillgång). Detalj:
   [fas1c_subnational_metod.md §c2](done/fas1c_subnational_metod.md).
-- **C2 — Mandatperiodskiften mitt i period** ⚪ — regeringsbyte mitt i ett år hanteras grovt i dag.
+- **C2 — Mandatperiodskiften mitt i period** ⏸️ **I ALLT VÄSENTLIGT LÖST / data-begränsad rest
+  (2026-06-14)** — premissen var stale för det NATIONELLA: regeringsbyten mitt i år är redan
+  finhanterade via dagviktning (`year_power_fractions`/`government_fractions`), t.ex. 2022 = S 0,795
+  (Andersson) + M/KD/L 0,205 (Kristersson) + SD 0,103 (stöd). Den enda kvarvarande grovheten är
+  *subnationella* mid-term-styrbyten (en regional/kommunal koalition som spricker mitt i perioden) —
+  och det är en **datakälla-begränsning**: SKR:s officiella öppna data är post-val-snapshots per
+  mandatperiod, det finns ingen ren officiell mid-term-serie. Lågt mervärde (sällsynt). Återöppnas
+  bara om SKR (eller motsv.) publicerar en maskinläsbar mid-term-styresserie.
 - ~~**C3 — Subnationell D-resultatdata**~~ ✅ **LEVERERAD + AKTIVERAD 2026-06-14** — D blandar nu
   in region-nivå vårdutfall (Kolada U70471 överlevnad + N79242 vårdköer, alla 21 regioner) och
   attribuerar dem till det parti som styrde regionen (speglar hur C blandar nationell + subnationell
