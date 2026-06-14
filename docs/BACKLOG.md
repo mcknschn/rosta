@@ -354,6 +354,13 @@ nu utfördes — det var precis det villkoret planen ställde.*
 > med skäl i `config/coverage_allowlist.yaml` (maskinläsbar sanningskälla, grindad av
 > `tests/test_fas3_gate.py`). Den gamla narrativa matrisen är fryst i [done/fas3_coverage.md](done/fas3_coverage.md).
 
+> **Status 2026-06-14: aktivt D-byggande är uttömt.** Våg 1–3 levererade (43/68 indikatorer, alla
+> 7 kategorier). Kvarvarande luckor i `coverage_allowlist.yaml` är antingen permanenta (target,
+> international, design_closed, low_value) eller hårda väggar (qualitative/sekretess, no_api) eller
+> BEVAKA-bevakningar — inget direkt byggbart D-item återstår (jfr djupsvepet: blockeraren för D är
+> neutralitet/attribution, inte datatillgång). Återupptas bara om en BEVAKA-trigger faller ut eller
+> via C3 (subnationell D-data, eget spår nedan).
+
 Mål: fler kanoniska årsserier som matar D-attributionen, så fler kategorier/undermått mäts på
 faktiskt utfall. Alla nya serier ska vara kanoniska (finnas i `categories.yaml` med rätt
 riktning) och annuella, så de matar `category_d` automatiskt.
@@ -372,7 +379,7 @@ riktning) och annuella, så de matar `category_d` automatiskt.
 Trygghet gick därmed till 4/5 D-täckta undermått (förebyggande saknar indikator); välfärd 3/4.
 Detaljer + verifiering i [spar_D_datatackning.md](done/spar_D_datatackning.md).
 
-### Våg 2 — nya adaptrar (källa finns men ej rent öppet API) ⚪
+### Våg 2 — nya adaptrar (källa finns men ej rent öppet API) ✅ AVSLUTAD 2026-06-12
 
 | Indikator | Kategori → undermått | Källa & metod | Effort | Tag |
 |-----------|--------------------|---------------|--------|-----|
@@ -380,13 +387,13 @@ Detaljer + verifiering i [spar_D_datatackning.md](done/spar_D_datatackning.md).
 | ~~`sfi_sprakkunskaper`~~ ✅ | integration → skola/språk | SCB **TAB1814** `AA0003EB` (andel godkända i sfi %) — ej Skolverket-portal, SCB-PxWeb räckte | **S** | ✅ **inläst 2026-06-07 (Tier 2, v0); §5.2 avgjord (godkäntandel)** |
 | ~~*(Svk-källadapter)*~~ ✅ | ~~klimat (förkrav för Våg 3-resten, effektbrist)~~ | ✅ **FÖRKRAVET STÄNGT 2026-06-12 (Spår D kväll):** effektbrist byggdes via Svk:s KRAFTBALANSRAPPORT (transkriberad config + tunn reader `svk.py`), ej tim-/effektdata — ingen Mimer/eSett-adapter behövdes, källregel-gränsfallet (§5.4-resten) upplöst utan att öppnas | — | ✅ stängt |
 
-### Våg 3 — härledda + design­krävande ⚪🟣
+### Våg 3 — härledda + design­krävande ✅ AVSLUTAD 2026-06-12 (utom 1 design-stängd)
 
 | Indikator | Kategori → undermått | Metod | Effort | Tag |
 |-----------|--------------------|-------|--------|-----|
 | ~~`elprisvolatilitet`~~ ✅ | klimat → energi/elpriser | **Energimyndigheten Energiindikatorer 12.5 EN_IND12-5A** (spotpris månadsmedel SE1–SE4 → årlig CV i adaptern) — Svk-/Nord Pool-väggen var överspelad, §5.4 upplöst | S (utökad bef. adapter) | ✅ **inläst 2026-06-12 (Spår D kväll, v0); CV-valet (ddof=0, likaviktning) dokumenterat** |
 | ~~`effektbrist`~~ ✅ | klimat → energi/elpriser | **Svk "Kraftbalansen på den svenska elmarknaden"** (lagstadgad regeringsrapport): nettoimport vid vinterns topplasttimme, vinterår → slutår, 7 obs 2020–2026, transkriberad config (maskinverifierad PyMuPDF) — "härled ur effektdata"-antagandet var överspelat, rapporten publicerar årsvärdet färdigt | ~~S (efter Svk-adapter)~~ → L (transkr.) | ✅ **inläst 2026-06-12 (Spår D kväll, v0); måttval (lastfrånkoppling aldrig inträffad → nettoimport-bäraren, down direkt) + väder-caveat dokumenterade** |
-| `utslappsminskning_per_krona` | klimat → kostnadseffektivitet | utsläpp ÷ klimatutgift (flera serier) | M | derived |
+| ~~`utslappsminskning_per_krona`~~ ⛔ | klimat → kostnadseffektivitet | **STÄNGD som designbeslut 2026-06-12 (D1):** kvoten premierar skattetung instrumentmix = ideologisk metodpreferens (CLAUDE.md-brott); kostnadseffektivitet är ändå D-täckt via `utslappsintensitet`. Allowlist-skäl `design_closed` | — | design_closed |
 | ~~`personal_varnpliktiga`~~ ✅ | försvar → militär förmåga | **Försvarsmaktens ÅR** (antal påbörjade GU/år 2018–2025), korsverif. mot Pliktverkets inskrivna — transkribering m. källrad (PDF:er ej maskinläsbara) | L | ✅ **inläst 2026-06-07 (Tier 4, v0); FÖRSVARETS FÖRSTA D** |
 | ~~`fortroende_domstolar_myndigheter`~~ ✅ / `tillit_valdeltagande` | demokrati | **Brå NTU 5A:1** (förtroende rättsväsendet, officiell — ej SOM) / SOM (tillit_valdeltagande, 🔴 BEVAKA/B-only) | L→**S** | ✅ **fortroende inläst 2026-06-07 (Tier 4, v0); DEMOKRATINS FÖRSTA D** |
 
