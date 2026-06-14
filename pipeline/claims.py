@@ -48,9 +48,15 @@ def build_claims(con: duckdb.DuckDBPyConnection) -> list[dict[str, Any]]:
             "source_refs": [src],
         })
 
-    # Resultat (D): en claim per observation.
+    # Resultat (D): en claim per NATIONELL observation (Riket/0000). Region-observationer
+    # (C3, geography = 4-siffrig Kolada-regionkod) är intern scoring-input för den subnationella
+    # D-attributionen — de surfas inte var för sig i det deployade evidensindexet (skulle bli
+    # oskiljbara dubblettrader och svälla indexet + driva provenansurvalet); regionspåret
+    # dokumenteras via D_subnational_region-flaggan + docs/done/c3_subnational_d_metod.md, och
+    # per-region-värdena ligger i den lokala warehouse:n (deploy-split, jfr DATA.md §1).
     for oid, category, indicator, period, value, src in con.execute(
-        "SELECT id, category, indicator, period, value, source_ref FROM observations"
+        "SELECT id, category, indicator, period, value, source_ref FROM observations "
+        "WHERE geography IN ('Riket', '0000')"
     ).fetchall():
         claims.append({
             "id": f"claim:observed_result:{oid}",

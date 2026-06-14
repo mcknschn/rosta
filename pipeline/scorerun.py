@@ -102,6 +102,54 @@ def municipal_fractions() -> dict[str, float]:
     return {p: v / cells for p, v in frac.items()}
 
 
+def _region_kolada_code(config_key: str) -> str:
+    """Config-regionnyckel ('01') -> Kolada 4-siffrig regionkod ('0001'), så region-år-makten
+    nycklas på SAMMA geografi som observationerna (build_subnational)."""
+    return f"{int(config_key):04d}"
+
+
+def region_year_power_fractions() -> dict[str, dict[int, dict[str, float]]]:
+    """Per region och kalenderår: maktvikt per parti (C3 — subnationell D-attribution).
+
+    {Kolada-regionkod -> {år -> {parti -> maktvikt 0-1}}}. Mandatperioderna (subnational_
+    governance.terms, tillträde 15 okt valåret) DAGVIKTAS per kalenderår precis som den
+    nationella year_power_fractions (så ett valår delas mellan gammalt och nytt styre); inom
+    ett styre delas makten jämnt mellan de ledande riksdagspartierna (1/antal, jfr skr.py /
+    regional_fractions). Inget stödparti-begrepp subnationellt (SKR-datan skiljer ej). Tom dict
+    om regiondata saknas -> subnationell D faller bort (ren nationell D).
+    """
+    sg = config.mappings().get("subnational_governance", {})
+    regions = sg.get("regions") or {}
+    terms = sg.get("terms") or []
+    if not regions or not terms:
+        return {}
+    parsed = [(t["id"], _as_date(t["start"]), min(_as_date(t["end"]), WINDOW_END)) for t in terms]
+    win_start = min(s for _, s, _ in parsed)
+    party_set = set(config.party_codes())
+    out: dict[str, dict[int, dict[str, float]]] = {}
+    for key, region in regions.items():
+        term_styre = region.get("terms", {})
+        per_year: dict[int, dict[str, float]] = {}
+        for year in range(win_start.year, WINDOW_END.year + 1):
+            y0, y1 = date(year, 1, 1), date(year + 1, 1, 1)
+            year_days = (y1 - y0).days
+            frac: dict[str, float] = {}
+            for tid, s, e in parsed:
+                overlap = (min(e, y1) - max(s, y0)).days
+                if overlap <= 0:
+                    continue
+                leading = [p for p in term_styre.get(tid, {}).get("leading_parties", []) if p in party_set]
+                if not leading:
+                    continue
+                contrib = (overlap / year_days) * (1.0 / len(leading))
+                for p in leading:
+                    frac[p] = frac.get(p, 0.0) + contrib
+            if frac:
+                per_year[year] = frac
+        out[_region_kolada_code(key)] = per_year
+    return out
+
+
 def _parsed_periods() -> list[tuple[date, date, list[str], list[str]]]:
     out = []
     for gp in config.mappings()["government_periods"]:
@@ -157,6 +205,39 @@ def _annual_series(con: object) -> dict[tuple[str, str], dict[int, float]]:
     return {
         key: {y: sum(vs) / len(vs) for y, vs in years.items()}
         for key, years in buckets.items()
+    }
+
+
+def _subnational_annual_series(
+    con: object,
+) -> dict[tuple[str, str], dict[str, dict[int, float]]]:
+    """(kategori, indikator) -> {regionkod -> {år -> värde}} ur REGION-observationer (C3).
+
+    Läser bara observationer vars geografi är en känd Kolada-regionkod (subnational_governance.
+    regions, 4-siffrig) — separat från _annual_series som läser nationellt (Riket/0000), så
+    nationell D är orörd. Period->år via score.period_to_year; dubbletter medelvärdesbildas.
+    """
+    regions = config.mappings().get("subnational_governance", {}).get("regions") or {}
+    codes = [_region_kolada_code(k) for k in regions]
+    if not codes:
+        return {}
+    ph = ", ".join("?" for _ in codes)
+    raw = con.execute(
+        f"SELECT category, indicator, geography, period, value FROM observations "
+        f"WHERE geography IN ({ph})",
+        codes,
+    ).fetchall()
+    buckets: dict[tuple[str, str], dict[str, dict[int, list[float]]]] = {}
+    for cat, ind, geo, period, val in raw:
+        if val is None:
+            continue
+        year = score.period_to_year(period)
+        if year is None:
+            continue
+        buckets.setdefault((cat, ind), {}).setdefault(geo, {}).setdefault(year, []).append(float(val))
+    return {
+        key: {geo: {y: sum(vs) / len(vs) for y, vs in years.items()} for geo, years in geos.items()}
+        for key, geos in buckets.items()
     }
 
 
@@ -239,10 +320,12 @@ class DCell(NamedTuple):
 
     score: float
     measured: bool
-    thin_basis: bool        # ansvarsunderlag (Σ maktvikt) under thin_basis_threshold
+    thin_basis: bool        # kombinerat ansvarsunderlag (nat + region år-ekv.) under thin_basis_threshold
     covered_weight: float   # Σ vikt för icke-target-undermått med faktiskt D-underlag för partiet
     total_weight: float     # Σ vikt för kategorins icke-target-undermått (nämnaren)
     thin_coverage: bool     # viktad täckning under thin_coverage_threshold
+    subnational_used: bool  # C3: subnationell (region) attribution bidrog till cellen
+    region_basis: float     # C3: regionalt ansvarsunderlag, ÅR-EKVIVALENT (Σ power / antal regioner)
 
 
 def category_d(con: object, parties: list[str], cats: list[str]) -> dict[tuple[str, str], DCell]:
@@ -251,7 +334,7 @@ def category_d(con: object, parties: list[str], cats: list[str]) -> dict[tuple[s
     För varje nationell årsindikator tillskrivs riktningsjusterade årsförändringar den
     regering som satt lag-år tidigare (score.attribute_series). Per submått medelvärdesbildas
     indikatorernas net, sedan submåttsviktat medel -> net i [-1,1] -> betyg. Gate: kategorins
-    net finns OCH partiets maktandel av fönstret >= min_responsibility, annars ej tillämplig.
+    net finns OCH partiets ansvarsunderlag >= min_responsibility, annars ej tillämplig.
 
     D-bredd (coverage_shrink, spec docs/done/d_coverage_krympning_spec.md): D mäter kategorins
     utfall, inte bara de undermått som råkar ha en serie. Med coverage_shrink aktiv bidrar
@@ -259,6 +342,14 @@ def category_d(con: object, parties: list[str], cats: list[str]) -> dict[tuple[s
     renormaliseras bort. Numeratorn är per (parti, kategori): korta serier/glapp kan göra
     att ett parti saknar attribution i en serie andra partier täcks av. Gaten använder
     fortsatt det renormaliserade nätet — saknad bredd ska inte göra en tom kategori measured.
+
+    C3 — SUBNATIONELL D (docs/done/c3_subnational_d_metod.md, gated på D_resultat.subnational.
+    enabled): för submått i submeasure_level_weights blandas det nationella submåtts-nätet med ett
+    REGION-poolat net (score.attribute_subnational_indicator) enligt {national, region}-vikten, så
+    ett regionstyrt utfall (vård) attribueras till det parti som styrde regionen. Regionalt
+    ansvarsunderlag normaliseras till ÅR-EKVIVALENT och adderas till det nationella i grinden
+    (ett parti med enbart regional vård-makt blir measured). enabled:false -> allt nedan är
+    no-op och D är byte-identisk med ren nationell attribution.
     """
     cfg = config.scoring()["D_resultat"]
     lag = int(cfg["attribution_lag_years"])
@@ -269,12 +360,19 @@ def category_d(con: object, parties: list[str], cats: list[str]) -> dict[tuple[s
     shrink = bool(cfg.get("coverage_shrink", False))
     thin_cov = float(cfg.get("thin_coverage_threshold", 0.75))
 
+    subn_cfg = cfg.get("subnational") or {}
+    subn_on = bool(subn_cfg.get("enabled"))
+    slw = (subn_cfg.get("submeasure_level_weights") or {}) if subn_on else {}
+
     yp = year_power_fractions()
     series = _annual_series(con)
     meta = _indicator_meta()
     sub_w = _submeasure_weights()
     d_den = _d_denominator_submeasures()
     total_w = {c: sum(sub_w.get(c, {}).get(s, 0.0) for s in d_den.get(c, ())) for c in cats}
+
+    ryp = region_year_power_fractions() if slw else {}
+    sub_series = _subnational_annual_series(con) if slw else {}
 
     out: dict[tuple[str, str], DCell] = {}
     for p in parties:
@@ -291,28 +389,75 @@ def category_d(con: object, parties: list[str], cats: list[str]) -> dict[tuple[s
                 by_sub.setdefault(submeasure, []).append(net)
                 basis += b
             sub_nets = {sub: sum(v) / len(v) for sub, v in by_sub.items()}
-            cat_net = score.submeasure_weighted_mean(sub_nets, sub_w.get(c, {}))
-            # Gate på kategorins EGNA ansvarsunderlag (Σ maktvikt över attribuerade år) — samma
-            # storhet som thin-flaggan. Konsekvent: < min_resp = ej tillämplig, [min_resp, thin) =
-            # uppmätt men tunt, >= thin = uppmätt. (Partier utan ansvarsår får cat_net=None.)
-            measured = cat_net is not None and basis >= min_resp
+
+            # C3: region-poolade submåtts-net + år-ekvivalent regionalt ansvarsunderlag.
+            subn_by_sub: dict[str, list[float]] = {}
+            region_den = 0.0
+            region_series = 0
+            for (cat, ind), by_region in sub_series.items():
+                if cat != c or (c, ind) not in meta:
+                    continue
+                submeasure, direction = meta[(c, ind)]
+                if submeasure not in slw:
+                    continue
+                snet, den_raw, n_reg = score.attribute_subnational_indicator(
+                    by_region, direction, ryp, p, lag, dead
+                )
+                region_den += den_raw
+                region_series += n_reg
+                if snet is not None:
+                    subn_by_sub.setdefault(submeasure, []).append(snet)
+            subn_nets = {sub: sum(v) / len(v) for sub, v in subn_by_sub.items()}
+            region_basis = region_den / region_series if region_series else 0.0
+
+            # SOUNDNESS-GRIND (C3, audit pipeline/tools/c3_sensitivity.py): blanda bara in den
+            # regionala signalen om det regionala ansvaret är MENINGSFULLT (år-ekvivalent
+            # region_basis >= min_responsibility). Annars dominerar ett brusigt teckenmedel ur ett
+            # pyttigt region-år-urval submåttet via 0.6-vikten (t.ex. SD som knappt styr någon
+            # region). Tröskeln är densamma som den nationella measured-grinden — konsekvent.
+            region_used = region_basis >= min_resp
+            if not region_used:
+                subn_nets = {}
+                region_basis = 0.0
+
+            # Blanda nat + region på submåttsnivå för konfigurerade submått (renormaliserat över
+            # närvarande sidor): en sida saknas -> andra sidan bär hela vikten.
+            blended = dict(sub_nets)
+            for sm, w in slw.items():
+                num = wsum = 0.0
+                if sub_nets.get(sm) is not None:
+                    num += sub_nets[sm] * float(w["national"]); wsum += float(w["national"])
+                if subn_nets.get(sm) is not None:
+                    num += subn_nets[sm] * float(w["region"]); wsum += float(w["region"])
+                if wsum > 0:
+                    blended[sm] = num / wsum
+
+            combined_basis = basis + region_basis
+            subnational_used = region_used
+            cat_net = score.submeasure_weighted_mean(blended, sub_w.get(c, {}))
+            # Gate på kombinerat ansvarsunderlag (nationellt + regionalt år-ekv.) — samma storhet
+            # som thin-flaggan. < min_resp = ej tillämplig, [min_resp, thin) = uppmätt men tunt,
+            # >= thin = uppmätt. (Partier utan något ansvarsår får cat_net=None.)
+            measured = cat_net is not None and combined_basis >= min_resp
             if not measured:
-                out[(p, c)] = DCell(na_score, False, False, 0.0, total_w[c], False)
+                out[(p, c)] = DCell(na_score, False, False, 0.0, total_w[c], False,
+                                    subnational_used, region_basis)
                 continue
             covered_w = sum(
-                sub_w.get(c, {}).get(s, 0.0) for s in sub_nets if s in d_den.get(c, ())
+                sub_w.get(c, {}).get(s, 0.0) for s in blended if s in d_den.get(c, ())
             )
             coverage = covered_w / total_w[c] if total_w[c] else 0.0
             final_net = cat_net
             if shrink:
                 net_just = score.weighted_mean_with_neutral_missing(
-                    sub_nets, sub_w.get(c, {}), d_den.get(c, ())
+                    blended, sub_w.get(c, {}), d_den.get(c, ())
                 )
                 if net_just is not None:  # guard: tom nämnare -> behåll legacy-nätet
                     final_net = net_just
             out[(p, c)] = DCell(
-                score.net_support_to_score(final_net), True, basis < thin,
+                score.net_support_to_score(final_net), True, combined_basis < thin,
                 covered_w, total_w[c], coverage < thin_cov,
+                subnational_used, region_basis,
             )
     return out
 
@@ -567,6 +712,8 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
                     overrides["D"] = d_measured_conf
                 if d_cell.thin_basis:
                     flags.append("D_thin_basis")
+                if d_cell.subnational_used:  # C3: regional attribution bidrog till D
+                    flags.append(f"D_subnational_region_{d_cell.region_basis:.2g}")
             else:
                 overrides["D"] = d_na_conf
                 flags.append("D_not_applicable")

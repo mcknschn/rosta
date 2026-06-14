@@ -239,6 +239,53 @@ def change_sign(adjusted: float, dead_zone: float) -> int:
     return 0
 
 
+def attribute_subnational_indicator(
+    series_by_region: Mapping[str, Mapping[int, float]],
+    direction: str,
+    region_year_power: Mapping[str, Mapping[int, Mapping[str, float]]],
+    party: str,
+    lag: int,
+    dead_zone: float,
+) -> tuple[float | None, float, int]:
+    """Region-poolat teckenmedel för EN indikator (C3 — subnationell D).
+
+    Som attribute_series men över FLERA regioner: varje regions konsekutiva årsförändring
+    tillskrivs det parti som styrde DEN regionen år (y-lag), viktat med dess regionala maktvikt
+    (region_year_power[region][år][parti], 1/antal styrande partier). num/den ackumuleras över
+    alla regioner med EQUAL per-region-vikt (ej befolkningsviktat — neutralt, jfr regional_fractions).
+
+    Returnerar (net i [-1,1] eller None, den_raw, n_regions_med_data) där:
+      - den_raw = Σ regional maktvikt över attribuerade region-år (rå, EJ år-ekvivalent),
+      - n_regions_med_data = regioner med >=1 brukbar konsekutiv årsförändring (oavsett partiets
+        makt) -> nämnaren när anroparen normaliserar den_raw till ÅR-EKVIVALENT basis (den_raw /
+        n_regions), så D-grindens trösklar behåller samma skala som nationellt.
+    """
+    num = 0.0
+    den = 0.0
+    n_regions = 0
+    for code, series in series_by_region.items():
+        years = sorted(series)
+        ryp = region_year_power.get(code, {})
+        region_has_change = False
+        for i in range(1, len(years)):
+            y_prev, y = years[i - 1], years[i]
+            if y - y_prev != 1:
+                continue
+            adj = direction_adjusted_change(series[y_prev], series[y], direction)
+            if adj is None:
+                continue
+            region_has_change = True
+            weight = ryp.get(y - lag, {}).get(party, 0.0)
+            if weight <= 0:
+                continue
+            num += weight * change_sign(adj, dead_zone)
+            den += weight
+        if region_has_change:
+            n_regions += 1
+    net = num / den if den > 0 else None
+    return net, den, n_regions
+
+
 def attribute_series(
     series: Mapping[int, float],
     direction: str,

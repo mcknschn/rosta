@@ -254,8 +254,16 @@ företagande/investeringar samt hushållens disponibla inkomst → ekonomi 4/6 t
   officiell källa uppstår (samma klass som D1: stängd på princip, inte på datatillgång). Detalj:
   [fas1c_subnational_metod.md §c2](done/fas1c_subnational_metod.md).
 - **C2 — Mandatperiodskiften mitt i period** ⚪ — regeringsbyte mitt i ett år hanteras grovt i dag.
-- **C3 — Subnationell D-resultatdata** ⚪ — D attribueras i dag bara på nationell makt; region/
-  kommun-utfall (Kolada finns) skulle koppla subnationell makt till subnationellt resultat.
+- ~~**C3 — Subnationell D-resultatdata**~~ ✅ **LEVERERAD + AKTIVERAD 2026-06-14** — D blandar nu
+  in region-nivå vårdutfall (Kolada U70471 överlevnad + N79242 vårdköer, alla 21 regioner) och
+  attribuerar dem till det parti som styrde regionen (speglar hur C blandar nationell + subnationell
+  makt). v0 = region-nivå välfärd (`vard_tillganglighet`); submåtts-blandning national 0,4 / region
+  0,6; år-ekvivalent ansvarsgrind + soundness-grind (`region_basis ≥ min_responsibility`).
+  Rättvisefix: V blir measured för välfärd via regional vård-makt; SD (styr ~inga regioner) gated
+  bort. Neutralitetsauditerad (`pipeline/tools/c3_sensitivity.py`); endast välfärds-D rör sig,
+  totalranking oförändrad. Gated på `scoring.D_resultat.subnational.enabled`.
+  [Metod](done/c3_subnational_d_metod.md). **Utvidgningsväg:** kommun-nivå (skola/bistånd) i
+  framtida våg, samma maskineri.
 
 ---
 

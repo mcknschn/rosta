@@ -337,8 +337,8 @@
       },
       "valfard": {
         "ci": [
-          2.899,
-          3.687
+          2.882,
+          3.67
         ],
         "claim_refs": [
           "claim:action:C:valfard:motioner",
@@ -357,7 +357,7 @@
           "A": 2.571,
           "B": 5.0,
           "C": 1.429,
-          "D": 2.999
+          "D": 2.833
         },
         "confidence": {
           "A": "high",
@@ -369,9 +369,10 @@
         "flags": [
           "B_coverage_100/100",
           "A_a1_active",
-          "D_coverage_80/100"
+          "D_coverage_80/100",
+          "D_subnational_region_1.1"
         ],
-        "score": 3.293
+        "score": 3.276
       }
     },
     "KD": {
@@ -607,8 +608,8 @@
       },
       "valfard": {
         "ci": [
-          2.699,
-          3.486
+          2.676,
+          3.463
         ],
         "claim_refs": [
           "claim:action:KD:valfard:motioner",
@@ -627,7 +628,7 @@
           "A": 1.786,
           "B": 5.0,
           "C": 2.143,
-          "D": 3.065
+          "D": 2.838
         },
         "confidence": {
           "A": "high",
@@ -639,9 +640,10 @@
         "flags": [
           "B_coverage_100/100",
           "A_a1_active",
-          "D_coverage_80/100"
+          "D_coverage_80/100",
+          "D_subnational_region_0.74"
         ],
-        "score": 3.092
+        "score": 3.069
       }
     },
     "L": {
@@ -882,8 +884,8 @@
       },
       "valfard": {
         "ci": [
-          3.388,
-          4.175
+          3.368,
+          4.155
         ],
         "claim_refs": [
           "claim:action:L:valfard:motioner",
@@ -903,7 +905,7 @@
           "A": 3.214,
           "B": 4.75,
           "C": 3.571,
-          "D": 2.975
+          "D": 2.775
         },
         "confidence": {
           "A": "high",
@@ -915,9 +917,10 @@
         "flags": [
           "B_coverage_90/100",
           "A_a1_active",
-          "D_coverage_80/100"
+          "D_coverage_80/100",
+          "D_subnational_region_0.8"
         ],
-        "score": 3.781
+        "score": 3.761
       }
     },
     "M": {
@@ -1154,8 +1157,8 @@
       },
       "valfard": {
         "ci": [
-          3.263,
-          4.05
+          3.243,
+          4.031
         ],
         "claim_refs": [
           "claim:action:M:valfard:motioner",
@@ -1174,7 +1177,7 @@
           "A": 2.929,
           "B": 5.0,
           "C": 2.857,
-          "D": 3.065
+          "D": 2.872
         },
         "confidence": {
           "A": "high",
@@ -1186,9 +1189,10 @@
         "flags": [
           "B_coverage_100/100",
           "A_a1_active",
-          "D_coverage_80/100"
+          "D_coverage_80/100",
+          "D_subnational_region_0.81"
         ],
-        "score": 3.657
+        "score": 3.637
       }
     },
     "MP": {
@@ -1432,8 +1436,8 @@
       },
       "valfard": {
         "ci": [
-          2.653,
-          3.441
+          2.626,
+          3.413
         ],
         "claim_refs": [
           "claim:action:MP:valfard:motioner",
@@ -1453,7 +1457,7 @@
           "A": 1.143,
           "B": 4.75,
           "C": 4.286,
-          "D": 2.843
+          "D": 2.57
         },
         "confidence": {
           "A": "high",
@@ -1465,9 +1469,10 @@
         "flags": [
           "B_coverage_90/100",
           "A_a1_active",
-          "D_coverage_80/100"
+          "D_coverage_80/100",
+          "D_subnational_region_0.89"
         ],
-        "score": 3.047
+        "score": 3.02
       }
     },
     "S": {
@@ -1716,7 +1721,7 @@
       "valfard": {
         "ci": [
           4.187,
-          4.974
+          4.975
         ],
         "claim_refs": [
           "claim:action:S:valfard:motioner",
@@ -1737,7 +1742,7 @@
           "A": 5.0,
           "B": 4.5,
           "C": 5.0,
-          "D": 2.555
+          "D": 2.558
         },
         "confidence": {
           "A": "high",
@@ -1749,7 +1754,8 @@
         "flags": [
           "B_coverage_80/100",
           "A_a1_active",
-          "D_coverage_80/100"
+          "D_coverage_80/100",
+          "D_subnational_region_1.2"
         ],
         "score": 4.581
       }
@@ -2231,8 +2237,8 @@
       },
       "valfard": {
         "ci": [
-          1.874,
-          2.751
+          1.869,
+          2.746
         ],
         "claim_refs": [
           "claim:action:V:valfard:motioner",
@@ -2250,7 +2256,7 @@
           "A": 1.0,
           "B": 4.75,
           "C": 0.0,
-          "D": 2.5
+          "D": 2.451
         },
         "confidence": {
           "A": "high",
@@ -2262,9 +2268,12 @@
         "flags": [
           "B_coverage_90/100",
           "A_a1_active",
-          "D_not_applicable"
+          "D_coverage_30/100",
+          "D_thin_coverage",
+          "D_thin_basis",
+          "D_subnational_region_0.58"
         ],
-        "score": 2.312
+        "score": 2.308
       }
     }
   }

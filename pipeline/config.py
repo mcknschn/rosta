@@ -244,6 +244,28 @@ def _validate_scoring(sub_w: dict[str, Any], tolerance: float) -> None:
             "(tillåtna: policy_type_count, weighted_submeasure_depth)"
         )
 
+    # C3: subnationell D-config — validera struktur tidigt (jfr coverage_mode). Frånvaro är OK
+    # (legacy nationell D); finns blocket måste det vara välformat.
+    subn = s.get("D_resultat", {}).get("subnational")
+    if subn is not None:
+        if not isinstance(subn.get("enabled"), bool):
+            raise ConfigError("D_resultat.subnational.enabled måste vara true/false")
+        all_subids = {sm["id"] for c in categories()["categories"] for sm in c["submeasures"]}
+        for sid, w in (subn.get("submeasure_level_weights") or {}).items():
+            if sid not in all_subids:
+                raise ConfigError(f"D_resultat.subnational refererar okänt submått '{sid}'")
+            tot = float(w.get("national", 0)) + float(w.get("region", 0))
+            if abs(tot - 1.0) > tolerance:
+                raise ConfigError(
+                    f"D_resultat.subnational.submeasure_level_weights['{sid}'] "
+                    f"summerar till {tot}, inte 1.0"
+                )
+        if subn.get("region_weighting", "equal") not in ("equal", "population"):
+            raise ConfigError(
+                f"D_resultat.subnational.region_weighting={subn.get('region_weighting')!r} "
+                "ogiltigt (tillåtna: equal, population)"
+            )
+
     # neutral i normalisering måste matcha score.py-defaulten (2.5) för att undvika drift.
     neutral = s.get("normalization", {}).get("default", {}).get("neutral")
     if neutral is not None and abs(neutral - 2.5) > tolerance:

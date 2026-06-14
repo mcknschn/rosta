@@ -158,6 +158,25 @@ D_resultat:
   measured_confidence: medium      # uppmätt D med faktiskt ansvar -> smalare
   # not_applicable markeras i scores.json (flags: D_not_applicable) så neutral 2.5
   # aldrig förväxlas med ett uppmätt resultat på 2.5.
+  # C3 — SUBNATIONELL D (docs/done/c3_subnational_d_metod.md). Kopplar subnationell makt till
+  # subnationellt utfall: ett regionalt utfall (t.ex. vårdköer) attribueras till det parti som
+  # styrde DEN regionen det året, parallellt med den nationella attributionen. Blandas in på
+  # SUBMÅTTSNIVÅ — bara för submått med en subnationell serie — så regionsignalen rör bara det
+  # konstrukt den mäter (vård), inte skola/omsorg. national/region-vikten per submått speglar den
+  # LAGSTADGADE ansvarsnivån för just det utfallet (vård = region = sjukvårdshuvudman); den
+  # återanvänder MEDVETET INTE C:s subnational_split (region 0.45) som är ett kategorisnitt med
+  # kommunstyrd skola/omsorg inblandad. enabled:false -> byte-identisk med ren nationell D (legacy).
+  subnational:
+    enabled: true
+    # submått -> {national, region} ansvarsvikt (summerar till 1). Bara listade submått får
+    # subnationell D; region får hela regional_municipal-vikten (0.6) eftersom utfallet är region-styrt.
+    submeasure_level_weights:
+      vard_tillganglighet: { national: 0.4, region: 0.6 }   # valfard: region = sjukvårdshuvudman
+    # Regionalt ansvarsunderlag normaliseras till ÅR-EKVIVALENT (Σ maktvikt över alla region-år /
+    # antal regioner med serie) så min_responsibility/thin_basis_threshold behåller samma skala som
+    # nationellt (annars spränger 21 regioner × år grindarna). Räknas additivt in i D-grinden med det
+    # nationella underlaget -> ett parti med ENBART regional vård-makt blir measured (rättvisa).
+    region_weighting: equal     # lika per region (ej befolkningsviktat); pop-vikt körs som robusthetskoll
 
 # Osäkerhet. Varje delpoäng har en DEFAULT-säkerhetsnivå som kan ÖVERSKRIDAS per
 # (parti, kategori) av datan (B från effekter, C vid saknad subnational, D vid not_applicable).

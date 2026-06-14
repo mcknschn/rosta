@@ -1,13 +1,13 @@
 {
   "totals": {
-    "C": 3.034,
-    "KD": 3.119,
-    "L": 3.37,
-    "M": 3.284,
-    "MP": 3.127,
+    "C": 3.031,
+    "KD": 3.114,
+    "L": 3.366,
+    "M": 3.28,
+    "MP": 3.122,
     "S": 3.66,
     "SD": 2.72,
-    "V": 2.6
+    "V": 2.599
   },
   "ranking": [
     "S",
@@ -73,11 +73,12 @@
       ]
     },
     "C/valfard": {
-      "score": 3.293,
+      "score": 3.276,
       "flags": [
         "A_a1_active",
         "B_coverage_100/100",
-        "D_coverage_80/100"
+        "D_coverage_80/100",
+        "D_subnational_region_1.1"
       ]
     },
     "KD/demokrati": {
@@ -131,11 +132,12 @@
       ]
     },
     "KD/valfard": {
-      "score": 3.092,
+      "score": 3.069,
       "flags": [
         "A_a1_active",
         "B_coverage_100/100",
-        "D_coverage_80/100"
+        "D_coverage_80/100",
+        "D_subnational_region_0.74"
       ]
     },
     "L/demokrati": {
@@ -188,11 +190,12 @@
       ]
     },
     "L/valfard": {
-      "score": 3.781,
+      "score": 3.761,
       "flags": [
         "A_a1_active",
         "B_coverage_90/100",
-        "D_coverage_80/100"
+        "D_coverage_80/100",
+        "D_subnational_region_0.8"
       ]
     },
     "M/demokrati": {
@@ -247,11 +250,12 @@
       ]
     },
     "M/valfard": {
-      "score": 3.657,
+      "score": 3.637,
       "flags": [
         "A_a1_active",
         "B_coverage_100/100",
-        "D_coverage_80/100"
+        "D_coverage_80/100",
+        "D_subnational_region_0.81"
       ]
     },
     "MP/demokrati": {
@@ -307,11 +311,12 @@
       ]
     },
     "MP/valfard": {
-      "score": 3.047,
+      "score": 3.02,
       "flags": [
         "A_a1_active",
         "B_coverage_90/100",
-        "D_coverage_80/100"
+        "D_coverage_80/100",
+        "D_subnational_region_0.89"
       ]
     },
     "S/demokrati": {
@@ -369,7 +374,8 @@
       "flags": [
         "A_a1_active",
         "B_coverage_80/100",
-        "D_coverage_80/100"
+        "D_coverage_80/100",
+        "D_subnational_region_1.2"
       ]
     },
     "SD/demokrati": {
@@ -482,11 +488,14 @@
       ]
     },
     "V/valfard": {
-      "score": 2.312,
+      "score": 2.308,
       "flags": [
         "A_a1_active",
         "B_coverage_90/100",
-        "D_not_applicable"
+        "D_coverage_30/100",
+        "D_subnational_region_0.58",
+        "D_thin_basis",
+        "D_thin_coverage"
       ]
     }
   }
