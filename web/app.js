@@ -67,13 +67,22 @@ async function load() {
   buildAttribution();
   render();
 
+  // Knapparna är disabled i markupen tills här — allt ovanför väntar på datahämtningen, så ett
+  // klick dessförinnan skulle träffa en knapp utan lyssnare och tyst göra ingenting.
+  $("reset").disabled = false;
+  $("share").disabled = false;
+
   $("reset").addEventListener("click", () => {
     DATA.categories.forEach((c) => (weights[c.id] = c.standard_weight ?? 10));
     syncUrl(); buildSliders(); render();
   });
   $("share").addEventListener("click", async () => {
     syncUrl();
-    try { await navigator.clipboard.writeText(location.href); $("share").textContent = "Länk kopierad ✓"; }
+    // navigator.clipboard.writeText kan hänga utan att vare sig lösa ut eller avvisa (t.ex. när
+    // dokumentet saknar fokus). Utan kapplöpningen nås aldrig reservtexten och användaren får
+    // ingen återkoppling alls. Timeouten gör att fallet alltid landar i catch-grenen.
+    const timeout = new Promise((_, reject) => setTimeout(() => reject(new Error("timeout")), 1000));
+    try { await Promise.race([navigator.clipboard.writeText(location.href), timeout]); $("share").textContent = "Länk kopierad ✓"; }
     catch { $("share").textContent = "Kopiera adressfältet"; }
     setTimeout(() => ($("share").textContent = "Dela mina vikter"), 2500);
   });

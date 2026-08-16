@@ -27,8 +27,10 @@
       <p class="hint">Justera hur mycket varje kategori betyder för dig. Summan normaliseras automatiskt.</p>
       <div id="sliders"></div>
       <div class="actions">
-        <button id="reset" type="button">Återställ till standardvikter</button>
-        <button id="share" type="button">Dela mina vikter</button>
+        <!-- disabled tills load() hunnit registrera klicklyssnarna (de sätts efter await på
+             datahämtningen). Utan detta går ett tidigt klick förlorat helt tyst. -->
+        <button id="reset" type="button" disabled>Återställ till standardvikter</button>
+        <button id="share" type="button" disabled>Dela mina vikter</button>
       </div>
     </section>
 
