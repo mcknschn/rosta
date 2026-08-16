@@ -92,9 +92,12 @@ blandad officiell evidens och lämnades inerta – [Fas 4c](docs/done/ROADMAP.md
 — varje rad citerar en riksdagskälla och är adversariellt verifierad mot fulltext. **Frontenden (Fas 6) är byggd** — en statisk, byggfri väljarkompass i [web/](web/) som viktar kategorierna
 client-side, rangordnar partierna med osäkerhetsband och expanderbart bevisspår, delar vikter via URL och
 visar en tydlig förbehållsbanner. Den är **Playwright-e2e-testad** (8 fall).
-**Frontenden uppfyller WCAG 2.2 nivå AA** för de granskade kriterierna (kontrast ≥4,5:1, reflow,
-fokushantering; det enda blockerande felet — fokus-/expanderingsförlust vid omräkning — är åtgärdat
-och regressionstestat; manuell skärmläsartest återstår). Detaljerad audit arkiverad i
+**Frontenden uppfyller WCAG 2.2 nivå AA för de maskinellt granskade kriterierna** (kontrast ≥4,5:1,
+reflow vid 320 px, fokushantering och ARIA-kontrakt; det enda blockerande felet — fokus-/expanderings-
+förlust vid omräkning — är åtgärdat och regressionstestat). Granskningen är gjord på källkod och
+automatiserad mätning. **Uppläsningsupplevelsen med skärmläsare är inte granskad**, och något sådant
+test är inte planerat (avfört som designbeslut 2026-08-16); anspråket ovan sträcker sig därför inte
+längre än till det maskinellt prövbara. Detaljerad audit arkiverad i
 [docs/done/fas6_wcag.md](docs/done/fas6_wcag.md). Kör `python -m http.server 8000` och
 öppna `/web/`. Per-fas status:
 [DATA.md §6](DATA.md). Full exekveringsplan: [docs/ROADMAP.md](docs/done/ROADMAP.md).

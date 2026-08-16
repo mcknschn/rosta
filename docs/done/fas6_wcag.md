@@ -2,11 +2,16 @@
 
 Genomgång av frontenden i [`web/`](../../web/) mot **WCAG 2.2 nivå AA**. Målnivån i ROADMAP
 (task 6.6) är AA. Genomgången är gjord på källkoden + automatiserad mätning (kontrast och
-reflow via Playwright/Chromium). Punkter markerade **TODO (manuell)** kräver test med riktig
-skärmläsare och täcks inte automatiskt.
+reflow via Playwright/Chromium).
 
-Status: **AA uppfyllt för de granskade kriterierna nedan.** Det enda blockerande felet som
+Status: **AA uppfyllt för de maskinellt granskade kriterierna nedan.** Det enda blockerande felet som
 hittades (fokus-/expanderingsförlust vid omräkning) är åtgärdat och regressionstestat.
+
+> **Avgränsning (beslut 2026-08-16):** manuellt skärmläsartest är **avfört**, inte uppskjutet.
+> Det som en gång stod som "TODO (manuell)" i §5 är inte planerat arbete. Genomgången täcker
+> DOM- och ARIA-kontraktet samt fokusbeteendet, alltså det maskinellt prövbara. Den säger
+> ingenting om hur sidan låter uppläst. Anspråket ovan ska läsas med den avgränsningen och får
+> inte återges som ett obetingat AA-anspråk.
 
 ---
 
@@ -97,9 +102,14 @@ bor på elementet och följer med. **Regressionstest:** `e2e.spec.mjs` →
 - **`title`-tooltip på A/B/C/D-rubriker** (1.4.13/2.1.1) — informationen finns även som synlig
   text i förklaringsraden under tabellen, så tooltip är supplementär. **Pass**, men kan ersättas
   med synliga rubriknamn senare.
-- **TODO (manuell):** verifiering med riktig skärmläsare (NVDA/VoiceOver) av live-status,
-  expandering och tabellnavigering. Automatiken täcker DOM/ARIA-kontrakt och fokusbeteende, inte
-  uppläsningsupplevelsen.
+- ~~**TODO (manuell):**~~ ⛔ **AVFÖRD 2026-08-16 (designbeslut, ej uppskjuten)** — verifiering med
+  riktig skärmläsare (NVDA/VoiceOver) av live-status, expandering och tabellnavigering. Automatiken
+  täcker DOM/ARIA-kontrakt och fokusbeteende, inte uppläsningsupplevelsen. **Konsekvens:** AA-anspråket
+  gäller enbart det maskinellt granskade och ska alltid återges med den avgränsningen. De tre punkter
+  som ett sådant test hade prövat och som därför förblir oprövade: (1) den debounce:ade `#status`-
+  uppläsningen vid omräkning (4.1.3), (2) att fokus uppfattas ligga kvar vid omrangordning (3.2.2),
+  (3) om coverage-textens tekniska löptext är begriplig uppläst. Protokollet finns färdigskrivet i
+  [../fas6_skarmlasartest.md](../fas6_skarmlasartest.md) om beslutet någon gång rivs upp.
 
 ---
 

@@ -293,10 +293,17 @@ företagande/investeringar samt hushållens disponibla inkomst → ekonomi 4/6 t
   Befintlig [ci.yml](../.github/workflows/ci.yml) kör nu skarpt (ruff + pytest, py3.11/3.12) —
   den hade aldrig körts tidigare eftersom repot saknade remote, vilket dolde 11 ruff-brott och
   två fallerande e2e-test tills 2026-08-16.
-- **F2 — Manuell skärmläsartest** 🔵 **redo att köras** — protokoll skrivet:
-  [fas6_skarmlasartest.md](fas6_skarmlasartest.md), 9 testfall (skip-länk, rubriker, banner,
-  sliders, live-status, expandering, fokus, tabell, felläge). Kräver NVDA/VoiceOver + människa;
-  ca 20 min. Sista WCAG 2.2 AA-punkten.
+- ~~**F2 — Manuell skärmläsartest**~~ ⛔ **AVFÖRD 2026-08-16 (användarbeslut)** — inte uppskjuten,
+  inte HOLD, utan struken som planerat arbete. Skälet är att den kräver en människa med
+  NVDA/VoiceOver och inte kan automatiseras; projektet väljer i stället att **begränsa
+  AA-anspråket** till det maskinellt prövbara. README och
+  [fas6_wcag.md](done/fas6_wcag.md) är omskrivna så att ingen text antyder att ett skärmläsartest
+  är på väg. Oprövat och medvetet så: `#status`-uppläsningen vid omräkning (4.1.3), upplevd
+  fokusstabilitet vid omrangordning (3.2.2), coverage-textens begriplighet uppläst. Protokollet
+  bevaras oförändrat i [fas6_skarmlasartest.md](fas6_skarmlasartest.md) — samma mönster som
+  parkerade poster i Spår A/C/D: beslutet stängs, underlaget slängs inte.
+
+> **Spår F är därmed avslutat.** F1 levererad, F2 avförd.
 
 ---
 

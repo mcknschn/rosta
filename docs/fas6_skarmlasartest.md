@@ -1,11 +1,20 @@
-# Fas 6 — manuellt skärmläsartest (backlogg F2)
+# Fas 6 — manuellt skärmläsartest (vilande protokoll)
 
-> Sista öppna punkten i WCAG 2.2 AA-genomgången. Automatiken i
-> [done/fas6_wcag.md](done/fas6_wcag.md) täcker DOM- och ARIA-kontraktet samt fokusbeteendet.
-> Den kan inte höra vad som faktiskt läses upp. Det här protokollet gör den delen.
+> ## ⛔ AVFÖRD 2026-08-16 — inget planerat arbete
 >
-> **Utförare:** en människa med skärmläsare. Räkna med 20 minuter.
-> **Status:** ⬜ ej utförd
+> Backloggposten F2 är **struken**, inte uppskjuten. Projektet begränsar i stället sitt
+> WCAG 2.2 AA-anspråk till det maskinellt granskade, se
+> [done/fas6_wcag.md](done/fas6_wcag.md) och README.
+>
+> **Kör inte det här protokollet som en väntande uppgift och rapportera inte AA som obetingat
+> uppfyllt.** Filen bevaras oförändrad ifall beslutet någon gång rivs upp, på samma sätt som
+> underlaget bakom parkerade poster i Spår A, C och D bevaras.
+
+Automatiken i [done/fas6_wcag.md](done/fas6_wcag.md) täcker DOM- och ARIA-kontraktet samt
+fokusbeteendet. Den kan inte höra vad som faktiskt läses upp. Det här protokollet gör den delen.
+
+> **Utförare om det ändå ska köras:** en människa med skärmläsare. Räkna med 20 minuter.
+> **Status:** ⬜ ej utförd, ej planerad
 
 ## Förberedelse
 
@@ -138,7 +147,10 @@ Hörde: `___`
 
 ## Efter testet
 
+Gäller bara om beslutet från 2026-08-16 rivs upp och protokollet faktiskt körs.
+
 Rapportera utfallet. Fynd i fall 5, 6 eller 7 är blockerande för AA-anspråket och åtgärdas direkt.
 Fynd i fall 3 eller 8 är förbättringar som förs in i backloggen. När protokollet är ifyllt och
-eventuella blockerare är åtgärdade: uppdatera "TODO (manuell)" i
-[done/fas6_wcag.md §5](done/fas6_wcag.md) och bocka av F2 i [BACKLOG.md](BACKLOG.md).
+eventuella blockerare är åtgärdade: öppna posten i [BACKLOG.md](BACKLOG.md) Spår F igen, lyft
+avgränsningsnoten i [done/fas6_wcag.md](done/fas6_wcag.md) och vidga AA-formuleringen i README
+i samma veva. Anspråket och granskningen ska alltid följas åt.
