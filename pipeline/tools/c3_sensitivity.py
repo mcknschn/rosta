@@ -145,8 +145,10 @@ def main() -> None:
 
     # Faktisk välfärds-D-ranking: nationell-only vs blandad (två byggen mot live-warehouse).
     import copy as _copy
-    sc_off = _copy.deepcopy(config.scoring()); sc_off["D_resultat"]["subnational"]["enabled"] = False
-    sc_on = _copy.deepcopy(config.scoring()); sc_on["D_resultat"]["subnational"]["enabled"] = True
+    sc_off = _copy.deepcopy(config.scoring())
+    sc_off["D_resultat"]["subnational"]["enabled"] = False
+    sc_on = _copy.deepcopy(config.scoring())
+    sc_on["D_resultat"]["subnational"]["enabled"] = True
     orig = config.scoring
     try:
         config.scoring = lambda: sc_off  # type: ignore[assignment]

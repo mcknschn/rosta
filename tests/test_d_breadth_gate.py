@@ -20,7 +20,6 @@ from pipeline import config, scorerun, warehouse
 from pipeline.sources import government
 from pipeline.tools import coverage_report
 
-
 # --- nämnaren: target-only exkluderas, indikatorlösa undermått ingår -----------------
 
 
@@ -180,7 +179,8 @@ def test_thin_basis_och_thin_coverage_triggar_oberoende(monkeypatch: pytest.Monk
     _shrink_on(monkeypatch)
     con = _seed_con()
     warehouse.upsert(con, "observations",
-                     _obs("bnp_per_capita", "bnp_produktivitet", {2021: 100.0, 2022: 102.0, 2023: 104.0}, unit="index"))
+                     _obs("bnp_per_capita", "bnp_produktivitet",
+                          {2021: 100.0, 2022: 102.0, 2023: 104.0}, unit="index"))
     m_eco = scorerun.build(con)["scores"]["scores"]["M"]["ekonomi"]
     assert "D_thin_basis" in m_eco["flags"]       # basis = M:s del av 2022 (< 1.0)
     assert "D_thin_coverage" in m_eco["flags"]    # 18/73 < 0.75

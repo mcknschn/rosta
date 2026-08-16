@@ -83,7 +83,8 @@ DERIVED = (
         "plausible": (1.0, 40.0),  # ton/mnkr; fångar ett ev. SCB-enhetsbyte högt
         "a": {"table": "TAB4698", "fixed": {"Vaxthusgaser": "CO2-ekv.", "Sektor": "0.1",
               "ContentsCode": "0000018Q"}},  # territoriella växthusgasutsläpp, kt
-        "b": {"table": "TAB3610", "fixed": {"Anvandningstyp": "BNPM", "ContentsCode": "000000RN"}},  # BNP mnkr
+        # BNP mnkr
+        "b": {"table": "TAB3610", "fixed": {"Anvandningstyp": "BNPM", "ContentsCode": "000000RN"}},
         "ref_tag": "scb:TAB4698(CO2ekv,tot)/TAB3610(BNPM,fast2020)",
         "expect": {"min_points": 20, "value_range": [1, 40], "min_latest_year": 2023,
                    "anchors": {"2020": 9.17}},

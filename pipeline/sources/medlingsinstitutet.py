@@ -49,7 +49,8 @@ TABLE_URL = (
     "https://www.mi.se/PXWeb/api/v1/sv/"
     "Konjunkturl%C3%B6nestatistik/Reall%C3%B6neutveckling/Realloner_arsdata.px"
 )
-LICENSE = "Medlingsinstitutet (statistikansvarig myndighet, officiell lönestatistik) – fri vidareutnyttjning med källangivelse"
+LICENSE = ("Medlingsinstitutet (statistikansvarig myndighet, officiell lönestatistik) "
+           "– fri vidareutnyttjning med källangivelse")
 _UA = {"User-Agent": "rosta-datapipeline/0.1 (civic-tech; official swedish open data)"}
 
 VARIABLE_DIM = "Variabel"

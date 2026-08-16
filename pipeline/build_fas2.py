@@ -224,7 +224,8 @@ def main() -> None:
           "(10La) inlästa (Brå).")
     print("       Handläggningstid/genomströmning och återfall återstår (separata Brå-tabeller).")
     print("   forsvar/demokrati: D matas nu i fas 3 (forsvar: FM/regeringen; demokrati: Brå NTU")
-    print("       förtroende + V-Dem 4 index). Återstående indikatorer kvalitativa/sekretess/intl (allowlistade).")
+    print("       förtroende + V-Dem 4 index). Återstående indikatorer kvalitativa/"
+          "sekretess/intl (allowlistade).")
     con.close()
 
 

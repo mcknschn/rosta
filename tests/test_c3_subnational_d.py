@@ -88,7 +88,7 @@ def test_region_year_power_only_riksdag_parties_and_bounded() -> None:
     valid = set(config.party_codes())
     for region, years in ryp.items():
         assert len(region) == 4
-        for year, frac in years.items():
+        for _year, frac in years.items():
             assert set(frac) <= valid                  # lokala partier räknas aldrig
             assert sum(frac.values()) <= 1.0 + 1e-9     # dagviktad andel, aldrig > 1
 

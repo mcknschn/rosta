@@ -45,7 +45,8 @@ def build_aterfall_observations(cfg: dict[str, Any] | None = None) -> list[dict[
         klienter = int(entry["klienter"])
         aterfall = int(entry["aterfall"])
         if klienter <= 0 or not (0 <= aterfall <= klienter):
-            raise ValueError(f"aterfall_i_brott {year}: orimliga råtal klienter={klienter} aterfall={aterfall}")
+            raise ValueError(f"aterfall_i_brott {year}: orimliga råtal "
+                             f"klienter={klienter} aterfall={aterfall}")
         andel = round(aterfall / klienter * 100, 2)
         pub = entry.get("andel_publicerad")
         if pub is not None and abs(andel - float(pub)) > _ANDEL_TOL_PP:
