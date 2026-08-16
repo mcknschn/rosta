@@ -585,11 +585,26 @@ Legend: ✅ byggt · 🟡 kandidat (research klar, väntar beslut) · ❌ förka
   oberoende → mediefrihet, ej "public service-lag → demokrati"; behåll authority_evaluation/low/low). Icke-
   rankningsdrivande. **Framtida uppgradering:** SOU/utvärdering som belägger varför lagFORMEN (ej bara oberoende
   i sak) stärker institutionellt oberoende.
-- 🟡 `transparens_ansvar` (otäckt): **stark återöppning** — prop. 2025/26:258 "Ökad insyn i politiska processer"
-  (lobbyregister + förbud mot anonyma/utländska partibidrag), riktning belagd (dir. 2023:88: insyn "förebygger
-  korruption och ökar … legitimitet"), ingen dubbelräkning mot offentlighetsprincipen. Steg 2 **ej avgjort än**:
-  bet. 2025/26:KU39, beslut **2026-06-15**. Bygg när KU39 är voterat (lobbyregister/anonymförbud brett; **koda EJ**
-  del 2 om fackbidrag = S-tilt). Visselblåsarlagen/öppna data-lagen förkastade (tid resp. fel konstrukt).
+- 🟡 `transparens_ansvar`: **återöppningen PRÖVAD OCH FÄLLD 2026-08-16 — buntad omnibus, HOLD med trigger.**
+  Steg 1 höll (riktning belagd, dir. 2023:88: insyn "förebygger korruption och ökar … legitimitet"; ingen
+  dubbelräkning mot offentlighetsprincipen). **Steg 2 faller på neutralitetsgrind punkt 4.** Verifierat live mot
+  data.riksdagen.se: bet. 2025/26:KU39 hade **en enda punkt** (p1, huvudvotering i sakfrågan, votering_id
+  `DCA347C0-D1CA-40A9-9748-2797405C09CB`, beslut 2026-06-16, 174 Ja / 172 Nej / 3 frånv.; Ja = M/SD/KD/L,
+  Nej = S/C/V/MP), och den punkten **buntar tre lagar**: (1) lobbyregister, (2) arbetsmarknadsorganisationers
+  bidrag för partipolitiska ändamål, (3) ändring i lagen 2018:90. Lag 2 är exakt den del bygginstruktionen
+  förbjuder att koda (S-tilt) — och den går inte att lyfta ut, eftersom det bara fanns en omröstning.
+  **Avgörande:** båda följdmotionerna yrkade avslag ENBART på lag 2 — 2025/26:4151 (S, Jennie Nilsson m.fl.)
+  och 2025/26:4184 (C, Malin Björk m.fl.), ordagrant "Riksdagen avslår regeringens förslag till lag med
+  bestämmelser om arbetsmarknadsorganisationers bidrag för partipolitiska ändamål". Varken lobbyregistret
+  eller 2018:90-skärpningarna möttes av invändning. Att koda Nej-sidan som `opposes` på politisk transparens
+  vore alltså ett fabrikat som handlingarna motsäger; att koda enbart Ja-sidan vore ensidigt B-tillskott till
+  ett block i den mest bias-känsliga kategorin. **Kostnaden för HOLD är låg:** transparens_ansvar är redan
+  täckt via `insyn_partifinansiering` och demokrati ligger 5/5 i B-bredd — KU39 var en uppgradering av ett
+  svagt mått, inte en lagning av en lucka. **Återöppnas** via §4.1-vägen (steg-2-källbyte): en instrument-exakt
+  källa för *enbart* lobbyregistret per parti, t.ex. en framtida separat votering eller kommittémotioner som
+  bara avser registret. Obs dubbelräkningsrisk: C:s lobbyregistermotion (HD023583 yrk. 17) är redan ankare i
+  `starkt_oberoende_granskning_och_insyn` — principen "en post bär en fråga" gäller.
+  Visselblåsarlagen/öppna data-lagen förkastade sedan tidigare (tid resp. fel konstrukt).
 - ❌ `yttrandefrihet_medier` övriga instrument HOLD: straffskärpning brott mot journalister (V-reservation = krim-
   pol. tilt, ej anti-pressfrihet), nytt mediestöd (förordning → ingen votering; dubbelräkning mot A), massmedie-
   betänkanden KU18 (regering-vs-opp-tilt).
@@ -858,6 +873,7 @@ forward-korrekt om modellen senare använder confidence för CI), version ej bum
 | 2026-06-07 | **Banan: mandatperioden recency-viktat BEKRÄFTAD** (Beslut 13) nu; **flera mandatperioder = framtida designfråga** | nato-regeln står (varaktiga omsvängningar kodas efter nuläget). Att väga in flera mandatperioder kräver designbeslut om hur historik ska tyngas utan att bli "straffa-konvertiter"-maskin (§5.5). §8 fråga 3 |
 | 2026-06-12 | **B3: 2 omstridda poster byggda v0 FLAGGADE** — (1) `nedtrappad_ersattningsprofil_akassa` (ekonomi → arbetsloshet; IFAU 'Om a-kassa och löner'; votering bet. 2023/24:AU9 p1: 7 supports / V opposes via motion 2023/24:2881) + (2) `uppsokande_forskoleerbjudande_nyanlandas_barn` (integration → skolresultat_utsatta_omraden; SOU 2020:67; votering bet. 2021/22:UbU24 p1: 6 supports, **SD/KD ej kodade**) | codex BUILD-WITH-CHANGES ×2; voteringar + alla citat omverifierade ordagrant mot data.riksdagen.se (votering-API + .text). Instrumentlåsning a-kassa: NEDTRAPPAD PROFIL (prop. 2023/24:128-designen), ej generisk 'lägre a-kassa'; indikator-brygga nivå (R 2008:12 +1,5 pe), nedtrappningsmekanism (WP 2007:21), heterogenitet/simulering → medium/medium; spegelpost-notering mot `inkomststarkande_hushallspolitik` (metodneutralitet). SD/KD-utelämning per MP/Nato-prejudikatet (2022-nej + Tidö-dir. 2024:113 = snävare instrument i samma familj → none). Scoreeffekt förklarbar, **ranking oförändrad** (S>L>M>KD>MP>C>SD>V): V ekonomi −0,22 (opposes-flip), KD −0,15/SD −0,09 integration (coverage-nämnare 5→6 = 'vet ej'-krympning), MP +0,13 (thin-coverage släckt). C2 DCA + C4 preventiva = HOLD för sign-off |
 | 2026-06-12 | **B3 beslutsfråga B1 = JA → `dca_avtal_usa` byggt v0 FLAGGAD** (forsvar → nato_interoperabilitet; Försvarsberedningen Ds 2024:6, medium/high; bet. 2023/24:UFöU1 p1 266–37, kvalificerad 3/4-majoritet: 6 supports S/M/SD/C/KD/L, **V + MP opposes** via avvikande meningar i Ds 2024:6 bilaga 4). **B2 (preventiva tvångsmedel) kvarstår HOLD** | användar-sign-off med Codex-villkoren, alla tre uppfyllda: (1) anti-stacknings-not i liggarposten (DCA = bilateralt basavtal vs nato_medlemskap = multilateralt alliansmedlemskap; prejudikat territoriella_utslapp; V:s ANDRA opposes-post på indikatorn = sign-off:ad avvägning — differentieringsvinsten MP vägde tyngre); (2) p1-källkonstruktion dokumenterad (huvudvoteringen saknas i voteringlista-API:t, verifierat @antal=0 + tomt votering_id i dokumentstatus HB01UFöU1 → beslutsnotis 'Kammaren biföll utskottets förslag' + följdvoteringarna p5 'Nedrustning' A1C914E0 266/37 V+MP Nej och p3 'Kärnvapen' A52E4273 V Nej/MP Avstår, båda OMVERIFIERADE LIVE 2026-06-12); (3) stance-confidence medium på alla 8 p1-härledda rader. Alla citat (3 Ds-utsagor + V + MP) ordagrant omverifierade mot fulltexten. MP:s villkorade nej (kärnvapenförbudslag) = bunten-regeln §2, nyans ändrar ej stance; MP:s FÖRSTA aktuella position på indikatorn. Scoreeffekt förklarbar, **ranking oförändrad** (S>L>M>KD>MP>C>SD>V): C/KD forsvar +0,04 (coverage 3/4→4/5), MP forsvar −0,13 (ny opposes + coverage 1/4→2/5), S/M/SD/L/V forsvar oförändrade (indikatorcellen redan mättad ±1; coverage 4/4→5/5 = kvot 1,0). Drift-vakt-testet test_b_coverage_mode (handräknat MP/forsvar 25→32,5/100 i weighted-läget) uppdaterat per sin egen täckningsdrift-regel |
+| 2026-08-16 | **KU39/transparens_ansvar PRÖVAD OCH FÄLLD → HOLD med trigger** (inget bygge; §6 demokrati uppdaterad) | Voteringen ägde rum (p1, `DCA347C0-D1CA-40A9-9748-2797405C09CB`, beslut 2026-06-16, 174/172, Ja = M/SD/KD/L) men punkten **buntar tre lagar**, varav lag 2 (arbetsmarknadsorganisationers partipolitiska bidrag) är den bygginstruktionen förbjuder att koda (S-tilt). Enda punkten i betänkandet → delen går inte att lyfta ut. Båda följdmotionerna (S 2025/26:4151, C 2025/26:4184) yrkade avslag ENBART på lag 2; ingen invände mot lobbyregistret eller 2018:90-skärpningarna. `opposes` på Nej-sidan vore därmed ett fabrikat, enbart Ja-sidan vore ensidigt blocktillskott i den mest bias-känsliga kategorin. **Neutralitetsgrind punkt 4** ("buntade omnibuspunkter förkastas") är avgörande. Låg kostnad: undermåttet redan täckt via `insyn_partifinansiering`, demokrati 5/5. Återöppning = steg-2-källbyte (§4.1) på enbart lobbyregistret; obs dubbelräkningsrisk mot C:s HD023583 yrk. 17 i `starkt_oberoende_granskning_och_insyn` |
 
 ---
 

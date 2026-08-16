@@ -755,11 +755,13 @@ indikator. Alla voteringar verifierade mot data.riksdagen.se:
 6. **Anonyma vittnen** (Lagrådet avstyrkte) → FÖRKASTAD: ingen kanonisk demokrati-indikator matchar
    (domstolsprocessens rättssäkerhet ≠ övervakning/politisering).
 
-**BEVAKNING (ej kandidat i dag):** insynsregister för politiska beslutsprocesser (lobbyregister,
-prop. 2025/26:258, bet. 2025/26:KU39) — potentiellt bästa transparens_ansvar-kandidaten med
-SOU 2025:52 som authority-ankare, men kammarbeslutet är planerat 2026-06-15 (om 3 dagar) →
-voteringen kan inte verifieras ännu; redan flaggad i BACKLOG B4-tabellen som "stark återöppning",
-följ upp efter 06-15 (jfr KU39-notisen i beslutsunderlag_hold_2026-06-12.md).
+**BEVAKNING → AVGJORD 2026-08-16 (FÄLLD):** insynsregister för politiska beslutsprocesser
+(lobbyregister, prop. 2025/26:258, bet. 2025/26:KU39). Uppföljningen efter kammarbeslutet är gjord:
+voteringen finns och är verifierad (p1, 174/172, beslut 2026-06-16), men **punkten buntar tre lagar**
+och den enda invändningen (följdmotionerna 2025/26:4151 S och 2025/26:4184 C) gäller uteslutande
+fackbidragslagen, som bygginstruktionen förbjuder att koda. Steg 1 höll, steg 2 föll på
+neutralitetsgrind punkt 4 → **HOLD**, underlaget bevarat. Fullständigt resonemang i
+evidens_trovardighet.md §6 (demokrati) och beslutsloggen 2026-08-16.
 
 **Luckor som förblir luckor (§8):** korruption_tillit (ingen omstridd ∧ evidensbelagd åtgärdstyp
 funnen; fortroende_domstolar_myndigheter helt utan instrumentkandidat) och rattsstat_maktdelning
@@ -857,7 +859,7 @@ uppdatera citat/mapping_notes vid avvikelse.
 
 | Trigger | Kandidat som återöppnas | När |
 |---|---|---|
-| KU39-voteringen (lobbyregister, prop. 2025/26:258) | transparens_ansvar-bygge (redan instruerad i beslutsunderlag_hold_2026-06-12.md) | **2026-06-15** |
+| ~~KU39-voteringen (lobbyregister, prop. 2025/26:258)~~ ⛔ **UTLÖST OCH FÄLLD 2026-08-16** | ~~transparens_ansvar-bygge~~ → **HOLD**: p1 buntar tre lagar inkl. den förbjudna fackbidragslagen, enda punkten i betänkandet → neutralitetsgrind punkt 4. Ny trigger = instrument-exakt källa för *enbart* lobbyregistret. Se evidens_trovardighet.md §6 demokrati + beslutslogg 2026-08-16 | ~~2026-06-15~~ → öppen |
 | V:s avskaffa-förstelärare-yrkande går till votering i UbU | `karriarsteg_forstelarare` → trolig STRONG | löpande |
 | Tidö-utredningen likvärdig resursfördelning (IFAU-remiss 2025-11-28) | nytt skolvals-/skolpengsankare (valfard) | löpande |
 | Lagstadgad säkerhetszons-utvärdering | `sakerhetszoner_visitationszoner` (steg 2 redan löst, 4-4) | ~2027 |
