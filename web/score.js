@@ -1,4 +1,4 @@
-// Rösta — client-side viktning (ren, testbar i både webbläsare och Node).
+// Rösta: client-side viktning (ren, testbar i både webbläsare och Node).
 // Frontend FÅR ENDAST vikta/summera de förberäknade kategoribetygen. Ingen A/B/C/D-logik här.
 // Total = Σ (normaliserad vikt × kategoribetyg). CI propageras linjärt (konservativt).
 

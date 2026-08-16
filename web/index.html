@@ -3,39 +3,42 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Rösta — väljarkompass</title>
+  <title>Rösta - jämför partier med officiell statistik</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <a class="skip-link" href="#main-content">Hoppa till innehållet</a>
   <header>
     <h1>Rösta</h1>
-    <p class="tagline">Vikta sakfrågorna du bryr dig om — appen rangordnar partierna utifrån officiell svensk data.</p>
+    <p class="tagline">Säg vad du tycker är viktigast. Appen rangordnar partierna efter officiell svensk statistik.</p>
   </header>
 
   <p id="version0" class="banner warn" role="note">
-    <b>Demonstration, inte färdigt röstråd.</b> Betygen bygger på officiell svensk data och en expertgranskad
-    evidensliggare, men modellen är ung och osäkerheten är stor. Varje betyg visas med osäkerhetsband och
-    spårbar källa. Se <em>Så funkar det</em> nedan.
+    <b>Demonstration, inte färdigt röstråd.</b> Betygen bygger på officiell svensk statistik.
+    Men modellen är ny och osäkerheten är stor. Varje betyg visas med ett spann och en källa
+    du kan gå till. Läs <em>Så funkar det</em> längst ner.
   </p>
   <p id="error" class="banner err" role="alert" hidden></p>
   <p id="coverage" class="banner" role="status"></p>
 
   <main id="main-content" tabindex="-1">
-    <section id="weights" aria-label="Dina vikter">
-      <h2>Dina vikter</h2>
-      <p class="hint">Justera hur mycket varje kategori betyder för dig. Summan normaliseras automatiskt.</p>
+    <section id="weights" aria-label="Dina prioriteringar">
+      <h2>Vad är viktigast för dig?</h2>
+      <p class="hint">Dra reglagen. Ju högre siffra, desto mer väger kategorin.
+        Rangordningen ändras direkt. Du behöver inte få siffrorna att gå jämnt ut.</p>
       <div id="sliders"></div>
       <div class="actions">
         <!-- disabled tills load() hunnit registrera klicklyssnarna (de sätts efter await på
              datahämtningen). Utan detta går ett tidigt klick förlorat helt tyst. -->
-        <button id="reset" type="button" disabled>Återställ till standardvikter</button>
-        <button id="share" type="button" disabled>Dela mina vikter</button>
+        <button id="reset" type="button" disabled>Återställ reglagen</button>
+        <button id="share" type="button" disabled>Kopiera länk</button>
       </div>
     </section>
 
-    <section id="ranking" aria-label="Rangordning">
-      <h2>Rangordning</h2>
+    <section id="ranking" aria-label="Resultat">
+      <h2>Resultat</h2>
+      <p class="hint">Partiet som passar dina prioriteringar bäst ligger högst upp.
+        Klicka på ett parti för att se betygen kategori för kategori.</p>
       <p id="status" class="sr-only" role="status" aria-atomic="true"></p>
       <ol id="parties"></ol>
     </section>
@@ -51,8 +54,8 @@
   <footer>
     <p id="attribution"></p>
     <p id="generated" class="muted"></p>
-    <p class="muted">Betyg och osäkerhet förberäknas lokalt; endast <code>scores.json</code> + <code>evidence.json</code>
-       levereras till appen. Frontend gör bara viktningen, ingen betygslogik.</p>
+    <p class="muted">Betygen räknas ut i förväg. Appen väger bara ihop dem i din webbläsare.
+       Inget om dig skickas vidare.</p>
   </footer>
 
   <script type="module" src="app.js"></script>

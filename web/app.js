@@ -37,7 +37,7 @@ function validate(data) {
   for (const [party, cats] of Object.entries(data.scores)) {
     for (const [cid, cs] of Object.entries(cats)) {
       if (typeof cs.score !== "number" || !Array.isArray(cs.ci) || cs.ci.length !== 2) return `Trasig cell ${party}/${cid}.`;
-      if (cs.ci[0] > cs.score || cs.score > cs.ci[1]) return `Osäkerhetsintervall fel i ${party}/${cid} (ci0≤score≤ci1 bröts).`;
+      if (cs.ci[0] > cs.score || cs.score > cs.ci[1]) return `Osäkert spann fel i ${party}/${cid} (ci0≤score≤ci1 bröts).`;
     }
   }
   return null;
@@ -47,18 +47,28 @@ async function load() {
   try {
     DATA = await fetchJson(["./data/scores.json", "../dist/scores.json"]);
     EVID = await fetchJson(["./data/evidence.json", "../dist/evidence.json"]).catch(() => ({}));
-  } catch {
+  } catch (e) {
+    // Besökaren får ett vanligt svenskt meddelande; den tekniska orsaken (och tipset för
+    // lokal körning) hamnar i konsolen där utvecklaren letar.
+    console.error("Rösta: kunde inte hämta scores.json.", e,
+      "Lokalt: servera repo-roten med `python -m http.server 8000` och öppna /web/.");
     $("error").hidden = false;
-    $("error").textContent =
-      "Kunde inte ladda data. Servera repo-roten med t.ex. `python -m http.server 8000` och öppna /web/.";
+    $("error").textContent = "Vi kunde inte hämta data just nu. Ladda om sidan, eller försök igen om en stund.";
     return;
   }
   const bad = validate(DATA);
-  if (bad) { $("error").hidden = false; $("error").textContent = `Datakontraktsfel: ${bad}`; return; }
+  if (bad) {
+    console.error(`Rösta: datakontraktsfel: ${bad}`);
+    $("error").hidden = false;
+    $("error").textContent = "Data ser trasig ut, så vi visar ingen rangordning. Försök igen om en stund.";
+    return;
+  }
 
   CAT_IDS = DATA.categories.map((c) => c.id);
   $("coverage").textContent = (DATA.meta && DATA.meta.coverage) || "";
-  $("generated").textContent = DATA.meta?.generated ? `Data genererad ${DATA.meta.generated} · fönster ${DATA.meta.window} · modellversion ${DATA.meta.model_version}` : "";
+  $("generated").textContent = DATA.meta?.generated
+    ? `Uppdaterad ${DATA.meta.generated}. Data täcker åren ${(DATA.meta.window || "").replace("-", " till ")}. Modellversion ${DATA.meta.model_version}.`
+    : "";
 
   initWeights();
   buildSliders();
@@ -67,7 +77,7 @@ async function load() {
   buildAttribution();
   render();
 
-  // Knapparna är disabled i markupen tills här — allt ovanför väntar på datahämtningen, så ett
+  // Knapparna är disabled i markupen tills här. Allt ovanför väntar på datahämtningen, så ett
   // klick dessförinnan skulle träffa en knapp utan lyssnare och tyst göra ingenting.
   $("reset").disabled = false;
   $("share").disabled = false;
@@ -84,7 +94,7 @@ async function load() {
     const timeout = new Promise((_, reject) => setTimeout(() => reject(new Error("timeout")), 1000));
     try { await Promise.race([navigator.clipboard.writeText(location.href), timeout]); $("share").textContent = "Länk kopierad ✓"; }
     catch { $("share").textContent = "Kopiera adressfältet"; }
-    setTimeout(() => ($("share").textContent = "Dela mina vikter"), 2500);
+    setTimeout(() => ($("share").textContent = "Kopiera länk"), 2500);
   });
 }
 
@@ -184,13 +194,13 @@ function updateCard(li, row, i, overlapAbove) {
   const ov = li.querySelector(".overlap");
   if (overlapAbove) {
     ov.hidden = false;
-    ov.title = "Osäkerhetsintervallen överlappar — skillnaden är inte statistiskt säker";
-    ov.textContent = `≈ osäker skillnad mot #${i}`;
+    ov.title = "Spannen överlappar. Skillnaden är för liten för att vara säker.";
+    ov.textContent = `Skillnaden mot nr ${i} är osäker`;
   } else {
     ov.hidden = true; ov.textContent = "";
   }
   li.querySelector(".party-head").setAttribute(
-    "aria-label", `${name}, plats ${i + 1}, betyg ${fmtNum(row.total)}. Expandera för detaljer.`);
+    "aria-label", `${name}, plats ${i + 1}, betyg ${fmtNum(row.total)} av 5. Öppna för att se betygen per kategori.`);
 }
 
 function render() {
@@ -199,9 +209,9 @@ function render() {
   if (allZero) {
     const empty = document.createElement("li");
     empty.className = "empty";
-    empty.textContent = "Alla vikter är 0 — dra upp minst en kategori för att få en rangordning.";
+    empty.textContent = "Alla reglage står på 0. Dra upp minst en kategori, så visas rangordningen.";
     ol.replaceChildren(empty);   // korten detachas; deras expanderade tillstånd lever kvar i elementen
-    setStatus("Alla vikter är 0 – ingen rangordning visas.");
+    setStatus("Alla reglage står på 0. Ingen rangordning visas.");
     return;
   }
   ol.querySelector(".empty")?.remove();
@@ -219,7 +229,7 @@ function render() {
   });
   if (refocus) cardEls[refocus]?.querySelector(".party-head")?.focus({ preventScroll: true });
   const top = rows[0];
-  setStatus(`Rangordning uppdaterad. Etta: ${PARTY_NAMES[top.party] || top.party} med ${fmtNum(top.total)} av 5.`);
+  setStatus(`Rangordningen är uppdaterad. Högst upp ligger ${PARTY_NAMES[top.party] || top.party} med ${fmtNum(top.total)} av 5.`);
 }
 
 // 'input' triggar kontinuerligt vid drag → debounca livesammanfattningen så skärmläsare
@@ -241,20 +251,21 @@ function detailHTML(row) {
     return `<tr>
       <td>${c.name}</td>
       <td class="num">${fmtNum(cs.score)}</td>
-      <td class="num">${fmtNum(cs.ci[0], 1)}–${fmtNum(cs.ci[1], 1)}</td>
+      <td class="num">${fmtNum(cs.ci[0], 1)}-${fmtNum(cs.ci[1], 1)}</td>
       <td class="num">${fmtNum(comp.A, 1)}</td><td class="num">${fmtNum(comp.B, 1)}</td>
       <td class="num">${fmtNum(comp.C, 1)}</td><td class="num">${fmtNum(comp.D, 1)}</td>
-      <td${lowConf}>${flags || "—"}</td>
+      <td${lowConf}>${flags || "-"}</td>
     </tr>`;
   }).join("");
   return `<div class="tablewrap"><table>
-      <caption class="sr-only">Kategoribetyg och delpoäng för ${row.party}</caption>
-      <thead><tr><th>Kategori</th><th class="num">Betyg</th><th class="num">Osäkerhet</th>
-        <th class="num" title="Agerande">A</th><th class="num" title="Evidens">B</th>
-        <th class="num" title="Ansvar">C</th><th class="num" title="Resultat">D</th><th>Flaggor</th></tr></thead>
+      <caption class="sr-only">Betyg per kategori och de fyra delarna för ${row.party}</caption>
+      <thead><tr><th>Kategori</th><th class="num">Betyg</th><th class="num">Spann</th>
+        <th class="num" title="Vad partiet driver">A</th><th class="num" title="Om åtgärderna brukar ge resultat">B</th>
+        <th class="num" title="Om partiet haft makt">C</th><th class="num" title="Hur det gick">D</th><th>Flaggor</th></tr></thead>
       <tbody>${catRows}</tbody>
     </table></div>
-    <p class="hint">A = agerande (prioritering) · B = evidens (träffsäkerhet) · C = ansvar (makt) · D = resultat. Flaggor visar var data är tunn eller saknas.</p>
+    <p class="hint">A = vad partiet driver. B = om åtgärderna brukar ge resultat. C = om partiet haft makt.
+      D = hur det gick. Flaggor visar var underlaget är tunt eller saknas.</p>
     ${evidenceHTML(row)}`;
 }
 
@@ -269,30 +280,51 @@ function evidenceHTML(row) {
   if (!refs.size) return "";
   const items = [...refs].map((ref) => {
     const e = EVID[ref];
-    if (!e) return `<li class="missing"><code>${ref}</code> — källa saknas i bevisindex</li>`;
+    if (!e) return `<li class="missing"><code>${ref}</code>: källa saknas i källistan</li>`;
     const url = e.url ? ` <a href="${e.url}" target="_blank" rel="noopener noreferrer">källa ↗</a>` : "";
     const src = e.source_name ? ` <span class="src">${e.source_name}</span>` : "";
     const val = (e.value !== undefined && e.value !== null && e.value !== "") ? ` <span class="src">(${e.value})</span>` : "";
     return `<li>${e.statement || ref}${src}${val}${url}</li>`;
   }).join("");
-  return `<details class="evidence"><summary>Bevisspår (${refs.size} källbelägg)</summary><ul>${items}</ul></details>`;
+  return `<details class="evidence"><summary>Visa källorna bakom betyget (${refs.size} st)</summary><ul>${items}</ul></details>`;
 }
 
 function buildMethod() {
-  $("method-body").innerHTML =
-    `<p>Varje parti får ett betyg <b>0–5</b> per kategori, sammanvägt av fyra delpoäng:</p>
+  const body = $("method-body");
+  body.innerHTML =
+    `<p>Varje parti får ett betyg mellan 0 och 5 i varje kategori. Betyget väger ihop fyra delar:</p>
      <ul>
-       <li><b>A – Agerande (40 %):</b> hur mycket partiet faktiskt prioriterar kategorin (andel av egna motioner).</li>
-       <li><b>B – Evidens (35 %):</b> om partiets drivna åtgärder enligt officiell svensk evidens rör indikatorerna åt rätt håll.</li>
-       <li><b>C – Ansvar (15 %):</b> om partiet haft makt (regering/region) att genomföra.</li>
-       <li><b>D – Resultat (10 %):</b> om indikatorerna förbättrades där partiet hade ansvar.</li>
+       <li><b>A. Vad partiet driver (40 %).</b> Hur stor del av partiets egna motioner som handlar om kategorin.</li>
+       <li><b>B. Om åtgärderna brukar ge resultat (35 %).</b> Officiell statistik och forskning får avgöra om det
+         partiet driver flyttar siffrorna åt rätt håll.</li>
+       <li><b>C. Om partiet haft makt (15 %).</b> Om partiet suttit i regeringen eller styrt en region och kunnat
+         genomföra sin politik.</li>
+       <li><b>D. Hur det gick (10 %).</b> Om siffrorna blev bättre under tiden partiet hade ansvar.</li>
      </ul>
-     <p>Du viktar de 7 kategorierna; <b>totalpoängen räknas i din webbläsare</b> som Σ (din vikt × kategoribetyg).
-     Osäkerhetsintervall visas — överlappar två partiers band kan de inte säkert särskiljas.</p>
-     <p class="warn"><b>Demonstration, inte färdigt röstråd:</b> alla fyra delpoäng är aktiva i samtliga 7 kategorier,
-     och partiståndpunkterna (delpoäng B) är källbelagda, adversariellt verifierade och expertgranskade. Men täckningen
-     varierar mellan kategorier, och där evidensen är tunn krymps betyget mot mitten i stället för att gissa.
-     Tolka med försiktighet.</p>`;
+     <p>Du bestämmer hur mycket varje kategori väger. Din webbläsare räknar sedan ihop de 7 kategoribetygen
+     till en totalpoäng. Betygen i sig ändras aldrig av dina reglage.</p>
+     <p>Efter varje betyg står ett spann, till exempel 3,3-4,1. Spannet visar hur säkert betyget är.
+     Går två partiers spann omlott kan vi inte säga vilket av dem som ligger bäst till.</p>
+     <p>Appen mäter vad ett förslag väntas ge för resultat, inte vilken väg partiet väljer dit.
+     Ett parti får alltså inte poäng för att tycka rätt, utan för åtgärder som statistiken talar för.</p>
+     <p class="warn"><b>Demonstration, inte färdigt röstråd.</b> Alla fyra delar räknas i alla 7 kategorier,
+     och partiernas ståndpunkter är belagda med källor och granskade av människor. Men underlaget är olika djupt
+     mellan kategorier. Där det är tunt drar vi betyget mot mitten i stället för att gissa. Läs resultatet med
+     försiktighet.</p>`;
+
+  // Den tekniska sammanfattningen (meta.coverage_technical) är avsedd för granskare, inte för
+  // förstagångsbesökaren. Den ligger hopfälld sist och sätts som text (aldrig HTML).
+  const tech = DATA.meta?.coverage_technical;
+  if (tech) {
+    const det = document.createElement("details");
+    det.className = "tech";
+    const sum = document.createElement("summary");
+    sum.textContent = "Teknisk sammanfattning för granskare";
+    const p = document.createElement("p");
+    p.textContent = tech;
+    det.append(sum, p);
+    body.appendChild(det);
+  }
 }
 
 function buildAttribution() {
@@ -301,7 +333,7 @@ function buildAttribution() {
   const list = [...names].sort((a, b) => a.localeCompare(b, "sv"));
   $("attribution").textContent = list.length
     ? `Källor: ${list.join(" · ")}.`
-    : "Källor: officiell svensk myndighets- och riksdagsdata.";
+    : "Källor: officiell statistik från svenska myndigheter och riksdagen.";
 }
 
 load();

@@ -22,8 +22,13 @@ h1 { margin: 0; font-size: 1.9rem; letter-spacing: -0.02em; }
 }
 .banner.warn { background: rgba(224,162,58,0.12); border-color: var(--warn); color: #f0d9a8; }
 .banner.err  { background: rgba(224,80,80,0.14); border-color: #e05050; color: #f3c0c0; }
+/* Två spalter överst (reglage + resultat), metoden i full bredd under båda.
+   align-items:start hindrar reglagepanelen från att sträckas ut till resultatlistans
+   höjd (annars blir den en hög, halvtom ruta). */
 main { max-width: 980px; margin: 0 auto; padding: 0 1.2rem;
-  display: grid; grid-template-columns: 320px 1fr; gap: 1.5rem; }
+  display: grid; grid-template-columns: 320px minmax(0, 1fr); gap: 1.5rem;
+  align-items: start; }
+#method { grid-column: 1 / -1; }
 @media (max-width: 760px) { main { grid-template-columns: 1fr; } }
 /* min-width:0 låter grid-spalten stanna på 1fr; annars tvingar tabellens min-width
    (i ett expanderat kort) hela spalten bredare → sidoscroll vid 320px (WCAG 1.4.10). */
@@ -83,10 +88,23 @@ details.evidence li.missing { color: var(--warn); }
 .evidence a { color: var(--accent); }
 
 /* metod */
-#method summary { cursor: pointer; list-style: none; }
-#method summary h2 { display: inline; }
+/* > details > summary: träffar bara metodrutans egen rubrik, inte den tekniska
+   sammanfattningen som ligger som en egen details längre ner i samma sektion. */
+#method > details > summary { cursor: pointer; list-style: none; }
+#method > details > summary::-webkit-details-marker { display: none; }
+#method > details > summary h2 { display: inline; }
+/* egen etikett: summary saknar synlig markör när list-style är av */
+#method > details > summary::after { content: " visa"; color: var(--accent); font-size: 0.85rem; }
+#method > details[open] > summary::after { content: " dölj"; }
 #method .warn { color: var(--warn); }
+#method-body { margin-top: 0.6rem; }
 #method-body ul { padding-left: 1.1rem; }
+/* full spaltbredd ger annars 110+ tecken per rad; håll läsbar radlängd */
+#method-body p, #method-body li { max-width: 68ch; }
+#method-body li { margin-bottom: 0.35rem; }
+details.tech { margin-top: 0.9rem; border-top: 1px dashed var(--line); padding-top: 0.6rem; }
+details.tech summary { cursor: pointer; color: var(--accent); font-size: 0.85rem; }
+details.tech p { color: var(--muted); font-size: 0.85rem; overflow-wrap: anywhere; }
 
 /* hjälpklasser */
 .muted { color: var(--muted); }

@@ -739,28 +739,37 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
         "meta": {
             "generated": date.today().isoformat(), "window": "2014-2026",
             "parties": parties, "model_version": 1,
-            "coverage": (f"Preliminär: A=agerande (a2 motionsprioritering, andel av egna "
-                         f"motioner, full; a1 budgetprioritering gated — aktiv för "
-                         f"{len(a1_active)}/{len(cats)} kategorier ur officiella utgiftsramar "
-                         "(2023–2025), expertgranskad v1 2026-06-05, annars a2-fallback); "
-                         "C=makt per kategori: nationell regeringsmakt blandad med subnationell "
-                         "makt (SKR-styren, 21 regioner + 290 kommuner × 3 mandatperioder) via en "
-                         "per-kategori region/kommun-split efter lagstadgat ansvar; forsvar "
-                         "nationellt per design; c2 finansiering PARKERAD som designbeslut "
-                         "2026-06-14 (inget riktningsneutralt finansieringsmått går att bygga ur "
-                         "officiell svensk data) → C=c1 makt; "
-                         "D=resultatattribution från officiella "
-                         "årsserier för ALLA 7 kategorier (ekonomi/välfärd/trygghet/klimat/"
-                         "integration/försvar/demokrati) där partiet haft nationell makt (medel "
-                         "säkerhet, ej tillämplig för partier utan makt i fönstret); för välfärd "
-                         "blandas nationell nivå med region-nivå vårdutfall attribuerat till "
-                         "regionstyrande parti (soundness-grindat); D krymps mot neutral efter "
-                         "viktad undermåttsbredd. B är AKTIVERAD "
-                         f"för ALLA 7 kategorier via {n_positions} källbelagda, adversariellt "
-                         "verifierade + panel-harmoniserade partiståndpunkter (riksdagsvotering/"
-                         "motion, Fas 4c); B krymps mot neutral efter viktad undermåttsdjuptäckning "
-                         "(B_thin_coverage-flagga vid tunn täckning). party_positions + "
-                         "evidence_ledger expertgranskade v2 (mänsklig sign-off 2026-06-07)."),
+            # coverage = banderollen på sajten: vanlig svenska, för en förstagångsbesökare.
+            # coverage_technical = samma körning för granskare, med termer och beslut.
+            "coverage": (f"Underlaget i den här versionen: alla {len(cats)} kategorier har betyg "
+                         f"i alla fyra delar. Partiernas ståndpunkter bygger på {n_positions} "
+                         "belagda röster och motioner i riksdagen. Makt räknas både nationellt "
+                         "och i regioner och kommuner. Hur det gick mäts med officiella "
+                         "årsserier. Där underlaget är tunt drar vi betyget mot mitten i stället "
+                         "för att gissa."),
+            "coverage_technical": (
+                f"Preliminär: A=agerande (a2 motionsprioritering, andel av egna "
+                f"motioner, full; a1 budgetprioritering gated, aktiv för "
+                f"{len(a1_active)}/{len(cats)} kategorier ur officiella utgiftsramar "
+                "(2023-2025), expertgranskad v1 2026-06-05, annars a2-fallback); "
+                "C=makt per kategori: nationell regeringsmakt blandad med subnationell "
+                "makt (SKR-styren, 21 regioner + 290 kommuner x 3 mandatperioder) via en "
+                "per-kategori region/kommun-split efter lagstadgat ansvar; forsvar "
+                "nationellt per design; c2 finansiering PARKERAD som designbeslut "
+                "2026-06-14 (inget riktningsneutralt finansieringsmått går att bygga ur "
+                "officiell svensk data), alltså C=c1 makt; "
+                "D=resultatattribution från officiella "
+                "årsserier för ALLA 7 kategorier (ekonomi/välfärd/trygghet/klimat/"
+                "integration/försvar/demokrati) där partiet haft nationell makt (medel "
+                "säkerhet, ej tillämplig för partier utan makt i fönstret); för välfärd "
+                "blandas nationell nivå med region-nivå vårdutfall attribuerat till "
+                "regionstyrande parti (soundness-grindat); D krymps mot neutral efter "
+                "viktad undermåttsbredd. B är AKTIVERAD "
+                f"för ALLA 7 kategorier via {n_positions} källbelagda, adversariellt "
+                "verifierade + panel-harmoniserade partiståndpunkter (riksdagsvotering/"
+                "motion, Fas 4c); B krymps mot neutral efter viktad undermåttsdjuptäckning "
+                "(B_thin_coverage-flagga vid tunn täckning). party_positions + "
+                "evidence_ledger expertgranskade v2 (mänsklig sign-off 2026-06-07)."),
         },
         "categories": catinfo,
         "scores": scores,

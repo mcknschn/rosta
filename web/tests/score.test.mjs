@@ -9,15 +9,15 @@ test("fmtNum: svensk decimalkomma + avrundning", () => {
   assert.equal(fmtNum(3.842), "3,84");
   assert.equal(fmtNum(3.842, 1), "3,8");
   assert.equal(fmtNum(20, 0), "20");
-  assert.equal(fmtNum(undefined), "–");
+  assert.equal(fmtNum(undefined), "-");
 });
 
-test("fmtScoreWithCI: '3,84 / 5 (3,5–4,1)'", () => {
-  assert.equal(fmtScoreWithCI(3.842, [3.5, 4.1]), "3,84 / 5 (3,5–4,1)");
-  assert.equal(fmtScoreWithCI(2.5, null), "2,50 / 5");
+test("fmtScoreWithCI: '3,84 av 5 (3,5-4,1)'", () => {
+  assert.equal(fmtScoreWithCI(3.842, [3.5, 4.1]), "3,84 av 5 (3,5-4,1)");
+  assert.equal(fmtScoreWithCI(2.5, null), "2,50 av 5");
 });
 
-test("pct: klampar till 0–5", () => {
+test("pct: klampar till skalan 0 till 5", () => {
   assert.equal(pct(2.5), "50%");
   assert.equal(pct(6), "100%");
   assert.equal(pct(-1), "0%");

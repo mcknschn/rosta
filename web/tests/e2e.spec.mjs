@@ -23,9 +23,9 @@ test("8 partikort rankas fallande i svensk poängformat", async ({ page }) => {
 
   const texts = await score(cards).allTextContents();
   expect(texts).toHaveLength(8);
-  expect(texts[0]).toMatch(/\d,\d{2} \/ 5 \(\d,\d–\d,\d\)/); // "3,72 / 5 (3,3–4,2)"
+  expect(texts[0]).toMatch(/\d,\d{2} av 5 \(\d,\d-\d,\d\)/); // "3,72 av 5 (3,3-4,2)"
 
-  const nums = texts.map((t) => parseFloat(t.match(/([\d,]+) \/ 5/)[1].replace(",", ".")));
+  const nums = texts.map((t) => parseFloat(t.match(/([\d,]+) av 5/)[1].replace(",", ".")));
   for (let i = 1; i < nums.length; i++) {
     expect(nums[i]).toBeLessThanOrEqual(nums[i - 1] + 1e-9); // fallande
   }
@@ -126,7 +126,7 @@ test("trasig datafil ger svenskt felkort, ingen krasch", async ({ page }) => {
 
   const err = page.locator("#error");
   await expect(err).toBeVisible();
-  await expect(err).toContainText(/Datakontraktsfel|Osäkerhet/);
+  await expect(err).toContainText(/Data ser trasig ut|kunde inte hämta data/);
   await expect(page.locator("#parties > li.party")).toHaveCount(0);
 });
 
