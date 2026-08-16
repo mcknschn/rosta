@@ -284,9 +284,19 @@ företagande/investeringar samt hushållens disponibla inkomst → ekonomi 4/6 t
 
 ## Spår F — Frontend & publicering
 
-- **F1 — Faktisk publicering** ⚪ — `web/` är byggfri statisk men hostas ingenstans. Sätt upp
-  statisk hosting + CI som bygger om `dist/` och deployar (rådata stannar lokalt per design).
-- **F2 — Manuell skärmläsartest** ⚪ — sista WCAG 2.2 AA-punkten (NVDA/VoiceOver); allt övrigt klart.
+- ~~**F1 — Faktisk publicering**~~ ✅ **LEVERERAD 2026-08-16** — repot pushat till
+  [mcknschn/rosta](https://github.com/mcknschn/rosta) (publikt) och sajten ligger på
+  **<https://mcknschn.github.io/rosta/>**. GitHub Pages med källa GitHub Actions;
+  [pages.yml](../.github/workflows/pages.yml) laddar upp `web/` som sajtrot vid varje push till
+  `main`. Ingen byggkedja: frontenden är byggfri statisk och läser `web/data/`, synkat från
+  `dist/` med `scripts/sync_dist.py`. Rådata och warehouse stannar lokalt per design.
+  Befintlig [ci.yml](../.github/workflows/ci.yml) kör nu skarpt (ruff + pytest, py3.11/3.12) —
+  den hade aldrig körts tidigare eftersom repot saknade remote, vilket dolde 11 ruff-brott och
+  två fallerande e2e-test tills 2026-08-16.
+- **F2 — Manuell skärmläsartest** 🔵 **redo att köras** — protokoll skrivet:
+  [fas6_skarmlasartest.md](fas6_skarmlasartest.md), 9 testfall (skip-länk, rubriker, banner,
+  sliders, live-status, expandering, fokus, tabell, felläge). Kräver NVDA/VoiceOver + människa;
+  ca 20 min. Sista WCAG 2.2 AA-punkten.
 
 ---
 

@@ -4,6 +4,9 @@ En app som så objektivt som möjligt hjälper väljaren att förstå vilket sve
 riksdagsparti som bäst matchar hens prioriteringar. Väljaren viktar kategorier av
 sakfrågor; appen rangordnar partierna utifrån faktiskt data från officiella svenska källor.
 
+**Live: <https://mcknschn.github.io/rosta/>** — publiceras automatiskt från `main`
+([pages.yml](.github/workflows/pages.yml)); `web/` är sajtens rot.
+
 - **Modellen:** [IDEA.md](IDEA.md)
 - **Datainsamling & arkitektur:** [DATA.md](DATA.md)
 - **Exekveringsplan (faser 0–6, fryst historik):** [docs/ROADMAP.md](docs/done/ROADMAP.md)
