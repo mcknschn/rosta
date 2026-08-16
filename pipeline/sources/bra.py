@@ -63,14 +63,18 @@ NTU_URL = (
 )
 
 # Personuppklaringsprocent, hela landet, senaste 10 åren (Handlagda brott, tidsserietabell 10La).
-# Download-id verifierat 2026-06-03; ändras vid ny publicering -> HTTP-fel höjs (raise_for_status).
+# Download-id verifierat 2026-08-16; ändras vid ny publicering -> HTTP-fel höjs (raise_for_status).
+# Rotation 2026-08-16: det gamla id:t (18.285e1e6d19d8b8951142d6f/1776235268270) gav 404. Nytt id
+# hämtat från samma officiella sida (bra.se/statistik/kriminalstatistik/handlagda-brott.html),
+# samma filnamn och blad. Innehållet är OFÖRÄNDRAT: alla 10 årsvärden 2016-2025 identiska med de
+# redan inlästa, alltså ren omflyttning hos Brå, ingen revidering av statistiken.
 # Val av mått: PERSONuppklaringsprocent (andel av samtliga handlagda brott som personuppklarats:
 # åtal, strafföreläggande eller åtalsunderlåtelse) är Brås officiella huvudmått för uppklaring
 # sedan handlagda-brott-reformen 2014. Bladet rymmer även lagföringsprocent (annan nämnare,
 # utredda brott) — vi tar personuppklaring eftersom det är det vedertagna "uppklaringsgrad"-måttet
 # i svensk kriminalpolitisk statistik. Headline-raden "SAMTLIGA BROTT" (kol A=B) -> en årsserie.
 PERSONUPPKL_URL = (
-    f"{BASE}/download/18.285e1e6d19d8b8951142d6f/1776235268270/10La_uppklbr_10_ar.xlsx"
+    f"{BASE}/download/18.4450dd8019ed44e114546eae/1783421446755/10La_uppklbr_10_ar.xlsx"
 )
 # Excel kapar bladnamn vid 31 tecken: "Statistik personuppklaringsprocent" -> ...proc.
 _PERSONUPPKL_SHEET = "Statistik personuppklaringsproc"

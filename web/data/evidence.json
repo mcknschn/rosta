@@ -2367,7 +2367,7 @@
   "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:2025": {
     "kind": "claim",
     "source_name": "SCB",
-    "statement": "hushallens_reala_disponibla_inkomst = 505.93 (ekonomi, 2025)."
+    "statement": "hushallens_reala_disponibla_inkomst = 503.93 (ekonomi, 2025)."
   },
   "claim:observed_result:obs:derived:produktivitet:1980": {
     "kind": "claim",
@@ -3618,6 +3618,11 @@
     "kind": "claim",
     "source_name": "Kolada",
     "statement": "bidragsberoende = 2.063795 (integration, 2024)."
+  },
+  "claim:observed_result:obs:kolada:N31825:0000:2025": {
+    "kind": "claim",
+    "source_name": "Kolada",
+    "statement": "bidragsberoende = 2.052505 (integration, 2025)."
   },
   "claim:observed_result:obs:kolada:N79242:0000:2021": {
     "kind": "claim",
