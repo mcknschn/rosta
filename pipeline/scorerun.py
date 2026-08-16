@@ -426,9 +426,11 @@ def category_d(con: object, parties: list[str], cats: list[str]) -> dict[tuple[s
             for sm, w in slw.items():
                 num = wsum = 0.0
                 if sub_nets.get(sm) is not None:
-                    num += sub_nets[sm] * float(w["national"]); wsum += float(w["national"])
+                    num += sub_nets[sm] * float(w["national"])
+                    wsum += float(w["national"])
                 if subn_nets.get(sm) is not None:
-                    num += subn_nets[sm] * float(w["region"]); wsum += float(w["region"])
+                    num += subn_nets[sm] * float(w["region"])
+                    wsum += float(w["region"])
                 if wsum > 0:
                     blended[sm] = num / wsum
 
@@ -744,16 +746,21 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
                          "C=makt per kategori: nationell regeringsmakt blandad med subnationell "
                          "makt (SKR-styren, 21 regioner + 290 kommuner × 3 mandatperioder) via en "
                          "per-kategori region/kommun-split efter lagstadgat ansvar; forsvar "
-                         "nationellt per design; c2 finansiering ännu ej byggd (C=c1 makt); "
+                         "nationellt per design; c2 finansiering PARKERAD som designbeslut "
+                         "2026-06-14 (inget riktningsneutralt finansieringsmått går att bygga ur "
+                         "officiell svensk data) → C=c1 makt; "
                          "D=resultatattribution från officiella "
                          "årsserier för ALLA 7 kategorier (ekonomi/välfärd/trygghet/klimat/"
                          "integration/försvar/demokrati) där partiet haft nationell makt (medel "
-                         "säkerhet, ej tillämplig för partier utan makt i fönstret, t.ex. V). B är AKTIVERAD "
+                         "säkerhet, ej tillämplig för partier utan makt i fönstret); för välfärd "
+                         "blandas nationell nivå med region-nivå vårdutfall attribuerat till "
+                         "regionstyrande parti (soundness-grindat); D krymps mot neutral efter "
+                         "viktad undermåttsbredd. B är AKTIVERAD "
                          f"för ALLA 7 kategorier via {n_positions} källbelagda, adversariellt "
                          "verifierade + panel-harmoniserade partiståndpunkter (riksdagsvotering/"
-                         "motion, Fas 4c); coverage-viktad (B krymps mot neutral efter andel kodade "
-                         "åtgärdstyper, B_thin_coverage-flagga vid tunn täckning). party_positions + "
-                         "evidence_ledger expertgranskade v1 (mänsklig sign-off 2026-06-05)."),
+                         "motion, Fas 4c); B krymps mot neutral efter viktad undermåttsdjuptäckning "
+                         "(B_thin_coverage-flagga vid tunn täckning). party_positions + "
+                         "evidence_ledger expertgranskade v2 (mänsklig sign-off 2026-06-07)."),
         },
         "categories": catinfo,
         "scores": scores,

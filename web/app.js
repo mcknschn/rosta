@@ -280,9 +280,10 @@ function buildMethod() {
      </ul>
      <p>Du viktar de 7 kategorierna; <b>totalpoängen räknas i din webbläsare</b> som Σ (din vikt × kategoribetyg).
      Osäkerhetsintervall visas — överlappar två partiers band kan de inte säkert särskiljas.</p>
-     <p class="warn"><b>Version 0:</b> betygen är en pipeline-demonstration på riktig officiell data, inte ett färdigt
-     röstråd. Rankingen drivs ännu främst av aktivitet + makt (+ resultat där makt funnits), och partiståndpunkterna
-     (delpoäng B) är källbelagda men ännu inte expertgranskade. Tolka med försiktighet.</p>`;
+     <p class="warn"><b>Demonstration, inte färdigt röstråd:</b> alla fyra delpoäng är aktiva i samtliga 7 kategorier,
+     och partiståndpunkterna (delpoäng B) är källbelagda, adversariellt verifierade och expertgranskade. Men täckningen
+     varierar mellan kategorier, och där evidensen är tunn krymps betyget mot mitten i stället för att gissa.
+     Tolka med försiktighet.</p>`;
 }
 
 function buildAttribution() {
