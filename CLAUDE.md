@@ -11,3 +11,17 @@ Det här är en app som på ett så objektivt sätt som möjligt ska hjälpa anv
 - Läs IDEA.md för en fullständig beskrivning.
 - Läs DATA.md för beskrivning av datamodellen.
 - Läs dokumenten under docs/ för en beskrivning av projektplanen och vart vi står.
+
+## Agent skills
+
+### Issue tracker
+
+Issues ligger som GitHub-issues på `mcknschn/rosta` och hanteras med `gh`. Se `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+De fem kanoniska rollerna, med etikettsträngen lika med rollnamnet. Se `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context. Se `docs/agents/domain.md`.
