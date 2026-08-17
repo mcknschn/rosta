@@ -2,7 +2,7 @@
 // Kör: node --test web/tests/   (eller npm run test:unit)
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { fmtNum, fmtScoreWithCI, pct } from "../format.js";
+import { fmtNum, fmtScoreWithCI, pct, metaLine } from "../format.js";
 import { normalizeWeights, partyTotals, ciOverlap } from "../score.js";
 
 test("fmtNum: svensk decimalkomma + avrundning", () => {
@@ -47,6 +47,36 @@ test("partyTotals: viktad summa, fallande, alfabetisk tie-break", () => {
   assert.deepEqual(wa.map((r) => r.party), ["X", "Z", "Y"]);
   assert.ok(Math.abs(wa[0].total - 4) < 1e-9);
   assert.ok(Math.abs(wa[0].lo - 3) < 1e-9 && Math.abs(wa[0].hi - 5) < 1e-9);
+});
+
+// Issue #3: foten skiljer underlagets slut (data_as_of) från fönstrets slut (window_end).
+const META = {
+  generated: "2026-08-17", window: "2014-2026", window_end: "2026-09-13",
+  window_open: true, data_as_of: "2025-12-31", model_version: 1,
+};
+
+test("metaLine: underlagets slut och fönstrets slut står som skilda datum", () => {
+  const line = metaLine(META);
+  assert.match(line, /Uppdaterad 2026-08-17\./);
+  assert.match(line, /Data till och med 2025-12-31\./);
+  assert.match(line, /Mätfönstret är 2014 till 2026\./);
+  assert.match(line, /Mandatperioden pågår till 2026-09-13, så betygen för den är preliminära\./);
+  assert.match(line, /Modellversion 1\./);
+});
+
+test("metaLine: avslutad mandatperiod ger ingen preliminär-mening", () => {
+  const line = metaLine({ ...META, window_open: false });
+  assert.ok(!line.includes("preliminära"));
+  assert.match(line, /Data till och med 2025-12-31\./);
+});
+
+test("metaLine: fält som saknas hoppas över, inget 'undefined' i foten", () => {
+  const line = metaLine({ generated: "2026-08-17", window: "2014-2026", model_version: 1 });
+  assert.ok(!line.includes("undefined"));
+  assert.ok(!line.includes("Data till och med"));
+  assert.ok(!line.includes("preliminära"));
+  assert.equal(metaLine(null), "");
+  assert.equal(metaLine({}), "");
 });
 
 test("ciOverlap", () => {

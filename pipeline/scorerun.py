@@ -19,12 +19,42 @@ from typing import NamedTuple
 from . import DIST_DIR, budget, config, effects, positions, schema, score, warehouse
 from . import claims as claims_mod
 
-WINDOW_END = date(2026, 9, 13)  # nästa riksdagsval = fönstrets slut
+# Mandatperiodens FORMELLA slut (nästa riksdagsval). Det här är ett fönsterslut för ansvar och
+# attribution, INTE ett observationsslut: under hela mandatperioden ligger datumet i framtiden.
+# Hur långt underlaget faktiskt räcker är en annan storhet. Se data_freshness().
+WINDOW_END = date(2026, 9, 13)
 
 
 def _as_date(v: object) -> date:
     """PyYAML kan ge date-objekt eller sträng — coerca till date."""
     return v if isinstance(v, date) else date.fromisoformat(str(v))
+
+
+class DataFreshness(NamedTuple):
+    """Hur långt underlaget räcker, skilt från WINDOW_END."""
+
+    as_of: str | None       # ISO-datum: sista dagen i senaste AVSLUTADE observationsåret
+    latest_year: int | None # senaste observationsåret, även om året fortfarande pågår
+
+
+def data_freshness(con: object, today: date | None = None) -> DataFreshness:
+    """meta.data_as_of + meta.latest_observation_year ur observationslagret.
+
+    Serierna är årsserier, så finaste ärliga upplösning är ett helt år. Ett år som fortfarande
+    pågår flyttar därför INTE fram as_of: sajten ska aldrig påstå att den har data fram till ett
+    datum som inte inträffat. Det pågående året göms inte heller. Det syns som latest_year.
+    Saknas avslutade år blir as_of None och sajten säger inget alls om underlagets slut.
+    """
+    today = today or date.today()
+    years = {
+        y for (p,) in con.execute("SELECT DISTINCT period FROM observations").fetchall()
+        if (y := score.period_end_year(p)) is not None
+    }
+    if not years:
+        return DataFreshness(None, None)
+    complete = [y for y in years if y < today.year]
+    as_of = date(max(complete), 12, 31).isoformat() if complete else None
+    return DataFreshness(as_of, max(years))
 
 
 def government_fractions() -> dict[str, float]:
@@ -735,9 +765,17 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
         for c in config.categories()["categories"]
     ]
     n_positions = len(config.party_positions().get("entries") or [])
+    # Fönstrets slut och underlagets slut är två skilda datum (issue #3). window_end är
+    # mandatperiodens formella slut och ligger i framtiden tills valet hållits; data_as_of är
+    # sista dagen serierna faktiskt når. window_open säger att mandatperioden pågår, alltså att
+    # betygen för den är preliminära. Inget av detta rör betygen, bara vad sajten påstår.
+    today = date.today()
+    fresh = data_freshness(con, today=today)
     out = {
         "meta": {
-            "generated": date.today().isoformat(), "window": "2014-2026",
+            "generated": today.isoformat(), "window": "2014-2026",
+            "window_end": WINDOW_END.isoformat(), "window_open": today < WINDOW_END,
+            "data_as_of": fresh.as_of, "latest_observation_year": fresh.latest_year,
             "parties": parties, "model_version": 1,
             # coverage = banderollen på sajten: vanlig svenska, för en förstagångsbesökare.
             # coverage_technical = samma körning för granskare, med termer och beslut.

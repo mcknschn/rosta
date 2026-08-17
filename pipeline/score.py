@@ -207,6 +207,26 @@ def period_to_year(period: str) -> int | None:
     return int(start)
 
 
+_SUBYEAR_RE = re.compile(r"^(\d{4})[A-Za-z]\d+$")  # 'YYYYMmm', 'YYYYKn'
+
+
+def period_end_year(period: str) -> int | None:
+    """Sista kalenderår en period TÄCKER. None om perioden saknar årtal.
+
+    Ligger bredvid period_to_year för att de två läsningarna ska drifta synligt: samma
+    periodsträng, olika frågor. period_to_year ger det ENSKILDA år en period får bilda en
+    årsförändring för, så ett äkta dubbelår ger None. Här räcker serien ändå fram till
+    dubbelårets slutår, så '2018-2019' ger 2019 och en månads-/kvartalsperiod ger sitt år.
+    Används av scorerun.data_freshness för meta.data_as_of, aldrig i betygslogiken.
+    """
+    s = str(period).strip()
+    m = _YEAR_RE.match(s)
+    if m:
+        return int(m.group(2) or m.group(1))
+    m = _SUBYEAR_RE.match(s)
+    return int(m.group(1)) if m else None
+
+
 def relative_change(v_prev: float, v: float) -> float | None:
     """Relativ årsförändring (v - v_prev) / |v_prev|. None om v_prev == 0 (odefinierad)."""
     if v_prev == 0:

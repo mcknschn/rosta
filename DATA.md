@@ -250,6 +250,8 @@ Intervallets halvbredd per kategori = `max_halfwidth × Σ(delpoängvikt × (1 �
 ```json
 {
   "meta": { "generated": "2026-…", "window": "2014-2026",
+            "window_end": "2026-09-13", "window_open": true,
+            "data_as_of": "2025-12-31", "latest_observation_year": 2026,
             "parties": ["S","M","SD","C","V","KD","L","MP"] },
   "categories": [{ "id": "ekonomi", "submeasures": ["sysselsattning", "..."] }],
   "scores": {
@@ -264,6 +266,8 @@ Intervallets halvbredd per kategori = `max_halfwidth × Σ(delpoängvikt × (1 �
   }
 }
 ```
+
+**Fönstrets slut mot underlagets slut:** `window_end` är mandatperiodens formella slut, alltså nästa valdag. Det datumet ligger i framtiden tills valet hållits. `window_open` säger att perioden pågår, alltså att betygen för den är preliminära. `data_as_of` är något annat: sista dagen underlaget faktiskt når. Serierna är årsserier, så ett år som fortfarande pågår flyttar inte fram datumet. Det året syns i stället som `latest_observation_year`. De två datumen får aldrig blandas ihop (issue #3).
 
 `dist/evidence.json` (deployas): per `claim_ref` och `evidence_ref` → claim-sammanfattning, källnamn, dataset-id, hämtdatum, nyckelvärde, käll-URL. Bara bantade claims och nyckelvärden deployas, inte hela rådatat eller alla interna arbetsfält.
 

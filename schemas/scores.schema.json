@@ -13,6 +13,22 @@
       "properties": {
         "generated": { "type": "string" },
         "window": { "type": "string" },
+        "window_end": {
+          "type": "string",
+          "description": "Mandatperiodens FORMELLA slut (nästa valdag). Framtida tills valet hållits."
+        },
+        "window_open": {
+          "type": "boolean",
+          "description": "Mandatperioden pågår, alltså är betygen för den preliminära."
+        },
+        "data_as_of": {
+          "type": ["string", "null"],
+          "description": "Sista dagen underlaget faktiskt når (senaste AVSLUTADE observationsåret). Aldrig i framtiden. Skilt från window_end."
+        },
+        "latest_observation_year": {
+          "type": ["integer", "null"],
+          "description": "Senaste observationsåret, även om året pågår och därför inte flyttat data_as_of."
+        },
         "parties": { "type": "array", "items": { "type": "string" } },
         "model_version": { "type": ["string", "integer"] }
       }

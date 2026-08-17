@@ -2,7 +2,7 @@
 // och gör viktningen client-side. Inget rådata finns här. All betygslogik ligger i pipelinen;
 // frontend får ENDAST vikta/summera (se score.js) och visa.
 
-import { fmtNum, fmtScoreWithCI, pct } from "./format.js";
+import { fmtNum, fmtScoreWithCI, pct, metaLine } from "./format.js";
 import { partyTotals, ciOverlap } from "./score.js";
 
 const PARTY_NAMES = {
@@ -66,9 +66,7 @@ async function load() {
 
   CAT_IDS = DATA.categories.map((c) => c.id);
   $("coverage").textContent = (DATA.meta && DATA.meta.coverage) || "";
-  $("generated").textContent = DATA.meta?.generated
-    ? `Uppdaterad ${DATA.meta.generated}. Data täcker åren ${(DATA.meta.window || "").replace("-", " till ")}. Modellversion ${DATA.meta.model_version}.`
-    : "";
+  $("generated").textContent = metaLine(DATA.meta);
 
   initWeights();
   buildSliders();

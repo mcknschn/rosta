@@ -130,6 +130,18 @@ test("trasig datafil ger svenskt felkort, ingen krasch", async ({ page }) => {
   await expect(page.locator("#parties > li.party")).toHaveCount(0);
 });
 
+test("foten säger hur långt underlaget når, och aldrig ett framtida datum (issue #3)", async ({ page }) => {
+  await page.goto(PAGE);
+  const foot = page.locator("#generated");
+  await expect(foot).toContainText(/Data till och med \d{4}-\d{2}-\d{2}\./);
+  await expect(foot).toContainText(/Mandatperioden pågår till \d{4}-\d{2}-\d{2}, så betygen för den är preliminära\./);
+
+  // Kärnan i buggen: underlagets slut fick inte vara valdagen, som ligger i framtiden.
+  const meta = await page.evaluate(async () => (await (await fetch("./data/scores.json")).json()).meta);
+  expect(meta.data_as_of).not.toBe(meta.window_end);
+  expect(new Date(meta.data_as_of).getTime()).toBeLessThanOrEqual(Date.now());
+});
+
 test("ingen horisontell sidoscroll vid 320px (reflow 1.4.10)", async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 800 });
   await page.goto(PAGE);

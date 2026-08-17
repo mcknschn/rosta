@@ -88,7 +88,9 @@
   "meta": {
     "coverage": "Underlaget i den här versionen: alla 7 kategorier har betyg i alla fyra delar. Partiernas ståndpunkter bygger på 269 belagda röster och motioner i riksdagen. Makt räknas både nationellt och i regioner och kommuner. Hur det gick mäts med officiella årsserier. Där underlaget är tunt drar vi betyget mot mitten i stället för att gissa.",
     "coverage_technical": "Preliminär: A=agerande (a2 motionsprioritering, andel av egna motioner, full; a1 budgetprioritering gated, aktiv för 7/7 kategorier ur officiella utgiftsramar (2023-2025), expertgranskad v1 2026-06-05, annars a2-fallback); C=makt per kategori: nationell regeringsmakt blandad med subnationell makt (SKR-styren, 21 regioner + 290 kommuner x 3 mandatperioder) via en per-kategori region/kommun-split efter lagstadgat ansvar; forsvar nationellt per design; c2 finansiering PARKERAD som designbeslut 2026-06-14 (inget riktningsneutralt finansieringsmått går att bygga ur officiell svensk data), alltså C=c1 makt; D=resultatattribution från officiella årsserier för ALLA 7 kategorier (ekonomi/välfärd/trygghet/klimat/integration/försvar/demokrati) där partiet haft nationell makt (medel säkerhet, ej tillämplig för partier utan makt i fönstret); för välfärd blandas nationell nivå med region-nivå vårdutfall attribuerat till regionstyrande parti (soundness-grindat); D krymps mot neutral efter viktad undermåttsbredd. B är AKTIVERAD för ALLA 7 kategorier via 269 källbelagda, adversariellt verifierade + panel-harmoniserade partiståndpunkter (riksdagsvotering/motion, Fas 4c); B krymps mot neutral efter viktad undermåttsdjuptäckning (B_thin_coverage-flagga vid tunn täckning). party_positions + evidence_ledger expertgranskade v2 (mänsklig sign-off 2026-06-07).",
-    "generated": "2026-08-16",
+    "data_as_of": "2025-12-31",
+    "generated": "2026-08-17",
+    "latest_observation_year": 2026,
     "model_version": 1,
     "parties": [
       "S",
@@ -100,7 +102,9 @@
       "L",
       "MP"
     ],
-    "window": "2014-2026"
+    "window": "2014-2026",
+    "window_end": "2026-09-13",
+    "window_open": true
   },
   "scores": {
     "C": {
