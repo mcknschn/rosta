@@ -89,26 +89,40 @@ Kategoriutfall
 | Ansvar/attribution | Har partiet haft faktisk makt och administrativ möjlighet att påverka utfallet? |
 | Resultat | Har indikatorerna förbättrats där partiet haft ansvar, med rimlig tidsförskjutning och osäkerhet? |
 
+Ansvarsledet ger inga poäng. Det avgör vem ett utfall får tillskrivas, och bär därmed resultatledet.
+Se ADR 0002.
+
 Samma reform kan ha positiva effekter på vissa indikatorer och negativa effekter på andra. Den ska därför inte bedömas ideologiskt som "bra" eller "dålig" i sig, utan brytas ned i förväntade indikatorpåverkningar.
 
 ### Grundformel
 
+Ett kategoribetyg svarar på en enda fråga: hur mycket väntas kategorin förbättras om partiets politik
+genomförs? Anspråket gäller politiken, inte partiets chans att få makt. Resultatledet är ett
+kontrolled som kan säga emot anspråket.
+
 ```
 Kategoripoäng =
-  40 % prioritering
-  35 % evidens/träffsäkerhet
-  15 % genomförbarhet/ansvar
-  10 % uppmätta resultat
+  50 % evidens/träffsäkerhet
+  30 % prioritering
+  20 % uppmätta resultat
 ```
+
+Vikterna är härledda ur anspråket och låsta av ADR 0002. Ansvar väger 0 och bär i stället
+attributionen för resultatledet. Vikterna är desamma i alla sju kategorier, och användaren kan inte
+flytta dem: användaren väger kategorier, aldrig metod.
 
 ### Delpoäng
 
 | Del | Vikt | Fråga | Exempel på källor |
 |-----|------|-------|-------------------|
-| A. Prioritering | 40 % | Hur stor andel av partiets föreslagna anslag och egna motioner går till kategorin? | Budgetmotioner och regeringens budgetproposition via FiU1-rambeslutet, motionsräkning per utskott |
-| B. Evidens/träffsäkerhet | 35 % | Finns det stöd för att förslagen påverkar kategoriindikatorerna i den positiva riktning partiet påstår? | Myndigheter, forskningsöversikter, utvärderingar |
-| C. Genomförbarhet/ansvar | 15 % | Har partiet makt, realistisk finansiering och administrativ möjlighet att genomföra eller påverka förslagen? | Regeringsställning, region/kommunstyren, finansiering |
-| D. Resultat | 10 % | Har relevanta indikatorer förbättrats där partiet haft ansvar? | SCB, Brå, Socialstyrelsen, Skolverket, Kolada, Försvarsmakten |
+| A. Prioritering | 30 % | Hur stor andel av partiets föreslagna anslag och egna motioner går till kategorin? | Budgetmotioner och regeringens budgetproposition via FiU1-rambeslutet, motionsräkning per utskott |
+| B. Evidens/träffsäkerhet | 50 % | Finns det stöd för att förslagen påverkar kategoriindikatorerna i den positiva riktning partiet påstår? | Myndigheter, forskningsöversikter, utvärderingar |
+| C. Ansvarsunderlag | 0 % | Har partiet haft makt att påverka utfallet, och hur mycket? | Regeringsställning, region- och kommunstyren |
+| D. Resultat | 20 % | Har relevanta indikatorer förbättrats där partiet haft ansvar? | SCB, Brå, Socialstyrelsen, Skolverket, Kolada, Försvarsmakten |
+
+B väger mer än A eftersom B är det enda ledet som bär riktning. A bär omfattning. D:s vikt är satt så
+att ett motsägande utfall som mest flyttar betyget 1,0 poäng, alltså nog för att vända ett jämnt läge
+men inte ett tydligt försprång.
 
 ### Claims som mellanlager
 

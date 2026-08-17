@@ -188,13 +188,18 @@ oquoterade kommatecken.)
 ### Delpoäng (ordlista) — fyra delar, ETT namn var
 
 Låst 2026-08-17 av [ADR 0001](../adr/0001-a-mater-prioritering.md) (biljett #7 under karta #6).
+Vikterna låsta 2026-08-18 av [ADR 0002](../adr/0002-kategoripoangens-ansprak-och-vikter.md)
+(biljett #9 under samma karta).
 
-| Del | Kanoniskt namn | Frågan delen ställer | Kod-nyckel |
-|---|---|---|---|
-| A | **Prioritering** | Hur stor andel av partiets föreslagna anslag och egna motioner går till kategorin? | `A_agerande` |
-| B | **Evidens** | Åt vilket håll drar partiets ståndpunkter, och finns officiellt stöd för effekten? | `B_evidens` |
-| C | **Ansvar** | Har partiet haft makt att påverka? | `C_ansvar` |
-| D | **Resultat** | Har indikatorerna förbättrats där partiet haft ansvar? | `D_resultat` |
+**Anspråket:** ett kategoribetyg svarar på frågan hur mycket kategorin väntas förbättras om partiets
+politik genomförs. D är ett kontrolled som kan säga emot anspråket.
+
+| Del | Kanoniskt namn | Vikt | Frågan delen ställer | Kod-nyckel |
+|---|---|---|---|---|
+| A | **Prioritering** | 0,30 | Hur stor andel av partiets föreslagna anslag och egna motioner går till kategorin? | `A_agerande` |
+| B | **Evidens** | 0,50 | Åt vilket håll drar partiets ståndpunkter, och finns officiellt stöd för effekten? | `B_evidens` |
+| C | **Ansvarsunderlag** | 0 | Har partiet haft makt att påverka, och hur mycket? Bär attributionen för D. | `C_ansvar` |
+| D | **Resultat** | 0,20 | Har indikatorerna förbättrats där partiet haft ansvar? | `D_resultat` |
 
 **Regel mot dubbelräkning:** gränsen mellan delpoängen går vid **frågan**, inte vid källan. Samma dokument
 får svara på flera av frågorna. Samma fråga får aldrig räknas två gånger. En budgetmotion ger därför både
@@ -203,6 +208,12 @@ A sina ramar per utgiftsområde och B en ståndpunkt på ett instrument, utan at
 *Retirerad synonym:* "Faktiskt agerande" → **Prioritering**. A mäter omfattning, aldrig riktning och aldrig
 kvalitet. Riktningen bor i B. Konfignyckeln heter fortfarande `A_agerande` tills en byggslice byter den.
 Voteringar är en källa till **ståndpunkt** och hör därmed till B, inte till A.
+
+*Retirerad synonym:* "Genomförbarhet/ansvar" → **Ansvarsunderlag**. C är inte längre en delpoäng och ger
+inga poäng. Storheten räknas ut som förut och redovisas, men den bär bara attributionen för D. Skälet:
+anspråket villkorar redan på att politiken genomförs, så innehavd makt svarar på en fråga betyget inte
+ställer. Konfignyckeln `C_ansvar` behålls med vikten 0, eftersom `pipeline/config.py` kräver alla fyra
+nycklarna.
 
 ### Mätbarhet — kan varje indikator mätas?
 En indikator bidrar till betyget om den har **B** (partikopplad evidens att ett instrument flyttar den) **eller**
@@ -942,3 +953,4 @@ mot snapshot), `review_packet` (granskningspaket). Snapshot re-baselineas **bara
 | 2026-06-07 | ✅ **SIGN-OFF-SESSION GENOMFÖRD (§8.8-ytan stängd):** Användaren gick igenom alla öppna frågor och avgjorde. **Verkställt i config:** (3) transparens-dubbelräkning åtgärdad — C omankrad till lobbyregister (HD023583 yrk. 17), MP till offentlighetsprincipen (HA02181 yrk. 9), båda verifierade ordagrant mot `.text` av researchagent; (2a) migration S/MP/C omverifierade mot innevarande mandatperiod (ingen nyare källa → behåll, skärpt föråldrad-flagga); (8) 4 döda indikatorer → 🔴 BEVAKA-noter; (11) version 1→2 i tre config-filer + test; (10) snapshot re-baselinad (drift nollställd). **Allt poängneutralt** (`git diff dist/scores.json` tom; bara svepens ackumulerade drift inlåst → bottenflip SD>V, topp 6 oförändrad). 167 tester gröna, ruff rent, 0 cyrilliska, B4 inga nära-binära, ranking S>L>M>KD>MP>C>SD>V. **Beslut 12 (viktad stance) antagen** som kommande förbättring (sekvensering vs D under beslut); **Beslut 13 (banan)** mandatperioden bekräftad, flerperiod framtida designfråga. §3/§4.3/§6/§8/§8.7/§8.8/§9/§11 uppdaterade. |
 | 2026-06-07 | ❌ **VIKTAD STANCE UTVÄRDERAD → ÖVERGIVEN (Beslut 12):** spec [done/viktad_stance_spec.md](viktad_stance_spec.md) skriven (grad/magnitud i B). Codex adversariell granskning v1 → HOLD (för svaga spärrar); v2 åtgärdade 10 punkter (G6 instrumenturval, G7 ankartaxonomi, m_min-band, A-dubbelräkningstest) → Codex DATAPILOT-FIRST. **Datapilot** (icke-scoring kartläggning av alla 43 instrument): bara ~3/43 (≈7 %) har kvantifierad ambitionsnivå, klustrade i forsvar+klimat, mest budgetnära → alla kill-kriterier föll in. **Användarbeslut: ÖVERGE.** Strukturell slutsats: instrumentbaserad modell ⇒ binär stance är rätt passform (grad bor i budgetnivåer = A). Spec + denna fil flyttade till `docs/done/`. Ingen config-/kodändring; binär modell oförändrad. §8 fråga 2 + §8.8 + §9 uppdaterade. |
 | 2026-08-17 | **A OMDÖPT TILL PRIORITERING (ADR 0001, biljett #7 under karta #6):** `IDEA.md` definierade A som "röstat, budgeterat, föreslagit, genomfört", men byggd A är a1 budgetandel + a2 motionsandel, riktningsneutralt. Beslut: A heter **Prioritering** och mäter omfattning; voteringarna stannar i B; "genomfört" hör till C och D. **Ny regel mot dubbelräkning:** gränsen mellan delpoängen går vid frågan, inte vid källan (en budgetmotion bär både A:s ramar och B:s ståndpunkt). §4.3 fick delpoängsordlista. Ingen kod-/configändring, ranking oförändrad; kvar till byggslice: kommentaren under `A_agerande` + etiketten i gränssnittet. Viktfrågan skickad vidare till #9, skärpt: prioritering väger 40 % mot evidensens 35 %. |
+| 2026-08-18 | **VIKTERNA HÄRLEDDA OCH LÅSTA (ADR 0002, biljett #9 under karta #6):** 40/35/15/10 var asserterat utan härledning. Kedjan: anspråket avgörs före vikten (OECD/JRC steg 1, underlag #8) → **anspråket = hur mycket kategorin väntas förbättras om partiets politik genomförs**. Ur det följer **B > A** (endast B bär riktning, förhållandet 5:3), **C = 0** (anspråket villkorar redan på genomförande, så innehavd makt svarar på en fråga betyget inte ställer; C blir **ansvarsunderlag** och bär attributionen för D) och **D = 20 %** (kontrolledet ska nå 1,0 poäng vid maximal motsägelse, alltså vända ett jämnt läge men inte ett tydligt försprång). **Ny formel: 0,30 A + 0,50 B + 0,20 D.** Halvbredden går 0,44 → 0,58 med standardsäkerheterna och kompenseras inte. Beslutet är **rankingrelevant** men taget blint mot rankingen enligt kartans regel. Ändrat nu: ADR 0002, `IDEA.md` §Bedömningskedja/§Grundformel/§Delpoäng, §4.3. Kvar till byggslice: `scoring.yaml`, `categories.yaml`, metodrutan i `web/app.js`, `coverage_technical`; pipen körs om först på uttrycklig order. |
