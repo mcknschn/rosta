@@ -185,6 +185,25 @@ engelska — det är samma begrepp); "mätpunkt"/"mått" → **Indikator**. Varj
 `name`-fältet — fyra trunkerade namn rättades 2026-06-06: Nato/Skola/Normer/Finansiering hade kapats av
 oquoterade kommatecken.)
 
+### Delpoäng (ordlista) — fyra delar, ETT namn var
+
+Låst 2026-08-17 av [ADR 0001](../adr/0001-a-mater-prioritering.md) (biljett #7 under karta #6).
+
+| Del | Kanoniskt namn | Frågan delen ställer | Kod-nyckel |
+|---|---|---|---|
+| A | **Prioritering** | Hur stor andel av partiets föreslagna anslag och egna motioner går till kategorin? | `A_agerande` |
+| B | **Evidens** | Åt vilket håll drar partiets ståndpunkter, och finns officiellt stöd för effekten? | `B_evidens` |
+| C | **Ansvar** | Har partiet haft makt att påverka? | `C_ansvar` |
+| D | **Resultat** | Har indikatorerna förbättrats där partiet haft ansvar? | `D_resultat` |
+
+**Regel mot dubbelräkning:** gränsen mellan delpoängen går vid **frågan**, inte vid källan. Samma dokument
+får svara på flera av frågorna. Samma fråga får aldrig räknas två gånger. En budgetmotion ger därför både
+A sina ramar per utgiftsområde och B en ståndpunkt på ett instrument, utan att något räknas dubbelt.
+
+*Retirerad synonym:* "Faktiskt agerande" → **Prioritering**. A mäter omfattning, aldrig riktning och aldrig
+kvalitet. Riktningen bor i B. Konfignyckeln heter fortfarande `A_agerande` tills en byggslice byter den.
+Voteringar är en källa till **ståndpunkt** och hör därmed till B, inte till A.
+
 ### Mätbarhet — kan varje indikator mätas?
 En indikator bidrar till betyget om den har **B** (partikopplad evidens att ett instrument flyttar den) **eller**
 **D** (officiell svensk årsserie). B och D är två vägar — en stängd D dödar inte indikatorn om B bär den (t.ex.
@@ -922,3 +941,4 @@ mot snapshot), `review_packet` (granskningspaket). Snapshot re-baselineas **bara
 | 2026-06-07 | **B-GRÖN-SVEPET (användarmandat: varje undermått ≥1 B-grön):** 11 parallella researchagenter + codex adversariell granskning → **5 mått byggda v0** (insyn_partifinansiering→transparens; NY forsvarsfinansiering_upptrappning_mot_mal→ekonomisk_ambition; NY kommunalt_brottsforebyggande_arbete→forebyggande; koncentration NHV→överlevnad; NY kontinuitet_i_omsorgen→omsorg_personal). Alla enhällighet-som-källa §5.2 (alla 8 supports, acklamation verifierad mot data.riksdagen.se dokumentstatus, citat verbatim-kollade), low/low, FLAGGADE. **Demokrati 4/5→5/5, trygghet 4/5→5/5, valfard 2/4→4/4 (alla FULLT), forsvar 3/5→4/5.** **5 HOLD** (genomforbarhet_leverans, industriell_konkurrenskraft, boendesegregation, normer_tillit, migrationssystem — genuina väggar, kandidat-indikatorer §8.7) + **offentliga_finanser HOLD-kontext** (codex: åtstramnings-tilt). 42 evidensposter / 240 ståndpunkter; **isolerad effekt: ranking OFÖRÄNDRAD** (S>L>M>KD>MP>C>SD>V), alla cellförändringar positiva (inget parti straffat); ruff rent, 167 tester gröna, config valid, B4 inga nära-binära. §3/§4.3/§6/§8.6/§8.7(ny)/§9 uppdaterade. snapshot ej re-baselinad. Väntar mänsklig sign-off. |
 | 2026-06-07 | ✅ **SIGN-OFF-SESSION GENOMFÖRD (§8.8-ytan stängd):** Användaren gick igenom alla öppna frågor och avgjorde. **Verkställt i config:** (3) transparens-dubbelräkning åtgärdad — C omankrad till lobbyregister (HD023583 yrk. 17), MP till offentlighetsprincipen (HA02181 yrk. 9), båda verifierade ordagrant mot `.text` av researchagent; (2a) migration S/MP/C omverifierade mot innevarande mandatperiod (ingen nyare källa → behåll, skärpt föråldrad-flagga); (8) 4 döda indikatorer → 🔴 BEVAKA-noter; (11) version 1→2 i tre config-filer + test; (10) snapshot re-baselinad (drift nollställd). **Allt poängneutralt** (`git diff dist/scores.json` tom; bara svepens ackumulerade drift inlåst → bottenflip SD>V, topp 6 oförändrad). 167 tester gröna, ruff rent, 0 cyrilliska, B4 inga nära-binära, ranking S>L>M>KD>MP>C>SD>V. **Beslut 12 (viktad stance) antagen** som kommande förbättring (sekvensering vs D under beslut); **Beslut 13 (banan)** mandatperioden bekräftad, flerperiod framtida designfråga. §3/§4.3/§6/§8/§8.7/§8.8/§9/§11 uppdaterade. |
 | 2026-06-07 | ❌ **VIKTAD STANCE UTVÄRDERAD → ÖVERGIVEN (Beslut 12):** spec [done/viktad_stance_spec.md](viktad_stance_spec.md) skriven (grad/magnitud i B). Codex adversariell granskning v1 → HOLD (för svaga spärrar); v2 åtgärdade 10 punkter (G6 instrumenturval, G7 ankartaxonomi, m_min-band, A-dubbelräkningstest) → Codex DATAPILOT-FIRST. **Datapilot** (icke-scoring kartläggning av alla 43 instrument): bara ~3/43 (≈7 %) har kvantifierad ambitionsnivå, klustrade i forsvar+klimat, mest budgetnära → alla kill-kriterier föll in. **Användarbeslut: ÖVERGE.** Strukturell slutsats: instrumentbaserad modell ⇒ binär stance är rätt passform (grad bor i budgetnivåer = A). Spec + denna fil flyttade till `docs/done/`. Ingen config-/kodändring; binär modell oförändrad. §8 fråga 2 + §8.8 + §9 uppdaterade. |
+| 2026-08-17 | **A OMDÖPT TILL PRIORITERING (ADR 0001, biljett #7 under karta #6):** `IDEA.md` definierade A som "röstat, budgeterat, föreslagit, genomfört", men byggd A är a1 budgetandel + a2 motionsandel, riktningsneutralt. Beslut: A heter **Prioritering** och mäter omfattning; voteringarna stannar i B; "genomfört" hör till C och D. **Ny regel mot dubbelräkning:** gränsen mellan delpoängen går vid frågan, inte vid källan (en budgetmotion bär både A:s ramar och B:s ståndpunkt). §4.3 fick delpoängsordlista. Ingen kod-/configändring, ranking oförändrad; kvar till byggslice: kommentaren under `A_agerande` + etiketten i gränssnittet. Viktfrågan skickad vidare till #9, skärpt: prioritering väger 40 % mot evidensens 35 %. |

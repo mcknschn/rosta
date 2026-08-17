@@ -1,6 +1,6 @@
 Idén är att göra modellen personlig utan att själva sakgranskningen blir helt subjektiv.
 
-Rösta ska inte fråga användaren vilken ideologisk metod han eller hon föredrar. Användaren anger vilka samhällsområden som är viktigast. Partierna bedöms därefter mot objektiva kategoriindikatorer och evidens för om deras förslag, agerande och ansvar faktiskt pekar mot förbättring i dessa indikatorer.
+Rösta ska inte fråga användaren vilken ideologisk metod han eller hon föredrar. Användaren anger vilka samhällsområden som är viktigast. Partierna bedöms därefter mot objektiva kategoriindikatorer och evidens för om deras förslag, prioriteringar och ansvar faktiskt pekar mot förbättring i dessa indikatorer.
 
 Exempel: inom ekonomi är det positiva utfallet högre sysselsättning, högre produktivitet, bättre reallöneutveckling, inflation nära målet och hållbara offentliga finanser. Om detta uppnås genom mer höger- eller vänsterorienterad politik är inte poängen i sig. Det centrala är om utfallet är objektivt positivt och om det finns stöd för att partiets politik rimligen leder dit.
 
@@ -75,7 +75,7 @@ Varje kategoribetyg ska bygga på en tydlig kedja:
 
 ```
 Kategoriutfall
-  → partiets agerande
+  → partiets prioritering
   → evidens/träffsäkerhet
   → ansvar/attribution
   → resultat
@@ -84,7 +84,7 @@ Kategoriutfall
 | Led | Fråga |
 |-----|-------|
 | Kategoriutfall | Vilka objektiva indikatorer visar om kategorin förbättras eller försämras? |
-| Partiets agerande | Vad har partiet faktiskt röstat för, budgeterat, föreslagit och genomfört? |
+| Partiets prioritering | Hur stor andel av partiets föreslagna anslag och egna motioner går till kategorin? |
 | Evidens/träffsäkerhet | Finns det evidens för att partiets förslag har den effekt partiet påstår, mätt mot kategoriindikatorerna? |
 | Ansvar/attribution | Har partiet haft faktisk makt och administrativ möjlighet att påverka utfallet? |
 | Resultat | Har indikatorerna förbättrats där partiet haft ansvar, med rimlig tidsförskjutning och osäkerhet? |
@@ -95,7 +95,7 @@ Samma reform kan ha positiva effekter på vissa indikatorer och negativa effekte
 
 ```
 Kategoripoäng =
-  40 % faktiskt agerande
+  40 % prioritering
   35 % evidens/träffsäkerhet
   15 % genomförbarhet/ansvar
   10 % uppmätta resultat
@@ -105,7 +105,7 @@ Kategoripoäng =
 
 | Del | Vikt | Fråga | Exempel på källor |
 |-----|------|-------|-------------------|
-| A. Faktiskt agerande | 40 % | Vad har partiet röstat för, budgeterat, föreslagit och genomfört? | Riksdagsvoteringar, budgetmotioner, propositioner |
+| A. Prioritering | 40 % | Hur stor andel av partiets föreslagna anslag och egna motioner går till kategorin? | Budgetmotioner och regeringens budgetproposition via FiU1-rambeslutet, motionsräkning per utskott |
 | B. Evidens/träffsäkerhet | 35 % | Finns det stöd för att förslagen påverkar kategoriindikatorerna i den positiva riktning partiet påstår? | Myndigheter, forskningsöversikter, utvärderingar |
 | C. Genomförbarhet/ansvar | 15 % | Har partiet makt, realistisk finansiering och administrativ möjlighet att genomföra eller påverka förslagen? | Regeringsställning, region/kommunstyren, finansiering |
 | D. Resultat | 10 % | Har relevanta indikatorer förbättrats där partiet haft ansvar? | SCB, Brå, Socialstyrelsen, Skolverket, Kolada, Försvarsmakten |
@@ -127,7 +127,8 @@ För att modellen ska kunna granskas ska poängen inte räknas direkt från råd
 
 Claims ska kunna avse exempelvis:
 
-- faktiskt agerande: partiet röstade ja/nej, föreslog en budgetförändring eller lade en motion.
+- prioritering: partiet föreslog en budgetram för ett utgiftsområde eller lade en motion i kategorin.
+- ståndpunkt: partiet röstade ja eller nej, eller tog ställning för eller emot ett instrument.
 - påstådd effekt: partiet säger att förslaget ska påverka en viss indikator.
 - evidensbedömning: svenska myndigheter eller akademiska källor stödjer, motsäger eller nyanserar den påstådda effekten.
 - ansvar: partiet hade eller hade inte möjlighet att påverka utfallet.
@@ -378,8 +379,8 @@ Exempel på lägre säkerhet:
 | Kategorier har objektiva indikatorer | Vad räknas som förbättring i varje område? |
 | Partier scoreas per kategori | Vad gör partierna faktiskt, och pekar det mot bättre indikatorutfall? |
 | Källor hämtas | Riksdag, myndigheter, statistik, utvärderingar |
-| Claims byggs | Verifierbara påståenden kopplar agerande, evidens, ansvar och resultat till indikatorer |
-| Agerande mäts | Röster, budgetar, förslag, regeringsbeslut |
+| Claims byggs | Verifierbara påståenden kopplar prioritering, evidens, ansvar och resultat till indikatorer |
+| Prioritering mäts | Föreslagna budgetramar per utgiftsområde, motioner per utskott |
 | Evidens mäts | Stöd för förslagens förväntade effekt på indikatorerna |
 | Ansvar mäts | Har partiet haft makt att påverka? |
 | Resultat mäts försiktigt | Har indikatorer förbättrats där partiet styrt? |
@@ -389,7 +390,7 @@ Exempel på lägre säkerhet:
 
 ```
 Partiets poäng i kategori =
-  0,40 × faktiskt agerande
+  0,40 × prioritering
   0,35 × evidens/träffsäkerhet
   0,15 × genomförbarhet/ansvar
   0,10 × resultat
