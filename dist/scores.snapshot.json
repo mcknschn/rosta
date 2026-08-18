@@ -1,27 +1,27 @@
 {
   "totals": {
-    "C": 3.031,
-    "KD": 3.114,
-    "L": 3.366,
-    "M": 3.28,
-    "MP": 3.122,
-    "S": 3.66,
-    "SD": 2.72,
-    "V": 2.599
+    "C": 3.487,
+    "KD": 3.488,
+    "L": 3.522,
+    "M": 3.576,
+    "MP": 3.181,
+    "S": 3.552,
+    "SD": 3.229,
+    "V": 3.146
   },
   "ranking": [
+    "M",
     "S",
     "L",
-    "M",
-    "MP",
     "KD",
     "C",
     "SD",
+    "MP",
     "V"
   ],
   "cells": {
     "C/demokrati": {
-      "score": 3.235,
+      "score": 3.827,
       "flags": [
         "A_a1_active",
         "B_coverage_100/100",
@@ -29,7 +29,7 @@
       ]
     },
     "C/ekonomi": {
-      "score": 2.669,
+      "score": 3.141,
       "flags": [
         "A_a1_active",
         "B_coverage_73/73",
@@ -37,7 +37,7 @@
       ]
     },
     "C/forsvar": {
-      "score": 3.299,
+      "score": 3.865,
       "flags": [
         "A_a1_active",
         "B_coverage_75/100",
@@ -47,7 +47,7 @@
       ]
     },
     "C/integration": {
-      "score": 2.411,
+      "score": 2.997,
       "flags": [
         "A_a1_active",
         "B_coverage_65/100",
@@ -55,7 +55,7 @@
       ]
     },
     "C/klimat": {
-      "score": 3.261,
+      "score": 3.371,
       "flags": [
         "A_a1_active",
         "B_coverage_30/100",
@@ -64,7 +64,7 @@
       ]
     },
     "C/trygghet": {
-      "score": 3.036,
+      "score": 3.359,
       "flags": [
         "A_a1_active",
         "B_coverage_42.5/100",
@@ -73,7 +73,7 @@
       ]
     },
     "C/valfard": {
-      "score": 3.276,
+      "score": 3.838,
       "flags": [
         "A_a1_active",
         "B_coverage_100/100",
@@ -82,7 +82,7 @@
       ]
     },
     "KD/demokrati": {
-      "score": 2.629,
+      "score": 2.962,
       "flags": [
         "A_a1_active",
         "B_coverage_86.7/100",
@@ -90,7 +90,7 @@
       ]
     },
     "KD/ekonomi": {
-      "score": 3.151,
+      "score": 3.462,
       "flags": [
         "A_a1_active",
         "B_coverage_73/73",
@@ -98,7 +98,7 @@
       ]
     },
     "KD/forsvar": {
-      "score": 3.834,
+      "score": 4.078,
       "flags": [
         "A_a1_active",
         "B_coverage_75/100",
@@ -107,7 +107,7 @@
       ]
     },
     "KD/integration": {
-      "score": 2.57,
+      "score": 3.056,
       "flags": [
         "A_a1_active",
         "B_coverage_52.5/100",
@@ -115,7 +115,7 @@
       ]
     },
     "KD/klimat": {
-      "score": 2.702,
+      "score": 3.021,
       "flags": [
         "A_a1_active",
         "B_coverage_85/100",
@@ -123,7 +123,7 @@
       ]
     },
     "KD/trygghet": {
-      "score": 3.355,
+      "score": 3.719,
       "flags": [
         "A_a1_active",
         "B_coverage_62.5/100",
@@ -132,7 +132,7 @@
       ]
     },
     "KD/valfard": {
-      "score": 3.069,
+      "score": 3.603,
       "flags": [
         "A_a1_active",
         "B_coverage_100/100",
@@ -141,7 +141,7 @@
       ]
     },
     "L/demokrati": {
-      "score": 3.156,
+      "score": 3.262,
       "flags": [
         "A_a1_active",
         "B_coverage_100/100",
@@ -149,7 +149,7 @@
       ]
     },
     "L/ekonomi": {
-      "score": 3.291,
+      "score": 3.454,
       "flags": [
         "A_a1_active",
         "B_coverage_73/73",
@@ -157,7 +157,7 @@
       ]
     },
     "L/forsvar": {
-      "score": 3.945,
+      "score": 4.164,
       "flags": [
         "A_a1_active",
         "B_coverage_95/100",
@@ -166,7 +166,7 @@
       ]
     },
     "L/integration": {
-      "score": 2.968,
+      "score": 3.125,
       "flags": [
         "A_a1_active",
         "B_coverage_55/100",
@@ -174,7 +174,7 @@
       ]
     },
     "L/klimat": {
-      "score": 2.565,
+      "score": 2.749,
       "flags": [
         "A_a1_active",
         "B_coverage_85/100",
@@ -182,7 +182,7 @@
       ]
     },
     "L/trygghet": {
-      "score": 3.395,
+      "score": 3.514,
       "flags": [
         "A_a1_active",
         "B_coverage_62.5/100",
@@ -190,7 +190,7 @@
       ]
     },
     "L/valfard": {
-      "score": 3.761,
+      "score": 3.894,
       "flags": [
         "A_a1_active",
         "B_coverage_90/100",
@@ -199,7 +199,7 @@
       ]
     },
     "M/demokrati": {
-      "score": 2.279,
+      "score": 2.62,
       "flags": [
         "A_a1_active",
         "B_coverage_86.7/100",
@@ -207,7 +207,7 @@
       ]
     },
     "M/ekonomi": {
-      "score": 3.588,
+      "score": 3.855,
       "flags": [
         "A_a1_active",
         "B_coverage_73/73",
@@ -215,7 +215,7 @@
       ]
     },
     "M/forsvar": {
-      "score": 3.209,
+      "score": 3.728,
       "flags": [
         "A_a1_active",
         "B_coverage_95/100",
@@ -224,7 +224,7 @@
       ]
     },
     "M/integration": {
-      "score": 2.585,
+      "score": 3.002,
       "flags": [
         "A_a1_active",
         "B_coverage_55/100",
@@ -232,7 +232,7 @@
       ]
     },
     "M/klimat": {
-      "score": 3.037,
+      "score": 3.193,
       "flags": [
         "A_a1_active",
         "B_coverage_85/100",
@@ -240,7 +240,7 @@
       ]
     },
     "M/trygghet": {
-      "score": 3.63,
+      "score": 3.726,
       "flags": [
         "A_a1_active",
         "B_coverage_42.5/100",
@@ -250,7 +250,7 @@
       ]
     },
     "M/valfard": {
-      "score": 3.637,
+      "score": 3.953,
       "flags": [
         "A_a1_active",
         "B_coverage_100/100",
@@ -259,7 +259,7 @@
       ]
     },
     "MP/demokrati": {
-      "score": 4.397,
+      "score": 4.327,
       "flags": [
         "A_a1_active",
         "B_coverage_93.3/100",
@@ -267,7 +267,7 @@
       ]
     },
     "MP/ekonomi": {
-      "score": 2.874,
+      "score": 3.121,
       "flags": [
         "A_a1_active",
         "B_coverage_73/73",
@@ -275,7 +275,7 @@
       ]
     },
     "MP/forsvar": {
-      "score": 2.375,
+      "score": 2.352,
       "flags": [
         "A_a1_active",
         "B_coverage_32.5/100",
@@ -286,7 +286,7 @@
       ]
     },
     "MP/integration": {
-      "score": 3.7,
+      "score": 3.359,
       "flags": [
         "A_a1_active",
         "B_coverage_32.5/100",
@@ -295,7 +295,7 @@
       ]
     },
     "MP/klimat": {
-      "score": 4.001,
+      "score": 3.684,
       "flags": [
         "A_a1_active",
         "B_coverage_85/100",
@@ -303,7 +303,7 @@
       ]
     },
     "MP/trygghet": {
-      "score": 2.58,
+      "score": 2.912,
       "flags": [
         "A_a1_active",
         "B_coverage_92.5/100",
@@ -311,7 +311,7 @@
       ]
     },
     "MP/valfard": {
-      "score": 3.02,
+      "score": 3.232,
       "flags": [
         "A_a1_active",
         "B_coverage_90/100",
@@ -320,7 +320,7 @@
       ]
     },
     "S/demokrati": {
-      "score": 3.339,
+      "score": 3.234,
       "flags": [
         "A_a1_active",
         "B_coverage_100/100",
@@ -328,7 +328,7 @@
       ]
     },
     "S/ekonomi": {
-      "score": 4.268,
+      "score": 4.051,
       "flags": [
         "A_a1_active",
         "B_coverage_73/73",
@@ -336,7 +336,7 @@
       ]
     },
     "S/forsvar": {
-      "score": 3.392,
+      "score": 3.596,
       "flags": [
         "A_a1_active",
         "B_coverage_95/100",
@@ -345,7 +345,7 @@
       ]
     },
     "S/integration": {
-      "score": 3.582,
+      "score": 3.21,
       "flags": [
         "A_a1_active",
         "B_coverage_42.5/100",
@@ -354,7 +354,7 @@
       ]
     },
     "S/klimat": {
-      "score": 2.629,
+      "score": 2.698,
       "flags": [
         "A_a1_active",
         "B_coverage_55/100",
@@ -362,7 +362,7 @@
       ]
     },
     "S/trygghet": {
-      "score": 2.963,
+      "score": 2.992,
       "flags": [
         "A_a1_active",
         "B_coverage_72.5/100",
@@ -370,7 +370,7 @@
       ]
     },
     "S/valfard": {
-      "score": 4.581,
+      "score": 4.262,
       "flags": [
         "A_a1_active",
         "B_coverage_80/100",
@@ -379,7 +379,7 @@
       ]
     },
     "SD/demokrati": {
-      "score": 2.582,
+      "score": 2.968,
       "flags": [
         "A_a1_active",
         "B_coverage_68.3/100",
@@ -387,7 +387,7 @@
       ]
     },
     "SD/ekonomi": {
-      "score": 2.505,
+      "score": 3.155,
       "flags": [
         "A_a1_active",
         "B_coverage_73/73",
@@ -395,7 +395,7 @@
       ]
     },
     "SD/forsvar": {
-      "score": 3.391,
+      "score": 3.985,
       "flags": [
         "A_a1_active",
         "B_coverage_95/100",
@@ -404,7 +404,7 @@
       ]
     },
     "SD/integration": {
-      "score": 2.295,
+      "score": 2.892,
       "flags": [
         "A_a1_active",
         "B_coverage_32.5/100",
@@ -413,7 +413,7 @@
       ]
     },
     "SD/klimat": {
-      "score": 2.077,
+      "score": 2.357,
       "flags": [
         "A_a1_active",
         "B_coverage_85/100",
@@ -421,7 +421,7 @@
       ]
     },
     "SD/trygghet": {
-      "score": 3.296,
+      "score": 3.71,
       "flags": [
         "A_a1_active",
         "B_coverage_55/100",
@@ -430,7 +430,7 @@
       ]
     },
     "SD/valfard": {
-      "score": 2.664,
+      "score": 3.189,
       "flags": [
         "A_a1_active",
         "B_coverage_100/100",
@@ -438,7 +438,7 @@
       ]
     },
     "V/demokrati": {
-      "score": 3.255,
+      "score": 3.862,
       "flags": [
         "A_a1_active",
         "B_coverage_86.7/100",
@@ -446,7 +446,7 @@
       ]
     },
     "V/ekonomi": {
-      "score": 2.301,
+      "score": 2.538,
       "flags": [
         "A_a1_active",
         "B_coverage_73/73",
@@ -454,7 +454,7 @@
       ]
     },
     "V/forsvar": {
-      "score": 2.551,
+      "score": 3.205,
       "flags": [
         "A_a1_active",
         "B_coverage_95/100",
@@ -463,7 +463,7 @@
       ]
     },
     "V/integration": {
-      "score": 3.102,
+      "score": 3.217,
       "flags": [
         "A_a1_active",
         "B_coverage_45/100",
@@ -472,7 +472,7 @@
       ]
     },
     "V/klimat": {
-      "score": 2.574,
+      "score": 3.045,
       "flags": [
         "A_a1_active",
         "B_coverage_85/100",
@@ -480,7 +480,7 @@
       ]
     },
     "V/trygghet": {
-      "score": 2.792,
+      "score": 3.549,
       "flags": [
         "A_a1_active",
         "B_coverage_92.5/100",
@@ -488,7 +488,7 @@
       ]
     },
     "V/valfard": {
-      "score": 2.308,
+      "score": 3.165,
       "flags": [
         "A_a1_active",
         "B_coverage_90/100",
