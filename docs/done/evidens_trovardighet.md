@@ -197,7 +197,7 @@ politik genomförs. D är ett kontrolled som kan säga emot anspråket.
 | Del | Kanoniskt namn | Vikt | Frågan delen ställer | Kod-nyckel |
 |---|---|---|---|---|
 | A | **Prioritering** | 0,30 | Hur stor andel av partiets föreslagna anslag och egna motioner går till kategorin? | `A_agerande` |
-| B | **Evidens** | 0,50 | Åt vilket håll drar partiets ståndpunkter, och finns officiellt stöd för effekten? | `B_evidens` |
+| B | **Evidens** | 0,50 | Hur stor förbättring väntas av de åtgärder partiet driver? Storlek ur `effect_strength`, säkerhet ur `evidence_level` och `confidence` ([ADR 0004](../adr/0004-vad-delpoang-b-mater.md)). | `B_evidens` |
 | C | **Maktandel** | 0 | Har partiet haft makt att påverka, och hur mycket? Upplysning, ej attribution. | `C_ansvar` |
 | D | **Resultat** | 0,20 | Har indikatorerna förbättrats där partiet haft ansvar? | `D_resultat` |
 

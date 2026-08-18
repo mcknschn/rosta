@@ -85,7 +85,7 @@ Kategoriutfall
 |-----|-------|
 | Kategoriutfall | Vilka objektiva indikatorer visar om kategorin förbättras eller försämras? |
 | Partiets prioritering | Hur stor andel av partiets föreslagna anslag och egna motioner går till kategorin? |
-| Evidens/träffsäkerhet | Finns det evidens för att partiets förslag har den effekt partiet påstår, mätt mot kategoriindikatorerna? |
+| Evidens/träffsäkerhet | Hur stor förbättring av kategoriindikatorerna väntas av de åtgärder partiet driver, enligt evidensen? |
 | Ansvar/attribution | Har partiet haft faktisk makt och administrativ möjlighet att påverka utfallet? |
 | Resultat | Har indikatorerna förbättrats där partiet haft ansvar, med rimlig tidsförskjutning och osäkerhet? |
 
@@ -117,7 +117,7 @@ kan inte flytta dem: användaren väger kategorier, aldrig metod.
 | Del | Vikt | Fråga | Exempel på källor |
 |-----|------|-------|-------------------|
 | A. Prioritering | 30 % | Hur stor andel av partiets föreslagna anslag och egna motioner går till kategorin? | Budgetmotioner och regeringens budgetproposition via FiU1-rambeslutet, motionsräkning per utskott |
-| B. Evidens/träffsäkerhet | 50 % | Finns det stöd för att förslagen påverkar kategoriindikatorerna i den positiva riktning partiet påstår? | Myndigheter, forskningsöversikter, utvärderingar |
+| B. Evidens/träffsäkerhet | 50 % | Hur stor förbättring av kategoriindikatorerna väntas av de åtgärder partiet driver? Storleken kommer ur evidensen, säkerheten ur källans styrka ([ADR 0004](docs/adr/0004-vad-delpoang-b-mater.md)). | Myndigheter, forskningsöversikter, utvärderingar |
 | C. Maktandel | 0 % | Har partiet haft makt att påverka utfallet, och hur mycket? | Regeringsställning, region- och kommunstyren |
 | D. Resultat | 20 % | Har relevanta indikatorer förbättrats där partiet haft ansvar? | SCB, Brå, Socialstyrelsen, Skolverket, Kolada, Försvarsmakten |
 
