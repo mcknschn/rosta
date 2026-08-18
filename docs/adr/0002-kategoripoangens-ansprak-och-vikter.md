@@ -104,3 +104,29 @@ det här beslutet är taget med kännedom om hur rankingen påverkas.
   §Delpoäng, samt delpoängsordlistan i `docs/done/evidens_trovardighet.md` §4.3.
 - **Avblockerar** [#5](https://github.com/mcknschn/rosta/issues/5), kartan för D:s kausala
   försiktighet. Frågan om D:s täckning håller vid 20 procent i stället för 10 hör hemma där.
+
+## Rättelse 2026-08-18
+
+Beslutad i biljett [#14](https://github.com/mcknschn/rosta/issues/14). Punkt 5 står kvar oredigerad,
+eftersom ADR:n är accepterad. Två saker i den är fel.
+
+1. **C bär inte attributionen för D.** Punkt 5 skriver att C "bär attributionen för D, vilket är den
+   roll koden redan ger den (`min_responsibility` i `config/scoring.yaml`)". Koden gör inte det.
+   `min_responsibility` grindar på D:s egen storhet `basis` i `category_d`, alltså Σ maktvikt över de
+   år partiet faktiskt attribueras, per kategori. Den räknas ur `year_power_fractions()`. C räknas ur
+   `government_fractions()`, som är andel av hela fönstret. Olika funktioner, olika nämnare. De två
+   storheterna rör aldrig varandra. C:s roll är upplysning om vem som haft makten, och ingenting mer.
+2. **C heter maktandel, inte ansvarsunderlag.** Ordet *ansvarsunderlag* var upptaget: det är namnet på
+   D:s grindstorhet ovan, och den användningen är äldre och sitter i confignycklar och i flaggan
+   `D_thin_basis`. Ett ord, en betydelse. C:s namn bytte därför, inte D:s. Konfignyckeln `C_ansvar`
+   behålls, precis som `A_agerande` behålls tills ADR 0001:s byggslice körs.
+
+Rättelsen rör inga vikter. Den rör däremot två betyg, tvärtemot vad biljett #14 antog.
+Maktandelens fönsterslut flyttades i samma ärende från valdagen till 2025-12-31, och `components.C`
+är inte den nationella maktandelen utan en per-kategori-blandning av nationell och subnationell makt
+(`category_c`). Den nationella rangordningen är stabil under båda gränserna, men blandningen är det
+inte: i trygghet korsar SD och C. Eftersom vikterna i den här ADR:n ännu inte är byggda -
+`config/scoring.yaml` och `config/categories.yaml` har kvar `C: 0,15` - når korsningen kategoribetyget:
+C/trygghet 3,036 -> 3,143 och SD/trygghet 3,296 -> 3,189, med spannen. Totalrankingen och trygghets
+interna ordning står still. När viktslicen körs faller den här effekten bort av sig själv, eftersom C
+då väger 0.

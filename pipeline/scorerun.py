@@ -13,7 +13,7 @@ from __future__ import annotations
 
 import json
 import sys
-from datetime import date
+from datetime import date, timedelta
 from typing import NamedTuple
 
 from . import DIST_DIR, budget, config, effects, positions, schema, score, warehouse
@@ -23,6 +23,26 @@ from . import claims as claims_mod
 # attribution, INTE ett observationsslut: under hela mandatperioden ligger datumet i framtiden.
 # Hur långt underlaget faktiskt räcker är en annan storhet. Se data_freshness().
 WINDOW_END = date(2026, 9, 13)
+
+# Maktandelens fönsterslut: sista dagen i sista AVSLUTADE observationsåret. Skilt från
+# WINDOW_END, som ligger i framtiden under hela mandatperioden och därför skulle tillgodoräkna
+# den sittande regeringen maktdagar den ännu inte suttit, och späda alla fraktioner med en
+# framtida nämnare (biljett #14). HANDSATT med flit: höj den manuellt när lagret fått ett helt
+# nytt år. Anropa INTE data_freshness() här — den avgör "avslutat år" mot today.year och gör
+# storheten beroende av körtidpunkten i stället för av lagret.
+POWER_WINDOW_END = date(2025, 12, 31)
+
+
+def _power_window_stop() -> date:
+    """Halvöppen gräns för maktandelens räkning: [fönstrets start, stopp).
+
+    POWER_WINDOW_END är den sista dagen som SKA räknas, så gränsen i räkningen är dagen
+    efter. Utan det steget väger 2025 364/365 i year_power_fractions, alltså ett påstående
+    om att regeringen inte satt hela året, och D läser 2025. Härledd i en funktion och inte
+    i en modulkonstant, så att POWER_WINDOW_END är enda sanningskällan: meta.power_window_end
+    publicerar samma tal som räkningen använder, och testerna kan flytta gränsen.
+    """
+    return POWER_WINDOW_END + timedelta(days=1)
 
 
 def _as_date(v: object) -> date:
@@ -58,15 +78,21 @@ def data_freshness(con: object, today: date | None = None) -> DataFreshness:
 
 
 def government_fractions() -> dict[str, float]:
-    """Andel av fönstret varje parti haft regeringsmakt (stöd vägs 0.5)."""
+    """Maktandel: andel av fönstret varje parti haft regeringsmakt (stöd vägs 0.5).
+
+    Fönstret slutar vid POWER_WINDOW_END, inte WINDOW_END: en pågående regeringsperiod räknas
+    bara till sista avslutade observationsåret, och nämnaren stannar på samma dag. Storheten
+    heter maktandel och är C. Den ska inte förväxlas med ansvarsunderlag, som är D:s grind
+    (Σ maktvikt över de attribuerade åren, `basis` i category_d). Se ADR 0002 § Rättelse.
+    """
     gps = config.mappings()["government_periods"]
     parsed = []
     for gp in gps:
         s = _as_date(gp["start"])
-        e = _as_date(gp["end"]) if gp.get("end") else WINDOW_END
+        e = _as_date(gp["end"]) if gp.get("end") else _power_window_stop()
         parsed.append((s, e, gp.get("parties", []), gp.get("support_parties", [])))
     win_start = min(s for s, _, _, _ in parsed)
-    total = (WINDOW_END - win_start).days
+    total = (_power_window_stop() - win_start).days
     frac = {p: 0.0 for p in config.party_codes()}
     for s, e, parties, supp in parsed:
         days = (e - s).days
@@ -184,7 +210,7 @@ def _parsed_periods() -> list[tuple[date, date, list[str], list[str]]]:
     out = []
     for gp in config.mappings()["government_periods"]:
         s = _as_date(gp["start"])
-        e = _as_date(gp["end"]) if gp.get("end") else WINDOW_END
+        e = _as_date(gp["end"]) if gp.get("end") else _power_window_stop()
         out.append((s, e, gp.get("parties", []), gp.get("support_parties", [])))
     return out
 
@@ -769,12 +795,16 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
     # mandatperiodens formella slut och ligger i framtiden tills valet hållits; data_as_of är
     # sista dagen serierna faktiskt når. window_open säger att mandatperioden pågår, alltså att
     # betygen för den är preliminära. Inget av detta rör betygen, bara vad sajten påstår.
+    # power_window_end är maktandelens (C:s) fönsterslut och är ett TREDJE datum (issue #14):
+    # makt räknas bara till sista avslutade observationsåret, så ingen regering tillgodoräknas
+    # dagar den ännu inte suttit. Se POWER_WINDOW_END.
     today = date.today()
     fresh = data_freshness(con, today=today)
     out = {
         "meta": {
             "generated": today.isoformat(), "window": "2014-2026",
             "window_end": WINDOW_END.isoformat(), "window_open": today < WINDOW_END,
+            "power_window_end": POWER_WINDOW_END.isoformat(),
             "data_as_of": fresh.as_of, "latest_observation_year": fresh.latest_year,
             "parties": parties, "model_version": 1,
             # coverage = banderollen på sajten: vanlig svenska, för en förstagångsbesökare.

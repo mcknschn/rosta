@@ -180,10 +180,16 @@ def test_category_c_blends_region_and_municipal() -> None:
     assert conf["forsvar"] == "high"
     nat_only = score.rank_normalize(nat)
     assert all(abs(by_cat["forsvar"][p] - nat_only[p]) < 1e-9 for p in parties)
-    # C bär nu en kategorisignal (ej platt konstant): kategorier som blandar in subnationell makt
-    # skiljer sig från det rent nationella forsvar, och trygghet skiljer sig från ekonomi.
+    # C bär en kategorisignal (ej platt konstant): kategorier som blandar in subnationell makt
+    # skiljer sig från det rent nationella forsvar.
     assert any(by_cat["ekonomi"][p] != by_cat["forsvar"][p] for p in parties)
-    assert any(by_cat["trygghet"][p] != by_cat["ekonomi"][p] for p in parties)
+    # Signalen är EN bit bred, inte mer: forsvar mot resten. Blandningsvikterna skiljer sig mellan
+    # de sex blandande kategorierna (national 0,4-0,8, split region/kommun 0-0,45), men efter
+    # rangnormaliseringen ger de samma ordning, så samma vektor. Före issue #14 låg trygghet som en
+    # tredje vektor - SD och C stod olika där - och maktandelens gräns flyttade den korsningen.
+    # Testet pinnar det som gäller nu; blir det tre vektorer igen är det en riktig ändring i C.
+    vectors = {tuple(round(by_cat[c][p], 9) for p in parties) for c in cats}
+    assert len(vectors) == 2
     # Guard: utan subnationell data faller C på nationell fallback (flaggad, sänkt säkerhet).
     g_by, g_conf, g_flags = scorerun.category_c(nat, {}, {}, parties, cats)
     assert g_flags["valfard"] == ["C_missing_subnational"]

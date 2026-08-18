@@ -26,9 +26,9 @@ Mekaniken (Fas 5b, `pipeline/score.py:attribute_series` + `scorerun.py:category_
 - För varje **nationell årsserie** (`up`/`down`; `target` hoppas över) tas *tecknet* på den
   riktningsjusterade årsförändringen (förbättring +1 / försämring −1 / 0 i dödzon).
 - Varje förändring (år y−1 → y) tillskrivs regeringen som satt år y−1 (`attribution_lag_years = 1`),
-  viktad med maktandel (regering 1,0, stöd 0,5). Per kategori: submåttsviktat medel → `net ∈ [−1,1]`
+  viktad med maktvikt (regering 1,0, stöd 0,5). Per kategori: submåttsviktat medel → `net ∈ [−1,1]`
   → betyg via 0→2,5-skalan. *Tecken, inte magnitud* (robust mot konjunktur-caveat, IDEA.md).
-- Maktandel < `min_responsibility` → D ≈ neutral (2,5), flagga `D_not_applicable`, **bred osäkerhet**
+- Ansvarsunderlag < `min_responsibility` → D ≈ neutral (2,5), flagga `D_not_applicable`, **bred osäkerhet**
   (partiet straffas inte för utfall det inte rådde över). Tunt underlag → `D_thin_basis`.
 
 **En ny D-serie behöver bara:** vara *kanonisk* (finnas i `categories.yaml` med rätt `direction`)

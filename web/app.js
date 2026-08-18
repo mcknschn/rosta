@@ -259,10 +259,10 @@ function detailHTML(row) {
       <caption class="sr-only">Betyg per kategori och de fyra delarna för ${row.party}</caption>
       <thead><tr><th>Kategori</th><th class="num">Betyg</th><th class="num">Spann</th>
         <th class="num" title="Vad partiet driver">A</th><th class="num" title="Om åtgärderna brukar ge resultat">B</th>
-        <th class="num" title="Om partiet haft makt">C</th><th class="num" title="Hur det gick">D</th><th>Flaggor</th></tr></thead>
+        <th class="num" title="Hur stor del av tiden partiet haft makt">C</th><th class="num" title="Hur det gick">D</th><th>Flaggor</th></tr></thead>
       <tbody>${catRows}</tbody>
     </table></div>
-    <p class="hint">A = vad partiet driver. B = om åtgärderna brukar ge resultat. C = om partiet haft makt.
+    <p class="hint">A = vad partiet driver. B = om åtgärderna brukar ge resultat. C = hur stor del av tiden partiet haft makt.
       D = hur det gick. Flaggor visar var underlaget är tunt eller saknas.</p>
     ${evidenceHTML(row)}`;
 }

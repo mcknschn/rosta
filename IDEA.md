@@ -117,7 +117,7 @@ flytta dem: användaren väger kategorier, aldrig metod.
 |-----|------|-------|-------------------|
 | A. Prioritering | 30 % | Hur stor andel av partiets föreslagna anslag och egna motioner går till kategorin? | Budgetmotioner och regeringens budgetproposition via FiU1-rambeslutet, motionsräkning per utskott |
 | B. Evidens/träffsäkerhet | 50 % | Finns det stöd för att förslagen påverkar kategoriindikatorerna i den positiva riktning partiet påstår? | Myndigheter, forskningsöversikter, utvärderingar |
-| C. Ansvarsunderlag | 0 % | Har partiet haft makt att påverka utfallet, och hur mycket? | Regeringsställning, region- och kommunstyren |
+| C. Maktandel | 0 % | Har partiet haft makt att påverka utfallet, och hur mycket? | Regeringsställning, region- och kommunstyren |
 | D. Resultat | 20 % | Har relevanta indikatorer förbättrats där partiet haft ansvar? | SCB, Brå, Socialstyrelsen, Skolverket, Kolada, Försvarsmakten |
 
 B väger mer än A eftersom B är det enda ledet som bär riktning. A bär omfattning. D:s vikt är satt så
