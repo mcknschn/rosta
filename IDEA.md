@@ -89,8 +89,9 @@ Kategoriutfall
 | Ansvar/attribution | Har partiet haft faktisk makt och administrativ möjlighet att påverka utfallet? |
 | Resultat | Har indikatorerna förbättrats där partiet haft ansvar, med rimlig tidsförskjutning och osäkerhet? |
 
-Ansvarsledet ger inga poäng. Det avgör vem ett utfall får tillskrivas, och bär därmed resultatledet.
-Se ADR 0002.
+Ansvarsledet ger inga poäng. Det redovisas som maktandel, alltså som upplysning om vem som haft
+makten. Resultatledet gör sin egen attribution på en egen storhet, och läser aldrig maktandelen.
+Se ADR 0002 med dess Rättelse 2026-08-18.
 
 Samma reform kan ha positiva effekter på vissa indikatorer och negativa effekter på andra. Den ska därför inte bedömas ideologiskt som "bra" eller "dålig" i sig, utan brytas ned i förväntade indikatorpåverkningar.
 
@@ -107,9 +108,9 @@ Kategoripoäng =
   20 % uppmätta resultat
 ```
 
-Vikterna är härledda ur anspråket och låsta av ADR 0002. Ansvar väger 0 och bär i stället
-attributionen för resultatledet. Vikterna är desamma i alla sju kategorier, och användaren kan inte
-flytta dem: användaren väger kategorier, aldrig metod.
+Vikterna är härledda ur anspråket och låsta av ADR 0002. Maktandelen väger 0. Den räknas ut som
+förut och redovisas, men ger inga poäng. Vikterna är desamma i alla sju kategorier, och användaren
+kan inte flytta dem: användaren väger kategorier, aldrig metod.
 
 ### Delpoäng
 
