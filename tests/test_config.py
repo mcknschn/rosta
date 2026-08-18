@@ -2,6 +2,9 @@
 
 from __future__ import annotations
 
+import re
+from pathlib import Path
+
 import pytest
 
 from pipeline import config
@@ -65,3 +68,24 @@ def test_scoring_uncertainty_block_is_consistent() -> None:
 
 def test_normalization_neutral_matches_score_default() -> None:
     assert config.scoring()["normalization"]["default"]["neutral"] == 2.5
+
+
+def test_metodrutan_visar_samma_vikter_som_configen() -> None:
+    """Metodrutan i web/app.js skriver vikterna som text och kan inte läsa dem ur configen.
+
+    Utan den här grinden kan en viktändring i scoring.yaml gå igenom medan sajten står
+    kvar och påstår de gamla talen. Då beskriver sajten en annan formel än den räknar
+    med, vilket är precis vad ADR 0002 och biljett #15 finns för att stoppa.
+    """
+    app_js = (Path(__file__).resolve().parents[1] / "web" / "app.js").read_text(encoding="utf-8")
+    visade = {m[0]: int(m[1]) for m in re.findall(r"<li><b>([ABCD])\.[^(]*\((\d+) %\)", app_js)}
+    sw = config.categories()["subscore_weights"]
+    vantade = {"A": sw["A_agerande"], "B": sw["B_evidens"], "D": sw["D_resultat"]}
+    assert visade == vantade, f"metodrutan visar {visade}, configen säger {vantade}"
+
+
+def test_metodrutan_listar_inte_maktandelen_som_delpoang() -> None:
+    """C väger 0 och får inte stå med bland delarna som ger poäng (ADR 0002 punkt 5)."""
+    app_js = (Path(__file__).resolve().parents[1] / "web" / "app.js").read_text(encoding="utf-8")
+    assert config.categories()["subscore_weights"]["C_ansvar"] == 0
+    assert not re.search(r"<li><b>C\.", app_js), "C står kvar som en delpoäng i metodrutan"
