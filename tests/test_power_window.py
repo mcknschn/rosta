@@ -105,6 +105,10 @@ def test_konstanten_hanger_med_nar_lagret_far_ett_nytt_avslutat_ar() -> None:
     ansvarsår för 2026, och förändringen 2026 -> 2027 hoppas över i attribute_series. Testet
     är den enda automatiska påminnelsen. Faller det: höj POWER_WINDOW_END till fresh.as_of.
     """
+    # Enda testet i sviten som läser det RIKTIGA lagret. Filen är gitignorerad (*.duckdb), så
+    # CI har inget lager och grinden kan bara gå lokalt, där konstanten faktiskt underhålls.
+    if not warehouse.WAREHOUSE_PATH.exists():
+        pytest.skip("inget byggt lager (CI kör utan data/warehouse.duckdb)")
     con = warehouse.connect(read_only=True)
     fresh = scorerun.data_freshness(con, today=date.today())
     con.close()
