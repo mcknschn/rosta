@@ -3,7 +3,9 @@
 Rena funktioner utan beroende på livedata, så de kan golden-testas direkt.
 Den datadrivna populeringen av A/B/C/D byggs i Fas 4-5; matten nedan är kontraktet.
 
-Kategoribetyg = 0.40*A + 0.35*B + 0.15*C + 0.10*D     (A,B,C,D i [0,5])
+Kategoribetyg = 0.30*A + 0.50*B + 0.20*D              (A,B,D i [0,5])
+C väger 0 och ger inga poäng. Den räknas ut som förut och redovisas som maktandel
+(ADR 0002). Vikterna läses ur scoring.yaml, aldrig härifrån.
 
 Skalsemantik (se scoring.yaml): A och C är RELATIVA (rangordnas över de 8 partierna),
 B och D är ABSOLUTA (net_support=0 -> 2.5 oberoende av andra partier).

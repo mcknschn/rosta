@@ -251,19 +251,22 @@ function detailHTML(row) {
       <td class="num">${fmtNum(cs.score)}</td>
       <td class="num">${fmtNum(cs.ci[0], 1)}-${fmtNum(cs.ci[1], 1)}</td>
       <td class="num">${fmtNum(comp.A, 1)}</td><td class="num">${fmtNum(comp.B, 1)}</td>
-      <td class="num">${fmtNum(comp.C, 1)}</td><td class="num">${fmtNum(comp.D, 1)}</td>
+      <td class="num">${fmtNum(comp.D, 1)}</td><td class="num nocount">${fmtNum(comp.C, 1)}</td>
       <td${lowConf}>${flags || "-"}</td>
     </tr>`;
   }).join("");
   return `<div class="tablewrap"><table>
-      <caption class="sr-only">Betyg per kategori och de fyra delarna för ${row.party}</caption>
+      <caption class="sr-only">Betyg per kategori och de tre delarna för ${row.party}, plus maktandelen som inte räknas in</caption>
       <thead><tr><th>Kategori</th><th class="num">Betyg</th><th class="num">Spann</th>
         <th class="num" title="Vad partiet driver">A</th><th class="num" title="Om åtgärderna brukar ge resultat">B</th>
-        <th class="num" title="Hur stor del av tiden partiet haft makt">C</th><th class="num" title="Hur det gick">D</th><th>Flaggor</th></tr></thead>
+        <th class="num" title="Hur det gick">D</th>
+        <th class="num nocount" title="Hur mycket makt partiet haft, på skalan 0-5 jämfört med de andra partierna. Räknas inte in i betyget.">Maktandel</th>
+        <th>Flaggor</th></tr></thead>
       <tbody>${catRows}</tbody>
     </table></div>
-    <p class="hint">A = vad partiet driver. B = om åtgärderna brukar ge resultat. C = hur stor del av tiden partiet haft makt.
-      D = hur det gick. Flaggor visar var underlaget är tunt eller saknas.</p>
+    <p class="hint">A = vad partiet driver. B = om åtgärderna brukar ge resultat. D = hur det gick.
+      Maktandelen visar hur stor del av tiden partiet haft makt, jämfört med de andra partierna på skalan 0-5.
+      Den ger inga poäng. Flaggor visar var underlaget är tunt eller saknas.</p>
     ${evidenceHTML(row)}`;
 }
 
@@ -290,22 +293,24 @@ function evidenceHTML(row) {
 function buildMethod() {
   const body = $("method-body");
   body.innerHTML =
-    `<p>Varje parti får ett betyg mellan 0 och 5 i varje kategori. Betyget väger ihop fyra delar:</p>
+    `<p>Varje parti får ett betyg mellan 0 och 5 i varje kategori. Betyget väger ihop tre delar:</p>
      <ul>
-       <li><b>A. Vad partiet driver (40 %).</b> Hur stor del av partiets egna motioner som handlar om kategorin.</li>
-       <li><b>B. Om åtgärderna brukar ge resultat (35 %).</b> Officiell statistik och forskning får avgöra om det
+       <li><b>A. Vad partiet driver (30 %).</b> Hur stor del av de pengar partiet vill anslå som går
+         till kategorin. Vi räknar också hur stor del av partiets egna motioner som handlar om den.</li>
+       <li><b>B. Om åtgärderna brukar ge resultat (50 %).</b> Officiell statistik och forskning får avgöra om det
          partiet driver flyttar siffrorna åt rätt håll.</li>
-       <li><b>C. Om partiet haft makt (15 %).</b> Om partiet suttit i regeringen eller styrt en region och kunnat
-         genomföra sin politik.</li>
-       <li><b>D. Hur det gick (10 %).</b> Om siffrorna blev bättre under tiden partiet hade ansvar.</li>
+       <li><b>D. Hur det gick (20 %).</b> Om siffrorna blev bättre under tiden partiet hade ansvar.</li>
      </ul>
+     <p>Vi räknar också ut varje partis <b>maktandel</b>, alltså hur mycket makt partiet haft.
+     Maktandelen ger inga poäng. Den står med för att du själv ska se vem som har kunnat
+     genomföra sin politik.</p>
      <p>Du bestämmer hur mycket varje kategori väger. Din webbläsare räknar sedan ihop de 7 kategoribetygen
      till en totalpoäng. Betygen i sig ändras aldrig av dina reglage.</p>
      <p>Efter varje betyg står ett spann, till exempel 3,3-4,1. Spannet visar hur säkert betyget är.
      Går två partiers spann omlott kan vi inte säga vilket av dem som ligger bäst till.</p>
      <p>Appen mäter vad ett förslag väntas ge för resultat, inte vilken väg partiet väljer dit.
      Ett parti får alltså inte poäng för att tycka rätt, utan för åtgärder som statistiken talar för.</p>
-     <p class="warn"><b>Demonstration, inte färdigt röstråd.</b> Alla fyra delar räknas i alla 7 kategorier,
+     <p class="warn"><b>Demonstration, inte färdigt röstråd.</b> Alla tre delar räknas i alla 7 kategorier,
      och partiernas ståndpunkter är belagda med källor och granskade av människor. Men underlaget är olika djupt
      mellan kategorier. Där det är tunt drar vi betyget mot mitten i stället för att gissa. Läs resultatet med
      försiktighet.</p>`;

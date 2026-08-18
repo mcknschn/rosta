@@ -404,10 +404,9 @@ Exempel på lägre säkerhet:
 
 ```
 Partiets poäng i kategori =
-  0,40 × prioritering
-  0,35 × evidens/träffsäkerhet
-  0,15 × genomförbarhet/ansvar
-  0,10 × resultat
+  0,30 × prioritering
+  0,50 × evidens/träffsäkerhet
+  0,20 × resultat
 ```
 
 ### Rekommenderad totalformel

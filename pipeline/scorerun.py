@@ -810,17 +810,22 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
             # coverage = banderollen på sajten: vanlig svenska, för en förstagångsbesökare.
             # coverage_technical = samma körning för granskare, med termer och beslut.
             "coverage": (f"Underlaget i den här versionen: alla {len(cats)} kategorier har betyg "
-                         f"i alla fyra delar. Partiernas ståndpunkter bygger på {n_positions} "
-                         "belagda röster och motioner i riksdagen. Makt räknas både nationellt "
-                         "och i regioner och kommuner. Hur det gick mäts med officiella "
-                         "årsserier. Där underlaget är tunt drar vi betyget mot mitten i stället "
-                         "för att gissa."),
+                         f"i alla tre delar som räknas. Partiernas ståndpunkter bygger på "
+                         f"{n_positions} belagda röster och motioner i riksdagen. Hur det gick "
+                         "mäts med officiella årsserier. Vem som haft makten räknas både "
+                         "nationellt och i regioner och kommuner, men det ger inga poäng och "
+                         "visas bara som upplysning. Där underlaget är tunt drar vi betyget mot "
+                         "mitten i stället för att gissa."),
             "coverage_technical": (
-                f"Preliminär: A=agerande (a2 motionsprioritering, andel av egna "
-                f"motioner, full; a1 budgetprioritering gated, aktiv för "
+                "Preliminär: formel 0,30 A + 0,50 B + 0,20 D, C=0 (ADR 0002). "
+                "A=prioritering, alltså omfattning och aldrig riktning (ADR 0001): "
+                "a2 motionsprioritering, andel av egna motioner, full; "
+                "a1 budgetprioritering gated, aktiv för "
                 f"{len(a1_active)}/{len(cats)} kategorier ur officiella utgiftsramar "
-                "(2023-2025), expertgranskad v1 2026-06-05, annars a2-fallback); "
-                "C=makt per kategori: nationell regeringsmakt blandad med subnationell "
+                "(2023-2025), expertgranskad v1 2026-06-05, annars a2-fallback; "
+                "C=maktandel, vikt 0: ger inga poäng utan redovisas som upplysning om "
+                "vem som haft makten; räknas per kategori som "
+                "nationell regeringsmakt blandad med subnationell "
                 "makt (SKR-styren, 21 regioner + 290 kommuner x 3 mandatperioder) via en "
                 "per-kategori region/kommun-split efter lagstadgat ansvar; forsvar "
                 "nationellt per design; c2 finansiering PARKERAD som designbeslut "
@@ -878,8 +883,9 @@ def main() -> None:
         ranking.append((p, score.total_score(cat_scores, std)))
     for p, t in sorted(ranking, key=lambda x: -x[1]):
         print(f"   {p:4} {t:.2f}")
-    print("\n   OBS: preliminär ranking: A (aktivitet) + B (coverage-viktade partiståndpunkter,")
-    print("   alla kategorier) + C (makt) + D (resultat där makt funnits). v1 expertgranskad. Ej röstråd.")
+    print("\n   OBS: preliminär ranking: A (prioritering) + B (coverage-viktade")
+    print("   partiståndpunkter, alla kategorier) + D (resultat där makt funnits).")
+    print("   C redovisas som maktandel och ger inga poäng. v1 expertgranskad. Ej röstråd.")
 
 
 if __name__ == "__main__":

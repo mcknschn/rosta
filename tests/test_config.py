@@ -30,8 +30,9 @@ def test_submeasure_weights_sum_to_100(category: dict) -> None:
 
 
 def test_subscore_weights_match_idea_formula() -> None:
+    # ADR 0002: 0,30 A + 0,50 B + 0,20 D. C behålls som nyckel men ger noll poäng.
     sw = config.categories()["subscore_weights"]
-    assert (sw["A_agerande"], sw["B_evidens"], sw["C_ansvar"], sw["D_resultat"]) == (40, 35, 15, 10)
+    assert (sw["A_agerande"], sw["B_evidens"], sw["C_ansvar"], sw["D_resultat"]) == (30, 50, 0, 20)
 
 
 def test_every_indicator_maps_to_known_submeasure() -> None:

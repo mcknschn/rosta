@@ -67,6 +67,8 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
 .tag { font-size: 0.72rem; padding: 0.05rem 0.4rem; border-radius: 999px;
   background: #233; color: var(--muted); border: 1px solid var(--line); }
 .conf-low { color: var(--warn); }
+/* Maktandelen räknas inte in i betyget. Dämpad så skillnaden syns utan tooltip. */
+.nocount { color: var(--muted); font-style: italic; }
 footer { max-width: 980px; margin: 1.5rem auto 0; padding: 0 1.2rem; color: var(--muted); font-size: 0.8rem; }
 code { background: #11141b; padding: 0.05rem 0.3rem; border-radius: 4px; }
 

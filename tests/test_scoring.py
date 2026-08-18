@@ -6,6 +6,8 @@ import pytest
 
 from pipeline import score
 
+# Godtyckliga vikter för att pröva weighted_category_score som ren funktion.
+# Modellens egna vikter står i config/scoring.yaml och prövas i tests/test_config.py.
 WEIGHTS = {"A": 0.40, "B": 0.35, "C": 0.15, "D": 0.10}
 
 
@@ -202,9 +204,19 @@ def test_total_score_rejects_nonpositive_sum() -> None:
 def test_category_score_from_components_pins_ci() -> None:
     out = score.category_score_from_components({"A": 4.0, "B": 4.0, "C": 4.0, "D": 4.0})
     assert out["score"] == pytest.approx(4.0)
-    # Default halvbredd = 1.5*(0.40*0.15+0.35*0.40+0.15*0.15+0.10*0.70) = 0.43875
-    assert out["ci"] == [pytest.approx(3.561), pytest.approx(4.439)]
+    # Default halvbredd = 1.5*(0.30*0.15+0.50*0.40+0.00*0.15+0.20*0.70) = 0.5775
+    # ADR 0002: spannet blir bredare eftersom C:s höga säkerhet inte längre drar ned det.
+    assert out["ci"] == [pytest.approx(3.422), pytest.approx(4.577)]
     assert out["confidence"] == {"A": "high", "B": "medium", "C": "high", "D": "low"}
+
+
+def test_c_contributes_nothing_to_the_category_score() -> None:
+    # ADR 0002 punkt 5: C är maktandel, inte delpoäng. Den väger noll och får därför
+    # aldrig flytta vare sig betyget eller spannet, hur stor den än är.
+    low_c = score.category_score_from_components({"A": 4.0, "B": 3.0, "C": 0.0, "D": 2.0})
+    high_c = score.category_score_from_components({"A": 4.0, "B": 3.0, "C": 5.0, "D": 2.0})
+    assert low_c["score"] == high_c["score"]
+    assert low_c["ci"] == high_c["ci"]
 
 
 def test_uncertainty_is_data_driven() -> None:

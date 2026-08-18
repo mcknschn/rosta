@@ -32,7 +32,7 @@
 #
 # V0-CAVEAT (riktnings-/signalsvaghet, ej dataproblem): serien föll tydligt 1999→2012 (42 %→29 %),
 # men ligger sedan 2012 på en PLATÅ ~29–32 %. I platåperioden avgörs enskilda årstecken av små
-# rörelser; flera faller i dödzonen (tecken 0, korrekt "oförändrat"). D tar bara tecken, väger 10 %
+# rörelser; flera faller i dödzonen (tecken 0, korrekt "oförändrat"). D tar bara tecken, väger 20 %
 # och makt-/ansvarsviktas, så platån bidrar lite — men v0 kvarstår tills serien expertgranskats.
 # v0 → v1 när andelarna korsverifierats mot KOS-statistikens webbtabell post för post.
 version: 0

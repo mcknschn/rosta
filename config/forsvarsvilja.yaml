@@ -28,7 +28,7 @@
 #
 # CAVEAT (v0): hoppet 2021→2022 (70→78) är invasionsdrivet (Rysslands fullskaliga invasion feb 2022)
 # snarare än svensk-politik-drivet. D tar bara TECKEN på årsförändringen och attribuerar till sittande
-# regering enligt modellens standard (gäller alla survey-D); väger 10 %, makt-/ansvarsviktas. v0 tills
+# regering enligt modellens standard (gäller alla survey-D); väger 20 %, makt-/ansvarsviktas. v0 tills
 # formell sign-off (→v1).
 version: 0
 indicator: forsvarsvilja

@@ -38,7 +38,7 @@
 # högre nettoimport oavsett förd politik (mild-2025-outliern: vintern 2024/25 var mild + blåsig,
 # 62 % vindutnyttjande under topplasttimmen -> ovanlig nettoexport −2690). Importutfallet är
 # dessutom delvis PRISDRIVET (Svk: import sker oftast för att importerad el är billigare, inte
-# för att inhemska resurser är uttömda). Mildras av modellens standard: sign-only D + 10 %-vikt
+# för att inhemska resurser är uttömda). Mildras av modellens standard: sign-only D + 20 %-vikt
 # + makt-/ansvarsviktning. ROBUSTHETSREFERENS: prognos_normalvinter nedan (Svk:s prognostiserade
 # nationella effektbalans vid normalvinter, väderNORMERAD) visar samma underliggande förlopp
 # (underskott −1700..−1300 sedan 2020, vändning till +600 inför 2025/26) utan väderbrus — den

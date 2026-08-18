@@ -21,7 +21,7 @@
 # V-Dem är EXPERT-KODAT: landexperter sätter subjektiva bedömningar som aggregeras via en
 # Bayesiansk mätmodell (IRT) med konfidensintervall — INTE en hård räkning som SCB:s arbetslöshet.
 # Det är den enskilt största invändningen mot objektiviteten. Mildras av att (a) D tar bara TECKEN
-# på årsförändringen och väger 10 %, (b) det är den metodiskt lämpligaste mätningen för en kategori
+# på årsförändringen och väger 20 %, (b) det är den metodiskt lämpligaste mätningen för en kategori
 # som är svår att mäta objektivt med svensk officiell statistik, (c) flaggad v0 (kräver granskning).
 # TAKEFFEKT: Sverige ligger nära skalans tak (0,94–0,995) → de ABSOLUTA värdena säger lite; bara
 # TRENDEN/tecknet är meningsfullt, vilket är precis vad D använder. rattsstatsindex är i praktiken

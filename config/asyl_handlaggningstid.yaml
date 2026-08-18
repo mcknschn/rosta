@@ -22,7 +22,7 @@
 # ("färre = bättre" förutsätter en omtvistad effektiv-återvändande-ram) bär detta ingen given
 # partipreferens. KVARVARANDE CAVEAT (v0): kvalitet-vs-hastighet (tid kan kortas genom sämre beslut
 # → fler överklaganden) + tiden påverkas delvis av inflödesvolym, ej bara effektivitet. Eftersom D
-# bara tar TECKEN på årsförändringen (väger 10 %, makt-/ansvarsviktas) är detta hanterbart och
+# bara tar TECKEN på årsförändringen (väger 20 %, makt-/ansvarsviktas) är detta hanterbart och
 # transparent flaggat.
 #
 # SERIE 2021-2025: 257 → 166 → 198 → 187 → 180 dagar. Inte monoton (genuint diskriminerande): stor

@@ -6,15 +6,18 @@
 # Kedja:  observations + actions + responsibility + indicator_effects
 #         -> A/B/C/D per (parti, kategori)  -> kategoribetyg 0-5 (+ osäkerhetsintervall)
 #
-# Kategoribetyg = 0.40*A + 0.35*B + 0.15*C + 0.10*D     (A,B,C,D i [0,5])
+# Kategoribetyg = 0.30*A + 0.50*B + 0.20*D              (A,B,D i [0,5])
+# C väger 0 och ger inga poäng. Den räknas ut som förut och redovisas som maktandel,
+# alltså som upplysning om vem som haft makten.
+# Se docs/adr/0002-kategoripoangens-ansprak-och-vikter.md
 
 version: 2
 
 subscore_weights:        # speglar categories.yaml subscore_weights (0-1)
-  A: 0.40
-  B: 0.35
-  C: 0.15
-  D: 0.10
+  A: 0.30
+  B: 0.50
+  C: 0.00      # maktandel, inte delpoäng (ADR 0002). Nyckeln behålls, pipeline/config.py kräver den.
+  D: 0.20
 
 # Skalsemantik (modelldokumentation, läses inte av kod men styr tolkning):
 #   relativa delpoäng rangordnas över de 8 partierna (A=5 = "mest av alla", ej "absolut bra")
@@ -31,7 +34,11 @@ normalization:
     A: rank
     C: rank
 
-# A — Faktiskt agerande (relativ prioritering). Direktionsneutralt, rank-normaliserat.
+# A - Prioritering (ADR 0001). A mäter omfattning, aldrig riktning och aldrig kvalitet.
+# Frågan är: hur stor andel av partiets föreslagna anslag och egna motioner går till
+# kategorin? a1 budgetprioritering väger 0,6 och a2 motionsprioritering 0,4. Båda är
+# riktningsneutrala andelar, rank-normaliserade över de åtta partierna. Riktningen ligger
+# i B, där voteringarna hör hemma.
 A_agerande:
   components:
     a1_budgetprioritering: 0.6      # andel av föreslagna anslag till kategorins UO (Fas 1b)

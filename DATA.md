@@ -70,7 +70,7 @@ rosta/
     sources.yaml         # endpoints, dataset-id, licens per källa
     mappings.yaml        # utgiftsområde<->kategori, indikator<->undermått,
                          # partiernas regeringsperioder, region/kommun-styren
-    scoring.yaml         # delpoängvikter (40/35/15/10), normaliserings- och osäkerhetsregler
+    scoring.yaml         # delpoängvikter (30/50/0/20), normaliserings- och osäkerhetsregler
     claims.yaml          # claim-typer, tillåtna effektetiketter, evidensnivåer
   pipeline/
     sources/             # en modul per källa: fetch -> cache -> normalize
