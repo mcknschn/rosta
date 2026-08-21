@@ -52,7 +52,7 @@ A_agerande:
   # docs/done/fas1b_budget_metod.md. A = a1*0.6 + a2*0.4 där a1 aktiv, annars A = a2.
   notes: Mäter prioritering relativt partiets storlek, inte om politiken är rätt. Rättheten fångas av B och D.
 
-# B — Väntad storlek. Hur stor förbättring väntas av de åtgärder partiet driver?
+# B — Evidens. Hur stor förbättring väntas av de åtgärder partiet driver?
 # Storlek, inte riktning (docs/adr/0004-vad-delpoang-b-mater.md). Ett rent tecken kan inte
 # svara på "hur mycket", och kategoribetyget svarar på hur mycket kategorin väntas förbättras
 # (ADR 0002). Storleken (effect_strength) bär poängen; kvaliteten (evidence_level,
@@ -104,7 +104,9 @@ B_evidens:
   coverage_exclude_reasons:
     internationella_materielsamarbeten: "E1: RiR 2011:13 mäter leveranstidsrisk (sidoeffekt), inte om materielsamarbete i sig är sämre försvarspolitik; negativ B-sign skulle bli missvisande."
 
-# C — Genomförbarhet/ansvar. Makt + realistisk finansiering.
+# C — Maktandel. Hur mycket makt partiet haft. Vikt 0: ger inga poäng utan redovisas som
+# upplysning (ADR 0002). "Genomförbarhet/ansvar" är ett retirerat namn; confignyckeln heter
+# fortfarande C_ansvar tills en byggslice byter den.
 C_ansvar:
   components:
     c1_makt: 0.7

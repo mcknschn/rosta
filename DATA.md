@@ -136,7 +136,8 @@ Evidens-/utvärderingskällor (försörjer **B** — `evidence_effect`-claims om
 Per parti och kategori (delpoängvikter från IDEA.md):
 
 ```
-Kategoribetyg = 0,40·A + 0,35·B + 0,15·C + 0,10·D        (A,B,C,D ∈ [0,5])
+Kategoribetyg = 0,30·A + 0,50·B + 0,20·D                 (A,B,D ∈ [0,5])
+C väger 0 och ger inga poäng (ADR 0002). Den redovisas som maktandel.
 ```
 
 Allt nedan är deterministiskt. Normalisering till 0–5 sker per kategori över de 8 partierna (min–max eller rang, satt i `scoring.yaml`).
@@ -165,17 +166,17 @@ De fyra delpoängen lever på **två olika nivåer** i begreppsmodellen (Kategor
 | **C** | makt/ansvar | **Kategori** | nej |
 | **D** | utfall (årsserie förbättrades under ansvar) | **Indikator/undermått** | **ja** |
 
-- **A och C är kategorinivå** och har inga indikatorer: prioritering (budget-UO + motionsandel) och makt är egenskaper hos (parti × kategori), inte hos en enskild indikator. De har alltid ett värde för varje kategori — ingen undermåttslucka kan göra dem "tunna" — och utgör tillsammans 55 % av kategoripoängen. Att efterfråga "samma indikatorer" för A/C är därför ett kategorifel.
+- **A och C är kategorinivå** och har inga indikatorer: prioritering (budget-UO + motionsandel) och makt är egenskaper hos (parti × kategori), inte hos en enskild indikator. De har alltid ett värde för varje kategori — ingen undermåttslucka kan göra dem "tunna" — och utgör tillsammans 30 % av kategoripoängen, eftersom C väger 0. Att efterfråga "samma indikatorer" för A/C är därför ett kategorifel.
 - **B och D är indikator-/undermåttsnivå** och sitter på *samma* indikator-id. Idealet är därför **B+D på samma undermått** (framåtblickande evidens + bakåtblickande utfall = fullständig bild). Var detta uppnås spåras i mastertabellerna ([done/evidens_trovardighet.md §4.3](docs/done/evidens_trovardighet.md) för B/D-status, [spar_D_datatackning.md §2.1](docs/done/spar_D_datatackning.md) för D-täckning).
 - **Mål: maximal union av B och D — inte tvingad identitet.** B når indikatorer D aldrig kan (mediefrihet/korruption = D förbjuden; kvalitativt/sekretess = materiel, civil beredskap), och D når rena makroutfall där inget rent instrument finns att koda B mot. Att tvinga samma indikatormängd vore att krympa till snittmängden och kasta täckning. Tunnhet i en kategoris B/D-bredd hanteras därför genom att *bredda unionen* och krympa D efter bredd ([docs/done/d_coverage_krympning_spec.md](docs/done/d_coverage_krympning_spec.md)) — inte genom att linjera de fyra linserna. (Skild men parallell strukturaxel: skalsemantiken nedan, relativ A/C vs absolut B/D.)
 
-**A — Faktiskt agerande** (vad partiet prioriterat, *relativt* — inte i absolut volym): `A = 0,6·a1 + 0,4·a2`.
+**A — Prioritering** (vad partiet prioriterat, *relativt* — inte i absolut volym): `A = 0,6·a1 + 0,4·a2`. Namnet är låst av [ADR 0001](docs/adr/0001-a-mater-prioritering.md); "Faktiskt agerande" är retirerat.
 - `a1` budgetprioritering **(byggd, Fas 1b):** andel av partiets föreslagna utgiftsramar (Σ kategorins UO / Σ alla 27 UO), rank-normaliserad över de 8 partierna. Ramtalen transkriberas troget ur officiella källor (FiU1 rambeslut + budgetmotioner) till `config/budget_ramar.yaml` med källrad per frame — **ingen runtime-parser** (det finns ingen strukturerad API-väg till anslag per UO; en bräcklig parser fick inte korrumpera A, tyngsta delpoängen). **Hård grind:** a1 vägs in för en (budgetår, kategori) endast när alla 8 partier har verifierad ram för varje kategori-UO; annars `A = a2` (flagga `A_a2_only`). Saknad cell → hård fail, aldrig tyst 0. a1 är ett snitt över **tre budgetår (2023–2025)** ur respektive FiU1-rambeslut; version 1, expertgranskad (mänsklig sign-off 2026-06-05). [Metod](docs/done/fas1b_budget_metod.md).
 - `a2` lagstiftningsprioritering: **andel av partiets egna motioner** som rör kategorin (= motioner i kategorins utskott / partiets totala motioner), rank-normaliserad över de 8 partierna.
 - **Varför andel och inte antal:** rå volym belönar stora partier — de skriver mer om *allt* och blir då höga i varje kategori. Andelen mäter prioritering oberoende av partistorlek, så en kategori tillfaller de partier som faktiskt lägger en stor del av sitt arbete (eller sina pengar) där. *(Brasklapp: ett mycket litet enfråge-parti kan se 100 % fokuserat ut; därför rank-normaliseras värdet efteråt.)*
 - Mäter *emfas/prioritering*, inte om politiken är rätt — det fångas av B och D.
 
-**B — Väntad storlek** (hur stor förbättring väntas av de åtgärder partiet driver?):
+**B — Evidens** (hur stor förbättring väntas av de åtgärder partiet driver?):
 - Varje relevant förslag/agerande kopplas till ett eller flera `indicator_effects`.
 - Ett `indicator_effect` anger indikator, förväntad riktning, effektstyrka, källstöd, eventuell motsägande evidens och osäkerhet.
 - **Storleken bär poängen, kvaliteten bär säkerheten** ([ADR 0004](docs/adr/0004-vad-delpoang-b-mater.md)). `net_support` är ett kvalitetsviktat medel av storlekar med tecken: `effect_strength` går in i talet, `evidence_level` och `confidence` väger källorna mot varandra och sätter säkerhetsetiketten.
@@ -184,7 +185,7 @@ De fyra delpoängen lever på **två olika nivåer** i begreppsmodellen (Kategor
 - Detta motverkar A:s "mer aktivitet eller mer pengar = bättre"-problem. A mäter vad partiet gör; B mäter om det partiet gör sannolikt hjälper mot de objektiva indikatorerna.
 - **Maskineri (Fas 4b, byggt):** `config/party_positions.yaml` (källbelagda partiståndpunkter per åtgärdstyp) joinas mot `config/evidence_ledger.yaml` (åtgärdstyp → indikatoreffekt) → `indicator_effects` → B (`pipeline/positions.py` + `pipeline/effects.py`). Stödjer partiet åtgärdstypen behålls evidensens riktning; motsätter det sig vänds den. Ståndpunktsfilen innehåller **269 källbelagda ståndpunkter** (192 t.o.m. B2 2026-06-05/06, varav 130 panel-harmoniserade Fas 4c + 8 FoU-avdrag + 8 företags-/ägarbeskattning + 8 hushållens disponibla inkomst + 7 grundlagsskydd domstolarnas oberoende + 8 begränsa biometrisk realtidsövervakning + 7 Nato-medlemskap + 8 snabbförfarande/lagföring + 8 åtgärder mot invasiva arter; + senare D-/B3-poster t.o.m. 2026-06-14; version 2, expertgranskad; de enhällighetsbyggda via **enhällighet-som-källa** = enhälligt betänkande → alla 8 partier supports, se docs/done/evidens_trovardighet.md); saknas rad för (parti, kategori) är B coverage-viktad mot neutral (flaggor `B_thin_coverage`/`B_no_party_evidence`). Inga ståndpunkter fabriceras.
 
-**C — Genomförbarhet/ansvar** (makt + realistisk finansiering):
+**C — Maktandel** (hur mycket makt partiet haft). Vikt 0: ger inga poäng och redovisas som upplysning (ADR 0002). "Genomförbarhet/ansvar" och "Ansvarsunderlag" är retirerade namn:
 - `c1` makt **(byggd, nationell + regional + kommunal, Fas 1c):** per kategori blandas andel av 2014–2026 partiet satt i nationell regering (stöd vägs 0,5) med subnationell makt (SKR-styren: 21 regioner + 290 kommuner × 3 mandatperioder), via en per-kategori region/kommun-split efter lagstadgat ansvar och rank-normaliserat (`level_weights` + `subnational_split`). Full subnationell täckning → C:s säkerhet hög; forsvar nationellt per design ([metod](docs/done/fas1c_subnational_metod.md)).
 - `c2` finansiering: **uppskjutet (beslut Fas 1c)** → C = c1. Ett objektivt, riktningsneutralt och differentierande finansieringsmått går inte att bygga ur officiell data (alla partibudgetar är formellt finansierade → likformigt; ett saldomått gynnar åtstramning → bryter neutraliteten). "Löftesuppfyllelse" fångas redan av A+B+D. Komponentvikterna behålls som avsikt.
 
@@ -288,7 +289,7 @@ pipelinen körs lokalt med `python -m pipeline.build_all`.
 | 1 | ✅ | Riksdagen (live): `responsibility` 11 rader + `party_activity` 120 rader (motioner/parti×utskott, hela fönstret) + voteringsprov 190 rader (12 riksmöten) | Definierar A, C och parti/period-ställningen allt annat hänger på |
 | 2 | 🟡 | SCB + Kolada + Brå (live): **386 obs, 17 kanoniska årsindikatorer** (15 direkta + 2 härledda) i 5 kategorier (ekonomi, välfärd, klimat, integration, trygghet) | Bredaste resultatkällorna; täcker flera kategorier |
 | 3 | 🟡 | Täckningsverktyg (`coverage_report`) + allowlist (`coverage_allowlist.yaml`) + coverage-gate (inget tyst gap); evidensliggaren 46 källverifierade poster (≥3/kat, expertgranskad v2 2026-06-07); fler D-sektorsadaptrar kvarstår | Fyller återstående undermått, gör luckor explicita |
-| 4 | ✅ | Claims/effects/positions engine (`pipeline/{claims,effects,positions}.py`), aggregering testad; B partikopplas via ståndpunkter | Gör evidens/träffsäkerhet granskningsbar |
+| 4 | ✅ | Claims/effects/positions engine (`pipeline/{claims,effects,positions}.py`), aggregering testad; B partikopplas via ståndpunkter | Gör evidensen bakom B granskningsbar |
 | 5 | ✅ | Scoring engine + **D-resultatattribution** → `dist/scores.json` (8×7) + `dist/evidence.json` (604 claims), golden tests | Producerar deploy-artefakten |
 | 6 | ✅ | Frontend (`web/`): client-side viktning, rankad partilista, osäkerhetsintervall, bevisspår — lokalt verifierad | Användarupplevelse och transparens |
 
@@ -310,7 +311,7 @@ pipelinen körs lokalt med `python -m pipeline.build_all`.
 
 ## 7. Risker och öppna frågor
 
-- **A som magnitud** kan belöna stora utgifter eller hög aktivitet. A (0,40) är den största *enskilda* delpoängen, men B+D (0,45 tillsammans) väger tyngre och korrigerar magnituden; A rank-normaliseras dessutom för att dämpa extremvärden. A *dominerar* alltså inte, men kan inte heller ensam överröstas av en enskild annan delpoäng.
+- **A som magnitud** kan belöna stora utgifter eller hög aktivitet. A väger 0,30 mot B:s 0,50, så B ensam väger tyngre än A och korrigerar magnituden; B+D (0,70 tillsammans) väger mer än dubbelt. A rank-normaliseras dessutom för att dämpa extremvärden. A kan alltså inte dominera kategoribetyget.
 - **Claims kan gömma subjektivitet** om reglerna är otydliga. Därför måste claim-typer, effektetiketter och tolkningsregler vara konfigurerade, versionsstyrda och testade.
 - **Attribution i D** är inneboende brusig (regeringar ärver utfall, koalitioner delar ansvar). Hanteras med tidsförskjutning, attributionsvikt från C och breda osäkerhetsintervall.
 - **Försvars operativa förmåga** är till stor del sekretessbelagd → proxy via anslag, personal, materielbeslut. Bör noteras i metoden.

@@ -1,11 +1,12 @@
 """Fas 5: warehouse -> dist/scores.json + dist/evidence.json (deploy-artefakten).
 
 Beräknar A/B/C/D per (parti, kategori) deterministiskt och skriver de enda filer som
-deployas. Täckningsbunden preliminär körning:
-  A = motionsprioritering: andel av egna motioner per kategori (rank-norm.) -> hög säkerhet
-  C = regeringsmakt (andel av fönstret, rank-normaliserad, nationellt)  -> hög/medel
-  B = neutral 2.5 (ingen partikopplad evidens än)                       -> låg säkerhet
-  D = not_applicable 2.5 (attribution byggs i Fas 5b)                   -> låg säkerhet
+deployas. Kategoribetyg = 0,30 A + 0,50 B + 0,20 D; C väger 0 (ADR 0002). Läget i dag:
+  A = prioritering: a1 budgetandel (gated) + a2 motionsandel, rank-norm.  -> hög säkerhet
+  B = evidens: partiståndpunkter x evidensliggare -> väntad storlek, krympt efter
+      täckning; säkerheten härleds ur evidensen (ADR 0004)                -> hög/medel/låg
+  C = maktandel: nationell + subnationell makt, rank-norm. Ger inga poäng -> hög/medel
+  D = resultat: attribuerad indikatorförändring där partiet haft ansvar   -> medel/låg
 Osäkerheten speglar detta ärligt. Kör: python -m pipeline.scorerun
 """
 
@@ -874,7 +875,13 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
                 f"för ALLA 7 kategorier via {n_positions} källbelagda, adversariellt "
                 "verifierade + panel-harmoniserade partiståndpunkter (riksdagsvotering/"
                 "motion, Fas 4c); B krymps mot neutral efter viktad undermåttsdjuptäckning "
-                "(B_thin_coverage-flagga vid tunn täckning). party_positions + "
+                "(B_thin_coverage-flagga vid tunn täckning). B mäter VÄNTAD STORLEK och "
+                "inte riktning (ADR 0004): net_support är ett kvalitetsviktat medel av "
+                "storlekar med tecken, Σ(q·m)/Σq med q=evidence_level×confidence och "
+                "m=effect_strength×tecken(riktning), så ett ensamt claim ger sin egen "
+                "effektstyrka i stället för ±1; B:s säkerhet härleds ur evidensens "
+                "confidence (tröskel 0,85/0,60 + min_claims_for_high_confidence) och sänks "
+                "ett steg vid tunn täckning. party_positions + "
                 "evidence_ledger expertgranskade v2 (mänsklig sign-off 2026-06-07)."),
         },
         "categories": catinfo,

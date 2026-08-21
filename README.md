@@ -27,14 +27,16 @@ förberäknade betygen och en bantad bevisindex deployas.
 
 ## Betygsmodell (helt automatisk)
 
-Per parti och kategori: `betyg = 0.40·A + 0.35·B + 0.15·C + 0.10·D` (0–5, med osäkerhetsintervall).
+Per parti och kategori: `betyg = 0,30·A + 0,50·B + 0,20·D` (0–5, med osäkerhetsintervall).
+C väger 0 och ger inga poäng ([ADR 0002](docs/adr/0002-kategoripoangens-ansprak-och-vikter.md)).
+Den räknas ut som förut och redovisas som maktandel, alltså som upplysning om vem som haft makten.
 
-| Delpoäng | Mäter | Källor |
-|----------|-------|--------|
-| A – Faktiskt agerande | Budgetprioritering + lagstiftningsaktivitet | Riksdagen, statsbudget |
-| B – Väntad storlek | Hur stor förbättring de åtgärder partiet driver väntas ge | IFAU, SBU, Vårdanalys, Brå, ESO, Riksrevisionen … |
-| C – Genomförbarhet/ansvar | Makt (regering/region/kommun) + finansiering | Valmyndigheten, Regeringskansliet, SKR, Kolada |
-| D – Resultat | Indikatorförändring där partiet hade ansvar | SCB, Brå, Socialstyrelsen, Skolverket … |
+| Delpoäng | Vikt | Mäter | Källor |
+|----------|------|-------|--------|
+| A – Prioritering | 0,30 | Hur stor andel av partiets föreslagna anslag och egna motioner går till kategorin | Riksdagen, statsbudget |
+| B – Evidens | 0,50 | Hur stor förbättring som väntas av de åtgärder partiet driver ([ADR 0004](docs/adr/0004-vad-delpoang-b-mater.md)) | IFAU, SBU, Vårdanalys, Brå, ESO, Riksrevisionen … |
+| C – Maktandel | 0 | Hur mycket makt partiet haft. Upplysning, inte poäng | Valmyndigheten, Regeringskansliet, SKR, Kolada |
+| D – Resultat | 0,20 | Indikatorförändring där partiet hade ansvar | SCB, Brå, Socialstyrelsen, Skolverket … |
 
 Inga partibetyg sätts för hand. Allt mänskligt omdöme ligger i versionsstyrd config
 ([config/](config/)) och i den citerade evidensliggaren.

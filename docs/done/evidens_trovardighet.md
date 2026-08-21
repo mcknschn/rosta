@@ -220,6 +220,14 @@ att C inte ger poäng: anspråket villkorar redan på att politiken genomförs, 
 på en fråga betyget inte ställer. Konfignyckeln `C_ansvar` behålls med vikten 0, eftersom `pipeline/config.py` kräver alla fyra
 nycklarna.
 
+*Retirerad synonym:* "Evidens/träffsäkerhet" → **Evidens**. Ordet *träffsäkerhet* svarar på om ett
+förslag träffar rätt, alltså en ja/nej-fråga om riktning, och det är precis det anspråk
+[ADR 0004](../adr/0004-vad-delpoang-b-mater.md) drog tillbaka. B svarar på hur STOR förbättring som
+väntas: `effect_strength` bär storleken och går in i talet, `evidence_level` och `confidence` bär
+säkerheten och går till etiketten och därmed till bandet. Konfignyckeln `B_evidens` är oförändrad.
+Ordet retirerades ur `IDEA.md`, `DATA.md`, `README.md`, `docs/BACKLOG.md` och `config/scoring.yaml`
+i byggslicen [#17](https://github.com/mcknschn/rosta/issues/17).
+
 ### Mätbarhet — kan varje indikator mätas?
 En indikator bidrar till betyget om den har **B** (partikopplad evidens att ett instrument flyttar den) **eller**
 **D** (officiell svensk årsserie). B och D är två vägar — en stängd D dödar inte indikatorn om B bär den (t.ex.

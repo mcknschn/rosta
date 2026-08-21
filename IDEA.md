@@ -76,7 +76,7 @@ Varje kategoribetyg ska bygga på en tydlig kedja:
 ```
 Kategoriutfall
   → partiets prioritering
-  → evidens/träffsäkerhet
+  → evidens
   → ansvar/attribution
   → resultat
 ```
@@ -85,7 +85,7 @@ Kategoriutfall
 |-----|-------|
 | Kategoriutfall | Vilka objektiva indikatorer visar om kategorin förbättras eller försämras? |
 | Partiets prioritering | Hur stor andel av partiets föreslagna anslag och egna motioner går till kategorin? |
-| Evidens/träffsäkerhet | Hur stor förbättring av kategoriindikatorerna väntas av de åtgärder partiet driver, enligt evidensen? |
+| Evidens | Hur stor förbättring av kategoriindikatorerna väntas av de åtgärder partiet driver, enligt evidensen? |
 | Ansvar/attribution | Har partiet haft faktisk makt och administrativ möjlighet att påverka utfallet? |
 | Resultat | Har indikatorerna förbättrats där partiet haft ansvar, med rimlig tidsförskjutning och osäkerhet? |
 
@@ -103,7 +103,7 @@ kontrolled som kan säga emot anspråket.
 
 ```
 Kategoripoäng =
-  50 % evidens/träffsäkerhet
+  50 % evidens
   30 % prioritering
   20 % uppmätta resultat
 ```
@@ -117,11 +117,13 @@ kan inte flytta dem: användaren väger kategorier, aldrig metod.
 | Del | Vikt | Fråga | Exempel på källor |
 |-----|------|-------|-------------------|
 | A. Prioritering | 30 % | Hur stor andel av partiets föreslagna anslag och egna motioner går till kategorin? | Budgetmotioner och regeringens budgetproposition via FiU1-rambeslutet, motionsräkning per utskott |
-| B. Evidens/träffsäkerhet | 50 % | Hur stor förbättring av kategoriindikatorerna väntas av de åtgärder partiet driver? Storleken kommer ur evidensen, säkerheten ur källans styrka ([ADR 0004](docs/adr/0004-vad-delpoang-b-mater.md)). | Myndigheter, forskningsöversikter, utvärderingar |
+| B. Evidens | 50 % | Hur stor förbättring av kategoriindikatorerna väntas av de åtgärder partiet driver? Storleken kommer ur evidensen, säkerheten ur källans styrka ([ADR 0004](docs/adr/0004-vad-delpoang-b-mater.md)). | Myndigheter, forskningsöversikter, utvärderingar |
 | C. Maktandel | 0 % | Har partiet haft makt att påverka utfallet, och hur mycket? | Regeringsställning, region- och kommunstyren |
 | D. Resultat | 20 % | Har relevanta indikatorer förbättrats där partiet haft ansvar? | SCB, Brå, Socialstyrelsen, Skolverket, Kolada, Försvarsmakten |
 
-B väger mer än A eftersom B är det enda ledet som bär riktning. A bär omfattning. D:s vikt är satt så
+B väger mer än A eftersom B är det enda ledet som bär riktning. A bär omfattning. Sedan
+[ADR 0004](docs/adr/0004-vad-delpoang-b-mater.md) bär B dessutom storlek: hur stor förbättring
+åtgärderna väntas ge, inte bara åt vilket håll de pekar. D:s vikt är satt så
 att ett motsägande utfall som mest flyttar betyget 1,0 poäng, alltså nog för att vända ett jämnt läge
 men inte ett tydligt försprång.
 
@@ -406,7 +408,7 @@ Exempel på lägre säkerhet:
 ```
 Partiets poäng i kategori =
   0,30 × prioritering
-  0,50 × evidens/träffsäkerhet
+  0,50 × evidens
   0,20 × resultat
 ```
 

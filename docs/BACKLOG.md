@@ -32,7 +32,7 @@ bredd, se [done/d_coverage_krympning_spec.md](done/d_coverage_krympning_spec.md)
 med ≥2 undermått per kategori. Obalansen är alltså i stort åtgärdad; kvarvarande tyngdpunkt är
 trovärdighets-/breddarbete, inte strukturella nollor.)*
 
-**Mål med backloggen:** flytta tyngdpunkten mot **B (evidens/träffsäkerhet)** och
+**Mål med backloggen:** flytta tyngdpunkten mot **B (evidens)** och
 **D (resultat)** så att betygen speglar utfall, inte bara emfas. Vald strategi: **balans** —
 billig D-bredd (återanvänder API-mönster) *parallellt* med att höja B:s trovärdighet
 (expertgranskning + bredare evidensliggare). De två hänger ihop: bredare evidensliggare →
