@@ -2,7 +2,7 @@
 
 > AUTOGENERERAD av `pipeline/tools/review_packet.py` — ändra inte för hand.
 
-a1 = andel av partiets föreslagna utgiftsramar (Σ kategorins UO / Σ alla UO), rang-normaliserad. Manuellt transkriberade ur officiella källor (ingen runtime-parser). **Granska transkriberingen mot källraden** — fel här korrumperar A (40 %).
+a1 = andel av partiets föreslagna utgiftsramar (Σ kategorins UO / Σ alla UO), mätt mot de BESLUTADE utgiftsramarnas andel över ett historiskt fönster (ADR 0005, `config/a_forankring.yaml`) — inte rangordnad över de åtta partierna. Manuellt transkriberade ur officiella källor (ingen runtime-parser). **Granska transkriberingen mot källraden.** Fel här korrumperar A (30 %).
 
 **a1-aktiva kategorier** (alla 8 partier har ram för varje kategori-UO): demokrati, ekonomi, forsvar, integration, klimat, trygghet, valfard. Övriga faller på a2 (`A_a2_only`).
 

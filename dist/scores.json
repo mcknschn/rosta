@@ -87,7 +87,7 @@
   ],
   "meta": {
     "coverage": "Underlaget i den här versionen: alla 7 kategorier har betyg i alla tre delar som räknas. Partiernas ståndpunkter bygger på 269 belagda röster och motioner i riksdagen. Hur det gick mäts med officiella årsserier. Vem som haft makten räknas både nationellt och i regioner och kommuner, men det ger inga poäng och visas bara som upplysning. Där underlaget är tunt drar vi betyget mot mitten i stället för att gissa.",
-    "coverage_technical": "Preliminär: formel 0,30 A + 0,50 B + 0,20 D, C=0 (ADR 0002). A=prioritering, alltså omfattning och aldrig riktning (ADR 0001): a2 motionsprioritering, andel av egna motioner, full; a1 budgetprioritering gated, aktiv för 7/7 kategorier ur officiella utgiftsramar (2023-2025), expertgranskad v1 2026-06-05, annars a2-fallback; C=maktandel, vikt 0: ger inga poäng utan redovisas som upplysning om vem som haft makten; räknas per kategori som nationell regeringsmakt blandad med subnationell makt (SKR-styren, 21 regioner + 290 kommuner x 3 mandatperioder) via en per-kategori region/kommun-split efter lagstadgat ansvar; forsvar nationellt per design; c2 finansiering PARKERAD som designbeslut 2026-06-14 (inget riktningsneutralt finansieringsmått går att bygga ur officiell svensk data), alltså C=c1 makt; D=resultatattribution från officiella årsserier för ALLA 7 kategorier (ekonomi/välfärd/trygghet/klimat/integration/försvar/demokrati) där partiet haft nationell makt (medel säkerhet, ej tillämplig för partier utan makt i fönstret); för välfärd blandas nationell nivå med region-nivå vårdutfall attribuerat till regionstyrande parti (soundness-grindat); D krymps mot neutral efter viktad undermåttsbredd. B är AKTIVERAD för ALLA 7 kategorier via 269 källbelagda, adversariellt verifierade + panel-harmoniserade partiståndpunkter (riksdagsvotering/motion, Fas 4c); B krymps mot neutral efter viktad undermåttsdjuptäckning (B_thin_coverage-flagga vid tunn täckning). B mäter VÄNTAD STORLEK och inte riktning (ADR 0004): net_support är ett kvalitetsviktat medel av storlekar med tecken, Σ(q·m)/Σq med q=evidence_level×confidence och m=effect_strength×tecken(riktning), så ett ensamt claim ger sin egen effektstyrka i stället för ±1; B:s säkerhet härleds ur evidensens confidence (tröskel 0,85/0,60 + min_claims_for_high_confidence) och sänks ett steg vid tunn täckning. party_positions + evidence_ledger expertgranskade v2 (mänsklig sign-off 2026-06-07).",
+    "coverage_technical": "Preliminär: formel 0,30 A + 0,50 B + 0,20 D, C=0 (ADR 0002). A=prioritering, alltså omfattning och aldrig riktning (ADR 0001): a2 motionsprioritering, andel av egna motioner, full; a1 budgetprioritering gated, aktiv för 7/7 kategorier ur officiella utgiftsramar (2023-2025), expertgranskad v1 2026-06-05, annars a2-fallback; A är ABSOLUT sedan ADR 0005: båda halvorna mäts mot en historisk förankring (2011-2025), a1 mot de beslutade utgiftsramarna i bet. FiU1 och a2 mot kammarens samtliga motioner, som q=(andel-förankring)/(andel+förankring) avbildad med samma linjära skala som B; A rangordnas alltså inte längre över de åtta partierna, så ett parti som lägger ungefär som normen får ett betyg nära mitten; C=maktandel, vikt 0: ger inga poäng utan redovisas som upplysning om vem som haft makten; räknas per kategori som nationell regeringsmakt blandad med subnationell makt (SKR-styren, 21 regioner + 290 kommuner x 3 mandatperioder) via en per-kategori region/kommun-split efter lagstadgat ansvar; forsvar nationellt per design; c2 finansiering PARKERAD som designbeslut 2026-06-14 (inget riktningsneutralt finansieringsmått går att bygga ur officiell svensk data), alltså C=c1 makt; D=resultatattribution från officiella årsserier för ALLA 7 kategorier (ekonomi/välfärd/trygghet/klimat/integration/försvar/demokrati) där partiet haft nationell makt (medel säkerhet, ej tillämplig för partier utan makt i fönstret); för välfärd blandas nationell nivå med region-nivå vårdutfall attribuerat till regionstyrande parti (soundness-grindat); D krymps mot neutral efter viktad undermåttsbredd. B är AKTIVERAD för ALLA 7 kategorier via 269 källbelagda, adversariellt verifierade + panel-harmoniserade partiståndpunkter (riksdagsvotering/motion, Fas 4c); B krymps mot neutral efter viktad undermåttsdjuptäckning (B_thin_coverage-flagga vid tunn täckning). B mäter VÄNTAD STORLEK och inte riktning (ADR 0004): net_support är ett kvalitetsviktat medel av storlekar med tecken, Σ(q·m)/Σq med q=evidence_level×confidence och m=effect_strength×tecken(riktning), så ett ensamt claim ger sin egen effektstyrka i stället för ±1; B:s säkerhet härleds ur evidensens confidence (tröskel 0,85/0,60 + min_claims_for_high_confidence) och sänks ett steg vid tunn täckning. party_positions + evidence_ledger expertgranskade v2 (mänsklig sign-off 2026-06-07).",
     "data_as_of": "2025-12-31",
     "generated": "2026-08-21",
     "latest_observation_year": 2026,
@@ -111,8 +111,8 @@
     "C": {
       "demokrati": {
         "ci": [
-          2.409,
-          3.834
+          2.393,
+          3.818
         ],
         "claim_refs": [
           "claim:action:C:demokrati:motioner",
@@ -128,7 +128,7 @@
           "claim:observed_result:obs:bra:fortroende_domstolar_myndigheter:2019"
         ],
         "components": {
-          "A": 2.429,
+          "A": 2.376,
           "B": 3.587,
           "C": 1.429,
           "D": 2.994
@@ -145,12 +145,12 @@
           "A_a1_active",
           "D_coverage_100/100"
         ],
-        "score": 3.121
+        "score": 3.105
       },
       "ekonomi": {
         "ci": [
-          2.385,
-          3.36
+          2.528,
+          3.503
         ],
         "claim_refs": [
           "claim:action:C:ekonomi:motioner",
@@ -166,7 +166,7 @@
           "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1953"
         ],
         "components": {
-          "A": 2.0,
+          "A": 2.477,
           "B": 3.305,
           "C": 1.429,
           "D": 3.098
@@ -183,12 +183,12 @@
           "A_a1_active",
           "D_coverage_73/73"
         ],
-        "score": 2.872
+        "score": 3.015
       },
       "forsvar": {
         "ci": [
-          2.856,
-          4.011
+          2.648,
+          3.803
         ],
         "claim_refs": [
           "claim:action:C:forsvar:motioner",
@@ -204,7 +204,7 @@
           "claim:observed_result:obs:fmv:materielleveransutfall:2023"
         ],
         "components": {
-          "A": 3.286,
+          "A": 2.59,
           "B": 3.513,
           "C": 0.714,
           "D": 3.459
@@ -223,12 +223,12 @@
           "D_coverage_60/100",
           "D_thin_coverage"
         ],
-        "score": 3.434
+        "score": 3.225
       },
       "integration": {
         "ci": [
-          2.185,
-          3.16
+          2.527,
+          3.502
         ],
         "claim_refs": [
           "claim:action:C:integration:motioner",
@@ -244,7 +244,7 @@
           "claim:observed_result:obs:derived:sysselsattningsgap_inrikes_utrikes:2007"
         ],
         "components": {
-          "A": 1.143,
+          "A": 2.283,
           "B": 3.475,
           "C": 1.429,
           "D": 2.959
@@ -261,12 +261,12 @@
           "A_a1_active",
           "D_coverage_100/100"
         ],
-        "score": 2.672
+        "score": 3.014
       },
       "klimat": {
         "ci": [
-          2.471,
-          3.896
+          2.066,
+          3.491
         ],
         "claim_refs": [
           "claim:action:C:klimat:motioner",
@@ -282,7 +282,7 @@
           "claim:observed_result:obs:derived:utslappsintensitet:1992"
         ],
         "components": {
-          "A": 4.143,
+          "A": 2.791,
           "B": 2.875,
           "C": 1.429,
           "D": 2.517
@@ -300,12 +300,12 @@
           "A_a1_active",
           "D_coverage_85/100"
         ],
-        "score": 3.184
+        "score": 2.778
       },
       "trygghet": {
         "ci": [
-          2.386,
-          3.811
+          2.076,
+          3.501
         ],
         "claim_refs": [
           "claim:action:C:trygghet:motioner",
@@ -321,7 +321,7 @@
           "claim:observed_result:obs:bra:brottsutsatthet:2018"
         ],
         "components": {
-          "A": 3.571,
+          "A": 2.537,
           "B": 3.042,
           "C": 1.429,
           "D": 2.53
@@ -339,12 +339,12 @@
           "A_a1_active",
           "D_coverage_85/100"
         ],
-        "score": 3.098
+        "score": 2.788
       },
       "valfard": {
         "ci": [
-          2.332,
-          3.757
+          2.271,
+          3.696
         ],
         "claim_refs": [
           "claim:action:C:valfard:motioner",
@@ -360,7 +360,7 @@
           "claim:observed_result:obs:kolada:N15507:0000:2017"
         ],
         "components": {
-          "A": 2.571,
+          "A": 2.369,
           "B": 3.414,
           "C": 1.429,
           "D": 2.833
@@ -378,14 +378,14 @@
           "D_coverage_80/100",
           "D_subnational_region_1.1"
         ],
-        "score": 3.045
+        "score": 2.984
       }
     },
     "KD": {
       "demokrati": {
         "ci": [
-          1.811,
-          3.236
+          2.009,
+          3.434
         ],
         "claim_refs": [
           "claim:action:KD:demokrati:motioner",
@@ -401,7 +401,7 @@
           "claim:observed_result:obs:bra:fortroende_domstolar_myndigheter:2019"
         ],
         "components": {
-          "A": 1.786,
+          "A": 2.445,
           "B": 2.922,
           "C": 2.143,
           "D": 2.634
@@ -418,12 +418,12 @@
           "A_a1_active",
           "D_coverage_100/100"
         ],
-        "score": 2.524
+        "score": 2.721
       },
       "ekonomi": {
         "ci": [
-          2.597,
-          3.572
+          2.534,
+          3.509
         ],
         "claim_refs": [
           "claim:action:KD:ekonomi:motioner",
@@ -439,7 +439,7 @@
           "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1953"
         ],
         "components": {
-          "A": 2.643,
+          "A": 2.433,
           "B": 3.631,
           "C": 2.143,
           "D": 2.382
@@ -456,12 +456,12 @@
           "A_a1_active",
           "D_coverage_73/73"
         ],
-        "score": 3.085
+        "score": 3.022
       },
       "forsvar": {
         "ci": [
-          3.159,
-          4.134
+          2.899,
+          3.874
         ],
         "claim_refs": [
           "claim:action:KD:forsvar:motioner",
@@ -477,7 +477,7 @@
           "claim:observed_result:obs:fmv:materielleveransutfall:2023"
         ],
         "components": {
-          "A": 3.929,
+          "A": 3.061,
           "B": 3.513,
           "C": 2.5,
           "D": 3.558
@@ -495,12 +495,12 @@
           "C_national_only_by_design",
           "D_coverage_75/100"
         ],
-        "score": 3.646
+        "score": 3.386
       },
       "integration": {
         "ci": [
-          2.306,
-          3.281
+          2.551,
+          3.526
         ],
         "claim_refs": [
           "claim:action:KD:integration:motioner",
@@ -516,7 +516,7 @@
           "claim:observed_result:obs:derived:sysselsattningsgap_inrikes_utrikes:2007"
         ],
         "components": {
-          "A": 1.357,
+          "A": 2.175,
           "B": 3.288,
           "C": 2.143,
           "D": 3.714
@@ -533,12 +533,12 @@
           "A_a1_active",
           "D_coverage_100/100"
         ],
-        "score": 2.794
+        "score": 3.039
       },
       "klimat": {
         "ci": [
-          2.328,
-          3.303
+          2.487,
+          3.462
         ],
         "claim_refs": [
           "claim:action:KD:klimat:motioner",
@@ -554,7 +554,7 @@
           "claim:observed_result:obs:derived:utslappsintensitet:1992"
         ],
         "components": {
-          "A": 1.929,
+          "A": 2.462,
           "B": 3.462,
           "C": 2.143,
           "D": 2.526
@@ -571,12 +571,12 @@
           "A_a1_active",
           "D_coverage_85/100"
         ],
-        "score": 2.815
+        "score": 2.975
       },
       "trygghet": {
         "ci": [
-          2.486,
-          4.091
+          2.372,
+          3.977
         ],
         "claim_refs": [
           "claim:action:KD:trygghet:motioner",
@@ -592,7 +592,7 @@
           "claim:observed_result:obs:bra:brottsutsatthet:2018"
         ],
         "components": {
-          "A": 3.071,
+          "A": 2.691,
           "B": 3.203,
           "C": 2.143,
           "D": 3.829
@@ -610,12 +610,12 @@
           "D_coverage_70/100",
           "D_thin_coverage"
         ],
-        "score": 3.289
+        "score": 3.175
       },
       "valfard": {
         "ci": [
-          2.098,
-          3.523
+          2.277,
+          3.702
         ],
         "claim_refs": [
           "claim:action:KD:valfard:motioner",
@@ -631,7 +631,7 @@
           "claim:observed_result:obs:kolada:N15507:0000:2017"
         ],
         "components": {
-          "A": 1.786,
+          "A": 2.384,
           "B": 3.414,
           "C": 2.143,
           "D": 2.838
@@ -649,14 +649,14 @@
           "D_coverage_80/100",
           "D_subnational_region_0.74"
         ],
-        "score": 2.81
+        "score": 2.99
       }
     },
     "L": {
       "demokrati": {
         "ci": [
-          2.043,
-          3.468
+          2.102,
+          3.527
         ],
         "claim_refs": [
           "claim:action:L:demokrati:motioner",
@@ -673,7 +673,7 @@
           "claim:observed_result:obs:bra:fortroende_domstolar_myndigheter:2019"
         ],
         "components": {
-          "A": 2.357,
+          "A": 2.553,
           "B": 2.987,
           "C": 3.571,
           "D": 2.775
@@ -690,12 +690,12 @@
           "A_a1_active",
           "D_coverage_100/100"
         ],
-        "score": 2.756
+        "score": 2.815
       },
       "ekonomi": {
         "ci": [
-          2.59,
-          3.565
+          2.606,
+          3.581
         ],
         "claim_refs": [
           "claim:action:L:ekonomi:motioner",
@@ -712,7 +712,7 @@
           "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1953"
         ],
         "components": {
-          "A": 2.357,
+          "A": 2.412,
           "B": 3.631,
           "C": 3.571,
           "D": 2.774
@@ -729,12 +729,12 @@
           "A_a1_active",
           "D_coverage_73/73"
         ],
-        "score": 3.077
+        "score": 3.094
       },
       "forsvar": {
         "ci": [
-          2.846,
-          4.271
+          2.702,
+          4.127
         ],
         "claim_refs": [
           "claim:action:L:forsvar:motioner",
@@ -751,7 +751,7 @@
           "claim:observed_result:obs:fmv:materielleveransutfall:2023"
         ],
         "components": {
-          "A": 3.357,
+          "A": 2.878,
           "B": 3.663,
           "C": 3.571,
           "D": 3.598
@@ -769,12 +769,12 @@
           "C_national_only_by_design",
           "D_coverage_75/100"
         ],
-        "score": 3.558
+        "score": 3.414
       },
       "integration": {
         "ci": [
-          2.362,
-          3.337
+          2.456,
+          3.431
         ],
         "claim_refs": [
           "claim:action:L:integration:motioner",
@@ -791,7 +791,7 @@
           "claim:observed_result:obs:derived:sysselsattningsgap_inrikes_utrikes:2007"
         ],
         "components": {
-          "A": 1.929,
+          "A": 2.243,
           "B": 3.325,
           "C": 3.571,
           "D": 3.043
@@ -808,12 +808,12 @@
           "A_a1_active",
           "D_coverage_100/100"
         ],
-        "score": 2.85
+        "score": 2.944
       },
       "klimat": {
         "ci": [
-          2.055,
-          3.03
+          2.426,
+          3.401
         ],
         "claim_refs": [
           "claim:action:L:klimat:motioner",
@@ -830,7 +830,7 @@
           "claim:observed_result:obs:derived:utslappsintensitet:1992"
         ],
         "components": {
-          "A": 1.071,
+          "A": 2.309,
           "B": 3.462,
           "C": 3.571,
           "D": 2.448
@@ -847,12 +847,12 @@
           "A_a1_active",
           "D_coverage_85/100"
         ],
-        "score": 2.542
+        "score": 2.914
       },
       "trygghet": {
         "ci": [
-          2.371,
-          3.796
+          2.331,
+          3.756
         ],
         "claim_refs": [
           "claim:action:L:trygghet:motioner",
@@ -869,7 +869,7 @@
           "claim:observed_result:obs:bra:brottsutsatthet:2018"
         ],
         "components": {
-          "A": 2.786,
+          "A": 2.651,
           "B": 3.203,
           "C": 3.571,
           "D": 3.233
@@ -886,12 +886,12 @@
           "A_a1_active",
           "D_coverage_85/100"
         ],
-        "score": 3.084
+        "score": 3.044
       },
       "valfard": {
         "ci": [
-          2.454,
-          3.879
+          2.24,
+          3.665
         ],
         "claim_refs": [
           "claim:action:L:valfard:motioner",
@@ -908,7 +908,7 @@
           "claim:observed_result:obs:kolada:N15507:0000:2017"
         ],
         "components": {
-          "A": 3.214,
+          "A": 2.502,
           "B": 3.294,
           "C": 3.571,
           "D": 2.775
@@ -926,14 +926,14 @@
           "D_coverage_80/100",
           "D_subnational_region_0.8"
         ],
-        "score": 3.166
+        "score": 2.953
       }
     },
     "M": {
       "demokrati": {
         "ci": [
-          1.468,
-          2.893
+          1.975,
+          3.4
         ],
         "claim_refs": [
           "claim:action:M:demokrati:motioner",
@@ -949,7 +949,7 @@
           "claim:observed_result:obs:bra:fortroende_domstolar_myndigheter:2019"
         ],
         "components": {
-          "A": 0.643,
+          "A": 2.332,
           "B": 2.922,
           "C": 2.857,
           "D": 2.634
@@ -966,12 +966,12 @@
           "A_a1_active",
           "D_coverage_100/100"
         ],
-        "score": 2.181
+        "score": 2.688
       },
       "ekonomi": {
         "ci": [
-          2.867,
-          3.842
+          2.728,
+          3.703
         ],
         "claim_refs": [
           "claim:action:M:ekonomi:motioner",
@@ -987,7 +987,7 @@
           "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1953"
         ],
         "components": {
-          "A": 2.929,
+          "A": 2.464,
           "B": 4.0,
           "C": 2.857,
           "D": 2.382
@@ -1004,12 +1004,12 @@
           "A_a1_active",
           "D_coverage_73/73"
         ],
-        "score": 3.355
+        "score": 3.216
       },
       "forsvar": {
         "ci": [
-          2.409,
-          3.834
+          2.594,
+          4.019
         ],
         "claim_refs": [
           "claim:action:M:forsvar:motioner",
@@ -1025,7 +1025,7 @@
           "claim:observed_result:obs:fmv:materielleveransutfall:2023"
         ],
         "components": {
-          "A": 1.929,
+          "A": 2.546,
           "B": 3.663,
           "C": 2.5,
           "D": 3.558
@@ -1043,12 +1043,12 @@
           "C_national_only_by_design",
           "D_coverage_75/100"
         ],
-        "score": 3.121
+        "score": 3.307
       },
       "integration": {
         "ci": [
-          2.239,
-          3.214
+          2.569,
+          3.544
         ],
         "claim_refs": [
           "claim:action:M:integration:motioner",
@@ -1064,7 +1064,7 @@
           "claim:observed_result:obs:derived:sysselsattningsgap_inrikes_utrikes:2007"
         ],
         "components": {
-          "A": 1.071,
+          "A": 2.171,
           "B": 3.325,
           "C": 2.857,
           "D": 3.714
@@ -1081,12 +1081,12 @@
           "A_a1_active",
           "D_coverage_100/100"
         ],
-        "score": 2.727
+        "score": 3.056
       },
       "klimat": {
         "ci": [
-          2.499,
-          3.474
+          2.547,
+          3.522
         ],
         "claim_refs": [
           "claim:action:M:klimat:motioner",
@@ -1102,7 +1102,7 @@
           "claim:observed_result:obs:derived:utslappsintensitet:1992"
         ],
         "components": {
-          "A": 2.5,
+          "A": 2.661,
           "B": 3.462,
           "C": 2.857,
           "D": 2.526
@@ -1119,12 +1119,12 @@
           "A_a1_active",
           "D_coverage_85/100"
         ],
-        "score": 2.986
+        "score": 3.035
       },
       "trygghet": {
         "ci": [
-          2.663,
-          4.268
+          2.307,
+          3.912
         ],
         "claim_refs": [
           "claim:action:M:trygghet:motioner",
@@ -1140,7 +1140,7 @@
           "claim:observed_result:obs:bra:brottsutsatthet:2018"
         ],
         "components": {
-          "A": 3.929,
+          "A": 2.742,
           "B": 3.042,
           "C": 2.857,
           "D": 3.829
@@ -1159,12 +1159,12 @@
           "D_coverage_70/100",
           "D_thin_coverage"
         ],
-        "score": 3.465
+        "score": 3.109
       },
       "valfard": {
         "ci": [
-          2.447,
-          3.872
+          2.318,
+          3.743
         ],
         "claim_refs": [
           "claim:action:M:valfard:motioner",
@@ -1180,7 +1180,7 @@
           "claim:observed_result:obs:kolada:N15507:0000:2017"
         ],
         "components": {
-          "A": 2.929,
+          "A": 2.496,
           "B": 3.414,
           "C": 2.857,
           "D": 2.872
@@ -1198,14 +1198,14 @@
           "D_coverage_80/100",
           "D_subnational_region_0.81"
         ],
-        "score": 3.16
+        "score": 3.03
       }
     },
     "MP": {
       "demokrati": {
         "ci": [
-          2.956,
-          4.381
+          2.375,
+          3.8
         ],
         "claim_refs": [
           "claim:action:MP:demokrati:motioner",
@@ -1222,7 +1222,7 @@
           "claim:observed_result:obs:bra:fortroende_domstolar_myndigheter:2019"
         ],
         "components": {
-          "A": 4.429,
+          "A": 2.494,
           "B": 3.515,
           "C": 4.286,
           "D": 2.91
@@ -1239,12 +1239,12 @@
           "A_a1_active",
           "D_coverage_100/100"
         ],
-        "score": 3.668
+        "score": 3.088
       },
       "ekonomi": {
         "ci": [
-          2.291,
-          3.266
+          2.701,
+          3.676
         ],
         "claim_refs": [
           "claim:action:MP:ekonomi:motioner",
@@ -1261,7 +1261,7 @@
           "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1953"
         ],
         "components": {
-          "A": 1.0,
+          "A": 2.366,
           "B": 3.526,
           "C": 4.286,
           "D": 3.579
@@ -1278,12 +1278,12 @@
           "A_a1_active",
           "D_coverage_73/73"
         ],
-        "score": 2.779
+        "score": 3.189
       },
       "forsvar": {
         "ci": [
-          1.433,
-          3.038
+          1.922,
+          3.527
         ],
         "claim_refs": [
           "claim:action:MP:forsvar:motioner",
@@ -1300,7 +1300,7 @@
           "claim:observed_result:obs:fmv:materielleveransutfall:2023"
         ],
         "components": {
-          "A": 1.143,
+          "A": 2.774,
           "B": 2.47,
           "C": 4.286,
           "D": 3.287
@@ -1320,12 +1320,12 @@
           "D_coverage_60/100",
           "D_thin_coverage"
         ],
-        "score": 2.235
+        "score": 2.725
       },
       "integration": {
         "ci": [
-          2.534,
-          3.959
+          1.953,
+          3.378
         ],
         "claim_refs": [
           "claim:action:MP:integration:motioner",
@@ -1342,7 +1342,7 @@
           "claim:observed_result:obs:derived:sysselsattningsgap_inrikes_utrikes:2007"
         ],
         "components": {
-          "A": 4.286,
+          "A": 2.347,
           "B": 2.837,
           "C": 4.286,
           "D": 2.712
@@ -1360,12 +1360,12 @@
           "A_a1_active",
           "D_coverage_100/100"
         ],
-        "score": 3.247
+        "score": 2.665
       },
       "klimat": {
         "ci": [
-          2.84,
-          3.815
+          2.346,
+          3.321
         ],
         "claim_refs": [
           "claim:action:MP:klimat:motioner",
@@ -1382,7 +1382,7 @@
           "claim:observed_result:obs:derived:utslappsintensitet:1992"
         ],
         "components": {
-          "A": 4.714,
+          "A": 3.069,
           "B": 2.663,
           "C": 4.286,
           "D": 2.909
@@ -1399,12 +1399,12 @@
           "A_a1_active",
           "D_coverage_85/100"
         ],
-        "score": 3.327
+        "score": 2.834
       },
       "trygghet": {
         "ci": [
-          1.615,
-          3.04
+          2.313,
+          3.738
         ],
         "claim_refs": [
           "claim:action:MP:trygghet:motioner",
@@ -1421,7 +1421,7 @@
           "claim:observed_result:obs:bra:brottsutsatthet:2018"
         ],
         "components": {
-          "A": 0.0,
+          "A": 2.326,
           "B": 3.645,
           "C": 4.286,
           "D": 2.527
@@ -1438,12 +1438,12 @@
           "A_a1_active",
           "D_coverage_85/100"
         ],
-        "score": 2.328
+        "score": 3.026
       },
       "valfard": {
         "ci": [
-          1.788,
-          3.213
+          2.18,
+          3.605
         ],
         "claim_refs": [
           "claim:action:MP:valfard:motioner",
@@ -1460,7 +1460,7 @@
           "claim:observed_result:obs:kolada:N15507:0000:2017"
         ],
         "components": {
-          "A": 1.143,
+          "A": 2.45,
           "B": 3.288,
           "C": 4.286,
           "D": 2.57
@@ -1478,14 +1478,14 @@
           "D_coverage_80/100",
           "D_subnational_region_0.89"
         ],
-        "score": 2.501
+        "score": 2.893
       }
     },
     "S": {
       "demokrati": {
         "ci": [
-          2.016,
-          3.441
+          2.04,
+          3.465
         ],
         "claim_refs": [
           "claim:action:S:demokrati:motioner",
@@ -1503,7 +1503,7 @@
           "claim:observed_result:obs:bra:fortroende_domstolar_myndigheter:2019"
         ],
         "components": {
-          "A": 2.286,
+          "A": 2.367,
           "B": 2.987,
           "C": 5.0,
           "D": 2.743
@@ -1520,12 +1520,12 @@
           "A_a1_active",
           "D_coverage_100/100"
         ],
-        "score": 2.728
+        "score": 2.752
       },
       "ekonomi": {
         "ci": [
-          3.221,
-          4.196
+          2.675,
+          3.65
         ],
         "claim_refs": [
           "claim:action:S:ekonomi:motioner",
@@ -1543,7 +1543,7 @@
           "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1953"
         ],
         "components": {
-          "A": 4.286,
+          "A": 2.466,
           "B": 3.526,
           "C": 5.0,
           "D": 3.298
@@ -1560,12 +1560,12 @@
           "A_a1_active",
           "D_coverage_73/73"
         ],
-        "score": 3.709
+        "score": 3.163
       },
       "forsvar": {
         "ci": [
-          2.277,
-          3.702
+          2.63,
+          4.055
         ],
         "claim_refs": [
           "claim:action:S:forsvar:motioner",
@@ -1583,7 +1583,7 @@
           "claim:observed_result:obs:fmv:materielleveransutfall:2023"
         ],
         "components": {
-          "A": 1.429,
+          "A": 2.607,
           "B": 3.663,
           "C": 5.0,
           "D": 3.648
@@ -1601,12 +1601,12 @@
           "C_national_only_by_design",
           "D_coverage_75/100"
         ],
-        "score": 2.989
+        "score": 3.343
       },
       "integration": {
         "ci": [
-          2.329,
-          3.754
+          1.956,
+          3.381
         ],
         "claim_refs": [
           "claim:action:S:integration:motioner",
@@ -1624,7 +1624,7 @@
           "claim:observed_result:obs:derived:sysselsattningsgap_inrikes_utrikes:2007"
         ],
         "components": {
-          "A": 3.571,
+          "A": 2.327,
           "B": 3.003,
           "C": 5.0,
           "D": 2.344
@@ -1642,12 +1642,12 @@
           "A_a1_active",
           "D_coverage_100/100"
         ],
-        "score": 3.042
+        "score": 2.669
       },
       "klimat": {
         "ci": [
-          1.989,
-          2.964
+          2.554,
+          3.529
         ],
         "claim_refs": [
           "claim:action:S:klimat:motioner",
@@ -1665,7 +1665,7 @@
           "claim:observed_result:obs:derived:utslappsintensitet:1992"
         ],
         "components": {
-          "A": 0.571,
+          "A": 2.455,
           "B": 3.433,
           "C": 5.0,
           "D": 2.944
@@ -1682,12 +1682,12 @@
           "A_a1_active",
           "D_coverage_85/100"
         ],
-        "score": 2.477
+        "score": 3.042
       },
       "trygghet": {
         "ci": [
-          1.866,
-          3.291
+          2.239,
+          3.664
         ],
         "claim_refs": [
           "claim:action:S:trygghet:motioner",
@@ -1705,7 +1705,7 @@
           "claim:observed_result:obs:bra:brottsutsatthet:2018"
         ],
         "components": {
-          "A": 1.143,
+          "A": 2.385,
           "B": 3.486,
           "C": 5.0,
           "D": 2.463
@@ -1722,12 +1722,12 @@
           "A_a1_active",
           "D_coverage_85/100"
         ],
-        "score": 2.578
+        "score": 2.951
       },
       "valfard": {
         "ci": [
-          2.931,
-          4.356
+          2.209,
+          3.634
         ],
         "claim_refs": [
           "claim:action:S:valfard:motioner",
@@ -1745,7 +1745,7 @@
           "claim:observed_result:obs:kolada:N15507:0000:2017"
         ],
         "components": {
-          "A": 5.0,
+          "A": 2.593,
           "B": 3.264,
           "C": 5.0,
           "D": 2.558
@@ -1763,14 +1763,14 @@
           "D_coverage_80/100",
           "D_subnational_region_1.2"
         ],
-        "score": 3.643
+        "score": 2.921
       }
     },
     "SD": {
       "demokrati": {
         "ci": [
-          1.908,
-          3.333
+          1.912,
+          3.337
         ],
         "claim_refs": [
           "claim:action:SD:demokrati:motioner",
@@ -1783,7 +1783,7 @@
           "claim:observed_result:obs:bra:fortroende_domstolar_myndigheter:2019"
         ],
         "components": {
-          "A": 2.643,
+          "A": 2.655,
           "B": 2.603,
           "C": 0.714,
           "D": 2.634
@@ -1800,12 +1800,12 @@
           "A_a1_active",
           "D_coverage_100/100"
         ],
-        "score": 2.621
+        "score": 2.624
       },
       "ekonomi": {
         "ci": [
-          2.276,
-          3.251
+          2.534,
+          3.509
         ],
         "claim_refs": [
           "claim:action:SD:ekonomi:motioner",
@@ -1818,7 +1818,7 @@
           "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1953"
         ],
         "components": {
-          "A": 1.5,
+          "A": 2.359,
           "B": 3.674,
           "C": 0.714,
           "D": 2.382
@@ -1835,12 +1835,12 @@
           "A_a1_active",
           "D_coverage_73/73"
         ],
-        "score": 2.764
+        "score": 3.021
       },
       "forsvar": {
         "ci": [
-          2.666,
-          4.091
+          2.672,
+          4.097
         ],
         "claim_refs": [
           "claim:action:SD:forsvar:motioner",
@@ -1853,7 +1853,7 @@
           "claim:observed_result:obs:fmv:materielleveransutfall:2023"
         ],
         "components": {
-          "A": 2.786,
+          "A": 2.806,
           "B": 3.663,
           "C": 1.429,
           "D": 3.558
@@ -1871,12 +1871,12 @@
           "C_national_only_by_design",
           "D_coverage_75/100"
         ],
-        "score": 3.379
+        "score": 3.385
       },
       "integration": {
         "ci": [
-          2.017,
-          3.442
+          2.179,
+          3.604
         ],
         "claim_refs": [
           "claim:action:SD:integration:motioner",
@@ -1889,7 +1889,7 @@
           "claim:observed_result:obs:derived:sysselsattningsgap_inrikes_utrikes:2007"
         ],
         "components": {
-          "A": 1.643,
+          "A": 2.185,
           "B": 2.987,
           "C": 0.714,
           "D": 3.714
@@ -1907,12 +1907,12 @@
           "A_a1_active",
           "D_coverage_100/100"
         ],
-        "score": 2.729
+        "score": 2.892
       },
       "klimat": {
         "ci": [
-          1.963,
-          2.938
+          2.055,
+          3.03
         ],
         "claim_refs": [
           "claim:action:SD:klimat:motioner",
@@ -1925,7 +1925,7 @@
           "claim:observed_result:obs:derived:utslappsintensitet:1992"
         ],
         "components": {
-          "A": 2.214,
+          "A": 2.52,
           "B": 2.562,
           "C": 0.714,
           "D": 2.526
@@ -1942,12 +1942,12 @@
           "A_a1_active",
           "D_coverage_85/100"
         ],
-        "score": 2.451
+        "score": 2.542
       },
       "trygghet": {
         "ci": [
-          2.502,
-          4.107
+          2.307,
+          3.912
         ],
         "claim_refs": [
           "claim:action:SD:trygghet:motioner",
@@ -1960,7 +1960,7 @@
           "claim:observed_result:obs:bra:brottsutsatthet:2018"
         ],
         "components": {
-          "A": 3.357,
+          "A": 2.706,
           "B": 3.062,
           "C": 0.714,
           "D": 3.829
@@ -1978,12 +1978,12 @@
           "D_coverage_70/100",
           "D_thin_coverage"
         ],
-        "score": 3.304
+        "score": 3.109
       },
       "valfard": {
         "ci": [
-          1.987,
-          3.412
+          2.02,
+          3.445
         ],
         "claim_refs": [
           "claim:action:SD:valfard:motioner",
@@ -1996,7 +1996,7 @@
           "claim:observed_result:obs:kolada:N15507:0000:2017"
         ],
         "components": {
-          "A": 2.357,
+          "A": 2.466,
           "B": 2.759,
           "C": 0.714,
           "D": 3.065
@@ -2013,14 +2013,14 @@
           "A_a1_active",
           "D_coverage_80/100"
         ],
-        "score": 2.7
+        "score": 2.732
       }
     },
     "V": {
       "demokrati": {
         "ci": [
-          2.447,
-          4.052
+          2.149,
+          3.754
         ],
         "claim_refs": [
           "claim:action:V:demokrati:motioner",
@@ -2035,7 +2035,7 @@
           "claim:observed_result:obs:bra:fortroende_domstolar_myndigheter:2019"
         ],
         "components": {
-          "A": 3.429,
+          "A": 2.433,
           "B": 3.442,
           "C": 0.0,
           "D": 2.5
@@ -2052,12 +2052,12 @@
           "A_a1_active",
           "D_not_applicable"
         ],
-        "score": 3.25
+        "score": 2.951
       },
       "ekonomi": {
         "ci": [
-          2.04,
-          3.195
+          1.768,
+          2.923
         ],
         "claim_refs": [
           "claim:action:V:ekonomi:motioner",
@@ -2072,7 +2072,7 @@
           "claim:observed_result:obs:derived:hushallens_reala_disponibla_inkomst:1953"
         ],
         "components": {
-          "A": 3.286,
+          "A": 2.381,
           "B": 2.263,
           "C": 0.0,
           "D": 2.5
@@ -2089,12 +2089,12 @@
           "A_a1_active",
           "D_not_applicable"
         ],
-        "score": 2.617
+        "score": 2.346
       },
       "forsvar": {
         "ci": [
-          1.872,
-          3.477
+          2.122,
+          3.727
         ],
         "claim_refs": [
           "claim:action:V:forsvar:motioner",
@@ -2109,7 +2109,7 @@
           "claim:observed_result:obs:fmv:materielleveransutfall:2023"
         ],
         "components": {
-          "A": 2.143,
+          "A": 2.977,
           "B": 3.062,
           "C": 0.0,
           "D": 2.5
@@ -2127,12 +2127,12 @@
           "C_national_only_by_design",
           "D_not_applicable"
         ],
-        "score": 2.674
+        "score": 2.924
       },
       "integration": {
         "ci": [
-          2.428,
-          4.033
+          1.671,
+          3.276
         ],
         "claim_refs": [
           "claim:action:V:integration:motioner",
@@ -2147,7 +2147,7 @@
           "claim:observed_result:obs:derived:sysselsattningsgap_inrikes_utrikes:2007"
         ],
         "components": {
-          "A": 5.0,
+          "A": 2.476,
           "B": 2.46,
           "C": 0.0,
           "D": 2.5
@@ -2165,12 +2165,12 @@
           "A_a1_active",
           "D_not_applicable"
         ],
-        "score": 3.23
+        "score": 2.473
       },
       "klimat": {
         "ci": [
-          2.111,
-          3.266
+          1.989,
+          3.144
         ],
         "claim_refs": [
           "claim:action:V:klimat:motioner",
@@ -2185,7 +2185,7 @@
           "claim:observed_result:obs:derived:utslappsintensitet:1992"
         ],
         "components": {
-          "A": 2.857,
+          "A": 2.452,
           "B": 2.663,
           "C": 0.0,
           "D": 2.5
@@ -2202,12 +2202,12 @@
           "A_a1_active",
           "D_not_applicable"
         ],
-        "score": 2.688
+        "score": 2.567
       },
       "trygghet": {
         "ci": [
-          2.163,
-          3.768
+          2.314,
+          3.919
         ],
         "claim_refs": [
           "claim:action:V:trygghet:motioner",
@@ -2222,7 +2222,7 @@
           "claim:observed_result:obs:bra:brottsutsatthet:2018"
         ],
         "components": {
-          "A": 2.143,
+          "A": 2.649,
           "B": 3.645,
           "C": 0.0,
           "D": 2.5
@@ -2239,12 +2239,12 @@
           "A_a1_active",
           "D_not_applicable"
         ],
-        "score": 2.965
+        "score": 3.117
       },
       "valfard": {
         "ci": [
-          1.635,
-          3.24
+          2.059,
+          3.664
         ],
         "claim_refs": [
           "claim:action:V:valfard:motioner",
@@ -2259,7 +2259,7 @@
           "claim:observed_result:obs:kolada:N15507:0000:2017"
         ],
         "components": {
-          "A": 1.0,
+          "A": 2.416,
           "B": 3.294,
           "C": 0.0,
           "D": 2.451
@@ -2279,7 +2279,7 @@
           "D_thin_basis",
           "D_subnational_region_0.58"
         ],
-        "score": 2.437
+        "score": 2.862
       }
     }
   }
