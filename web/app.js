@@ -344,11 +344,12 @@ function stabilityMethodHTML() {
      med andra rimliga metodval. Den körningen saknas i den här versionen, så vi visar inget mått
      på hur säker ordningen är.</p>`;
   }
+  // Tusentalsavgränsare: talet läses av en människa, och 10000 är svårare att läsa än 10 000.
+  const draws = Number(ROBUST.meta?.n_draws ?? 0).toLocaleString("sv-SE");
   return `<p>Hur säker ordningen mellan två partier är räknar vi fram genom att köra om hela
-     modellen ${fmtNum(ROBUST.meta?.n_draws ?? 0, 0)} gånger med andra rimliga metodval. Vid varje
-     parti står hur ofta partiet ovanför stannar ovanför, till exempel "S ligger före L i 68
-     procent av metodvarianterna". Vi sätter ingen gräns för när en skillnad räknas. Talet står
-     som det blev.</p>`;
+     modellen ${draws} gånger med andra rimliga metodval. Vid varje parti står sedan i hur många
+     av metodvarianterna partiet ovanför stannar ovanför. Vi sätter ingen gräns för när en
+     skillnad räknas som stor nog. Talet står som det blev, också när det är lågt.</p>`;
 }
 
 function buildMethod() {
