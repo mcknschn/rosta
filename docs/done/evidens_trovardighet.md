@@ -176,12 +176,20 @@ riktning läggs till (§5.7).
 | 2 | **Undermått** | `submeasures[].id` | Militär förmåga (`militar_formaga`) |
 | 3 | **Indikator** | `indicators[].id` | Försvarsanslag som andel av BNP (`forsvarsanslag_andel_bnp`) |
 | 3b | **Riktning** | `indicators[].direction` | upp · ned · målnivå (`target`) |
+| 3c | **Verkan** | `evidence_ledger.entries[].direction` | åtgärden rör indikatorn åt rätt håll (`positive`) · åt fel håll (`negative`) · oklart/blandat (`unclear`/`mixed`) |
 
 **Regel mot begreppsförvirring:** `config/categories.yaml` är sanningskälla; **id:t** (t.ex. `nato_ukraina`) är
 det som aldrig får glida mellan dokument. De svenska visningsnamnen ovan är kanoniska — använd dem i all prosa.
 *Retirerade synonymer:* "submått" → **Undermått** (kod-nyckeln heter fortfarande `submeasures`/`submeasure`,
 engelska — det är samma begrepp); "mätpunkt"/"mått" → **Indikator**. Varje indikator har EN riktning:
-`up` → upp, `down` → ned, `target` → målnivå. (Visningsnamnen för Kategori/Undermått hämtas ur `categories.yaml`
+`up` → upp, `down` → ned, `target` → målnivå.
+
+**Riktning och Verkan är två storheter, inte en.** Riktning tillhör indikatorn och säger vilket håll som
+är bättre. Verkan tillhör evidensliggarens post och säger om åtgärden rör indikatorn åt det hållet.
+Båda fälten heter `direction` i config, vilket bryter mot regeln ovan om ett namn per begrepp. I prosa
+används alltid **Riktning** respektive **Verkan**. Confignycklarna byts först när en byggslice rör filerna,
+på samma sätt som `A_agerande` och `C_ansvar`. Låst 2026-08-21 av
+[ADR 0006](../adr/0006-evidensgrinden-ar-symmetrisk.md) (biljett #18 under karta #6). (Visningsnamnen för Kategori/Undermått hämtas ur `categories.yaml`
 `name`-fältet — fyra trunkerade namn rättades 2026-06-06: Nato/Skola/Normer/Finansiering hade kapats av
 oquoterade kommatecken.)
 

@@ -1,10 +1,22 @@
 # Fas 4c — förregistrerad rubrik för B-differentiering
 
-> **Status: FRYST 2026-05-30.** Denna rubrik är gemensam för Plan B (harmonisering av befintliga
-> partiståndpunkter) och Plan A (utökning av evidensliggaren). Den är **förregistrerad**: reglerna
-> låses INNAN data bedöms, och får inte ändras under en körning för att passa ett önskat utfall.
-> Ändringar av rubriken kräver ny version + motivering här. Designen är fastlagd i samråd (Codex,
-> 2026-05-30). Bygger vidare på [fas4b_partistandpunkter_metod.md](fas4b_partistandpunkter_metod.md).
+> **Status: version 2, fryst 2026-08-21.** Denna rubrik är gemensam för Plan B (harmonisering av
+> befintliga partiståndpunkter) och Plan A (utökning av evidensliggaren). Den är **förregistrerad**:
+> reglerna låses INNAN data bedöms, och får inte ändras under en körning för att passa ett önskat
+> utfall. Ändringar av rubriken kräver ny version + motivering här. Designen är fastlagd i samråd
+> (Codex, 2026-05-30). Bygger vidare på
+> [fas4b_partistandpunkter_metod.md](fas4b_partistandpunkter_metod.md).
+>
+> **Versionshistorik**
+>
+> - **version 1, fryst 2026-05-30.** Ursprunglig förregistrering.
+> - **version 2, 2026-08-21** ([ADR 0006](../adr/0006-evidensgrinden-ar-symmetrisk.md), biljett
+>   [#18](https://github.com/mcknschn/rosta/issues/18)). §5 skrevs om symmetriskt och §7 grund E1
+>   blev riktningsneutral. Skälet: §5:s asymmetri hade ett enda nedskrivet skäl, att ett svagt
+>   positivt bidrag inte straffar ett parti, och det skälet föll när
+>   [ADR 0004](../adr/0004-vad-delpoang-b-mater.md) byggdes. En svag positiv post ger sedan dess
+>   3,25 i stället för 5,00 och drar alltså ned. Nivån i §5 är oförändrad från version 1. Den
+>   tillämpas nu åt båda håll i stället för åt ett.
 
 Syftet är att ta bort de två svagheterna i den nuvarande B (version 0): (1) **isolerings-inducerade
 verifierar-asymmetrier** (samma slags källa bedömdes olika strängt för olika partier), och (2) **svag
@@ -47,28 +59,51 @@ raden** (coverage-lucka, inte stance). Detta beslut låses här och tillämpas s
 får användas om ingen nyare hittas, men `mapping_note` ska ange att den är utanför föredragen period
 (symmetriskt: gäller alla partier lika, ingen får strängare tidskrav än en annan).
 
-## 5. Evidens-admission i liggaren (Plan A) — negativ-riktnings-grinden
+## 5. Evidens-admission i liggaren (Plan A) — den symmetriska evidensgrinden
+
+> **Omskriven i version 2** ([ADR 0006](../adr/0006-evidensgrinden-ar-symmetrisk.md)). Hette tidigare
+> "negativ-riktnings-grinden" och gällde bara `direction: negative`. Nivån är oförändrad. Den
+> gäller nu åt båda håll.
 
 En evidensliggar-post (`policy_type → indikatoreffekt`) admitteras endast om den citerar en officiell svensk
 källa (myndighet/svensk akademi) och avser **exakt den betygsatta indikatorn**.
 
-**Negativ-riktnings-grinden (Codex P0 — den enskilt viktigaste integritetsregeln för Plan A):**
-en post med `direction: negative` får bidra till B (dvs. dra ned B för ett parti som stödjer instrumentet,
-eller upp för ett som motsätter sig det) **endast om ALLA tre gäller**:
+**Den symmetriska evidensgrinden:** en liggarpost får bidra till B **oavsett verkan** endast om ALLA tre
+gäller:
 
 1. `evidence_level ∈ {authority_evaluation, systematic_review}` — aldrig enskild studie, beskrivande
-   statistik eller expertutlåtande för en negativ B-effekt.
+   statistik eller expertutlåtande.
 2. `confidence ≥ medium`.
 3. Evidensen avser **exakt den betygsatta indikatorn** — ingen sidoeffekt-proxy. Om evidensen mäter en
    storhet som inte är indikatorn själv (t.ex. IFAU mäter "arbetslöshetstid", indikatorn är `arbetsloshet`),
    ska **indikator-bryggan skrivas ut explicit i `note`**, källbeläggas och granskas. Håller inte bryggan
    → posten admitteras inte (eller kodas `mixed`/`unclear` → inert).
 
-> Varför strängare för negativ riktning: ett negativt B-bidrag är politiskt laddat (det säger "partiets
-> drivna åtgärd går enligt evidensen åt FEL håll"). Modellen *ska* våga göra detta (metoddoc §9), men bara
-> när evidensen är robust och avser rätt sak — annars riskerar B att se partiskt ut. Positiv riktning har
-> kvar den ordinarie admissionen (metoddoc), eftersom ett uteblivet eller för svagt positivt bidrag inte
-> straffar ett parti på samma laddade sätt.
+> Varför grinden är symmetrisk: version 1 höll bara negativ verkan till nivån ovan, med skälet att ett
+> uteblivet eller för svagt positivt bidrag inte straffar ett parti på samma laddade sätt. Det var sant när
+> B var `tecken(stance) x täckning`, för då gav en svag positiv post `+1`, alltså 5,00. Efter
+> [ADR 0004](../adr/0004-vad-delpoang-b-mater.md) ger samma post `effect_strength: low`, alltså betyget
+> 3,25, och drar därmed ned. Asymmetrins enda skäl har alltså fallit. Grinden vid dörren är dessutom den
+> enda skärmen mot svag evidens i poängen: `net = Σ(q·m)/Σ q`, så i en cell med ett enda claim tar `q` ut
+> sig och `net = m`. 184 av 228 celler har exakt ett claim.
+
+**Verkan (`direction` i liggaren) är inte samma sak som Riktning.** Riktning är indikatorns egen
+riktning, alltså upp, ned eller målnivå (`indicators[].direction`). Verkan säger om åtgärden rör
+indikatorn åt rätt håll relativt den riktningen. Se ordlistan i
+[evidens_trovardighet.md §4.3](evidens_trovardighet.md).
+
+### 5b. Sökregeln: källstyrd och riktningsblind
+
+Nya liggarposter söks genom att räkna upp **officiella utvärderingar per indikator**, och verkan blir
+vad utvärderingen fann. Riktningen får aldrig stå i sökbegreppet. En sökning som frågar "vilka åtgärder
+har negativ evidens?" vet vad den vill hitta innan den letar, och det gör sökandet i sig till en partisk
+handling. Samma sak gäller omvänt: **B-grön-mandatet är avvecklat**, alltså kravet att varje undermått
+ska ha minst en post med positiv verkan.
+
+**Ordningsregel:** verkan, `effect_strength` och `evidence_level` låses och skrivs ned INNAN
+partiraderna för åtgärdstypen slås upp i `config/party_positions.yaml`, och svepet loggar att det skedde
+i den ordningen. Regeln biter bara på nya åtgärdstyper. För de åtgärdstyper som redan står i liggaren är
+partiraderna kända, och den kunskapen går inte att ta tillbaka.
 
 ## 6. Värdekonflikt utan officiell evidens ⇒ utelämnas (B tiger hellre än gissar)
 
@@ -82,10 +117,12 @@ så att tystnaden inte misstas för en mätning. Varje sådant instrument loggas
 En `policy_type` lyfts ur **coverage-nämnaren** (`coverage_exclude`) när — och endast när — den uppfyller en
 av dessa principiella grunder, som ska anges som skäl i `config/scoring.yaml: B_evidens.coverage_exclude_reasons`:
 
-- **(E1) Sidoeffekt-negativ:** posten har `direction: negative` men evidensen avser en sidoeffekt, inte
-  instrumentets kärnvärde, så att en stance-kodning skulle ge missvisande B-sign. *(Detta är skälet till att
-  `internationella_materielsamarbeten` exkluderas: RiR 2011:13 mäter leveranstidsrisk, inte om materielsamarbete
-  i sig är sämre försvarspolitik — ett parti som stödjer samarbete ska inte få sämre försvars-B. Faller på §5.3.)*
+- **(E1) Sidoeffekt-proxy:** evidensen avser en sidoeffekt, inte instrumentets kärnvärde, så att en
+  stance-kodning skulle ge missvisande B-sign. Grunden gäller **oavsett verkan** (omskriven i version 2,
+  [ADR 0006](../adr/0006-evidensgrinden-ar-symmetrisk.md); hette tidigare "sidoeffekt-negativ" och var
+  formulerad bara för `direction: negative`). *(Detta är skälet till att `internationella_materielsamarbeten`
+  exkluderas: RiR 2011:13 mäter leveranstidsrisk, inte om materielsamarbete i sig är sämre försvarspolitik —
+  ett parti som stödjer samarbete ska inte få sämre försvars-B. Faller på §5.3.)*
 - **(E2) Inert per konstruktion:** posten är `mixed`/`unclear` (`signed_direction = 0`) och kan aldrig ge
   B-effekt; den hålls utanför nämnaren för att inte blåsa upp den med icke-kodbara rader.
 
