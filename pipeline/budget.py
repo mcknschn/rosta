@@ -9,8 +9,11 @@ citerar sin källa, så a1 kan aldrig korrumperas av en bräcklig parser (A är 
 
 HÅRD GRIND (Codex-konsensus): a1 aktiveras för en (budgetår, kategori) ENDAST när alla 8 partier
 har en verifierad ram som täcker VARJE UO i kategorin, i ALLA inkluderade budgetår. Annars faller
-A tillbaka på a2 för den kategorin. En saknad/ogiltig cell ger HÅRD FAIL (aldrig tyst 0), och a1
-rang-normaliseras aldrig över färre än 8 partier.
+A tillbaka på a2 för den kategorin. En saknad/ogiltig cell ger HÅRD FAIL (aldrig tyst 0).
+
+Andelen som räknas här är RÅ. Vad den sedan jämförs med avgörs i pipeline/anchor.py: sedan
+ADR 0005 mäts den mot de beslutade utgiftsramarnas andel över ett historiskt fönster, inte mot
+de sju andra partierna.
 
 Rena funktioner med injicerbara fixturer -> golden-testbara utan livedata.
 """

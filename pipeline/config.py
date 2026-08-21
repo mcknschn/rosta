@@ -71,6 +71,11 @@ def budget_ramar() -> dict[str, Any]:
 
 
 @cache
+def a_forankring() -> dict[str, Any]:
+    return _load("a_forankring.yaml")
+
+
+@cache
 def skjutningar_sprangningar() -> dict[str, Any]:
     return _load("skjutningar_sprangningar.yaml")
 
@@ -244,14 +249,17 @@ def _validate_scoring(sub_w: dict[str, Any], tolerance: float) -> None:
             "(tillåtna: policy_type_count, weighted_submeasure_depth)"
         )
 
-    # A:s normalisering styrs av configen (scorerun läser normalization.per_subscore.A). En
-    # saknad eller felstavad nyckel får ALDRIG tyst falla tillbaka på rank — då skulle configen
-    # åter beskriva ett beteende koden inte har.
-    a_norm = (s.get("normalization") or {}).get("per_subscore", {}).get("A")
-    if a_norm not in ("rank", "minmax"):
+    # A normaliseras inte längre (ADR 0005): båda halvorna mäts mot en historisk förankring och
+    # avbildas med score.net_support_to_score, samma avbildning som B. En kvarlämnad
+    # normalization.per_subscore.A vore en config som beskriver ett beteende koden inte har, och
+    # den regeln är hela skälet till att nyckeln en gång lästes här. Den ska alltså vara borta.
+    if "A" in (s.get("normalization") or {}).get("per_subscore", {}):
         raise ConfigError(
-            f"normalization.per_subscore.A={a_norm!r} är ogiltigt (tillåtna: rank, minmax)"
+            "normalization.per_subscore.A finns kvar men A normaliseras inte längre (ADR 0005)"
         )
+    semantics = s.get("scale_semantics") or {}
+    if "A" in (semantics.get("relative") or []):
+        raise ConfigError("scale_semantics: A är absolut efter ADR 0005, inte relativ")
 
     # C3: subnationell D-config — validera struktur tidigt (jfr coverage_mode). Frånvaro är OK
     # (legacy nationell D); finns blocket måste det vara välformat.

@@ -98,58 +98,35 @@ def test_b_coverage_shrink_av_ger_okrympt_b(monkeypatch: pytest.MonkeyPatch) -> 
     con.close()
 
 
-# --- reglage 2: A:s normalisering (ADR 0003 punkt 5) ----------------------------------
+# --- reglage 2 RETIRERAT: A normaliseras inte längre (ADR 0005, biljett #21) -----------
 
 
-def test_a_normalisering_default_ar_rank_och_byte_identisk(monkeypatch: pytest.MonkeyPatch) -> None:
-    """Configen deklarerar rank för A. Koden läser den nu, och utdatan är oförändrad."""
-    assert config.scoring()["normalization"]["per_subscore"]["A"] == "rank"
-    con = _seed_con()
-    base = scorerun.build(con)["scores"]["scores"]
-    _patch_scoring(monkeypatch, lambda sc: sc["normalization"]["per_subscore"].__setitem__("A", "rank"))
-    assert scorerun.build(con)["scores"]["scores"] == base
-    con.close()
+def test_a_normaliseringen_ar_borta_ur_configen() -> None:
+    """A:s normalisering var det största reglaget i #20 och finns inte längre.
 
-
-def test_a_normalisering_minmax_flyttar_a(monkeypatch: pytest.MonkeyPatch) -> None:
-    """minmax är det andra byggda alternativet (score.normalize) och ger andra A-tal."""
-    con = _seed_con()
-    rank = scorerun.build(con)["scores"]["scores"]
-    _patch_scoring(monkeypatch, lambda sc: sc["normalization"]["per_subscore"].__setitem__("A", "minmax"))
-    minmax = scorerun.build(con)["scores"]["scores"]
-    a_rank = {p: rank[p]["ekonomi"]["components"]["A"] for p in rank}
-    a_minmax = {p: minmax[p]["ekonomi"]["components"]["A"] for p in minmax}
-    assert a_rank != a_minmax
-    # Fixturen saknar party_activity, så a2 är lika för alla och normaliseras till 2,5 i BÅDA
-    # lägena. Skillnaden kommer alltså helt ur a1 (budgetramarna, lästa ur config). minmax
-    # spänner ut a1 till [0,5] -> A = 0,6*a1 + 0,4*2,5 landar i [1,0 , 4,0].
-    assert min(a_minmax.values()) == pytest.approx(1.0)
-    assert max(a_minmax.values()) == pytest.approx(4.0)
-    con.close()
-
-
-@pytest.mark.parametrize("bad", ["rang", None])
-def test_okand_eller_saknad_a_normalisering_hard_failar(
-    monkeypatch: pytest.MonkeyPatch, bad: str | None
-) -> None:
-    """Felstavat ELLER saknat läge får ALDRIG tyst falla tillbaka på rank.
-
-    En tyst fallback skulle återskapa exakt det fel ADR 0004 punkt 3 fällde: en config som
-    beskriver ett beteende koden inte har. Grinden sitter på båda ställena, som coverage_mode.
+    ADR 0005 gjorde A absolut: båda halvorna mäts mot en historisk förankring och avbildas med
+    net_support_to_score. En kvarlämnad nyckel vore en config som beskriver ett beteende koden
+    inte har, alltså exakt det fel ADR 0004 punkt 3 fällde.
     """
-    def mutate(sc: dict) -> None:
-        if bad is None:
-            del sc["normalization"]["per_subscore"]["A"]
-        else:
-            sc["normalization"]["per_subscore"]["A"] = bad
+    assert "A" not in config.scoring()["normalization"]["per_subscore"]
+    assert "A_normalization" not in {s.name for s in robustness.SOURCES}
 
-    _patch_scoring(monkeypatch, mutate)
+
+def test_aterlagd_a_normalisering_hard_failar(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Läggs nyckeln tillbaka ska configen falla, inte tyst ignoreras."""
+    _patch_scoring(monkeypatch,
+                   lambda sc: sc["normalization"]["per_subscore"].__setitem__("A", "rank"))
     with pytest.raises(config.ConfigError, match="per_subscore.A"):
         config.validate()
-    con = _seed_con()
-    with pytest.raises(config.ConfigError, match="per_subscore.A"):
-        scorerun.build(con)
-    con.close()
+
+
+def test_a_som_relativ_hard_failar(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Skalsemantiken måste följa med: A är absolut efter ADR 0005."""
+    _patch_scoring(monkeypatch, lambda sc: sc.__setitem__("scale_semantics",
+                                                          {"relative": ["A", "C"],
+                                                           "absolute": ["B", "D"]}))
+    with pytest.raises(config.ConfigError, match="absolut"):
+        config.validate()
 
 
 # --- analysen: seed, dragningsantal och spann är LÅSTA (biljett #20 punkt 5) -----------
@@ -214,12 +191,16 @@ def test_vikterna_dras_ur_adr_0002s_mangd() -> None:
 
 
 def test_alla_kallor_i_adr_0003_punkt_5_dras() -> None:
-    """Källistan täcker ADR 0003 punkt 5 plus effect_strength (biljett #20)."""
+    """Källistan täcker ADR 0003 punkt 5 plus effect_strength (biljett #20).
+
+    A:s normalisering saknas med flit: ADR 0005 tog bort normaliseringen av A, så källan har
+    inget att dra i (biljett #21).
+    """
     names = {s.name for s in robustness.SOURCES}
     assert names == {
         "subscore_weights", "max_interval_halfwidth",
         "confidence_numeric.high", "confidence_numeric.medium", "confidence_numeric.low",
-        "default_subscore_certainty.A", "A_normalization",
+        "default_subscore_certainty.A",
         "B_coverage_mode", "B_coverage_shrink", "B_thin_coverage_threshold",
         "effect_strength.high", "effect_strength.medium", "effect_strength.low",
         "D_attribution_lag_years", "D_change_dead_zone", "D_min_responsibility",

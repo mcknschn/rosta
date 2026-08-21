@@ -1,0 +1,507 @@
+# Rösta — FÖRANKRINGEN för delpoäng A (ADR 0005). AUTOGENERERAD, redigera aldrig för hand.
+#
+#     python -m pipeline.tools.a_forankring_transcribe --config
+#
+# A frågar hur stor andel av sin kraft ett parti lägger på en kategori. Efter ADR 0005 mäts den
+# andelen mot hur stor andel kategorin normalt fått under ett historiskt fönster, inte mot de sju
+# andra partierna. Nollpunkten ligger alltså i tid och inte tvärs partier.
+#
+#   a1  kategorins andel av de BESLUTADE utgiftsramarna i bet. FiU1, som medel över fönstret.
+#       Regeringens förslag förkastas som förankring: det är ett blocks förslag varje enskilt år.
+#   a2  kategorins andel av kammarens SAMTLIGA motioner under fönstret. Den poolade
+#       partikammaren förkastas: den är de åtta partierna viktade efter hur mycket var och en
+#       skriver, alltså samma fältmått som ADR 0005 punkt 2 avvisar.
+#
+# Beloppen är transkriberade ur officiella källor, aldrig imputerade eller jämkade, och varje år
+# citerar sin tabell. Det finns INGEN runtime-parser: A är tyngsta delpoängen och får aldrig
+# kunna korrumperas av en bräcklig parser (samma regel som config/budget_ramar.yaml).
+# `--audit` kör configen mot riksdagen igen och faller på minsta avvikelse.
+#
+# Vilken tabell som är den beslutade läses ur betänkandet självt: beslutspunktens `vinnare` och
+# meningen om utgiftsramarna. Tre år i fönstret avgjordes inte på regeringens förslag:
+# 2015 på allianspartiernas reservation, 2019 på reservation 5 (M, KD) och 2022 på utskottets
+# eget förslag i bilaga 4. `adopted` bär vinnaren per år.
+
+version: 1
+
+window:
+  start: 2011
+  end: 2025
+  a1_bound: 2008      # FiU1:s rambeslutstabell listar utgiftsområde 1-27
+  a2_bound: 2011      # alla åtta partier har minst en motion i varje utskott mappningen använder
+  evidence: "docs/done/a_forankring/fonster.json"
+
+a1:
+  unit: mnkr
+  decided_frames:
+    2011:
+      source_ref: "riksdag:bet:GY01FiU1 (Förslag till utgiftsramar 2011)"
+      adopted: "utskottet"
+      UO1: 11633     # Rikets styrelse
+      UO2: 12998     # Samhällsekonomi och finansförvaltning
+      UO3: 10009     # Skatt, tull och exekution
+      UO4: 36758     # Rättsväsendet
+      UO5: 2002     # Internationell samverkan
+      UO6: 45306     # Försvar och samhällets krisberedskap
+      UO7: 30513     # Internationellt bistånd
+      UO8: 7157     # Migration
+      UO9: 60067     # Hälsovård, sjukvård och social omsorg
+      UO10: 93841     # Ekonomisk trygghet vid sjukdom och handikapp
+      UO11: 40624     # Ekonomisk trygghet vid ålderdom
+      UO12: 73092     # Ekonomisk trygghet för familjer och barn
+      UO13: 6028     # Integration och jämställdhet
+      UO14: 69632     # Arbetsmarknad och arbetsliv
+      UO15: 23472     # Studiestöd
+      UO16: 54532     # Utbildning och universitetsforskning
+      UO17: 12195     # Kultur, medier, trossamfund och fritid
+      UO18: 1282     # Samhällsplanering, bostadsförsörjning, byggande samt konsumentpolitik
+      UO19: 3510     # Regional tillväxt
+      UO20: 5129     # Allmän miljö- och naturvård
+      UO21: 2870     # Energi
+      UO22: 40125     # Kommunikationer
+      UO23: 17867     # Areella näringar, landsbygd och livsmedel
+      UO24: 5474     # Näringsliv
+      UO25: 88025     # Allmänna bidrag till kommuner
+      UO26: 25970     # Statsskuldsräntor m.m.
+      UO27: 30637     # Avgiften till Europeiska unionen
+    2012:
+      source_ref: "riksdag:bet:GZ01FiU1 (Förslag till utgiftsramar 2012)"
+      adopted: "utskottet"
+      UO1: 11809     # Rikets styrelse
+      UO2: 13359     # Samhällsekonomi och finansförvaltning
+      UO3: 10179     # Skatt, tull och exekution
+      UO4: 37871     # Rättsväsendet
+      UO5: 2024     # Internationell samverkan
+      UO6: 45578     # Försvar och samhällets krisberedskap
+      UO7: 30264     # Internationellt bistånd
+      UO8: 9068     # Migration
+      UO9: 60078     # Hälsovård, sjukvård och social omsorg
+      UO10: 93353     # Ekonomisk trygghet vid sjukdom och handikapp
+      UO11: 41060     # Ekonomisk trygghet vid ålderdom
+      UO12: 76717     # Ekonomisk trygghet för familjer och barn
+      UO13: 8374     # Integration och jämställdhet
+      UO14: 70476     # Arbetsmarknad och arbetsliv
+      UO15: 22184     # Studiestöd
+      UO16: 54476     # Utbildning och universitetsforskning
+      UO17: 12300     # Kultur, medier, trossamfund och fritid
+      UO18: 1152     # Samhällsplanering, bostadsförsörjning, byggande samt konsumentpolitik
+      UO19: 3399     # Regional tillväxt
+      UO20: 5025     # Allmän miljö- och naturvård
+      UO21: 2873     # Energi
+      UO22: 43061     # Kommunikationer
+      UO23: 17733     # Areella näringar, landsbygd och livsmedel
+      UO24: 6012     # Näringsliv
+      UO25: 85075     # Allmänna bidrag till kommuner
+      UO26: 21870     # Statsskuldsräntor m.m.
+      UO27: 31291     # Avgiften till Europeiska unionen
+    2013:
+      source_ref: "riksdag:bet:H001FiU1 (Förslag till utgiftsramar 2013)"
+      adopted: "utskottet"
+      UO1: 11979     # Rikets styrelse
+      UO2: 16274     # Samhällsekonomi och finansförvaltning
+      UO3: 10223     # Skatt, tull och exekution
+      UO4: 39391     # Rättsväsendet
+      UO5: 2034     # Internationell samverkan
+      UO6: 46197     # Försvar och samhällets krisberedskap
+      UO7: 31192     # Internationellt bistånd
+      UO8: 9504     # Migration
+      UO9: 62252     # Hälsovård, sjukvård och social omsorg
+      UO10: 94422     # Ekonomisk trygghet vid sjukdom o funkt.nedsättn.
+      UO11: 40000     # Ekonomisk trygghet vid ålderdom
+      UO12: 78137     # Ekonomisk trygghet för familjer och barn
+      UO13: 10476     # Integration och jämställdhet
+      UO14: 67233     # Arbetsmarknad och arbetsliv
+      UO15: 22026     # Studiestöd
+      UO16: 57137     # Utbildning och universitetsforskning
+      UO17: 12689     # Kultur, medier, trossamfund och fritid
+      UO18: 1193     # Samhällsplanering, bostadsförsörjning och byggande samt konsumentpolitik
+      UO19: 3391     # Regional tillväxt
+      UO20: 4893     # Allmän miljö- och naturvård
+      UO21: 2813     # Energi
+      UO22: 44604     # Kommunikationer
+      UO23: 16591     # Areella näringar, landsbygd och livsmedel
+      UO24: 5253     # Näringsliv
+      UO25: 88906     # Allmänna bidrag till kommuner
+      UO26: 22168     # Statsskuldsräntor m.m.
+      UO27: 33494     # Avgiften till Europeiska unionen
+    2014:
+      source_ref: "riksdag:bet:H101FiU1 (Utskottets förslag till utgiftsramar 2014)"
+      adopted: "utskottet"
+      UO1: 12896     # Rikets styrelse
+      UO2: 14121     # Samhällsekonomi och finansförvaltning
+      UO3: 10516     # Skatt, tull och exekution
+      UO4: 40292     # Rättsväsendet
+      UO5: 2018     # Internationell samverkan
+      UO6: 47196     # Försvar och samhällets krisberedskap
+      UO7: 31831     # Internationellt bistånd
+      UO8: 9919     # Migration
+      UO9: 62161     # Hälsovård, sjukvård och social omsorg
+      UO10: 96520     # Ekonomisk trygghet vid sjukdom och funktionsnedsättning
+      UO11: 39013     # Ekonomisk trygghet vid ålderdom
+      UO12: 81610     # Ekonomisk trygghet för familjer och barn
+      UO13: 12432     # Integration och jämställdhet
+      UO14: 70375     # Arbetsmarknad och arbetsliv
+      UO15: 21005     # Studiestöd
+      UO16: 60110     # Utbildning och universitetsforskning
+      UO17: 12880     # Kultur, medier, trossamfund och fritid
+      UO18: 1230     # Samhällsplanering, bostadsförsörjning och byggande samt konsumentpolitik
+      UO19: 2973     # Regional tillväxt
+      UO20: 5156     # Allmän miljö- och naturvård
+      UO21: 2830     # Energi
+      UO22: 45428     # Kommunikationer
+      UO23: 15278     # Areella näringar, landsbygd och livsmedel
+      UO24: 5588     # Näringsliv
+      UO25: 93596     # Allmänna bidrag till kommuner
+      UO26: 22084     # Statsskuldsräntor m.m.
+      UO27: 37700     # Avgiften till Europeiska unionen
+    2015:
+      source_ref: "riksdag:bet:H201FiU1 (Reservanternas förslag till utgiftsramar för 2015 (M, C, FP, KD))"
+      adopted: "reservationen"
+      UO1: 12199     # Rikets styrelse
+      UO2: 14800     # Samhällsekonomi och finansförvaltning
+      UO3: 10574     # Skatt, tull och exekution
+      UO4: 40758     # Rättsväsendet
+      UO5: 1919     # Internationell samverkan
+      UO6: 48451     # Försvar och samhällets krisberedskap
+      UO7: 29509     # Internationellt bistånd
+      UO8: 17433     # Migration
+      UO9: 61898     # Hälsovård, sjukvård och social omsorg
+      UO10: 100474     # Ekonomisk trygghet vid sjukdom och funktionsnedsättning
+      UO11: 38015     # Ekonomisk trygghet vid ålderdom
+      UO12: 83125     # Ekonomisk trygghet för familjer och barn
+      UO13: 16747     # Integration och jämställdhet
+      UO14: 67783     # Arbetsmarknad och arbetsliv
+      UO15: 20302     # Studiestöd
+      UO16: 63636     # Utbildning och universitetsforskning
+      UO17: 12785     # Kultur, medier, trossamfund och fritid
+      UO18: 1208     # Samhällsplanering, bostadsförsörjning och byggande samt konsumentpolitik
+      UO19: 2701     # Regional tillväxt
+      UO20: 5348     # Allmän miljö- och naturvård
+      UO21: 2470     # Energi
+      UO22: 48871     # Kommunikationer
+      UO23: 15656     # Areella näringar, landsbygd och livsmedel
+      UO24: 5309     # Näringsliv
+      UO25: 91441     # Allmänna bidrag till kommuner
+      UO26: 20526     # Statsskuldsräntor m.m.
+      UO27: 40126     # Avgiften till Europeiska unionen
+    2016:
+      source_ref: "riksdag:bet:H301FiU1 (Utskottets förslag till utgiftsramar 2016)"
+      adopted: "utskottet"
+      UO1: 12717     # Rikets styrelse
+      UO2: 14812     # Samhällsekonomi och finansförvaltning
+      UO3: 10783     # Skatt, tull och exekution
+      UO4: 41574     # Rättsväsendet
+      UO5: 1905     # Internationell samverkan
+      UO6: 48827     # Försvar och samhällets krisberedskap
+      UO7: 32357     # Internationellt bistånd
+      UO8: 19420     # Migration
+      UO9: 69238     # Hälsovård, sjukvård och social omsorg
+      UO10: 109868     # Ekonomisk trygghet vid sjukdom och funktionsnedsättning
+      UO11: 36184     # Ekonomisk trygghet vid ålderdom
+      UO12: 87129     # Ekonomisk trygghet för familjer och barn
+      UO13: 21070     # Jämställdhet och nyanlända invandrares etablering
+      UO14: 79681     # Arbetsmarknad och arbetsliv
+      UO15: 21708     # Studiestöd
+      UO16: 69452     # Utbildning och universitetsforskning
+      UO17: 13695     # Kultur, medier, trossamfund och fritid
+      UO18: 7064     # Samhällsplanering, bostadsförsörjning och byggande samt konsumentpolitik
+      UO19: 3256     # Regional tillväxt
+      UO20: 7662     # Allmän miljö- och naturvård
+      UO21: 2812     # Energi
+      UO22: 54122     # Kommunikationer
+      UO23: 18920     # Areella näringar, landsbygd och livsmedel
+      UO24: 5998     # Näringsliv
+      UO25: 93398     # Allmänna bidrag till kommuner
+      UO26: 10769     # Statsskuldsräntor m.m.
+      UO27: 31827     # Avgiften till Europeiska unionen
+    2017:
+      source_ref: "riksdag:bet:H401FiU1 (Utskottets förslag till utgiftsramar 2017)"
+      adopted: "utskottet"
+      UO1: 13268     # Rikets styrelse
+      UO2: 15259     # Samhällsekonomi och finansförvaltning
+      UO3: 10986     # Skatt, tull och exekution
+      UO4: 42467     # Rättsväsendet
+      UO5: 1913     # Internationell samverkan
+      UO6: 50254     # Försvar och samhällets krisberedskap
+      UO7: 34990     # Internationellt bistånd
+      UO8: 32580     # Migration
+      UO9: 68496     # Hälsovård, sjukvård och social omsorg
+      UO10: 107052     # Ekonomisk trygghet vid sjukdom och funktionsnedsättning
+      UO11: 34774     # Ekonomisk trygghet vid ålderdom
+      UO12: 89491     # Ekonomisk trygghet för familjer och barn
+      UO13: 32635     # Jämställdhet och nyanlända invandrares etablering
+      UO14: 75657     # Arbetsmarknad och arbetsliv
+      UO15: 22434     # Studiestöd
+      UO16: 72381     # Utbildning och universitetsforskning
+      UO17: 14521     # Kultur, medier, trossamfund och fritid
+      UO18: 6765     # Samhällsplanering, bostadsförsörjning och byggande samt konsumentpolitik
+      UO19: 3595     # Regional tillväxt
+      UO20: 8404     # Allmän miljö- och naturvård
+      UO21: 2877     # Energi
+      UO22: 55115     # Kommunikationer
+      UO23: 17189     # Areella näringar, landsbygd och livsmedel
+      UO24: 6456     # Näringsliv
+      UO25: 105555     # Allmänna bidrag till kommuner
+      UO26: 16468     # Statsskuldsräntor m.m.
+      UO27: 29586     # Avgiften till Europeiska unionen
+    2018:
+      source_ref: "riksdag:bet:H501FiU1 (Utskottets förslag till utgiftsramar 2018)"
+      adopted: "utskottet"
+      UO1: 14531     # Rikets styrelse
+      UO2: 16286     # Samhällsekonomi och finansförvaltning
+      UO3: 11399     # Skatt, tull och exekution
+      UO4: 45777     # Rättsväsendet
+      UO5: 2009     # Internationell samverkan
+      UO6: 53836     # Försvar och samhällets krisberedskap
+      UO7: 42985     # Internationellt bistånd
+      UO8: 15748     # Migration
+      UO9: 77696     # Hälsovård, sjukvård och social omsorg
+      UO10: 102615     # Ekonomisk trygghet vid sjukdom och funktionsnedsättning
+      UO11: 34636     # Ekonomisk trygghet vid ålderdom
+      UO12: 94586     # Ekonomisk trygghet för familjer och barn
+      UO13: 25600     # Jämställdhet och nyanlända invandrares etablering
+      UO14: 74084     # Arbetsmarknad och arbetsliv
+      UO15: 24353     # Studiestöd
+      UO16: 77966     # Utbildning och universitetsforskning
+      UO17: 15880     # Kultur, medier, trossamfund och fritid
+      UO18: 6952     # Samhällsplanering, bostadsförsörjning och byggande samt
+      UO19: 3922     # Regional tillväxt
+      UO20: 10773     # Allmän miljö- och naturvård
+      UO21: 3588     # Energi
+      UO22: 56419     # Kommunikationer
+      UO23: 19254     # Areella näringar, landsbygd och livsmedel
+      UO24: 7371     # Näringsliv
+      UO25: 111385     # Allmänna bidrag till kommuner
+      UO26: 11355     # Statsskuldsräntor m.m.
+      UO27: 39511     # Avgiften till Europeiska unionen
+    2019:
+      source_ref: "riksdag:bet:H601FiU1 (Reservanternas förslag till utgiftsramar 2019 (M, KD))"
+      adopted: "reservation 5"
+      UO1: 14594     # Rikets styrelse
+      UO2: 17319     # Samhällsekonomi och finansförvaltning
+      UO3: 11523     # Skatt, tull och exekution
+      UO4: 48384     # Rättsväsendet
+      UO5: 2362     # Internationell samverkan
+      UO6: 60067     # Försvar och samhällets krisberedskap
+      UO7: 44945     # Internationellt bistånd
+      UO8: 12112     # Migration
+      UO9: 81277     # Hälsovård, sjukvård och social omsorg
+      UO10: 97657     # Ekonomisk trygghet vid sjukdom och
+      UO11: 34881     # Ekonomisk trygghet vid ålderdom
+      UO12: 97332     # Ekonomisk trygghet för familjer och barn
+      UO13: 17967     # Jämställdhet och nyanlända invandrares etablering
+      UO14: 73940     # Arbetsmarknad och arbetsliv
+      UO15: 24731     # Studiestöd
+      UO16: 80846     # Utbildning och universitetsforskning
+      UO17: 15782     # Kultur, medier, trossamfund och fritid
+      UO18: 4742     # Samhällsplanering, bostadsförsörjning och byggande samt
+      UO19: 3497     # Regional tillväxt
+      UO20: 9737     # Allmän miljö- och naturvård
+      UO21: 3150     # Energi
+      UO22: 58968     # Kommunikationer
+      UO23: 20900     # Areella näringar, landsbygd och livsmedel
+      UO24: 7437     # Näringsliv
+      UO25: 119993     # Allmänna bidrag till kommuner
+      UO26: 25155     # Statsskuldsräntor m.m.
+      UO27: 40914     # Avgiften till Europeiska unionen
+    2020:
+      source_ref: "riksdag:bet:H701FiU1 (Regeringens förslag till utgiftsramar 2020)"
+      adopted: "utskottet"
+      UO1: 15131     # Rikets styrelse
+      UO2: 17390     # Samhällsekonomi och finansförvaltning
+      UO3: 12057     # Skatt, tull och exekution
+      UO4: 51731     # Rättsväsendet
+      UO5: 2028     # Internationell samverkan
+      UO6: 64800     # Försvar och samhällets krisberedskap
+      UO7: 45989     # Internationellt bistånd
+      UO8: 11446     # Migration
+      UO9: 84167     # Hälsovård, sjukvård och social omsorg
+      UO10: 95706     # Ekonomisk trygghet vid sjukdom och funktionsnedsättning
+      UO11: 36542     # Ekonomisk trygghet vid ålderdom
+      UO12: 101430     # Ekonomisk trygghet för familjer och barn
+      UO13: 10066     # Jämställdhet och nyanlända invandrares etablering
+      UO14: 77164     # Arbetsmarknad och arbetsliv
+      UO15: 25508     # Studiestöd
+      UO16: 83316     # Utbildning och universitetsforskning
+      UO17: 16061     # Kultur, medier, trossamfund och fritid
+      UO18: 3727     # Samhällsplanering, bostadsförsörjning och byggande samt konsumentpolitik
+      UO19: 3673     # Regional tillväxt
+      UO20: 12571     # Allmän miljö- och naturvård
+      UO21: 3469     # Energi
+      UO22: 61296     # Kommunikationer
+      UO23: 19790     # Areella näringar, landsbygd och livsmedel
+      UO24: 7264     # Näringsliv
+      UO25: 128418     # Allmänna bidrag till kommuner
+      UO26: 29655     # Statsskuldsräntor m.m.
+      UO27: 41990     # Avgiften till Europeiska unionen
+    2021:
+      source_ref: "riksdag:bet:H801FiU1 (Regeringens förslag till utgiftsramar 2021)"
+      adopted: "utskottet"
+      UO1: 15908     # Rikets styrelse
+      UO2: 17502     # Samhällsekonomi och finansförvaltning
+      UO3: 12414     # Skatt, tull och exekution
+      UO4: 56431     # Rättsväsendet
+      UO5: 1999     # Internationell samverkan
+      UO6: 71153     # Försvar och samhällets krisberedskap
+      UO7: 46829     # Internationellt bistånd
+      UO8: 9268     # Migration
+      UO9: 101942     # Hälsovård, sjukvård och social omsorg
+      UO10: 98410     # Ekonomisk trygghet vid sjukdom och funktionsnedsättning
+      UO11: 37716     # Ekonomisk trygghet vid ålderdom
+      UO12: 103578     # Ekonomisk trygghet för familjer och barn
+      UO13: 7791     # Jämställdhet och nyanlända invandrares etablering
+      UO14: 105724     # Arbetsmarknad och arbetsliv
+      UO15: 28313     # Studiestöd
+      UO16: 92078     # Utbildning och universitetsforskning
+      UO17: 17791     # Kultur, medier, trossamfund och fritid
+      UO18: 5579     # Samhällsplanering, bostadsförsörjning och byggande samt konsumentpolitik
+      UO19: 4173     # Regional utveckling
+      UO20: 16202     # Allmän miljö- och naturvård
+      UO21: 4514     # Energi
+      UO22: 73916     # Kommunikationer
+      UO23: 22581     # Areella näringar, landsbygd och livsmedel
+      UO24: 15355     # Näringsliv
+      UO25: 153452     # Allmänna bidrag till kommuner
+      UO26: 165     # Statsskuldsräntor m.m.
+      UO27: 45037     # Avgiften till Europeiska unionen
+    2022:
+      source_ref: "riksdag:bet:H901FiU1 (Utskottets förslag till utgiftsramar 2022)"
+      adopted: "utskottet"
+      UO1: 17238     # Rikets styrelse
+      UO2: 17971     # Samhällsekonomi och finansförvaltning
+      UO3: 12830     # Skatt, tull och exekution
+      UO4: 62919     # Rättsväsendet
+      UO5: 2235     # Internationell samverkan
+      UO6: 76571     # Försvar och samhällets krisberedskap
+      UO7: 51940     # Internationellt bistånd
+      UO8: 8541     # Migration
+      UO9: 113309     # Hälsovård, sjukvård och social omsorg
+      UO10: 97428     # Ekonomisk trygghet vid sjukdom och funktionsnedsättning
+      UO11: 42161     # Ekonomisk trygghet vid ålderdom
+      UO12: 99847     # Ekonomisk trygghet för familjer och barn
+      UO13: 6152     # Jämställdhet och nyanlända invandrares etablering
+      UO14: 93221     # Arbetsmarknad och arbetsliv
+      UO15: 27801     # Studiestöd
+      UO16: 95384     # Utbildning och universitetsforskning
+      UO17: 18500     # Kultur, medier, trossamfund och fritid
+      UO18: 5769     # Samhällsplanering, bostadsförsörjning och byggande samt konsumentpolitik
+      UO19: 4742     # Regional utveckling
+      UO20: 20952     # Allmän miljö- och naturvård
+      UO21: 3255     # Energi
+      UO22: 76965     # Kommunikationer
+      UO23: 21645     # Areella näringar, landsbygd och livsmedel
+      UO24: 9255     # Näringsliv
+      UO25: 156498     # Allmänna bidrag till kommuner
+      UO26: 12155     # Statsskuldsräntor m.m.
+      UO27: 47837     # Avgiften till Europeiska unionen
+    2023:
+      source_ref: "riksdag:bet:HA01FiU1 (Regeringens förslag till utgiftsramar 2023)"
+      adopted: "utskottet"
+      UO1: 18270     # Rikets styrelse
+      UO2: 19021     # Samhällsekonomi och finansförvaltning
+      UO3: 12923     # Skatt, tull och exekution
+      UO4: 68306     # Rättsväsendet
+      UO5: 2095     # Internationell samverkan
+      UO6: 93953     # Försvar och samhällets krisberedskap
+      UO7: 47206     # Internationellt bistånd
+      UO8: 16020     # Migration
+      UO9: 110430     # Hälsovård, sjukvård och social omsorg
+      UO10: 106427     # Ekonomisk trygghet vid sjukdom och funktionsnedsättning
+      UO11: 55394     # Ekonomisk trygghet vid ålderdom
+      UO12: 105160     # Ekonomisk trygghet för familjer och barn
+      UO13: 5565     # Jämställdhet och nyanlända invandrares etablering
+      UO14: 90104     # Arbetsmarknad och arbetsliv
+      UO15: 27912     # Studiestöd
+      UO16: 94992     # Utbildning och universitetsforskning
+      UO17: 16668     # Kultur, medier, trossamfund och fritid
+      UO18: 6099     # Samhällsplanering, bostadsförsörjning och byggande samt konsumentpolitik
+      UO19: 4534     # Regional utveckling
+      UO20: 19543     # Allmän miljö- och naturvård
+      UO21: 4945     # Energi
+      UO22: 78952     # Kommunikationer
+      UO23: 19373     # Areella näringar, landsbygd och livsmedel
+      UO24: 11408     # Näringsliv
+      UO25: 157545     # Allmänna bidrag till kommuner
+      UO26: 13155     # Statsskuldsräntor m.m.
+      UO27: 45870     # Avgiften till Europeiska unionen
+    2024:
+      source_ref: "riksdag:bet:HB01FiU1 (Regeringens förslag till utgiftsramar 2024)"
+      adopted: "utskottet"
+      UO1: 19070     # Rikets styrelse
+      UO2: 20881     # Samhällsekonomi och finansförvaltning
+      UO3: 16854     # Skatt, tull och exekution
+      UO4: 76028     # Rättsväsendet
+      UO5: 2274     # Internationell samverkan
+      UO6: 126060     # Försvar och samhällets krisberedskap
+      UO7: 48630     # Internationellt bistånd
+      UO8: 13808     # Migration
+      UO9: 110258     # Hälsovård, sjukvård och social omsorg
+      UO10: 116907     # Ekonomisk trygghet vid sjukdom och funktionsnedsättning
+      UO11: 60310     # Ekonomisk trygghet vid ålderdom
+      UO12: 106071     # Ekonomisk trygghet för familjer och barn
+      UO13: 4018     # Integration och jämställdhet
+      UO14: 92059     # Arbetsmarknad och arbetsliv
+      UO15: 30545     # Studiestöd
+      UO16: 99461     # Utbildning och universitetsforskning
+      UO17: 16646     # Kultur, medier, trossamfund och fritid
+      UO18: 6082     # Samhällsplanering, bostadsförsörjning och byggande samt konsumentpolitik
+      UO19: 3922     # Regional utveckling
+      UO20: 19307     # Klimat, miljö och natur
+      UO21: 5604     # Energi
+      UO22: 82875     # Kommunikationer
+      UO23: 23973     # Areella näringar, landsbygd och livsmedel
+      UO24: 9552     # Näringsliv
+      UO25: 174280     # Allmänna bidrag till kommuner
+      UO26: 20455     # Statsskuldsräntor m.m.
+      UO27: 40760     # Avgiften till Europeiska unionen
+    2025:
+      source_ref: "riksdag:bet:HC01FiU1 (Regeringens förslag till utgiftsramar 2025)"
+      adopted: "utskottet"
+      UO1: 20131     # Rikets styrelse
+      UO2: 21734     # Samhällsekonomi och finansförvaltning
+      UO3: 14812     # Skatt, tull och exekution
+      UO4: 86792     # Rättsväsendet
+      UO5: 2278     # Internationell samverkan
+      UO6: 169680     # Försvar och samhällets krisberedskap
+      UO7: 44500     # Internationellt bistånd
+      UO8: 11938     # Migration
+      UO9: 120255     # Hälsovård, sjukvård och social omsorg
+      UO10: 123059     # Ekonomisk trygghet vid sjukdom och funktionsnedsättning
+      UO11: 62890     # Ekonomisk trygghet vid ålderdom
+      UO12: 104531     # Ekonomisk trygghet för familjer och barn
+      UO13: 6266     # Integration och jämställdhet
+      UO14: 93539     # Arbetsmarknad och arbetsliv
+      UO15: 33793     # Studiestöd
+      UO16: 103845     # Utbildning och universitetsforskning
+      UO17: 16862     # Kultur, medier, trossamfund och fritid
+      UO18: 3240     # Samhällsplanering, bostadsförsörjning och byggande samt konsumentpolitik
+      UO19: 4294     # Regional utveckling
+      UO20: 16439     # Klimat, miljö och natur
+      UO21: 6631     # Energi
+      UO22: 94447     # Kommunikationer
+      UO23: 21698     # Areella näringar, landsbygd och livsmedel
+      UO24: 8315     # Näringsliv
+      UO25: 173107     # Allmänna bidrag till kommuner
+      UO26: 28755     # Statsskuldsräntor m.m.
+      UO27: 47762     # Avgiften till Europeiska unionen
+
+a2:
+  chamber_motions:
+    source_ref: "riksdag:dokumentlista:doktyp=mot per org, 2011-01-01/2025-12-31 (kammarens samtliga motioner)"
+    period: "2011-01-01/2025-12-31"
+    committees:
+      FiU: 1925
+      SkU: 3790
+      NU: 3315
+      AU: 2190
+      TU: 5720
+      SoU: 6517
+      UbU: 4623
+      JuU: 4568
+      FöU: 1150
+      UU: 2358
+      MJU: 5098
+      SfU: 2858
+      CU: 3598
+      KU: 3265
+      KrU: 2205

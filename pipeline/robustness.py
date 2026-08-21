@@ -104,10 +104,6 @@ def _set_default_certainty(v: str, sc: dict, _cl: dict) -> None:
     sc["uncertainty"]["default_subscore_certainty"]["A"] = v
 
 
-def _set_a_normalization(v: str, sc: dict, _cl: dict) -> None:
-    sc["normalization"]["per_subscore"]["A"] = v
-
-
 def _set_effect_strength(level: str) -> Callable[[Any, dict, dict], None]:
     def apply(v: float, _sc: dict, cl: dict) -> None:
         cl["numeric"]["effect_strength"][level] = v
@@ -150,8 +146,11 @@ SOURCES: tuple[Source, ...] = (
            f"{_BUILT}: nivåerna i confidence_numeric. Bara A:s default når ett band; "
            "B, C och D överskrids i varje cell.",
            _set_default_certainty, band_only=True),
-    Source("A_normalization", "choice", ("rank", "minmax"),
-           f"{_BUILT}: score.normalize har två metoder.", _set_a_normalization),
+    # A:s normalisering STRUKEN 2026-08-21 (ADR 0005, biljett #21). A normaliseras inte längre:
+    # båda halvorna mäts mot en historisk förankring och avbildas med net_support_to_score, så
+    # källan har inget att dra i. Den var mest inflytelserik av samtliga 21 i #20-körningen, och
+    # A saknar därmed en dragen källa. Nästa kandidat är fönstret i ADR 0005 punkt 7, men den
+    # ligger utanför källistan i ADR 0003 punkt 5 och kräver en egen biljett.
     Source("B_coverage_mode", "choice", ("policy_type_count", "weighted_submeasure_depth"),
            f"{_BUILT}: de två lägen scorerun bygger.", _set_b("coverage_mode")),
     Source("B_coverage_shrink", "choice", (True, False),

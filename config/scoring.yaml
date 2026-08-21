@@ -19,30 +19,43 @@ subscore_weights:        # speglar categories.yaml subscore_weights (0-1)
   C: 0.00      # maktandel, inte delpoäng (ADR 0002). Nyckeln behålls, pipeline/config.py kräver den.
   D: 0.20
 
-# Skalsemantik (modelldokumentation, läses inte av kod men styr tolkning):
-#   relativa delpoäng rangordnas över de 8 partierna (A=5 = "mest av alla", ej "absolut bra")
+# Skalsemantik:
+#   relativa delpoäng rangordnas över de 8 partierna (C=5 = "mest av alla", ej "absolut mycket")
 #   absoluta delpoäng är oberoende av andra partier (net_support=0 -> 2.5; uppmätt förändring)
+# A flyttades från relative till absolute 2026-08-21 (ADR 0005 punkt 1). Skälet är härlett ur
+# ADR 0002 punkt 3, som ger A dess vikt med orden "ett parti som lägger lite kraft på rätt
+# åtgärd förbättrar något". "Lite kraft" är ett absolut påstående; ett rangmått kan bara säga
+# "minst kraft av de åtta". pipeline/config.py hard-failar om A står under relative igen.
 scale_semantics:
-  relative: [A, C]
-  absolute: [B, D]
+  relative: [C]
+  absolute: [A, B, D]
 
-# Normalisering till 0-5. A och C-makt har få datapunkter (8 partier) och tunga svansar
-# -> rank (outlier-robust). B och D är redan absoluta och normaliseras inte.
+# Normalisering till 0-5. Bara C-makt normaliseras nu: den har få datapunkter (8 partier) och
+# tunga svansar -> rank (outlier-robust). A, B och D är absoluta och normaliseras inte.
+# per_subscore.A är BORTTAGEN (ADR 0005 punkt 3): A:s båda halvor mäts mot en historisk
+# förankring, q = (andel - förankring) / (andel + förankring), och avbildas med
+# net_support_to_score. En kvarlämnad nyckel hard-failar i pipeline/config.py.
 normalization:
   default: { method: minmax, min: 0, max: 5, neutral: 2.5 }
   per_subscore:
-    A: rank
     C: rank
 
 # A - Prioritering (ADR 0001). A mäter omfattning, aldrig riktning och aldrig kvalitet.
 # Frågan är: hur stor andel av partiets föreslagna anslag och egna motioner går till
 # kategorin? a1 budgetprioritering väger 0,6 och a2 motionsprioritering 0,4. Båda är
-# riktningsneutrala andelar, rank-normaliserade över de åtta partierna. Riktningen ligger
-# i B, där voteringarna hör hemma.
+# riktningsneutrala andelar. Riktningen ligger i B, där voteringarna hör hemma.
+# ADR 0005: andelen mäts mot en HISTORISK FÖRANKRING, inte mot de sju andra partierna. För
+# varje parti och kategori gäller q = (andel - förankring) / (andel + förankring), som ligger i
+# [-1, 1] av konstruktion och är 0 vid jämnhöjd; betyget blir net_support_to_score(q), samma
+# linjära avbildning som B använder. Ingen konstant väljs. Förankringen står i
+# config/a_forankring.yaml: a1 mot de beslutade utgiftsramarna i bet. FiU1 och a2 mot kammarens
+# samtliga motioner, båda som medel över ett gemensamt historiskt fönster.
 A_agerande:
   components:
     a1_budgetprioritering: 0.6      # andel av föreslagna anslag till kategorins UO (Fas 1b)
     a2_lagstiftningsprioritering: 0.4  # ANDEL av partiets egna motioner som rör kategorin
+  # Blandningen 0,6/0,4 står orörd efter ADR 0005 punkt 4. Båda halvorna får SAMMA form, för
+  # att blanda ett rangmått med ett kvotmått i en viktad summa vore ett formfel i sig.
   # a2 mäter andel (motioner i kategorins utskott / partiets totala motioner), INTE rå volym
   # -> stora partier blir inte höga i varje kategori.
   # a1 (Fas 1b, byggd): andel av partiets föreslagna utgiftsramar (Σ kategorins UO / Σ alla UO) ur

@@ -2,7 +2,8 @@
 
 Beräknar A/B/C/D per (parti, kategori) deterministiskt och skriver de enda filer som
 deployas. Kategoribetyg = 0,30 A + 0,50 B + 0,20 D; C väger 0 (ADR 0002). Läget i dag:
-  A = prioritering: a1 budgetandel (gated) + a2 motionsandel, rank-norm.  -> hög säkerhet
+  A = prioritering: a1 budgetandel (gated) + a2 motionsandel, mot historisk
+      förankring (ADR 0005)                                               -> hög säkerhet
   B = evidens: partiståndpunkter x evidensliggare -> väntad storlek, krympt efter
       täckning; säkerheten härleds ur evidensen (ADR 0004)                -> hög/medel/låg
   C = maktandel: nationell + subnationell makt, rank-norm. Ger inga poäng -> hög/medel
@@ -17,7 +18,7 @@ import sys
 from datetime import date, timedelta
 from typing import NamedTuple
 
-from . import DIST_DIR, budget, config, effects, positions, schema, score, warehouse
+from . import DIST_DIR, anchor, budget, config, effects, positions, schema, score, warehouse
 from . import claims as claims_mod
 
 # Mandatperiodens FORMELLA slut (nästa riksdagsval). Det här är ett fönsterslut för ansvar och
@@ -621,21 +622,18 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
     parties = config.party_codes()
     cats = config.category_ids()
 
-    # A (faktiskt agerande) = w_a1*a1 + w_a2*a2 (vikter ur scoring.yaml). Båda är RELATIVA
-    # prioriteringsmått (rank-normaliserade över de 8 partierna), inte rå volym.
-    #   a2 = motionsprioritering: andel av partiets egna motioner som rör kategorin (full täckning).
+    # A (prioritering) = w_a1*a1 + w_a2*a2 (vikter ur scoring.yaml). Båda är ABSOLUTA efter
+    # ADR 0005: andelen mäts mot en HISTORISK FÖRANKRING, inte mot de sju andra partierna.
+    #   a2 = motionsprioritering: andel av partiets egna motioner som rör kategorin (full täckning),
+    #        mot kammarens motionsfördelning i fönstret.
     #   a1 = budgetprioritering: andel av partiets föreslagna anslag till kategorins UO (Fas 1b,
-    #        gated — se budget.py). a1 vägs in ENDAST för kategorier där grinden är uppfylld;
-    #        annars faller A tillbaka på a2 helt (A_a2_only-flagga).
-    # A:s normalisering läses ur configen (normalization.per_subscore.A). Configen har alltid
-    # deklarerat 'rank' medan koden hårdkodade den; nu styr deklarationen, så ADR 0003 punkt 5
-    # kan dra reglaget. Saknad eller okänd nyckel hard-failar — aldrig tyst rank (samma mönster
-    # som coverage_mode, spegel av kontrollen i config._validate_scoring).
-    a_norm = (config.scoring().get("normalization") or {}).get("per_subscore", {}).get("A")
-    if a_norm not in ("rank", "minmax"):
-        raise config.ConfigError(
-            f"normalization.per_subscore.A={a_norm!r} är ogiltigt (tillåtna: rank, minmax)"
-        )
+    #        gated — se budget.py), mot de beslutade utgiftsramarna i fönstret. a1 vägs in ENDAST
+    #        för kategorier där grinden är uppfylld; annars faller A tillbaka på a2 helt
+    #        (A_a2_only-flagga).
+    # Formen är densamma i båda halvorna: q = (andel - förankring) / (andel + förankring) i
+    # [-1, 1], sedan score.net_support_to_score. Ingen normalisering och ingen vald konstant.
+    a1_anchor = anchor.a1_anchor_shares(cats)
+    a2_anchor = anchor.a2_anchor_shares(cats)
     counts = {(p, c): 0.0 for p in parties for c in cats}
     for p, c, t in con.execute(
         "SELECT party, category, sum(count) FROM party_activity GROUP BY party, category"
@@ -647,7 +645,9 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
         for p in parties for c in cats
     }
     a2_by_cat = {
-        c: score.normalize({p: a2_share[(p, c)] for p in parties}, a_norm) for c in cats
+        c: {p: score.net_support_to_score(score.bounded_quotient(a2_share[(p, c)], a2_anchor[c]))
+            for p in parties}
+        for c in cats
     }
 
     a1_share, a1_active = budget.a1_shares(cats, parties, ramar_cfg=budget_cfg)
@@ -660,8 +660,11 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
         if c in a1_active:
             # a1_share[(p,c)] finns för alla partier när c är aktiv (grinden garanterar det);
             # direkt indexering => hård fail om en cell mot förmodan saknas (aldrig tyst 0).
-            a1_norm = score.normalize({p: a1_share[(p, c)] for p in parties}, a_norm)
-            a_by_cat[c] = {p: w_a1 * a1_norm[p] + w_a2 * a2_by_cat[c][p] for p in parties}
+            a1_scored = {
+                p: score.net_support_to_score(score.bounded_quotient(a1_share[(p, c)], a1_anchor[c]))
+                for p in parties
+            }
+            a_by_cat[c] = {p: w_a1 * a1_scored[p] + w_a2 * a2_by_cat[c][p] for p in parties}
             a_flag_by_cat[c] = "A_a1_active"
         else:
             a_by_cat[c] = a2_by_cat[c]
@@ -849,6 +852,7 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
     # dagar den ännu inte suttit. Se POWER_WINDOW_END.
     today = date.today()
     fresh = data_freshness(con, today=today)
+    a_window = anchor.window()
     out = {
         "meta": {
             "generated": today.isoformat(), "window": "2014-2026",
@@ -872,6 +876,12 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
                 "a1 budgetprioritering gated, aktiv för "
                 f"{len(a1_active)}/{len(cats)} kategorier ur officiella utgiftsramar "
                 "(2023-2025), expertgranskad v1 2026-06-05, annars a2-fallback; "
+                "A är ABSOLUT sedan ADR 0005: båda halvorna mäts mot en historisk "
+                f"förankring ({a_window[0]}-{a_window[1]}), a1 mot de beslutade "
+                "utgiftsramarna i bet. FiU1 och a2 mot kammarens samtliga motioner, som "
+                "q=(andel-förankring)/(andel+förankring) avbildad med samma linjära "
+                "skala som B; A rangordnas alltså inte längre över de åtta partierna, "
+                "så ett parti som lägger ungefär som normen får ett betyg nära mitten; "
                 "C=maktandel, vikt 0: ger inga poäng utan redovisas som upplysning om "
                 "vem som haft makten; räknas per kategori som "
                 "nationell regeringsmakt blandad med subnationell "

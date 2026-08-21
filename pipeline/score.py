@@ -7,8 +7,10 @@ Kategoribetyg = 0.30*A + 0.50*B + 0.20*D              (A,B,D i [0,5])
 C väger 0 och ger inga poäng. Den räknas ut som förut och redovisas som maktandel
 (ADR 0002). Vikterna läses ur scoring.yaml, aldrig härifrån.
 
-Skalsemantik (se scoring.yaml): A och C är RELATIVA (rangordnas över de 8 partierna),
-B och D är ABSOLUTA (net_support=0 -> 2.5 oberoende av andra partier).
+Skalsemantik (se scoring.yaml): C är RELATIV (rangordnas över de 8 partierna). A, B och D är
+ABSOLUTA (net_support=0 -> 2.5 oberoende av andra partier). A blev absolut i ADR 0005: dess båda
+halvor mäts mot en historisk förankring med bounded_quotient och avbildas med
+net_support_to_score, samma avbildning som B.
 """
 
 from __future__ import annotations
@@ -87,6 +89,26 @@ def normalize(values: Mapping[str, float], method: str = "minmax", **kw: float) 
 
 
 # --- B-rollup (absolut delpoäng) ------------------------------------------------
+
+def bounded_quotient(share: float, anchor: float) -> float:
+    """Andel mot förankring som en begränsad kvot: (andel - förankring) / (andel + förankring).
+
+    A:s form efter ADR 0005 punkt 3. Kvoten ligger i [-1, 1] av konstruktion och är 0 vid
+    jämnhöjd, alltså precis den storhet net_support_to_score redan avbildar på [0, 5]. Ingen
+    konstant väljs. Måttet mättar mjukt: tre gånger förankringen ger 0,50 och fem gånger 0,67,
+    en deklarerad kostnad i ADR 0005.
+
+    Båda talen är andelar och därför icke-negativa; ett negativt tal är ett fel i underlaget och
+    ger hård fail (aldrig en tyst kvot utanför intervallet). Saknas underlag helt (båda 0) finns
+    ingen kvot, och 0 betyder då jämnhöjd.
+    """
+    if share < 0 or anchor < 0:
+        raise ValueError(f"Andel och förankring måste vara >= 0, fick {share} och {anchor}")
+    total = share + anchor
+    if total == 0:
+        return 0.0
+    return (share - anchor) / total
+
 
 def net_support_to_score(net_support: float) -> float:
     """net_support i [-1, 1] -> betyg i [0, 5] (linjärt). 0 -> 2.5."""

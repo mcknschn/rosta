@@ -248,3 +248,66 @@ def test_not_applicable_flag_and_confidence() -> None:
 def test_category_score_rejects_out_of_range_component() -> None:
     with pytest.raises(ValueError):
         score.category_score_from_components({"A": 9.0, "B": 3.0, "C": 3.0, "D": 3.0})
+
+
+# --- Begränsad kvot: A:s form efter ADR 0005 ------------------------------------
+
+def test_bounded_quotient_ar_noll_vid_jamnhojd() -> None:
+    assert score.bounded_quotient(0.12, 0.12) == pytest.approx(0.0)
+
+
+def test_bounded_quotient_ligger_i_intervallet() -> None:
+    """q ligger i [-1, 1] av konstruktion, hur extrem andelen än är (ADR 0005 punkt 3)."""
+    for andel in (0.0, 1e-9, 0.001, 0.5, 1.0, 1000.0):
+        for forankring in (1e-9, 0.001, 0.5, 1.0, 1000.0):
+            assert -1.0 <= score.bounded_quotient(andel, forankring) <= 1.0
+
+
+def test_bounded_quotient_mattar_mjukt() -> None:
+    """Tre gånger och fem gånger förankringen hamnar nära varandra (deklarerad kostnad)."""
+    q3 = score.bounded_quotient(0.30, 0.10)
+    q5 = score.bounded_quotient(0.50, 0.10)
+    assert q3 == pytest.approx(0.5)
+    assert q5 == pytest.approx(2 / 3)
+    assert q5 - q3 < 0.2
+
+
+def test_bounded_quotient_nastan_lika_andelar_ger_nastan_lika_kvot() -> None:
+    """Godkännandetest: 8,73e-06 skillnad i andel får inte bli ett helt betygssteg."""
+    a = score.bounded_quotient(0.0413, 0.0500)
+    b = score.bounded_quotient(0.0413 + 8.73e-06, 0.0500)
+    assert abs(score.net_support_to_score(a) - score.net_support_to_score(b)) < 0.001
+
+
+def test_bounded_quotient_utan_underlag_ar_noll() -> None:
+    """andel = förankring = 0 saknar kvot. Den blir 0, alltså jämnhöjd, aldrig NaN."""
+    assert score.bounded_quotient(0.0, 0.0) == 0.0
+
+
+def test_bounded_quotient_negativt_underlag_ar_hard_fail() -> None:
+    """Andelar och förankringar är per konstruktion icke-negativa. Ett negativt tal är ett fel."""
+    with pytest.raises(ValueError):
+        score.bounded_quotient(-0.1, 0.2)
+    with pytest.raises(ValueError):
+        score.bounded_quotient(0.1, -0.2)
+
+
+def test_a_spridningen_beror_pa_underlaget_till_skillnad_fran_rang() -> None:
+    """Godkännandetest ur biljett #21: A slutar spendera hela sitt utrymme oavsett underlag.
+
+    Samma åtta andelar mot två olika förankringar. Rangnormaliseringen ger samma spridning i
+    båda fallen, eftersom den alltid lägger lägsta partiet på 0 och högsta på 5. Den begränsade
+    kvoten ger olika, eftersom den mäter hur långt ifrån förankringen andelarna faktiskt ligger.
+    """
+    shares = {"S": 0.052, "M": 0.050, "SD": 0.050, "C": 0.051, "V": 0.049,
+              "KD": 0.050, "L": 0.050, "MP": 0.053}
+
+    def spread(anchor: float) -> float:
+        vals = [score.net_support_to_score(score.bounded_quotient(v, anchor))
+                for v in shares.values()]
+        return max(vals) - min(vals)
+
+    rank = score.rank_normalize(shares)
+    assert max(rank.values()) - min(rank.values()) == pytest.approx(5.0)
+    assert spread(0.050) != pytest.approx(spread(0.020))
+    assert spread(0.050) < 1.0        # nästan lika andelar ger nästan lika betyg
