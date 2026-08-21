@@ -408,3 +408,40 @@ def test_dist_robustness_validerar_och_har_last_seed() -> None:
     assert data["meta"]["n_draws"] == robustness.N_DRAWS
     assert data["meta"]["n_draws_shipped"] == robustness.N_DRAWS_SHIPPED
     assert len(data["scenarios"]) == 7
+
+
+def test_c_normaliseringen_styrs_av_configen(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Configen deklarerade 'rank' medan koden hårdkodade den. Nu styr deklarationen.
+
+    Samma fel som rättades för A, och samma grind: ett felstavat eller saknat läge får aldrig
+    tyst falla tillbaka på rank. C väger 0 och ingår därför inte i dragningen (ADR 0003 punkt 5);
+    den här kopplingen ändrar bara vem som bestämmer, inte vad som byggs.
+    """
+    assert config.scoring()["normalization"]["per_subscore"]["C"] == "rank"
+    con = _seed_con()
+    rank = scorerun.build(con)["scores"]["scores"]
+    _patch_scoring(monkeypatch,
+                   lambda sc: sc["normalization"]["per_subscore"].__setitem__("C", "minmax"))
+    minmax = scorerun.build(con)["scores"]["scores"]
+    con.close()
+    assert {p: rank[p]["ekonomi"]["components"]["C"] for p in rank} != \
+        {p: minmax[p]["ekonomi"]["components"]["C"] for p in minmax}
+
+
+@pytest.mark.parametrize("bad", ["rang", None])
+def test_okand_eller_saknad_c_normalisering_hard_failar(
+    monkeypatch: pytest.MonkeyPatch, bad: str | None
+) -> None:
+    def mutate(sc: dict) -> None:
+        if bad is None:
+            del sc["normalization"]["per_subscore"]["C"]
+        else:
+            sc["normalization"]["per_subscore"]["C"] = bad
+
+    _patch_scoring(monkeypatch, mutate)
+    with pytest.raises(config.ConfigError, match="per_subscore.C"):
+        config.validate()
+    con = _seed_con()
+    with pytest.raises(config.ConfigError, match="per_subscore.C"):
+        scorerun.build(con)
+    con.close()

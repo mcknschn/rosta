@@ -32,6 +32,9 @@ scale_semantics:
 
 # Normalisering till 0-5. Bara C-makt normaliseras nu: den har få datapunkter (8 partier) och
 # tunga svansar -> rank (outlier-robust). A, B och D är absoluta och normaliseras inte.
+# Nyckeln STYR C:s normalisering: scorerun.category_c läser den, och ett saknat eller felstavat
+# värde hard-failar i pipeline/config.py. Fram till 2026-08-21 hårdkodade koden rank medan
+# configen deklarerade den, alltså en config som beskrev ett beteende koden inte hade.
 # per_subscore.A är BORTTAGEN (ADR 0005 punkt 3): A:s båda halvor mäts mot en historisk
 # förankring, q = (andel - förankring) / (andel + förankring), och avbildas med
 # net_support_to_score. En kvarlämnad nyckel hard-failar i pipeline/config.py.

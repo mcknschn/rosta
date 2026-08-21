@@ -257,6 +257,13 @@ def _validate_scoring(sub_w: dict[str, Any], tolerance: float) -> None:
         raise ConfigError(
             "normalization.per_subscore.A finns kvar men A normaliseras inte längre (ADR 0005)"
         )
+    # C normaliseras däremot fortfarande, och nyckeln STYR den (scorerun.category_c läser den).
+    # Saknad eller felstavad nyckel får aldrig tyst falla tillbaka på rank.
+    c_norm = (s.get("normalization") or {}).get("per_subscore", {}).get("C")
+    if c_norm not in ("rank", "minmax"):
+        raise ConfigError(
+            f"normalization.per_subscore.C={c_norm!r} är ogiltigt (tillåtna: rank, minmax)"
+        )
     semantics = s.get("scale_semantics") or {}
     if "A" in (semantics.get("relative") or []):
         raise ConfigError("scale_semantics: A är absolut efter ADR 0005, inte relativ")

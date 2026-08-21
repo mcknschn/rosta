@@ -557,7 +557,7 @@ def category_c(
     nat_frac: dict[str, float], reg_frac: dict[str, float], mun_frac: dict[str, float],
     parties: list[str], cats: list[str],
 ) -> tuple[dict[str, dict[str, float]], dict[str, str], dict[str, list[str]]]:
-    """C (genomförbarhet/ansvar) per kategori: rank-normaliserad c1-makt + säkerhet + flaggor.
+    """C (genomförbarhet/ansvar) per kategori: normaliserad c1-makt + säkerhet + flaggor.
 
     c1 = makt. Subnationell makt = per-kategori region/kommun-split av (reg_frac, mun_frac) enligt
     scoring.subnational_split; den blandas sedan med nationell makt enligt level_weights. Alla
@@ -578,6 +578,14 @@ def category_c(
     split_over = ca.get("subnational_split_overrides", {})
     penalty = int(ca.get("missing_subnational", {}).get("confidence_penalty_steps", 1))
     default_c = sc["uncertainty"]["default_subscore_certainty"]["C"]
+    # C:s normalisering styrs av configen, aldrig av koden. Configen har alltid deklarerat 'rank'
+    # medan koden hårdkodade den, alltså en config som beskriver ett beteende koden inte har.
+    # Saknad eller okänd nyckel hard-failar — aldrig tyst rank (spegel av config._validate_scoring).
+    c_norm = (sc.get("normalization") or {}).get("per_subscore", {}).get("C")
+    if c_norm not in ("rank", "minmax"):
+        raise config.ConfigError(
+            f"normalization.per_subscore.C={c_norm!r} är ogiltigt (tillåtna: rank, minmax)"
+        )
     have_subnational = bool(reg_frac) and bool(mun_frac)
 
     by_cat: dict[str, dict[str, float]] = {}
@@ -602,7 +610,7 @@ def category_c(
             blended = nat_frac               # guard: subnationell data saknas
             conf_by_cat[c] = _step_down_confidence(default_c, penalty)
             flags_by_cat[c] = ["C_missing_subnational"]
-        by_cat[c] = score.rank_normalize(blended)
+        by_cat[c] = score.normalize(blended, c_norm)
     return by_cat, conf_by_cat, flags_by_cat
 
 
