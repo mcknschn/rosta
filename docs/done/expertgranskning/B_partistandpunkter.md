@@ -3,7 +3,7 @@
 > AUTOGENERERAD av `pipeline/tools/review_packet.py` — ändra inte för hand.
 > Källa för betygskonsekvensen är det faktiska join-maskineriet i `pipeline/positions.py`.
 
-**200 ståndpunkter** → 213 evidence_effect-claims. Stance: {'supports': 175, 'opposes': 25}. Konfidens: {'high': 124, 'medium': 44, 'low': 18, 'None': 14}.
+**269 ståndpunkter** → 282 evidence_effect-claims. Stance: {'supports': 239, 'opposes': 30}. Konfidens: {'high': 160, 'medium': 77, 'low': 18, 'None': 14}.
 
 Pipelinen joinar **bara** på `party + policy_type + stance`. `supports` behåller evidensens riktning; `opposes` **vänder** den. Övriga fält är spårbarhet.
 
@@ -17,7 +17,7 @@ Pipelinen joinar **bara** på `party + policy_type + stance`. `supports` behåll
 
 ## ⚑ Prioriterad granskning (högst betygspåverkan/risk)
 
-93 rader där fel gör störst skada: **opposes** (vänder evidensen), **prop_avslag** (måste verifiera att propositionen ÄR instrumentet), **ny_karnkraft** (laddad fråga), **low_confidence**, **single_member**, **äldre källa**.
+119 rader där fel gör störst skada: **opposes** (vänder evidensen), **prop_avslag** (måste verifiera att propositionen ÄR instrumentet), **ny_karnkraft** (laddad fråga), **low_confidence**, **single_member**, **äldre källa**.
 
 | OK? | Parti | Åtgärdstyp | Stance | B-konsekvens | Konf. | doc_id | Datum | Flaggor |
 |-----|-------|-----------|--------|--------------|-------|--------|-------|---------|
@@ -47,11 +47,21 @@ Pipelinen joinar **bara** på `party + policy_type + stance`. `supports` behåll
 |  | L | behandlingsprogram_kriminalvard | **supports** | ↑ mot bättre (höjer B) | high | H9023974 | 2021-10-05 | old_source_2021 |
 |  | M | behandlingsprogram_kriminalvard | **supports** | ↑ mot bättre (höjer B) | high | H9023779 | 2021-09-30 | old_source_2021 |
 |  | V | behandlingsprogram_kriminalvard | **supports** | ↑ mot bättre (höjer B) | high | H902916 | 2021-09-29 | old_source_2021 |
+|  | MP | dca_avtal_usa | **opposes** | ↓ mot sämre (sänker B) | medium | HCB46 (Ds 2024:6 bilaga 4, avvikande mening MP) + HB01UFöU1 punkt 1 / korroboration: votering A1C914E0-4544-4389-A757-A5BEDDACBFD9 (p5: MP 15 Nej) + A52E4273-06BE-4869-9C8D-078E3607B40F (p3: MP 15 Avstår) | 2024-06-18 | opposes |
+|  | V | dca_avtal_usa | **opposes** | ↓ mot sämre (sänker B) | medium | HCB46 (Ds 2024:6 bilaga 4, avvikande mening V) + HB01UFöU1 punkt 1 / korroboration: votering A1C914E0-4544-4389-A757-A5BEDDACBFD9 (p5: V 20 Nej) + A52E4273-06BE-4869-9C8D-078E3607B40F (p3: V 20 Nej) | 2024-06-18 | opposes |
 |  | MP | fokuserad_avskrackning_gvi | **supports** | ↑ mot bättre (höjer B) | low | H8022726 | 2020-10-05 | low_confidence, old_source_2020 |
 |  | V | fou_avdrag_skatteincitament | **opposes** | ↓ mot sämre (sänker B) | high | HA01SfU19 / votering 198C0FEC-86BA-4075-8020-9D85FE07E2AF | 2023-05-31 | opposes |
 |  | L | inkomststarkande_hushallspolitik | **supports** | ↑ mot bättre (höjer B) | medium | H9024240 | 2021-10-27 | old_source_2021 |
 |  | M | inkomststarkande_hushallspolitik | **supports** | ↑ mot bättre (höjer B) | medium | H9024253 | 2021-10-29 | old_source_2021 |
 |  | SD | inkomststarkande_hushallspolitik | **supports** | ↑ mot bättre (höjer B) | low | HD02522 | 2025-09-30 | low_confidence |
+|  | C | insyn_partifinansiering | **supports** | ↑ mot bättre (höjer B) | medium | H501KU19 punkt 1 | 2018-02-02 | old_source_2018 |
+|  | KD | insyn_partifinansiering | **supports** | ↑ mot bättre (höjer B) | medium | H501KU19 punkt 1 | 2018-02-02 | old_source_2018 |
+|  | L | insyn_partifinansiering | **supports** | ↑ mot bättre (höjer B) | medium | H501KU19 punkt 1 | 2018-02-02 | old_source_2018 |
+|  | M | insyn_partifinansiering | **supports** | ↑ mot bättre (höjer B) | medium | H501KU19 punkt 1 | 2018-02-02 | old_source_2018 |
+|  | MP | insyn_partifinansiering | **supports** | ↑ mot bättre (höjer B) | medium | H501KU19 punkt 1 | 2018-02-02 | old_source_2018 |
+|  | S | insyn_partifinansiering | **supports** | ↑ mot bättre (höjer B) | medium | H501KU19 punkt 1 | 2018-02-02 | old_source_2018 |
+|  | SD | insyn_partifinansiering | **supports** | ↑ mot bättre (höjer B) | medium | H501KU19 punkt 1 | 2018-02-02 | old_source_2018 |
+|  | V | insyn_partifinansiering | **supports** | ↑ mot bättre (höjer B) | medium | H501KU19 punkt 1 | 2018-02-02 | old_source_2018 |
 |  | KD | koldioxidskatt | **supports** | ↑ mot bättre (höjer B) | — | H8022807 | 2020/21 | old_source_2020 |
 |  | L | koldioxidskatt | **supports** | ↑ mot bättre (höjer B) | — | H9024199 | 2021/22 | old_source_2021 |
 |  | M | koldioxidskatt | **supports** | ↑ mot bättre (höjer B) | — | H9024030 | 2021/22 | old_source_2021 |
@@ -60,6 +70,14 @@ Pipelinen joinar **bara** på `party + policy_type + stance`. `supports` behåll
 |  | L | kompetensutveckling_larare | **supports** | ↑ mot bättre (höjer B) | high | H9024181 | 2021-10-05 | old_source_2021 |
 |  | M | kompetensutveckling_larare | **supports** | ↑ mot bättre (höjer B) | high | H9023988 | 2021-10-05 | old_source_2021 |
 |  | SD | kompetensutveckling_larare | **supports** | ↑ mot bättre (höjer B) | high | H9022542 | 2021-10-01 | old_source_2021 |
+|  | C | koncentration_nationell_hogspecialiserad_vard | **supports** | ↑ mot bättre (höjer B) | medium | H501SoU18 punkt 1 | 2018-02-20 | old_source_2018 |
+|  | KD | koncentration_nationell_hogspecialiserad_vard | **supports** | ↑ mot bättre (höjer B) | medium | H501SoU18 punkt 1 | 2018-02-20 | old_source_2018 |
+|  | L | koncentration_nationell_hogspecialiserad_vard | **supports** | ↑ mot bättre (höjer B) | medium | H501SoU18 punkt 1 | 2018-02-20 | old_source_2018 |
+|  | M | koncentration_nationell_hogspecialiserad_vard | **supports** | ↑ mot bättre (höjer B) | medium | H501SoU18 punkt 1 | 2018-02-20 | old_source_2018 |
+|  | MP | koncentration_nationell_hogspecialiserad_vard | **supports** | ↑ mot bättre (höjer B) | medium | H501SoU18 punkt 1 | 2018-02-20 | old_source_2018 |
+|  | S | koncentration_nationell_hogspecialiserad_vard | **supports** | ↑ mot bättre (höjer B) | medium | H501SoU18 punkt 1 | 2018-02-20 | old_source_2018 |
+|  | SD | koncentration_nationell_hogspecialiserad_vard | **supports** | ↑ mot bättre (höjer B) | medium | H501SoU18 punkt 1 | 2018-02-20 | old_source_2018 |
+|  | V | koncentration_nationell_hogspecialiserad_vard | **supports** | ↑ mot bättre (höjer B) | medium | H501SoU18 punkt 1 | 2018-02-20 | old_source_2018 |
 |  | L | konkurrenskraftig_foretags_och_agarbeskattning | **supports** | ↑ mot bättre (höjer B) | medium | H6022030 | 2018-11-29 | old_source_2018 |
 |  | M | konkurrenskraftig_foretags_och_agarbeskattning | **supports** | ↑ mot bättre (höjer B) | high | H9023638 | 2021-10-05 | old_source_2021 |
 |  | MP | konkurrenskraftig_foretags_och_agarbeskattning | **opposes** | ↓ mot sämre (sänker B) | medium | HC023220 | 2024-10-04 | opposes |
@@ -73,6 +91,7 @@ Pipelinen joinar **bara** på `party + policy_type + stance`. `supports` behåll
 |  | M | minskad_klasstorlek | **supports** | ↑ mot bättre (höjer B) | medium | H2023002 | 2014-11-11 | old_source_2014 |
 |  | SD | minskad_klasstorlek | **opposes** | ↓ mot sämre (sänker B) | high | H302761 | 2015-10-02 | opposes, old_source_2015 |
 |  | V | nato_medlemskap | **opposes** | ↓ mot sämre (sänker B) | high | HA01UU16 / votering 6B63ADBF-B6F8-4CE0-A574-230BEE238A46 punkt 1 | 2023-03-22 | opposes |
+|  | V | nedtrappad_ersattningsprofil_akassa | **opposes** | ↓ mot sämre (sänker B) | high | HB01AU9 / votering 20D6BDDC-B9AC-47E8-B286-48CF613D7276; motion HB022881 yrk. 1 | 2024-06-18 | opposes, prop_avslag |
 |  | KD | ny_karnkraft | **supports** | ↑ mot bättre (höjer B) | medium | H9024195 | 2021-10-05 | ny_karnkraft, old_source_2021 |
 |  | L | ny_karnkraft | **supports** | ↑ mot bättre (höjer B) | medium | H8023242 | 2020-10-06 | ny_karnkraft, old_source_2020 |
 |  | M | ny_karnkraft | **supports** | ↑ mot bättre (höjer B) | medium | H9023688 | 2021-10-05 | ny_karnkraft, old_source_2021 |
@@ -87,6 +106,13 @@ Pipelinen joinar **bara** på `party + policy_type + stance`. `supports` behåll
 |  | KD | riktade_insatser_nyanlanda_elever | **supports** | ↑ mot bättre (höjer B) | medium | H9024163 | 2021-10-05 | old_source_2021 |
 |  | L | riktade_insatser_nyanlanda_elever | **supports** | ↑ mot bättre (höjer B) | high | H9024002 | 2021-10-05 | old_source_2021 |
 |  | M | riktade_insatser_nyanlanda_elever | **supports** | ↑ mot bättre (höjer B) | high | H9024033 | 2021-10-05 | old_source_2021 |
+|  | C | se_over_ansvarsfordelning_atervandande | **supports** | ↑ mot bättre (höjer B) | high | H801SfU6 punkt 2; votering C7DEF4C6-4668-4D8E-AF06-7A820A666C39 (C 5 ja); motion H802311 (Jonny Cato, C) | 2020-11-11 | old_source_2020 |
+|  | KD | se_over_ansvarsfordelning_atervandande | **supports** | ↑ mot bättre (höjer B) | high | H801SfU6 punkt 2; votering C7DEF4C6-4668-4D8E-AF06-7A820A666C39 (KD 3 ja); motion H802145 yrk. 3 + motion 2020/21:3663 yrk. 30 | 2020-11-11 | old_source_2020 |
+|  | L | se_over_ansvarsfordelning_atervandande | **supports** | ↑ mot bättre (höjer B) | medium | H801SfU6 punkt 2; votering C7DEF4C6-4668-4D8E-AF06-7A820A666C39 (L 3 ja) | 2020-11-11 | old_source_2020 |
+|  | M | se_over_ansvarsfordelning_atervandande | **supports** | ↑ mot bättre (höjer B) | high | H801SfU6 punkt 2; votering C7DEF4C6-4668-4D8E-AF06-7A820A666C39 (M 11 ja); motion H802145 yrk. 3 | 2020-11-11 | old_source_2020 |
+|  | MP | se_over_ansvarsfordelning_atervandande | **opposes** | ↓ mot sämre (sänker B) | high | H801SfU6 reservation 3 (S,MP); votering C7DEF4C6-4668-4D8E-AF06-7A820A666C39 (MP 3 nej) | 2020-11-11 | opposes, old_source_2020 |
+|  | S | se_over_ansvarsfordelning_atervandande | **opposes** | ↓ mot sämre (sänker B) | high | H801SfU6 reservation 3 (S,MP); votering C7DEF4C6-4668-4D8E-AF06-7A820A666C39 (S 15 nej) | 2020-11-11 | opposes, old_source_2020 |
+|  | SD | se_over_ansvarsfordelning_atervandande | **supports** | ↑ mot bättre (höjer B) | high | H801SfU6 punkt 2; votering C7DEF4C6-4668-4D8E-AF06-7A820A666C39 (SD 10 ja); motion 2020/21:2552 yrk. 22 | 2020-11-11 | old_source_2020 |
 |  | C | sfi_kombinerat_med_praktik | **supports** | ↑ mot bättre (höjer B) | low | HB021255 | 2023-10-04 | low_confidence, single_member |
 |  | KD | sfi_kombinerat_med_praktik | **supports** | ↑ mot bättre (höjer B) | low | H9024198 | 2021-10-04 | low_confidence, old_source_2021 |
 |  | L | sfi_kombinerat_med_praktik | **supports** | ↑ mot bättre (höjer B) | low | H9023965 | 2021-10-05 | low_confidence, old_source_2021 |
@@ -163,6 +189,21 @@ Liggarens effekt: otillborlig_politisering=positive (medium)
 |  | S | supports | ↑ mot bättre (höjer B) | high | HD01KU2 / votering 3C8070DF-2ECB-405A-83AD-A14CF2A79C61 punkt 1 | 2025-09-29 |
 |  | V | supports | ↑ mot bättre (höjer B) | high | HD01KU2 / votering 3C8070DF-2ECB-405A-83AD-A14CF2A79C61 punkt 1 | 2025-09-29 |
 
+#### `insyn_partifinansiering`
+
+Liggarens effekt: politisk_transparens=positive (low)
+
+| OK? | Parti | Stance | B-konsekvens | Konf. | doc_id | Datum |
+|-----|-------|--------|--------------|-------|--------|-------|
+|  | C | supports | ↑ mot bättre (höjer B) | medium | H501KU19 punkt 1 | 2018-02-02 |
+|  | KD | supports | ↑ mot bättre (höjer B) | medium | H501KU19 punkt 1 | 2018-02-02 |
+|  | L | supports | ↑ mot bättre (höjer B) | medium | H501KU19 punkt 1 | 2018-02-02 |
+|  | M | supports | ↑ mot bättre (höjer B) | medium | H501KU19 punkt 1 | 2018-02-02 |
+|  | MP | supports | ↑ mot bättre (höjer B) | medium | H501KU19 punkt 1 | 2018-02-02 |
+|  | S | supports | ↑ mot bättre (höjer B) | medium | H501KU19 punkt 1 | 2018-02-02 |
+|  | SD | supports | ↑ mot bättre (höjer B) | medium | H501KU19 punkt 1 | 2018-02-02 |
+|  | V | supports | ↑ mot bättre (höjer B) | medium | H501KU19 punkt 1 | 2018-02-02 |
+
 #### `lagstadgat_oberoende_public_service`
 
 Liggarens effekt: mediefrihet=positive (low)
@@ -184,11 +225,11 @@ Liggarens effekt: korruption=positive (low)
 
 | OK? | Parti | Stance | B-konsekvens | Konf. | doc_id | Datum |
 |-----|-------|--------|--------------|-------|--------|-------|
-|  | C | supports | ↑ mot bättre (höjer B) | high | HD023583 | 2025-10-07 |
+|  | C | supports | ↑ mot bättre (höjer B) | high | HD023583 yrk. 17 | 2025-10-07 |
 |  | KD ⚑ | supports | ↑ mot bättre (höjer B) | low | HD021556 | 2025-10-02 |
 |  | L ⚑ | supports | ↑ mot bättre (höjer B) | low | HD023766 | 2025-10-07 |
 |  | M ⚑ | supports | ↑ mot bättre (höjer B) | low | HD021743 | 2025-10-02 |
-|  | MP | supports | ↑ mot bättre (höjer B) | high | HA02181 | 2022-11-16 |
+|  | MP | supports | ↑ mot bättre (höjer B) | high | HA02181 yrk. 9 | 2022-11-16 |
 |  | S | supports | ↑ mot bättre (höjer B) | high | HD024024 | 2026-04-01 |
 |  | SD ⚑ | supports | ↑ mot bättre (höjer B) | low | HD021701 | 2025-10-02 |
 |  | V | supports | ↑ mot bättre (höjer B) | high | HD023996 | 2026-03-31 |
@@ -266,6 +307,21 @@ Liggarens effekt: naringslivets_investeringar=positive (medium)
 |  | SD | supports | ↑ mot bättre (höjer B) | medium | HC021353 | 2024-10-02 |
 |  | V ⚑ | opposes | ↓ mot sämre (sänker B) | high | H5024186 | 2018-05-17 |
 
+#### `nedtrappad_ersattningsprofil_akassa`
+
+Liggarens effekt: arbetsloshet=positive (medium)
+
+| OK? | Parti | Stance | B-konsekvens | Konf. | doc_id | Datum |
+|-----|-------|--------|--------------|-------|--------|-------|
+|  | C | supports | ↑ mot bättre (höjer B) | high | HB01AU9 / votering 20D6BDDC-B9AC-47E8-B286-48CF613D7276 | 2024-06-18 |
+|  | KD | supports | ↑ mot bättre (höjer B) | high | HB01AU9 / votering 20D6BDDC-B9AC-47E8-B286-48CF613D7276 | 2024-06-18 |
+|  | L | supports | ↑ mot bättre (höjer B) | high | HB01AU9 / votering 20D6BDDC-B9AC-47E8-B286-48CF613D7276 | 2024-06-18 |
+|  | M | supports | ↑ mot bättre (höjer B) | high | HB01AU9 / votering 20D6BDDC-B9AC-47E8-B286-48CF613D7276 | 2024-06-18 |
+|  | MP | supports | ↑ mot bättre (höjer B) | high | HB01AU9 / votering 20D6BDDC-B9AC-47E8-B286-48CF613D7276 | 2024-06-18 |
+|  | S | supports | ↑ mot bättre (höjer B) | high | HB01AU9 / votering 20D6BDDC-B9AC-47E8-B286-48CF613D7276 | 2024-06-18 |
+|  | SD | supports | ↑ mot bättre (höjer B) | high | HB01AU9 / votering 20D6BDDC-B9AC-47E8-B286-48CF613D7276 | 2024-06-18 |
+|  | V ⚑ | opposes | ↓ mot sämre (sänker B) | high | HB01AU9 / votering 20D6BDDC-B9AC-47E8-B286-48CF613D7276; motion HB022881 yrk. 1 | 2024-06-18 |
+
 #### `subventionerade_anstallningar`
 
 Liggarens effekt: sysselsattning=positive (medium)
@@ -297,6 +353,21 @@ Liggarens effekt: personal_varnpliktiga=positive (high)
 |  | SD ⚑ | supports | ↑ mot bättre (höjer B) | high | HA02948 | 2022-11-22 |
 |  | V ⚑ | supports | ↑ mot bättre (höjer B) | high | HD02199 | 2025-09-23 |
 
+#### `dca_avtal_usa`
+
+Liggarens effekt: nato_interoperabilitet=positive (high)
+
+| OK? | Parti | Stance | B-konsekvens | Konf. | doc_id | Datum |
+|-----|-------|--------|--------------|-------|--------|-------|
+|  | C | supports | ↑ mot bättre (höjer B) | medium | HB01UFöU1 punkt 1 (huvudvotering saknas i votering-API) / korroboration: votering A1C914E0-4544-4389-A757-A5BEDDACBFD9 (p5) + A52E4273-06BE-4869-9C8D-078E3607B40F (p3) | 2024-06-18 |
+|  | KD | supports | ↑ mot bättre (höjer B) | medium | HB01UFöU1 punkt 1 (huvudvotering saknas i votering-API) / korroboration: votering A1C914E0-4544-4389-A757-A5BEDDACBFD9 (p5) + A52E4273-06BE-4869-9C8D-078E3607B40F (p3) | 2024-06-18 |
+|  | L | supports | ↑ mot bättre (höjer B) | medium | HB01UFöU1 punkt 1 (huvudvotering saknas i votering-API) / korroboration: votering A1C914E0-4544-4389-A757-A5BEDDACBFD9 (p5) + A52E4273-06BE-4869-9C8D-078E3607B40F (p3) | 2024-06-18 |
+|  | M | supports | ↑ mot bättre (höjer B) | medium | HB01UFöU1 punkt 1 (huvudvotering saknas i votering-API) / korroboration: votering A1C914E0-4544-4389-A757-A5BEDDACBFD9 (p5) + A52E4273-06BE-4869-9C8D-078E3607B40F (p3) | 2024-06-18 |
+|  | MP ⚑ | opposes | ↓ mot sämre (sänker B) | medium | HCB46 (Ds 2024:6 bilaga 4, avvikande mening MP) + HB01UFöU1 punkt 1 / korroboration: votering A1C914E0-4544-4389-A757-A5BEDDACBFD9 (p5: MP 15 Nej) + A52E4273-06BE-4869-9C8D-078E3607B40F (p3: MP 15 Avstår) | 2024-06-18 |
+|  | S | supports | ↑ mot bättre (höjer B) | medium | HB01UFöU1 punkt 1 (huvudvotering saknas i votering-API) / korroboration: votering A1C914E0-4544-4389-A757-A5BEDDACBFD9 (p5) + A52E4273-06BE-4869-9C8D-078E3607B40F (p3) | 2024-06-18 |
+|  | SD | supports | ↑ mot bättre (höjer B) | medium | HB01UFöU1 punkt 1 (huvudvotering saknas i votering-API) / korroboration: votering A1C914E0-4544-4389-A757-A5BEDDACBFD9 (p5) + A52E4273-06BE-4869-9C8D-078E3607B40F (p3) | 2024-06-18 |
+|  | V ⚑ | opposes | ↓ mot sämre (sänker B) | medium | HCB46 (Ds 2024:6 bilaga 4, avvikande mening V) + HB01UFöU1 punkt 1 / korroboration: votering A1C914E0-4544-4389-A757-A5BEDDACBFD9 (p5: V 20 Nej) + A52E4273-06BE-4869-9C8D-078E3607B40F (p3: V 20 Nej) | 2024-06-18 |
+
 #### `nato_medlemskap`
 
 Liggarens effekt: nato_interoperabilitet=positive (high)
@@ -322,6 +393,21 @@ Liggarens effekt: civil_beredskap_niva=positive (low)
 |  | S | supports | ↑ mot bättre (höjer B) | high | HD023556 | 2025-10-07 |
 |  | SD | supports | ↑ mot bättre (höjer B) | high | HC021407 | 2024-10-02 |
 |  | V | supports | ↑ mot bättre (höjer B) | medium | HB0266 | 2023-09-21 |
+
+#### `upptrappning_forsvarsanslag_mot_mal`
+
+Liggarens effekt: forsvarsfinansiering_upptrappning_mot_mal=positive (low)
+
+| OK? | Parti | Stance | B-konsekvens | Konf. | doc_id | Datum |
+|-----|-------|--------|--------------|-------|--------|-------|
+|  | C | supports | ↑ mot bättre (höjer B) | medium | HC01FöU2 punkt 1 | 2024-12-16 |
+|  | KD | supports | ↑ mot bättre (höjer B) | medium | HC01FöU2 punkt 1 | 2024-12-16 |
+|  | L | supports | ↑ mot bättre (höjer B) | medium | HC01FöU2 punkt 1 | 2024-12-16 |
+|  | M | supports | ↑ mot bättre (höjer B) | medium | HC01FöU2 punkt 1 | 2024-12-16 |
+|  | MP | supports | ↑ mot bättre (höjer B) | medium | HC01FöU2 punkt 1 | 2024-12-16 |
+|  | S | supports | ↑ mot bättre (höjer B) | medium | HC01FöU2 punkt 1 | 2024-12-16 |
+|  | SD | supports | ↑ mot bättre (höjer B) | medium | HC01FöU2 punkt 1 | 2024-12-16 |
+|  | V | supports | ↑ mot bättre (höjer B) | medium | HC01FöU2 punkt 1 | 2024-12-16 |
 
 ### integration
 
@@ -352,9 +438,23 @@ Liggarens effekt: skolresultat_utsatta_omraden=positive (high)
 |  | SD | supports | ↑ mot bättre (höjer B) | high | HC021447 | 2024-10-02 |
 |  | V | supports | ↑ mot bättre (höjer B) | high | HC021932 | 2024-10-03 |
 
+#### `se_over_ansvarsfordelning_atervandande`
+
+Liggarens effekt: atervandande_effektivitet=positive (medium)
+
+| OK? | Parti | Stance | B-konsekvens | Konf. | doc_id | Datum |
+|-----|-------|--------|--------------|-------|--------|-------|
+|  | C | supports | ↑ mot bättre (höjer B) | high | H801SfU6 punkt 2; votering C7DEF4C6-4668-4D8E-AF06-7A820A666C39 (C 5 ja); motion H802311 (Jonny Cato, C) | 2020-11-11 |
+|  | KD | supports | ↑ mot bättre (höjer B) | high | H801SfU6 punkt 2; votering C7DEF4C6-4668-4D8E-AF06-7A820A666C39 (KD 3 ja); motion H802145 yrk. 3 + motion 2020/21:3663 yrk. 30 | 2020-11-11 |
+|  | L | supports | ↑ mot bättre (höjer B) | medium | H801SfU6 punkt 2; votering C7DEF4C6-4668-4D8E-AF06-7A820A666C39 (L 3 ja) | 2020-11-11 |
+|  | M | supports | ↑ mot bättre (höjer B) | high | H801SfU6 punkt 2; votering C7DEF4C6-4668-4D8E-AF06-7A820A666C39 (M 11 ja); motion H802145 yrk. 3 | 2020-11-11 |
+|  | MP ⚑ | opposes | ↓ mot sämre (sänker B) | high | H801SfU6 reservation 3 (S,MP); votering C7DEF4C6-4668-4D8E-AF06-7A820A666C39 (MP 3 nej) | 2020-11-11 |
+|  | S ⚑ | opposes | ↓ mot sämre (sänker B) | high | H801SfU6 reservation 3 (S,MP); votering C7DEF4C6-4668-4D8E-AF06-7A820A666C39 (S 15 nej) | 2020-11-11 |
+|  | SD | supports | ↑ mot bättre (höjer B) | high | H801SfU6 punkt 2; votering C7DEF4C6-4668-4D8E-AF06-7A820A666C39 (SD 10 ja); motion 2020/21:2552 yrk. 22 | 2020-11-11 |
+
 #### `sfi_kombinerat_med_praktik`
 
-Liggarens effekt: sysselsattningsgap_inrikes_utrikes=positive (medium)
+Liggarens effekt: sysselsattningsgap_inrikes_utrikes=positive (high)
 
 | OK? | Parti | Stance | B-konsekvens | Konf. | doc_id | Datum |
 |-----|-------|--------|--------------|-------|--------|-------|
@@ -374,6 +474,19 @@ Liggarens effekt: sysselsattningsgap_inrikes_utrikes=positive (medium)
 |  | KD ⚑ | supports | ↑ mot bättre (höjer B) | low | HD021563 | 2025-10-02 |
 |  | MP | supports | ↑ mot bättre (höjer B) | medium | GQ02Sf289 | 2002-10-23 |
 |  | V | supports | ↑ mot bättre (höjer B) | high | HA021299 | 2022-11-22 |
+
+#### `uppsokande_forskoleerbjudande_nyanlandas_barn`
+
+Liggarens effekt: skolresultat_utsatta_omraden=positive (medium)
+
+| OK? | Parti | Stance | B-konsekvens | Konf. | doc_id | Datum |
+|-----|-------|--------|--------------|-------|--------|-------|
+|  | C | supports | ↑ mot bättre (höjer B) | high | H901UbU24 / votering 13F52F92-6597-473E-B912-4C7BB0EEE42F | 2022-06-08 |
+|  | L | supports | ↑ mot bättre (höjer B) | high | H901UbU24 / votering 13F52F92-6597-473E-B912-4C7BB0EEE42F | 2022-06-08 |
+|  | M | supports | ↑ mot bättre (höjer B) | high | H901UbU24 / votering 13F52F92-6597-473E-B912-4C7BB0EEE42F | 2022-06-08 |
+|  | MP | supports | ↑ mot bättre (höjer B) | high | H901UbU24 / votering 13F52F92-6597-473E-B912-4C7BB0EEE42F | 2022-06-08 |
+|  | S | supports | ↑ mot bättre (höjer B) | high | H901UbU24 / votering 13F52F92-6597-473E-B912-4C7BB0EEE42F | 2022-06-08 |
+|  | V | supports | ↑ mot bättre (höjer B) | high | H901UbU24 / votering 13F52F92-6597-473E-B912-4C7BB0EEE42F | 2022-06-08 |
 
 ### klimat
 
@@ -460,6 +573,21 @@ Liggarens effekt: skjutningar_sprangningar=positive (medium)
 |  | S | supports | ↑ mot bättre (höjer B) | high | HC023111 | 2024-10-04 |
 |  | V | supports | ↑ mot bättre (höjer B) | high | HD022788 | 2025-10-06 |
 
+#### `lagstadgat_kommunalt_brottsforebyggande_ansvar`
+
+Liggarens effekt: kommunalt_brottsforebyggande_arbete=positive (low)
+
+| OK? | Parti | Stance | B-konsekvens | Konf. | doc_id | Datum |
+|-----|-------|--------|--------------|-------|--------|-------|
+|  | C | supports | ↑ mot bättre (höjer B) | high | HA01JuU9 punkt 1 | 2023-03-23 |
+|  | KD | supports | ↑ mot bättre (höjer B) | high | HA01JuU9 punkt 1 | 2023-03-23 |
+|  | L | supports | ↑ mot bättre (höjer B) | high | HA01JuU9 punkt 1 | 2023-03-23 |
+|  | M | supports | ↑ mot bättre (höjer B) | high | HA01JuU9 punkt 1 | 2023-03-23 |
+|  | MP | supports | ↑ mot bättre (höjer B) | high | HA01JuU9 punkt 1 | 2023-03-23 |
+|  | S | supports | ↑ mot bättre (höjer B) | high | HA01JuU9 punkt 1 | 2023-03-23 |
+|  | SD | supports | ↑ mot bättre (höjer B) | high | HA01JuU9 punkt 1 | 2023-03-23 |
+|  | V | supports | ↑ mot bättre (höjer B) | high | HA01JuU9 punkt 1 | 2023-03-23 |
+
 #### `situationell_prevention_utomhusbelysning`
 
 Liggarens effekt: brottsutsatthet=positive (medium)
@@ -489,6 +617,21 @@ Liggarens effekt: handlaggningstid=positive (medium)
 
 ### valfard
 
+#### `fast_omsorgskontakt`
+
+Liggarens effekt: kontinuitet_i_omsorgen=positive (low)
+
+| OK? | Parti | Stance | B-konsekvens | Konf. | doc_id | Datum |
+|-----|-------|--------|--------------|-------|--------|-------|
+|  | C | supports | ↑ mot bättre (höjer B) | high | H901SoU24 punkt 2 | 2022-04-25 |
+|  | KD | supports | ↑ mot bättre (höjer B) | high | H901SoU24 punkt 2 | 2022-04-25 |
+|  | L | supports | ↑ mot bättre (höjer B) | high | H901SoU24 punkt 2 | 2022-04-25 |
+|  | M | supports | ↑ mot bättre (höjer B) | high | H901SoU24 punkt 2 | 2022-04-25 |
+|  | MP | supports | ↑ mot bättre (höjer B) | high | H901SoU24 punkt 2 | 2022-04-25 |
+|  | S | supports | ↑ mot bättre (höjer B) | high | H901SoU24 punkt 2 | 2022-04-25 |
+|  | SD | supports | ↑ mot bättre (höjer B) | high | H901SoU24 punkt 2 | 2022-04-25 |
+|  | V | supports | ↑ mot bättre (höjer B) | high | H901SoU24 punkt 2 | 2022-04-25 |
+
 #### `kompetensutveckling_larare`
 
 Liggarens effekt: skolresultat=positive (medium)
@@ -503,6 +646,21 @@ Liggarens effekt: skolresultat=positive (medium)
 |  | S | supports | ↑ mot bättre (höjer B) | high | HB022687 | 2023-10-05 |
 |  | SD | supports | ↑ mot bättre (höjer B) | high | H9022542 | 2021-10-01 |
 |  | V | supports | ↑ mot bättre (höjer B) | medium | HC021924 | 2024-10-03 |
+
+#### `koncentration_nationell_hogspecialiserad_vard`
+
+Liggarens effekt: overlevnad_svar_sjukdom=positive (low)
+
+| OK? | Parti | Stance | B-konsekvens | Konf. | doc_id | Datum |
+|-----|-------|--------|--------------|-------|--------|-------|
+|  | C | supports | ↑ mot bättre (höjer B) | medium | H501SoU18 punkt 1 | 2018-02-20 |
+|  | KD | supports | ↑ mot bättre (höjer B) | medium | H501SoU18 punkt 1 | 2018-02-20 |
+|  | L | supports | ↑ mot bättre (höjer B) | medium | H501SoU18 punkt 1 | 2018-02-20 |
+|  | M | supports | ↑ mot bättre (höjer B) | medium | H501SoU18 punkt 1 | 2018-02-20 |
+|  | MP | supports | ↑ mot bättre (höjer B) | medium | H501SoU18 punkt 1 | 2018-02-20 |
+|  | S | supports | ↑ mot bättre (höjer B) | medium | H501SoU18 punkt 1 | 2018-02-20 |
+|  | SD | supports | ↑ mot bättre (höjer B) | medium | H501SoU18 punkt 1 | 2018-02-20 |
+|  | V | supports | ↑ mot bättre (höjer B) | medium | H501SoU18 punkt 1 | 2018-02-20 |
 
 #### `kontroller_och_informationsutbyte_mot_valfardsbrott`
 

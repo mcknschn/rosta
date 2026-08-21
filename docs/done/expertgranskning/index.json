@@ -1,19 +1,19 @@
 {
   "counts": {
-    "positions_total": 200,
-    "ledger_entries": 37,
-    "claims_produced": 213,
+    "positions_total": 269,
+    "ledger_entries": 46,
+    "claims_produced": 282,
     "stance": {
-      "supports": 175,
-      "opposes": 25
+      "supports": 239,
+      "opposes": 30
     },
     "confidence": {
-      "high": 124,
-      "medium": 44,
+      "high": 160,
+      "medium": 77,
       "low": 18,
       "None": 14
     },
-    "priority_count": 93
+    "priority_count": 119
   },
   "priority_doc_ids": [
     "GQ02Sf289",
@@ -22,12 +22,21 @@
     "H3022686",
     "H302761",
     "H4023372",
+    "H501KU19 punkt 1",
+    "H501SoU18 punkt 1",
     "H501UbU10",
     "H5024117",
     "H5024186",
     "H6022030",
     "H6022931",
     "H6023062",
+    "H801SfU6 punkt 2; votering C7DEF4C6-4668-4D8E-AF06-7A820A666C39 (C 5 ja); motion H802311 (Jonny Cato, C)",
+    "H801SfU6 punkt 2; votering C7DEF4C6-4668-4D8E-AF06-7A820A666C39 (KD 3 ja); motion H802145 yrk. 3 + motion 2020/21:3663 yrk. 30",
+    "H801SfU6 punkt 2; votering C7DEF4C6-4668-4D8E-AF06-7A820A666C39 (L 3 ja)",
+    "H801SfU6 punkt 2; votering C7DEF4C6-4668-4D8E-AF06-7A820A666C39 (M 11 ja); motion H802145 yrk. 3",
+    "H801SfU6 punkt 2; votering C7DEF4C6-4668-4D8E-AF06-7A820A666C39 (SD 10 ja); motion 2020/21:2552 yrk. 22",
+    "H801SfU6 reservation 3 (S,MP); votering C7DEF4C6-4668-4D8E-AF06-7A820A666C39 (MP 3 nej)",
+    "H801SfU6 reservation 3 (S,MP); votering C7DEF4C6-4668-4D8E-AF06-7A820A666C39 (S 15 nej)",
     "H8022726",
     "H8022807",
     "H8023242",
@@ -63,6 +72,7 @@
     "HA01UU16 / votering 6B63ADBF-B6F8-4CE0-A574-230BEE238A46 punkt 1",
     "HA02948",
     "HA02998",
+    "HB01AU9 / votering 20D6BDDC-B9AC-47E8-B286-48CF613D7276; motion HB022881 yrk. 1",
     "HB01MJU5 / votering 21E8B615-C235-489F-8189-D26CABD56F24 punkt 1",
     "HB021255",
     "HC021464",
@@ -71,6 +81,8 @@
     "HC023146",
     "HC023220",
     "HC02445",
+    "HCB46 (Ds 2024:6 bilaga 4, avvikande mening MP) + HB01UFöU1 punkt 1 / korroboration: votering A1C914E0-4544-4389-A757-A5BEDDACBFD9 (p5: MP 15 Nej) + A52E4273-06BE-4869-9C8D-078E3607B40F (p3: MP 15 Avstår)",
+    "HCB46 (Ds 2024:6 bilaga 4, avvikande mening V) + HB01UFöU1 punkt 1 / korroboration: votering A1C914E0-4544-4389-A757-A5BEDDACBFD9 (p5: V 20 Nej) + A52E4273-06BE-4869-9C8D-078E3607B40F (p3: V 20 Nej)",
     "HD01JuU28 / votering E6B9D4D1 punkt 1 + A6B8E0C7 punkt 2",
     "HD021556",
     "HD021560",
