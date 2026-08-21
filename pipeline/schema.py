@@ -18,6 +18,7 @@ SCHEMAS = (
     "indicator_effect",
     "scores",
     "evidence",
+    "robustness",
 )
 
 

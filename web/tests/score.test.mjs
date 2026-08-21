@@ -3,7 +3,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { fmtNum, fmtScoreWithCI, pct, metaLine } from "../format.js";
-import { normalizeWeights, partyTotals, ciOverlap } from "../score.js";
+import { normalizeWeights, partyTotals, pairStability } from "../score.js";
 
 test("fmtNum: svensk decimalkomma + avrundning", () => {
   assert.equal(fmtNum(3.842), "3,84");
@@ -79,8 +79,67 @@ test("metaLine: fält som saknas hoppas över, inget 'undefined' i foten", () =>
   assert.equal(metaLine({}), "");
 });
 
-test("ciOverlap", () => {
-  assert.equal(ciOverlap({ lo: 3, hi: 4 }, { lo: 3.5, hi: 5 }), true);
-  assert.equal(ciOverlap({ lo: 3, hi: 4 }, { lo: 4.1, hi: 5 }), false);
-  assert.equal(ciOverlap({ lo: 2, hi: 4 }, { lo: 4, hi: 5 }), true); // kantfall: rör vid
+// --- pairStability (ADR 0003): andelen metodvarianter där ett parti ligger före ett annat ---
+
+// Två partier, två kategorier, fyra dragningar. Betygen är skalade med 100.
+// dragning 0: S (4,0 / 1,0)  M (3,0 / 2,0)
+// dragning 1: S (1,0 / 1,0)  M (4,0 / 4,0)
+// dragning 2: S (3,0 / 3,0)  M (3,0 / 3,0)   -> oavgjort i båda kategorierna
+// dragning 3: S (5,0 / 5,0)  M (1,0 / 1,0)
+const DRAWS = {
+  parties: ["S", "M"],
+  categories: ["a", "b"],
+  scale: 100,
+  values: [
+    400, 100, 300, 200,
+    100, 100, 400, 400,
+    300, 300, 300, 300,
+    500, 500, 100, 100,
+  ],
+};
+
+test("pairStability: andelen räknas per dragning ur användarens vikter", () => {
+  // lika vikt -> S-totaler: 2,5 · 1,0 · 3,0 · 5,0   M-totaler: 2,5 · 4,0 · 3,0 · 1,0
+  const eq = pairStability(DRAWS, { a: 1, b: 1 }, ["a", "b"]);
+  assert.equal(eq.S.M, 0.25);   // bara dragning 3
+  assert.equal(eq.M.S, 0.25);   // bara dragning 1
+  // Vikta kategori a tungt: S 4,0 · 1,0 · 3,0 · 5,0   M 3,0 · 4,0 · 3,0 · 1,0
+  const wa = pairStability(DRAWS, { a: 1, b: 0 }, ["a", "b"]);
+  assert.equal(wa.S.M, 0.5);
+  assert.equal(wa.M.S, 0.25);
+});
+
+test("pairStability: oavgjort räknas inte som 'före' åt något håll", () => {
+  const eq = pairStability(DRAWS, { a: 1, b: 1 }, ["a", "b"]);
+  assert.ok(eq.S.M + eq.M.S < 1);   // dragning 0 och 2 är oavgjorda
+  assert.ok(!("S" in eq.S));        // inget parti jämförs med sig självt
+});
+
+test("pairStability: en bortvald kategori väger noll", () => {
+  const onlyB = pairStability(DRAWS, { a: 1, b: 1 }, ["b"]);
+  // S i kategori b: 1,0 · 1,0 · 3,0 · 5,0   M: 2,0 · 4,0 · 3,0 · 1,0
+  assert.equal(onlyB.S.M, 0.25);
+  assert.equal(onlyB.M.S, 0.5);
+});
+
+test("pairStability: tom eller trasig indata ger tomt resultat, aldrig NaN", () => {
+  assert.deepEqual(pairStability(null, { a: 1 }, ["a"]), {});
+  assert.deepEqual(pairStability({ parties: [], categories: [], values: [] }, {}, []), {});
+  assert.deepEqual(pairStability(DRAWS, { a: 0, b: 0 }, ["a", "b"]), {});
+  const vals = Object.values(pairStability(DRAWS, { a: 1, b: 1 }, ["a", "b"]).S);
+  assert.ok(vals.every((v) => Number.isFinite(v)));
+});
+
+test("pairStability: en kategori som saknas i dragningarna ger tomt, aldrig ett halvt svar", () => {
+  // robustness.json är från en äldre modell och känner inte kategorin "c". Ett tal räknat på
+  // a och b skulle svara på en annan fråga än den listan ställer.
+  assert.deepEqual(pairStability(DRAWS, { a: 1, b: 1, c: 1 }, ["a", "b", "c"]), {});
+  // Extra kategorier i dragningarna som användaren inte väger är däremot ofarliga.
+  const extra = { ...DRAWS, categories: ["a", "b"] };
+  assert.notDeepEqual(pairStability(extra, { a: 1, b: 1 }, ["a", "b"]), {});
+});
+
+test("score.js bär inget skiljbarhetspåstående längre", async () => {
+  const mod = await import("../score.js");
+  assert.equal(mod.ciOverlap, undefined);
 });

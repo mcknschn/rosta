@@ -13,3 +13,13 @@ for name in ("scores.json", "evidence.json"):
         raise SystemExit(f"saknas: {src} — kör `python -m pipeline.scorerun` först")
     shutil.copy2(src, dst / name)
     print(f"kopierade {name} -> web/data/{name}")
+
+# robustness.json kommer ur en egen, lång körning (python -m pipeline.robustness) och är
+# därför VALFRI här. Saknas den visar sajten ingen andel, i stället för ett tal utan täckning
+# i en körning. Frånvaron skrivs ut, den göms aldrig.
+robust = ROOT / "dist" / "robustness.json"
+if robust.exists():
+    shutil.copy2(robust, dst / robust.name)
+    print(f"kopierade {robust.name} -> web/data/{robust.name}")
+else:
+    print(f"hoppade över {robust.name} (saknas — kör `python -m pipeline.robustness`)")

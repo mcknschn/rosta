@@ -76,8 +76,9 @@ code { background: #11141b; padding: 0.05rem 0.3rem; border-radius: 4px; }
 .actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
 .empty { color: var(--muted); padding: 0.6rem; }
 
-/* CI-överlapp-markör */
-.overlap { grid-column: 1 / -1; color: var(--warn); font-size: 0.78rem; margin-top: 0.2rem; }
+/* Andelen metodvarianter där ordningen håller (ADR 0003). Dämpad, inte varnande: talet är
+   en upplysning utan tröskel, och en varningsfärg vore i sig ett omdöme. */
+.stability { grid-column: 1 / -1; color: var(--muted); font-size: 0.78rem; margin-top: 0.2rem; }
 
 /* bevisspår */
 .party-head { grid-template-columns: 2.2rem 1fr auto; }

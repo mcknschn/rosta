@@ -92,6 +92,12 @@ B_evidens:
   # ändringen är RANKINGRELEVANT (byter KD<->MP i totalranking, spec Bilaga A). Ogiltigt
   # värde hard-failar i config.validate (aldrig tyst fallback till legacy).
   coverage_mode: weighted_submeasure_depth
+  # Krympningen på eller av. true = committat läge (B_just = 2.5 + (B_raw - 2.5) * cov_B).
+  # false ger B = B_raw, alltså okrympt. Reglaget finns för att ADR 0003 punkt 5 kräver att
+  # "B:s krympning på eller av" går att dra i känslighetsanalysen, och för scenario 3. Att
+  # ändra det committade värdet är RANKINGRELEVANT och kräver mänsklig sign-off; täcknings-
+  # flaggan står kvar i båda lägena eftersom den beskriver täckningen, inte krympningen.
+  coverage_shrink: true
   coverage_denominator: non_target_submeasure_weight  # nämnarens semantik i nya moden (samma som D)
   thin_coverage_threshold: 0.5
   # Åtgärdstyper som lyfts ur coverage-nämnaren. GENERALISERAD regel (docs/done/fas4c_rubrik.md §7):

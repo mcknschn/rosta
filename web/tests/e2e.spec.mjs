@@ -142,6 +142,50 @@ test("foten säger hur långt underlaget når, och aldrig ett framtida datum (is
   expect(new Date(meta.data_as_of).getTime()).toBeLessThanOrEqual(Date.now());
 });
 
+test("andelen metodvarianter står vid varje kort utom det översta (ADR 0003)", async ({ page }) => {
+  await page.goto(PAGE);
+  // Samma två vägar som app.js provar, annars kan testet hoppa över i ett läge där sajten
+  // faktiskt visar andelen.
+  const hasRobustness = await page.evaluate(async () => {
+    for (const path of ["./data/robustness.json", "../dist/robustness.json"]) {
+      try { if ((await fetch(path)).ok) return true; } catch { /* nästa väg */ }
+    }
+    return false;
+  });
+  test.skip(!hasRobustness, "robustness.json saknas — kör python -m pipeline.robustness");
+
+  const cards = page.locator("#parties > li.party");
+  await expect(cards.first().locator(".stability")).toBeHidden();   // nr 1 har inget kort ovanför
+  const second = cards.nth(1).locator(".stability");
+  await expect(second).toBeVisible();
+  await expect(second).toHaveText(/^[A-ZÅÄÖ]+ ligger före [A-ZÅÄÖ]+ i \d+ procent av metodvarianterna$/);
+  // Ingen tröskel och inget binärt omdöme någonstans i listan (ADR 0003 punkt 3).
+  await expect(page.locator("#parties")).not.toContainText(/robust skil|oskiljbar|är osäker/i);
+});
+
+test("utan robustness.json lovar metodrutan ingen andel", async ({ page }) => {
+  await page.route(/robustness\.json/, (route) => route.fulfill({ status: 404, body: "" }));
+  await page.goto(PAGE);
+  await expect(page.locator("#parties > li.party")).toHaveCount(8);
+  await expect(page.locator("#parties .stability")).toHaveCount(8);
+  await expect(page.locator("#parties .stability:visible")).toHaveCount(0);
+  await expect(page.locator("#method-body")).toContainText("Den körningen saknas i den här versionen");
+  await expect(page.locator("#method-body")).not.toContainText("procent av metodvarianterna");
+});
+
+test("en robustness.json med andra kategorier ger ingen andel alls", async ({ page }) => {
+  await page.route(/robustness\.json/, async (route) => {
+    const body = JSON.stringify({
+      meta: { n_draws: 10, n_draws_shipped: 1 },
+      draws: { parties: ["S"], categories: ["gammal_kategori"], scale: 100, values: [300] },
+    });
+    await route.fulfill({ status: 200, contentType: "application/json", body });
+  });
+  await page.goto(PAGE);
+  await expect(page.locator("#parties > li.party")).toHaveCount(8);
+  await expect(page.locator("#parties .stability:visible")).toHaveCount(0);
+});
+
 test("ingen horisontell sidoscroll vid 320px (reflow 1.4.10)", async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 800 });
   await page.goto(PAGE);

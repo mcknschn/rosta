@@ -3,7 +3,7 @@
 // frontend får ENDAST vikta/summera (se score.js) och visa.
 
 import { fmtNum, fmtScoreWithCI, pct, metaLine } from "./format.js";
-import { partyTotals, ciOverlap } from "./score.js";
+import { partyTotals, pairStability } from "./score.js";
 
 const PARTY_NAMES = {
   S: "Socialdemokraterna", M: "Moderaterna", SD: "Sverigedemokraterna",
@@ -13,6 +13,7 @@ const PARTY_NAMES = {
 
 let DATA = null;        // scores.json
 let EVID = {};          // evidence.json (claim_ref -> {statement, source_name, source_url?})
+let ROBUST = null;      // robustness.json (kategoribetyg per metodvariant, ADR 0003)
 let CAT_IDS = [];
 const weights = {};
 
@@ -43,10 +44,34 @@ function validate(data) {
   return null;
 }
 
+// robustness.json byggs i en egen körning och kan därför ligga efter scores.json. Andelen får
+// bara visas när de två beskriver SAMMA index: samma partier och samma kategorier. Returnerar
+// en orsakssträng när de glidit isär, annars null.
+function robustnessMismatch(robust, data) {
+  if (!robust) return null;
+  const d = robust.draws;
+  if (!d || !Array.isArray(d.parties) || !Array.isArray(d.categories)) return "draws saknas";
+  const cats = data.categories.map((c) => c.id);
+  if (cats.length !== d.categories.length || cats.some((c) => !d.categories.includes(c))) {
+    return "andra kategorier";
+  }
+  const parties = Object.keys(data.scores);
+  if (parties.length !== d.parties.length || parties.some((p) => !d.parties.includes(p))) {
+    return "andra partier";
+  }
+  if (d.values.length !== d.parties.length * d.categories.length * (robust.meta?.n_draws_shipped ?? 0)) {
+    return "fel antal dragna betyg";
+  }
+  return null;
+}
+
 async function load() {
   try {
     DATA = await fetchJson(["./data/scores.json", "../dist/scores.json"]);
     EVID = await fetchJson(["./data/evidence.json", "../dist/evidence.json"]).catch(() => ({}));
+    // robustness.json är valfri: den kommer ur en egen, lång körning. Saknas den visar sajten
+    // ingen andel alls, hellre än ett tal utan täckning i en körning.
+    ROBUST = await fetchJson(["./data/robustness.json", "../dist/robustness.json"]).catch(() => null);
   } catch (e) {
     // Besökaren får ett vanligt svenskt meddelande; den tekniska orsaken (och tipset för
     // lokal körning) hamnar i konsolen där utvecklaren letar.
@@ -65,6 +90,12 @@ async function load() {
   }
 
   CAT_IDS = DATA.categories.map((c) => c.id);
+  const stale = robustnessMismatch(ROBUST, DATA);
+  if (stale) {
+    // Hellre ingen andel än en andel räknad på ett annat index än det listan visar.
+    console.error(`Rösta: robustness.json passar inte scores.json (${stale}) — andelen visas inte.`);
+    ROBUST = null;
+  }
   $("coverage").textContent = (DATA.meta && DATA.meta.coverage) || "";
   $("generated").textContent = metaLine(DATA.meta);
 
@@ -165,7 +196,7 @@ function buildCards() {
            <div class="ci"></div>
            <div class="barfill"></div>
          </div>
-         <span class="overlap" hidden></span>
+         <span class="stability" hidden></span>
        </div>
        <div class="detail" id="${detId}" hidden>${detailHTML({ party, catScores: DATA.scores[party] })}</div>`;
     const head = li.querySelector(".party-head");
@@ -183,22 +214,33 @@ function buildCards() {
   });
 }
 
-function updateCard(li, row, i, overlapAbove) {
+// Andelen metodvarianter där partiet ovanför stannar ovanför. Ingen tröskel och inget omdöme:
+// talet står som det är (ADR 0003 punkt 3). Formen ägs av issue #11, inte av den här funktionen.
+function stabilitySentence(above, party, share) {
+  return `${above} ligger före ${party} i ${Math.round(share * 100)} procent av metodvarianterna`;
+}
+
+function updateCard(li, row, i, aheadShare, aboveParty) {
   const name = PARTY_NAMES[row.party] || row.party;
   li.querySelector(".rank").textContent = String(i + 1);
   li.querySelector(".score").textContent = fmtScoreWithCI(row.total, [row.lo, row.hi]);
   li.querySelector(".ci").style.cssText = `left:${pct(row.lo)};width:${pct(row.hi - row.lo)}`;
   li.querySelector(".barfill").style.width = pct(row.total);
-  const ov = li.querySelector(".overlap");
-  if (overlapAbove) {
-    ov.hidden = false;
-    ov.title = "Spannen överlappar. Skillnaden är för liten för att vara säker.";
-    ov.textContent = `Skillnaden mot nr ${i} är osäker`;
+  const st = li.querySelector(".stability");
+  let spoken = "";
+  if (typeof aheadShare === "number") {
+    spoken = stabilitySentence(aboveParty, row.party, aheadShare);
+    st.hidden = false;
+    st.title = "Vi kör om hela modellen med andra rimliga metodval och räknar hur ofta ordningen håller.";
+    st.textContent = spoken;
   } else {
-    ov.hidden = true; ov.textContent = "";
+    st.hidden = true; st.textContent = "";
   }
+  // aria-label på huvudet döljer dess innehåll för skärmläsare, så andelen måste stå med här.
   li.querySelector(".party-head").setAttribute(
-    "aria-label", `${name}, plats ${i + 1}, betyg ${fmtNum(row.total)} av 5. Öppna för att se betygen per kategori.`);
+    "aria-label",
+    `${name}, plats ${i + 1}, betyg ${fmtNum(row.total)} av 5.${spoken ? ` ${spoken}.` : ""}` +
+    " Öppna för att se betygen per kategori.");
 }
 
 function render() {
@@ -220,9 +262,13 @@ function render() {
   const refocus = active?.classList?.contains("party-head")
     ? active.closest("li.party")?.dataset.party : null;
   const rows = partyTotals(DATA.scores, weights, CAT_IDS);
+  // Andelen räknas om per rendering, eftersom den hänger på användarens vikter (ADR 0003
+  // punkt 7). Saknas robustness.json blir shares tomt och korten visar ingen andel.
+  const shares = ROBUST ? pairStability(ROBUST.draws, weights, CAT_IDS) : {};
   rows.forEach((row, i) => {
     const li = cardEls[row.party];
-    updateCard(li, row, i, i > 0 && ciOverlap(rows[i - 1], row));
+    const above = i > 0 ? rows[i - 1].party : null;
+    updateCard(li, row, i, above ? shares[above]?.[row.party] : undefined, above);
     ol.appendChild(li);   // flyttar BEFINTLIGT element (behåller expanderat tillstånd)
   });
   if (refocus) cardEls[refocus]?.querySelector(".party-head")?.focus({ preventScroll: true });
@@ -290,6 +336,21 @@ function evidenceHTML(row) {
   return `<details class="evidence"><summary>Visa källorna bakom betyget (${refs.size} st)</summary><ul>${items}</ul></details>`;
 }
 
+// Metodrutan får bara lova det korten faktiskt visar. Utan robustness.json står det ingen andel
+// vid något kort, och då säger rutan att uppgiften saknas i stället för att beskriva den.
+function stabilityMethodHTML() {
+  if (!ROBUST) {
+    return `<p>Hur säker ordningen mellan två partier är mäter vi genom att köra om hela modellen
+     med andra rimliga metodval. Den körningen saknas i den här versionen, så vi visar inget mått
+     på hur säker ordningen är.</p>`;
+  }
+  return `<p>Hur säker ordningen mellan två partier är räknar vi fram genom att köra om hela
+     modellen ${fmtNum(ROBUST.meta?.n_draws ?? 0, 0)} gånger med andra rimliga metodval. Vid varje
+     parti står hur ofta partiet ovanför stannar ovanför, till exempel "S ligger före L i 68
+     procent av metodvarianterna". Vi sätter ingen gräns för när en skillnad räknas. Talet står
+     som det blev.</p>`;
+}
+
 function buildMethod() {
   const body = $("method-body");
   body.innerHTML =
@@ -307,8 +368,10 @@ function buildMethod() {
      genomföra sin politik.</p>
      <p>Du bestämmer hur mycket varje kategori väger. Din webbläsare räknar sedan ihop de 7 kategoribetygen
      till en totalpoäng. Betygen i sig ändras aldrig av dina reglage.</p>
-     <p>Efter varje betyg står ett spann, till exempel 3,3-4,1. Spannet visar hur säkert betyget är.
-     Går två partiers spann omlott kan vi inte säga vilket av dem som ligger bäst till.</p>
+     <p>Efter varje betyg står ett spann, till exempel 3,3-4,1. Spannet visar hur säkert
+     kategoribetyget är. Det säger däremot ingenting om vilket av två partier som ligger före det
+     andra.</p>
+     ${stabilityMethodHTML()}
      <p>Appen mäter vad ett förslag väntas ge för resultat, inte vilken väg partiet väljer dit.
      Ett parti får alltså inte poäng för att tycka rätt, utan för åtgärder som statistiken talar för.</p>
      <p class="warn"><b>Demonstration, inte färdigt röstråd.</b> Alla tre delar räknas i alla 7 kategorier,

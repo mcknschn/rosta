@@ -244,6 +244,15 @@ def _validate_scoring(sub_w: dict[str, Any], tolerance: float) -> None:
             "(tillåtna: policy_type_count, weighted_submeasure_depth)"
         )
 
+    # A:s normalisering styrs av configen (scorerun läser normalization.per_subscore.A). En
+    # saknad eller felstavad nyckel får ALDRIG tyst falla tillbaka på rank — då skulle configen
+    # åter beskriva ett beteende koden inte har.
+    a_norm = (s.get("normalization") or {}).get("per_subscore", {}).get("A")
+    if a_norm not in ("rank", "minmax"):
+        raise ConfigError(
+            f"normalization.per_subscore.A={a_norm!r} är ogiltigt (tillåtna: rank, minmax)"
+        )
+
     # C3: subnationell D-config — validera struktur tidigt (jfr coverage_mode). Frånvaro är OK
     # (legacy nationell D); finns blocket måste det vara välformat.
     subn = s.get("D_resultat", {}).get("subnational")

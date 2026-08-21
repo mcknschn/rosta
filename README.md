@@ -18,7 +18,8 @@ sakfrågor; appen rangordnar partierna utifrån faktiskt data från officiella s
 ```
 Officiella API:er ─▶ data/raw/ (lokalt) ─▶ data/warehouse.duckdb (lokalt)
                                           ─▶ claims + indicator_effects (lokalt)
-                                          ─▶ dist/scores.json + dist/evidence.json  ◀── deployas
+                                          ─▶ dist/scores.json + dist/evidence.json
+                                             + dist/robustness.json                ◀── deployas
 ```
 
 Frontenden räknar `totalpoäng = Σ(kategoribetyg × väljarens vikt)` i webbläsaren.
@@ -46,10 +47,12 @@ Inga partibetyg sätts för hand. Allt mänskligt omdöme ligger i versionsstyrd
 ```
 config/     modellen som config (categories, sources, mappings, scoring, claims,
             evidence_ledger, party_positions, coverage_allowlist)
-schemas/    JSON-scheman för observations/actions/responsibility/claims/effects/scores/evidence
-pipeline/   datapipelinen (sources, claims, effects, positions, score, tools/coverage_report)
+schemas/    JSON-scheman för observations/actions/responsibility/claims/effects/scores/
+            evidence/robustness
+pipeline/   datapipelinen (sources, claims, effects, positions, score, robustness,
+            tools/coverage_report)
 tests/      golden tests + schemavalidering
-dist/       scores.json + evidence.json (deploy-artefakt, genereras)
+dist/       scores.json + evidence.json + robustness.json (deploy-artefakt, genereras)
 web/        frontend (Fas 6)
 ```
 
@@ -70,6 +73,11 @@ python -m http.server 8000          # -> http://localhost:8000/web/
 Enskilda steg: `python -m pipeline.build_fas1` (Riksdagen → actions/responsibility),
 `python -m pipeline.build_fas2` (SCB/Kolada → observations), `python -m pipeline.scorerun`
 (→ `dist/`).
+
+Känslighetsanalysen körs för sig, eftersom den bygger om betygen tio tusen gånger och tar
+ungefär tio minuter: `python -m pipeline.robustness` (→ `dist/robustness.json`). Den mäter
+skiljbarhet som andelen metodvarianter där två partiers ordning håller
+([ADR 0003](docs/adr/0003-skiljbarhet-och-kanslighetsanalys.md)) och rör aldrig betygen.
 
 ## Status
 

@@ -627,6 +627,15 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
     #   a1 = budgetprioritering: andel av partiets föreslagna anslag till kategorins UO (Fas 1b,
     #        gated — se budget.py). a1 vägs in ENDAST för kategorier där grinden är uppfylld;
     #        annars faller A tillbaka på a2 helt (A_a2_only-flagga).
+    # A:s normalisering läses ur configen (normalization.per_subscore.A). Configen har alltid
+    # deklarerat 'rank' medan koden hårdkodade den; nu styr deklarationen, så ADR 0003 punkt 5
+    # kan dra reglaget. Saknad eller okänd nyckel hard-failar — aldrig tyst rank (samma mönster
+    # som coverage_mode, spegel av kontrollen i config._validate_scoring).
+    a_norm = (config.scoring().get("normalization") or {}).get("per_subscore", {}).get("A")
+    if a_norm not in ("rank", "minmax"):
+        raise config.ConfigError(
+            f"normalization.per_subscore.A={a_norm!r} är ogiltigt (tillåtna: rank, minmax)"
+        )
     counts = {(p, c): 0.0 for p in parties for c in cats}
     for p, c, t in con.execute(
         "SELECT party, category, sum(count) FROM party_activity GROUP BY party, category"
@@ -637,7 +646,9 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
         (p, c): (counts[(p, c)] / party_total[p] if party_total[p] else 0.0)
         for p in parties for c in cats
     }
-    a2_by_cat = {c: score.rank_normalize({p: a2_share[(p, c)] for p in parties}) for c in cats}
+    a2_by_cat = {
+        c: score.normalize({p: a2_share[(p, c)] for p in parties}, a_norm) for c in cats
+    }
 
     a1_share, a1_active = budget.a1_shares(cats, parties, ramar_cfg=budget_cfg)
     a_comp = config.scoring()["A_agerande"]["components"]
@@ -649,7 +660,7 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
         if c in a1_active:
             # a1_share[(p,c)] finns för alla partier när c är aktiv (grinden garanterar det);
             # direkt indexering => hård fail om en cell mot förmodan saknas (aldrig tyst 0).
-            a1_norm = score.rank_normalize({p: a1_share[(p, c)] for p in parties})
+            a1_norm = score.normalize({p: a1_share[(p, c)] for p in parties}, a_norm)
             a_by_cat[c] = {p: w_a1 * a1_norm[p] + w_a2 * a2_by_cat[c][p] for p in parties}
             a_flag_by_cat[c] = "A_a1_active"
         else:
@@ -707,6 +718,9 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
         if cc and pt in cov_den.get(cc, ()):
             cov_num.setdefault((pos["party"], cc), set()).add(pt)
     thin_cov = float(b_evidens.get("thin_coverage_threshold", 0.5))
+    # Krympningen på eller av (ADR 0003 punkt 5 kräver reglaget; scenario 3 kör det avstängt).
+    # Default true = committat läge och byte-identiskt med före reglaget.
+    b_shrink = bool(b_evidens.get("coverage_shrink", True))
 
     # B5 (docs/done/b_coverage_krympning_spec.md): täckningsmått-läge. policy_type_count = legacy
     # (byte-identisk baseline, antal kodade åtgärdstyper / kategorins kodbara). weighted_
@@ -768,7 +782,8 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
                     for ind in b_inputs if (c, ind) in meta
                 }
                 b_raw = score.aggregate_B(b_inputs, b_weights, missing_all_score=b_missing)
-                b_val = score.coverage_shrink(b_raw, coverage)  # krymp mot neutral efter täckning
+                # krymp mot neutral efter täckning (av -> B_raw, se B_evidens.coverage_shrink)
+                b_val = score.coverage_shrink(b_raw, coverage) if b_shrink else b_raw
                 b_flags.append(cov_flag)
                 thin = coverage < thin_cov
                 if thin:

@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mcknschn.github.io/rosta/schemas/robustness.schema.json",
+  "title": "robustness.json",
+  "description": "Deploy-kontrakt for kansligheten (ADR 0003): andelen metodvarianter dar tva partiers inbordes ordning haller. Bandoverlapp ar INTE ett skiljbarhetstest och star inte har.",
+  "type": "object",
+  "required": ["meta", "draws", "baseline", "category_stability", "standard_weight_stability", "source_influence", "scenarios"],
+  "additionalProperties": false,
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["generated", "seed", "n_draws", "n_draws_shipped", "monte_carlo_error", "parties", "categories", "standard_weights", "sources", "measure", "influence_note"],
+      "properties": {
+        "generated": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+        "seed": { "type": "integer" },
+        "n_draws": { "type": "integer", "minimum": 1 },
+        "n_draws_shipped": { "type": "integer", "minimum": 0 },
+        "monte_carlo_error": { "type": "number", "minimum": 0 },
+        "monte_carlo_error_shipped": { "type": "number", "minimum": 0 },
+        "monte_carlo_error_bins": { "type": "number", "minimum": 0 },
+        "parties": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "categories": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "standard_weights": { "type": "object", "additionalProperties": { "type": "number" } },
+        "sources": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "object",
+            "required": ["kind", "note"],
+            "properties": {
+              "kind": { "enum": ["range", "choice", "simplex"] },
+              "note": { "type": "string" },
+              "range": { "type": "array", "items": { "type": "number" }, "minItems": 2, "maxItems": 2 },
+              "alternatives": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+              "band_only": { "type": "boolean" }
+            }
+          }
+        },
+        "measure": { "type": "string" },
+        "influence_note": { "type": "string" }
+      }
+    },
+    "draws": {
+      "type": "object",
+      "required": ["parties", "categories", "scale", "values"],
+      "additionalProperties": false,
+      "properties": {
+        "parties": { "type": "array", "items": { "type": "string" } },
+        "categories": { "type": "array", "items": { "type": "string" } },
+        "scale": { "type": "integer", "const": 100 },
+        "values": { "type": "array", "items": { "type": "integer", "minimum": 0, "maximum": 500 } }
+      }
+    },
+    "baseline": {
+      "type": "object",
+      "required": ["matrix", "order"],
+      "additionalProperties": false,
+      "properties": {
+        "matrix": {
+          "type": "array",
+          "items": { "type": "array", "items": { "type": "number", "minimum": 0, "maximum": 5 } }
+        },
+        "order": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "category_stability": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "propertyNames": { "pattern": "^[A-ZÅÄÖa-z]+\\|[A-ZÅÄÖa-z]+$" },
+        "additionalProperties": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "standard_weight_stability": {
+      "type": "object",
+      "propertyNames": { "pattern": "^[A-ZÅÄÖa-z]+\\|[A-ZÅÄÖa-z]+$" },
+      "additionalProperties": { "type": "number", "minimum": 0, "maximum": 1 }
+    },
+    "source_influence": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": ["category_points", "total_points", "n_bins"],
+        "properties": {
+          "category_points": { "type": "number", "minimum": 0, "maximum": 100 },
+          "total_points": { "type": "number", "minimum": 0, "maximum": 100 },
+          "n_bins": { "type": "integer", "minimum": 1 },
+          "single_bin": { "type": "boolean" },
+          "bins": { "type": "object", "additionalProperties": { "type": "number" } }
+        }
+      }
+    },
+    "scenarios": {
+      "type": "array",
+      "minItems": 7,
+      "maxItems": 7,
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "kind", "description", "matrix", "included_parties", "included_categories", "order", "totals"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "integer", "minimum": 1, "maximum": 7 },
+          "name": { "type": "string" },
+          "kind": { "enum": ["uncertainty", "filter"] },
+          "description": { "type": "string" },
+          "matrix": {
+            "type": "array",
+            "items": { "type": "array", "items": { "type": "number", "minimum": 0, "maximum": 5 } }
+          },
+          "included_parties": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+          "included_categories": { "type": "array", "items": { "type": "string" } },
+          "order": { "type": "array", "items": { "type": "string" } },
+          "totals": { "type": "object", "additionalProperties": { "type": "number" } }
+        }
+      }
+    }
+  }
+}

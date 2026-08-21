@@ -42,9 +42,11 @@ Lager 3  CLAIMS / INDIKATOREFFEKTER (endast lokalt, bantat index deployas)
 Lager 4  BETYG (det som deployas)
   Claims + indikatorer + regler  ->  dist/scores.json     (per parti × kategori: 0-5 + osäkerhet)
                                     dist/evidence.json    (bantad claims-/bevisindex)
+                                    dist/robustness.json  (kategoribetyg per metodvariant)
 ```
 
-**Deploy-artefakt = endast `dist/scores.json` + `dist/evidence.json` + metodbeskrivning.**
+**Deploy-artefakt = endast `dist/scores.json` + `dist/evidence.json` + `dist/robustness.json`
++ metodbeskrivning.**
 `data/raw/` och `data/warehouse.duckdb` är `.gitignore`:ade och stannar lokalt.
 
 Frontend gör i webbläsaren: `totalpoäng = Σ (kategoribetyg × användarens vikt)`.
@@ -81,7 +83,7 @@ rosta/
     score.py             # indicator_effects + config -> dist/scores.json, dist/evidence.json
     schema.py            # validering av output
   data/                  # .gitignore  (raw/ + warehouse.duckdb)
-  dist/                  # scores.json, evidence.json  (det enda som deployas)
+  dist/                  # scores.json, evidence.json, robustness.json  (det enda som deployas)
   web/                   # frontend (läser dist/)
   tests/                 # golden tests på scoringmatte + schema-validering
 ```
@@ -273,6 +275,16 @@ Intervallets halvbredd per kategori = `max_halfwidth × Σ(delpoängvikt × (1 �
 
 `dist/evidence.json` (deployas): per `claim_ref` och `evidence_ref` → claim-sammanfattning, källnamn, dataset-id, hämtdatum, nyckelvärde, käll-URL. Bara bantade claims och nyckelvärden deployas, inte hela rådatat eller alla interna arbetsfält.
 
+`dist/robustness.json` (deployas, byggs av `python -m pipeline.robustness`): känsligheten enligt
+[ADR 0003](docs/adr/0003-skiljbarhet-och-kanslighetsanalys.md). Skiljbarhet mäts som **andelen
+metodvarianter där två partiers inbördes ordning håller**, inte som bandöverlapp. Filen bär
+`meta` (fast `seed`, `n_draws`, Monte Carlo-fel i procentenheter, och varje dragen källa med sitt
+spann eller sin alternativlista), `draws` (kategoribetygen per dragning som en flat heltalsvektor
+skalad med 100), `category_stability` per kategori och partipar, `source_influence` per källa, och
+de sju namngivna scenarierna, varav 6 och 7 är märkta som **filter** eftersom de byter vad indexet
+mäter. Totalen kan pipen inte förberäkna, eftersom kategorivikterna sätts i webbläsaren;
+`web/score.js` `pairStability` räknar andelen ur `draws` för användarens egna vikter.
+
 ## 6. Insamlingsordning (roadmap)
 
 Detaljerad, körbar exekveringsplan per fas (mål, tasks, filer, verifiering, exit-kriterier):
@@ -307,7 +319,7 @@ pipelinen körs lokalt med `python -m pipeline.build_all`.
 | 1c | ✅ | **Subnationell styresdata (regioner + kommuner) → C.** Alla **21 regioner + 290 kommuner × 3 mandatperioder** (post-val-styre 2014/2018/2022) ur SKR:s öppna data "Styren i regioner/kommuner 1994-2022" ([dataset 80](https://catalog.skl.se/catalog/1/datasets/80) + resource/127), region-2022 korsverifierad exakt (21/21), kommun-2022 inom ±2 av halvtidsuppföljnings-PDF. `pipeline/sources/skr.py` → `responsibility` (regional 219 + municipal 2706 rader); `scorerun.regional_fractions()`/`municipal_fractions()` + `category_c()` blandar nationell + subnationell makt per kategori via en **region/kommun-split efter lagstadgat ansvar** (`level_weights` + `subnational_split`), rank-normaliserat. Full subnationell täckning → C-säkerhet **hög**; forsvar nationellt per design. Fixar den tidigare **platta per-parti-C-konstanten**. Golden-tally pinnar datan mot SKR; Codex-granskad regionaldesign. **c2 (finansiering) uppskjutet** (ej neutralt/objektivt byggbart → C = c1). [Metod](docs/done/fas1c_subnational_metod.md). |
 | 3 (T3.0/3.x) | ✅ | Täckningsverktyg `pipeline/tools/coverage_report.py` + coverage-gate (`tests/test_fas3_gate.py`): varje indikator är inläst ELLER allowlistad (`config/coverage_allowlist.yaml`, [docs/done/fas3_coverage.md](docs/done/fas3_coverage.md)) — inget tyst gap. 7 nya D-serier: vårdköer (Kolada N79242), konsumtionsbaserade utsläpp (SCB TAB5637), självförsörjningsgrad utrikes födda (SCB TAB6529), dödligt våld (Brå Tabell 20), **fossil energianvändning (Energimyndigheten EN0202_8, PxWeb v1 — ny adapter `pipeline/build_fas3.py`)**, **brottsutsatthet + upplevd otrygghet (Brå NTU Tabellsamling, blad 3A + 4A:1, `bra.fetch_ntu`)**. Fixade SCB-loaderbugg (eliminerbara dimensioner). D mäts nu i **5 kategorier**; klimat har 3 D-serier och **trygghet 3** (dödligt våld + NTU-utsatthet + NTU-otrygghet). **Härledda indikatorer** (`pipeline/derived.py`, deterministisk gap/kvot ur två verifierade serier, två-tabells-operander + rimlighetsgrind): `sysselsattningsgap_inrikes_utrikes` (SCB TAB6529, sysselsättningsgrad inrikes − utrikes födda) och `produktivitet` (SCB TAB3610 BNP fasta priser ÷ TAB5622 arbetade timmar, kr/timme; Codex- + adversariellt verifierad mot finanskris- och 2022–2023-svackorna). **17 D-dugliga indikatorer / 386 obs.** |
 | 3 (T3.9) | ✅ | Evidensliggaren (B): **46 källverifierade poster, ≥3/kategori (alla 7)** (ursprungligen 29 + `ny_karnkraft`→effektbrist via Svenska kraftnät, Fas 4c; utökad via B2/B3). Källor URL-bekräftade (stickprov manuellt: IFAU 2025:17, SBU 369, Svk Kraftbalansen 2025), version 2 — expertgranskad (sign-off 2026-06-07), skarp betygsättning aktiv. Påverkar betyg för **alla 7 kategorier** (partiståndpunkter kurerade + panel-harmoniserade, se 4b/4c). |
-| 6 | ✅ v1 | **Frontend byggd** ([web/](web/)): statisk, byggfri; client-side viktning, rankad partilista med osäkerhetsband + CI-överlapp-notis, expanderbart bevisspår (`claim_refs`→evidence.json), URL-delning, svensk formatering, version-0-varning + metod. Rena moduler `web/{format,score}.js` (frontend viktar bara, ingen betygslogik). Tester: `node --test web/tests/` + `tests/test_dist_schema.py` + **Playwright-e2e (8 fall: kort, live-omräkning, bevisspår, ?w=, felkort, fokus/reflow)**. `web/score.js` reproducerar pipelinens ranking exakt. **Task 6.6/6.7 klara:** WCAG 2.2 AA-genomgång ([docs/done/fas6_wcag.md](docs/done/fas6_wcag.md), alla textkontraster ≥4,5:1, blocker fokus-/expanderingsförlust åtgärdad). Återstår (ej blockerande): manuell skärmläsartest. |
+| 6 | ✅ v1 | **Frontend byggd** ([web/](web/)): statisk, byggfri; client-side viktning, rankad partilista med osäkerhetsband + andelen metodvarianter där ordningen håller (ADR 0003; bandöverlapp är inte längre ett skiljbarhetstest), expanderbart bevisspår (`claim_refs`→evidence.json), URL-delning, svensk formatering, version-0-varning + metod. Rena moduler `web/{format,score}.js` (frontend viktar bara, ingen betygslogik). Tester: `node --test web/tests/` + `tests/test_dist_schema.py` + **Playwright-e2e (8 fall: kort, live-omräkning, bevisspår, ?w=, felkort, fokus/reflow)**. `web/score.js` reproducerar pipelinens ranking exakt. **Task 6.6/6.7 klara:** WCAG 2.2 AA-genomgång ([docs/done/fas6_wcag.md](docs/done/fas6_wcag.md), alla textkontraster ≥4,5:1, blocker fokus-/expanderingsförlust åtgärdad). Återstår (ej blockerande): manuell skärmläsartest. |
 
 ## 7. Risker och öppna frågor
 
