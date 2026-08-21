@@ -95,6 +95,13 @@ kategorierna.
    typen "kvalitén var för dålig före år X" är otillåtet: ingen kan pröva det, och det går att fatta
    med kännedom om effekten.
 
+   > **Förtydligad av [ADR 0007](0007-a-mats-over-samma-fonster-som-sin-forankring.md), 2026-08-21.**
+   > Punkten säger inte om fönstret styr täljaren eller bara förankringen, och bygget i
+   > [#21](https://github.com/mcknschn/rosta/issues/21) lade det på förankringen. ADR 0007 punkt 1
+   > avgör att fönstret styr båda. ADR 0007 punkt 3 lägger dessutom a1 och a2 på var sitt fönster i
+   > stället för ett gemensamt, och punkt 2 lägger till en tredje gräns för a1:s täljare. Texten
+   > ovan står oförändrad.
+
 8. **Blindheten deklareras.** Den som beslutade hade sett `source_influence` i
    `dist/robustness.json`, alltså att `rank` ger 89,04 i ordningsstabilitet och `minmax` 83,57.
    Punkt 3 väljer ingen av dem. Vad beslutet gör med A:s värden och med rangordningen räknades inte
