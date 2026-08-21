@@ -31,19 +31,33 @@ evidence_levels:
   expert_opinion:        0.2   # expertbedömning från myndighet/akademi
 
 # Numerisk mappning för aggregering.
+# effect_strength är B:s storleksskala rakt av (ADR 0004 punkt 4): low -> 3,25, medium -> 4,00,
+# high -> 5,00. Tabellen är ärvd och sattes innan någon tittade på ranking; den behålls därför
+# oförändrad och körs i stället som dragen parameter i känslighetsanalysen (ADR 0003 punkt 5).
+# confidence är samma tabell som scoring.yaml uncertainty.confidence_numeric. De två kopiorna
+# hålls ihop av tests/test_config.py::test_konfidenstalen_ar_desamma_i_bada_configarna.
 numeric:
   effect_strength: { low: 0.3, medium: 0.6, high: 1.0, unknown: 0.0 }
   confidence:      { low: 0.3, medium: 0.6, high: 0.85 }
 
-# Aggregering av claims -> indicator_effects.
-# För varje (parti, kategori, indikator):
-#   raw = Σ supporting (evidence_level * effect_strength * confidence * signed_direction)
-#       - Σ contradicting (samma vikt)
-#   net_support = clamp(raw / normalizer, -1, 1)
-#   confidence  = viktat medel av ingående claims confidence
+# Aggregering av claims -> indicator_effects. Ett KVALITETSVIKTAT MEDEL AV STORLEKAR MED
+# TECKEN (docs/adr/0004-vad-delpoang-b-mater.md). För varje (parti, kategori, indikator):
+#   q   = evidence_level * confidence           # kvalitet: vems storlek man tror på
+#   m   = effect_strength * signed_direction    # storlek med tecken, i [-1, 1]
+#   net_support = clamp(Σ (q * m) / Σ q, -1, 1)
+#   confidence  = medel av ingående claims confidence
+# Storleksskalan står i TÄLJAREN men inte i nämnaren. Formen kan därför inte kollapsa till
+# tecknet: ett ensamt claim ger exakt sin egen effect_strength med tecken. mixed/unclear ger
+# m = 0 men behåller sitt q, alltså drar en källa som säger att effekten är oklar cellen mot
+# neutral. Detsamma gäller effect_strength: unknown, som ger m = 0 utan att lämna nämnaren.
+# Den gamla nämnaren (Σ|w|) gjorde varje enhällig cell till exakt ±1 och tog ut
+# evidensgraderingen mot sig själv i 224 av 228 celler.
 aggregation:
   signed_direction: { positive: 1, negative: -1, mixed: 0, unclear: 0 }
-  normalizer: sum_of_abs_weights   # gör net_support skalinvariant mot antalet claims
+  normalizer: sum_of_quality_weights   # Σ q: kvaliteten normaliserar, storleken gör det inte
+  # Grind för B:s säkerhetsnivå. Läses av scorerun._b_confidence och räknas per (parti,
+  # kategori), alltså över kategorins alla evidence_effect-claims — inte per indikatorcell.
+  # Nyckeln står här och inte i scoring.yaml eftersom den grindar ett claims-antal.
   min_claims_for_high_confidence: 3
 
 # Spårbarhetskrav som hävdas i tester och review.

@@ -21,8 +21,9 @@ def test_aggregate_effects_net_support_direction_and_confidence() -> None:
     e = eff[0]
     assert (e["party"], e["category"], e["indicator"]) == ("M", "ekonomi", "arbetsloshet")
     assert e["expected_direction"] == "down"  # ur categories.yaml
-    # w1=0.8*1.0*0.85=0.68 (+), w2=0.5*0.6*0.6=0.18 (-): net=(0.68-0.18)/0.86
-    assert e["net_support"] == pytest.approx(0.5814, abs=1e-3)
+    # ADR 0004: kvalitetsviktat medel av storlekar med tecken.
+    # q1=0.8*0.85=0.68, m1=+1.0 · q2=0.5*0.6=0.30, m2=-0.6 -> net=(0.68-0.18)/0.98
+    assert e["net_support"] == pytest.approx(0.5102, abs=1e-3)
     assert e["confidence"] == pytest.approx(0.725, abs=1e-3)
     assert "claim:evidence_effect:1" in e["supporting_claims"]
     assert "claim:evidence_effect:2" in e["contradicting_claims"]

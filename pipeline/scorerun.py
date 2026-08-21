@@ -529,6 +529,28 @@ def _step_down_confidence(level: str, steps: int) -> str:
     return _CONF_ORDER[i]
 
 
+def _b_confidence(conf_cat: float, n_claims: int, thin_coverage: bool) -> str:
+    """B:s säkerhet ur evidensen (ADR 0004 punkt 5), sänkt ett steg vid tunn täckning.
+
+    conf_cat är evidensaggregatets confidence rullat upp över kategorin med SAMMA
+    undermåttsvikter som B_raw använder. Trösklarna är claims.yaml numeric.confidence läst
+    baklänges: high-talet kräver dessutom minst min_claims_for_high_confidence claims bakom
+    cellen, alltså regeln som stod i configen men aldrig kördes. Evidenssäkerhet och
+    täckningssäkerhet är båda osäkerhet och ska förstärka varandra, inte ersätta varandra —
+    därför steget ned i stället för en egen låg-nivå.
+    """
+    cl = config.claims()
+    num = cl["numeric"]["confidence"]
+    min_claims = int(cl["aggregation"]["min_claims_for_high_confidence"])
+    if conf_cat >= num["high"] and n_claims >= min_claims:
+        level = "high"
+    elif conf_cat >= num["medium"]:
+        level = "medium"
+    else:
+        level = "low"
+    return _step_down_confidence(level, int(thin_coverage))
+
+
 def category_c(
     nat_frac: dict[str, float], reg_frac: dict[str, float], mun_frac: dict[str, float],
     parties: list[str], cats: list[str],
@@ -651,8 +673,16 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
     ee_claims = positions.build_evidence_effect_claims()
     ind_effects = effects.aggregate_effects(ee_claims)
     b_net: dict[tuple[str, str], dict[str, float]] = {}
+    # Aggregatets confidence per indikator + antalet claims bakom cellen: B:s säkerhet
+    # härleds ur dem (ADR 0004 punkt 5). Innan dess slängdes confidence här.
+    b_conf_in: dict[tuple[str, str], dict[str, float]] = {}
+    b_n_claims: dict[tuple[str, str], int] = {}
     for e in ind_effects:
         b_net.setdefault((e["party"], e["category"]), {})[e["indicator"]] = e["net_support"]
+        b_conf_in.setdefault((e["party"], e["category"]), {})[e["indicator"]] = e["confidence"]
+    for cl in ee_claims:
+        key = (cl["party"], cl["category"])
+        b_n_claims[key] = b_n_claims.get(key, 0) + 1
     meta = _indicator_meta()
     sub_w = _submeasure_weights()
     b_evidens = config.scoring()["B_evidens"]
@@ -739,11 +769,14 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
                 b_raw = score.aggregate_B(b_inputs, b_weights, missing_all_score=b_missing)
                 b_val = score.coverage_shrink(b_raw, coverage)  # krymp mot neutral efter täckning
                 b_flags.append(cov_flag)
-                if coverage < thin_cov:
-                    b_conf = "low"
-                    b_flags.append("B_thin_coverage")
-                else:
-                    b_conf = "medium"
+                thin = coverage < thin_cov
+                if thin:
+                    b_flags.append("B_thin_coverage")  # beskriver täckningen, inte säkerheten
+                # conf_cat: samma undermåttsvikter och samma nämnare som B_raw.
+                conf_cat = score.submeasure_weighted_mean(
+                    b_conf_in.get((p, c), {}), b_weights
+                ) or 0.0
+                b_conf = _b_confidence(conf_cat, b_n_claims.get((p, c), 0), thin)
             else:
                 b_val, b_conf = b_missing, b_missing_conf
                 b_flags.append("B_no_party_evidence")

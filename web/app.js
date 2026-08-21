@@ -258,13 +258,13 @@ function detailHTML(row) {
   return `<div class="tablewrap"><table>
       <caption class="sr-only">Betyg per kategori och de tre delarna för ${row.party}, plus maktandelen som inte räknas in</caption>
       <thead><tr><th>Kategori</th><th class="num">Betyg</th><th class="num">Spann</th>
-        <th class="num" title="Vad partiet driver">A</th><th class="num" title="Om åtgärderna brukar ge resultat">B</th>
+        <th class="num" title="Vad partiet driver">A</th><th class="num" title="Hur mycket åtgärderna brukar ge">B</th>
         <th class="num" title="Hur det gick">D</th>
         <th class="num nocount" title="Hur mycket makt partiet haft, på skalan 0-5 jämfört med de andra partierna. Räknas inte in i betyget.">Maktandel</th>
         <th>Flaggor</th></tr></thead>
       <tbody>${catRows}</tbody>
     </table></div>
-    <p class="hint">A = vad partiet driver. B = om åtgärderna brukar ge resultat. D = hur det gick.
+    <p class="hint">A = vad partiet driver. B = hur mycket åtgärderna brukar ge. D = hur det gick.
       Maktandelen visar hur stor del av tiden partiet haft makt, jämfört med de andra partierna på skalan 0-5.
       Den ger inga poäng. Flaggor visar var underlaget är tunt eller saknas.</p>
     ${evidenceHTML(row)}`;
@@ -297,8 +297,9 @@ function buildMethod() {
      <ul>
        <li><b>A. Vad partiet driver (30 %).</b> Hur stor del av de pengar partiet vill anslå som går
          till kategorin. Vi räknar också hur stor del av partiets egna motioner som handlar om den.</li>
-       <li><b>B. Om åtgärderna brukar ge resultat (50 %).</b> Officiell statistik och forskning får avgöra om det
-         partiet driver flyttar siffrorna åt rätt håll.</li>
+       <li><b>B. Hur mycket åtgärderna brukar ge (50 %).</b> Officiell statistik och forskning får avgöra
+         hur stor förbättring de åtgärder partiet driver brukar ge. En åtgärd med liten känd effekt
+         ger färre poäng än en med stor.</li>
        <li><b>D. Hur det gick (20 %).</b> Om siffrorna blev bättre under tiden partiet hade ansvar.</li>
      </ul>
      <p>Vi räknar också ut varje partis <b>maktandel</b>, alltså hur mycket makt partiet haft.

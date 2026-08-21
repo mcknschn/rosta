@@ -66,6 +66,22 @@ def test_scoring_uncertainty_block_is_consistent() -> None:
     assert all(level in conf for level in unc["default_subscore_certainty"].values())
 
 
+def test_konfidenstalen_ar_desamma_i_bada_configarna() -> None:
+    """claims.yaml numeric.confidence och scoring.yaml uncertainty.confidence_numeric är två
+    kopior av samma tabell (0,85 / 0,60 / 0,30).
+
+    Efter ADR 0004 går evidensens confidence hela vägen till bandet: claims-tabellen sätter
+    B:s säkerhetsnivå och scoring-tabellen översätter nivån till halvbredd. Glider de isär
+    betyder samma ord två olika tal i samma kedja, och ingenting fångar det. Grinden ersätter
+    inte en gemensam källa, men den gör glidningen omöjlig att göra tyst.
+    """
+    claims_tabell = config.claims()["numeric"]["confidence"]
+    scoring_tabell = config.scoring()["uncertainty"]["confidence_numeric"]
+    assert claims_tabell == scoring_tabell, (
+        f"claims.yaml säger {claims_tabell}, scoring.yaml säger {scoring_tabell}"
+    )
+
+
 def test_normalization_neutral_matches_score_default() -> None:
     assert config.scoring()["normalization"]["default"]["neutral"] == 2.5
 

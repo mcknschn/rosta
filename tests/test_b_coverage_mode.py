@@ -200,11 +200,12 @@ def test_ny_mode_ger_viktad_djuptackning_handraknat(monkeypatch: pytest.MonkeyPa
     _set_mode(monkeypatch, "weighted_submeasure_depth")
     con = _seed_con()
     sc = scorerun.build(con)["scores"]["scores"]
-    # C/integration — flaggskeppsfallet: B_raw = 5.00 men B-väggarna boendesegregation (20)
-    # + normer_tillit (15) stannar i nämnaren -> cov_B = 0.65, B = 2.5 + 2.5*0.65 = 4.125
+    # C/integration — flaggskeppsfallet: B-väggarna boendesegregation (20) + normer_tillit (15)
+    # stannar i nämnaren -> cov_B = 0.65. B_raw = 4.00 (ADR 0004: kvalitetsviktat medel av
+    # storlekar; före rättningen 5.00, alltså taket) -> B = 2.5 + 1.5*0.65 = 3.475
     c_int = sc["C"]["integration"]
     assert "B_coverage_65/100" in c_int["flags"]
-    assert c_int["components"]["B"] == pytest.approx(4.125, abs=1e-3)
+    assert c_int["components"]["B"] == pytest.approx(3.475, abs=1e-3)
     # M/demokrati: 86,666... skrivs deterministiskt '86.7' (LÅST format, spec §4)
     assert "B_coverage_86.7/100" in sc["M"]["demokrati"]["flags"]
     # ekonomi: target-only (12+15) ur nämnaren -> full täckning '73/73', aldrig '73.0'

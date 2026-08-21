@@ -23,7 +23,18 @@ def _expected_directions() -> dict[tuple[str, str], str]:
 
 
 def aggregate_effects(claims: Iterable[dict[str, Any]]) -> list[dict[str, Any]]:
-    """Effekt-claims -> indicator_effects. net_support i [-1,1], confidence i [0,1]."""
+    """Effekt-claims -> indicator_effects. net_support i [-1,1], confidence i [0,1].
+
+    net_support är ett KVALITETSVIKTAT MEDEL AV STORLEKAR MED TECKEN (ADR 0004):
+    net = Σ(q·m) / Σ q, där q = evidence_level × confidence bär kvaliteten och
+    m = effect_strength × tecken(riktning) bär storleken. Storleksskalan står i täljaren
+    men inte i nämnaren, så formen kan inte kollapsa till tecknet: ett ensamt claim ger
+    exakt sin egen effektstyrka med tecken. mixed/unclear ger m = 0 men behåller sitt q
+    och drar därmed cellen mot neutral; effect_strength unknown beter sig likadant, alltså
+    som en källa utan storleksbesked. Fältet confidence är oförändrat ett medel av
+    claimens confidence och bär osäkerheten kring storleken (scorerun läser det till B:s
+    säkerhetsnivå).
+    """
     cfg = config.claims()
     ev_levels: dict[str, float] = cfg["evidence_levels"]
     num = cfg["numeric"]
@@ -43,22 +54,21 @@ def aggregate_effects(claims: Iterable[dict[str, Any]]) -> list[dict[str, Any]]:
     effects: list[dict[str, Any]] = []
     for (party, cat, ind), cs in groups.items():
         num_sum = 0.0
-        abs_sum = 0.0
+        q_sum = 0.0
         conf_vals: list[float] = []
         supporting: list[str] = []
         contradicting: list[str] = []
         for c in cs:
-            w = (
-                ev_levels.get(c.get("evidence_level", ""), 0.0)
-                * num["effect_strength"].get(c.get("effect_strength", "unknown"), 0.0)
-                * num["confidence"].get(c.get("confidence", "low"), 0.0)
-            )
+            conf_num = num["confidence"].get(c.get("confidence", "low"), 0.0)
+            # q = kvalitet: vems storlek man tror på. m = storlek med tecken, i [-1, 1].
+            q = ev_levels.get(c.get("evidence_level", ""), 0.0) * conf_num
             s = signed.get(c.get("direction", "unclear"), 0)
-            num_sum += w * s
-            abs_sum += abs(w)
-            conf_vals.append(num["confidence"].get(c.get("confidence", "low"), 0.0))
+            m = num["effect_strength"].get(c.get("effect_strength", "unknown"), 0.0) * s
+            num_sum += q * m
+            q_sum += q
+            conf_vals.append(conf_num)
             (supporting if s >= 0 else contradicting).append(c.get("id", ""))
-        net = max(-1.0, min(1.0, num_sum / abs_sum)) if abs_sum > 0 else 0.0
+        net = max(-1.0, min(1.0, num_sum / q_sum)) if q_sum > 0 else 0.0
         conf = sum(conf_vals) / len(conf_vals) if conf_vals else 0.0
         effects.append({
             "party": party, "category": cat, "indicator": ind,

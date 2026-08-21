@@ -52,7 +52,11 @@ A_agerande:
   # docs/done/fas1b_budget_metod.md. A = a1*0.6 + a2*0.4 där a1 aktiv, annars A = a2.
   notes: Mäter prioritering relativt partiets storlek, inte om politiken är rätt. Rättheten fångas av B och D.
 
-# B — Evidens/träffsäkerhet. Har förslagen källstöd för påstådd indikatoreffekt?
+# B — Väntad storlek. Hur stor förbättring väntas av de åtgärder partiet driver?
+# Storlek, inte riktning (docs/adr/0004-vad-delpoang-b-mater.md). Ett rent tecken kan inte
+# svara på "hur mycket", och kategoribetyget svarar på hur mycket kategorin väntas förbättras
+# (ADR 0002). Storleken (effect_strength) bär poängen; kvaliteten (evidence_level,
+# confidence) bär säkerhetsetiketten och därmed bandet.
 # Bygger på indicator_effects (config/claims.yaml).
 B_evidens:
   # B per (parti, kategori) = submåttsviktat medel av indikatorernas net_support_to_score.
@@ -61,12 +65,18 @@ B_evidens:
   missing_indicator: skip                  # indikator utan effekt utelämnas ur medlet (inte 2.5)
   missing_all_score: 2.5                   # HELA kategorin saknar effekter -> neutral
   missing_all_confidence: low
-  # B:s confidence per kategori härleds ur indicator_effects-aggregatets confidence
-  # (claims.yaml aggregation: viktat medel + min_claims_for_high_confidence).
+  # B:s säkerhet per kategori härleds ur indicator_effects-aggregatets confidence (ADR 0004
+  # punkt 5): conf_kat = Σ(w_undermått · confidence) / Σ w_undermått, med SAMMA vikter som
+  # B_raw. conf_kat >= confidence_numeric.high OCH minst claims.yaml
+  # min_claims_for_high_confidence claims i kategorin -> high; >= confidence_numeric.medium
+  # -> medium; annars low. Nivån sänks sedan ETT steg vid tunn täckning (samma
+  # _step_down_confidence som C och D), eftersom evidenssäkerhet och täckningssäkerhet är två
+  # skilda osäkerheter som ska förstärka varandra, inte ersätta varandra.
   # Coverage-viktning (Fas 4b'): B_just = 2.5 + (B_raw - 2.5) * coverage, där
   # coverage = kodade åtgärdstyper / kategorins kodbara åtgärdstyper. Frånvaro av ståndpunkt =
   # "vet ej" och drar B mot neutral (straffar ej, belönar ej tom täckning); ett ensamt
-  # supports-claim ger alltså inte längre maxbetyg. Tunn täckning -> låg säkerhet + B_thin_coverage.
+  # supports-claim ger alltså inte längre maxbetyg. Tunn täckning -> B_thin_coverage-flagga och
+  # ett steg ned i säkerhet; flaggan beskriver täckningen, inte säkerheten.
   # B5 — täckningsmått-läge (docs/done/b_coverage_krympning_spec.md). Två lägen:
   #   policy_type_count:         legacy (byte-identisk baseline). coverage = kodade åtgärdstyper /
   #                              kategorins kodbara åtgärdstyper (ANTAL; nämnaren = liggarens
@@ -189,6 +199,9 @@ D_resultat:
 # (parti, kategori) av datan (B från effekter, C vid saknad subnational, D vid not_applicable).
 # Halvbredd per kategori = max_halfwidth * Σ(subscore_weight * (1 - confidence_numeric[nivå])).
 uncertainty:
+  # Samma tabell som claims.yaml numeric.confidence. Efter ADR 0004 går evidensens confidence
+  # hela vägen till bandet: claims-tabellen sätter B:s nivå, den här översätter nivån till
+  # halvbredd. De hålls ihop av tests/test_config.py.
   confidence_numeric:
     high: 0.85
     medium: 0.60

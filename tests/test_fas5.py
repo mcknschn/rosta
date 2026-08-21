@@ -33,12 +33,30 @@ def test_scorerun_build_is_schema_valid_and_complete() -> None:
             assert 0.0 <= v["score"] <= 5.0
             assert v["ci"][0] <= v["score"] <= v["ci"][1]
             assert "D_not_applicable" in v["flags"]
-            # B låg+flaggad utan ståndpunkt ELLER vid tunn coverage; medium vid god täckning.
-            if {"B_no_party_evidence", "B_thin_coverage"} & set(v["flags"]):
+            # B:s säkerhet härleds ur evidensen och sänks ett steg vid tunn täckning
+            # (ADR 0004). Utan ståndpunkter är den låg per config.
+            if "B_no_party_evidence" in v["flags"]:
                 assert v["confidence"]["B"] == "low"
+            elif "B_thin_coverage" in v["flags"]:
+                assert v["confidence"]["B"] in {"medium", "low"}  # steget ned utesluter high
             else:
-                assert v["confidence"]["B"] == "medium"
+                assert v["confidence"]["B"] in {"high", "medium", "low"}
     con.close()
+
+
+def test_b_sakerhet_foljer_inte_langre_tackningsflaggan() -> None:
+    """ADR 0004 diagnos punkt 3: B:s etikett följde B_thin_coverage i 56 av 56 celler, alltså
+    läste den aldrig evidensen. Efter rättningen ska det finnas celler med GOD täckning men
+    låg säkerhet, för att evidensen bakom dem är svag."""
+    con = _seed_con()
+    sc = scorerun.build(con)["scores"]["scores"]
+    con.close()
+    god_tackning_lag_sakerhet = [
+        (p, c) for p, cats in sc.items() for c, v in cats.items()
+        if not {"B_no_party_evidence", "B_thin_coverage"} & set(v["flags"])
+        and v["confidence"]["B"] == "low"
+    ]
+    assert god_tackning_lag_sakerhet
 
 
 def test_scorerun_relative_prioritization_drives_A() -> None:

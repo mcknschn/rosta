@@ -32,7 +32,7 @@ Per parti och kategori: `betyg = 0.40·A + 0.35·B + 0.15·C + 0.10·D` (0–5, 
 | Delpoäng | Mäter | Källor |
 |----------|-------|--------|
 | A – Faktiskt agerande | Budgetprioritering + lagstiftningsaktivitet | Riksdagen, statsbudget |
-| B – Evidens/träffsäkerhet | Källstöd för förslagens indikatoreffekt | IFAU, SBU, Vårdanalys, Brå, ESO, Riksrevisionen … |
+| B – Väntad storlek | Hur stor förbättring de åtgärder partiet driver väntas ge | IFAU, SBU, Vårdanalys, Brå, ESO, Riksrevisionen … |
 | C – Genomförbarhet/ansvar | Makt (regering/region/kommun) + finansiering | Valmyndigheten, Regeringskansliet, SKR, Kolada |
 | D – Resultat | Indikatorförändring där partiet hade ansvar | SCB, Brå, Socialstyrelsen, Skolverket … |
 
