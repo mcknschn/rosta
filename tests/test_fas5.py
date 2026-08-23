@@ -46,17 +46,42 @@ def test_scorerun_build_is_schema_valid_and_complete() -> None:
 
 def test_b_sakerhet_foljer_inte_langre_tackningsflaggan() -> None:
     """ADR 0004 diagnos punkt 3: B:s etikett följde B_thin_coverage i 56 av 56 celler, alltså
-    läste den aldrig evidensen. Efter rättningen ska det finnas celler med GOD täckning men
-    låg säkerhet, för att evidensen bakom dem är svag."""
+    läste den aldrig evidensen. Testet låser att etiketten INTE är en funktion av flaggan.
+
+    Vittnet bytte form 2026-08-23 (#26, ADR 0006). Fram till dess var vittnet en cell med GOD
+    täckning men LÅG säkerhet, alltså svag evidens bakom en väl täckt cell. Den symmetriska
+    evidensgrinden tar bort just den möjligheten: varje admitterad liggarpost bär numera
+    confidence minst medium, så conf_kat kan aldrig hamna under medium-tröskeln och en låg
+    B-etikett kan bara komma ur steget ned vid tunn täckning. Egenskapen prövas därför nu på
+    VARIATION i stället: bland cellerna med god täckning ska mer än en säkerhetsnivå förekomma.
+    """
     con = _seed_con()
     sc = scorerun.build(con)["scores"]["scores"]
     con.close()
-    god_tackning_lag_sakerhet = [
-        (p, c) for p, cats in sc.items() for c, v in cats.items()
+    god_tackning = [
+        v["confidence"]["B"] for _p, cats in sc.items() for _c, v in cats.items()
         if not {"B_no_party_evidence", "B_thin_coverage"} & set(v["flags"])
-        and v["confidence"]["B"] == "low"
     ]
-    assert god_tackning_lag_sakerhet
+    assert len(set(god_tackning)) > 1, (
+        "B:s säkerhet är konstant över alla väl täckta celler — etiketten läser inte evidensen "
+        f"utan följer täckningsflaggan igen: {sorted(set(god_tackning))}"
+    )
+
+
+def test_lag_b_sakerhet_kraver_tunn_tackning_efter_symmetriska_grinden() -> None:
+    """Följdinvariant av ADR 0006: grinden kräver confidence minst medium vid dörren, så en
+    LÅG B-etikett kan bara komma ur steget ned vid tunn täckning (eller ur att kategorin helt
+    saknar partievidens). En låg etikett i en väl täckt cell skulle betyda att en post med
+    confidence low tagit sig in i poängen, alltså att grinden läcker."""
+    con = _seed_con()
+    sc = scorerun.build(con)["scores"]["scores"]
+    con.close()
+    lackor = [
+        (p, c) for p, cats in sc.items() for c, v in cats.items()
+        if v["confidence"]["B"] == "low"
+        and not {"B_no_party_evidence", "B_thin_coverage"} & set(v["flags"])
+    ]
+    assert not lackor, f"låg B-säkerhet utan tunn täckning — grinden läcker: {lackor}"
 
 
 def test_scorerun_relative_prioritization_drives_A() -> None:

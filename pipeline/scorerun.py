@@ -353,7 +353,7 @@ def _b_codable_types_by_submeasure() -> dict[str, dict[str, set[str]]]:
     b_exclude = set(config.scoring()["B_evidens"].get("coverage_exclude", []))
     meta = _indicator_meta()
     out: dict[str, dict[str, set[str]]] = {}
-    for e in config.evidence_ledger()["entries"]:
+    for e in config.admitted_ledger_entries():
         if signed.get(e["direction"], 0) == 0 or e["policy_type"] in b_exclude:
             continue
         key = (e["category"], e["indicator"])
@@ -716,7 +716,8 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
     # kategorins KODBARA åtgärdstyper partiet faktiskt har en ståndpunkt på. Frånvaro av ståndpunkt
     # = "vet ej", inte motstånd -> ett ensamt supports-claim kan inte längre ge maxbetyg i kategorin.
     signed = config.claims()["aggregation"]["signed_direction"]
-    ledger_entries = config.evidence_ledger()["entries"]
+    # Utlyfta poster (admitted: false) är inte kodbara: de ger varken claims eller nämnare.
+    ledger_entries = config.admitted_ledger_entries()
     pol2cat = {e["policy_type"]: e["category"] for e in ledger_entries}
     b_exclude = set(b_evidens.get("coverage_exclude", []))
     cov_den: dict[str, set[str]] = {}  # kategori -> kodbara åtgärdstyper (signed != 0, ej exkluderade)
@@ -851,6 +852,18 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
         for c in config.categories()["categories"]
     ]
     n_positions = len(config.party_positions().get("entries") or [])
+    # Efter ADR 0006 håller den symmetriska evidensgrinden en del liggarposter utanför poängen
+    # (config.entry_admitted). En ståndpunkt vars åtgärdstyp är utlyft ger inga claims, så
+    # antalet ståndpunkter och antalet ståndpunkter SOM MATAR B är två skilda tal. Att bara
+    # redovisa det första skulle överdriva vad B vilar på.
+    # Nyckeln är "har åtgärdstypen NÅGON admitterad post", inte "har den någon utlyft post".
+    # En åtgärdstyp kan bära flera liggarposter (koldioxidskatt gör det), och en ståndpunkt
+    # matar B så länge minst en av dem passerar grinden.
+    _types_feeding_b = {e["policy_type"] for e in config.admitted_ledger_entries()}
+    n_positions_feeding_b = sum(
+        1 for pos in (config.party_positions().get("entries") or [])
+        if pos["policy_type"] in _types_feeding_b
+    )
     # Fönstrets slut och underlagets slut är två skilda datum (issue #3). window_end är
     # mandatperiodens formella slut och ligger i framtiden tills valet hållits; data_as_of är
     # sista dagen serierna faktiskt når. window_open säger att mandatperioden pågår, alltså att
@@ -872,7 +885,9 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
             # coverage_technical = samma körning för granskare, med termer och beslut.
             "coverage": (f"Underlaget i den här versionen: alla {len(cats)} kategorier har betyg "
                          f"i alla tre delar som räknas. Partiernas ståndpunkter bygger på "
-                         f"{n_positions} belagda röster och motioner i riksdagen. Hur det gick "
+                         f"{n_positions_feeding_b} av {n_positions} belagda röster och motioner "
+                         "i riksdagen; resten rör åtgärder där det saknas en officiell "
+                         "utvärdering som är stark nog. Hur det gick "
                          "mäts med officiella årsserier. Vem som haft makten räknas både "
                          "nationellt och i regioner och kommuner, men det ger inga poäng och "
                          "visas bara som upplysning. Där underlaget är tunt drar vi betyget mot "
@@ -905,17 +920,25 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
                 "blandas nationell nivå med region-nivå vårdutfall attribuerat till "
                 "regionstyrande parti (soundness-grindat); D krymps mot neutral efter "
                 "viktad undermåttsbredd. B är AKTIVERAD "
-                f"för ALLA 7 kategorier via {n_positions} källbelagda, adversariellt "
-                "verifierade + panel-harmoniserade partiståndpunkter (riksdagsvotering/"
-                "motion, Fas 4c); B krymps mot neutral efter viktad undermåttsdjuptäckning "
+                f"för ALLA 7 kategorier via {n_positions_feeding_b} av {n_positions} "
+                "källbelagda, adversariellt verifierade + panel-harmoniserade "
+                "partiståndpunkter (riksdagsvotering/motion, Fas 4c); B krymps mot neutral "
+                "efter viktad undermåttsdjuptäckning "
                 "(B_thin_coverage-flagga vid tunn täckning). B mäter VÄNTAD STORLEK och "
                 "inte riktning (ADR 0004): net_support är ett kvalitetsviktat medel av "
                 "storlekar med tecken, Σ(q·m)/Σq med q=evidence_level×confidence och "
                 "m=effect_strength×tecken(riktning), så ett ensamt claim ger sin egen "
                 "effektstyrka i stället för ±1; B:s säkerhet härleds ur evidensens "
                 "confidence (tröskel 0,85/0,60 + min_claims_for_high_confidence) och sänks "
-                "ett steg vid tunn täckning. party_positions + "
-                "evidence_ledger expertgranskade v2 (mänsklig sign-off 2026-06-07)."),
+                "ett steg vid tunn täckning. party_positions expertgranskad v2 (mänsklig "
+                "sign-off 2026-06-07). evidence_ledger v3 (2026-08-23, ADR 0006): den "
+                "symmetriska EVIDENSGRINDEN gäller varje post OAVSETT VERKAN — "
+                "evidence_level i {authority_evaluation, systematic_review}, confidence minst "
+                "medium, evidens som avser exakt indikatorn. Poster som faller raderas inte "
+                "utan hålls utanför både claims och täckningsnämnaren, med skäl per post, så "
+                "källspåret finns kvar. Sökningen efter nya poster är källstyrd och "
+                "riktningsblind: den räknar upp officiella utvärderingar per indikator och "
+                "låter verkan bli vad utvärderingen fann."),
         },
         "categories": catinfo,
         "scores": scores,

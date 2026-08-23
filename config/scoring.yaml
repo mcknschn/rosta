@@ -119,12 +119,20 @@ B_evidens:
   # Åtgärdstyper som lyfts ur coverage-nämnaren. GENERALISERAD regel (docs/done/fas4c_rubrik.md §7):
   # en policy_type får exkluderas ENDAST på en principiell grund, som måste anges i
   # coverage_exclude_reasons nedan. Inga ad hoc-undantag. Grunder:
-  #   E1 = sidoeffekt-negativ (direction:negative men evidensen avser en sidoeffekt, inte
-  #        instrumentets kärnvärde -> stance-kodning ger missvisande B-sign; faller på negativ-grinden §5.3)
+  #   E1 = SIDOEFFEKT-PROXY: evidensen avser en sidoeffekt och inte instrumentets kärnvärde, så en
+  #        stance-kodning skulle ge missvisande B-sign. Grunden gäller OAVSETT VERKAN och faller på
+  #        grinden §5.3. Den hette 'sidoeffekt-negativ' och var formulerad bara för
+  #        direction:negative fram till 2026-08-23; omskriven riktningsneutralt i ADR 0006 punkt 6
+  #        och rubriken §7 version 2. Två grunder för samma fel, en per verkan, vore samma
+  #        asymmetri en gång till på ett annat ställe.
   #   E2 = inert per konstruktion (mixed/unclear -> signed_direction 0 -> kan aldrig ge B-effekt)
+  # OBS att detta är en ANNAN regel än den symmetriska evidensgrinden. §7 lyfter en åtgärdstyp ur
+  # NÄMNAREN; §5 avgör om en liggarpost över huvud taget får bidra till B och bärs av fältet
+  # `admitted` i config/evidence_ledger.yaml. En utlyft post (admitted: false) är varken kodbar
+  # eller i nämnaren och ska därför INTE också stå här.
   coverage_exclude: [internationella_materielsamarbeten]
   coverage_exclude_reasons:
-    internationella_materielsamarbeten: "E1: RiR 2011:13 mäter leveranstidsrisk (sidoeffekt), inte om materielsamarbete i sig är sämre försvarspolitik; negativ B-sign skulle bli missvisande."
+    internationella_materielsamarbeten: "E1 sidoeffekt-proxy: RiR 2011:13 mäter leveranstidsrisk (en sidoeffekt), inte om materielsamarbete i sig är sämre försvarspolitik. B-signen skulle bli missvisande. Grunden gäller oavsett verkan."
 
 # C — Maktandel. Hur mycket makt partiet haft. Vikt 0: ger inga poäng utan redovisas som
 # upplysning (ADR 0002). "Genomförbarhet/ansvar" är ett retirerat namn; confignyckeln heter

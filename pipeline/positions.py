@@ -31,7 +31,9 @@ def build_evidence_effect_claims(
     if positions is None:
         positions = config.party_positions().get("entries") or []
     if ledger is None:
-        ledger = config.evidence_ledger().get("entries") or []
+        # Bara poster som passerar den symmetriska evidensgrinden (rubriken §5, ADR 0006).
+        # En utlyft post står kvar i liggaren med källa och skäl men ger inga claims.
+        ledger = config.admitted_ledger_entries()
 
     by_policy: dict[str, list[dict[str, Any]]] = {}
     for e in ledger:

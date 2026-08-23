@@ -18,8 +18,14 @@
 # indikatorns positiva riktning: positive = åtgärden rör indikatorn ÅT RÄTT HÅLL), evidence_level,
 # effect_strength, confidence, source (+ source_url/note för spårbarhet i verified_draft).
 
-version: 2          # mänsklig sign-off 2026-06-07 (B-grön- + integration-svepen godkända; v1 = expertgranskad + sign-off 2026-06-05)
-status: expert_reviewed
+# ADMISSION: fältet `admitted: false` + `admission_note` håller en post UTANFÖR poängen utan att
+# radera den. Grinden är symmetrisk och gäller oavsett verkan (ADR 0006, rubriken §5):
+# evidence_level i {authority_evaluation, systematic_review}, confidence >= medium, och evidens som
+# avser exakt den betygsatta indikatorn utan sidoeffekt-proxy. En utlyft post ger inga claims
+# (pipeline/positions.py) och ligger utanför täckningsnämnaren (pipeline/scorerun.py), men källan
+# och skälet står kvar så att spåret går att granska och återuppta.
+version: 3          # 2026-08-23 (#26, ADR 0006): symmetrisk grind tillämpad, 14 poster utlyfta, 1 post ur det källstyrda svepet; v2 = sign-off 2026-06-07 (B-grön- + integration-svepen); v1 = expertgranskad + sign-off 2026-06-05
+status: expert_reviewed   # gäller de 46 poster som fanns före v3; klimatinvesteringsstod_klimatklivet är ny ur svepet och väntar mänsklig slutgranskning (rubriken §10)
 
 # Slås ihop till en lista av config.evidence_ledger()["entries"] nedan.
 entries:
@@ -94,6 +100,8 @@ entries:
     evidence_level: authority_evaluation
     effect_strength: unknown
     confidence: low
+    admitted: false
+    admission_note: "UTLYFT 2026-08-23 (#26, ADR 0006 punkt 2): faller på den symmetriska evidensgrinden, rubriken §5. Posten raderas INTE - källspåret står kvar - men hålls utanför claims och täckningsnämnaren. Faller på §5.2: confidence är low. IFAU anger själv att effekten är svår att utvärdera eftersom kontrollgrupp saknas. INTE en av de 13 som biljett #26 räknar upp, eftersom de 13 är de positiva posterna. Grinden gäller efter ADR 0006 lika oavsett verkan, så en post med verkan unclear prövas mot samma nivå. Posten var redan inert (signed_direction 0) och har noll partirader, så utlyftet flyttar inga betyg. Att låta den stå kvar hade krävt ett undantag för verkan, alltså exakt den asymmetri ADR 0006 tar bort."
     source: "IFAU, forskningssammanfattning Jobbskatteavdrag"
     source_url: "https://www.ifau.se/Press/Forskningssammanfattningar/Jobbskatteavdrag/"
     note: "Effekten svår att utvärdera (kontrollgrupp saknas); inga säkra slutsatser."
@@ -127,6 +135,8 @@ entries:
     evidence_level: descriptive_statistic
     effect_strength: medium
     confidence: high
+    admitted: false
+    admission_note: "UTLYFT 2026-08-23 (#26, ADR 0006 punkt 2 och 5): faller på den symmetriska evidensgrinden, rubriken §5. Posten raderas INTE - källspåret står kvar - men hålls utanför claims och täckningsnämnaren. Faller på §5.1: evidence_level är descriptive_statistic. Fördelningspolitiska redogörelsen är officiell beskrivande statistik över hur inkomster fördelas, inte en utvärdering av att åtgärdstypen orsakar högre real disponibel inkomst."
     source: "Fördelningspolitisk redogörelse april 2025 (bilaga till 2025 års ekonomiska vårproposition, Finansdepartementet)"
     source_url: "https://www.regeringen.se/informationsmaterial/2025/04/fordelningspolitisk-redogorelse-april-2025/"
     note: "TILLAGD 2026-06-05 (BACKLOG B2): gör submåttet 'Reallöner och hushållens ekonomi' B-bart (ekonomi 3/6 -> 4/6) via den ARBETANDE indikatorn hushallens_reala_disponibla_inkomst (realloner förblir vilande kontext, ej partistyrbar). VÄRDENEUTRAL åtgärdstyp-FAMILJ: skatte- OCH/ELLER transfereringsreformer som höjer hushållens disponibla inkomst. Fördelningspolitiska redogörelsen definierar disponibel inkomst (arbets-/kapital-/näringsinkomst + transfereringar − direkta skatter) och analyserar hur skatte- och transfereringsreformer påverkar den -> både SÄNKT SKATT (höger) och HÖJDA TRANSFERERINGAR (vänster) höjer disponibel inkomst. Därför kodas BÅDA blocken som supports via sitt instrument = ingen höger-/vänstertilt (till skillnad från skatt/reglering där bara 'mindre stat' räknas). evidence_level descriptive_statistic (accounting/beskrivande, ej kausal välfärdsutvärdering) -> modest vikt; riktning definitionsmässigt säker -> confidence high. Partiståndpunkter: inkomststarkande_hushallspolitik (8 supports, instrument per parti i mapping_note)."
@@ -195,6 +205,8 @@ entries:
     evidence_level: systematic_review
     effect_strength: low
     confidence: low
+    admitted: false
+    admission_note: "UTLYFT 2026-08-23 (#26, ADR 0006 punkt 2 och 5): faller på den symmetriska evidensgrinden, rubriken §5. Posten raderas INTE - källspåret står kvar - men hålls utanför claims och täckningsnämnaren. Faller på §5.2: confidence är low. Nivån räcker (SBU 369 är en systematisk översikt), men SBU anger själv låg tillförlitlighet i underlaget bakom OR 0,56."
     source: "SBU Rapport 369 (2023), Psykosociala insatser mot gängkriminalitet"
     source_url: "https://www.sbu.se/369"
     note: "Psykosociala insatser i frivård kan minska återfall ~1 år (OR 0,56), låg tillförlitlighet."
@@ -251,6 +263,8 @@ entries:
     evidence_level: authority_evaluation
     effect_strength: low
     confidence: low
+    admitted: false
+    admission_note: "UTLYFT 2026-08-23 (#26, ADR 0006 punkt 2 och 5): faller på den symmetriska evidensgrinden, rubriken §5. Posten raderas INTE - källspåret står kvar - men hålls utanför claims och täckningsnämnaren. Faller på §5.2: confidence är low. RiR 2025:4 är en styrningsgranskning, och 'tydligare styrning behövs' är en rekommendation, inte en uppmätt verkan på civil_beredskap_niva."
     source: "Riksrevisionen RiR 2025:4, Den statliga styrningen av det civila försvarets uppbyggnad"
     source_url: "https://www.riksrevisionen.se/granskningar/granskningsrapporter/2025/den-statliga-styrningen-av-det-civila-forsvarets-uppbyggnad.html"
     note: "Otydliga mandat och svag finansiering bromsade uppbyggnaden -> tydligare styrning behövs."
@@ -291,6 +305,22 @@ entries:
     source: "Riksrevisionen RiR 2012:1, Klimatrelaterade skatter – Vem betalar?"
     source_url: "https://www.riksdagen.se/sv/dokument-och-lagar/dokument/riksrevisionens-granskningsrapport/klimatrelaterade-skatter-vem-betalar_h0b51/html/"
     note: "Enhetlig koldioxidskatt kostnadseffektiv (utsläppsminskning till lägre samhällskostnad); ojämn tillämpning sänker effektiviteten."
+
+  # Källstyrt evidenssvep 2026-08-23 (#26, ADR 0006 punkt 3; register:
+  # docs/done/b_evidenssvep_2026-08-23.md §3.1). Enda av 68 uppräknade indikatorer som gav en post
+  # som passerar den symmetriska grinden. Verkan, effect_strength och evidence_level låstes och
+  # skrevs ned i registret INNAN partiraderna slogs upp (ordningsregeln, rubriken §5b). Åtgärdstypen
+  # är ny -> party_positions har noll rader för den, och ståndpunktssidan rörs inte i den slicen.
+  - category: klimat
+    indicator: utslappsminskning_per_krona
+    policy_type: klimatinvesteringsstod_klimatklivet
+    direction: negative
+    evidence_level: authority_evaluation
+    effect_strength: medium
+    confidence: medium
+    source: "Riksrevisionen RiR 2019:1, Klimatklivet – stöd till lokala klimatinvesteringar (beslutad 2019-01-09)"
+    source_url: "https://www.riksdagen.se/sv/dokument-och-lagar/dokument/riksrevisionens-granskningsrapport/klimatklivet-stod-till-lokala_h7b51/html/"
+    note: "INDIKATOR-BRYGGA (§5.3): ingen brygga behövs. Indikatorn är utsläppsminskning per krona (riktning up); Riksrevisionen mäter marginalkostnad i kronor per kilo koldioxid, alltså samma storhet inverterad. FYND: 'Klimatklivet [är] inte en del av en kostnadseffektiv styrmedelskombination för att nå det svenska klimatmålet till 2030'; marginalkostnaden blir ca 6,6 kr/kg CO2 för biogaskedjan och drygt 8,5 kr/kg för laddstationer när dubbelräkning, bristande additionalitet och samverkan med andra styrmedel räknas in, mot Naturvårdsverkets egna 1-4 kr/kg; 'klimatmålet skulle kunna uppnås till lägre marginalkostnad'. NYANS som håller styrka och confidence på medium i stället för högre: Riksrevisionen 2025 (Statens insatser för jordbrukets klimatomställning) finner att Klimatklivet bidrar till minskade jordbruksutsläpp till en kostnad under eller i nivå med koldioxidskatten — ett smalare utsnitt än RiR 2019:1, som bedömer stödet som helhet."
 
   # Fas 4c Plan A (2026-05-30): enda kandidat som passerade evidens-/negativ-grinden av 8 systematiskt
   # skannade omstridda instrument (övriga 7 hade blandad/svag officiell evidens -> inerta, se
@@ -359,6 +389,8 @@ entries:
     evidence_level: expert_opinion
     effect_strength: low
     confidence: low
+    admitted: false
+    admission_note: "UTLYFT 2026-08-23 (#26, ADR 0006 punkt 2 och 5): faller på den symmetriska evidensgrinden, rubriken §5. Posten raderas INTE - källspåret står kvar - men hålls utanför claims och täckningsnämnaren. Faller på §5.1 OCH §5.2: evidence_level är expert_opinion och confidence är low. Postens egen not säger 'inget uppmätt kausalsamband (expertbedömning)'. Nio av de 13 utlyfta posterna kom ur B-grön-svepet, vars mandat var minst en post med positiv verkan per undermått. Mandatet är avvecklat (ADR 0006 punkt 3). Återöppningstrigger: en officiell utvärdering som mäter instrumentets verkan på exakt indikatorn och som bär confidence minst medium."
     source: "Statskontoret 2023:13, Nya utmaningar och gamla problem – om korruption i kommuner och regioner"
     source_url: "https://www.statskontoret.se/uppdrag-och-rapporter/rapporter/2023/nya-utmaningar-och-gamla-problem--om-korruption-i-kommuner-och-regioner/lasrapporten"
     note: "Rekommenderar systematiskt riskbaserat antikorruptionsarbete; inget uppmätt kausalsamband (expertbedömning)."
@@ -370,6 +402,8 @@ entries:
     evidence_level: expert_opinion
     effect_strength: low
     confidence: low
+    admitted: false
+    admission_note: "UTLYFT 2026-08-23 (#26, ADR 0006 punkt 2 och 5): faller på den symmetriska evidensgrinden, rubriken §5. Posten raderas INTE - källspåret står kvar - men hålls utanför claims och täckningsnämnaren. Faller på §5.1 OCH §5.2: expert_opinion och confidence low. Källan är vägledningsmaterial som rekommenderar förebyggande arbete och kvantifierar inte riskminskningen."
     source: "Brå, kunskaps-/vägledningsmaterial om otillåten påverkan mot offentlig sektor"
     source_url: "https://bra.se/amnen/otillaten-paverkan"
     note: "Rekommenderar systematiskt förebyggande arbete; kvantifierar inte riskminskningen (expertbedömning)."
@@ -381,6 +415,8 @@ entries:
     evidence_level: expert_opinion
     effect_strength: low
     confidence: low
+    admitted: false
+    admission_note: "UTLYFT 2026-08-23 (#26, ADR 0006 punkt 2 och 5): faller på den symmetriska evidensgrinden, rubriken §5. Posten raderas INTE - källspåret står kvar - men hålls utanför claims och täckningsnämnaren. Faller på §5.1 OCH §5.2: expert_opinion och confidence low. ESO 2013:2 är en analys av korruptionssårbarhet, inte en effektutvärdering av stärkt insyn. Nio av de 13 utlyfta posterna kom ur B-grön-svepet, vars mandat var minst en post med positiv verkan per undermått. Mandatet är avvecklat (ADR 0006 punkt 3). Återöppningstrigger: en officiell utvärdering som mäter instrumentets verkan på exakt indikatorn och som bär confidence minst medium."
     source: "ESO 2013:2, Allmän nytta eller egen vinning? (Bergh, Erlingsson, Sjölin, Öhrvall)"
     source_url: "https://eso.expertgrupp.se/rapporter/20132-allman-nytta-eller-egen-vinning/"
     note: "Brister i granskning av kommuner/bolag = korruptionssårbarhet -> stärkt insyn motverkar; ej effektutvärdering."
@@ -466,6 +502,8 @@ entries:
     evidence_level: authority_evaluation
     effect_strength: low
     confidence: low
+    admitted: false
+    admission_note: "UTLYFT 2026-08-23 (#26, ADR 0006 punkt 2 och 5): faller på den symmetriska evidensgrinden, rubriken §5. Posten raderas INTE - källspåret står kvar - men hålls utanför claims och täckningsnämnaren. Faller på §5.2: confidence är low. Källan beskriver regelverkets syfte (Naturvårdsverket plus prop. 2025/26:41), inte en uppmätt effekt på hotade_arter_naturforlust. Nio av de 13 utlyfta posterna kom ur B-grön-svepet, vars mandat var minst en post med positiv verkan per undermått. Mandatet är avvecklat (ADR 0006 punkt 3). Återöppningstrigger: en officiell utvärdering som mäter instrumentets verkan på exakt indikatorn och som bär confidence minst medium."
     source: "Naturvårdsverket, ämnesområde 'Invasiva främmande arter' (myndighetsbedömning). Instrument/beslut: prop. 2025/26:41, bet. 2025/26:MJU13 punkt 1 (skärpt regelverk: miljöbalken + inregränslagen)."
     source_url: "https://www.naturvardsverket.se/amnesomraden/invasiva-frammande-arter/"
     note: "TILLAGD 2026-06-06 (B2, enhällighet-som-källa). Åtgärder mot invasiva främmande arter (EU-förordn. 1143/2014 + nationellt regelverk: nationell förteckning, straffansvar för otillåten hantering, anmälningsskyldighet + Tullverkets kontroll vid inre gräns, tidig upptäckt) -> hotade_arter_naturforlust NER (positiv riktning). INSTRUMENT-MEKANISM (svar på codex instrument-precisions-invändning 2026-06-06): Naturvårdsverket anger att förteckningen är 'ett verktyg i arbetet med att förebygga och begränsa spridningen av arter som kan orsaka skador på natur, biologisk mångfald och ekosystem', och prop. 2025/26:41 (i MJU13) att 'det mest kostnadseffektiva sättet att förhindra introduktion av invasiva främmande arter är att de upptäcks i ett tidigt skede' -> instrumentet driver indikatorn via mekanismen förhindra spridning/introduktion. Naturvårdsverkets rubrikbedömning: 'Invasiva främmande arter är ett av de största hoten mot biologisk mångfald i Sverige och globalt.' KAVEAT (effect_strength/confidence=LOW, codex-kalibrerat 2026-06-06): riktningen är myndighetsbelagd på MEKANISM-nivå men det finns INGEN kvantifierad svensk kausalutvärdering av åtgärdernas faktiska utfall på hotade arter -> låg styrka/förtroende. KONSENSUS-MÅTT: positioneras via enhälligt bet. 2025/26:MJU13 punkt 1 (acklamation, 'inte väckts någon motion som går emot regeringens lagförslag') -> alla 8 partier supports; tiltade avslagspunkten (p2) utesluten. SIGN-OFF 2026-06-12 (beslutsunderlag H5, VAL A): BEHÅLL + AVFLAGGAD, version 0 -> 1 — konsensus-mått (alla 8 supports) kan inte tilta; low/low kvarstår tills kvantifierad svensk kausalutvärdering finns."
@@ -483,6 +521,8 @@ entries:
     evidence_level: authority_evaluation
     effect_strength: low
     confidence: low
+    admitted: false
+    admission_note: "UTLYFT 2026-08-23 (#26, ADR 0006 punkt 2 och 5): faller på den symmetriska evidensgrinden, rubriken §5. Posten raderas INTE - källspåret står kvar - men hålls utanför claims och täckningsnämnaren. Faller på §5.2: confidence är low. Institutionell designevidens ur prop. 2024/25:166 om vad lagen ska åstadkomma, ingen uppmätt effekt på mediefrihet. Nio av de 13 utlyfta posterna kom ur B-grön-svepet, vars mandat var minst en post med positiv verkan per undermått. Mandatet är avvecklat (ADR 0006 punkt 3). Återöppningstrigger: en officiell utvärdering som mäter instrumentets verkan på exakt indikatorn och som bär confidence minst medium."
     source: "Prop. 2024/25:166 'En lag om public service och riktlinjer för verksamheten 2026–2033' (bygger på 2023 års parlamentariska public service-kommitté, betänkandet SOU 2024:34 'Ansvar och oberoende – public service i oroliga tider'). Partiståndpunkter via enhälligt betänkande 2025/26:KrU2 punkt 1, acklamation."
     source_url: "https://data.riksdagen.se/dokument/HC03166.html"
     note: "TILLAGD 2026-06-06 (B2, enhällighet-som-källa). INSTRUMENT: för första gången regleras public service-uppdraget I LAG (ny lag om public service) med LAGSTADGAT OBEROENDE, i stället för enbart i regeringsbeslutat sändningstillstånd -> mediefrihet UPP (positiv riktning) via institutionellt skyddat oberoende. SNÄV FORMULERING (codex-krav 2026-06-06): claimet avser lagstadgat oberoende -> mediefrihet/fri åsiktsbildning, INTE generellt 'public service-lag -> demokrati'. INSTRUMENT-MEKANISM (ordagrant ur prop. 2024/25:166 avsnitt 5.2.1, Regeringens förslag): 'Public service-uppdraget ska bedrivas självständigt i förhållande till såväl staten som olika ekonomiska, politiska och andra intressen och maktsfärer i samhället och verksamheten ska präglas av oberoende och stark integritet.' Provenans = bred politisk enighet (prop. avsnitt 4): 'I Sverige råder sedan länge en bred politisk enighet om att en väl fungerande mediemarknad bygger på en kombination av ansvarstagande kommersiella medier och ett starkt och oberoende public service med högt förtroende hos allmänheten'; mediepolitikens syfte är 'att skapa goda förutsättningar för en mångfald av självständiga medieaktörer som bidrar till att stärka en fri åsiktsbildning, ett fritt utbyte av idéer liksom en aktiv granskning av samhällets makthavare'. KAVEAT (effect_strength/confidence=LOW, codex-kalibrerat): MEKANISM-/DESIGNBASERAD evidens (parlamentarisk kommitté SOU 2024:34 + proposition), INGEN ex-post-effektutvärdering av att lagen MÄTT ökat mediefriheten -> låg styrka/förtroende; får ej formuleras som uppmätt indikatorförbättring. KONSENSUS-MÅTT (icke-rankningsdrivande): positioneras via enhälligt bet. 2025/26:KrU2 punkt 1 (acklamation, votering-API tomt @antal=0, 'Det har inte väckts någon motion som går emot att riksdagen antar regeringens lagförslag'); samtliga 15 reservationer gäller punkt 2-14 (innehållsuppdrag/ekonomi/uppföljning, S/V/C/MP) och tolkas INTE som opposition mot punkt 1 -> alla 8 partier supports på instrumentet att anta lagen. FRAMTIDA UPPGRADERING: om SOU/utvärdering belägger starkare varför lagFORMEN (ej bara oberoende i sak) stärker institutionellt oberoende. Demokrati yttrandefrihet_medier tidigare B-tomt -> demokrati 3/5 -> 4/5."
@@ -506,6 +546,8 @@ entries:
     evidence_level: authority_evaluation
     effect_strength: low
     confidence: low
+    admitted: false
+    admission_note: "UTLYFT 2026-08-23 (#26, ADR 0006 punkt 2 och 5): faller på den symmetriska evidensgrinden, rubriken §5. Posten raderas INTE - källspåret står kvar - men hålls utanför claims och täckningsnämnaren. Faller på §5.2: confidence är low. Postens egen kaveat säger 'institutionell/designevidens (lagens syftesparagraf + dir/SOU), INGEN uppmätt kausaleffekt på en transparensindikator'. Nio av de 13 utlyfta posterna kom ur B-grön-svepet, vars mandat var minst en post med positiv verkan per undermått. Mandatet är avvecklat (ADR 0006 punkt 3). Återöppningstrigger: en officiell utvärdering som mäter instrumentets verkan på exakt indikatorn och som bär confidence minst medium."
     source: "Lagen (2018:90) om insyn i finansiering av partier (1 §), antagen via prop. 2017/18:55 'Ökad insyn i partiers finansiering – ett utbyggt regelverk', bet. 2017/18:KU19 punkt 1, acklamation. Syftesbekräftelse: dir. 2023:88 / SOU 2025:52 (insyn 'förebygger korruption och ökar legitimitet')."
     source_url: "https://data.riksdagen.se/dokument/H501KU19.html"
     note: "TILLAGD 2026-06-07 (B-grön-svepet, enhällighet-som-källa §5.2, FLAGGAD low/low). INSTRUMENT: lagstadgad öppen redovisning av partiers/ledamöters intäkter och bidrag (utbyggt 2018 till regional/lokal nivå + sidoorganisationer) -> politisk_transparens UPP. INSTRUMENT-MEKANISM (lagens 1 §, ordagrant): 'Syftet med lagen är att trygga allmänhetens insyn i hur partier ... finansierar sin verksamhet.' KAVEAT (effect_strength/confidence=LOW): institutionell/designevidens (lagens syftesparagraf + dir/SOU), INGEN uppmätt kausaleffekt på en transparensindikator. KONSENSUS-MÅTT (icke-rankningsdrivande): bet. 2017/18:KU19 punkt 1 (kärnlagen) togs i ACKLAMATION (verifierat: dokumentstatus p1 = acklamation), ingen reservation mot p1 -> alla 8 supports. Avser ENBART den breda insynslagen (p1); EXKLUDERAR den tiltade p4 'förbud mot partistöd från arbetsmarknadens parter' (röstning, M/C/KD-reservation). DUBBELRÄKNING ÅTGÄRDAD 2026-06-07 (sign-off, codex-flagga stängd): C:s och MP:s rader i bunten starkt_oberoende_granskning_och_insyn (-> korruption) omankrade från partifinansierings-citat till lobbyregister (C, HD023583 yrk. 17) resp. offentlighetsprincipen (MP, HA02181 yrk. 9); partifinansierings-instrumentet krediteras nu ENDAST här (transparens_ansvar). Övriga 6 partier i bunten är offentlighetsprincip/riksrevision (ingen överlapp). Poäng oförändrad (stance kvar supports)."
@@ -518,6 +560,8 @@ entries:
     evidence_level: authority_evaluation
     effect_strength: low
     confidence: low
+    admitted: false
+    admission_note: "UTLYFT 2026-08-23 (#26, ADR 0006 punkt 2 och 5): faller på den symmetriska evidensgrinden, rubriken §5. Posten raderas INTE - källspåret står kvar - men hålls utanför claims och täckningsnämnaren. Faller på §5.2: confidence är low. Källan är ett åtagande om en beslutad finansieringsbana, inte en utvärdering av vad banan gör med indikatorn. Nio av de 13 utlyfta posterna kom ur B-grön-svepet, vars mandat var minst en post med positiv verkan per undermått. Mandatet är avvecklat (ADR 0006 punkt 3). Återöppningstrigger: en officiell utvärdering som mäter instrumentets verkan på exakt indikatorn och som bär confidence minst medium."
     source: "Försvarsberedningen Ds 2024:6 'Stärkt försvarsförmåga – Sverige som allierad' + prop. 2024/25:34 'Totalförsvaret 2025–2030'. Partiståndpunkter via enhälligt bet. 2024/25:FöU2 punkt 1 (Mål för totalförsvaret) + punkt 5 (Framtida ekonomisk inriktning), båda acklamation."
     source_url: "https://data.riksdagen.se/dokument/HC01FöU2.html"
     note: "TILLAGD 2026-06-07 (B-grön-svepet, enhällighet-som-källa §5.2, FLAGGAD low/low; codex BUILD-WITH-CHANGES). INSTRUMENT (snävt, codex-krav): ÅTAGANDE att fullfölja den BESLUTADE totalförsvars-finansieringsbanan UPP MOT den beslutade målnivån (Försvarsberedningens planeringsram som 'syftar till att nå 2 procent av BNP fr.o.m. budgetåret 2028') -> ekonomisk ambitionsnivå/långsiktig finansiering UPP. EJ 'mer pengar alltid bättre', EJ budgetmagnitud (delpoäng A/a1-dubbelräkning), EJ materiel/personal (militar_formaga). INSTRUMENT-MEKANISM (FöU2, ur Ds 2024:6): 'det krävs betydande tillskott till anslagen för det militära försvaret under perioden 2025–2030 för att nå planeringsramen som syftar till att nå 2 procent av BNP fr.o.m. budgetåret 2028'. KAVEAT (LOW/LOW): design-/mekanismevidens (beredningsorgan + proposition), ingen ex-post-utvärdering av att åtagandet mätt höjt förmågan. KONSENSUS-MÅTT (icke-rankningsdrivande): bet. 2024/25:FöU2 p1 + p5 båda ACKLAMATION (verifierat dokumentstatus); benchmark är en BESLUTAD målnivå (ej öppen utgiftspreferens); MP:s enda p5-reservation vill MER (uppåt), inget parti reserverar MOT att nå målnivån -> alla 8 supports. Target-indikatorn forsvarsanslag_andel_bnp behålls som kontext."
@@ -530,6 +574,8 @@ entries:
     evidence_level: authority_evaluation
     effect_strength: low
     confidence: low
+    admitted: false
+    admission_note: "UTLYFT 2026-08-23 (#26, ADR 0006 punkt 2 och 5): faller på den symmetriska evidensgrinden, rubriken §5. Posten raderas INTE - källspåret står kvar - men hålls utanför claims och täckningsnämnaren. Faller på §5.2: confidence är low. Design- och mekanismevidens ur prop. 2022/23:43 och Brå om lagens syfte; lagen trädde i kraft 2023 och är ännu inte effektutvärderad. Nio av de 13 utlyfta posterna kom ur B-grön-svepet, vars mandat var minst en post med positiv verkan per undermått. Mandatet är avvecklat (ADR 0006 punkt 3). Återöppningstrigger: en officiell utvärdering som mäter instrumentets verkan på exakt indikatorn och som bär confidence minst medium."
     source: "Lagen (2023:196) om kommuners ansvar för brottsförebyggande arbete (ikraft 2023-07-01), prop. 2022/23:43; Brå, 'Kommunens ansvar'. Partiståndpunkter via enhälligt bet. 2022/23:JuU9 punkt 1, acklamation."
     source_url: "https://data.riksdagen.se/dokument/HA01JuU9.html"
     note: "TILLAGD 2026-06-07 (B-grön-svepet, §5.7 ny indikator + §5.2 enhällighet; codex BUILD). NY INDIKATOR kommunalt_brottsforebyggande_arbete (up) i forebyggande (tidigare utan indikator, §4.2-vägg). INSTRUMENT: lagstadgat krav att varje kommun bedriver kunskapsbaserat, samordnat brottsförebyggande arbete (lägesbild + åtgärdsplan + samordningsfunktion). RIKTNING (ordagrant, prop. 2022/23:43): 'För att säkerställa att kommunerna arbetar med dessa frågor på ett effektivt och kunskapsbaserat sätt föreslår regeringen att kommunernas ansvar för brottsförebyggande arbete regleras i lag.' Brå: 'Syftet med lagen är att stärka kommunernas systematiska brottsförebyggande arbete.' KAVEAT (LOW/LOW): design-/mekanismevidens (lagens syfte), ingen ex-post-effektutvärdering (lagen ny 2023). Mäter förebyggande KAPACITET, ej uppklaring/återfall (ingen dubbelräkning mot rattsvasendets_effektivitet/aterfall_kriminalvard). KONSENSUS-MÅTT (icke-rankningsdrivande): bet. 2022/23:JuU9 p1 ACKLAMATION (verifierat dokumentstatus; enpunkts-betänkande), 'Propositionen har inte lett till några motionsyrkanden eller andra invändningar under utskottsbehandlingen' -> alla 8 supports."
@@ -542,6 +588,8 @@ entries:
     evidence_level: authority_evaluation
     effect_strength: low
     confidence: low
+    admitted: false
+    admission_note: "UTLYFT 2026-08-23 (#26, ADR 0006 punkt 2 och 5): faller på den symmetriska evidensgrinden, rubriken §5. Posten raderas INTE - källspåret står kvar - men hålls utanför claims och täckningsnämnaren. Faller på §5.2: confidence är low. Postens egen kaveat säger 'design-/syntesevidens (utredning + SBU volym-utfall), INGEN kvantifierad ex-post-utvärdering'. Nio av de 13 utlyfta posterna kom ur B-grön-svepet, vars mandat var minst en post med positiv verkan per undermått. Mandatet är avvecklat (ADR 0006 punkt 3). Återöppningstrigger: en officiell utvärdering som mäter instrumentets verkan på exakt indikatorn och som bär confidence minst medium."
     source: "SOU 2015:98 'Träning ger färdighet – Koncentrera vården för patientens bästa' (kap. 8, volym–utfall, SBU-upplysningstjänst). Instrument/lag: prop. 2017/18:40 'En ny beslutsprocess för den högspecialiserade vården', bet. 2017/18:SoU18 punkt 1, acklamation."
     source_url: "https://data.riksdagen.se/dokument/H501SoU18.html"
     note: "TILLAGD 2026-06-07 (B-grön-svepet, enhällighet-som-källa §5.2, FLAGGAD low/low; codex BUILD-WITH-CHANGES). INSTRUMENT (snävt, codex-krav): statligt beslutad nivåstrukturering som KONCENTRERAR nationell högspecialiserad vård (NHV) till färre enheter -> bättre resultat/ÖVERLEVNAD vid svår sjukdom DÄR volym–utfall-evidens finns -> overlevnad_svar_sjukdom UPP. EJ 'bättre vård generellt' (ej vard_tillganglighet/vårdköer). RIKTNING (SOU 2015:98, ordagrant): 'hundratals liv kan räddas varje år om den högspecialiserade vården koncentreras'; kap. 8 (SBU): volym–utfall-samband (dos-respons 5-årsöverlevnad). KAVEAT (LOW/LOW): design-/syntesevidens (utredning + SBU volym–utfall), INGEN kvantifierad ex-post kausalutvärdering av själva NHV-reformen. NEUTRAL (≠ cancerscreening, som faller på steg-2-tilt): SoU18 p1 ACKLAMATION (verifierat dokumentstatus), utskottet 'välkomnar de lagändringar som regeringen föreslår och ställer sig bakom propositionen' -> alla 8 supports. TIDSNOT (§10): bet. 2017/18, men instrumentet är fortlöpande aktivt — Socialstyrelsen fattar löpande NHV-beslut t.o.m. 2026 under samma lag (HSL 2 kap. 7 §)."
@@ -554,6 +602,8 @@ entries:
     evidence_level: authority_evaluation
     effect_strength: low
     confidence: low
+    admitted: false
+    admission_note: "UTLYFT 2026-08-23 (#26, ADR 0006 punkt 2 och 5): faller på den symmetriska evidensgrinden, rubriken §5. Posten raderas INTE - källspåret står kvar - men hålls utanför claims och täckningsnämnaren. Faller på §5.2: confidence är low. Designevidens ur prop. 2021/22:116 och Socialstyrelsens lägesrapport om vad den fasta omsorgskontakten ska tillgodose, ingen uppmätt effekt på kontinuitet_i_omsorgen. Nio av de 13 utlyfta posterna kom ur B-grön-svepet, vars mandat var minst en post med positiv verkan per undermått. Mandatet är avvecklat (ADR 0006 punkt 3). Återöppningstrigger: en officiell utvärdering som mäter instrumentets verkan på exakt indikatorn och som bär confidence minst medium."
     source: "Prop. 2021/22:116 'En fast omsorgskontakt i hemtjänsten' (3 kap. 3 c § SoL); Socialstyrelsen 'Vård och omsorg för äldre – Lägesrapport 2025' (kap. 'Fast omsorgskontakt – en viktig faktor för kontinuitet'). Partiståndpunkter via bet. 2021/22:SoU24 punkt 2 'Lagförslaget i övrigt', acklamation."
     source_url: "https://data.riksdagen.se/dokument/H901SoU24.html"
     note: "TILLAGD 2026-06-07 (B-grön-svepet, §5.7 ny indikator + §5.2 enhällighet; codex BUILD-WITH-CHANGES). NY INDIKATOR kontinuitet_i_omsorgen (up) i omsorg_personal. KONSTRUKT-KORRIGERING (codex-krav): fast omsorgskontakt är konstrukt-exakt för KONTINUITET (relationskontinuitet för omsorgstagaren), INTE för personalomsattning_omsorg (🔴-väggen, data nedlagd) som behålls SEPARAT/orörd — fast_omsorgskontakt får ALDRIG beskrivas som belägg för lägre personalomsättning. INSTRUMENT-MEKANISM (prop. 2021/22:116, ordagrant): den fasta omsorgskontakten ska 'tillgodose den enskildes behov av trygghet, kontinuitet, individanpassad omsorg och samordning'; Socialstyrelsen (Lägesrapport 2025): 'Hemtjänsttagare som ofta träffar sin fasta omsorgskontakt upplever i högre grad att de får trygg och individanpassad omsorg.' KAVEAT (LOW/LOW): observations-/mekanismevidens (association + lagens syfte), ingen kausal ex-post-effekt; tillgången varierar 0–71 % mellan utförare; Socialstyrelsens formella effektutvärdering klar dec 2026/okt 2027. KONSENSUS-MÅTT (icke-rankningsdrivande): bet. 2021/22:SoU24 punkt 2 'Lagförslaget i övrigt' (3 c §) ACKLAMATION (verifierat dokumentstatus) -> alla 8 supports. EXKLUDERAR p1 (3 d §, undersköterske-KOMPETENSkravet, röstning M=Nej; M ville BREDDA behörigheten, ej avskaffa -> fel konstrukt + tilt)."

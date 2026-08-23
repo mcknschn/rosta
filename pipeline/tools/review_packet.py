@@ -80,7 +80,11 @@ def analyse() -> dict[str, Any]:
     # Vilka indikatoreffekter varje ståndpunkt faktiskt ger (supports=behåll, opposes=vänd).
     enriched: list[dict[str, Any]] = []
     for p in positions:
-        matches = by_policy.get(p["policy_type"], [])
+        # Bara admitterade poster ger claims (ADR 0006). B-konsekvensen i granskningspaketet
+        # måste visa vad pipelinen FAKTISKT producerar, annars granskar en människa en pil som
+        # inte finns. De utlyfta hålls separat så spåret ändå syns.
+        matches = [e for e in by_policy.get(p["policy_type"], []) if config.entry_admitted(e)]
+        lifted_matches = [e for e in by_policy.get(p["policy_type"], []) if not config.entry_admitted(e)]
         effects = []
         for e in matches:
             eff_dir = e["direction"] if p["stance"] == "supports" else _FLIP.get(e["direction"], "unclear")
@@ -113,7 +117,10 @@ def analyse() -> dict[str, Any]:
             flags.append("ledger_unclear_or_mixed")
         if any(eff["ledger_direction"] == "negative" for eff in effects):
             flags.append("ledger_negative_direction")
-        enriched.append({**p, "_effects": effects, "_year": yr, "_flags": flags})
+        if lifted_matches:
+            flags.append("ledger_lifted")
+        enriched.append({**p, "_effects": effects, "_lifted_effects": lifted_matches,
+                         "_year": yr, "_flags": flags})
 
     priority = [e for e in enriched if _PRIORITY_FLAGS & set(e["_flags"]) or any(
         f.startswith("old_source_") for f in e["_flags"])]
@@ -127,7 +134,11 @@ def analyse() -> dict[str, Any]:
         "counts": {
             "positions_total": len(positions),
             "ledger_entries": len(ledger),
-            "claims_produced": len(build_evidence_effect_claims(positions, ledger)),
+            "ledger_entries_lifted": sum(1 for e in ledger if not config.entry_admitted(e)),
+            # Utlyfta poster ger inga claims (ADR 0006). Räknas antalet mot HELA liggaren
+            # överdriver siffran vad B faktiskt vilar på, så den räknas mot admitterade.
+            "claims_produced": len(build_evidence_effect_claims(
+                positions, [e for e in ledger if config.entry_admitted(e)])),
             "stance": dict(Counter(p["stance"] for p in positions)),
             "confidence": dict(Counter(str(p.get("confidence")) for p in positions)),
             "priority_count": len(priority),
@@ -155,7 +166,10 @@ def write_positions_doc(a: dict[str, Any]) -> None:
     lines.append("> Källa för betygskonsekvensen är det faktiska join-maskineriet i `pipeline/positions.py`.")
     lines.append("")
     c = a["counts"]
-    lines.append(f"**{c['positions_total']} ståndpunkter** → {c['claims_produced']} evidence_effect-claims. "
+    lines.append(f"**{c['positions_total']} ståndpunkter** → {c['claims_produced']} "
+                 "evidence_effect-claims. En ståndpunkt vars åtgärdstyp är UTLYFT ur liggaren "
+                 f"({c['ledger_entries_lifted']} av {c['ledger_entries']} poster, ADR 0006) ger "
+                 "inga claims alls. "
                  f"Stance: {c['stance']}. Konfidens: {c['confidence']}.")
     lines.append("")
     lines.append("Pipelinen joinar **bara** på `party + policy_type + stance`. `supports` behåller "
@@ -197,9 +211,27 @@ def write_positions_doc(a: dict[str, Any]) -> None:
         for policy in sorted(by_cat_policy[cat]):
             rows = sorted(by_cat_policy[cat][policy], key=lambda x: x["party"])
             led = a["by_policy"].get(policy, [])
-            led_desc = "; ".join(f"{e['indicator']}={e['direction']} ({e['confidence']})" for e in led)
-            lines.append(f"#### `{policy}`")
+            led_desc = "; ".join(
+                f"{e['indicator']}={e['direction']} ({e['confidence']})"
+                + ("" if config.entry_admitted(e) else " 🚫utlyft")
+                for e in led
+            )
+            lifted_led = [e for e in led if not config.entry_admitted(e)]
+            mark = "🚫 " if lifted_led else ""
+            lines.append(f"#### {mark}`{policy}`")
             lines.append("")
+            if lifted_led and len(lifted_led) == len(led):
+                lines.append("> 🚫 **HELT UTLYFT åtgärdstyp** — varje liggarpost föll på den "
+                             "symmetriska evidensgrinden (ADR 0006), så ingen av raderna nedan "
+                             "matar B. Ståndpunkterna står kvar och blir kodbara igen om en "
+                             "officiell utvärdering som passerar grinden dyker upp.")
+                lines.append("")
+            elif lifted_led:
+                n = len(lifted_led)
+                lines.append(f"> 🚫 **DELVIS utlyft åtgärdstyp** — {n} av {len(led)} liggarposter "
+                             "föll på den symmetriska evidensgrinden (ADR 0006) och matar inte B. "
+                             "B-konsekvensen nedan visar bara de poster som gör det.")
+                lines.append("")
             lines.append(f"Liggarens effekt: {_esc(led_desc) or '—'}")
             lines.append("")
             lines.append("| OK? | Parti | Stance | B-konsekvens | Konf. | doc_id | Datum |")
@@ -230,9 +262,20 @@ def write_ledger_doc(a: dict[str, Any]) -> None:
     lines.append("")
     lines.append("> AUTOGENERERAD av `pipeline/tools/review_packet.py` — ändra inte för hand.")
     lines.append("")
-    lines.append(f"**{len(ledger)} poster** (åtgärdstyp → indikatoreffekt). Generell policy-evidens, "
-                 "medvetet **inte** partikopplad. Varje post sätter riktningen för ALLA partier som "
-                 "driver åtgärdstypen — granska källan noga (blast-radius anges per post).")
+    n_lifted = sum(1 for e in ledger if not config.entry_admitted(e))
+    lines.append(f"**{len(ledger)} poster** (åtgärdstyp → indikatoreffekt), varav "
+                 f"**{len(ledger) - n_lifted} matar B** och **{n_lifted} är UTLYFTA**. Generell "
+                 "policy-evidens, medvetet **inte** partikopplad. Varje post som matar B sätter "
+                 "riktningen för ALLA partier som driver åtgärdstypen — granska källan noga "
+                 "(blast-radius anges per post).")
+    lines.append("")
+    lines.append("En **utlyft** post föll på den symmetriska evidensgrinden (rubriken §5, "
+                 "[ADR 0006](../../adr/0006-evidensgrinden-ar-symmetrisk.md)): evidence_level i "
+                 "{authority_evaluation, systematic_review}, confidence minst medium, evidens som "
+                 "avser exakt indikatorn. Grinden gäller **oavsett verkan**. Posten är inte "
+                 "raderad — källa och skäl står kvar — men den ger inga claims och ligger utanför "
+                 "täckningsnämnaren. Granska den som ett arkiverat spår, inte som underlag för "
+                 "dagens betyg.")
     lines.append("")
     lines.append("## Så granskar du")
     lines.append("")
@@ -249,7 +292,10 @@ def write_ledger_doc(a: dict[str, Any]) -> None:
         lines.append("")
         for e in by_cat[cat]:
             blast = ", ".join(sorted(parties_by_policy.get(e["policy_type"], []))) or "—(ingen ståndpunkt)"
+            lifted = not config.entry_admitted(e)
             warn = []
+            if lifted:
+                warn.append("🚫 UTLYFT — matar inte B")
             if e["direction"] in ("unclear", "mixed"):
                 warn.append(f"⚠ {e['direction']} → ≈neutral B")
             if e["direction"] == "negative":
@@ -258,7 +304,8 @@ def write_ledger_doc(a: dict[str, Any]) -> None:
                 warn.append("⚠ expert_opinion (ej uppmätt kausalitet)")
             if e["confidence"] == "low":
                 warn.append("⚠ låg konfidens")
-            lines.append(f"### `{e['policy_type']}` → {e['indicator']}")
+            mark = "🚫 " if lifted else ""
+            lines.append(f"### {mark}`{e['policy_type']}` → {e['indicator']}")
             lines.append("")
             lines.append(f"- **Riktning:** {e['direction']} · **evidensnivå:** {e['evidence_level']} · "
                          f"**styrka:** {e['effect_strength']} · **konfidens:** {e['confidence']}")
@@ -267,7 +314,10 @@ def write_ledger_doc(a: dict[str, Any]) -> None:
                 lines.append(f"- **URL:** {e['source_url']}")
             if e.get("note"):
                 lines.append(f"- **Not:** {_esc(e['note'])}")
-            lines.append(f"- **Påverkar partier:** {_esc(blast)}")
+            if lifted:
+                lines.append(f"- **Utlyft, skäl:** {_esc(e.get('admission_note', ''))}")
+            label = "Skulle ha påverkat partier" if lifted else "Påverkar partier"
+            lines.append(f"- **{label}:** {_esc(blast)}")
             if warn:
                 lines.append(f"- {' · '.join(warn)}")
             lines.append("- **OK?** ⬜ (✅/✏️/❌): ")

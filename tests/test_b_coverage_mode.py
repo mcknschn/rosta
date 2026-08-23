@@ -206,17 +206,23 @@ def test_ny_mode_ger_viktad_djuptackning_handraknat(monkeypatch: pytest.MonkeyPa
     c_int = sc["C"]["integration"]
     assert "B_coverage_65/100" in c_int["flags"]
     assert c_int["components"]["B"] == pytest.approx(3.475, abs=1e-3)
-    # M/demokrati: 86,666... skrivs deterministiskt '86.7' (LÅST format, spec §4)
-    assert "B_coverage_86.7/100" in sc["M"]["demokrati"]["flags"]
-    # ekonomi: target-only (12+15) ur nämnaren -> full täckning '73/73', aldrig '73.0'
+    # M/demokrati: korruption_tillit (20), yttrandefrihet_medier (20) och transparens_ansvar (15)
+    # tömdes 2026-08-23 av den symmetriska grinden (#26) -> taket är personlig_frihet (20) +
+    # rattsstat_maktdelning (25) = 45, och M kodar båda fullt. Var 86,7/100 före utlyftet.
+    m_dem = sc["M"]["demokrati"]
+    assert "B_coverage_45/100" in m_dem["flags"]
+    assert "B_thin_coverage" in m_dem["flags"]  # 0.45 < thin_coverage_threshold 0.5
+    # ekonomi: target-only (12+15) ur nämnaren -> nämnaren är 73, aldrig '73.0' (LÅST format,
+    # spec §4). realloner_hushall (18) tömdes av utlyftet, så S täcker 22+18+15 = 55 av 73.
     s_eco = sc["S"]["ekonomi"]
-    assert "B_coverage_73/73" in s_eco["flags"]
-    assert not any("73.0" in f for f in s_eco["flags"])
-    # MP/forsvar: ekonomisk_ambition fullt kodad (25) + nato_ukraina 1/2 kodbara typer
-    # (dca_avtal_usa kodad opposes, nato_medlemskap=none -> 15 * 1/2 = 7.5; B3
-    # dca_avtal_usa 2026-06-12) -> cov_B = 0.325 < 0.5 -> tunn täckning, säkerhet låg
+    assert "B_coverage_55/73" in s_eco["flags"]
+    assert not any(".0/" in f or f.endswith(".0") for f in s_eco["flags"])
+    # MP/forsvar: civil_beredskap (20), ekonomisk_ambition (25) och genomforbarhet_leverans (5)
+    # saknar kodbar typ; militar_formaga (35) har ateraktiverad_utokad_varnplikt som MP inte
+    # kodar -> kvar är nato_ukraina 1/2 kodbara typer (dca_avtal_usa kodad opposes,
+    # nato_medlemskap=none) -> 15 * 1/2 = 7.5. Var 32,5/100 innan ekonomisk_ambition tömdes.
     mp_for = sc["MP"]["forsvar"]
-    assert "B_coverage_32.5/100" in mp_for["flags"]
+    assert "B_coverage_7.5/100" in mp_for["flags"]
     assert "B_thin_coverage" in mp_for["flags"]
     assert mp_for["confidence"]["B"] == "low"
     con.close()
@@ -227,7 +233,8 @@ def _independent_cov_b(party: str, cat: str) -> tuple[float, float]:
     signed = config.claims()["aggregation"]["signed_direction"]
     b_ex = set(config.scoring()["B_evidens"].get("coverage_exclude", []))
     codable_flat = {
-        e["policy_type"] for e in config.evidence_ledger()["entries"]
+        # admitted_ledger_entries: utlyfta poster (ADR 0006) är inte kodbara.
+        e["policy_type"] for e in config.admitted_ledger_entries()
         if e["category"] == cat and signed.get(e["direction"], 0) != 0
         and e["policy_type"] not in b_ex
     }

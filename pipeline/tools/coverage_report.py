@@ -59,7 +59,9 @@ def coverage(con: Any | None = None) -> dict[str, Any]:
     created = con is None
     con = con or warehouse.connect(read_only=True)
     observed = _observed_series(con)
-    ledger = config.evidence_ledger().get("entries") or []
+    # Bara admitterade poster räknas: en utlyft post (ADR 0006) matar inte B, så en kategori
+    # som når EVIDENCE_TARGET enbart tack vare utlyfta poster ska inte rapporteras som täckt.
+    ledger = config.admitted_ledger_entries()
     ev_per_cat: dict[str, int] = {}
     for e in ledger:
         ev_per_cat[e["category"]] = ev_per_cat.get(e["category"], 0) + 1
@@ -215,7 +217,7 @@ def b_submeasure_spread() -> dict[str, Any]:
     codable: dict[str, set[str]] = {}
     party_covered: dict[str, set[str]] = {}
     active_subs: dict[str, set[str]] = {}
-    for e in config.evidence_ledger()["entries"]:
+    for e in config.admitted_ledger_entries():
         if signed.get(e["direction"], 0) == 0 or e["policy_type"] in b_exclude:
             continue  # inert (mixed/unclear) eller medvetet coverage-exkluderad
         cat = e["category"]

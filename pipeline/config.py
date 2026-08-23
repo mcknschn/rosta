@@ -55,6 +55,31 @@ def evidence_ledger() -> dict[str, Any]:
     return _load("evidence_ledger.yaml")
 
 
+def entry_admitted(entry: Any) -> bool:
+    """Får liggarposten bidra till B? Den symmetriska evidensgrinden (rubriken §5).
+
+    Grinden gäller OAVSETT VERKAN (ADR 0006): evidence_level i {authority_evaluation,
+    systematic_review}, confidence >= medium, och evidens som avser exakt den betygsatta
+    indikatorn utan sidoeffekt-proxy. Det tredje villkoret är ett mänskligt omdöme och kan
+    inte räknas fram, så domen står i configen som `admitted: false` + `admission_note`.
+    Fältet saknas på en post som passerar; bara ett uttryckligt false lyfter ut den.
+
+    Utlyft post RADERAS INTE. Den står kvar med källa och skäl, men hålls utanför både
+    claims-byggandet (pipeline/positions.py) och täckningsnämnaren (scorerun), så källspåret
+    finns kvar utan att posten ger poäng.
+
+    tests/test_fas4c.py tvingar att varje admitterad post faktiskt passerar de två
+    maskinellt prövbara villkoren. En ny post som inte gör det fäller sviten i stället för
+    att tyst falla bort.
+    """
+    return entry.get("admitted", True) is not False
+
+
+def admitted_ledger_entries() -> list[dict[str, Any]]:
+    """Liggarens poster som passerar grinden. Enda vägen in i B."""
+    return [e for e in (evidence_ledger().get("entries") or []) if entry_admitted(e)]
+
+
 @cache
 def party_positions() -> dict[str, Any]:
     return _load("party_positions.yaml")
