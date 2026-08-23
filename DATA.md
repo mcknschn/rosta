@@ -267,6 +267,7 @@ Intervallets halvbredd per kategori = `max_halfwidth × Σ(delpoängvikt × (1 �
       "ekonomi": {
         "score": 4.0, "ci": [3.6, 4.3],
         "components": { "A": 4.1, "B": 3.8, "C": 4.2, "D": 3.9 },
+        "coverage": 0.86,
         "claim_refs": ["claim:ekonomi:M:..."],
         "evidence_refs": ["scb:AKU:2025", "riksdag:votering:2023:UO24:..."]
       }
@@ -274,6 +275,17 @@ Intervallets halvbredd per kategori = `max_halfwidth × Σ(delpoängvikt × (1 �
   }
 }
 ```
+
+**Täckningen mot bandet:** `coverage` säger hur stor del av cellens betyg som vilar på mätt
+underlag, alltså `0,30 × a + 0,50 × b + 0,20 × d`
+([ADR 0008](docs/adr/0008-cellens-tackning.md)). Varje del är den delpoängens egen täckning.
+`b` och `d` räknas på kategorins egen nämnare, alltså kategorins samlade undermåttsvikt: 73 för
+ekonomi och 100 för de sex övriga. Det är samma tal som flaggorna `B_coverage_*` och
+`D_coverage_*` bär. `a` är 1,00 när `A_a1_active` står och 0,40 när `A_a2_only` står, alltså den
+vikt a2 har i A:s blandning. En ej tillämplig D ger `d = 0` och faller aldrig ur nämnaren.
+C räknas aldrig, eftersom den väger 0 och inte ingår i betyget.
+Talet säger inget om hur säkert det mätta är. Det beskedet bär `ci`, alltså bandet. Täckningen
+har ingen verkan på betyget: den räknas i pipen ur färdiga tal och matas aldrig tillbaka.
 
 **Fönstrets slut mot underlagets slut:** `window_end` är mandatperiodens formella slut, alltså nästa valdag. Det datumet ligger i framtiden tills valet hållits. `window_open` säger att perioden pågår, alltså att betygen för den är preliminära. `data_as_of` är något annat: sista dagen underlaget faktiskt når. Serierna är årsserier, så ett år som fortfarande pågår flyttar inte fram datumet. Det året syns i stället som `latest_observation_year`. De två datumen får aldrig blandas ihop (issue #3).
 

@@ -386,6 +386,28 @@ Exempel på lägre säkerhet:
 - Politiken kommer sannolikt höja produktiviteten.
 - Reformen är mer kostnadseffektiv än alternativet.
 
+### Varje cell visar också hur stor del som är mätt
+
+Spannet svarar på hur säkert det mätta är. Det svarar inte på hur stor del av betyget som är mätt
+alls. Därför bär varje parti och kategori en egen **täckning**
+([ADR 0008](docs/adr/0008-cellens-tackning.md)):
+
+```
+Täckning = 0,30 × prioriteringens täckning
+         + 0,50 × evidensens täckning
+         + 0,20 × resultatets täckning
+```
+
+Vikterna är samma som betygets. Varje del räknas på kategorins egen nämnare, alltså kategorins
+samlade undermåttsvikt. Har ett parti inte haft makt nog att mäta resultat räknas resultatdelen
+som noll, aldrig bort. Annars skulle en cell utan resultatdata se lika mätt ut som en fullt mätt
+cell.
+
+Täckningen står som ett tal i procent, utan tröskel och utan omdöme. Den ger inga poäng och
+flyttar inte rangordningen. Tunn täckning verkar redan på betyget genom att spannet breddas, och
+samma sak får inte räknas två gånger. En fullt täckt cell kan alltså vila på svag evidens, och
+då är det spannet som bär beskedet. De två storheterna svarar på skilda frågor.
+
 ## Slutlig modell i kompakt form
 
 ### Rösta-modellen
@@ -402,6 +424,7 @@ Exempel på lägre säkerhet:
 | Ansvar mäts | Har partiet haft makt att påverka? |
 | Resultat mäts försiktigt | Har indikatorer förbättrats där partiet styrt? |
 | Osäkerhet redovisas | Poäng visas med caveats och intervall |
+| Täckning redovisas | Varje cell visar hur stor del av betyget som vilar på mätt underlag |
 
 ### Rekommenderad huvudformel
 
