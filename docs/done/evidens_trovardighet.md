@@ -236,6 +236,26 @@ säkerheten och går till etiketten och därmed till bandet. Konfignyckeln `B_ev
 Ordet retirerades ur `IDEA.md`, `DATA.md`, `README.md`, `docs/BACKLOG.md` och `config/scoring.yaml`
 i byggslicen [#17](https://github.com/mcknschn/rosta/issues/17).
 
+### Cellens två redovisade storheter: Täckning och Säkerhet
+
+Låst 2026-08-23 av [ADR 0008](../adr/0008-cellens-tackning.md) (biljett #12 under karta #6).
+
+| Storhet | Frågan den ställer | Var den bor |
+|---|---|---|
+| **Täckning** | Hur stor del av cellens betyg vilar på mätt underlag? | Ett tal per (parti, kategori) i `scores.json`, vägt `0,30 x A + 0,50 x B + 0,20 x D` |
+| **Säkerhet** | Hur säkert är det som är mätt? | En nivå per delpoäng (`high`/`medium`/`low`), hopvägd till bandets halvbredd |
+
+**Täckning och Säkerhet är två storheter, inte en.** En fullt täckt cell kan vila på svag evidens,
+och då är det bandet som bär beskedet. Täckningen ändrar aldrig poäng, band eller rangordning: tunn
+täckning verkar redan på modellen genom `thin_coverage`, som sänker Säkerheten ett steg, och att
+låta den verka igen vore dubbelräkning. Ordet **täckning** användes redan om B och D var för sig;
+ADR 0008 gör det till kategorinivåns hopvägning av samma sak.
+
+*Retirerad synonym:* "Tillförlitlighet" → **Täckning**. Ordet *tillförlitlighet* lovar att cellen är
+pålitlig, medan storheten mäter hur stor del som är mätt. Det är två skilda påståenden, och att
+blanda dem vore samma fel som *träffsäkerhet* gjorde för B. Bygge:
+[#29](https://github.com/mcknschn/rosta/issues/29).
+
 ### Mätbarhet — kan varje indikator mätas?
 En indikator bidrar till betyget om den har **B** (partikopplad evidens att ett instrument flyttar den) **eller**
 **D** (officiell svensk årsserie). B och D är två vägar — en stängd D dödar inte indikatorn om B bär den (t.ex.
