@@ -46,6 +46,20 @@ def test_broken_score_is_rejected():
 
 
 @pytest.mark.skipif(not (DIST_DIR / "scores.json").exists(), reason="dist saknas")
+def test_cell_without_coverage_is_rejected():
+    """ADR 0008 punkt 8: täckningen är ett UTTRYCKLIGT schemakrav, inte ett underförstått
+    tillägg. En cell som tappar fältet ska falla på kontraktet, inte renderas tom."""
+    v = _validator("scores.schema.json")
+    data = _load(DIST_DIR / "scores.json")
+    party = next(iter(data["scores"]))
+    cat = next(iter(data["scores"][party]))
+    bad = copy.deepcopy(data)
+    del bad["scores"][party][cat]["coverage"]
+    with pytest.raises(ValidationError):
+        v.validate(bad)
+
+
+@pytest.mark.skipif(not (DIST_DIR / "scores.json").exists(), reason="dist saknas")
 def test_ci_brackets_score_in_every_cell():
     # invariant frontend förlitar sig på: ci0 <= score <= ci1.
     data = _load(DIST_DIR / "scores.json")

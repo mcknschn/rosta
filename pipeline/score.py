@@ -439,3 +439,31 @@ def category_score_from_components(
     }
     result["flags"] = list(flags) if flags else []
     return result
+
+
+# Täckningen räknar A, B och D. C har ingen täckningsstorhet (ADR 0008 punkt 2).
+COVERAGE_SUBSCORES = ("A", "B", "D")
+
+
+def cell_coverage(a: float, b: float, d: float) -> float:
+    """Cellens TÄCKNING: hur stor del av betyget som vilar på mätt underlag (ADR 0008).
+
+    a, b och d är per-delpoängstäckningen i [0,1], var och en räknad på kategorins EGEN
+    nämnare. Vikterna är ADR 0002:s delpoängvikter ur config/scoring.yaml, aldrig valda tal
+    här. De tre summerar redan till 1,00 eftersom C väger 0, så ingen omnormalisering behövs.
+
+    Storheten säger inget om hur säkert det mätta är. Det beskedet bär bandet, och de två
+    hålls isär (ADR 0008 punkt 1). Täckningen har heller ingen verkan på betyget (punkt 7):
+    den räknas ur färdiga tal och matas aldrig tillbaka in i score, ci eller components.
+
+    Att de tre summerar till 1,00 är ett drag hos den COMMITTADE configen, inte hos formeln.
+    Grinden på det står i tests/test_cell_coverage.py, inte här: pipeline.robustness kör
+    scenariot "gamla vikter" med C = 0,15, och ett hårt fall här skulle spränga en känslighets-
+    körning som varken läser eller skriver täckningen.
+    """
+    parts = dict(zip(COVERAGE_SUBSCORES, (a, b, d), strict=True))
+    for k, v in parts.items():
+        if not (0.0 <= v <= 1.0):
+            raise ValueError(f"Täckning {k} utanför [0,1]: {v}")
+    weights = config.scoring()["subscore_weights"]
+    return round(sum(weights[k] * v for k, v in parts.items()), 3)

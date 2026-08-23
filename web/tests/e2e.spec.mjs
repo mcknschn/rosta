@@ -92,6 +92,26 @@ test("expandering visar A/B/C/D-tabell och bevisspår", async ({ page }) => {
   await expect(ev.locator("li").first()).toBeVisible();
 });
 
+test("täckningskolumnen ersätter täckningsflaggorna i detaljtabellen (ADR 0008)", async ({ page }) => {
+  await page.goto(PAGE);
+  const head = page.locator("#parties > li.party .party-head").first();
+  await head.click();
+  const detail = page.locator("#parties > li.party .detail").first();
+  await expect(detail.locator("th", { hasText: "Täckning" })).toBeVisible();
+
+  // Talet står i procent på varje rad, ingen cell är tom.
+  const täckning = detail.locator("tbody tr td:nth-last-child(2)");
+  for (const text of await täckning.allTextContents()) {
+    expect(text).toMatch(/^\d+ %$/);
+  }
+
+  // De tre täckningsflaggorna är borta ur flaggkolumnen, resten står kvar.
+  const flaggor = (await detail.locator("tbody .tag").allTextContents());
+  for (const f of flaggor) {
+    expect(f).not.toMatch(/^A_a1_active$|^A_a2_only$|^B_coverage_|^D_coverage_/);
+  }
+});
+
 test("vikter round-trippar via ?w= i URL:en", async ({ page }) => {
   await page.goto(PAGE);
   const first = page.locator('input[type="range"]').first();

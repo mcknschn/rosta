@@ -58,9 +58,15 @@
     "categoryScore": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["score", "ci", "components"],
+      "required": ["score", "ci", "components", "coverage"],
       "properties": {
         "score": { "type": "number", "minimum": 0, "maximum": 5 },
+        "coverage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Täckning: hur stor del av cellens betyg som vilar på mätt underlag (ADR 0008). 0,30 A + 0,50 B + 0,20 D, per delpoäng räknat på kategorins egen nämnare. Säger inget om hur säkert det mätta är. Det beskedet bär bandet."
+        },
         "ci": {
           "type": "array",
           "description": "Osäkerhetsintervall [low, high].",

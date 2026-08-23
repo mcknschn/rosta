@@ -664,6 +664,10 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
     w_a2 = float(a_comp["a2_lagstiftningsprioritering"])
     a_by_cat: dict[str, dict[str, float]] = {}
     a_flag_by_cat: dict[str, str] = {}
+    # A:s TÄCKNING per kategori (ADR 0008 punkt 3): står a1 vilar A på båda halvorna och är
+    # helt täckt; faller a1 ur grinden vilar A på a2 ensam, och a2 väger 0,4 av A. Talet ÄRVER
+    # blandningen ur configen i stället för att sättas här, så en ändrad blandning följer med.
+    a_cov_by_cat: dict[str, float] = {}
     for c in cats:
         if c in a1_active:
             # a1_share[(p,c)] finns för alla partier när c är aktiv (grinden garanterar det);
@@ -674,9 +678,11 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
             }
             a_by_cat[c] = {p: w_a1 * a1_scored[p] + w_a2 * a2_by_cat[c][p] for p in parties}
             a_flag_by_cat[c] = "A_a1_active"
+            a_cov_by_cat[c] = w_a1 + w_a2
         else:
             a_by_cat[c] = a2_by_cat[c]
             a_flag_by_cat[c] = "A_a2_only"
+            a_cov_by_cat[c] = w_a2
 
     # C: per-kategori c1-makt = nationell + subnationell maktandel, blandad enligt level_weights
     # och rank-normaliserad. Subnationell makt = per-kategori region/kommun-split av SKR-styren
@@ -805,9 +811,16 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
                     b_conf_in.get((p, c), {}), b_weights
                 ) or 0.0
                 b_conf = _b_confidence(conf_cat, b_n_claims.get((p, c), 0), thin)
+                # B:s TÄCKNING (ADR 0008 punkt 5) är B:s EGEN täckning, alltså samma tal som
+                # B_coverage-flaggan bär. I committat läge (weighted_submeasure_depth) är det
+                # den viktade undermåttstäckningen på kategorins egen nämnare. Legacy-läget
+                # räknar i stället kodade åtgärdstyper, och då följer täckningen med dit.
+                b_cov = coverage
             else:
                 b_val, b_conf = b_missing, b_missing_conf
                 b_flags.append("B_no_party_evidence")
+                # Utan partikopplad evidens är ingenting av B mätt (ADR 0008 följder).
+                b_cov = 0.0
 
             d_cell = d_res[(p, c)]
             comps = {"A": a_by_cat[c][p], "B": b_val, "C": c_by_cat[c][p], "D": d_cell.score}
@@ -837,6 +850,12 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
                 overrides["D"] = d_na_conf
                 flags.append("D_not_applicable")
             cs = score.category_score_from_components(comps, confidence_overrides=overrides, flags=flags)
+            # TÄCKNING (ADR 0008): hur stor del av cellens betyg som vilar på mätt underlag.
+            # D:s täckta vikt står på kategorins EGEN nämnare även när D är ej tillämplig.
+            # DCell bär total_weight också då, så nämnaren krymper aldrig (ADR 0008 punkt 4).
+            # Talet räknas här i pipen, aldrig i frontend (punkt 8), och rör inte betyget.
+            d_cov = (d_cell.covered_weight / d_cell.total_weight) if d_cell.total_weight else 0.0
+            cs["coverage"] = score.cell_coverage(a_cov_by_cat[c], b_cov, d_cov)
             crefs = []
             if (p, c) in action_by_pc:
                 crefs.append(action_by_pc[(p, c)])

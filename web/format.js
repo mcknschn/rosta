@@ -6,6 +6,23 @@ export function fmtNum(x, decimals = 2) {
   return Number(x).toFixed(decimals).replace(".", ",");
 }
 
+// Täckningen: hur stor del av cellens betyg som vilar på mätt underlag (ADR 0008). Talet
+// räknas i pipen och står som det är, utan tröskel och utan omdöme (ADR 0008 punkt 6).
+export function fmtCoverage(x) {
+  if (x === null || x === undefined || Number.isNaN(Number(x))) return "-";
+  return `${Math.round(Number(x) * 100)} %`;
+}
+
+// Flaggkolumnen visar bara det som INTE är täckning (ADR 0008 punkt 9). A_a1_active,
+// A_a2_only, B_coverage_* och D_coverage_* säger samma sak som täckningskolumnen, fast sämre.
+// Kvar står flaggorna som markerar något annat: en ej tillämplig del, ett tunt underlag,
+// en åtgärd i modellen eller en subnationell attribution.
+const COVERAGE_FLAGS = [/^A_a1_active$/, /^A_a2_only$/, /^B_coverage_/, /^D_coverage_/];
+
+export function visibleFlags(flags) {
+  return (flags || []).filter((f) => !COVERAGE_FLAGS.some((re) => re.test(f)));
+}
+
 // "3,84 av 5 (3,5-4,1)"
 export function fmtScoreWithCI(score, ci) {
   const s = fmtNum(score, 2);

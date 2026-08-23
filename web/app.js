@@ -2,7 +2,7 @@
 // och gör viktningen client-side. Inget rådata finns här. All betygslogik ligger i pipelinen;
 // frontend får ENDAST vikta/summera (se score.js) och visa.
 
-import { fmtNum, fmtScoreWithCI, pct, metaLine } from "./format.js";
+import { fmtNum, fmtScoreWithCI, fmtCoverage, visibleFlags, pct, metaLine } from "./format.js";
 import { partyTotals, pairStability } from "./score.js";
 
 const PARTY_NAMES = {
@@ -290,7 +290,7 @@ function detailHTML(row) {
   const catRows = DATA.categories.map((c) => {
     const cs = row.catScores[c.id]; if (!cs) return "";
     const comp = cs.components || {};
-    const flags = (cs.flags || []).map((f) => `<span class="tag">${f}</span>`).join(" ");
+    const flags = visibleFlags(cs.flags).map((f) => `<span class="tag">${f}</span>`).join(" ");
     const lowConf = Object.values(cs.confidence || {}).includes("low") ? ' class="conf-low"' : "";
     return `<tr>
       <td>${c.name}</td>
@@ -298,21 +298,24 @@ function detailHTML(row) {
       <td class="num">${fmtNum(cs.ci[0], 1)}-${fmtNum(cs.ci[1], 1)}</td>
       <td class="num">${fmtNum(comp.A, 1)}</td><td class="num">${fmtNum(comp.B, 1)}</td>
       <td class="num">${fmtNum(comp.D, 1)}</td><td class="num nocount">${fmtNum(comp.C, 1)}</td>
+      <td class="num">${fmtCoverage(cs.coverage)}</td>
       <td${lowConf}>${flags || "-"}</td>
     </tr>`;
   }).join("");
   return `<div class="tablewrap"><table>
-      <caption class="sr-only">Betyg per kategori och de tre delarna för ${row.party}, plus maktandelen som inte räknas in</caption>
+      <caption class="sr-only">Betyg per kategori och de tre delarna för ${row.party}, plus maktandelen som inte räknas in och hur stor del av betyget som är mätt</caption>
       <thead><tr><th>Kategori</th><th class="num">Betyg</th><th class="num">Spann</th>
         <th class="num" title="Vad partiet driver">A</th><th class="num" title="Hur mycket åtgärderna brukar ge">B</th>
         <th class="num" title="Hur det gick">D</th>
         <th class="num nocount" title="Hur mycket makt partiet haft, på skalan 0-5 jämfört med de andra partierna. Räknas inte in i betyget.">Maktandel</th>
+        <th class="num" title="Hur stor del av betyget som vilar på mätt underlag. Säger inget om hur säkert det mätta är. Det beskedet bär spannet.">Täckning</th>
         <th>Flaggor</th></tr></thead>
       <tbody>${catRows}</tbody>
     </table></div>
     <p class="hint">A = vad partiet driver. B = hur mycket åtgärderna brukar ge. D = hur det gick.
       Maktandelen visar hur stor del av tiden partiet haft makt, jämfört med de andra partierna på skalan 0-5.
-      Den ger inga poäng. Flaggor visar var underlaget är tunt eller saknas.</p>
+      Den ger inga poäng. Täckningen visar hur stor del av betyget som vilar på mätt underlag.
+      Flaggor visar var underlaget är tunt eller saknas.</p>
     ${evidenceHTML(row)}`;
 }
 
