@@ -1,8 +1,9 @@
 {
   "counts": {
     "positions_total": 269,
-    "ledger_entries": 46,
-    "claims_produced": 282,
+    "ledger_entries": 47,
+    "ledger_entries_lifted": 14,
+    "claims_produced": 197,
     "stance": {
       "supports": 239,
       "opposes": 30

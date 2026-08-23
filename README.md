@@ -93,12 +93,16 @@ uppskjutet, ej neutralt byggbart → C = c1; [metod](docs/done/fas1c_subnational
 attribueras** från officiella årsserier i **alla 7 kategorier** (43/68 indikatorer, 29/35 undermått —
 försvar och demokrati fick D-data 2026-06-09/12; [docs/done/fas3_coverage.md](docs/done/fas3_coverage.md)) där partiet
 haft nationell makt, sedan 2026-06-12 krympt mot neutral efter viktad undermåttsbredd. **B (evidens)
-är aktiverad för alla 7 kategorier** via 269 källbelagda partiståndpunkter (riksdagsvotering/motion),
-coverage-viktade så tunn täckning drar mot neutral (expertgranskad, `version 2`;
-[metod](docs/done/fas4b_partistandpunkter_metod.md)). Ståndpunkterna är **panel-harmoniserade** (Fas 4c, alla
-8 partier per åtgärdstyp bedömda mot en gemensam frusen rubrik) och liggaren utökad med den enda omstridda
-åtgärdstyp som passerade evidens-/negativ-grinden av 8 skannade (`ny_karnkraft` → effektbrist; 7 hade för
-blandad officiell evidens och lämnades inerta – [Fas 4c](docs/done/ROADMAP.md)). **Inga ståndpunkter fabriceras**
+är aktiverad för alla 7 kategorier** via 184 av 269 källbelagda partiståndpunkter
+(riksdagsvotering/motion), coverage-viktade så tunn täckning drar mot neutral
+([metod](docs/done/fas4b_partistandpunkter_metod.md)). Ståndpunkterna är **panel-harmoniserade** (Fas 4c,
+alla 8 partier per åtgärdstyp bedömda mot en gemensam frusen rubrik). Evidensliggaren är `version 3`:
+sedan 2026-08-23 passerar **varje** liggarpost samma evidensgrind **oavsett verkan**
+([ADR 0006](docs/adr/0006-evidensgrinden-ar-symmetrisk.md)) — myndighetsutvärdering eller systematisk
+översikt, konfidens minst medium, evidens som avser exakt indikatorn. 14 av 47 poster föll på grinden och
+hålls utanför poängen med skäl per post; de raderas inte, så källspåret finns kvar. Nya poster söks
+**källstyrt och riktningsblint** per indikator, aldrig efter en önskad verkan
+([svepregister](docs/done/b_evidenssvep_2026-08-23.md)). **Inga ståndpunkter fabriceras**
 — varje rad citerar en riksdagskälla och är adversariellt verifierad mot fulltext. **Frontenden (Fas 6) är byggd** — en statisk, byggfri väljarkompass i [web/](web/) som viktar kategorierna
 client-side, rangordnar partierna med osäkerhetsband och expanderbart bevisspår, delar vikter via URL och
 visar en tydlig förbehållsbanner. Den är **Playwright-e2e-testad** (8 fall).
