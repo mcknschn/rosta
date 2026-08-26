@@ -933,6 +933,10 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
     # dagar den ännu inte suttit. Se POWER_WINDOW_END.
     today = date.today()
     fresh = data_freshness(con, today=today)
+    # a1:s fönster i klartext. Utan budgetkälla finns inget a1-fönster, och metodrutan ska
+    # säga det i stället för att indexera en tom lista.
+    a1_window = (f"budgetåren {a1_years[0]}-{a1_years[-1]} ({len(a1_years)} år)"
+                 if a1_years else "inga budgetår, alltså vilar A på a2 ensam")
     out = {
         "meta": {
             "generated": today.isoformat(), "window": "2014-2026",
@@ -972,8 +976,7 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
                 "som aldrig nås eftersom det skulle kräva en förankring på noll. "
                 # ADR 0007 punkt 1 och 3: fönstren skrivs ut, och att de kan skilja sig.
                 "VILKA ÅR VARJE HALVA MÄTER (ADR 0007): täljaren täcker samma år som sin "
-                f"förankring. a1 mäter budgetåren {a1_years[0]}-{a1_years[-1]} "
-                f"({len(a1_years)} år) och a2 perioden "
+                f"förankring. a1 mäter {a1_window} och a2 perioden "
                 f"{anchor.a2_period()[0]} till {anchor.a2_period()[1]}. Halvorna har egna "
                 "fönster och kan hamna på olika tidsavsnitt, eftersom a1:s tillgänglighet "
                 "inte ska få kasta bort motionsår som är fullt giltiga. Fönstren faller ut "
