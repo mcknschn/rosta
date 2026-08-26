@@ -15,8 +15,8 @@ import copy
 import pytest
 
 from pipeline import anchor, budget, config, scorerun, warehouse
-from pipeline.tools import budget_ramar_transcribe
 from pipeline.sources import government
+from pipeline.tools import budget_ramar_transcribe
 
 _A2_PERIOD = "/".join(anchor.a2_period())
 
