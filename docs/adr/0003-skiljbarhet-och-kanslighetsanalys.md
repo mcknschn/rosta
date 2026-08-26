@@ -75,6 +75,16 @@ finns för att hantera det.
    `change_dead_zone`, `min_responsibility`, `thin_basis_threshold` och `coverage_shrink`; D:s
    subnationella läge och `region_weighting`. **C ingår inte**, den väger 0. **Kategorivikterna
    ingår inte i pipekörningen**, eftersom användaren äger dem i webbläsaren.
+
+   > **Utvidgad av [ADR 0010](0010-ett-reglage-ar-en-vag-pipen-redan-kan-ga.md), 2026-08-26.**
+   > Punkten räknar upp posterna men säger inte vad som kvalificerar en post till listan. ADR 0010
+   > punkt 1 avgör regeln: ett **reglage** är en punkt där pipen kan gå en annan väg utan att någon
+   > skriver ny kod, och där underlaget kan uttrycka den vägen. ADR 0010 punkt 2 avgör att listan
+   > är ett register över byggda variationspunkter, inte ett anspråk på all osäkerhet. Två
+   > följdändringar: **A:s normalisering** står kvar i texten ovan men är struken ur tabellen sedan
+   > [#21](https://github.com/mcknschn/rosta/issues/21), och **`A_component_mix`** läggs till med
+   > spannet a1 i (0,50, 0,80]. Ordet **reglage** ersätter *källa* för den dragna storheten
+   > (ADR 0010 punkt 8). Texten nedan står oförändrad.
 6. **Spann.** En regel, inte en tabell med valda tal. Diskreta val får sina **byggda** alternativ,
    varken fler eller färre. Kontinuerliga parametrar får ett spann som täcker varje värde repot
    faktiskt använt eller dokumenterat som alternativ, plus en symmetrisk marginal. Vikterna dras ur

@@ -274,6 +274,27 @@ exakt 0. Nivån står kvar i `scores.json` som upplysning om datatillståndet
 (`C_missing_subnational`), men den verkar ingenstans, och `conf-low` i frontend slutar läsa den.
 En maktandel har en källa men ingen säkerhet som verkar.
 
+### Känslighetsanalysens storhet: Reglage
+
+Låst 2026-08-26 av [ADR 0010](../adr/0010-ett-reglage-ar-en-vag-pipen-redan-kan-ga.md) (biljett #24
+under karta #6).
+
+**Reglage:** en punkt där pipen kan gå en annan väg utan att någon skriver ny kod, och där
+underlaget kan uttrycka den vägen. Båda leden krävs. Reglagen står i `robustness.SOURCES` och dras
+samtidigt i varje Monte Carlo-dragning (ADR 0003 punkt 4). Listan är ett **register** över byggda
+variationspunkter, aldrig ett anspråk på att täcka all osäkerhet i betyget. Att en delpoäng saknar
+reglage är därför ett fynd om delpoängen.
+
+*Retirerad synonym:* "Källa" (i betydelsen dragen osäkerhetskälla) → **Reglage**. Ordet *källa*
+betyder i det här repot en officiell källa till data, och ett ord får bära en mening. Fältnamnet
+`source_influence` i `dist/robustness.json` står kvar tills en schemaändring ändå görs.
+
+**Ett dokumenterat men obyggt alternativ är inget reglage** (ADR 0010 punkt 3). Att en ADR namnger
+ett alternativ under "Övervägda alternativ" ger det ingen plats i listan, annars får listan ingen
+övre gräns. Faller alternativet in som kod senare blir det ett reglage automatiskt. **Ett dött
+reglage stryks med en rad om varför** (punkt 9), som `A_normalization` fick i
+[#21](https://github.com/mcknschn/rosta/issues/21).
+
 ### Mätbarhet — kan varje indikator mätas?
 En indikator bidrar till betyget om den har **B** (partikopplad evidens att ett instrument flyttar den) **eller**
 **D** (officiell svensk årsserie). B och D är två vägar — en stängd D dödar inte indikatorn om B bär den (t.ex.
