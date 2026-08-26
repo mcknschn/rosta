@@ -10,7 +10,7 @@ from __future__ import annotations
 import sys
 from datetime import date
 
-from . import warehouse
+from . import anchor, warehouse
 from .sources import government, riksdagen, skr
 
 # Riksmöten i fönstret (3 mandatperioder). Voteringsprovet spänner hela fönstret (Fas 1b),
@@ -41,11 +41,18 @@ def main(votes_pages: int = 2) -> None:
     n_mun = warehouse.upsert(con, "responsibility", mun_rows)
     print(f"responsibility (municipal): {n_mun} rader ({len({r['geography'] for r in mun_rows})} kommuner)")
 
-    # 2. Motionsaktivitet per (parti, utskott), hela fönstret -> party_activity.
-    print("hämtar motionsräkning per parti×utskott (full täckning, ~120 anrop) ...")
-    act_rows = riksdagen.fetch_motion_counts(retrieved_at)
+    # 2. Motionsaktivitet per (parti, utskott) över a2:s fönster -> party_activity.
+    # Fönstret är A:s eget (ADR 0007 punkt 1 och 3), alltså förankringens period och inte
+    # mappings.window. Tabellens nyckel bär perioden, så en omhämtning över en ny period
+    # LÄGGER TILL rader. De gamla raderna tas bort först, annars räknas motionerna dubbelt.
+    frm, tom = anchor.a2_period()
+    print(f"hämtar motionsräkning per parti×utskott ({frm}..{tom}, ~120 anrop) ...")
+    removed = con.execute(
+        "DELETE FROM party_activity WHERE kind = 'motion' AND period != ?", [f"{frm}/{tom}"]
+    ).fetchall()
+    act_rows = riksdagen.fetch_motion_counts(retrieved_at, frm=frm, tom=tom)
     n_act = warehouse.upsert(con, "party_activity", act_rows, validate=False)
-    print(f"party_activity: {n_act} rader")
+    print(f"party_activity: {n_act} rader (rader på andra perioder borttagna: {removed})")
 
     # 3. Voteringar -> actions, prov per riksmöte över HELA fönstret (Fas 1b).
     print(f"hämtar voteringsprov per riksmöte ({len(RIKSMOTEN)} rm × {votes_pages} sidor) ...")

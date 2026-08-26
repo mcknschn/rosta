@@ -33,7 +33,7 @@ def _cfg(ramar_a=None, ramar_b=None) -> dict:
 
 
 def test_andelar_ar_anslag_till_kategori_delat_med_total() -> None:
-    shares, active = budget.a1_shares(CATS, PARTIES, ramar_cfg=_cfg(), uo_map=UO_MAP)
+    shares, active, _years = budget.a1_shares(CATS, PARTIES, ramar_cfg=_cfg(), uo_map=UO_MAP)
     assert active == {"ekonomi", "valfard"}
     # A: total=200; ekonomi=(100*1+50*0.5)/200=0.625 ; valfard=(50*1+50*0.5)/200=0.375
     assert shares[("A", "ekonomi")] == pytest.approx(0.625)
@@ -45,20 +45,20 @@ def test_andelar_ar_anslag_till_kategori_delat_med_total() -> None:
 
 def test_tom_config_ger_inga_aktiva_kategorier() -> None:
     """Tomt budget_years => a1 inaktiv => A faller på a2 (ingen regression)."""
-    assert budget.a1_shares(CATS, PARTIES, ramar_cfg={"budget_years": {}}, uo_map=UO_MAP) == ({}, set())
+    assert budget.a1_shares(CATS, PARTIES, ramar_cfg={"budget_years": {}}, uo_map=UO_MAP) == ({}, set(), [])
 
 
 def test_grind_saknat_uo_inaktiverar_just_den_kategorin() -> None:
     """Om ett parti saknar ram för ett kategori-UO blir bara DEN kategorin inaktiv (a2-fallback)."""
     rb = {"source_ref": "riksdag:mot:B", "UO1": 10, "UO3": 10}  # saknar UO2 (valfard)
-    _shares, active = budget.a1_shares(CATS, PARTIES, ramar_cfg=_cfg(ramar_b=rb), uo_map=UO_MAP)
+    _shares, active, _years = budget.a1_shares(CATS, PARTIES, ramar_cfg=_cfg(ramar_b=rb), uo_map=UO_MAP)
     assert active == {"ekonomi"}  # valfard kräver UO2 -> inaktiv
 
 
 def test_grind_saknat_parti_inaktiverar_allt() -> None:
     cfg = _cfg()
     del cfg["budget_years"][2025]["party_frame"]["B"]
-    _shares, active = budget.a1_shares(CATS, ["A", "B"], ramar_cfg=cfg, uo_map=UO_MAP)
+    _shares, active, _years = budget.a1_shares(CATS, ["A", "B"], ramar_cfg=cfg, uo_map=UO_MAP)
     assert active == set()
 
 
@@ -86,7 +86,7 @@ def test_flerarig_aktivitet_ar_snitt_skarning() -> None:
     y1 = _cfg()["budget_years"][2025]
     y2 = _cfg(ramar_b={"source_ref": "y", "UO1": 10, "UO3": 10})["budget_years"][2025]  # saknar UO2
     cfg = {"budget_years": {2024: y1, 2025: y2}}
-    shares, active = budget.a1_shares(CATS, PARTIES, ramar_cfg=cfg, uo_map=UO_MAP)
+    shares, active, _years = budget.a1_shares(CATS, PARTIES, ramar_cfg=cfg, uo_map=UO_MAP)
     assert active == {"ekonomi"}  # valfard aktiv bara 2024 -> ute ur snittet
     # ekonomi-andel för A = snitt över båda åren (samma frame) = 0.625
     assert shares[("A", "ekonomi")] == pytest.approx(0.625)

@@ -55,9 +55,19 @@ def committee_from_beteckning(beteckning: str) -> str:
 
 
 def fetch_motion_counts(
-    retrieved_at: str, frm: str = "2014-09-01", tom: str = "2026-05-29", delay: float = 0.3
+    retrieved_at: str, frm: str | None = None, tom: str | None = None, delay: float = 0.3
 ) -> list[dict[str, Any]]:
-    """party_activity-rader: antal motioner per (parti, utskott) i fönstret (full täckning)."""
+    """party_activity-rader: antal motioner per (parti, utskott) i a2:s fönster.
+
+    Fönstret är A:s EGET och kommer ur förankringens period (`anchor.a2_period`), inte ur
+    `mappings.window`. ADR 0007 punkt 1 kräver att a2:s täljare täcker samma period som a2:s
+    förankring; `mappings.window` står oförändrad och används fortsatt av D och responsibility.
+    """
+    from .. import anchor  # sent, så sources kan importeras utan att dra in scoringkedjan
+
+    if frm is None or tom is None:
+        default_frm, default_tom = anchor.a2_period()
+        frm, tom = frm or default_frm, tom or default_tom
     cmap: dict[str, str] = config.mappings()["committee_to_category"]
     parties = config.party_codes()
     period = f"{frm}/{tom}"

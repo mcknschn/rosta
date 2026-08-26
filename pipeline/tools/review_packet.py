@@ -329,7 +329,7 @@ def write_budget_doc() -> None:
     cfg = config.budget_ramar()
     cats = config.category_ids()
     parties = config.party_codes()
-    shares, active = budget.a1_shares(cats, parties)
+    shares, active, _years = budget.a1_shares(cats, parties)
 
     lines: list[str] = []
     lines.append("# Granskning A:a1 — budgetramar (`config/budget_ramar.yaml`)")

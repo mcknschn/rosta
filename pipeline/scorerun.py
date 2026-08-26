@@ -622,6 +622,27 @@ def _source_name(ref: str) -> str:
     return ref.split(":")[0]
 
 
+def _require_a2_period(con: object) -> None:
+    """a2:s täljare ska ligga på exakt förankringens period (ADR 0007 punkt 1).
+
+    `party_activity` har (parti, utskott, sort, period) som nyckel, så en omhämtning över en
+    ny period LÄGGER TILL rader i stället för att ersätta de gamla. Summan skulle då räkna
+    samma motion två gånger, och felet skulle inte synas någonstans. Därför faller körningen
+    hårt om tabellen bär någon annan period än förankringens.
+    """
+    want = "/".join(anchor.a2_period())
+    have = sorted(
+        p for (p,) in con.execute(
+            "SELECT DISTINCT period FROM party_activity WHERE kind = 'motion'"
+        ).fetchall()
+    )
+    if have and have != [want]:
+        raise ValueError(
+            f"A: a2:s täljare ligger på {have} men förankringen på {want!r} "
+            "(ADR 0007 punkt 1) - kör om pipeline.build_fas1"
+        )
+
+
 def build(con: object | None = None, budget_cfg: dict[str, object] | None = None) -> dict[str, object]:
     """Bygger scores/evidence. budget_cfg=None -> läs config/budget_ramar.yaml (produktion);
     skicka {} (eller en fixtur) för att isolera/injicera a1 i test (jfr budget.a1_shares)."""
@@ -640,8 +661,27 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
     #        (A_a2_only-flagga).
     # Formen är densamma i båda halvorna: q = (andel - förankring) / (andel + förankring) i
     # [-1, 1], sedan score.net_support_to_score. Ingen normalisering och ingen vald konstant.
-    a1_anchor = anchor.a1_anchor_shares(cats)
+    #
+    # ADR 0007 punkt 1: TÄLJAREN täcker samma år som FÖRANKRINGEN, i båda halvorna. En kvot
+    # vars täljare och nämnare täcker olika år bär skillnaden mellan åren som om den vore en
+    # skillnad mellan partier. Halvorna har egna fönster (punkt 3), och båda prövas hårt här.
+    a1_share, a1_active, a1_years = budget.a1_shares(cats, parties, ramar_cfg=budget_cfg)
+    if a1_years and a1_years != anchor.a1_years():
+        raise ValueError(
+            f"A: a1:s täljare täcker {a1_years[0]}-{a1_years[-1]} men förankringen "
+            f"{anchor.a1_years()[0]}-{anchor.a1_years()[-1]} (ADR 0007 punkt 1)"
+        )
+    # Villkorsklausulen (ADR 0007 punkt 4). Faller den ut vilar A på a2 ensam, alltså exakt
+    # det tillstånd grinden ger, och cellens täckning följer med av sig själv (ADR 0008
+    # punkt 3). Skälet är ett annat än grindens, och det står som en egen flagga.
+    a1_ok, a1_offenders = budget.a1_admissible(
+        parties, config.a_forankring()["a1"]["decided_frames"], ramar_cfg=budget_cfg
+    )
+    if not a1_ok:
+        a1_active = set()
+    a1_anchor = anchor.a1_anchor_shares(cats, years=a1_years or None)
     a2_anchor = anchor.a2_anchor_shares(cats)
+    _require_a2_period(con)
     counts = {(p, c): 0.0 for p in parties for c in cats}
     for p, c, t in con.execute(
         "SELECT party, category, sum(count) FROM party_activity GROUP BY party, category"
@@ -658,7 +698,6 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
         for c in cats
     }
 
-    a1_share, a1_active = budget.a1_shares(cats, parties, ramar_cfg=budget_cfg)
     a_comp = config.scoring()["A_agerande"]["components"]
     w_a1 = float(a_comp["a1_budgetprioritering"])
     w_a2 = float(a_comp["a2_lagstiftningsprioritering"])
@@ -683,6 +722,7 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
             a_by_cat[c] = a2_by_cat[c]
             a_flag_by_cat[c] = "A_a2_only"
             a_cov_by_cat[c] = w_a2
+    a_extra_flags = [] if a1_ok else ["A_a1_inadmissible"]
 
     # C: per-kategori c1-makt = nationell + subnationell maktandel, blandad enligt level_weights
     # och rank-normaliserad. Subnationell makt = per-kategori region/kommun-split av SKR-styren
@@ -827,6 +867,7 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
             overrides = {"B": b_conf, "C": c_conf_by_cat[c]}
             flags = list(b_flags)
             flags.append(a_flag_by_cat[c])
+            flags += a_extra_flags
             flags += c_flags_by_cat[c]
             if d_cell.measured:
                 if d_shrink:

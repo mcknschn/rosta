@@ -45,25 +45,60 @@ def window(cfg: Mapping[str, Any] | None = None) -> tuple[int, int]:
     return int(w["start"]), int(w["end"])
 
 
+def a1_years(cfg: Mapping[str, Any] | None = None) -> list[int]:
+    """Budgetåren a1 mäter, alltså a1:s eget fönster (ADR 0007 punkt 2 och 3).
+
+    Fönstret börjar vid den SENASTE av a1:s två gränser och slutar vid senaste färdiga år.
+    Den första gränsen bär förankringen (FiU1 listar utgiftsområde 1-27), den andra täljaren
+    (alla åtta partier har en citerbar ram). Halvorna har egna fönster: a2 ska inte falla bara
+    för att budgetkällan har en lucka (ADR 0007 punkt 3).
+    """
+    cfg = config.a_forankring() if cfg is None else cfg
+    w = cfg["window"]
+    bounds = [int(w["a1_bound"]), int(w["a1_frames_bound"]), int(w["start"])]
+    return list(range(max(bounds), int(w["end"]) + 1))
+
+
+def a2_period(cfg: Mapping[str, Any] | None = None) -> tuple[str, str]:
+    """(från, till) som ISO-datum för a2:s fönster, läst ur förankringens egen period.
+
+    Täljaren hämtas över exakt den här perioden (ADR 0007 punkt 1). Den är skild från
+    `mappings.window`, som D och `responsibility` fortsätter använda oförändrad.
+    """
+    cfg = config.a_forankring() if cfg is None else cfg
+    period = str(cfg["a2"]["chamber_motions"]["period"])
+    frm, _, tom = period.partition("/")
+    if not frm or not tom:
+        raise ValueError(f"a_forankring: a2-perioden {period!r} går inte att läsa")
+    return frm, tom
+
+
 def a1_anchor_shares(
     category_ids: list[str],
+    years: list[int] | None = None,
     cfg: Mapping[str, Any] | None = None,
     uo_map: Mapping[str, Any] | None = None,
 ) -> dict[str, float]:
-    """kategori -> andel av de beslutade utgiftsramarna, som medel över fönstrets budgetår.
+    """kategori -> andel av de beslutade utgiftsramarna, som medel över a1:s budgetår.
 
     Samma andelsräkning som partiernas egna ramar (budget.category_shares_for_party), så andel
     och förankring är samma storhet mätt på två underlag. Nämnaren är hela ramen, alltså även de
     utgiftsområden som inte hör till någon kategori.
+
+    `years` är de år TÄLJAREN täcker. ADR 0007 punkt 1 kräver att förankringen läggs på exakt
+    dem: en kvot vars täljare och nämnare täcker olika år bär skillnaden mellan åren som om den
+    vore en skillnad mellan partier. Utelämnas `years` används a1:s eget fönster.
     """
     cfg = config.a_forankring() if cfg is None else cfg
     umap = config.mappings()["expenditure_areas"] if uo_map is None else uo_map
     cat_uo_w = budget.category_uo_weights(umap)
     frames = cfg["a1"]["decided_frames"]
-    start, end = window(cfg)
+    years = a1_years(cfg) if years is None else sorted(years)
+    if not years:
+        raise ValueError("a_forankring: a1 saknar budgetår att förankra mot")
 
     per_year: list[dict[str, float]] = []
-    for year in range(start, end + 1):
+    for year in years:
         frame = frames.get(year)
         if frame is None:
             raise ValueError(f"a_forankring: budgetår {year} saknar beslutad ram")
@@ -120,6 +155,12 @@ def validate(cfg: Mapping[str, Any] | None = None) -> None:
     start, end = window(cfg)
     if start > end:
         raise ValueError(f"a_forankring: fönstret {start}-{end} går baklänges")
+    for bound in ("a1_bound", "a1_frames_bound", "a2_bound"):
+        if not isinstance((cfg["window"] or {}).get(bound), int):
+            raise ValueError(f"a_forankring: gränsen '{bound}' saknas eller är inget år")
+    if not a1_years(cfg):
+        raise ValueError("a_forankring: a1:s fönster är tomt")
+    a2_period(cfg)
 
     frames = (cfg["a1"] or {}).get("decided_frames") or {}
     for year in range(start, end + 1):

@@ -103,19 +103,22 @@ def a1_shares(
     parties: list[str],
     ramar_cfg: Mapping[str, Any] | None = None,
     uo_map: Mapping[str, Any] | None = None,
-) -> tuple[dict[tuple[str, str], float], set[str]]:
-    """((parti,kategori) -> a1-andel, aktiva kategorier).
+) -> tuple[dict[tuple[str, str], float], set[str], list[int]]:
+    """((parti,kategori) -> a1-andel, aktiva kategorier, budgetåren täljaren täcker).
 
     Andelen är medel över de inkluderade budgetåren. a1 är aktiv för en kategori endast om den
     var aktiv (alla 8 partier × alla kategori-UO) i VARJE budgetår (snitt-skärning). Tom config
-    -> ({}, set()) så A faller på a2 (ingen regression).
+    -> ({}, set(), []) så A faller på a2 (ingen regression).
+
+    Åren returneras därför att förankringen ska läggas på exakt dem (ADR 0007 punkt 1). Den
+    som räknar kvoten ska inte behöva lista ut vilka år täljaren råkade täcka.
     """
     cfg = config.budget_ramar() if ramar_cfg is None else ramar_cfg
     umap = config.mappings()["expenditure_areas"] if uo_map is None else uo_map
     cat_uo_w = category_uo_weights(umap)
     years = (cfg or {}).get("budget_years") or {}
     if not years:
-        return {}, set()
+        return {}, set(), []
 
     per_year_shares: dict[Any, dict[tuple[str, str], float]] = {}
     per_year_active: list[set[str]] = []
@@ -138,7 +141,58 @@ def a1_shares(
             vals = [per_year_shares[y][(p, cat)] for y in years if (p, cat) in per_year_shares[y]]
             if vals:
                 shares[(p, cat)] = sum(vals) / len(vals)
-    return shares, active
+    return shares, active, sorted(int(y) for y in years)
+
+
+def parties_matching_adopted(
+    parties: list[str],
+    decided_frames: Mapping[int, Mapping[str, Any]],
+    ramar_cfg: Mapping[str, Any] | None = None,
+) -> list[str]:
+    """Partier vars ram sammanfaller med den ANTAGNA ramen i VARJE budgetår i fönstret.
+
+    Underlaget till villkorsklausulen i ADR 0007 punkt 4. Ett parti vars ram är den antagna i
+    varje år har ingen egen nollpunkt: kvoten mot förankringen blir densamma som förankringens
+    egen kvot mot sig själv, och partiet landar mitt på skalan i varje kategori av konstruktion.
+    Klausulen är ADR 0005:s förkastade alternativ "Regeringens ram som nollpunkt", skrivet som
+    ett prov, så att ett kort fönster inte kan återinföra det bakvägen.
+    """
+    cfg = config.budget_ramar() if ramar_cfg is None else ramar_cfg
+    years = (cfg or {}).get("budget_years") or {}
+    if not years:
+        return []
+    out: list[str] = []
+    for party in parties:
+        matches = True
+        for year, block in years.items():
+            decided = decided_frames.get(int(year))
+            frame_name = ((block.get("party_frame") or {}).get(party) or {}).get("frame")
+            frame = (block.get("ramar") or {}).get(frame_name)
+            if decided is None or frame is None:
+                matches = False
+                break
+            uos = [k for k in frame if _UO_RE.match(str(k))]
+            if not uos or any(float(frame[uo]) != float(decided.get(uo, float("nan")))
+                              for uo in uos):
+                matches = False
+                break
+        if matches:
+            out.append(party)
+    return out
+
+
+def a1_admissible(
+    parties: list[str],
+    decided_frames: Mapping[int, Mapping[str, Any]],
+    ramar_cfg: Mapping[str, Any] | None = None,
+) -> tuple[bool, list[str]]:
+    """Villkorsklausulen (ADR 0007 punkt 4): (får a1 räknas, partierna som fällde den).
+
+    a1 är otillåten om NÅGOT partis ram sammanfaller med den antagna ramen i varje år i
+    fönstret. Faller klausulen ut, faller a1 ur A för alla kategorier, och A blir a2 ensam.
+    """
+    offenders = parties_matching_adopted(parties, decided_frames, ramar_cfg)
+    return not offenders, offenders
 
 
 def validate(cfg: Mapping[str, Any] | None = None, parties: list[str] | None = None) -> None:

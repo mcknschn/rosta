@@ -2,8 +2,12 @@
 
 from __future__ import annotations
 
-from pipeline import config, scorerun, warehouse
+from pipeline import anchor, config, scorerun, warehouse
 from pipeline.sources import government
+
+# a2:s täljare ska ligga på exakt förankringens period (ADR 0007 punkt 1). Fixturen läser
+# perioden ur configen i stället för att skriva av den, så provet följer med om den ändras.
+_A2_PERIOD = "/".join(anchor.a2_period())
 
 
 def _seed_con():
@@ -12,12 +16,12 @@ def _seed_con():
     warehouse.upsert(con, "party_activity", [
         # S ägnar 100% av sina motioner åt ekonomi
         {"party": "S", "category": "ekonomi", "committee": "FiU",
-         "kind": "motion", "period": "w", "count": 100, "source_ref": "u"},
+         "kind": "motion", "period": _A2_PERIOD, "count": 100, "source_ref": "u"},
         # M ägnar 25% åt ekonomi (50 av 200) och 75% åt klimat (150 av 200)
         {"party": "M", "category": "ekonomi", "committee": "FiU",
-         "kind": "motion", "period": "w", "count": 50, "source_ref": "u"},
+         "kind": "motion", "period": _A2_PERIOD, "count": 50, "source_ref": "u"},
         {"party": "M", "category": "klimat", "committee": "MJU",
-         "kind": "motion", "period": "w", "count": 150, "source_ref": "u"},
+         "kind": "motion", "period": _A2_PERIOD, "count": 150, "source_ref": "u"},
     ], validate=False)
     return con
 
@@ -110,10 +114,22 @@ def test_scorerun_a1_budget_blends_into_A_when_gated_active() -> None:
         a1_on[p][c]["components"]["A"] != a2_only[p][c]["components"]["A"]
         for p in a1_on for c in a1_on[p]
     )
-    # Regeringsblocket (M/KD/L/SD) delar samma ram -> identiskt a1-bidrag; A skiljer sig då bara
-    # via a2. Här har bara M seedad aktivitet, så KD/L/SD (a2=neutral, samma) får lika A i ekonomi.
-    eco = {p: a1_on[p]["ekonomi"]["components"]["A"] for p in ("KD", "L", "SD")}
-    assert len(set(round(v, 6) for v in eco.values())) == 1
+    # Bara S och M har seedad motionsaktivitet, så de sex övriga partierna delar exakt samma a2.
+    # Deras A skiljer sig därmed bara genom a1, och ska följa a1-andelen: samma andel ger samma A,
+    # och en högre andel ger ett högre A. Biljett #21 skrev provet som ett tal om att M, KD, L och
+    # SD delade ram, vilket gällde det treåriga fönstret. Över 2011-2025 delar de ram bara de år de
+    # regerade tillsammans, så provet skrivs som den egenskap det faktiskt skyddade.
+    from pipeline import budget
+    cats, parties = config.category_ids(), config.party_codes()
+    shares, _active, _years = budget.a1_shares(cats, parties)
+    tysta = [p for p in parties if p not in ("S", "M")]
+    ordning = sorted(tysta, key=lambda p: shares[(p, "ekonomi")])
+    a_values = [a1_on[p]["ekonomi"]["components"]["A"] for p in ordning]
+    assert a_values == sorted(a_values), dict(zip(ordning, a_values, strict=True))
+    for first, second in zip(ordning, ordning[1:], strict=False):
+        if shares[(first, "ekonomi")] == shares[(second, "ekonomi")]:
+            assert (a1_on[first]["ekonomi"]["components"]["A"]
+                    == a1_on[second]["ekonomi"]["components"]["A"])
 
 
 def _falling_unemployment_obs() -> list[dict]:

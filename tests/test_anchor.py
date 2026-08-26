@@ -20,12 +20,13 @@ COMMITTEES = {"FiU": "ekonomi", "SkU": "ekonomi", "SoU": "valfard"}
 
 def _cfg(**over: object) -> dict[str, object]:
     cfg: dict[str, object] = {
-        "window": {"start": 2020, "end": 2021},
+        "window": {"start": 2020, "end": 2021,
+                   "a1_bound": 2018, "a1_frames_bound": 2020, "a2_bound": 2020},
         "a1": {"unit": "mnkr", "decided_frames": {
             2020: {"source_ref": "x", "UO1": 100, "UO2": 100, "UO3": 200},
             2021: {"source_ref": "x", "UO1": 200, "UO2": 100, "UO3": 100},
         }},
-        "a2": {"chamber_motions": {"source_ref": "x", "period": "p",
+        "a2": {"chamber_motions": {"source_ref": "x", "period": "2020-01-01/2021-12-31",
                                    "committees": {"FiU": 30, "SkU": 10, "SoU": 60}}},
     }
     cfg.update(over)
@@ -118,8 +119,8 @@ def _a1_scores(category: str) -> dict[str, float]:
     """a1-delbetyget per parti i en kategori, mot den incheckade förankringen."""
     from pipeline import budget, score
     cats, parties = config.category_ids(), config.party_codes()
-    shares, _active = budget.a1_shares(cats, parties)
-    a1_anchor = anchor.a1_anchor_shares(cats)
+    shares, _active, years = budget.a1_shares(cats, parties)
+    a1_anchor = anchor.a1_anchor_shares(cats, years=years)
     return {
         p: score.net_support_to_score(
             score.bounded_quotient(shares[(p, category)], a1_anchor[category])
@@ -129,17 +130,56 @@ def _a1_scores(category: str) -> dict[str, float]:
 
 
 def test_godkannande_nastan_lika_andelar_ger_nastan_lika_betyg() -> None:
-    """I klimat skiljer 8,73e-06 S från M-blocket. Rangnormaliseringen gjorde 0,00 mot 1,79."""
-    a1 = _a1_scores("klimat")
-    assert abs(a1["S"] - a1["M"]) < 0.01
+    """Två partier vars andelar nästan sammanfaller ska få nästan samma betyg.
+
+    Provet stod i biljett #21 som ett tal om klimat, där 8,73e-06 skilde S från M-blocket
+    under det treåriga fönstret. Efter ADR 0007 mäter a1 femton år, och just det paret finns
+    inte längre. Egenskapen provet skyddar är avbildningens KONTINUITET, som rangnormaliseringen
+    bröt, och den skrivs här som den egenskapen i stället för som ett tal om ett visst par.
+    """
+    from pipeline import budget
+    cats, parties = config.category_ids(), config.party_codes()
+    shares, _active, _years = budget.a1_shares(cats, parties)
+    pairs = 0
+    for category in cats:
+        a1 = _a1_scores(category)
+        for i, first in enumerate(parties):
+            for second in parties[i + 1:]:
+                if abs(shares[(first, category)] - shares[(second, category)]) >= 1e-4:
+                    continue
+                pairs += 1
+                assert abs(a1[first] - a1[second]) < 0.01, f"{category}: {first} mot {second}"
+    assert pairs, "inget nära par i underlaget: provet skulle vara tomt"
 
 
 def test_godkannande_samma_ram_ger_fortfarande_samma_a1() -> None:
-    """M, KD, L och SD föreslog samma ram. Det ska synas som likhet, inte jämnas ut."""
-    for category in config.category_ids():
-        a1 = _a1_scores(category)
-        block = {round(a1[p], 9) for p in ("M", "KD", "L", "SD")}
-        assert len(block) == 1, f"{category}: blocket har {block}"
+    """Partier på samma ram ett år ska ha samma andel det året, aldrig utjämnas isär.
+
+    Biljett #21 skrev provet som ett tal om M, KD, L och SD, som delade ram i alla tre år det
+    fönstret bar. Över femton år delar de ram bara de år de regerade tillsammans, medan andra
+    par delar ram andra år: S, MP och V lade en gemensam budgetmotion 2011, och M, C, L och KD
+    en gemensam 2015. Provet läses därför per år, ur configens egen party_frame.
+    """
+    from pipeline import budget
+    cfg = config.budget_ramar()["budget_years"]
+    umap = config.mappings()["expenditure_areas"]
+    cat_uo_w = budget.category_uo_weights(umap)
+    shared_years = 0
+    for year, block in cfg.items():
+        frames = budget.resolve_frames(block)
+        by_frame: dict[str, list[str]] = {}
+        for party, spec in block["party_frame"].items():
+            by_frame.setdefault(spec["frame"], []).append(party)
+        for frame, members in by_frame.items():
+            if len(members) < 2:
+                continue
+            shared_years += 1
+            per_party = {p: budget.category_shares_for_party(frames[p], cat_uo_w)
+                         for p in members}
+            for category in config.category_ids():
+                values = {round(per_party[p][category], 12) for p in members}
+                assert len(values) == 1, f"{year}/{frame}/{category}: {values}"
+    assert shared_years, "ingen gemensam ram i configen: provet skulle vara tomt"
 
 
 def test_godkannande_a1_ar_inte_langre_spant_over_hela_skalan() -> None:

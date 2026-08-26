@@ -12,8 +12,12 @@ import copy
 
 import pytest
 
-from pipeline import config, score, scorerun, warehouse
+from pipeline import anchor, config, score, scorerun, warehouse
 from pipeline.sources import government
+
+# a2:s täljare ska ligga på exakt förankringens period (ADR 0007 punkt 1). Fixturen läser
+# perioden ur configen i stället för att skriva av den, så provet följer med om den ändras.
+_A2_PERIOD = "/".join(anchor.a2_period())
 
 # --- 1. Ren matte: attribute_subnational_indicator (score.py) -----------------------------
 
@@ -100,7 +104,7 @@ def _seed() -> object:
     warehouse.upsert(con, "responsibility", government.build_national_responsibility())
     warehouse.upsert(con, "party_activity", [
         {"party": "S", "category": "valfard", "committee": "SoU",
-         "kind": "motion", "period": "w", "count": 50, "source_ref": "u"},
+         "kind": "motion", "period": _A2_PERIOD, "count": 50, "source_ref": "u"},
     ], validate=False)
     return con
 
