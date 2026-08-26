@@ -1,7 +1,10 @@
 # Expertgranskningspaket — B/A-config (granskning genomförd)
 
 > **✅ Status 2026-06-14: granskningen är GENOMFÖRD och alla tre configfiler är signerade.**
-> `budget_ramar.yaml` → version 1 (sign-off 2026-06-05); `party_positions.yaml` + `evidence_ledger.yaml`
+> `budget_ramar.yaml` → version 1 (budgetåren 2023-2025 sign-off 2026-06-05; de tolv år ADR 0007
+> lade till, 2011-2022, sign-off 2026-08-26, se
+> [A_budgetramar_verifiering_2011_2022.md](A_budgetramar_verifiering_2011_2022.md));
+> `party_positions.yaml` + `evidence_ledger.yaml`
 > → version 2 / `expert_reviewed` (v1 2026-06-05, §8.8-sign-off 2026-06-07 → v2). Skarp betygsättning
 > är aktiverad. Paketet bevaras som **granskningshistorik och beslutsunderlag**; siffrorna nedan är
 > ögonblicksvärden från när paketet skapades (2026-06-03/06) och speglar inte senare B2-/B3-tillägg

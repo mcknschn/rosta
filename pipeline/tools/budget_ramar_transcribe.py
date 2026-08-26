@@ -694,7 +694,11 @@ def attribute(
     """
     parties = config.party_codes()
     government = GOVERNMENT.get(budget_year, ())
-    gov_votes = {majority_vote(rollcall.get(p, {})) for p in government if p in rollcall}
+    # Voteringsgrunden kräver röstdata för HELA regeringen. Utan det kravet definierar de
+    # regeringspartier som råkar stå i listan vad "regeringens röst" är, och ett stödparti
+    # kan tillskrivas uppslutning på halva underlaget. Sign-off 2b 2026-08-26.
+    gov_missing = [p for p in government if p not in rollcall]
+    gov_votes = {majority_vote(rollcall[p]) for p in government if p in rollcall}
     out: dict[str, Attribution] = {}
     problems: list[str] = []
     own = {p: col for col in columns for p in col.parties}
@@ -714,7 +718,7 @@ def attribute(
                 "regeringen", "government", "regeringsstallning",
                 f"regeringsparti bakom prop. {_rm(budget_year)}:1; röst i rambeslutet: {vote}",
             )
-        elif gov_votes and {vote} == gov_votes and vote in ("Ja", "Nej"):
+        elif gov_votes and not gov_missing and {vote} == gov_votes and vote in ("Ja", "Nej"):
             out[party] = Attribution(
                 "regeringen", "support", "votering",
                 f"uppslutning bakom regeringens ram: samma röst ({vote}) som "
@@ -723,9 +727,11 @@ def attribute(
             )
         else:
             seat = "ingen rad i voteringen" if party not in rollcall else f"röst {vote}"
+            gov_state = (f"okänd, {'/'.join(gov_missing)} saknas i voteringen" if gov_missing
+                         else str(sorted(gov_votes) or "okänd"))
             problems.append(
                 f"{party}: ingen citerbar ram (ingen egen kolumn, ej regeringsparti, "
-                f"{seat} mot regeringens {sorted(gov_votes) or 'okänd'})"
+                f"{seat} mot regeringens {gov_state})"
             )
     for party in government:
         if party in own:
@@ -877,6 +883,22 @@ _CONFIG_HEADER = '''# Rösta — föreslagna utgiftsramar per utgiftsområde (UO
 # körning och måste träffa den signade configen på kronan (--audit), så raden nedan kan inte
 # tyst drifta. Nya år står som version 0 tills en människa har signat dem.
 SIGNED_OFF: dict[int, str] = {
+    # 2011-2022 signade 2026-08-26 efter granskningen i
+    # docs/done/expertgranskning/A_budgetramar_verifiering_2011_2022.md. Fem omdömespunkter
+    # avgjordes: regeringstabellen, voteringsgrunden, gemensamma ramar, motion framför
+    # reservation, och kostnaden för ett långt fönster.
+    2011: "2026-08-26",
+    2012: "2026-08-26",
+    2013: "2026-08-26",
+    2014: "2026-08-26",
+    2015: "2026-08-26",
+    2016: "2026-08-26",
+    2017: "2026-08-26",
+    2018: "2026-08-26",
+    2019: "2026-08-26",
+    2020: "2026-08-26",
+    2021: "2026-08-26",
+    2022: "2026-08-26",
     2023: "2026-06-05",
     2024: "2026-06-05",
     2025: "2026-06-05",

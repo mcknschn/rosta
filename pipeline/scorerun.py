@@ -944,8 +944,21 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
     # ännu inte är expertgranskade i stället för att anta att alla är det.
     _signed = sum(1 for b in (config.budget_ramar().get("budget_years") or {}).values()
                   if int(b.get("version", 0)) >= 1)
-    a1_signoff = (f", varav {_signed} är expertgranskade med mänsklig sign-off och "
-                  f"{len(a1_years) - _signed} står i version 0" if a1_years else "")
+    # Svansen finns för att visa en lucka. Är luckan noll ska den falla bort i stället för att
+    # stå kvar som "och 0 står i version 0".
+    if not a1_years:
+        a1_signoff = ""
+    elif _signed >= len(a1_years):
+        a1_signoff = ", alla expertgranskade med mänsklig sign-off"
+    else:
+        a1_signoff = (f", varav {_signed} är expertgranskade med mänsklig sign-off och "
+                      f"{len(a1_years) - _signed} står i version 0")
+    # Hur stor sammanblandningen är, parti för parti. Metodrutan nämnde att ett regeringsår
+    # mäts på koalitionens ram, men gav inga tal, så läsaren kunde inte se att det gäller
+    # nästan varje år för ett parti och nästan inget för ett annat (sign-off 2e 2026-08-26).
+    _delad = budget.shared_frame_years(budget_cfg)
+    a1_delad = (" Antal år av fönstrets där partiet delar ram med minst ett annat parti: "
+                + ", ".join(f"{p} {n}" for p, n in _delad) + "." if _delad else "")
     out = {
         "meta": {
             "generated": today.isoformat(), "window": "2014-2026",
@@ -993,7 +1006,7 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
                 "docs/done/a_forankring/fonster.json. Ett långt a1-fönster blandar ett "
                 "partis regeringsår med dess oppositionsår, och för ett regeringsparti är "
                 "ramen koalitionens och inte partiets egen; attributionen per år är "
-                "citerbar och står i config/budget_ramar.yaml; "
+                f"citerbar och står i config/budget_ramar.yaml.{a1_delad} "
                 "C=maktandel, vikt 0: ger inga poäng utan redovisas som upplysning om "
                 "vem som haft makten; räknas per kategori som "
                 "nationell regeringsmakt blandad med subnationell "

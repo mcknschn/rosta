@@ -98,6 +98,27 @@ def _year_active_categories(
     return active
 
 
+def shared_frame_years(ramar_cfg: Mapping[str, Any] | None = None) -> list[tuple[str, int]]:
+    """(parti, antal år) där partiets ram bärs av mer än ett parti, störst först.
+
+    Ett regeringsår mäts på koalitionens ram och ett år med gemensam budgetmotion på
+    undertecknarnas, så a1 kan inte skilja de partierna åt de åren. Talet hör hemma i
+    metodrutan: ADR 0007 Följder nämner förhållandet, men läsaren ska se hur stort det är.
+    Tom config -> [] så metodrutan kan tiga i stället för att påstå noll.
+    """
+    cfg = config.budget_ramar() if ramar_cfg is None else ramar_cfg
+    years = (cfg or {}).get("budget_years") or {}
+    if not years:
+        return []
+    counts = {p: 0 for p in config.party_codes()}
+    for block in years.values():
+        frames = [pf.get("frame") for pf in (block.get("party_frame") or {}).values()]
+        for party, pf in (block.get("party_frame") or {}).items():
+            if party in counts and frames.count(pf.get("frame")) > 1:
+                counts[party] += 1
+    return sorted(counts.items(), key=lambda kv: (-kv[1], kv[0]))
+
+
 def a1_shares(
     category_ids: list[str],
     parties: list[str],

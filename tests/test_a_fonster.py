@@ -15,6 +15,7 @@ import copy
 import pytest
 
 from pipeline import anchor, budget, config, scorerun, warehouse
+from pipeline.tools import budget_ramar_transcribe
 from pipeline.sources import government
 
 _A2_PERIOD = "/".join(anchor.a2_period())
@@ -174,3 +175,92 @@ def test_grinden_slacker_kategorin_nar_ett_ar_ar_ofullstandigt() -> None:
         config.category_ids(), config.party_codes(), ramar_cfg=cfg
     )
     assert "trygghet" not in active
+
+
+# --- 4. Voteringsgrunden kräver röstdata för HELA regeringen -----------------------------
+# Sign-off 2b, 2026-08-26: grunden behålls, men luckan stängs. `gov_votes` hoppade över
+# regeringspartier som saknades i voteringlistan, så ett ensamt kvarvarande regeringsparti
+# kunde definiera regeringens röst och därmed ge ett stödparti regeringens ram på halva
+# underlaget. Ingen av de femton åren träffar luckan; den stängs innan den hinner göra det.
+
+def _kolumner_utan(*partier: str) -> list[budget_ramar_transcribe.Column]:
+    """Jämförelsetabellens kolumner där `partier` saknar egen ram."""
+    return [budget_ramar_transcribe.Column("regeringen", (), 0.0)] + [
+        budget_ramar_transcribe.Column(p, (p,), 0.0)
+        for p in config.party_codes() if p not in partier
+    ]
+
+
+def _rostlangd(rost: dict[str, str]) -> dict[str, dict[str, int]]:
+    """Voteringlistan som `attribute` läser den: parti -> röster per ståndpunkt."""
+    return {p: {v: 10} for p, v in rost.items()}
+
+
+def test_voteringsgrunden_slar_till_nar_hela_regeringen_har_rostat() -> None:
+    """Utgångsläget: SD utan egen ram röstar som en fulltalig regering, alltså uppslutning."""
+    regering = budget_ramar_transcribe.GOVERNMENT[2023]        # M, KD, L
+    rost = {p: "Ja" for p in regering} | {"SD": "Ja"}
+    rost |= {p: "Nej" for p in config.party_codes() if p not in rost}
+    fick, problem = budget_ramar_transcribe.attribute(
+        2023, _kolumner_utan("SD", *regering), _rostlangd(rost)
+    )
+    assert fick["SD"].basis == "votering"
+    assert problem == []
+
+
+def test_voteringsgrunden_slar_inte_till_nar_ett_regeringsparti_saknar_rost() -> None:
+    """Codex granskning 2026-08-26: halva regeringen får inte definiera regeringens röst."""
+    regering = budget_ramar_transcribe.GOVERNMENT[2023]        # M, KD, L
+    rost = {p: "Ja" for p in regering} | {"SD": "Ja"}
+    rost |= {p: "Nej" for p in config.party_codes() if p not in rost}
+    del rost[regering[-1]]                                     # L saknas i voteringlistan
+    fick, problem = budget_ramar_transcribe.attribute(
+        2023, _kolumner_utan("SD", *regering), _rostlangd(rost)
+    )
+    assert "SD" not in fick, "uppslutning tillskriven på en ofullständig regeringsröst"
+    assert any(p.startswith("SD:") for p in problem), problem
+
+
+# --- 5. Delad ram per parti står i klartext (ADR 0007 Följder, sign-off 2e) ---------------
+# Ett regeringsår mäts på koalitionens ram, inte partiets egen, så partier med lång
+# regeringstid går sämre att skilja åt i a1. Metodrutan nämnde förhållandet men gav inga tal,
+# och läsaren kunde därför inte se hur stor asymmetrin är. Sign-off 2e 2026-08-26.
+
+def test_delad_ram_raknas_per_parti_over_hela_fonstret() -> None:
+    """Talet är antal år av fönstrets, per parti, där ramen bärs av mer än ett parti."""
+    delad = dict(budget.shared_frame_years())
+    _shares, _active, years = budget.a1_shares(config.category_ids(), config.party_codes())
+    assert set(delad) == set(config.party_codes())
+    for party, n in delad.items():
+        assert 0 <= n <= len(years), f"{party}: {n} av {len(years)}"
+    # Ytterkanterna, som underlaget till sign-offen redovisar dem.
+    assert delad["L"] == 10, delad
+    assert delad["SD"] == 3, delad
+
+
+def test_delad_ram_ar_tom_utan_budgetkalla() -> None:
+    """Utan budgetconfig finns inga år att räkna, och metodrutan ska inte påstå något."""
+    assert budget.shared_frame_years({}) == []
+
+
+def test_metodrutan_ger_talen_for_delad_ram() -> None:
+    """Sajten ska bära siffran, inte bara förhållandet."""
+    con = _seed()
+    out = scorerun.build(con)
+    text = out["scores"]["meta"]["coverage_technical"]
+    assert "delar ram med minst ett annat parti" in text, text
+    assert "L 10" in text and "SD 3" in text, text
+
+
+def test_metodrutan_tiger_om_luckan_nar_alla_ar_ar_signade() -> None:
+    """Svansen redovisar en lucka. Noll kvar ska ge en mening utan svans, inte "0 står i ...".."""
+    con = _seed()
+    text = scorerun.build(con)["scores"]["meta"]["coverage_technical"]
+    signade = sum(1 for b in config.budget_ramar()["budget_years"].values()
+                  if int(b.get("version", 0)) >= 1)
+    _shares, _active, years = budget.a1_shares(config.category_ids(), config.party_codes())
+    if signade >= len(years):
+        assert "alla expertgranskade med mänsklig sign-off" in text
+        assert "står i version 0" not in text, text
+    else:
+        assert f"{len(years) - signade} står i version 0" in text, text

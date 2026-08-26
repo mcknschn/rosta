@@ -3,9 +3,10 @@
 > Handskrivet underlag, som [adversariell_verifiering.md](adversariell_verifiering.md). Resten av
 > paketet är autogenererat av `pipeline/tools/review_packet.py`.
 >
-> **Status: väntar på mänsklig sign-off.** De tolv åren står som `version: 0` i
-> `config/budget_ramar.yaml` och matar redan publicerade betyg, efter uttryckligt klartecken
-> 2026-08-26.
+> **Status: signat 2026-08-26.** De tolv åren står som `version: 1` i
+> `config/budget_ramar.yaml`. Sign-offen ändrade ingen siffra: `git diff` visade tolv ändrade
+> rader, alla `version`, och `score_diff` svarade "Inga betygsändringar mot baslinjen".
+> Besluten per punkt står i avsnitt 4.
 
 ADR 0007 ([#27](https://github.com/mcknschn/rosta/issues/27)) utvidgade a1 från tre budgetår till
 femton. Tolv nya år ska signas: 2011 till 2022. Åren 2023-2025 är signade sedan 2026-06-05 och
@@ -99,16 +100,36 @@ motion räknas som "egen budgetmotion" för var och en av undertecknarna? Config
 ### 2d. Motionen, inte reservationen
 
 Källan är jämförelsetabellen, alltså partiets **egen budgetmotion**. Betänkandenas bilagor bär
-ibland en **reservation** i stället, som är ett förhandlat mellanting. De två skiljer sig:
+ibland en **reservation** i stället, som är ett förhandlat mellanting. Varje bilaga mot sin
+närmaste ram i jämförelsetabellen:
 
-| År | Reservation | Skillnad mot motionen |
+| År | Bilaga | Närmaste ram | Största avvikelse | UO som skiljer |
+| --- | --- | --- | --- | --- |
+| 2015 | Reservanternas förslag (M, C, FP, KD) | M_C_L_KD | 200 mnkr | 4 |
+| 2019 | Reservanternas förslag (M, KD) | M | 2205 mnkr | 19 |
+| 2019 | Reservanternas förslag (SD), (C), (L) | SD, C, L | 0-1 mnkr | 0-2 |
+| 2022 | Utskottets förslag | C | 3797 mnkr | 24 |
+| 2022 | Reservanternas förslag (C), (V), (L) | C, V, L | 0-1 mnkr | 0-5 |
+
+**2022 är inget val mellan två dokument.** Varje partis reservation återger dess egen motion
+inom en miljon kronor. Talet 3797 mnkr är avståndet mellan den beslutade ramen och C:s motion,
+alltså något annat: utskottets förslag 2022 var ingen parts motion, vilket de 24 avvikande
+utgiftsområdena visar.
+
+Kvar blir två fall, mätta som andel per kategori i stället för i miljoner:
+
+| År | Parti | Största kategoriskillnad om reservationen användes |
 | --- | --- | --- |
-| 2015 | M, C, FP, KD gemensamt | 200 mnkr på UO2, 112 mnkr på UO25 |
-| 2019 | M, KD gemensamt | upp till 2205 mnkr |
-| 2022 | utskottets eget förslag (M, SD, KD) | upp till 3797 mnkr |
+| 2015 | M, C, L, KD | 0,0001 (ekonomi) |
+| 2019 | M | 0,0006 (klimat) |
+| 2019 | KD | 0,0106 (välfärd, 0,4389 mot 0,4283) |
 
-Configen använder motionen, eftersom a1 mäter partiets **egen** prioritering. Frågan att svara på:
-är det rätt val, eller ska det parti som fick sin reservation antagen mätas på reservationen?
+Efter medelvärdet över femton år, kvoten och vikterna 0,6 och 0,30 landar hela effekten kring
+0,0004 på ett kategoribetyg, alltså under en avrundning. Valet avgör en princip, ingen siffra.
+
+Configen använder motionen, eftersom a1 mäter partiets **egen** prioritering. Notera att 2019
+vann just den reservationen, så förankringen det året **är** M och KD:s reservation: de två mäts
+mot ett facit de själva var med och skrev.
 
 ### 2e. Kostnaden för ett långt fönster
 
@@ -130,6 +151,26 @@ här stor är den:
 L mäts på regeringens ram i 9 av 15 år och SD i 3. Det är ingen defekt: det är vad det betyder att
 mäta femton år av svensk budgetpolitik. Men det är asymmetriskt mellan partier, och asymmetrin
 följer av hur ofta ett parti har regerat.
+
+Skarpare mätt: antal år där två partier bär **exakt samma ram**, alltså år där a1 inte kan skilja
+dem åt.
+
+|  | S | M | SD | C | V | KD | MP | L |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **S** | - | 0 | 0 | 2 | 6 | 0 | 9 | 2 |
+| **M** | 0 | - | 3 | 5 | 0 | 8 | 0 | 8 |
+| **SD** | 0 | 3 | - | 0 | 0 | 3 | 0 | 3 |
+| **C** | 2 | 5 | 0 | - | 0 | 5 | 2 | 7 |
+| **V** | 6 | 0 | 0 | 0 | - | 0 | 6 | 0 |
+| **KD** | 0 | 8 | 3 | 5 | 0 | - | 0 | 8 |
+| **MP** | 9 | 0 | 0 | 2 | 6 | 0 | - | 2 |
+| **L** | 2 | 8 | 3 | 7 | 0 | 8 | 2 | - |
+
+Per parti, antal år med ram delad med minst ett annat parti: L 10, MP 9, S 9, KD 8, M 8, C 7,
+V 6, SD 3. Det finns ingen tredje väg inom modellen. Att korta fönstret gör det värre för dagens
+regeringspartier, eftersom 2023-2025 är tre regeringsår av tre för M, KD och L. Att stryka
+regeringsåren per parti bryter kravet i ADR 0007 punkt 1 på att täljaren täcker förankringens år,
+och fäller grinden.
 
 ## 3. Stickprov mot källan
 
@@ -171,14 +212,37 @@ källtalen står som här i betänkandet.
 Attributionen per parti och år står i [A_budgetramar.md](A_budgetramar.md), med citerad grund per
 rad, och i `docs/done/a_forankring/fonster.json`.
 
-## 4. Sign-off
+## 4. Sign-off, 2026-08-26
 
-När punkterna 2a till 2e är avgjorda och stickprovet är kontrollerat:
+Punkterna avgjordes en i taget. Punkt 2a och 2b granskades dessutom oberoende av Codex
+(gpt-5.6, read-only mot repot).
 
-1. Inför eventuella rättelser i verktyget, aldrig i configen för hand. Configen är autogenererad.
-2. Lägg de tolv åren i `SIGNED_OFF` i `pipeline/tools/budget_ramar_transcribe.py`, med datum.
-3. Kör `python -m pipeline.tools.budget_ramar_transcribe --config`. Bara `version`-raderna ska
-   ändras, och `git diff` ska visa noll ändrade tal.
-4. Kör `python -m pytest`, `python -m pipeline.scorerun` och
-   `python -m pipeline.tools.score_diff`. Betygen ska stå still: sign-off ändrar ingen siffra.
-5. Kör `python -m pipeline.tools.review_packet` och publicera.
+| Punkt | Beslut | Följd |
+| --- | --- | --- |
+| 2a Regeringstabellen | Godkänd som den står. Codex: GODKÄNN, alla femton rader gröna | Ingen ändring |
+| 2b Voteringsgrunden | Behålls. Codex krav 1 infört | Verktyget ändrat, se nedan |
+| 2c Gemensamma ramar | En gemensam motion räknas som egen för varje undertecknare | Ingen ändring |
+| 2d Motion mot reservation | Motionen | Ingen ändring; tabellen ovan rättad |
+| 2e Långt fönster | Accepterat, och talen skrivs ut på sajten | Metodrutan bär nu siffrorna |
+
+**Ändringen ur 2b.** Codex fann att `gov_votes` hoppade över regeringspartier som saknades i
+voteringlistan, så ett ensamt kvarvarande regeringsparti kunde definiera "regeringens röst" och
+ge ett stödparti regeringens ram på halva underlaget. Luckan var latent: inget regeringsparti
+saknas i något av de femton åren. Den är stängd i `attribute`, med prov i
+`tests/test_a_fonster.py`, och `--audit` svarar fortsatt `matchar källan`.
+
+Codex förordade också att kräva att stödpartiets röst utgör strikt majoritet av hela partiraden.
+Det kravet infördes inte. Det faller bara på 2021, då hela kammaren avgav 55 röster av 349, och
+samma test fäller regeringens egen röst det året (S röstade med 16 av 100, MP med 3 av 16). Det
+skiljer alltså inte svagt stöd från starkt utan underkänner årets votering, och det skulle korta
+fönstret till 2022-2025. Gränsen i `FRAMES_TEST` skrevs dessutom före hämtningen, så att skära om
+regeln när utfallet är känt vore efterhandsjustering.
+
+**Utfallet.** `--config` gav tolv ändrade rader, alla `version: 0` till `version: 1`, och noll
+ändrade tal. Hela testsviten grön. `score_diff`: "Inga betygsändringar mot baslinjen
+(ranking M > KD > L > S > C > MP > SD > V)."
+
+**Det stickprovet inte täcker.** Aritmetiken i avsnitt 3 är maskinellt prövad i alla 24 raderna.
+Att de två källtalen per rad står som här i betänkandet är däremot inte kontrollerat för hand,
+rad för rad. Lättast att slå upp är 2011 (GY01FiU1 s. 83, UO5, jämna tal och ±0 i avvikelse) och
+2020 (H701FiU1 s. 60, UO5, likaså ±0).

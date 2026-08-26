@@ -239,6 +239,16 @@ företagande/investeringar samt hushållens disponibla inkomst → ekonomi 4/6 t
   2023 + 2024 + 2025** (samma trogna transkriberingsmönster, källrad per frame). a1 är ett snitt
   över åren i stället för en enda mätpunkt. Fyrlagrigt verifierad (invariant + pandas + Codex +
   roll-call); se Levererat ovan + [metod](done/fas1b_budget_metod.md).
+- **A1b — Sign-off av budgetåren 2011-2022** ✅ *(2026-08-26)* — de tolv år ADR 0007 (#27) lade
+  till står nu som `version: 1`. Fem omdömespunkter avgjordes: regeringstabellen, voteringsgrunden,
+  gemensamma ramar, motion framför reservation, och kostnaden för ett långt fönster. Punkt 2a och
+  2b granskades oberoende av Codex. Ur 2b kom en verklig men latent lucka: `gov_votes` hoppade
+  över regeringspartier som saknades i voteringlistan, nu stängd i `attribute`. Ur 2e kom att
+  metodrutan skriver ut hur många år varje parti delar ram med ett annat (L 10, SD 3). Codex
+  förslag om rösttäckningskrav infördes **inte**: det faller bara på 2021, då hela kammaren avgav
+  55 röster av 349 och samma test fäller regeringens egen röst. Sign-offen ändrade ingen siffra
+  (`score_diff`: inga betygsändringar). Underlag:
+  [A_budgetramar_verifiering_2011_2022.md](done/expertgranskning/A_budgetramar_verifiering_2011_2022.md).
 - **A2 — Aktivera voteringsprovet** ⏸️ **PARKERAD (designbeslut 2026-06-14)** — designfrågan är
   utredd och löser sig mot park på princip (samma klass som C1/D1): det finns ingen neutral,
   icke-redundant signal att väga in i A. (a) Röst*riktningen* (ja/nej) är **stance**, och stance
