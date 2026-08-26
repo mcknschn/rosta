@@ -2,282 +2,282 @@
   "claim:action:C:demokrati:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "C lämnade 402 motioner i utskott kopplade till demokrati."
+    "statement": "C lämnade 455 motioner i utskott kopplade till demokrati."
   },
   "claim:action:C:ekonomi:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "C lämnade 1632 motioner i utskott kopplade till ekonomi."
+    "statement": "C lämnade 1827 motioner i utskott kopplade till ekonomi."
   },
   "claim:action:C:forsvar:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "C lämnade 233 motioner i utskott kopplade till forsvar."
+    "statement": "C lämnade 265 motioner i utskott kopplade till forsvar."
   },
   "claim:action:C:integration:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "C lämnade 657 motioner i utskott kopplade till integration."
+    "statement": "C lämnade 720 motioner i utskott kopplade till integration."
   },
   "claim:action:C:klimat:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "C lämnade 631 motioner i utskott kopplade till klimat."
+    "statement": "C lämnade 698 motioner i utskott kopplade till klimat."
   },
   "claim:action:C:trygghet:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "C lämnade 340 motioner i utskott kopplade till trygghet."
+    "statement": "C lämnade 359 motioner i utskott kopplade till trygghet."
   },
   "claim:action:C:valfard:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "C lämnade 744 motioner i utskott kopplade till valfard."
+    "statement": "C lämnade 798 motioner i utskott kopplade till valfard."
   },
   "claim:action:KD:demokrati:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "KD lämnade 335 motioner i utskott kopplade till demokrati."
+    "statement": "KD lämnade 408 motioner i utskott kopplade till demokrati."
   },
   "claim:action:KD:ekonomi:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "KD lämnade 1009 motioner i utskott kopplade till ekonomi."
+    "statement": "KD lämnade 1239 motioner i utskott kopplade till ekonomi."
   },
   "claim:action:KD:forsvar:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "KD lämnade 435 motioner i utskott kopplade till forsvar."
+    "statement": "KD lämnade 526 motioner i utskott kopplade till forsvar."
   },
   "claim:action:KD:integration:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "KD lämnade 339 motioner i utskott kopplade till integration."
+    "statement": "KD lämnade 428 motioner i utskott kopplade till integration."
   },
   "claim:action:KD:klimat:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "KD lämnade 246 motioner i utskott kopplade till klimat."
+    "statement": "KD lämnade 304 motioner i utskott kopplade till klimat."
   },
   "claim:action:KD:trygghet:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "KD lämnade 322 motioner i utskott kopplade till trygghet."
+    "statement": "KD lämnade 372 motioner i utskott kopplade till trygghet."
   },
   "claim:action:KD:valfard:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "KD lämnade 534 motioner i utskott kopplade till valfard."
+    "statement": "KD lämnade 745 motioner i utskott kopplade till valfard."
   },
   "claim:action:L:demokrati:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "L lämnade 316 motioner i utskott kopplade till demokrati."
+    "statement": "L lämnade 422 motioner i utskott kopplade till demokrati."
   },
   "claim:action:L:ekonomi:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "L lämnade 735 motioner i utskott kopplade till ekonomi."
+    "statement": "L lämnade 978 motioner i utskott kopplade till ekonomi."
   },
   "claim:action:L:forsvar:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "L lämnade 223 motioner i utskott kopplade till forsvar."
+    "statement": "L lämnade 276 motioner i utskott kopplade till forsvar."
   },
   "claim:action:L:integration:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "L lämnade 295 motioner i utskott kopplade till integration."
+    "statement": "L lämnade 397 motioner i utskott kopplade till integration."
   },
   "claim:action:L:klimat:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "L lämnade 136 motioner i utskott kopplade till klimat."
+    "statement": "L lämnade 178 motioner i utskott kopplade till klimat."
   },
   "claim:action:L:trygghet:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "L lämnade 226 motioner i utskott kopplade till trygghet."
+    "statement": "L lämnade 254 motioner i utskott kopplade till trygghet."
   },
   "claim:action:L:valfard:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "L lämnade 514 motioner i utskott kopplade till valfard."
+    "statement": "L lämnade 672 motioner i utskott kopplade till valfard."
   },
   "claim:action:M:demokrati:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "M lämnade 1174 motioner i utskott kopplade till demokrati."
+    "statement": "M lämnade 1397 motioner i utskott kopplade till demokrati."
   },
   "claim:action:M:ekonomi:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "M lämnade 4718 motioner i utskott kopplade till ekonomi."
+    "statement": "M lämnade 5454 motioner i utskott kopplade till ekonomi."
   },
   "claim:action:M:forsvar:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "M lämnade 660 motioner i utskott kopplade till forsvar."
+    "statement": "M lämnade 730 motioner i utskott kopplade till forsvar."
   },
   "claim:action:M:integration:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "M lämnade 1478 motioner i utskott kopplade till integration."
+    "statement": "M lämnade 1729 motioner i utskott kopplade till integration."
   },
   "claim:action:M:klimat:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "M lämnade 1612 motioner i utskott kopplade till klimat."
+    "statement": "M lämnade 1873 motioner i utskott kopplade till klimat."
   },
   "claim:action:M:trygghet:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "M lämnade 1569 motioner i utskott kopplade till trygghet."
+    "statement": "M lämnade 1771 motioner i utskott kopplade till trygghet."
   },
   "claim:action:M:valfard:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "M lämnade 2939 motioner i utskott kopplade till valfard."
+    "statement": "M lämnade 3492 motioner i utskott kopplade till valfard."
   },
   "claim:action:MP:demokrati:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "MP lämnade 200 motioner i utskott kopplade till demokrati."
+    "statement": "MP lämnade 272 motioner i utskott kopplade till demokrati."
   },
   "claim:action:MP:ekonomi:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "MP lämnade 509 motioner i utskott kopplade till ekonomi."
+    "statement": "MP lämnade 800 motioner i utskott kopplade till ekonomi."
   },
   "claim:action:MP:forsvar:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "MP lämnade 147 motioner i utskott kopplade till forsvar."
+    "statement": "MP lämnade 255 motioner i utskott kopplade till forsvar."
   },
   "claim:action:MP:integration:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "MP lämnade 268 motioner i utskott kopplade till integration."
+    "statement": "MP lämnade 377 motioner i utskott kopplade till integration."
   },
   "claim:action:MP:klimat:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "MP lämnade 250 motioner i utskott kopplade till klimat."
+    "statement": "MP lämnade 372 motioner i utskott kopplade till klimat."
   },
   "claim:action:MP:trygghet:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "MP lämnade 100 motioner i utskott kopplade till trygghet."
+    "statement": "MP lämnade 143 motioner i utskott kopplade till trygghet."
   },
   "claim:action:MP:valfard:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "MP lämnade 373 motioner i utskott kopplade till valfard."
+    "statement": "MP lämnade 546 motioner i utskott kopplade till valfard."
   },
   "claim:action:S:demokrati:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "S lämnade 703 motioner i utskott kopplade till demokrati."
+    "statement": "S lämnade 1026 motioner i utskott kopplade till demokrati."
   },
   "claim:action:S:ekonomi:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "S lämnade 2660 motioner i utskott kopplade till ekonomi."
+    "statement": "S lämnade 3962 motioner i utskott kopplade till ekonomi."
   },
   "claim:action:S:forsvar:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "S lämnade 429 motioner i utskott kopplade till forsvar."
+    "statement": "S lämnade 601 motioner i utskott kopplade till forsvar."
   },
   "claim:action:S:integration:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "S lämnade 1135 motioner i utskott kopplade till integration."
+    "statement": "S lämnade 1592 motioner i utskott kopplade till integration."
   },
   "claim:action:S:klimat:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "S lämnade 600 motioner i utskott kopplade till klimat."
+    "statement": "S lämnade 848 motioner i utskott kopplade till klimat."
   },
   "claim:action:S:trygghet:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "S lämnade 440 motioner i utskott kopplade till trygghet."
+    "statement": "S lämnade 605 motioner i utskott kopplade till trygghet."
   },
   "claim:action:S:valfard:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "S lämnade 1986 motioner i utskott kopplade till valfard."
+    "statement": "S lämnade 2948 motioner i utskott kopplade till valfard."
   },
   "claim:action:SD:demokrati:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "SD lämnade 1248 motioner i utskott kopplade till demokrati."
+    "statement": "SD lämnade 1424 motioner i utskott kopplade till demokrati."
   },
   "claim:action:SD:ekonomi:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "SD lämnade 2112 motioner i utskott kopplade till ekonomi."
+    "statement": "SD lämnade 2380 motioner i utskott kopplade till ekonomi."
   },
   "claim:action:SD:forsvar:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "SD lämnade 616 motioner i utskott kopplade till forsvar."
+    "statement": "SD lämnade 712 motioner i utskott kopplade till forsvar."
   },
   "claim:action:SD:integration:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "SD lämnade 841 motioner i utskott kopplade till integration."
+    "statement": "SD lämnade 1001 motioner i utskott kopplade till integration."
   },
   "claim:action:SD:klimat:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "SD lämnade 672 motioner i utskott kopplade till klimat."
+    "statement": "SD lämnade 752 motioner i utskott kopplade till klimat."
   },
   "claim:action:SD:trygghet:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "SD lämnade 808 motioner i utskott kopplade till trygghet."
+    "statement": "SD lämnade 992 motioner i utskott kopplade till trygghet."
   },
   "claim:action:SD:valfard:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "SD lämnade 1530 motioner i utskott kopplade till valfard."
+    "statement": "SD lämnade 1770 motioner i utskott kopplade till valfard."
   },
   "claim:action:V:demokrati:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "V lämnade 146 motioner i utskott kopplade till demokrati."
+    "statement": "V lämnade 206 motioner i utskott kopplade till demokrati."
   },
   "claim:action:V:ekonomi:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "V lämnade 407 motioner i utskott kopplade till ekonomi."
+    "statement": "V lämnade 580 motioner i utskott kopplade till ekonomi."
   },
   "claim:action:V:forsvar:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "V lämnade 183 motioner i utskott kopplade till forsvar."
+    "statement": "V lämnade 236 motioner i utskott kopplade till forsvar."
   },
   "claim:action:V:integration:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "V lämnade 254 motioner i utskott kopplade till integration."
+    "statement": "V lämnade 334 motioner i utskott kopplade till integration."
   },
   "claim:action:V:klimat:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "V lämnade 84 motioner i utskott kopplade till klimat."
+    "statement": "V lämnade 125 motioner i utskott kopplade till klimat."
   },
   "claim:action:V:trygghet:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "V lämnade 156 motioner i utskott kopplade till trygghet."
+    "statement": "V lämnade 197 motioner i utskott kopplade till trygghet."
   },
   "claim:action:V:valfard:motioner": {
     "kind": "claim",
     "source_name": "Riksdagen",
-    "statement": "V lämnade 277 motioner i utskott kopplade till valfard."
+    "statement": "V lämnade 373 motioner i utskott kopplade till valfard."
   },
   "claim:evidence_effect:C:aktiveringskrav_ekonomiskt_bistand:integration:bidragsberoende": {
     "kind": "claim",
