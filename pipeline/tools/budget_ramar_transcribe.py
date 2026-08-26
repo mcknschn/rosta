@@ -81,6 +81,9 @@ _HEADER_CODES = {"S", "M", "SD", "C", "V", "KD", "L", "MP", "FP"}
 # Raden prövas mot voteringen vid varje körning (_check_government): en regering som inte röstar
 # för sin egen ram i rambeslutet är en avvikelse som skrivs ut.
 GOVERNMENT: dict[int, tuple[str, ...]] = {
+    2008: ("M", "C", "L", "KD"),   # prop. 2007/08:1 (Reinfeldt I)
+    2009: ("M", "C", "L", "KD"),   # prop. 2008/09:1
+    2010: ("M", "C", "L", "KD"),   # prop. 2009/10:1
     2011: ("M", "C", "L", "KD"),   # prop. 2010/11:1 (Reinfeldt II)
     2012: ("M", "C", "L", "KD"),   # prop. 2011/12:1
     2013: ("M", "C", "L", "KD"),   # prop. 2012/13:1
@@ -288,7 +291,26 @@ def _assign(value_lines: Sequence[_Line], columns: Sequence[Column], where: str,
     return {c.key: out.get(c.key, 0.0) for c in order}
 
 
+def _row_values(band: Sequence[_Line], where: str) -> list[_Line]:
+    """Radens tal ur bandet mellan två radankare: cellerna på den FÖRSTA höjd som bär tal.
+
+    Två fall gör att bandet inte kan läsas rakt av. Ett ombrutet namn skjuter ned talen en
+    höjd, så raden står inte alltid på ankarets höjd (bet. 2014/15:FiU1 UO18). Och mellan
+    UO27 och summaraden står 'Minskning av anslagsbehållningar' med egna tal, som inte är
+    någon utgiftsram (bet. 2007/08:FiU1). Båda löses av samma regel: raden är den översta
+    höjden i bandet som över huvud taget bär tal, och det som står under hör till något annat.
+    """
+    if not band:
+        raise ValueError(f"{where}: raden bär inga tal alls")
+    top = min(ln.y for ln in band)
+    return [ln for ln in band if abs(ln.y - top) <= ROW_TOLERANCE]
+
+
 _SUMMA_RE = re.compile(r"^Summa\s+utgiftsområden", re.I)
+
+# Cellerna på en rad delar höjd på tiondels punkt; radavståndet i tabellerna är
+# minst 8 punkter. Toleransen ligger däremellan.
+ROW_TOLERANCE = 3.0
 
 
 def pdf_party_table(pdf_path: str, budget_year: int) -> PartyTable:
@@ -347,22 +369,15 @@ def pdf_party_table(pdf_path: str, budget_year: int) -> PartyTable:
             summa_line = next((ln for ln in lines if _SUMMA_RE.match(ln.text)), None)
             if summa_line is not None:
                 marks.append((summa_line.y, "summa"))
-                # Under summaraden följer 'Minskning av anslagsbehållningar' och 'Summa
-                # utgifter', som inte är utgiftsramar. Nästa rad i vänsterkolumnen stänger
-                # bandet, så de talen kan aldrig läsas in i summan.
-                after = [ln.y for ln in lines
-                         if ln.x1 < left - 20 and ln.y > summa_line.y + 1.0]
-                marks.append((min(after) if after else 1e9, "__slut__"))
             marks.sort()
             for idx, (y, kind) in enumerate(marks):
-                if kind == "__slut__":
-                    continue
                 end = marks[idx + 1][0] if idx + 1 < len(marks) else 1e9
-                band = [ln for ln in lines if y - 1.0 <= ln.y < end - 1.0]
+                band = [ln for ln in lines if y - ROW_TOLERANCE <= ln.y < end - ROW_TOLERANCE]
                 # Talen ligger mellan vänsterkolumnen och tabellens högerkant. Allt utanför
                 # är marginal: sidnumret står till höger om sista kolumnen varje sida.
-                values = [ln for ln in band if left - 20 <= ln.x1 <= right + 4]
                 where = f"{budget_year} {'summa' if kind == 'summa' else 'UO' + kind}"
+                values = _row_values(
+                    [ln for ln in band if left - 20 <= ln.x1 <= right + 4], where)
                 cells = _assign(values, columns, where)
                 if kind == "summa":
                     summa = cells
@@ -707,9 +722,10 @@ def attribute(
                 f"{_rm(budget_year)} punkt 2",
             )
         else:
+            seat = "ingen rad i voteringen" if party not in rollcall else f"röst {vote}"
             problems.append(
                 f"{party}: ingen citerbar ram (ingen egen kolumn, ej regeringsparti, "
-                f"röst {vote} mot regeringens {sorted(gov_votes) or 'okänd'})"
+                f"{seat} mot regeringens {sorted(gov_votes) or 'okänd'})"
             )
     for party in government:
         if party in own:
@@ -774,7 +790,10 @@ def run_bound(years: Iterable[int]) -> dict[str, Any]:
                 rollcall = fetch_rollcall(year, client)
                 attribution, attribution_problems = attribute(year, table.columns, rollcall)
                 row.update({
-                    "ok": not attribution_problems,
+                    # Ett år räknas som fullständigt bara när BÅDE attributionen och
+                    # verifieringen går igenom. En overifierad avläsning får aldrig bära
+                    # gränsen: då vore gränsen ett omdöme om parsern och inte om källan.
+                    "ok": not attribution_problems and not problems,
                     "caption": table.caption,
                     "unit": table.unit,
                     "columns": [{"frame": c.key, "parties": list(c.parties)} for c in table.columns],

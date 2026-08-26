@@ -28,6 +28,7 @@ window:
   start: 2011
   end: 2025
   a1_bound: 2008      # FiU1:s rambeslutstabell listar utgiftsområde 1-27
+  a1_frames_bound: 2011      # ADR 0007 punkt 2: alla åtta partier har en citerbar ram som listar utgiftsområde 1-27
   a2_bound: 2011      # alla åtta partier har minst en motion i varje utskott mappningen använder
   evidence: "docs/done/a_forankring/fonster.json"
 

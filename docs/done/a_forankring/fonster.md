@@ -8,31 +8,61 @@ Fönstret blev **2011-2025**: a1-gränsen ger 2008, a2-gränsen ger 2011, och f�
 
 ## Gränserna
 
-- **a1**: FiU1:s rambeslutstabell listar utgiftsområde 1-27.
+- **a1 förankring**: FiU1:s rambeslutstabell listar utgiftsområde 1-27.
+- **a1 täljare** (ADR 0007 punkt 2): alla åtta partier har en citerbar ram som listar utgiftsområde 1-27; citerbar betyder egen budgetmotion, regeringsställning, eller uppslutning bakom en gemensam ram belagd med votering. Faller ut till **2011**.
 - **a2**: alla åtta partier har minst en motion i varje utskott mappningen använder.
+
+a1:s TÄLJARE mäts alltså över 2011-2025, och dess förankring över samma år (ADR 0007 punkt 1).
 
 ## År för år
 
-| År | a1 | a2 | a2:s nollor |
-| --- | --- | --- | --- |
-| 2008 | ja | nej | SD:AU, SD:CU, SD:FiU, SD:FöU, SD:JuU, SD:KU, SD:KrU, SD:MJU, SD:NU, SD:SfU, SD:SkU, SD:SoU, SD:TU, SD:UU, SD:UbU |
-| 2009 | ja | nej | SD:AU, SD:CU, SD:FiU, SD:FöU, SD:JuU, SD:KU, SD:KrU, SD:MJU, SD:NU, SD:SfU, SD:SkU, SD:SoU, SD:TU, SD:UU, SD:UbU |
-| 2010 | ja | nej | SD:CU |
-| 2011 | ja | ja | - |
-| 2012 | ja | ja | - |
-| 2013 | ja | nej | L:FöU |
-| 2014 | ja | ja | - |
-| 2015 | ja | nej | V:SkU |
-| 2016 | ja | ja | - |
-| 2017 | ja | ja | - |
-| 2018 | ja | ja | - |
-| 2019 | ja | nej | MP:FiU |
-| 2020 | ja | nej | MP:FiU |
-| 2021 | ja | ja | - |
-| 2022 | ja | nej | L:KrU |
-| 2023 | ja | nej | L:FöU |
-| 2024 | ja | nej | L:AU, L:FöU |
-| 2025 | ja | ja | - |
+| År | a1 förankring | a1 täljare | a2 | a2:s nollor |
+| --- | --- | --- | --- | --- |
+| 2008 | ja | nej: SD: ingen citerbar ram (ingen egen kolumn, ej regeringsparti, ingen rad i voteringen mot regeringens ['Ja']) | nej | SD:AU, SD:CU, SD:FiU, SD:FöU, SD:JuU, SD:KU, SD:KrU, SD:MJU, SD:NU, SD:SfU, SD:SkU, SD:SoU, SD:TU, SD:UU, SD:UbU |
+| 2009 | ja | nej: SD: ingen citerbar ram (ingen egen kolumn, ej regeringsparti, ingen rad i voteringen mot regeringens ['Ja']) | nej | SD:AU, SD:CU, SD:FiU, SD:FöU, SD:JuU, SD:KU, SD:KrU, SD:MJU, SD:NU, SD:SfU, SD:SkU, SD:SoU, SD:TU, SD:UU, SD:UbU |
+| 2010 | ja | nej: SD: ingen citerbar ram (ingen egen kolumn, ej regeringsparti, ingen rad i voteringen mot regeringens ['Ja']) | nej | SD:CU |
+| 2011 | ja | ja | ja | - |
+| 2012 | ja | ja | ja | - |
+| 2013 | ja | ja | nej | L:FöU |
+| 2014 | ja | ja | ja | - |
+| 2015 | ja | ja | nej | V:SkU |
+| 2016 | ja | ja | ja | - |
+| 2017 | ja | ja | ja | - |
+| 2018 | ja | ja | ja | - |
+| 2019 | ja | ja | nej | MP:FiU |
+| 2020 | ja | ja | nej | MP:FiU |
+| 2021 | ja | ja | ja | - |
+| 2022 | ja | ja | nej | L:KrU |
+| 2023 | ja | ja | nej | L:FöU |
+| 2024 | ja | ja | nej | L:AU, L:FöU |
+| 2025 | ja | ja | ja | - |
+
+## a1:s täljare: vem står bakom vilken ram
+
+Attributionen är citerbar per parti (ADR 0007 punkt 2), aldrig gissad.
+`egen_ram` = egen eller gemensam budgetmotion, `regeringsstallning` = partiet står
+bakom propositionen, `votering` = partiet röstade som regeringen i rambeslutet.
+
+| År | S | M | SD | C | V | KD | L | MP |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 2008 | S<br>egen_ram | regeringen<br>regeringsstallning | - | regeringen<br>regeringsstallning | V<br>egen_ram | regeringen<br>regeringsstallning | regeringen<br>regeringsstallning | MP<br>egen_ram |
+| 2009 | S<br>egen_ram | regeringen<br>regeringsstallning | - | regeringen<br>regeringsstallning | V<br>egen_ram | regeringen<br>regeringsstallning | regeringen<br>regeringsstallning | MP<br>egen_ram |
+| 2010 | S<br>egen_ram | regeringen<br>regeringsstallning | - | regeringen<br>regeringsstallning | V<br>egen_ram | regeringen<br>regeringsstallning | regeringen<br>regeringsstallning | MP<br>egen_ram |
+| 2011 | S_MP_V<br>egen_ram | regeringen<br>regeringsstallning | SD<br>egen_ram | regeringen<br>regeringsstallning | S_MP_V<br>egen_ram | regeringen<br>regeringsstallning | regeringen<br>regeringsstallning | S_MP_V<br>egen_ram |
+| 2012 | S<br>egen_ram | regeringen<br>regeringsstallning | SD<br>egen_ram | regeringen<br>regeringsstallning | V<br>egen_ram | regeringen<br>regeringsstallning | regeringen<br>regeringsstallning | MP<br>egen_ram |
+| 2013 | S<br>egen_ram | regeringen<br>regeringsstallning | SD<br>egen_ram | regeringen<br>regeringsstallning | V<br>egen_ram | regeringen<br>regeringsstallning | regeringen<br>regeringsstallning | MP<br>egen_ram |
+| 2014 | S<br>egen_ram | regeringen<br>regeringsstallning | SD<br>egen_ram | regeringen<br>regeringsstallning | V<br>egen_ram | regeringen<br>regeringsstallning | regeringen<br>regeringsstallning | MP<br>egen_ram |
+| 2015 | regeringen<br>regeringsstallning | M_C_L_KD<br>egen_ram | SD<br>egen_ram | M_C_L_KD<br>egen_ram | regeringen<br>votering | M_C_L_KD<br>egen_ram | M_C_L_KD<br>egen_ram | regeringen<br>regeringsstallning |
+| 2016 | regeringen<br>regeringsstallning | M<br>egen_ram | SD<br>egen_ram | C<br>egen_ram | regeringen<br>votering | KD<br>egen_ram | L<br>egen_ram | regeringen<br>regeringsstallning |
+| 2017 | regeringen<br>regeringsstallning | M<br>egen_ram | SD<br>egen_ram | C<br>egen_ram | regeringen<br>votering | KD<br>egen_ram | L<br>egen_ram | regeringen<br>regeringsstallning |
+| 2018 | regeringen<br>regeringsstallning | M<br>egen_ram | SD<br>egen_ram | C<br>egen_ram | regeringen<br>votering | KD<br>egen_ram | L<br>egen_ram | regeringen<br>regeringsstallning |
+| 2019 | regeringen<br>regeringsstallning | M<br>egen_ram | SD<br>egen_ram | C<br>egen_ram | regeringen<br>votering | KD<br>egen_ram | L<br>egen_ram | regeringen<br>regeringsstallning |
+| 2020 | regeringen<br>regeringsstallning | M<br>egen_ram | SD<br>egen_ram | regeringen<br>votering | V<br>egen_ram | KD<br>egen_ram | regeringen<br>votering | regeringen<br>regeringsstallning |
+| 2021 | regeringen<br>regeringsstallning | M<br>egen_ram | SD<br>egen_ram | regeringen<br>votering | V<br>egen_ram | KD<br>egen_ram | regeringen<br>votering | regeringen<br>regeringsstallning |
+| 2022 | regeringen<br>regeringsstallning | M<br>egen_ram | SD<br>egen_ram | C<br>egen_ram | V<br>egen_ram | KD<br>egen_ram | L<br>egen_ram | regeringen<br>regeringsstallning |
+| 2023 | S<br>egen_ram | regeringen<br>regeringsstallning | regeringen<br>votering | C<br>egen_ram | V<br>egen_ram | regeringen<br>regeringsstallning | regeringen<br>regeringsstallning | MP<br>egen_ram |
+| 2024 | S<br>egen_ram | regeringen<br>regeringsstallning | regeringen<br>votering | C<br>egen_ram | V<br>egen_ram | regeringen<br>regeringsstallning | regeringen<br>regeringsstallning | MP<br>egen_ram |
+| 2025 | S<br>egen_ram | regeringen<br>regeringsstallning | regeringen<br>votering | C<br>egen_ram | V<br>egen_ram | regeringen<br>regeringsstallning | regeringen<br>regeringsstallning | MP<br>egen_ram |
 
 ## Utgiftsområdenas namn per år
 

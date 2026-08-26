@@ -534,6 +534,7 @@ def write_window_report() -> None:
     """Renderar docs/done/a_forankring/fonster.md ur bevisfilen. Rör inte nätet."""
     ev = json.loads((EVIDENCE_DIR / "fonster.json").read_text(encoding="utf-8"))
     years = ev["tested_years"]
+    frames = ev.get("a1_frames") or {}
     rows = ["# Förankringsfönstret för delpoäng A (ADR 0005 punkt 7)", "",
             "> AUTOGENERERAD av `python -m pipeline.tools.a_forankring_transcribe --window`.",
             "> Redigera aldrig för hand. Talen är utfallet av två gränser som skrevs FÖRE",
@@ -542,16 +543,41 @@ def write_window_report() -> None:
             f"a1-gränsen ger {ev['a1']['bound']}, a2-gränsen ger {ev['a2']['bound']}, "
             "och fönstret börjar vid den senare av dem.", "",
             "## Gränserna", "",
-            f"- **a1**: {ev['a1']['test']}.",
+            f"- **a1 förankring**: {ev['a1']['test']}.",
+            f"- **a1 täljare** (ADR 0007 punkt 2): {frames.get('test', '-')}. "
+            f"Faller ut till **{frames.get('bound', '-')}**.",
             f"- **a2**: {ev['a2']['test']}.", "",
+            "a1:s TÄLJARE mäts alltså över "
+            f"{max(int(ev['a1']['bound']), int(frames['bound']))}-{ev['window']['end']}, "
+            "och dess förankring över samma år (ADR 0007 punkt 1).", "",
             "## År för år", "",
-            "| År | a1 | a2 | a2:s nollor |", "| --- | --- | --- | --- |"]
+            "| År | a1 förankring | a1 täljare | a2 | a2:s nollor |",
+            "| --- | --- | --- | --- | --- |"]
     for year in years:
         a1 = ev["a1"]["per_year"].get(str(year), {})
         a2 = ev["a2"]["per_year"].get(str(year), {})
+        fr = frames.get("per_year", {}).get(str(year), {})
         a1_cell = "ja" if a1.get("ok") else f"nej ({a1.get('error', 'okänt')})"
+        missing = fr.get("missing") or ([fr["error"]] if fr.get("error") else [])
+        fr_cell = "ja" if fr.get("ok") else ("nej: " + "; ".join(missing) if missing else "-")
         zeros = ", ".join(a2.get("zeros", [])) or "-"
-        rows.append(f"| {year} | {a1_cell} | {'ja' if a2.get('ok') else 'nej'} | {zeros} |")
+        rows.append(f"| {year} | {a1_cell} | {fr_cell} | "
+                    f"{'ja' if a2.get('ok') else 'nej'} | {zeros} |")
+
+    rows += ["", "## a1:s täljare: vem står bakom vilken ram", "",
+             "Attributionen är citerbar per parti (ADR 0007 punkt 2), aldrig gissad.",
+             "`egen_ram` = egen eller gemensam budgetmotion, `regeringsstallning` = partiet står",
+             "bakom propositionen, `votering` = partiet röstade som regeringen i rambeslutet.", "",
+             "| År | " + " | ".join(config.party_codes()) + " |",
+             "| --- |" + " --- |" * len(config.party_codes())]
+    for year in years:
+        fr = frames.get("per_year", {}).get(str(year), {})
+        att = fr.get("attribution") or {}
+        if not att:
+            continue
+        cells = [f"{att[p]['frame']}<br>{att[p]['basis']}" if p in att else "-"
+                 for p in config.party_codes()]
+        rows.append(f"| {year} | " + " | ".join(cells) + " |")
 
     rows += ["", "## Utgiftsområdenas namn per år", "",
              "Namnen grindar inte (se verktygets modulkommentar). De står här för att en",
@@ -579,9 +605,12 @@ def run_config() -> None:
     """Skriver hela config/a_forankring.yaml ur källan. Fönstret läses ur bevisfilen."""
     evidence = json.loads((EVIDENCE_DIR / "fonster.json").read_text(encoding="utf-8"))
     start, end = int(evidence["window"]["start"]), int(evidence["window"]["end"])
+    frames_bound = (evidence.get("a1_frames") or {}).get("bound")
     lines = [_CONFIG_HEADER, "version: 1", "", "window:",
              f"  start: {start}", f"  end: {end}",
              f'  a1_bound: {evidence["a1"]["bound"]}      # {evidence["a1"]["test"]}',
+             f"  a1_frames_bound: {frames_bound}      # ADR 0007 punkt 2: "
+             "alla åtta partier har en citerbar ram som listar utgiftsområde 1-27",
              f'  a2_bound: {evidence["a2"]["bound"]}      # {evidence["a2"]["test"]}',
              '  evidence: "docs/done/a_forankring/fonster.json"', "", "a1:",
              "  unit: mnkr", "  decided_frames:"]

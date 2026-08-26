@@ -3053,5 +3053,1861 @@
  "window": {
   "start": 2011,
   "end": 2025
+ },
+ "a1_frames": {
+  "bound": 2011,
+  "test": "alla åtta partier har en citerbar ram som listar utgiftsområde 1-27; citerbar betyder egen budgetmotion, regeringsställning, eller uppslutning bakom en gemensam ram belagd med votering",
+  "adr": "ADR 0007 punkt 2",
+  "per_year": {
+   "2008": {
+    "dok_id": "GV01FiU1",
+    "ok": false,
+    "caption": "Regeringens och oppositionspartiernas förslag till utgiftsramar för 2008",
+    "unit": "mnkr",
+    "columns": [
+     {
+      "frame": "regeringen",
+      "parties": []
+     },
+     {
+      "frame": "S",
+      "parties": [
+       "S"
+      ]
+     },
+     {
+      "frame": "V",
+      "parties": [
+       "V"
+      ]
+     },
+     {
+      "frame": "MP",
+      "parties": [
+       "MP"
+      ]
+     }
+    ],
+    "government": [
+     "M",
+     "C",
+     "L",
+     "KD"
+    ],
+    "rollcall": {
+     "C": "Ja",
+     "KD": "Ja",
+     "L": "Ja",
+     "M": "Ja",
+     "MP": "Avstår",
+     "S": "Nej",
+     "V": "Avstår"
+    },
+    "attribution": {
+     "C": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2007/08:1; röst i rambeslutet: Ja"
+     },
+     "KD": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2007/08:1; röst i rambeslutet: Ja"
+     },
+     "L": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2007/08:1; röst i rambeslutet: Ja"
+     },
+     "M": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2007/08:1; röst i rambeslutet: Ja"
+     },
+     "MP": {
+      "frame": "MP",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2007/08 (kolumn MP)"
+     },
+     "S": {
+      "frame": "S",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2007/08 (kolumn S)"
+     },
+     "V": {
+      "frame": "V",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2007/08 (kolumn V)"
+     }
+    },
+    "missing": [
+     "SD: ingen citerbar ram (ingen egen kolumn, ej regeringsparti, ingen rad i voteringen mot regeringens ['Ja'])"
+    ],
+    "verification": [
+     "regeringen: cellsumman 766279 mot källans summarad 767603 (diff -1324 mnkr, tolerans 27)",
+     "bilagor: hittade ingen absolut ramtabell för 2008"
+    ]
+   },
+   "2009": {
+    "dok_id": "GW01FiU1",
+    "ok": false,
+    "caption": "Regeringens och oppositionspartiernas förslag till utgiftsramar för 2009",
+    "unit": "mnkr",
+    "columns": [
+     {
+      "frame": "regeringen",
+      "parties": []
+     },
+     {
+      "frame": "S",
+      "parties": [
+       "S"
+      ]
+     },
+     {
+      "frame": "V",
+      "parties": [
+       "V"
+      ]
+     },
+     {
+      "frame": "MP",
+      "parties": [
+       "MP"
+      ]
+     }
+    ],
+    "government": [
+     "M",
+     "C",
+     "L",
+     "KD"
+    ],
+    "rollcall": {
+     "C": "Ja",
+     "KD": "Ja",
+     "L": "Ja",
+     "M": "Ja",
+     "MP": "Avstår",
+     "S": "Nej",
+     "V": "Avstår"
+    },
+    "attribution": {
+     "C": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2008/09:1; röst i rambeslutet: Ja"
+     },
+     "KD": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2008/09:1; röst i rambeslutet: Ja"
+     },
+     "L": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2008/09:1; röst i rambeslutet: Ja"
+     },
+     "M": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2008/09:1; röst i rambeslutet: Ja"
+     },
+     "MP": {
+      "frame": "MP",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2008/09 (kolumn MP)"
+     },
+     "S": {
+      "frame": "S",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2008/09 (kolumn S)"
+     },
+     "V": {
+      "frame": "V",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2008/09 (kolumn V)"
+     }
+    },
+    "missing": [
+     "SD: ingen citerbar ram (ingen egen kolumn, ej regeringsparti, ingen rad i voteringen mot regeringens ['Ja'])"
+    ],
+    "verification": [
+     "regeringen: cellsumman 768816 mot källans summarad 766448 (diff +2368 mnkr, tolerans 27)",
+     "bilagor: hittade ingen absolut ramtabell för 2009"
+    ]
+   },
+   "2010": {
+    "dok_id": "GX01FiU1",
+    "ok": false,
+    "caption": "Regeringens och oppositionspartiernas förslag till utgiftsramar för 2010",
+    "unit": "mnkr",
+    "columns": [
+     {
+      "frame": "regeringen",
+      "parties": []
+     },
+     {
+      "frame": "S",
+      "parties": [
+       "S"
+      ]
+     },
+     {
+      "frame": "V",
+      "parties": [
+       "V"
+      ]
+     },
+     {
+      "frame": "MP",
+      "parties": [
+       "MP"
+      ]
+     }
+    ],
+    "government": [
+     "M",
+     "C",
+     "L",
+     "KD"
+    ],
+    "rollcall": {
+     "C": "Ja",
+     "KD": "Ja",
+     "L": "Ja",
+     "M": "Ja",
+     "MP": "Avstår",
+     "S": "Nej",
+     "V": "Avstår"
+    },
+    "attribution": {
+     "C": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2009/10:1; röst i rambeslutet: Ja"
+     },
+     "KD": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2009/10:1; röst i rambeslutet: Ja"
+     },
+     "L": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2009/10:1; röst i rambeslutet: Ja"
+     },
+     "M": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2009/10:1; röst i rambeslutet: Ja"
+     },
+     "MP": {
+      "frame": "MP",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2009/10 (kolumn MP)"
+     },
+     "S": {
+      "frame": "S",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2009/10 (kolumn S)"
+     },
+     "V": {
+      "frame": "V",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2009/10 (kolumn V)"
+     }
+    },
+    "missing": [
+     "SD: ingen citerbar ram (ingen egen kolumn, ej regeringsparti, ingen rad i voteringen mot regeringens ['Ja'])"
+    ],
+    "verification": [
+     "regeringen: cellsumman 810620 mot källans summarad 806317 (diff +4303 mnkr, tolerans 27)",
+     "S: cellsumman 18269 mot källans summarad 17459 (diff +810 mnkr, tolerans 27)",
+     "V: cellsumman 29002 mot källans summarad 28191 (diff +811 mnkr, tolerans 27)",
+     "MP: cellsumman 17462 mot källans summarad 16652 (diff +810 mnkr, tolerans 27)",
+     "bilagor: hittade ingen absolut ramtabell för 2010"
+    ]
+   },
+   "2011": {
+    "dok_id": "GY01FiU1",
+    "ok": true,
+    "caption": "Regeringens och oppositionspartiernas förslag till utgiftsramar för 2011",
+    "unit": "mnkr",
+    "columns": [
+     {
+      "frame": "regeringen",
+      "parties": []
+     },
+     {
+      "frame": "S_MP_V",
+      "parties": [
+       "S",
+       "MP",
+       "V"
+      ]
+     },
+     {
+      "frame": "SD",
+      "parties": [
+       "SD"
+      ]
+     }
+    ],
+    "government": [
+     "M",
+     "C",
+     "L",
+     "KD"
+    ],
+    "rollcall": {
+     "C": "Ja",
+     "KD": "Ja",
+     "L": "Ja",
+     "M": "Ja",
+     "MP": "Nej",
+     "S": "Nej",
+     "SD": "Avstår",
+     "V": "Nej"
+    },
+    "attribution": {
+     "C": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2010/11:1; röst i rambeslutet: Ja"
+     },
+     "KD": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2010/11:1; röst i rambeslutet: Ja"
+     },
+     "L": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2010/11:1; röst i rambeslutet: Ja"
+     },
+     "M": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2010/11:1; röst i rambeslutet: Ja"
+     },
+     "MP": {
+      "frame": "S_MP_V",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2010/11 (kolumn S/MP/V, gemensam med S, V)"
+     },
+     "S": {
+      "frame": "S_MP_V",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2010/11 (kolumn S/MP/V, gemensam med MP, V)"
+     },
+     "SD": {
+      "frame": "SD",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2010/11 (kolumn SD)"
+     },
+     "V": {
+      "frame": "S_MP_V",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2010/11 (kolumn S/MP/V, gemensam med S, MP)"
+     }
+    },
+    "missing": [],
+    "verification": []
+   },
+   "2012": {
+    "dok_id": "GZ01FiU1",
+    "ok": true,
+    "caption": "Regeringens och oppositionspartiernas förslag till utgiftsramar för 2012",
+    "unit": "mnkr",
+    "columns": [
+     {
+      "frame": "regeringen",
+      "parties": []
+     },
+     {
+      "frame": "S",
+      "parties": [
+       "S"
+      ]
+     },
+     {
+      "frame": "MP",
+      "parties": [
+       "MP"
+      ]
+     },
+     {
+      "frame": "SD",
+      "parties": [
+       "SD"
+      ]
+     },
+     {
+      "frame": "V",
+      "parties": [
+       "V"
+      ]
+     }
+    ],
+    "government": [
+     "M",
+     "C",
+     "L",
+     "KD"
+    ],
+    "rollcall": {
+     "C": "Ja",
+     "KD": "Ja",
+     "L": "Ja",
+     "M": "Ja",
+     "MP": "Avstår",
+     "S": "Nej",
+     "SD": "Avstår",
+     "V": "Avstår"
+    },
+    "attribution": {
+     "C": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2011/12:1; röst i rambeslutet: Ja"
+     },
+     "KD": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2011/12:1; röst i rambeslutet: Ja"
+     },
+     "L": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2011/12:1; röst i rambeslutet: Ja"
+     },
+     "M": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2011/12:1; röst i rambeslutet: Ja"
+     },
+     "MP": {
+      "frame": "MP",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2011/12 (kolumn MP)"
+     },
+     "S": {
+      "frame": "S",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2011/12 (kolumn S)"
+     },
+     "SD": {
+      "frame": "SD",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2011/12 (kolumn SD)"
+     },
+     "V": {
+      "frame": "V",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2011/12 (kolumn V)"
+     }
+    },
+    "missing": [],
+    "verification": []
+   },
+   "2013": {
+    "dok_id": "H001FiU1",
+    "ok": true,
+    "caption": "Regeringens och oppositionspartiernas förslag till utgiftsramar för 2013",
+    "unit": "mnkr",
+    "columns": [
+     {
+      "frame": "regeringen",
+      "parties": []
+     },
+     {
+      "frame": "S",
+      "parties": [
+       "S"
+      ]
+     },
+     {
+      "frame": "MP",
+      "parties": [
+       "MP"
+      ]
+     },
+     {
+      "frame": "SD",
+      "parties": [
+       "SD"
+      ]
+     },
+     {
+      "frame": "V",
+      "parties": [
+       "V"
+      ]
+     }
+    ],
+    "government": [
+     "M",
+     "C",
+     "L",
+     "KD"
+    ],
+    "rollcall": {
+     "C": "Ja",
+     "KD": "Ja",
+     "L": "Ja",
+     "M": "Ja",
+     "MP": "Avstår",
+     "S": "Nej",
+     "SD": "Avstår",
+     "V": "Avstår"
+    },
+    "attribution": {
+     "C": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2012/13:1; röst i rambeslutet: Ja"
+     },
+     "KD": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2012/13:1; röst i rambeslutet: Ja"
+     },
+     "L": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2012/13:1; röst i rambeslutet: Ja"
+     },
+     "M": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2012/13:1; röst i rambeslutet: Ja"
+     },
+     "MP": {
+      "frame": "MP",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2012/13 (kolumn MP)"
+     },
+     "S": {
+      "frame": "S",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2012/13 (kolumn S)"
+     },
+     "SD": {
+      "frame": "SD",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2012/13 (kolumn SD)"
+     },
+     "V": {
+      "frame": "V",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2012/13 (kolumn V)"
+     }
+    },
+    "missing": [],
+    "verification": []
+   },
+   "2014": {
+    "dok_id": "H101FiU1",
+    "ok": true,
+    "caption": "Regeringens och oppositionspartiernas förslag till utgiftsramar för 2014",
+    "unit": "mnkr",
+    "columns": [
+     {
+      "frame": "regeringen",
+      "parties": []
+     },
+     {
+      "frame": "S",
+      "parties": [
+       "S"
+      ]
+     },
+     {
+      "frame": "MP",
+      "parties": [
+       "MP"
+      ]
+     },
+     {
+      "frame": "SD",
+      "parties": [
+       "SD"
+      ]
+     },
+     {
+      "frame": "V",
+      "parties": [
+       "V"
+      ]
+     }
+    ],
+    "government": [
+     "M",
+     "C",
+     "L",
+     "KD"
+    ],
+    "rollcall": {
+     "C": "Ja",
+     "KD": "Ja",
+     "L": "Ja",
+     "M": "Ja",
+     "MP": "Avstår",
+     "S": "Nej",
+     "SD": "Avstår",
+     "V": "Avstår"
+    },
+    "attribution": {
+     "C": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2013/14:1; röst i rambeslutet: Ja"
+     },
+     "KD": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2013/14:1; röst i rambeslutet: Ja"
+     },
+     "L": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2013/14:1; röst i rambeslutet: Ja"
+     },
+     "M": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2013/14:1; röst i rambeslutet: Ja"
+     },
+     "MP": {
+      "frame": "MP",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2013/14 (kolumn MP)"
+     },
+     "S": {
+      "frame": "S",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2013/14 (kolumn S)"
+     },
+     "SD": {
+      "frame": "SD",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2013/14 (kolumn SD)"
+     },
+     "V": {
+      "frame": "V",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2013/14 (kolumn V)"
+     }
+    },
+    "missing": [],
+    "verification": []
+   },
+   "2015": {
+    "dok_id": "H201FiU1",
+    "ok": true,
+    "caption": "Regeringens och oppositionspartiernas förslag till utgiftsramar för 2015",
+    "unit": "mnkr",
+    "columns": [
+     {
+      "frame": "regeringen",
+      "parties": []
+     },
+     {
+      "frame": "M_C_L_KD",
+      "parties": [
+       "M",
+       "C",
+       "L",
+       "KD"
+      ]
+     },
+     {
+      "frame": "SD",
+      "parties": [
+       "SD"
+      ]
+     }
+    ],
+    "government": [
+     "S",
+     "MP"
+    ],
+    "rollcall": {
+     "C": "Nej",
+     "KD": "Nej",
+     "L": "Nej",
+     "M": "Nej",
+     "MP": "Ja",
+     "S": "Ja",
+     "SD": "Nej",
+     "V": "Ja"
+    },
+    "attribution": {
+     "C": {
+      "frame": "M_C_L_KD",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2014/15 (kolumn M/C/L/KD, gemensam med M, L, KD)"
+     },
+     "KD": {
+      "frame": "M_C_L_KD",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2014/15 (kolumn M/C/L/KD, gemensam med M, C, L)"
+     },
+     "L": {
+      "frame": "M_C_L_KD",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2014/15 (kolumn M/C/L/KD, gemensam med M, C, KD)"
+     },
+     "M": {
+      "frame": "M_C_L_KD",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2014/15 (kolumn M/C/L/KD, gemensam med C, L, KD)"
+     },
+     "MP": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2014/15:1; röst i rambeslutet: Ja"
+     },
+     "S": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2014/15:1; röst i rambeslutet: Ja"
+     },
+     "SD": {
+      "frame": "SD",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2014/15 (kolumn SD)"
+     },
+     "V": {
+      "frame": "regeringen",
+      "role": "support",
+      "basis": "votering",
+      "note": "uppslutning bakom regeringens ram: samma röst (Ja) som S/MP i voteringen om rambeslutet, bet. FiU1 2014/15 punkt 2"
+     }
+    },
+    "missing": [],
+    "verification": []
+   },
+   "2016": {
+    "dok_id": "H301FiU1",
+    "ok": true,
+    "caption": "Regeringens och oppositionspartiernas förslag till utgiftsramar för 2016",
+    "unit": "mnkr",
+    "columns": [
+     {
+      "frame": "regeringen",
+      "parties": []
+     },
+     {
+      "frame": "M",
+      "parties": [
+       "M"
+      ]
+     },
+     {
+      "frame": "SD",
+      "parties": [
+       "SD"
+      ]
+     },
+     {
+      "frame": "C",
+      "parties": [
+       "C"
+      ]
+     },
+     {
+      "frame": "L",
+      "parties": [
+       "L"
+      ]
+     },
+     {
+      "frame": "KD",
+      "parties": [
+       "KD"
+      ]
+     }
+    ],
+    "government": [
+     "S",
+     "MP"
+    ],
+    "rollcall": {
+     "C": "Avstår",
+     "KD": "Avstår",
+     "L": "Avstår",
+     "M": "Nej",
+     "MP": "Ja",
+     "S": "Ja",
+     "SD": "Nej",
+     "V": "Ja"
+    },
+    "attribution": {
+     "C": {
+      "frame": "C",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2015/16 (kolumn C)"
+     },
+     "KD": {
+      "frame": "KD",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2015/16 (kolumn KD)"
+     },
+     "L": {
+      "frame": "L",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2015/16 (kolumn L)"
+     },
+     "M": {
+      "frame": "M",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2015/16 (kolumn M)"
+     },
+     "MP": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2015/16:1; röst i rambeslutet: Ja"
+     },
+     "S": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2015/16:1; röst i rambeslutet: Ja"
+     },
+     "SD": {
+      "frame": "SD",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2015/16 (kolumn SD)"
+     },
+     "V": {
+      "frame": "regeringen",
+      "role": "support",
+      "basis": "votering",
+      "note": "uppslutning bakom regeringens ram: samma röst (Ja) som S/MP i voteringen om rambeslutet, bet. FiU1 2015/16 punkt 2"
+     }
+    },
+    "missing": [],
+    "verification": []
+   },
+   "2017": {
+    "dok_id": "H401FiU1",
+    "ok": true,
+    "caption": "Regeringens och oppositionspartiernas förslag till utgiftsramar för 2017",
+    "unit": "mnkr",
+    "columns": [
+     {
+      "frame": "regeringen",
+      "parties": []
+     },
+     {
+      "frame": "M",
+      "parties": [
+       "M"
+      ]
+     },
+     {
+      "frame": "SD",
+      "parties": [
+       "SD"
+      ]
+     },
+     {
+      "frame": "C",
+      "parties": [
+       "C"
+      ]
+     },
+     {
+      "frame": "L",
+      "parties": [
+       "L"
+      ]
+     },
+     {
+      "frame": "KD",
+      "parties": [
+       "KD"
+      ]
+     }
+    ],
+    "government": [
+     "S",
+     "MP"
+    ],
+    "rollcall": {
+     "C": "Avstår",
+     "KD": "Avstår",
+     "L": "Avstår",
+     "M": "Nej",
+     "MP": "Ja",
+     "S": "Ja",
+     "SD": "Nej",
+     "V": "Ja"
+    },
+    "attribution": {
+     "C": {
+      "frame": "C",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2016/17 (kolumn C)"
+     },
+     "KD": {
+      "frame": "KD",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2016/17 (kolumn KD)"
+     },
+     "L": {
+      "frame": "L",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2016/17 (kolumn L)"
+     },
+     "M": {
+      "frame": "M",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2016/17 (kolumn M)"
+     },
+     "MP": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2016/17:1; röst i rambeslutet: Ja"
+     },
+     "S": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2016/17:1; röst i rambeslutet: Ja"
+     },
+     "SD": {
+      "frame": "SD",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2016/17 (kolumn SD)"
+     },
+     "V": {
+      "frame": "regeringen",
+      "role": "support",
+      "basis": "votering",
+      "note": "uppslutning bakom regeringens ram: samma röst (Ja) som S/MP i voteringen om rambeslutet, bet. FiU1 2016/17 punkt 2"
+     }
+    },
+    "missing": [],
+    "verification": []
+   },
+   "2018": {
+    "dok_id": "H501FiU1",
+    "ok": true,
+    "caption": "Regeringens och oppositionspartiernas förslag till utgiftsramar för 2018",
+    "unit": "mnkr",
+    "columns": [
+     {
+      "frame": "regeringen",
+      "parties": []
+     },
+     {
+      "frame": "M",
+      "parties": [
+       "M"
+      ]
+     },
+     {
+      "frame": "SD",
+      "parties": [
+       "SD"
+      ]
+     },
+     {
+      "frame": "C",
+      "parties": [
+       "C"
+      ]
+     },
+     {
+      "frame": "L",
+      "parties": [
+       "L"
+      ]
+     },
+     {
+      "frame": "KD",
+      "parties": [
+       "KD"
+      ]
+     }
+    ],
+    "government": [
+     "S",
+     "MP"
+    ],
+    "rollcall": {
+     "C": "Avstår",
+     "KD": "Avstår",
+     "L": "Avstår",
+     "M": "Nej",
+     "MP": "Ja",
+     "S": "Ja",
+     "SD": "Nej",
+     "V": "Ja"
+    },
+    "attribution": {
+     "C": {
+      "frame": "C",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2017/18 (kolumn C)"
+     },
+     "KD": {
+      "frame": "KD",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2017/18 (kolumn KD)"
+     },
+     "L": {
+      "frame": "L",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2017/18 (kolumn L)"
+     },
+     "M": {
+      "frame": "M",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2017/18 (kolumn M)"
+     },
+     "MP": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2017/18:1; röst i rambeslutet: Ja"
+     },
+     "S": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2017/18:1; röst i rambeslutet: Ja"
+     },
+     "SD": {
+      "frame": "SD",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2017/18 (kolumn SD)"
+     },
+     "V": {
+      "frame": "regeringen",
+      "role": "support",
+      "basis": "votering",
+      "note": "uppslutning bakom regeringens ram: samma röst (Ja) som S/MP i voteringen om rambeslutet, bet. FiU1 2017/18 punkt 2"
+     }
+    },
+    "missing": [],
+    "verification": []
+   },
+   "2019": {
+    "dok_id": "H601FiU1",
+    "ok": true,
+    "caption": "Regeringens och motionärernas förslag till utgiftsramar 2019",
+    "unit": "mnkr",
+    "columns": [
+     {
+      "frame": "regeringen",
+      "parties": []
+     },
+     {
+      "frame": "M",
+      "parties": [
+       "M"
+      ]
+     },
+     {
+      "frame": "SD",
+      "parties": [
+       "SD"
+      ]
+     },
+     {
+      "frame": "C",
+      "parties": [
+       "C"
+      ]
+     },
+     {
+      "frame": "KD",
+      "parties": [
+       "KD"
+      ]
+     },
+     {
+      "frame": "L",
+      "parties": [
+       "L"
+      ]
+     }
+    ],
+    "government": [
+     "S",
+     "MP"
+    ],
+    "rollcall": {
+     "C": "Avstår",
+     "KD": "Nej",
+     "L": "Avstår",
+     "M": "Nej",
+     "MP": "Ja",
+     "S": "Ja",
+     "SD": "Nej",
+     "V": "Ja"
+    },
+    "attribution": {
+     "C": {
+      "frame": "C",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2018/19 (kolumn C)"
+     },
+     "KD": {
+      "frame": "KD",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2018/19 (kolumn KD)"
+     },
+     "L": {
+      "frame": "L",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2018/19 (kolumn L)"
+     },
+     "M": {
+      "frame": "M",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2018/19 (kolumn M)"
+     },
+     "MP": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2018/19:1; röst i rambeslutet: Ja"
+     },
+     "S": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2018/19:1; röst i rambeslutet: Ja"
+     },
+     "SD": {
+      "frame": "SD",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2018/19 (kolumn SD)"
+     },
+     "V": {
+      "frame": "regeringen",
+      "role": "support",
+      "basis": "votering",
+      "note": "uppslutning bakom regeringens ram: samma röst (Ja) som S/MP i voteringen om rambeslutet, bet. FiU1 2018/19 punkt 2"
+     }
+    },
+    "missing": [],
+    "verification": []
+   },
+   "2020": {
+    "dok_id": "H701FiU1",
+    "ok": true,
+    "caption": "Regeringens och motionärernas förslag till utgiftsramar 2020",
+    "unit": "mnkr",
+    "columns": [
+     {
+      "frame": "regeringen",
+      "parties": []
+     },
+     {
+      "frame": "M",
+      "parties": [
+       "M"
+      ]
+     },
+     {
+      "frame": "SD",
+      "parties": [
+       "SD"
+      ]
+     },
+     {
+      "frame": "V",
+      "parties": [
+       "V"
+      ]
+     },
+     {
+      "frame": "KD",
+      "parties": [
+       "KD"
+      ]
+     }
+    ],
+    "government": [
+     "S",
+     "MP"
+    ],
+    "rollcall": {
+     "C": "Ja",
+     "KD": "Avstår",
+     "L": "Ja",
+     "M": "Nej",
+     "MP": "Ja",
+     "S": "Ja",
+     "SD": "Avstår",
+     "V": "Avstår"
+    },
+    "attribution": {
+     "C": {
+      "frame": "regeringen",
+      "role": "support",
+      "basis": "votering",
+      "note": "uppslutning bakom regeringens ram: samma röst (Ja) som S/MP i voteringen om rambeslutet, bet. FiU1 2019/20 punkt 2"
+     },
+     "KD": {
+      "frame": "KD",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2019/20 (kolumn KD)"
+     },
+     "L": {
+      "frame": "regeringen",
+      "role": "support",
+      "basis": "votering",
+      "note": "uppslutning bakom regeringens ram: samma röst (Ja) som S/MP i voteringen om rambeslutet, bet. FiU1 2019/20 punkt 2"
+     },
+     "M": {
+      "frame": "M",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2019/20 (kolumn M)"
+     },
+     "MP": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2019/20:1; röst i rambeslutet: Ja"
+     },
+     "S": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2019/20:1; röst i rambeslutet: Ja"
+     },
+     "SD": {
+      "frame": "SD",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2019/20 (kolumn SD)"
+     },
+     "V": {
+      "frame": "V",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2019/20 (kolumn V)"
+     }
+    },
+    "missing": [],
+    "verification": []
+   },
+   "2021": {
+    "dok_id": "H801FiU1",
+    "ok": true,
+    "caption": "Regeringens och motionärernas förslag till utgiftsramar 2021",
+    "unit": "mnkr",
+    "columns": [
+     {
+      "frame": "regeringen",
+      "parties": []
+     },
+     {
+      "frame": "M",
+      "parties": [
+       "M"
+      ]
+     },
+     {
+      "frame": "SD",
+      "parties": [
+       "SD"
+      ]
+     },
+     {
+      "frame": "V",
+      "parties": [
+       "V"
+      ]
+     },
+     {
+      "frame": "KD",
+      "parties": [
+       "KD"
+      ]
+     }
+    ],
+    "government": [
+     "S",
+     "MP"
+    ],
+    "rollcall": {
+     "C": "Ja",
+     "KD": "Avstår",
+     "L": "Ja",
+     "M": "Avstår",
+     "MP": "Ja",
+     "S": "Ja",
+     "SD": "Avstår",
+     "V": "Nej"
+    },
+    "attribution": {
+     "C": {
+      "frame": "regeringen",
+      "role": "support",
+      "basis": "votering",
+      "note": "uppslutning bakom regeringens ram: samma röst (Ja) som S/MP i voteringen om rambeslutet, bet. FiU1 2020/21 punkt 2"
+     },
+     "KD": {
+      "frame": "KD",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2020/21 (kolumn KD)"
+     },
+     "L": {
+      "frame": "regeringen",
+      "role": "support",
+      "basis": "votering",
+      "note": "uppslutning bakom regeringens ram: samma röst (Ja) som S/MP i voteringen om rambeslutet, bet. FiU1 2020/21 punkt 2"
+     },
+     "M": {
+      "frame": "M",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2020/21 (kolumn M)"
+     },
+     "MP": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2020/21:1; röst i rambeslutet: Ja"
+     },
+     "S": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2020/21:1; röst i rambeslutet: Ja"
+     },
+     "SD": {
+      "frame": "SD",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2020/21 (kolumn SD)"
+     },
+     "V": {
+      "frame": "V",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2020/21 (kolumn V)"
+     }
+    },
+    "missing": [],
+    "verification": []
+   },
+   "2022": {
+    "dok_id": "H901FiU1",
+    "ok": true,
+    "caption": "Regeringens och motionärernas förslag till utgiftsramar 2022",
+    "unit": "mnkr",
+    "columns": [
+     {
+      "frame": "regeringen",
+      "parties": []
+     },
+     {
+      "frame": "M",
+      "parties": [
+       "M"
+      ]
+     },
+     {
+      "frame": "SD",
+      "parties": [
+       "SD"
+      ]
+     },
+     {
+      "frame": "C",
+      "parties": [
+       "C"
+      ]
+     },
+     {
+      "frame": "V",
+      "parties": [
+       "V"
+      ]
+     },
+     {
+      "frame": "KD",
+      "parties": [
+       "KD"
+      ]
+     },
+     {
+      "frame": "L",
+      "parties": [
+       "L"
+      ]
+     }
+    ],
+    "government": [
+     "S",
+     "MP"
+    ],
+    "rollcall": {
+     "C": "Avstår",
+     "KD": "Ja",
+     "L": "Avstår",
+     "M": "Ja",
+     "MP": "Nej",
+     "S": "Nej",
+     "SD": "Ja",
+     "V": "Nej"
+    },
+    "attribution": {
+     "C": {
+      "frame": "C",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2021/22 (kolumn C)"
+     },
+     "KD": {
+      "frame": "KD",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2021/22 (kolumn KD)"
+     },
+     "L": {
+      "frame": "L",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2021/22 (kolumn L)"
+     },
+     "M": {
+      "frame": "M",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2021/22 (kolumn M)"
+     },
+     "MP": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2021/22:1; röst i rambeslutet: Nej"
+     },
+     "S": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2021/22:1; röst i rambeslutet: Nej"
+     },
+     "SD": {
+      "frame": "SD",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2021/22 (kolumn SD)"
+     },
+     "V": {
+      "frame": "V",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2021/22 (kolumn V)"
+     }
+    },
+    "missing": [],
+    "verification": []
+   },
+   "2023": {
+    "dok_id": "HA01FiU1",
+    "ok": true,
+    "caption": "Regeringens och motionärernas förslag till utgiftsramar 2023",
+    "unit": "mnkr",
+    "columns": [
+     {
+      "frame": "regeringen",
+      "parties": []
+     },
+     {
+      "frame": "S",
+      "parties": [
+       "S"
+      ]
+     },
+     {
+      "frame": "V",
+      "parties": [
+       "V"
+      ]
+     },
+     {
+      "frame": "C",
+      "parties": [
+       "C"
+      ]
+     },
+     {
+      "frame": "MP",
+      "parties": [
+       "MP"
+      ]
+     }
+    ],
+    "government": [
+     "M",
+     "KD",
+     "L"
+    ],
+    "rollcall": {
+     "C": "Avstår",
+     "KD": "Ja",
+     "L": "Ja",
+     "M": "Ja",
+     "MP": "Avstår",
+     "S": "Nej",
+     "SD": "Ja",
+     "V": "Avstår"
+    },
+    "attribution": {
+     "C": {
+      "frame": "C",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2022/23 (kolumn C)"
+     },
+     "KD": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2022/23:1; röst i rambeslutet: Ja"
+     },
+     "L": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2022/23:1; röst i rambeslutet: Ja"
+     },
+     "M": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2022/23:1; röst i rambeslutet: Ja"
+     },
+     "MP": {
+      "frame": "MP",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2022/23 (kolumn MP)"
+     },
+     "S": {
+      "frame": "S",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2022/23 (kolumn S)"
+     },
+     "SD": {
+      "frame": "regeringen",
+      "role": "support",
+      "basis": "votering",
+      "note": "uppslutning bakom regeringens ram: samma röst (Ja) som M/KD/L i voteringen om rambeslutet, bet. FiU1 2022/23 punkt 2"
+     },
+     "V": {
+      "frame": "V",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2022/23 (kolumn V)"
+     }
+    },
+    "missing": [],
+    "verification": []
+   },
+   "2024": {
+    "dok_id": "HB01FiU1",
+    "ok": true,
+    "caption": "Regeringens och motionärernas förslag till utgiftsramar 2024",
+    "unit": "mnkr",
+    "columns": [
+     {
+      "frame": "regeringen",
+      "parties": []
+     },
+     {
+      "frame": "S",
+      "parties": [
+       "S"
+      ]
+     },
+     {
+      "frame": "V",
+      "parties": [
+       "V"
+      ]
+     },
+     {
+      "frame": "C",
+      "parties": [
+       "C"
+      ]
+     },
+     {
+      "frame": "MP",
+      "parties": [
+       "MP"
+      ]
+     }
+    ],
+    "government": [
+     "M",
+     "KD",
+     "L"
+    ],
+    "rollcall": {
+     "C": "Avstår",
+     "KD": "Ja",
+     "L": "Ja",
+     "M": "Ja",
+     "MP": "Avstår",
+     "S": "Nej",
+     "SD": "Ja",
+     "V": "Avstår"
+    },
+    "attribution": {
+     "C": {
+      "frame": "C",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2023/24 (kolumn C)"
+     },
+     "KD": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2023/24:1; röst i rambeslutet: Ja"
+     },
+     "L": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2023/24:1; röst i rambeslutet: Ja"
+     },
+     "M": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2023/24:1; röst i rambeslutet: Ja"
+     },
+     "MP": {
+      "frame": "MP",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2023/24 (kolumn MP)"
+     },
+     "S": {
+      "frame": "S",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2023/24 (kolumn S)"
+     },
+     "SD": {
+      "frame": "regeringen",
+      "role": "support",
+      "basis": "votering",
+      "note": "uppslutning bakom regeringens ram: samma röst (Ja) som M/KD/L i voteringen om rambeslutet, bet. FiU1 2023/24 punkt 2"
+     },
+     "V": {
+      "frame": "V",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2023/24 (kolumn V)"
+     }
+    },
+    "missing": [],
+    "verification": []
+   },
+   "2025": {
+    "dok_id": "HC01FiU1",
+    "ok": true,
+    "caption": "Regeringens och motionärernas förslag till utgiftsramar 2025",
+    "unit": "mnkr",
+    "columns": [
+     {
+      "frame": "regeringen",
+      "parties": []
+     },
+     {
+      "frame": "S",
+      "parties": [
+       "S"
+      ]
+     },
+     {
+      "frame": "V",
+      "parties": [
+       "V"
+      ]
+     },
+     {
+      "frame": "C",
+      "parties": [
+       "C"
+      ]
+     },
+     {
+      "frame": "MP",
+      "parties": [
+       "MP"
+      ]
+     }
+    ],
+    "government": [
+     "M",
+     "KD",
+     "L"
+    ],
+    "rollcall": {
+     "C": "Avstår",
+     "KD": "Ja",
+     "L": "Ja",
+     "M": "Ja",
+     "MP": "Avstår",
+     "S": "Nej",
+     "SD": "Ja",
+     "V": "Avstår"
+    },
+    "attribution": {
+     "C": {
+      "frame": "C",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2024/25 (kolumn C)"
+     },
+     "KD": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2024/25:1; röst i rambeslutet: Ja"
+     },
+     "L": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2024/25:1; röst i rambeslutet: Ja"
+     },
+     "M": {
+      "frame": "regeringen",
+      "role": "government",
+      "basis": "regeringsstallning",
+      "note": "regeringsparti bakom prop. 2024/25:1; röst i rambeslutet: Ja"
+     },
+     "MP": {
+      "frame": "MP",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2024/25 (kolumn MP)"
+     },
+     "S": {
+      "frame": "S",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2024/25 (kolumn S)"
+     },
+     "SD": {
+      "frame": "regeringen",
+      "role": "support",
+      "basis": "votering",
+      "note": "uppslutning bakom regeringens ram: samma röst (Ja) som M/KD/L i voteringen om rambeslutet, bet. FiU1 2024/25 punkt 2"
+     },
+     "V": {
+      "frame": "V",
+      "role": "opposition",
+      "basis": "egen_ram",
+      "note": "egen budgetmotion i bet. FiU1 2024/25 (kolumn V)"
+     }
+    },
+    "missing": [],
+    "verification": []
+   }
+  }
  }
 }
