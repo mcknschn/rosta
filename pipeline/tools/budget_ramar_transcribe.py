@@ -1000,10 +1000,13 @@ def main() -> None:
     parser.add_argument("--frames", action="store_true", help="läs år och skriv ut kontrollerna")
     parser.add_argument("--config", action="store_true", help="skriv config/budget_ramar.yaml")
     parser.add_argument("--audit", action="store_true", help="config mot källa (default)")
-    parser.add_argument("--from", dest="start", type=int, default=2011)
-    parser.add_argument("--to", dest="end", type=int, default=2025)
+    parser.add_argument("--from", dest="start", type=int, default=None)
+    parser.add_argument("--to", dest="end", type=int, default=None)
     args = parser.parse_args()
-    years = range(args.start, args.end + 1)
+    # Utan uttryckligt spann granskar --audit configens EGNA år. Ett fast förvalt spann skulle
+    # tyst hoppa över ett nytt budgetår och ändå rapportera att allt stämmer.
+    explicit = args.start is not None or args.end is not None
+    years = range(args.start or 2011, (args.end or 2025) + 1)
 
     if args.bound:
         run_bound(years)
@@ -1012,7 +1015,7 @@ def main() -> None:
     elif args.config:
         run_config(years)
     else:
-        raise SystemExit(run_audit(years))
+        raise SystemExit(run_audit(years if explicit else None))
 
 
 if __name__ == "__main__":

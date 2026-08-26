@@ -722,7 +722,10 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
             a_by_cat[c] = a2_by_cat[c]
             a_flag_by_cat[c] = "A_a2_only"
             a_cov_by_cat[c] = w_a2
-    a_extra_flags = [] if a1_ok else ["A_a1_inadmissible"]
+    # Flaggan namnger partiet som fällde klausulen, annars säger den bara att något gick fel
+    # utan att säga vad. Sorterad, så flaggan är stabil mellan körningar.
+    a_extra_flags = ([] if a1_ok
+                     else [f"A_a1_inadmissible:{','.join(sorted(a1_offenders))}"])
 
     # C: per-kategori c1-makt = nationell + subnationell maktandel, blandad enligt level_weights
     # och rank-normaliserad. Subnationell makt = per-kategori region/kommun-split av SKR-styren
@@ -937,6 +940,12 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
     # säga det i stället för att indexera en tom lista.
     a1_window = (f"budgetåren {a1_years[0]}-{a1_years[-1]} ({len(a1_years)} år)"
                  if a1_years else "inga budgetår, alltså vilar A på a2 ensam")
+    # Sign-off per budgetår. Talen matar betygen oavsett, men läsaren ska se hur många år som
+    # ännu inte är expertgranskade i stället för att anta att alla är det.
+    _signed = sum(1 for b in (config.budget_ramar().get("budget_years") or {}).values()
+                  if int(b.get("version", 0)) >= 1)
+    a1_signoff = (f", varav {_signed} är expertgranskade med mänsklig sign-off och "
+                  f"{len(a1_years) - _signed} står i version 0" if a1_years else "")
     out = {
         "meta": {
             "generated": today.isoformat(), "window": "2014-2026",
@@ -976,7 +985,7 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
                 "som aldrig nås eftersom det skulle kräva en förankring på noll. "
                 # ADR 0007 punkt 1 och 3: fönstren skrivs ut, och att de kan skilja sig.
                 "VILKA ÅR VARJE HALVA MÄTER (ADR 0007): täljaren täcker samma år som sin "
-                f"förankring. a1 mäter {a1_window} och a2 perioden "
+                f"förankring. a1 mäter {a1_window}{a1_signoff}. a2 mäter perioden "
                 f"{anchor.a2_period()[0]} till {anchor.a2_period()[1]}. Halvorna har egna "
                 "fönster och kan hamna på olika tidsavsnitt, eftersom a1:s tillgänglighet "
                 "inte ska få kasta bort motionsår som är fullt giltiga. Fönstren faller ut "
@@ -1038,7 +1047,21 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
 
 def main() -> None:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-    res = build()
+    con = warehouse.connect()
+    # Ett tomt motionslager ger a2 = 0,00 åt varje parti i varje kategori, eftersom andelen 0
+    # mot en positiv förankring är kvoten -1. Det är en tyst nolla i den halva som väger 0,4 av
+    # A, och den skulle inte synas i något betyg. build() lämnas tillåtande, så att B- och
+    # D-proven kan köra utan motionsrader, men den som SKRIVER dist/ måste ha dem.
+    (n_motion,) = con.execute(
+        "SELECT count(*) FROM party_activity WHERE kind = 'motion'"
+    ).fetchone()
+    if not n_motion:
+        raise SystemExit(
+            "party_activity saknar motionsrader: a2 skulle bli 0,00 för varje parti. "
+            "Kör `python -m pipeline.build_fas1` först."
+        )
+    res = build(con)
+    con.close()
     DIST_DIR.mkdir(parents=True, exist_ok=True)
     (DIST_DIR / "scores.json").write_text(
         json.dumps(res["scores"], ensure_ascii=False, indent=2, sort_keys=True), encoding="utf-8"

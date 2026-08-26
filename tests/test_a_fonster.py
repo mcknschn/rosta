@@ -145,7 +145,8 @@ def test_villkorsklausulen_tar_bort_a1_ur_A_nar_den_faller_ut() -> None:
     for party, cats in utan_a1.items():
         for category, cell in cats.items():
             assert "A_a2_only" in cell["flags"], f"{party}/{category}"
-            assert "A_a1_inadmissible" in cell["flags"], f"{party}/{category}"
+            # Flaggan namnger partierna som fällde klausulen, inte bara att den föll.
+            assert "A_a1_inadmissible:KD,L,M,SD" in cell["flags"], f"{party}/{category}"
             assert "A_a1_active" in med_a1[party][category]["flags"]
             # Den publicerade täckningen är avrundad till tre decimaler, så skillnaden mellan
             # två avrundade tal kan missa med en tusendel åt vardera hållet.

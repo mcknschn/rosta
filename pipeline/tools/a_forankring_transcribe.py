@@ -534,7 +534,14 @@ def write_window_report() -> None:
     """Renderar docs/done/a_forankring/fonster.md ur bevisfilen. Rör inte nätet."""
     ev = json.loads((EVIDENCE_DIR / "fonster.json").read_text(encoding="utf-8"))
     years = ev["tested_years"]
+    # Tredje gränsen skrivs av ett ANNAT verktyg (budget_ramar_transcribe --bound), så en
+    # bevisfil kan sakna den. Rapporten ska säga att den saknas, aldrig krascha på den.
     frames = ev.get("a1_frames") or {}
+    if "bound" not in frames:
+        raise SystemExit(
+            "docs/done/a_forankring/fonster.json saknar a1_frames (ADR 0007 punkt 2). "
+            "Kör `python -m pipeline.tools.budget_ramar_transcribe --bound` först."
+        )
     rows = ["# Förankringsfönstret för delpoäng A (ADR 0005 punkt 7)", "",
             "> AUTOGENERERAD av `python -m pipeline.tools.a_forankring_transcribe --window`.",
             "> Redigera aldrig för hand. Talen är utfallet av två gränser som skrevs FÖRE",
@@ -606,6 +613,12 @@ def run_config() -> None:
     evidence = json.loads((EVIDENCE_DIR / "fonster.json").read_text(encoding="utf-8"))
     start, end = int(evidence["window"]["start"]), int(evidence["window"]["end"])
     frames_bound = (evidence.get("a1_frames") or {}).get("bound")
+    if not isinstance(frames_bound, int):
+        raise SystemExit(
+            "bevisfilen saknar tredje gränsen (ADR 0007 punkt 2). Kör "
+            "`python -m pipeline.tools.budget_ramar_transcribe --bound` före --config; "
+            "annars skulle configen få en gräns som inte är ett år."
+        )
     lines = [_CONFIG_HEADER, "version: 1", "", "window:",
              f"  start: {start}", f"  end: {end}",
              f'  a1_bound: {evidence["a1"]["bound"]}      # {evidence["a1"]["test"]}',

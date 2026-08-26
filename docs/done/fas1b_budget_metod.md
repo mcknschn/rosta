@@ -44,7 +44,7 @@ de officiella, publicerade ramtalen **transkriberas till versionsstyrd config**
 ([`config/budget_ramar.yaml`](../../config/budget_ramar.yaml)), där varje frame **citerar sin källrad**,
 och deterministisk kod ([`pipeline/budget.py`](../../pipeline/budget.py)) konsumerar configen. Detta är
 en **trogen kopia** av officiella tal — inga belopp imputeras, jämkas eller gissas. Det är
-strukturering av en officiell källa, inte fabrikation. **Version 1 — expertgranskad + mänsklig sign-off 2026-06-05; a1 aktiv i skarp betygsättning.**
+strukturering av en officiell källa, inte fabrikation. **a1 är aktiv i skarp betygsättning. Budgetåren 2023-2025 är expertgranskade med mänsklig sign-off 2026-06-05; de tolv år som ADR 0007 lade till står i version 0 och väntar på sin.**
 
 ## Källor (budgetår 2011-2025)
 

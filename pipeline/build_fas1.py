@@ -10,7 +10,7 @@ from __future__ import annotations
 import sys
 from datetime import date
 
-from . import anchor, warehouse
+from . import anchor, config, warehouse
 from .sources import government, riksdagen, skr
 
 # Riksmöten i fönstret (3 mandatperioder). Voteringsprovet spänner hela fönstret (Fas 1b),
@@ -44,13 +44,24 @@ def main(votes_pages: int = 2) -> None:
     # 2. Motionsaktivitet per (parti, utskott) över a2:s fönster -> party_activity.
     # Fönstret är A:s eget (ADR 0007 punkt 1 och 3), alltså förankringens period och inte
     # mappings.window. Tabellens nyckel bär perioden, så en omhämtning över en ny period
-    # LÄGGER TILL rader. De gamla raderna tas bort först, annars räknas motionerna dubbelt.
+    # LÄGGER TILL rader i stället för att ersätta dem, och motionerna skulle räknas dubbelt.
+    # De gamla raderna tas därför bort — men FÖRST när hämtningen är klar. Ett avbrott mitt i
+    # de ~120 anropen skulle annars lämna tabellen tom, och a2 skulle bli 0,00 för varje parti
+    # i varje kategori utan att något fel syntes.
     frm, tom = anchor.a2_period()
+    period = f"{frm}/{tom}"
     print(f"hämtar motionsräkning per parti×utskott ({frm}..{tom}, ~120 anrop) ...")
-    removed = con.execute(
-        "DELETE FROM party_activity WHERE kind = 'motion' AND period != ?", [f"{frm}/{tom}"]
-    ).fetchall()
     act_rows = riksdagen.fetch_motion_counts(retrieved_at, frm=frm, tom=tom)
+    want_rows = len(config.party_codes()) * len(config.mappings()["committee_to_category"])
+    if len(act_rows) != want_rows:
+        raise ValueError(
+            f"party_activity: hämtningen gav {len(act_rows)} rader, väntade {want_rows} "
+            "(parti × utskott) — lagret lämnas orört"
+        )
+    (removed,) = con.execute(
+        "SELECT count(*) FROM party_activity WHERE kind = 'motion' AND period != ?", [period]
+    ).fetchone()
+    con.execute("DELETE FROM party_activity WHERE kind = 'motion' AND period != ?", [period])
     n_act = warehouse.upsert(con, "party_activity", act_rows, validate=False)
     print(f"party_activity: {n_act} rader (rader på andra perioder borttagna: {removed})")
 
