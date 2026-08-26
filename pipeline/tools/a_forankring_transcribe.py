@@ -12,7 +12,8 @@ en bräcklig parser kan aldrig korrumpera A.
     python -m pipeline.tools.a_forankring_transcribe --config    # skriv config/a_forankring.yaml
     python -m pipeline.tools.a_forankring_transcribe --audit     # config mot källa (exit 1 vid diff)
 
-Fönstrets två gränser (ADR 0005 punkt 7) är krav som faller ut, inte omdömen efter hämtningen:
+Fönstrets TRE gränser är krav som faller ut, inte omdömen efter hämtningen. De två första
+står i ADR 0005 punkt 7, den tredje i ADR 0007 punkt 2:
 
   a1  FiU1:s rambeslutstabell listar utgiftsområde 1-27, alltså samma indelning som
       `mappings.expenditure_areas` bygger på. NAMNEN hämtas och skrivs i bevisfilen men grindar
@@ -20,8 +21,16 @@ Fönstrets två gränser (ADR 0005 punkt 7) är krav som faller ut, inte omdöme
       lista (UO10 heter "Ekonomisk trygghet vid sjukdom och funktionsnedsättning" i varje
       granskat år) och dessutom blandar två vintages (UO19 nytt namn, UO13 och UO20 gamla).
       En bokstavlig namnlikhet ger noll år och kan alltså inte pröva någonting.
+  a1  (den tredje gränsen, ADR 0007 punkt 2) Alla åtta partier har en CITERBAR RAM som listar
+      utgiftsområde 1-27. Citerbar betyder egen budgetmotion, regeringsställning, eller
+      uppslutning bakom en gemensam ram belagd med votering. Gränsen bär a1:s TÄLJARE, alltså
+      partiernas egna ramar, medan den första gränsen bär a1:s förankring. Provet ligger i
+      `pipeline/tools/budget_ramar_transcribe.py`, som läser samma FiU1-tabell.
   a2  Alla åtta nuvarande partier har minst en motion i varje utskott som mappningen använder,
       under kalenderåret.
+
+Gränserna skrivs FÖRE hämtningen och rörs inte efteråt. Den tredje gränsens ordalydelse är
+avskriven ur ADR 0007 punkt 2 och står i `budget_ramar_transcribe.FRAMES_TEST`.
 
 Den beslutade ramen per budgetår läses aldrig av gissning: dokumentets egen `vinnare` och
 meningen om utgiftsramarna avgör vilken tabell som gäller, och båda skrivs i bevisfilen.
