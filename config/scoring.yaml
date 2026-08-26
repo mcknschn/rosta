@@ -243,7 +243,7 @@ uncertainty:
     medium: 0.60
     low: 0.30
   default_subscore_certainty:
-    A: high      # voteringar, budgetbelopp
+    A: high      # transkriberade utgiftsramar (a1) + räknade motioner (a2); inget skattas (ADR 0009)
     B: medium    # evidenssammanvägning, förväntade effekter
     C: high      # makt, finansiering
     D: low       # attribution av utfall

@@ -2,7 +2,7 @@
 // Kör: node --test web/tests/   (eller npm run test:unit)
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { fmtNum, fmtScoreWithCI, fmtCoverage, visibleFlags, pct, metaLine } from "../format.js";
+import { fmtNum, fmtScoreWithCI, fmtCoverage, visibleFlags, hasLowConfidence, pct, metaLine } from "../format.js";
 import { normalizeWeights, partyTotals, pairStability } from "../score.js";
 
 test("fmtNum: svensk decimalkomma + avrundning", () => {
@@ -180,4 +180,22 @@ test("visibleFlags: tom eller saknad lista ger tom lista, aldrig undefined", () 
   assert.deepEqual(visibleFlags([]), []);
   assert.deepEqual(visibleFlags(undefined), []);
   assert.deepEqual(visibleFlags(null), []);
+});
+
+// --- Säkerhet (ADR 0009) -------------------------------------------------------
+
+test("hasLowConfidence: C på low fäller inte cellen, C väger 0", () => {
+  assert.equal(hasLowConfidence({ A: "high", B: "medium", C: "low", D: "high" }), false);
+});
+
+test("hasLowConfidence: A, B eller D på low fäller cellen, alla tre väger", () => {
+  assert.equal(hasLowConfidence({ A: "low", B: "high", C: "high", D: "high" }), true);
+  assert.equal(hasLowConfidence({ A: "high", B: "low", C: "high", D: "high" }), true);
+  assert.equal(hasLowConfidence({ A: "high", B: "high", C: "high", D: "low" }), true);
+});
+
+test("hasLowConfidence: tomt eller saknat objekt ger false, aldrig ett kast", () => {
+  assert.equal(hasLowConfidence({}), false);
+  assert.equal(hasLowConfidence(undefined), false);
+  assert.equal(hasLowConfidence(null), false);
 });

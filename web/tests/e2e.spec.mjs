@@ -206,6 +206,40 @@ test("en robustness.json med andra kategorier ger ingen andel alls", async ({ pa
   await expect(page.locator("#parties .stability:visible")).toHaveCount(0);
 });
 
+test("conf-low läser A, B och D men aldrig C (ADR 0009 punkt 6)", async ({ page }) => {
+  // En cell per delpoäng, var och en ensam på low. C väger 0 och får inte fälla sin cell.
+  const cell = (conf) => ({
+    score: 3, ci: [2, 4], components: {}, coverage: 1, flags: [],
+    confidence: { A: "high", B: "high", C: "high", D: "high", ...conf },
+  });
+  await page.route(/scores\.json/, async (route) => {
+    const fixture = {
+      meta: { coverage: "", generated: "2026-01-01", window: "2014-2026", parties: [], model_version: "v0" },
+      categories: [
+        { id: "lag_a", name: "Låg A", standard_weight: 10 },
+        { id: "lag_b", name: "Låg B", standard_weight: 10 },
+        { id: "lag_c", name: "Låg C", standard_weight: 10 },
+        { id: "lag_d", name: "Låg D", standard_weight: 10 },
+      ],
+      scores: { S: {
+        lag_a: cell({ A: "low" }), lag_b: cell({ B: "low" }),
+        lag_c: cell({ C: "low" }), lag_d: cell({ D: "low" }),
+      } },
+    };
+    await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify(fixture) });
+  });
+  await page.goto(PAGE);
+  await page.locator("#parties > li.party .party-head").first().click();
+  const detail = page.locator("#parties > li.party .detail").first();
+
+  const flaggkolumn = (namn) =>
+    detail.locator("tbody tr").filter({ hasText: namn }).locator("td:last-child");
+  await expect(flaggkolumn("Låg A")).toHaveClass(/conf-low/);
+  await expect(flaggkolumn("Låg B")).toHaveClass(/conf-low/);
+  await expect(flaggkolumn("Låg D")).toHaveClass(/conf-low/);
+  await expect(flaggkolumn("Låg C")).not.toHaveClass(/conf-low/);
+});
+
 test("ingen horisontell sidoscroll vid 320px (reflow 1.4.10)", async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 800 });
   await page.goto(PAGE);

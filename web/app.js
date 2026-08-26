@@ -2,7 +2,7 @@
 // och gör viktningen client-side. Inget rådata finns här. All betygslogik ligger i pipelinen;
 // frontend får ENDAST vikta/summera (se score.js) och visa.
 
-import { fmtNum, fmtScoreWithCI, fmtCoverage, visibleFlags, pct, metaLine } from "./format.js";
+import { fmtNum, fmtScoreWithCI, fmtCoverage, visibleFlags, hasLowConfidence, pct, metaLine } from "./format.js";
 import { partyTotals, pairStability } from "./score.js";
 
 const PARTY_NAMES = {
@@ -291,7 +291,7 @@ function detailHTML(row) {
     const cs = row.catScores[c.id]; if (!cs) return "";
     const comp = cs.components || {};
     const flags = visibleFlags(cs.flags).map((f) => `<span class="tag">${f}</span>`).join(" ");
-    const lowConf = Object.values(cs.confidence || {}).includes("low") ? ' class="conf-low"' : "";
+    const lowConf = hasLowConfidence(cs.confidence) ? ' class="conf-low"' : "";
     return `<tr>
       <td>${c.name}</td>
       <td class="num">${fmtNum(cs.score)}</td>

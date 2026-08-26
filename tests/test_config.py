@@ -107,3 +107,19 @@ def test_metodrutan_listar_inte_maktandelen_som_delpoang() -> None:
     app_js = (Path(__file__).resolve().parents[1] / "web" / "app.js").read_text(encoding="utf-8")
     assert config.categories()["subscore_weights"]["C_ansvar"] == 0
     assert not re.search(r"<li><b>C\.", app_js), "C står kvar som en delpoäng i metodrutan"
+
+
+def test_conf_low_laser_samma_delpoang_som_configen_vager() -> None:
+    """conf-low i web/format.js läser en hårdkodad lista av delpoäng (ADR 0009 punkt 6).
+
+    Frontend kan inte läsa configen vid körning, så listan är en avskrift av
+    subscore_weights. Grinden håller ihop dem: en delpoäng med vikt över noll ska
+    stå i listan, en med vikt noll ska inte göra det. Utan grinden kan en
+    viktändring gå igenom medan conf-low tyst läser fel delpoäng.
+    """
+    format_js = (Path(__file__).resolve().parents[1] / "web" / "format.js").read_text(encoding="utf-8")
+    m = re.search(r"WEIGHTED_SUBSCORES = \[([^\]]*)\]", format_js)
+    assert m, "WEIGHTED_SUBSCORES saknas i web/format.js"
+    listan = set(re.findall(r"[ABCD]", m.group(1)))
+    vagande = {k[0] for k, v in config.categories()["subscore_weights"].items() if v > 0}
+    assert listan == vagande, f"format.js läser {listan}, configen väger {vagande}"

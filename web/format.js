@@ -23,6 +23,16 @@ export function visibleFlags(flags) {
   return (flags || []).filter((f) => !COVERAGE_FLAGS.some((re) => re.test(f)));
 }
 
+// conf-low läser bara de delpoäng som väger (ADR 0009 punkt 6). C väger 0, så en låg C
+// säger ingenting om cellen och ska inte fälla den. Listan speglar subscore_weights i
+// config/scoring.yaml; ändras vikterna där måste den här raden följa med.
+const WEIGHTED_SUBSCORES = ["A", "B", "D"];
+
+export function hasLowConfidence(confidence) {
+  const c = confidence || {};
+  return WEIGHTED_SUBSCORES.some((s) => c[s] === "low");
+}
+
 // "3,84 av 5 (3,5-4,1)"
 export function fmtScoreWithCI(score, ci) {
   const s = fmtNum(score, 2);
