@@ -139,8 +139,11 @@ def test_direction_adjusted_change_respects_direction() -> None:
     assert score.direction_adjusted_change(100, 110, "up") == pytest.approx(0.1)
     assert score.direction_adjusted_change(100, 90, "down") == pytest.approx(0.1)    # förbättring
     assert score.direction_adjusted_change(100, 110, "down") == pytest.approx(-0.1)  # försämring
-    assert score.direction_adjusted_change(100, 110, "target") is None              # ingen målnivå
     assert score.direction_adjusted_change(0, 5, "up") is None                       # v_prev=0
+    # Riktningen håller bara upp och ned (ADR 0011 punkt 3). Ett tredje värde är ett fel i
+    # configen och hard-failar hellre än att tyst ge None, som 'target' en gång gjorde.
+    with pytest.raises(ValueError, match="Okänd riktning"):
+        score.direction_adjusted_change(100, 110, "target")
 
 
 def test_change_sign_dead_zone() -> None:

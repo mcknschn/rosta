@@ -19,7 +19,7 @@ from .. import config, score, warehouse
 from ..scorerun import (
     _b_codable_types_by_submeasure,
     _d_denominator_submeasures,
-    _non_target_submeasures,
+    _non_excluded_submeasures,
 )
 
 NATIONAL = ("Riket", "0000")
@@ -75,14 +75,15 @@ def coverage(con: Any | None = None) -> dict[str, Any]:
             total_ind += 1
             rec = observed.get((cid, ind["id"]))
             has_obs = rec is not None
-            d_eligible = ind["direction"] in ("up", "down")
+            d_eligible = ind.get("direction") in ("up", "down")
             has_annual = bool(rec and rec["n_annual"] >= 2)
             if has_obs:
                 covered_ind += 1
             if has_annual and d_eligible:
                 annual_ind += 1
             subs.setdefault(ind["submeasure"], []).append({
-                "indicator": ind["id"], "direction": ind["direction"],
+                "indicator": ind["id"], "direction": ind.get("direction", ""),
+                "exclusion": ind.get("exclusion", ""),
                 "has_obs": has_obs, "d_eligible": d_eligible,
                 "has_annual": has_annual,
                 "n": rec["n"] if rec else 0, "span": rec["span"] if rec else "-",
@@ -114,12 +115,13 @@ def coverage(con: Any | None = None) -> dict[str, Any]:
 
 
 def d_submeasure_breadth() -> dict[str, Any]:
-    """D-undermåttsbredd (docs/done/d_coverage_krympning_spec.md): viktad icke-target-täckning per kategori.
+    """D-undermåttsbredd (docs/done/d_coverage_krympning_spec.md): viktad täckning per kategori
+    över de icke-uteslutna undermåtten.
 
     Offline-härledning (endast config, jfr b_submeasure_spread): ett undermått räknas D-täckt
     om det har minst en up/down-indikator som INTE är coverage-allowlistad — per Fas 3-gatens
     invariant (test_fas3_gate: inläst ELLER allowlistad, aldrig båda) är en sådan indikator
-    inläst med D-duglig serie. Nämnaren = icke-target-undermått (scorerun). Kategori-global
+    inläst med D-duglig serie. Nämnaren = icke-uteslutna undermått (scorerun). Kategori-global
     översikt; scoringens numerator är per (parti, kategori) eftersom attribution kan saknas
     i korta serier.
     """
@@ -133,7 +135,7 @@ def d_submeasure_breadth() -> dict[str, Any]:
         den = d_den[cid]
         covered = {
             ind["submeasure"] for ind in cat.get("indicators", [])
-            if ind["direction"] in ("up", "down") and (cid, ind["id"]) not in allow
+            if ind.get("direction") in ("up", "down") and (cid, ind["id"]) not in allow
         } & den
         total_w = sum(weights[s] for s in den)
         covered_w = sum(weights[s] for s in covered)
@@ -151,23 +153,23 @@ def d_submeasure_breadth() -> dict[str, Any]:
 def b_submeasure_breadth() -> dict[str, Any]:
     """B-undermåttsbredd (docs/done/b_coverage_krympning_spec.md §6.3–6.4): viktat cov_B-TAK per kategori.
 
-    Offline-spegel av d_submeasure_breadth (endast config): ett icke-target-undermått räknas
+    Offline-spegel av d_submeasure_breadth (endast config): ett icke-uteslutet undermått räknas
     B-täckbart om det har minst en kodbar åtgärdstyp (T_s != tom mängd — DELADE regler med
     scoringen via scorerun._b_codable_types_by_submeasure: signed_direction != 0, ej
     coverage_exclude). Viktad andel täckbara undermått = kategorins cov_B-TAK: det värde
     scoringens per-parti-täckning når när ALLA kodbara typer är kodade — B-väggar (T_s tom)
-    sänker taket permanent tills de byggs bort (Spår B/B2). Nämnaren = icke-target-undermått
-    (scorerun._non_target_submeasures, samma som D). Kategori-global översikt; scoringens
+    sänker taket permanent tills de byggs bort (Spår B/B2). Nämnaren = icke-uteslutna undermått
+    (scorerun._non_excluded_submeasures, samma som D). Kategori-global översikt; scoringens
     cov_B är per (parti, kategori) och har dessutom djupledet |K_s|/|T_s|.
     """
     t_by_cat = _b_codable_types_by_submeasure()
-    nontarget = _non_target_submeasures()
+    ej_uteslutna = _non_excluded_submeasures()
     thr = B_BREADTH_GATE_THRESHOLD
     cats_out: list[dict[str, Any]] = []
     for cat in config.categories()["categories"]:
         cid = cat["id"]
         weights = {s["id"]: float(s["weight"]) for s in cat["submeasures"]}
-        den = nontarget[cid]
+        den = ej_uteslutna[cid]
         t_subs = t_by_cat.get(cid, {})
         covered = {s for s in den if t_subs.get(s)}
         total_w = sum(weights[s] for s in den)
@@ -268,7 +270,10 @@ def main() -> None:
                 else:
                     mark = "— "
                     extra = "(saknas)"
-                tgt = "" if i["d_eligible"] else "  [target/ej D]"
+                if i["d_eligible"]:
+                    tgt = ""
+                else:
+                    tgt = f"  [utesluten: {i['exclusion']}]" if i["exclusion"] else "  [ej D-duglig]"
                 print(f"        {mark} {i['indicator']:34} {extra}{tgt}")
     t = rep["totals"]
     print(f"\nSUMMA: {t['indicators_with_obs']}/{t['indicators']} indikatorer har obs · "
@@ -277,12 +282,12 @@ def main() -> None:
     print(f"Evidensliggaren: {t['evidence_entries']} poster totalt; "
           f"kategorier under målet ({t['evidence_target_per_cat']}/kat): {', '.join(missing_ev) or 'inga'}")
 
-    # --- D-undermåttsbredd (coverage-krympning): viktad icke-target-täckning per kategori ---
+    # --- D-undermåttsbredd (coverage-krympning): viktad icke-utesluten täckning per kategori ---
     dsb = d_submeasure_breadth()
     d_on = bool(config.scoring()["D_resultat"].get("coverage_shrink", False))
     print(f"\n== D-undermåttsbredd (coverage_shrink: {'på' if d_on else 'av'},"
           f" tröskel {dsb['threshold']}) ==")
-    print("  Viktad icke-target-undermåttstäckning per kategori (kategori-global översikt;"
+    print("  Viktad icke-utesluten undermåttstäckning per kategori (kategori-global översikt;"
           " scoringens\n  numerator är per parti/kategori). ⚠ = under tröskeln (D_thin_coverage).\n")
     for c in dsb["categories"]:
         thin = "  ⚠ THIN" if c["thin"] else ""
@@ -291,13 +296,13 @@ def main() -> None:
         if c["uncovered_submeasures"]:
             print(f"        otäckta: {', '.join(c['uncovered_submeasures'])}")
 
-    # --- B-undermåttsbredd (B5): viktat cov_B-tak per kategori (icke-target-nämnare) ---
+    # --- B-undermåttsbredd (B5): viktat cov_B-tak per kategori (krympningsnämnaren) ---
     bsb = b_submeasure_breadth()
     b_mode = config.scoring()["B_evidens"].get("coverage_mode", "policy_type_count")
     print(f"\n== B-undermåttsbredd (coverage_mode: {b_mode},"
           f" grindtröskel {bsb['threshold']}) ==")
     print("  Viktat cov_B-TAK per kategori (alla kodbara åtgärdstyper kodade; nämnare ="
-          " icke-target,\n  delad med D). ⚠ = tak under grindtröskeln"
+          " icke-uteslutna,\n  delad med D). ⚠ = tak under grindtröskeln"
           " (b_thin_breadth_accepted, spec §6.4).\n")
     for c in bsb["categories"]:
         thin = "  ⚠ THIN" if c["thin"] else ""

@@ -32,11 +32,20 @@ def _a_weights() -> tuple[float, float]:
     return float(comp["a1_budgetprioritering"]), float(comp["a2_lagstiftningsprioritering"])
 
 
-def _denominators() -> dict[str, float]:
-    """Kategorins egen täckningsnämnare, alltså den B och D delar (ADR 0008 punkt 5)."""
+def _shrink_denominators() -> dict[str, float]:
+    """KRYMPNINGENS nämnare, alltså den B och D delar. Den står orörd efter ADR 0011."""
     sub = scorerun._submeasure_weights()
-    nontarget = scorerun._non_target_submeasures()
-    return {c: sum(sub[c][s] for s in nontarget[c]) for c in config.category_ids()}
+    kvar = scorerun._non_excluded_submeasures()
+    return {c: sum(sub[c][s] for s in kvar[c]) for c in config.category_ids()}
+
+
+def _coverage_denominators() -> dict[str, float]:
+    """TÄCKNINGENS nämnare: kategorins FULLA undermåttsvikt (ADR 0011 punkt 9).
+
+    Skild från krympningens sedan ADR 0011. ADR 0008 punkt 5 låste en gång att de var samma
+    tal, och den identiteten upphörde där.
+    """
+    return scorerun._coverage_denominators()
 
 
 def _d_flag_emitted() -> bool:
@@ -49,11 +58,19 @@ def _d_flag_emitted() -> bool:
     return bool(config.scoring()["D_resultat"].get("coverage_shrink", False))
 
 
-def _parts_from_flags(flags: list[str], w_a1: float, w_a2: float) -> tuple[float, float, float]:
-    """Läser tillbaka (a, b, d) ur cellens flaggor, som bär samma tal som täckningen räknar på.
+def _parts_from_flags(
+    flags: list[str], w_a1: float, w_a2: float, cov_den: float
+) -> tuple[float, float, float]:
+    """Läser tillbaka (a, b, d) ur cellens flaggor.
 
     Flaggorna finns kvar i scores.json. Det är bara flaggKOLUMNEN i frontend som slutar
     visa dem (ADR 0008 punkt 9), så utdatan går fortfarande att räkna efter.
+
+    Flaggan bär KRYMPNINGENS täljare och nämnare. Täckningen står sedan ADR 0011 punkt 9 på
+    kategorins FULLA vikt, så täljaren läses ur flaggan och delas med cov_den, aldrig med
+    flaggans egen nämnare. Ett test som delade med flaggans nämnare skulle blåsa upp talet
+    för varje kategori som har ett uteslutet undermått, alltså precis det hål ADR 0011 tog
+    fram i ljuset.
     """
     a = w_a1 + w_a2 if "A_a1_active" in flags else w_a2
     b = d = 0.0
@@ -61,11 +78,11 @@ def _parts_from_flags(flags: list[str], w_a1: float, w_a2: float) -> tuple[float
         m = re.fullmatch(r"(B|D)_coverage_([\d.]+)/([\d.]+)", f)
         if not m:
             continue
-        tackt, total = float(m.group(2)), float(m.group(3))
+        tackt = float(m.group(2))
         if m.group(1) == "B":
-            b = tackt / total
+            b = tackt / cov_den
         else:
-            d = tackt / total
+            d = tackt / cov_den
     return a, b, d
 
 
@@ -105,15 +122,34 @@ def test_tackning_utanfor_intervallet_hard_failar() -> None:
         score.cell_coverage(0.0, -0.1, 0.0)
 
 
-# --- regeln: nämnaren (ADR 0008 punkt 5) ---------------------------------------
+# --- regeln: nämnaren (ADR 0008 punkt 5, ändrad av ADR 0011 punkt 9) -----------
 
 
-def test_namnaren_ar_kategorins_egen() -> None:
-    """B och D räknar båda mot kategorins samlade undermåttsvikt: ekonomi 73, övriga 100."""
-    den = _denominators()
+def test_tackningens_namnare_ar_kategorins_fulla_undermattsvikt() -> None:
+    """Täckningen räknas över HELA kategorianspråket, alltså 100 för var och en av de sju.
+
+    Ett uteslutet undermått räknas 0 täckt i stället för att strykas ur nämnaren, precis som
+    en ej tillämplig D redan gjorde (ADR 0008 punkt 4).
+    """
+    assert set(_coverage_denominators().values()) == {100}
+
+
+def test_krympningens_namnare_star_still() -> None:
+    """B:s och D:s krympning mot neutral behåller sin egen nämnare: ekonomi 73, övriga 100.
+
+    Krympningen betyder "vet ej", och ett uteslutet undermått är inte "vet ej" utan "går
+    inte att fråga". Att flytta DEN här nämnaren skulle flytta betygen (ADR 0011 punkt 9).
+    """
+    den = _shrink_denominators()
     assert den["ekonomi"] == 73
     ovriga = {c: v for c, v in den.items() if c != "ekonomi"}
     assert set(ovriga.values()) == {100}
+
+
+def test_de_tva_namnarna_ar_inte_langre_samma_tal() -> None:
+    """ADR 0008 punkt 5 låste att de var ett och samma tal. Den identiteten upphörde i
+    ADR 0011 punkt 9, och grinden här hindrar att den smyger tillbaka."""
+    assert _shrink_denominators() != _coverage_denominators()
 
 
 # --- regeln: ej tillämplig D (ADR 0008 punkt 4) --------------------------------
@@ -145,20 +181,21 @@ def test_pipen_ger_ej_tillamplig_d_noll_tackning_med_orord_namnare() -> None:
     con.close()
     w = _weights()
     w_a1, w_a2 = _a_weights()
-    den = _denominators()
+    shrink_den = _shrink_denominators()
+    cov_den = _coverage_denominators()
     for p, cats in sc.items():
         for c, cell in cats.items():
             flaggor = cell["flags"]
             assert "D_not_applicable" in flaggor, f"{p}/{c} har D-underlag i en tom warehouse"
-            a, b, d = _parts_from_flags(flaggor, w_a1, w_a2)
+            a, b, d = _parts_from_flags(flaggor, w_a1, w_a2, cov_den[c])
             assert d == 0.0
             vantad = w["A"] * a + w["B"] * b
             assert cell["coverage"] == pytest.approx(vantad, abs=_FLAGGTOLERANS), f"{p}/{c}"
-            # Nämnaren är kategorins egen, inte en som krympt för att D saknas.
+            # Flaggan bär krympningens nämnare, och den krymper aldrig för att D saknas.
             for f in flaggor:
                 m = re.fullmatch(r"B_coverage_[\d.]+/([\d.]+)", f)
                 if m:
-                    assert float(m.group(1)) == den[c], f"{p}/{c}"
+                    assert float(m.group(1)) == shrink_den[c], f"{p}/{c}"
             # Renormalisering över A och B skulle ge ett HÖGRE tal. Den grinden ska bita.
             if vantad > 0:
                 assert cell["coverage"] < vantad / (w["A"] + w["B"]), f"{p}/{c}"
@@ -188,10 +225,11 @@ def test_varje_cell_i_dist_bar_talet_och_det_stammer_mot_flaggorna() -> None:
     data = json.loads((DIST_DIR / "scores.json").read_text(encoding="utf-8"))
     w = _weights()
     w_a1, w_a2 = _a_weights()
+    cov_den = _coverage_denominators()
     for p, cats in data["scores"].items():
         for c, cell in cats.items():
             assert "coverage" in cell, f"{p}/{c} saknar täckning"
-            a, b, d = _parts_from_flags(cell["flags"], w_a1, w_a2)
+            a, b, d = _parts_from_flags(cell["flags"], w_a1, w_a2, cov_den[c])
             vantad = w["A"] * a + w["B"] * b + w["D"] * d
             assert cell["coverage"] == pytest.approx(vantad, abs=_FLAGGTOLERANS), f"{p}/{c}"
 

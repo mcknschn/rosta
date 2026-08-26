@@ -20,20 +20,21 @@ from pipeline import config, scorerun, warehouse
 from pipeline.sources import government
 from pipeline.tools import coverage_report
 
-# --- nämnaren: target-only exkluderas, indikatorlösa undermått ingår -----------------
+# --- nämnaren: helt uteslutna undermått exkluderas, indikatorlösa ingår --------------
 
 
-def test_d_denominator_excludes_target_only() -> None:
+def test_d_denominator_excludes_fully_excluded_submeasures() -> None:
     den = scorerun._d_denominator_submeasures()
-    # ekonomi: inflation/offentliga finanser har ENBART target-indikatorer -> utanför nämnaren
+    # ekonomi: inflation/offentliga finanser bär ENBART uteslutna indikatorer (ADR 0011)
+    # -> utanför nämnaren
     assert "inflation_prisstabilitet" not in den["ekonomi"]
     assert "offentliga_finanser" not in den["ekonomi"]
-    # blandat undermått (target + up) är INTE target-only -> ingår i nämnaren
+    # blandat undermått (utesluten + up) är INTE helt uteslutet -> ingår i nämnaren
     assert "ekonomisk_ambition" in den["forsvar"]
 
 
 def test_d_denominator_keeps_indicatorless_submeasure() -> None:
-    # undermått utan indikatorer är inte target-only per automatik — det är en del av
+    # undermått utan indikatorer är inte uteslutna per automatik — de är en del av
     # kategorianspråket och ska dra mot neutral tills en indikator byggs
     assert "industriell_konkurrenskraft" in scorerun._d_denominator_submeasures()["klimat"]
 
@@ -136,7 +137,7 @@ def test_coverage_shrink_krymper_d_och_flaggar(monkeypatch: pytest.MonkeyPatch) 
 
     _shrink_on(monkeypatch)
     shrunk = scorerun.build(con)["scores"]["scores"]["S"]["ekonomi"]
-    # ekonomi-nämnare = 73 (22+18+18+15; target-only exkluderade), täckt = 22
+    # ekonomi-nämnare = 73 (22+18+18+15; de helt uteslutna undermåtten exkluderade), täckt = 22
     assert "D_coverage_22/73" in shrunk["flags"]
     assert "D_thin_coverage" in shrunk["flags"]      # 22/73 ≈ 0.30 < 0.75
     assert "D_thin_basis" not in shrunk["flags"]     # ansvarsunderlaget (7 helår) är inte tunt

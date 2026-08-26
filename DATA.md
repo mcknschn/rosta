@@ -189,12 +189,15 @@ De fyra delpoängen lever på **två olika nivåer** i begreppsmodellen (Kategor
 liggarens egen storhet och inte indikatorns Riktning, se ordlistan i
 `docs/done/evidens_trovardighet.md` §4.3 och [ADR 0006](docs/adr/0006-evidensgrinden-ar-symmetrisk.md).
 Varje liggarpost passerar samma evidensgrind oavsett verkan, och nya poster söks källstyrt per
-indikator, aldrig genom att leta efter en önskad verkan. **Beslutad, ej byggd**
-([ADR 0011](docs/adr/0011-uteslutningen-ar-ett-eget-besked.md)): en indikator bär antingen en
-Riktning (`up`/`down`) eller ett **Uteslutningsskäl**, aldrig båda. Värdet `target` är avfört och
-ersätts av fältet `exclusion` med tre värden: `gransfel` (frågan ägs av en annan delpoäng),
-`giltighetsfel` (utfallet kan inte tillskrivas ett parti) och `neutralitetsfel` (det bättre hållet
-går inte att ange utan att ta ett partis parti). En liggarpost mot en utesluten indikator hard-failar. Ståndpunktsfilen innehåller **269 källbelagda ståndpunkter** (192 t.o.m. B2 2026-06-05/06, varav 130 panel-harmoniserade Fas 4c + 8 FoU-avdrag + 8 företags-/ägarbeskattning + 8 hushållens disponibla inkomst + 7 grundlagsskydd domstolarnas oberoende + 8 begränsa biometrisk realtidsövervakning + 7 Nato-medlemskap + 8 snabbförfarande/lagföring + 8 åtgärder mot invasiva arter; + senare D-/B3-poster t.o.m. 2026-06-14; version 2, expertgranskad; de enhällighetsbyggda via **enhällighet-som-källa** = enhälligt betänkande → alla 8 partier supports, se docs/done/evidens_trovardighet.md); saknas rad för (parti, kategori) är B coverage-viktad mot neutral (flaggor `B_thin_coverage`/`B_no_party_evidence`). Inga ståndpunkter fabriceras.
+indikator, aldrig genom att leta efter en önskad verkan. **Byggt 2026-08-26**
+([ADR 0011](docs/adr/0011-uteslutningen-ar-ett-eget-besked.md), biljett #34): en indikator bär
+antingen en Riktning (`up`/`down`) eller ett **Uteslutningsskäl**, aldrig båda och aldrig
+ingetdera. Värdet `target` är avfört och ersatt av fältet `exclusion` med tre värden: `gransfel`
+(frågan ägs av en annan delpoäng), `giltighetsfel` (utfallet kan inte tillskrivas ett parti) och
+`neutralitetsfel` (det bättre hållet går inte att ange utan att ta ett partis parti). Varje
+utesluten indikator bär dessutom `reopen_if`, alltså vad som måste ändras för att felet ska vara
+borta, skrivet så att det går att pröva. En liggarpost mot en utesluten indikator hard-failar i
+config-valideringen, oavsett vad dess syskonindikatorer bär. Ståndpunktsfilen innehåller **269 källbelagda ståndpunkter** (192 t.o.m. B2 2026-06-05/06, varav 130 panel-harmoniserade Fas 4c + 8 FoU-avdrag + 8 företags-/ägarbeskattning + 8 hushållens disponibla inkomst + 7 grundlagsskydd domstolarnas oberoende + 8 begränsa biometrisk realtidsövervakning + 7 Nato-medlemskap + 8 snabbförfarande/lagföring + 8 åtgärder mot invasiva arter; + senare D-/B3-poster t.o.m. 2026-06-14; version 2, expertgranskad; de enhällighetsbyggda via **enhällighet-som-källa** = enhälligt betänkande → alla 8 partier supports, se docs/done/evidens_trovardighet.md); saknas rad för (parti, kategori) är B coverage-viktad mot neutral (flaggor `B_thin_coverage`/`B_no_party_evidence`). Inga ståndpunkter fabriceras.
 
 **C — Maktandel** (hur mycket makt partiet haft). Vikt 0: ger inga poäng och redovisas som upplysning (ADR 0002). "Genomförbarhet/ansvar" och "Ansvarsunderlag" är retirerade namn:
 - `c1` makt **(byggd, nationell + regional + kommunal, Fas 1c):** per kategori blandas andel av 2014–2026 partiet satt i nationell regering (stöd vägs 0,5) med subnationell makt (SKR-styren: 21 regioner + 290 kommuner × 3 mandatperioder), via en per-kategori region/kommun-split efter lagstadgat ansvar och rank-normaliserat (`level_weights` + `subnational_split`). Full subnationell täckning → C:s säkerhet hög; forsvar nationellt per design ([metod](docs/done/fas1c_subnational_metod.md)).
@@ -202,9 +205,9 @@ går inte att ange utan att ta ett partis parti). En liggarpost mot en utesluten
 
 **D — Resultat** (förbättrades indikatorerna där partiet hade ansvar):
 - För perioder/områden där partiet styrde (från C): förändring i kategorins indikatorer mot positiv riktning, **tidsförskjuten** och attributionsviktad.
-- **Implementerat (Fas 5b):** för varje nationell årsindikator (`up`/`down`; `target` hoppas över, saknar målnivå) tas *tecknet* på den riktningsjusterade årsförändringen (förbättring +1 / försämring −1 / oförändrat 0 inom en relativ dödzon). Varje årsförändring (år y−1 → y) tillskrivs regeringen som satt år y−1 (`attribution_lag_years = 1`), viktad med maktvikt (regering 1,0, stöd 0,5) — koalitionspartier delar därför samma resultat. Per kategori: undermåttsviktat medel → `net ∈ [−1,1]` → betyg via samma 0→2,5-skala som B. *Tecken, inte magnitud*, håller måttet robust och ödmjukt (IDEA.md:s konjunktur-caveat). Täckning (per 2026-06-12): D matas i **ALLA 7 kategorier** — 38 kanoniska årsserier över 28 av 35 undermått. Försvar och demokrati fick sina första D-serier 2026-06-07 (Försvarsmaktens ÅR resp. Brå NTU) och har breddats sedan (försvar 3/5, demokrati 5/5, integration 5/5 undermått). **Aktuell status per indikator/undermått: [docs/spar_D_datatackning.md §2.1](docs/done/spar_D_datatackning.md) (sanningskälla).** Kvarvarande D-luckor (materiel/civil-beredskapsnivå/leverans = sekretess/pengar; internationella demokrati-index = otillåtna) är allowlistade i `config/coverage_allowlist.yaml`.
+- **Implementerat (Fas 5b):** för varje nationell årsindikator (`up`/`down`; en utesluten indikator saknar riktning och har ingen serie att attribuera, ADR 0011) tas *tecknet* på den riktningsjusterade årsförändringen (förbättring +1 / försämring −1 / oförändrat 0 inom en relativ dödzon). Varje årsförändring (år y−1 → y) tillskrivs regeringen som satt år y−1 (`attribution_lag_years = 1`), viktad med maktvikt (regering 1,0, stöd 0,5) — koalitionspartier delar därför samma resultat. Per kategori: undermåttsviktat medel → `net ∈ [−1,1]` → betyg via samma 0→2,5-skala som B. *Tecken, inte magnitud*, håller måttet robust och ödmjukt (IDEA.md:s konjunktur-caveat). Täckning (per 2026-06-12): D matas i **ALLA 7 kategorier** — 38 kanoniska årsserier över 28 av 35 undermått. Försvar och demokrati fick sina första D-serier 2026-06-07 (Försvarsmaktens ÅR resp. Brå NTU) och har breddats sedan (försvar 3/5, demokrati 5/5, integration 5/5 undermått). **Aktuell status per indikator/undermått: [docs/spar_D_datatackning.md §2.1](docs/done/spar_D_datatackning.md) (sanningskälla).** Kvarvarande D-luckor (materiel/civil-beredskapsnivå/leverans = sekretess/pengar; internationella demokrati-index = otillåtna) är allowlistade i `config/coverage_allowlist.yaml`.
 - **Rättvisa:** partier med litet/inget ansvar (ansvarsunderlag < `min_responsibility`) får D ≈ neutral (2,5) med **bred osäkerhet** och flaggan `D_not_applicable` — de straffas inte för utfall de inte rådde över. Tunt ansvarsunderlag flaggas `D_thin_basis`.
-- **D-bredd (sedan 2026-06-12, `coverage_shrink`):** D renormaliserar inte längre bort saknade icke-target-undermått — de bidrar neutralt (net 0) i en fast nämnare av undermåttsvikt, så D gör inget oavkortat kategorianspråk på en delmängd av kategorin. Numeratorn är per (parti, kategori); varje uppmätt cell flaggas `D_coverage_<täckt>/<total>` och viktad täckning < 0,75 ger `D_thin_coverage` + sänkt säkerhet. Tunn bredd grindas via `coverage_allowlist.d_thin_breadth_accepted` (i dag endast försvar 70/100). [Spec](docs/done/d_coverage_krympning_spec.md).
+- **D-bredd (sedan 2026-06-12, `coverage_shrink`):** D renormaliserar inte längre bort saknade icke-uteslutna undermått — de bidrar neutralt (net 0) i en fast nämnare av undermåttsvikt, så D gör inget oavkortat kategorianspråk på en delmängd av kategorin. Numeratorn är per (parti, kategori); varje uppmätt cell flaggas `D_coverage_<täckt>/<total>` och viktad täckning < 0,75 ger `D_thin_coverage` + sänkt säkerhet. Tunn bredd grindas via `coverage_allowlist.d_thin_breadth_accepted` (i dag endast försvar 70/100). [Spec](docs/done/d_coverage_krympning_spec.md).
 - **Subnationell D (C3, sedan 2026-06-14, `subnational.enabled`):** för submått där utfallet är region-/kommunstyrt blandas det nationella submåtts-nätet med ett **region-poolat** net — ett regionalt utfall (vårdköer/överlevnad) attribueras till det parti som styrde DEN regionen det året (`score.attribute_subnational_indicator`; dagviktad region-år-makt, lika per-region-vikt, bara tecken). Speglar hur C blandar nationell + subnationell makt (`level_weights`). v0 = region-nivå välfärd (`vard_tillganglighet`, national 0,4 / region 0,6 — regionen är sjukvårdshuvudman). Regionalt ansvarsunderlag normaliseras till år-ekvivalent och adderas i grinden (ett parti med **enbart** regional vård-makt blir measured — rättvisefix, t.ex. V); en soundness-grind (`region_basis ≥ min_responsibility`) hindrar att brus ur ett pyttigt region-år-urval dominerar (t.ex. SD). Neutralitetsauditerad (`pipeline/tools/c3_sensitivity.py`); `enabled:false` = byte-identisk ren nationell D. Endast välfärds-D rör sig, totalrankingen oförändrad. [Metod](docs/done/c3_subnational_d_metod.md).
 
 ### Claims-modell
@@ -284,21 +287,22 @@ Intervallets halvbredd per kategori = `max_halfwidth × Σ(delpoängvikt × (1 �
 **Täckningen mot bandet:** `coverage` säger hur stor del av cellens betyg som vilar på mätt
 underlag, alltså `0,30 × a + 0,50 × b + 0,20 × d`
 ([ADR 0008](docs/adr/0008-cellens-tackning.md)). Varje del är den delpoängens egen täckning.
-`b` och `d` räknas på kategorins egen nämnare, alltså kategorins samlade undermåttsvikt: 73 för
-ekonomi och 100 för de sex övriga. Det är samma tal som flaggorna `B_coverage_*` och
-`D_coverage_*` bär. `a` är 1,00 när `A_a1_active` står och 0,40 när `A_a2_only` står, alltså den
-vikt a2 har i A:s blandning. En ej tillämplig D ger `d = 0` och faller aldrig ur nämnaren.
-C räknas aldrig, eftersom den väger 0 och inte ingår i betyget.
+`b` och `d` räknas på kategorins **fulla** undermåttsvikt, alltså 100 för var och en av de sju
+([ADR 0011](docs/adr/0011-uteslutningen-ar-ett-eget-besked.md) punkt 9, byggt 2026-08-26).
+`a` är 1,00 när `A_a1_active` står och 0,40 när `A_a2_only` står, alltså den
+vikt a2 har i A:s blandning. Två hål räknas 0 täckta i stället för att strykas ur nämnaren: en ej
+tillämplig D ger `d = 0`, och ett uteslutet undermått bidrar inget till täljaren men behåller sin
+vikt i nämnaren. C räknas aldrig, eftersom den väger 0 och inte ingår i betyget.
 Talet säger inget om hur säkert det mätta är. Det beskedet bär `ci`, alltså bandet. Täckningen
 har ingen verkan på betyget: den räknas i pipen ur färdiga tal och matas aldrig tillbaka.
 
-**Beslutad, ej byggd** ([ADR 0011](docs/adr/0011-uteslutningen-ar-ett-eget-besked.md)): ekonomins
-nämnare 73 kommer av att två undermått står utanför, eftersom deras enda indikator saknar riktning.
-Efter bygget räknas Täckning i stället över kategorins fulla undermåttsvikt, alltså 100 för alla
-sju, och ett uteslutet undermått räknas 0 täckt. Det är samma regel som redan gäller en ej
-tillämplig D. B:s och D:s krympning mot neutral behåller sin nuvarande nämnare, så betygen står
-still och bara det redovisade talet rör sig. Täckning slutar därmed vara samma tal som
-`B_coverage_*` bär, vilket ändrar ADR 0008 punkt 5.
+**Två nämnare, inte en.** Flaggorna `B_coverage_*` och `D_coverage_*` bär KRYMPNINGENS nämnare,
+alltså den B och D krymper mot neutral med: 73 för ekonomi och 100 för de sex övriga. Ekonomins 73
+kommer av att två undermått står utanför, eftersom var och en av deras indikatorer är utesluten.
+Den nämnaren står orörd, så betygen står still. Täckningen räknas däremot över hela
+kategorianspråket, så hålet syns i det tal appen visar. Täckning är därmed inte längre samma tal
+som `B_coverage_*` bär, vilket ändrade ADR 0008 punkt 5. Metodrutan namnger varje utesluten
+indikator med sitt skäl, så ett lägre täckningstal inte läses som att underlaget blivit sämre.
 
 **Fönstrets slut mot underlagets slut:** `window_end` är mandatperiodens formella slut, alltså nästa valdag. Det datumet ligger i framtiden tills valet hållits. `window_open` säger att perioden pågår, alltså att betygen för den är preliminära. `data_as_of` är något annat: sista dagen underlaget faktiskt når. Serierna är årsserier, så ett år som fortfarande pågår flyttar inte fram datumet. Det året syns i stället som `latest_observation_year`. De två datumen får aldrig blandas ihop (issue #3).
 

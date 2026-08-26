@@ -7,7 +7,7 @@ seedat in-memory-warehouse för end-to-end). Default-läget är `weighted_submea
 aktiveras via config-override här (byte-identisk med sig själv + antalsbaserad flagga).
 Ekvivalenstesterna räknar cov_B oberoende per cell
 och låser att krympningen är exakt `2.5 + (B_raw - 2.5) * cov_B` (spec §3.3) med D:s
-icke-target-nämnare (spec §3.4). Anti-gaming-testerna låser set-semantiken för |K_s|/|T_s|
+krympningsnämnare (spec §3.4). Anti-gaming-testerna låser set-semantiken för |K_s|/|T_s|
 (dedup inom undermått, bidrag en gång PER undermått — koldioxidskatt-fallet, spec §7).
 """
 
@@ -23,7 +23,7 @@ from pipeline.sources import government
 
 # --- syntetisk fixtur för score.weighted_depth_coverage (spec §3.1/§3.3) --------------
 
-W = {"a": 40.0, "b": 30.0, "c": 20.0, "d": 10.0, "t": 15.0}  # t = target-only (utanför nämnaren)
+W = {"a": 40.0, "b": 30.0, "c": 20.0, "d": 10.0, "t": 15.0}  # t = uteslutet (utanför nämnaren)
 DEN = ("a", "b", "c", "d")  # fast nämnare, totalvikt 100
 CODABLE = {"a": {"x1", "x2", "x3"}, "b": {"y"}, "c": {"z"}, "d": set()}  # d = B-vägg (T_s tom)
 
@@ -64,7 +64,7 @@ def test_wdc_typ_i_flera_undermatt_bidrar_i_varje() -> None:
 def test_wdc_kodad_typ_utanfor_kodbar_mangd_eller_namnare_bidrar_inte() -> None:
     # typ utanför T_s ignoreras (K_s = K ∩ T_s) ...
     assert score.weighted_depth_coverage({"a": {"q"}}, CODABLE, W, DEN) == (0.0, 100.0)
-    # ... och ett fullkodat undermått UTANFÖR nämnaren (target-only, spec §3.6) räknas inte
+    # ... och ett fullkodat undermått UTANFÖR nämnaren (uteslutet, spec §3.6) räknas inte
     codable = dict(CODABLE, t={"tt"})
     assert score.weighted_depth_coverage({"t": {"tt"}}, codable, W, DEN) == (0.0, 100.0)
 
@@ -82,7 +82,7 @@ def test_wdc_monotoni_i_antal_kodade_typer() -> None:
 
 def test_b_och_d_delar_namnarfunktion() -> None:
     """B:s nämnare ÄR D:s — samma funktionsobjekt, ingen duplicerad definition."""
-    assert scorerun._d_denominator_submeasures is scorerun._non_target_submeasures
+    assert scorerun._d_denominator_submeasures is scorerun._non_excluded_submeasures
 
 
 # --- T_s ur liggaren: per undermått, dedup, multi-undermått (spec §3.1, anti-gaming §7) --
@@ -212,7 +212,7 @@ def test_ny_mode_ger_viktad_djuptackning_handraknat(monkeypatch: pytest.MonkeyPa
     m_dem = sc["M"]["demokrati"]
     assert "B_coverage_45/100" in m_dem["flags"]
     assert "B_thin_coverage" in m_dem["flags"]  # 0.45 < thin_coverage_threshold 0.5
-    # ekonomi: target-only (12+15) ur nämnaren -> nämnaren är 73, aldrig '73.0' (LÅST format,
+    # ekonomi: de uteslutna undermåtten (12+15) ur nämnaren -> nämnaren är 73, aldrig '73.0' (LÅST format,
     # spec §4). realloner_hushall (18) tömdes av utlyftet, så S täcker 22+18+15 = 55 av 73.
     s_eco = sc["S"]["ekonomi"]
     assert "B_coverage_55/73" in s_eco["flags"]
@@ -246,7 +246,7 @@ def _independent_cov_b(party: str, cat: str) -> tuple[float, float]:
     weights = scorerun._submeasure_weights()[cat]
     return score.weighted_depth_coverage(
         {s: ts & coded for s, ts in t_by_sub.items()},
-        t_by_sub, weights, scorerun._non_target_submeasures()[cat],
+        t_by_sub, weights, scorerun._non_excluded_submeasures()[cat],
     )
 
 
@@ -283,22 +283,31 @@ def test_formelekvivalens_mellan_moderna(monkeypatch: pytest.MonkeyPatch) -> Non
     con.close()
 
 
-def test_kodad_typ_mot_target_only_undermatt_gatear_pa_cov_b(monkeypatch: pytest.MonkeyPatch) -> None:
-    """Spec §3.6-kantfallet: en kodad typ vars indikator ligger i ett target-only-undermått
+def test_kodad_typ_mot_uteslutet_undermatt_gatear_pa_cov_b(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Spec §3.6-kantfallet: en kodad typ vars indikator ligger i ett uteslutet undermått
     ger b_inputs != tomt men cov_B = 0 -> nya modens gate faller till neutral
-    B_no_party_evidence (legacy hade gett betyg, eftersom cov_den är undermåttsblind)."""
+    B_no_party_evidence (legacy hade gett betyg, eftersom cov_den är undermåttsblind).
+
+    Configen testet bygger är sedan ADR 0011 punkt 7 FÖRBJUDEN: en utesluten indikator får
+    inte bära en evidenspost, och grinden hard-failar i config-valideringen. Grinden prövas
+    först nedan. Beteendet därefter är vad pipen ändå gör, alltså det som håller om någon
+    kör build utan att validera först. Att tyst ignorera var aldrig ett beslut, bara en form.
+    """
     led = copy.deepcopy(config.evidence_ledger())
     led["entries"].append({
-        "category": "ekonomi", "indicator": "inflation",  # target-only-undermåttet
-        "policy_type": "test_targetonly_typ", "direction": "positive",
+        "category": "ekonomi", "indicator": "inflation",  # det uteslutna undermåttet
+        "policy_type": "test_uteslutet_typ", "direction": "positive",
         "evidence_level": "authority_evaluation", "effect_strength": "medium",
         "confidence": "medium", "source": "test",
     })
     pos = copy.deepcopy(config.party_positions())
-    pos["entries"] = [{"party": "S", "policy_type": "test_targetonly_typ",
+    pos["entries"] = [{"party": "S", "policy_type": "test_uteslutet_typ",
                        "stance": "supports", "source": "test"}]
     monkeypatch.setattr(config, "evidence_ledger", lambda: led)
     monkeypatch.setattr(config, "party_positions", lambda: pos)
+
+    with pytest.raises(config.ConfigError, match="inflation"):
+        config.validate()
 
     con = _seed_con()
     _set_mode(monkeypatch, "policy_type_count")

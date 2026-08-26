@@ -1,6 +1,6 @@
 # ADR 0008: Cellens täckning är hur stor del av betyget som är mätt
 
-- Status: accepted
+- Status: accepted, punkt 5 ändrad 2026-08-26 av [ADR 0011](0011-uteslutningen-ar-ett-eget-besked.md)
 - Datum: 2026-08-23
 - Beslutad i: biljett [#12](https://github.com/mcknschn/rosta/issues/12) under karta [#6](https://github.com/mcknschn/rosta/issues/6)
 - Bygger på: [ADR 0002](0002-kategoripoangens-ansprak-och-vikter.md), [ADR 0003](0003-skiljbarhet-och-kanslighetsanalys.md) och [ADR 0004](0004-vad-delpoang-b-mater.md)
@@ -85,6 +85,16 @@ grad över alla signaler, utan en grad över den signal som ännu står oläst.
    till 1,00 eftersom C väger 0, så ingen omnormalisering behövs. Ingen konstant väljs här. Ett
    ovägt medel skulle påstå att A:s täckning betyder lika mycket som B:s, fast A väger 0,30 och B
    0,50, och det motsäger anspråket i punkt 1.
+
+   > **Ändrad 2026-08-26 av [ADR 0011](0011-uteslutningen-ar-ett-eget-besked.md) punkt 9.**
+   > "Kategorins egen nämnare" var samma tal som B och D krymper mot neutral med, alltså 73 för
+   > ekonomi och 100 för de sex övriga, och `B_coverage`-flaggan bar det. Nu är det två tal.
+   > Täckningen räknas över kategorins **fulla** undermåttsvikt, alltså 100 för var och en av de
+   > sju, och ett uteslutet undermått räknas 0 täckt i stället för att strykas ur nämnaren.
+   > Krympningens nämnare står orörd, så inget betyg rör sig. Vikterna, formeln och allt annat i
+   > den här punkten står kvar. Regeln är punkt 4:s egen, tillämpad på ett hål till: en ej
+   > tillämplig D räknas likaså 0 täckt och faller aldrig ur nämnaren. Byggd i biljett
+   > [#34](https://github.com/mcknschn/rosta/issues/34).
 
 6. **Täckningen redovisas som ett tal, utan tröskel.** ADR 0003 punkt 3 avgjorde samma sak för
    andelen metodvarianter: andelen står som den är, så listan och brasklappen slutar säga emot

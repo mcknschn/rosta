@@ -99,8 +99,8 @@ B_evidens:
   #                              innehåll, undermått utan kodbart instrument osynliga). Flagga:
   #                              B_coverage_<num>/<den> (antal).
   #   weighted_submeasure_depth: viktad undermåttsdjuptäckning (spec §3.3). cov_B =
-  #                              Σ w_s·|K_s|/|T_s| / Σ w_s över kategorins icke-target-undermått
-  #                              (SAMMA nämnare som D, _non_target_submeasures); B-väggar stannar
+  #                              Σ w_s·|K_s|/|T_s| / Σ w_s över kategorins icke-uteslutna undermått
+  #                              (SAMMA nämnare som D, _non_excluded_submeasures); B-väggar stannar
   #                              i nämnaren med bidrag 0. Flagga: B_coverage_<covered_weight>/
   #                              <total_weight> (LÅST format, spec §4). thin_coverage_threshold
   #                              mäts då på cov_B.
@@ -114,7 +114,9 @@ B_evidens:
   # ändra det committade värdet är RANKINGRELEVANT och kräver mänsklig sign-off; täcknings-
   # flaggan står kvar i båda lägena eftersom den beskriver täckningen, inte krympningen.
   coverage_shrink: true
-  coverage_denominator: non_target_submeasure_weight  # nämnarens semantik i nya moden (samma som D)
+  # Nämnaren gäller KRYMPNINGEN. Täckningen står sedan ADR 0011 punkt 9 på kategorins FULLA
+  # undermåttsvikt, alltså ett annat tal (scorerun._coverage_denominators).
+  coverage_denominator: non_excluded_submeasure_weight  # krympningens nämnare (samma som D)
   thin_coverage_threshold: 0.5
   # Åtgärdstyper som lyfts ur coverage-nämnaren. GENERALISERAD regel (docs/done/fas4c_rubrik.md §7):
   # en policy_type får exkluderas ENDAST på en principiell grund, som måste anges i
@@ -176,7 +178,8 @@ C_ansvar:
     confidence_penalty_steps: 1            # high->medium->low
 
 # D — Resultat. Förbättrades indikatorerna där partiet hade ansvar?
-# Metod (v0, Fas 5b): för varje nationell årsindikator (up/down; 'target' hoppas över) tar
+# Metod (v0, Fas 5b): för varje nationell årsindikator (up/down; uteslutna indikatorer har
+# ingen riktning och saknar serie, ADR 0011) tar
 # vi TECKNET på den riktningsjusterade årsförändringen (förbättring +1 / försämring -1 /
 # oförändrat 0 inom en relativ dödzon). Varje förändring (år y-1 -> y) tillskrivs regeringen
 # som satt år (y - attribution_lag_years), viktad med dess maktvikt (regering 1.0, stöd 0.5).
@@ -193,14 +196,15 @@ D_resultat:
   min_responsibility: 0.15     # kategorins ansvarsunderlag (Σ maktvikt) under detta -> ej tillämplig
   change_dead_zone: 0.005      # |relativ årsförändring| <= 0.5 % räknas som oförändrad (brus)
   thin_basis_threshold: 1.0    # ansvarsunderlag (Σ maktvikt) under detta -> flagga D_thin_basis
-  # D-undermåttsbredd (docs/done/d_coverage_krympning_spec.md): saknade icke-target-undermått
+  # D-undermåttsbredd (docs/done/d_coverage_krympning_spec.md): saknade icke-uteslutna undermått
   # bidrar neutralt (net 0) i D-rollupen i stället för att renormaliseras bort ur nämnaren —
   # D gör då inget oavkortat kategorianspråk utifrån en delmängd av kategorin. Nämnaren är
-  # viktsumman av kategorins icke-target-undermått (target-only = alla indikatorer 'target');
+  # viktsumman av kategorins icke-uteslutna undermått (uteslutet undermått = alla dess
+  # indikatorer bär ett Uteslutningsskäl);
   # numeratorn är per (parti, kategori) eftersom attribution kan saknas i korta serier.
   # false = legacy-beteende (renormalisering över observerade undermått), byte-identisk baseline.
   coverage_shrink: true
-  coverage_denominator: non_target_submeasure_weight  # dokumenterar nämnarens semantik
+  coverage_denominator: non_excluded_submeasure_weight  # dokumenterar KRYMPNINGENS nämnare
   thin_coverage_threshold: 0.75  # viktad D-täckning under detta -> D_thin_coverage + säkerhetssteg ned
   not_applicable_score: 2.5    # rättvisa: opposition straffas inte för utfall den ej rådde över
   not_applicable_confidence: low   # ej-tillämplig D -> BRED osäkerhet (markeras som flagga i utdata)

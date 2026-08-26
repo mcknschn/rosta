@@ -268,9 +268,14 @@ täckningsmål, och det förbjuder ADR 0006:s godkännandetest av samma skäl.
 
 ## Följder
 
-- **Bygget är en egen slice.** Den rör `config/categories.yaml`, `pipeline/config.py`,
-  `pipeline/scorerun.py`, `pipeline/score.py`, metodrutan i `pipeline/scorerun.py` samt testerna.
-  Ingen omkörning av känslighetsanalysen krävs, eftersom betygen står still.
+- **Bygget är en egen slice. BYGGD 2026-08-26** i biljett
+  [#34](https://github.com/mcknschn/rosta/issues/34). Den rörde `config/categories.yaml`,
+  `pipeline/config.py`, `pipeline/scorerun.py`, `pipeline/score.py`, metodrutan i
+  `pipeline/scorerun.py` samt testerna. Uteslutningsskälet står i fältet `exclusion` och
+  återöppningsvillkoret i `reopen_if`. `dist/scores.json` ändrades i exakt ett fält: ekonomins
+  `coverage`, 0,877 till 0,721 för sju partier och 0,677 till 0,575 för V. `score`, `ci`,
+  `components`, `confidence` och `flags` stod still i alla 56 celler, och rangordningen med dem.
+  Ingen omkörning av känslighetsanalysen krävdes, eftersom betygen står still.
 - **ADR 0008 punkt 5 ändras** enligt beslutspunkt 9. Ändringen skrivs in när slicen byggs.
 - **Ordlistan §4.3 får Uteslutningsskäl** med tre värden, och rad 3b tappar `target`.
 - **`DATA.md` och `IDEA.md` ändras.** `DATA.md` beskriver i dag `target` som "hoppas över, saknar
@@ -279,6 +284,6 @@ täckningsmål, och det förbjuder ADR 0006:s godkännandetest av samma skäl.
 - **[#4](https://github.com/mcknschn/rosta/issues/4) är avblockerad.** Regeln är låst, och
   genomgången kan börja. En upplysning till den biljetten: den säger 52 indikatorer, men configen
   har 68. Mastertabellen i §4.3 är från 2026-06-06 och har inte följt med D-svepen.
-- **Ingen kod och ingen config ändras i det här ärendet.** Rangordningen är oförändrad tills slicen
-  körs.
+- **Ingen kod och ingen config ändrades i BESLUTSärendet (#13).** Rangordningen var oförändrad
+  tills slicen kördes, och den stod still också då.
 - **Ändrat i det här ärendet:** den här ADR:n, ordlistan §4.3, `DATA.md` och `IDEA.md`.

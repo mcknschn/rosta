@@ -10,7 +10,7 @@ config/materielleveransutfall.yaml — samma mönster som effektbrist/personal_v
 (källrad per värde, maskinverifierade ur original-PDF:erna med PyMuPDF, ingen runtime-PDF-parser
 som kan korrumpera D tyst). v0-caveats (självreferentiell måttstock/FMV-överplanering 2025,
 kalenderårskänslighet, viktningsbas-skifte 2022->2023, endast ap. 1:3.1 — Ukraina-donationer
-ingår ej) dokumenterade i configen; öppnar försvarets sista D-tomma icke-target-undermått.
+ingår ej) dokumenterade i configen; öppnar försvarets sista D-tomma icke-uteslutna undermått.
 Den här modulen läser bara config -> observations (nätverksfri, golden-testbar).
 """
 

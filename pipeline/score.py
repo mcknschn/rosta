@@ -191,7 +191,7 @@ def weighted_depth_coverage(
     mot T_s — typer utanför den kodbara mängden kan aldrig bidra). Undermått utan kodbar
     typ (T_s = ∅, B-vägg) bidrar 0 i täljaren men behåller sin vikt i nämnaren: B vet
     faktiskt ingenting om den delen av kategorianspråket. Undermått utanför nämnaren
-    (target-only) ignoreras helt, även om de har kodade typer (spec §3.6). Mängdsemantiken
+    (helt uteslutna, ADR 0011) ignoreras helt, även om de har kodade typer (spec §3.6). Mängdsemantiken
     gör måttet dedup-säkert: dubblerade liggarposter inom samma undermått ändrar varken
     |T_s| eller |K_s| (spec §7, anti-gaming).
     """
@@ -261,8 +261,11 @@ def relative_change(v_prev: float, v: float) -> float | None:
 def direction_adjusted_change(v_prev: float, v: float, direction: str) -> float | None:
     """Relativ förändring justerad för indikatorns positiva riktning.
 
-    Positivt = förbättring oavsett om indikatorn ska upp eller ned. 'target'-indikatorer
-    saknar definierad målnivå och returnerar None (kan inte poängsättas som förbättring).
+    Positivt = förbättring oavsett om indikatorn ska upp eller ned. Riktningen håller bara
+    upp och ned (ADR 0011 punkt 3); ett tredje värde är ett fel i configen och hard-failar
+    här i stället för att tyst ge None. En UTESLUTEN indikator når aldrig funktionen: den
+    har ingen riktning, står därför inte i scorerun._indicator_meta, och har ingen serie
+    att attribuera.
     """
     rc = relative_change(v_prev, v)
     if rc is None:
@@ -271,7 +274,7 @@ def direction_adjusted_change(v_prev: float, v: float, direction: str) -> float 
         return rc
     if direction == "down":
         return -rc
-    return None  # target: ingen mållnivå -> ej poängsättbar i D
+    raise ValueError(f"Okänd riktning {direction!r} (tillåtna: up, down)")
 
 
 def change_sign(adjusted: float, dead_zone: float) -> int:
@@ -344,7 +347,7 @@ def attribute_series(
     En förändring mellan konsekutiva år (y-1 -> y) tillskrivs regeringen som satt år
     (y - lag), viktad med dess maktvikt. Returnerar (net i [-1,1] eller None om partiet
     saknar ansvarsunderlag, total_ansvarsvikt). Bara konsekutiva år används (ingen
-    interpolation), och target-indikatorer ger None.
+    interpolation).
     """
     years = sorted(series)
     num = 0.0

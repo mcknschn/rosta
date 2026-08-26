@@ -5,7 +5,8 @@
 # Invariant (tests/test_fas3_gate.py): varje indikator är ANTINGEN inläst (build_fas2 SCB/Kolada/Brå)
 # ELLER med här. Listan krymper när nya källor tillkommer (flytta indikatorn ur allowlist då).
 #
-# Skälkategorier: target (ej D-duglig, ingen riktning up/down) · derived (kräver flera serier/
+# Skälkategorier: excluded (utesluten indikator, ADR 0011 — ingen riktning, alltså ej D-duglig)
+# · derived (kräver flera serier/
 # beräkning som loadern ej stöder) · no_api (officiell/akademisk källa utan maskinläsbar serie)
 # · international (ej officiell svensk källa, otillåtet enligt CLAUDE.md) · qualitative
 # (saknar kvantitativ officiell mätserie) · future (källa finns men adaptern är inte byggd än)
@@ -24,8 +25,8 @@ allowlist:
   # huvudserie; KPIF ger mildare 2022-23-fall men samma TECKEN) dokumenterat i adaptern; 2025
   # preliminär tills KLS definitiv. Submåttet hade redan D via hushallens_reala_disponibla_inkomst —
   # serierna är korrelerade (medveten dubbelbreddning inom undermåttet, noteras). v0, FLAGGAD.
-  - { category: ekonomi, indicator: inflation,            reason: "target: nära mål (~2 %), ej up/down -> ej D-duglig (kvarstår för B/visning)." }
-  - { category: ekonomi, indicator: statsskuld_underskott, reason: "target: hållbar nivå, ej up/down -> ej D-duglig." }
+  - { category: ekonomi, indicator: inflation,            reason: "excluded: UTESLUTEN 2026-08-26 (ADR 0011, giltighetsfel) -> ingen riktning, alltså ej D-duglig. Kvarstår i categories.yaml för att kategorianspråket ska synas." }
+  - { category: ekonomi, indicator: statsskuld_underskott, reason: "excluded: UTESLUTEN 2026-08-26 (ADR 0011, neutralitetsfel) -> ingen riktning, alltså ej D-duglig." }
   # --- valfard ---
   - { category: valfard, indicator: vard_i_tid,                reason: "low_value: Kolada U79142 (vårdgaranti-index) finns men avslutades 2023 OCH dubblerar vard_tillganglighet-submåttet som vardkoer redan täcker. Lågt mervärde." }
   # overlevnad_svar_sjukdom inläst via Kolada U70471 (30-dagarsöverlevnad efter akut tjocktarmscancer-
@@ -52,7 +53,7 @@ allowlist:
   # session). Det tidigare allowlist-skälet gällde BRÅS PDF-statistik; Kriminalvårdens KOS-tabell
   # ger i stället antal klienter + antal återfall per ingångsår -> exakt andel (down). Öppnade aterfall_kriminalvard.
   # --- forsvar (till stor del kvalitativt/sekretess) ---
-  - { category: forsvar, indicator: forsvarsanslag_andel_bnp, reason: "target: upp till beslutad målnivå, ej up/down -> ej D-duglig." }
+  - { category: forsvar, indicator: forsvarsanslag_andel_bnp, reason: "excluded: UTESLUTEN 2026-08-26 (ADR 0011, gransfel) -> ingen riktning, alltså ej D-duglig. Anslagets storlek är delpoäng A:s fråga." }
   # personal_varnpliktiga inläst via Försvarsmaktens årsredovisning (antal som påbörjade GU per
   # kalenderår 2018-2025, transkriberad config/personal_varnpliktiga.yaml, korsverifierad mot
   # Pliktverkets inskrivna) -> ej allowlistad fr.o.m. 2026-06-07 (Spår D Tier 4). FÖRSVARETS FÖRSTA D.
@@ -75,7 +76,7 @@ allowlist:
   # config/materielleveransutfall.yaml) -> ÖPPNADE genomforbarhet_leverans fr.o.m. 2026-06-12
   # (H6-sonderingsmandat). försvar 3/5 -> 4/5 submått med D; D-bredd 70 -> 75/100.
   - { category: forsvar, indicator: leveranstid_materiel,     reason: "qualitative: sekretess, ingen öppen serie. (Submåttet genomforbarhet_leverans D-täckt via syskonindikatorn materielleveransutfall (FMV leveransindex ap. 1:3.1) fr.o.m. 2026-06-12 — denna förblir vilande B-utvidgningskandidat, annat mått/annan riktning.)" }
-  - { category: forsvar, indicator: forsvarsfinansiering_upptrappning_mot_mal, reason: "B-only: ny B-indikator 2026-06-07 (§5.7, åtagande om finansieringsupptrappning mot beslutad målnivå). Inriktnings-/åtagandemått, ej utfallsårsserie (target-syskonet forsvarsanslag_andel_bnp är likaså D-otäckt). version 0, sign-off." }
+  - { category: forsvar, indicator: forsvarsfinansiering_upptrappning_mot_mal, reason: "B-only: ny B-indikator 2026-06-07 (§5.7, åtagande om finansieringsupptrappning mot beslutad målnivå). Inriktnings-/åtagandemått, ej utfallsårsserie (det uteslutna syskonet forsvarsanslag_andel_bnp är likaså D-otäckt). version 0, sign-off." }
   # --- klimat (territoriella + konsumtionsbaserade + fossil energianvändning inlästa) ---
   # fossil_energianvandning inläst via Energimyndigheten EN0202_8 (build_fas3) -> ej längre allowlistad.
   # elprisvolatilitet inläst via Energimyndigheten Energiindikatorer 12.5 EN_IND12-5A (spotpris
@@ -133,7 +134,7 @@ b_near_binary_accepted:
   # ekonomi LÖST 2026-06-05 (B2): fou_avdrag_skatteincitament -> produktivitet (submått
   # bnp_produktivitet) tillagd -> ekonomi 1/5 -> 2/5, ej längre nära-binär. Posten borttagen
   # (grinden test_b_near_binary_allowlist_shrinks kräver att inaktuella poster tas bort).
-  # Kvar för ekonomi: realloner_hushall (target-submåtten inflation/offentliga finanser tar
+  # Kvar för ekonomi: realloner_hushall (de uteslutna undermåtten inflation/offentliga finanser tar
   # inget riktat B-bidrag och är inte nära-binär-blockerare).
   # demokrati LÖST 2026-06-05 (B2): grundlagsskydd_domstolarnas_oberoende -> otillborlig_politisering
   # (submått rattsstat_maktdelning) tillagd via votering bet. 2025/26:KU2 -> demokrati 1/5 -> 2/5,
@@ -146,7 +147,7 @@ b_near_binary_accepted:
 # ---------------------------------------------------------------------------------------------------
 # D-BREDD — kategorier under thin_coverage_threshold (docs/done/d_coverage_krympning_spec.md)
 # ---------------------------------------------------------------------------------------------------
-# Kategorier vars viktade D-undermåttsbredd (icke-target-undermått med D-duglig serie) ligger under
+# Kategorier vars viktade D-undermåttsbredd (icke-uteslutna undermått med D-duglig serie) ligger under
 # scoring.D_resultat.thin_coverage_threshold. Sådana celler får D_thin_coverage + sänkt säkerhet i
 # scores.json; här listas de EXPLICIT med skäl så tunn D-bredd aldrig passerar tyst.
 # Invariant (tests/test_d_breadth_gate.py, mätare pipeline.tools.coverage_report.d_submeasure_breadth):
@@ -158,13 +159,13 @@ d_thin_breadth_accepted:
   # nato_ukraina 15 + genomforbarhet_leverans 5) = tröskeln 0.75 passerad (grinden
   # test_d_thin_allowlist_shrinks kräver att inaktuella poster tas bort). Kvarvarande otäckt:
   # ekonomisk_ambition 25 (forsvarsfinansiering_upptrappning_mot_mal B-only,
-  # forsvarsanslag_andel_bnp target — utanför D per design).
+  # forsvarsanslag_andel_bnp utesluten — utanför D per design).
   []
 
 # ---------------------------------------------------------------------------------------------------
 # B-BREDD — kategorier vars viktade cov_B-TAK ligger under grindtröskeln (B5, docs/done/b_coverage_krympning_spec.md §6.4)
 # ---------------------------------------------------------------------------------------------------
-# Taket = viktad andel icke-target-undermått med >=1 kodbar åtgärdstyp (mätare
+# Taket = viktad andel icke-uteslutna undermått med >=1 kodbar åtgärdstyp (mätare
 # pipeline.tools.coverage_report.b_submeasure_breadth, samma nämnare som D) — det värde
 # per-parti-cov_B aldrig kan överstiga ens vid full kodning. B-väggar sänker taket permanent
 # tills de byggs bort (Spår B/B2); här listas kategorier under grindtröskeln (0.75) EXPLICIT

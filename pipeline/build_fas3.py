@@ -194,7 +194,7 @@ def main() -> None:
 
     # FMV: leveransindex ap. 1:3.1 (forsvar, delpoäng D) — transkriberad config
     # (config/materielleveransutfall.yaml, FMV ÅR 2021-2025, maskinverifierad PyMuPDF). Öppnar
-    # submåttet genomforbarhet_leverans (försvarets sista D-tomma icke-target-undermått ->
+    # submåttet genomforbarhet_leverans (försvarets sista D-tomma icke-uteslutna undermått ->
     # D-bredd 70->75/100, forsvar ur d_thin_breadth_accepted). Serien börjar 2021 (FMV: 2020-
     # explicit ojämförbara). v0-caveats (FMV:s egen leveransplan som måttstock/överplanering
     # 2025, kalenderårskänslighet, viktningsbas-skifte, endast ap. 1:3.1) i configen. v0,
@@ -322,7 +322,7 @@ def main() -> None:
     print("   forsvar: personal_varnpliktiga + personalstyrka_kontinuerligt (FM ÅR) + ukraina_stod")
     print("       + forsvarsvilja (MPF Opinioner -> civil_beredskap) + materielleveransutfall")
     print("       (FMV leveransindex -> genomforbarhet_leverans) matar D; materiel_formaga m.fl.")
-    print("       kvalitativa/sekretess (allowlistade). 4/5 submått med D (ekon_ambition target/B-only).")
+    print("       kvalitativa/sekretess (allowlistade). 4/5 submått med D (ekon_ambition utesluten/B-only).")
     print("   trygghet: aterfall_i_brott (Kriminalvården KOS) + handlaggningstid (Domstolsverket")
     print("       DOMstat 01_Verksamhetsmal_TR) matar nu D.")
     print("   klimat: hackande_faglar_skog (Svensk Fågeltaxering) matar nu biologisk_mangfald-D.")

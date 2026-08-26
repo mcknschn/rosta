@@ -14,11 +14,17 @@ from . import config
 
 
 def _expected_directions() -> dict[tuple[str, str], str]:
-    """(kategori, indikator) -> riktning (up/down/target) ur categories.yaml."""
+    """(kategori, indikator) -> riktning (up/down) ur categories.yaml.
+
+    Uteslutna indikatorer (ADR 0011) har ingen riktning och står inte här. De kan ändå
+    aldrig nå hit: config.validate hard-failar på en evidenspost mot en utesluten indikator
+    (ADR 0011 punkt 7), så det finns inga claims att gruppera.
+    """
     out: dict[tuple[str, str], str] = {}
     for cat in config.categories()["categories"]:
         for ind in cat.get("indicators", []):
-            out[(cat["id"], ind["id"])] = ind["direction"]
+            if "direction" in ind:
+                out[(cat["id"], ind["id"])] = ind["direction"]
     return out
 
 

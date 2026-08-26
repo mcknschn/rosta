@@ -3,12 +3,21 @@
 # Detta är den auktoritativa kodifieringen av modellen i IDEA.md:
 #   - 7 huvudkategorier med standardvikt (väljaren kan ändra vikterna vid körning)
 #   - submått per kategori med vikt inom kategorin (summerar till 100)
-#   - indikatorer med positiv riktning (up | down | target)
+#   - indikatorer med positiv riktning (up | down) ELLER ett uteslutningsskäl
 #
-# Riktning:
+# Riktning (direction):
 #   up     = högre värde är bättre
 #   down   = lägre värde är bättre
-#   target = bäst nära en målnivå, inte extremvärde (se note)
+#
+# Uteslutningsskäl (exclusion) — ADR 0011. Indikatorn poängsätts inte, och värdet namnger
+# vilket prov den föll på. Fältet är sitt eget skäl: finns det är indikatorn utesluten.
+#   gransfel        = frågan ägs redan av en annan delpoäng (ADR 0001)
+#   giltighetsfel   = utfallet kan inte tillskrivas ett parti (ADR 0009)
+#   neutralitetsfel = det bättre hållet går inte att ange utan att ta ett partis parti
+#
+# En indikator bär ANTINGEN direction ELLER exclusion, aldrig båda och aldrig ingetdera.
+# Varje utesluten indikator bär dessutom reopen_if: villkoret som fäller uteslutningen,
+# skrivet så att det går att pröva (ADR 0011 punkt 8).
 #
 # Standardvikterna summerar till 100. Submåttsvikterna summerar till 100 per kategori.
 # Testas i tests/test_config.py.
@@ -47,8 +56,9 @@ categories:
     submeasures:
       # Omviktade 2026-06-05 (B2): nytt submått foretagande_investeringar tillagt (vikt 15);
       # de täckta submåttens inbördes balans (jobb/produktivitet/investeringar) = 22/18/15.
-      # inflation + offentliga finanser (target-indikatorer, ej B-/D-bara) trimmade — de är
-      # vilande i betygsräkningen (renormaliseras bort) så trimningen påverkar inte betygen.
+      # inflation + offentliga finanser trimmade. Deras indikatorer är UTESLUTNA (ADR 0011),
+      # så undermåtten ligger utanför krympningens nämnare och trimningen rör inga betyg.
+      # Täckningen räknar dem däremot 0 täckt på kategorins fulla vikt (ADR 0011 punkt 9).
       - { id: sysselsattning_arbetsloshet, name: Sysselsättning och arbetslöshet, weight: 22 }
       - { id: bnp_produktivitet,           name: BNP per capita och produktivitet, weight: 18 }
       - { id: realloner_hushall,           name: Reallöner och hushållens ekonomi, weight: 18 }
@@ -63,8 +73,12 @@ categories:
       - { id: realloner,            submeasure: realloner_hushall, direction: up }
       - { id: hushallens_reala_disponibla_inkomst, submeasure: realloner_hushall, direction: up, note: "Hushållens reala disponibla inkomst/köpkraft (SCB NR). B-indikator (partistyrbar via skatt på arbete + transfereringar; realloner är vilande kontext) OCH D-indikator fr.o.m. 2026-06-07 (Spår D Tier 1, v0): kumulativt realindex ur SCB:s officiella reala tillväxttakt (TAB4592 B6nRealGrowth, S14), pipeline.derived. Konjunktur-/räntekänslig → D tar bara TECKEN, väger 20 %, makt-/ansvarsviktas." }
       - { id: naringslivets_investeringar, submeasure: foretagande_investeringar, direction: up, note: "Näringslivets fasta bruttoinvesteringar i fasta priser (SCB NR TAB3610, Anvandningstyp=BNAR). B-indikator (företags-/ägarbeskattning → investeringar) OCH D-indikator fr.o.m. 2026-06-07 (Spår D Tier 1, v0). Konjunkturkänslig → D tar bara TECKEN (ej magnitud), väger 20 %, makt-/ansvarsviktas (jfr ekonomi-caveat)." }
-      - { id: inflation,            submeasure: inflation_prisstabilitet, direction: target, note: "Nära målet (~2 %), inte bara lägst" }
-      - { id: statsskuld_underskott, submeasure: offentliga_finanser, direction: target, note: "Hållbar nivå" }
+      - { id: inflation,            submeasure: inflation_prisstabilitet, exclusion: giltighetsfel,
+          note: "UTESLUTEN 2026-08-26 (ADR 0011 punkt 6, steg 2 giltighetsprovet): penningpolitiken är Riksbankens under eget lagmandat, så utfallet kan inte tillskrivas ett riksdagsparti. Indikatorn klarar riktningsprovet, alltså Riksbankens beslutade mål på 2 procent som inget parti driver bort ifrån, men steg 2 fäller före steg 3. Behålls i configen för att kategorianspråket ska synas; undermåttet räknas 0 täckt (ADR 0011 punkt 9).",
+          reopen_if: "Riksdagen tar över prisstabilitetsmålet eller mandatet ur Riksbanken. Prövas mot lagen (2022:1568) om Sveriges riksbank 1 kap.: flyttas målnivån till ett riksdagsbeslut per mandatperiod är utfallet partistyrbart, och indikatorn faller vidare till steg 3." }
+      - { id: statsskuld_underskott, submeasure: offentliga_finanser, exclusion: neutralitetsfel,
+          note: "UTESLUTEN 2026-08-26 (ADR 0011 punkt 6, steg 3 riktningsprovet): preferensen är enkeltoppig och den bättre nivån är skuldankaret, men nivån är i sig en partiståndpunkt. En riktning skulle privilegiera åtstramning. Dubbelräkningsdelen av den gamla invändningen har fallit av sig själv: C:s finansieringskomponent c2 är parkerad och C väger 0 (ADR 0002). Undermåttet räknas 0 täckt (ADR 0011 punkt 9).",
+          reopen_if: "Skuldankaret och överskottsmålet slutar vara omtvistade. Prövas mot Finanspolitiska rådets årsrapport: driver inget riksdagsparti en annan nivå än den beslutade, går det bättre hållet att ange utan att ta ett partis parti." }
 
   - id: valfard
     name: Välfärd
@@ -121,8 +135,10 @@ categories:
       - { id: nato_ukraina,             name: "Nato, Ukraina och internationell trovärdighet", weight: 15 }
       - { id: genomforbarhet_leverans,  name: Genomförbarhet och leveranstakt, weight: 5 }
     indicators:
-      - { id: forsvarsanslag_andel_bnp, submeasure: ekonomisk_ambition, direction: target, note: "Upp till beslutad målnivå" }
-      - { id: forsvarsfinansiering_upptrappning_mot_mal, submeasure: ekonomisk_ambition, direction: up, note: "Åtagande att trappa upp försvarsanslagen mot den AV RIKSDAGEN BESLUTADE målnivån (Försvarsberedningens planeringsram → 2 % av BNP fr.o.m. 2028). Mäter finansierings-AMBITIONEN (åtagande om upptrappning mot beslutad nivå), EJ 'mer pengar alltid bättre', EJ anslagets magnitud (delpoäng A/a1) och EJ materiel/personal (militar_formaga). Target-indikatorn forsvarsanslag_andel_bnp behålls som kontext. Ny indikator 2026-06-07 (§5.7), version 0, sign-off." }
+      - { id: forsvarsanslag_andel_bnp, submeasure: ekonomisk_ambition, exclusion: gransfel,
+          note: "UTESLUTEN 2026-08-26 (ADR 0011 punkt 6, steg 1 gränsprovet): talet är anslagets storlek, och hur mycket kraft ett parti lägger på försvar är delpoäng A:s fråga, mätt som andel av föreslagna anslag (ADR 0001). Liggarens FöU2-not sade redan detta: EJ budgetmagnitud, behålls som kontext. Syskonindikatorn forsvarsfinansiering_upptrappning_mot_mal bär ekonomisk_ambition på B-sidan, så undermåttet ligger kvar innanför krympningens nämnare.",
+          reopen_if: "A slutar mäta försvarsanslagens andel av partiets föreslagna ramar. Prövas mot config/budget_ramar.yaml: saknar forsvar en utgiftsområdesram i a1, äger A inte längre frågan, och indikatorn faller vidare till steg 2." }
+      - { id: forsvarsfinansiering_upptrappning_mot_mal, submeasure: ekonomisk_ambition, direction: up, note: "Åtagande att trappa upp försvarsanslagen mot den AV RIKSDAGEN BESLUTADE målnivån (Försvarsberedningens planeringsram → 2 % av BNP fr.o.m. 2028). Mäter finansierings-AMBITIONEN (åtagande om upptrappning mot beslutad nivå), EJ 'mer pengar alltid bättre', EJ anslagets magnitud (delpoäng A/a1) och EJ materiel/personal (militar_formaga). Den uteslutna indikatorn forsvarsanslag_andel_bnp behålls som kontext (ADR 0011: gransfel). Ny indikator 2026-06-07 (§5.7), version 0, sign-off." }
       - { id: personal_varnpliktiga,    submeasure: militar_formaga, direction: up, note: "Om utbildningskapacitet finns" }
       - { id: personalstyrka_kontinuerligt, submeasure: militar_formaga, direction: up, note: "Antal kontinuerligt tjänstgörande i Försvarsmakten (yrkesofficerare + GSS/K + civila), Personalberättelsens Tabell 1 i FM:s årsredovisning. D-indikator fr.o.m. 2026-06-12 (Spår D försvar, v0): stående personalvolym = faktisk bemannad numerär (utfall av förmågeuppbyggnaden), distinkt från personal_varnpliktiga (rekryteringsbas). 2019-2024 (6 år, strikt monoton 22751→27734). Riktning up. Hammare-test: bemannad numerär, ej pengar/anslag (A:s domän). 2021 reviderad +720 (felsummering i ÅR 2021, rättad i ÅR 2022). v0, sign-off." }
       - { id: materiel_formaga,         submeasure: militar_formaga, direction: up, note: "Ammunition, luftvärn, logistik, cyberförmåga" }

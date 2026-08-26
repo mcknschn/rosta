@@ -300,10 +300,18 @@ def _subnational_annual_series(
 
 
 def _indicator_meta() -> dict[tuple[str, str], tuple[str, str]]:
-    """(kategori, indikator) -> (submått, riktning) ur categories.yaml."""
+    """(kategori, indikator) -> (submått, riktning) ur categories.yaml.
+
+    UTESLUTNA indikatorer (ADR 0011) står inte här. De har ingen Riktning, alltså inget
+    bättre håll att mäta en årsförändring mot, så D kan inte attribuera dem. Att utelämna
+    dem här är samma sak som att utelämna en okänd indikator: attributionsslingorna hoppar
+    över serier de inte har meta för.
+    """
     out: dict[tuple[str, str], tuple[str, str]] = {}
     for cat in config.categories()["categories"]:
         for ind in cat.get("indicators", []):
+            if "direction" not in ind:
+                continue
             out[(cat["id"], ind["id"])] = (ind["submeasure"], ind["direction"])
     return out
 
@@ -316,28 +324,83 @@ def _submeasure_weights() -> dict[str, dict[str, float]]:
     }
 
 
-def _non_target_submeasures() -> dict[str, set[str]]:
-    """kategori -> icke-target-undermått (täckningsnämnaren som B och D DELAR,
-    spec docs/done/d_coverage_krympning_spec.md §3.1 / docs/done/b_coverage_krympning_spec.md §3.4).
+def _non_excluded_submeasures() -> dict[str, set[str]]:
+    """kategori -> icke-uteslutna undermått: KRYMPNINGENS nämnare, som B och D DELAR
+    (spec docs/done/d_coverage_krympning_spec.md §3.1 / docs/done/b_coverage_krympning_spec.md §3.4).
 
-    Target-only = undermåttet har minst en indikator OCH alla dess indikatorer har
-    direction 'target'. Undermått UTAN indikatorer är inte target-only — de är en del av
-    kategorianspråket och ingår i nämnaren (t.ex. klimats industriell_konkurrenskraft).
+    Uteslutet undermått = undermåttet har minst en indikator OCH alla dess indikatorer bär
+    ett Uteslutningsskäl (ADR 0011). Undermått UTAN indikatorer är inte uteslutna — de är en
+    del av kategorianspråket och ingår i nämnaren (t.ex. klimats industriell_konkurrenskraft).
+
+    Det här är INTE täckningens nämnare. Krympningen mot neutral betyder "vet ej", och den
+    behåller sin nämnare (ADR 0011 punkt 9). Täckningen räknas på kategorins FULLA
+    undermåttsvikt, se _coverage_denominators.
     """
     out: dict[str, set[str]] = {}
     for cat in config.categories()["categories"]:
-        dirs: dict[str, list[str]] = {s["id"]: [] for s in cat["submeasures"]}
+        excl: dict[str, list[bool]] = {s["id"]: [] for s in cat["submeasures"]}
         for ind in cat.get("indicators", []):
-            dirs[ind["submeasure"]].append(ind["direction"])
-        out[cat["id"]] = {
-            sid for sid, ds in dirs.items() if not (ds and all(d == "target" for d in ds))
-        }
+            excl[ind["submeasure"]].append("exclusion" in ind)
+        out[cat["id"]] = {sid for sid, es in excl.items() if not (es and all(es))}
     return out
 
 
 # B och D ska bevisligen dela nämnardefinition, inte duplicera den (B5-spec §6.2).
 # Aliaset behåller D-namnet för D-anrop/tester; tests/test_b_coverage_mode.py låser identiteten.
-_d_denominator_submeasures = _non_target_submeasures
+_d_denominator_submeasures = _non_excluded_submeasures
+
+
+def _coverage_denominators() -> dict[str, float]:
+    """kategori -> kategorins FULLA undermåttsvikt, alltså TÄCKNINGENS nämnare (ADR 0011 punkt 9).
+
+    Skild från krympningens nämnare (_non_excluded_submeasures) sedan ADR 0011. Ett uteslutet
+    undermått räknas 0 täckt i stället för att strykas ur nämnaren, så hålet syns i det tal
+    appen visar. Regeln är ADR 0008 punkt 4:s egen, tillämpad på ett hål till: en ej
+    tillämplig D räknas likaså 0 täckt och faller aldrig ur nämnaren.
+
+    Att i stället flytta den DELADE nämnaren hit skulle krympa B och D mot neutral för
+    uteslutna undermått, alltså flytta betygen. Krympningen betyder "vet ej", och ett
+    uteslutet undermått är inte "vet ej" utan "går inte att fråga" (ADR 0011 punkt 9).
+    """
+    return {c: sum(w.values()) for c, w in _submeasure_weights().items()}
+
+
+def _exclusion_sentence() -> str:
+    """Metodrutans rad om de uteslutna indikatorerna (ADR 0011 punkt 10).
+
+    Ekonomins redovisade täckning sjunker synligt av att uteslutna undermått räknas 0 täckta,
+    och ett sjunkande tal utan förklaring inbjuder till slutsatsen att ekonomidata blivit
+    sämre. Ett samlingsord räcker inte: hela beslutet är att de tre felen är olika, så varje
+    indikator namnges med sitt eget skäl.
+    """
+    excluded = config.excluded_indicators()
+    if not excluded:
+        return ""
+    n_ind = sum(len(c.get("indicators", [])) for c in config.categories()["categories"])
+    # Vilka undermått som faktiskt förlorar sin täckning: de vars VARJE indikator är utesluten.
+    # De övriga bärs upp av en syskonindikator med riktning och rör sig inte.
+    sub_w = _submeasure_weights()
+    kvar = _non_excluded_submeasures()
+    helt = sorted(
+        f"{c}/{s}" for c, w in sub_w.items() for s in w if s not in kvar[c]
+    )
+    utesluten_lista = ", ".join(helt) if helt else "inget undermått i dag"
+    poster = "; ".join(
+        f"{cat}/{ind} ({reason}, alltså {config.EXCLUSION_REASONS[reason]})"
+        for (cat, ind), reason in sorted(excluded.items())
+    )
+    return (
+        f"UTESLUTNA INDIKATORER (ADR 0011): {len(excluded)} av {n_ind} indikatorer poängsätts "
+        "inte. Varje indikator prövas i tre steg, och det första steg som fäller den ger dess "
+        "uteslutningsskäl: gränsprovet, giltighetsprovet och riktningsprovet. De uteslutna är "
+        f"{poster}. Där ALLA indikatorer i ett undermått är uteslutna räknas undermåttets vikt "
+        "0 TÄCKT i stället för att strykas ur täckningens nämnare, så hålet syns i talet. Det "
+        f"gäller {utesluten_lista}. Bär undermåttet en syskonindikator med riktning står det kvar "
+        "som förut, alltså ekonomisk_ambition i forsvar. Ekonomins redovisade täckning är därför "
+        "lägre än före 2026-08-26, utan att något underlag blivit sämre. Krympningen mot "
+        "neutral behåller sin egen nämnare, så inget betyg rör sig. Varje utesluten indikator "
+        "bär ett återöppningsvillkor i config/categories.yaml. "
+    )
 
 
 def _b_codable_types_by_submeasure() -> dict[str, dict[str, set[str]]]:
@@ -379,8 +442,8 @@ class DCell(NamedTuple):
     score: float
     measured: bool
     thin_basis: bool        # kombinerat ansvarsunderlag (nat + region år-ekv.) under thin_basis_threshold
-    covered_weight: float   # Σ vikt för icke-target-undermått med faktiskt D-underlag för partiet
-    total_weight: float     # Σ vikt för kategorins icke-target-undermått (nämnaren)
+    covered_weight: float   # Σ vikt för icke-uteslutna undermått med D-underlag för partiet
+    total_weight: float     # Σ vikt för kategorins icke-uteslutna undermått (KRYMPNINGENS nämnare)
     thin_coverage: bool     # viktad täckning under thin_coverage_threshold
     subnational_used: bool  # C3: subnationell (region) attribution bidrog till cellen
     region_basis: float     # C3: regionalt ansvarsunderlag, ÅR-EKVIVALENT (Σ power / antal regioner)
@@ -396,7 +459,7 @@ def category_d(con: object, parties: list[str], cats: list[str]) -> dict[tuple[s
 
     D-bredd (coverage_shrink, spec docs/done/d_coverage_krympning_spec.md): D mäter kategorins
     utfall, inte bara de undermått som råkar ha en serie. Med coverage_shrink aktiv bidrar
-    saknade icke-target-undermått neutralt (net 0) i en FAST nämnare i stället för att
+    saknade icke-uteslutna undermått neutralt (net 0) i en FAST nämnare i stället för att
     renormaliseras bort. Numeratorn är per (parti, kategori): korta serier/glapp kan göra
     att ett parti saknar attribution i en serie andra partier täcks av. Gaten använder
     fortsatt det renormaliserade nätet — saknad bredd ska inte göra en tom kategori measured.
@@ -786,7 +849,7 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
     # B5 (docs/done/b_coverage_krympning_spec.md): täckningsmått-läge. policy_type_count = legacy
     # (byte-identisk baseline, antal kodade åtgärdstyper / kategorins kodbara). weighted_
     # submeasure_depth = viktad undermåttsdjuptäckning cov_B = Σ w_s·|K_s|/|T_s| / Σ w_s
-    # över kategorins icke-target-undermått (SAMMA nämnare som D). Okänt läge hard-failar —
+    # över kategorins icke-uteslutna undermått (SAMMA nämnare som D). Okänt läge hard-failar —
     # aldrig tyst fallback till legacy (spec §7).
     b_mode = b_evidens.get("coverage_mode", "policy_type_count")
     if b_mode not in ("policy_type_count", "weighted_submeasure_depth"):
@@ -795,7 +858,8 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
             "(tillåtna: policy_type_count, weighted_submeasure_depth)"
         )
     b_codable = _b_codable_types_by_submeasure()  # kategori -> {undermått -> T_s}
-    b_nontarget = _non_target_submeasures()       # delad B/D-nämnare (icke-target)
+    b_shrink_den = _non_excluded_submeasures()    # delad B/D-nämnare för KRYMPNINGEN
+    cov_den_w = _coverage_denominators()          # kategorins FULLA vikt: TÄCKNINGENS nämnare
 
     # Claims (provenance för evidence.json) + index. Sorteras på id så provenansen (claim_refs,
     # särskilt obs_by_cat[:3]-urvalet) blir REPRODUCERBAR — claims byggs annars i hash-randomiserad
@@ -820,22 +884,29 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
             # B: partikopplad evidens, coverage-viktad krympning mot neutral (Fas 4b'/B5).
             b_inputs = b_net.get((p, c))
             if b_mode == "weighted_submeasure_depth":
-                # B5: viktad undermåttsdjuptäckning över den delade icke-target-nämnaren
-                # (spec §3.3). Gaten nedan använder cov_B: en kodad typ mot ett target-only-
+                # B5: viktad undermåttsdjuptäckning över den delade krympningsnämnaren
+                # (spec §3.3). Gaten nedan använder cov_B: en kodad typ mot ett uteslutet
                 # undermått ligger utanför nämnaren och gör inte kategorin täckt (spec §3.6).
                 t_by_sub = b_codable.get(c, {})
                 coded = cov_num.get((p, c), set())
                 covered_w, total_w = score.weighted_depth_coverage(
                     {s: ts & coded for s, ts in t_by_sub.items()},
-                    t_by_sub, sub_w.get(c, {}), b_nontarget.get(c, ()),
+                    t_by_sub, sub_w.get(c, {}), b_shrink_den.get(c, ()),
                 )
                 coverage = covered_w / total_w if total_w else 0.0
                 cov_flag = _b_coverage_flag(covered_w, total_w)
+                # ... men B:s TÄCKNING står på kategorins FULLA vikt (ADR 0011 punkt 9): ett
+                # uteslutet undermått räknas 0 täckt i stället för att strykas ur nämnaren.
+                # Krympningen ovan behåller sin nämnare, så betyget rör sig inte.
+                b_cov_measured = covered_w / cov_den_w[c] if cov_den_w.get(c) else 0.0
             else:  # policy_type_count — legacy, byte-identisk (antal kodade åtgärdstyper)
                 den = len(cov_den.get(c, ()))
                 num = len(cov_num.get((p, c), ()))
                 coverage = (num / den) if den else 0.0
                 cov_flag = f"B_coverage_{num}/{den}"
+                # Legacy räknar åtgärdstyper och känner inga undermåttsvikter, alltså inga
+                # uteslutna undermått heller. Täckningen följer med dit, som förut.
+                b_cov_measured = coverage
             b_flags: list[str] = []
             if b_inputs and coverage > 0:
                 b_weights = {
@@ -854,11 +925,11 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
                     b_conf_in.get((p, c), {}), b_weights
                 ) or 0.0
                 b_conf = _b_confidence(conf_cat, b_n_claims.get((p, c), 0), thin)
-                # B:s TÄCKNING (ADR 0008 punkt 5) är B:s EGEN täckning, alltså samma tal som
-                # B_coverage-flaggan bär. I committat läge (weighted_submeasure_depth) är det
-                # den viktade undermåttstäckningen på kategorins egen nämnare. Legacy-läget
-                # räknar i stället kodade åtgärdstyper, och då följer täckningen med dit.
-                b_cov = coverage
+                # B:s TÄCKNING (ADR 0008 punkt 5, ändrad av ADR 0011 punkt 9). Talet är INTE
+                # längre samma som B_coverage-flaggan bär: flaggan visar krympningens täljare
+                # och nämnare, medan täckningen står på kategorins fulla undermåttsvikt. Den
+                # identiteten skrevs när det bara fanns en nämnare, och upphörde här.
+                b_cov = b_cov_measured
             else:
                 b_val, b_conf = b_missing, b_missing_conf
                 b_flags.append("B_no_party_evidence")
@@ -895,10 +966,11 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
                 flags.append("D_not_applicable")
             cs = score.category_score_from_components(comps, confidence_overrides=overrides, flags=flags)
             # TÄCKNING (ADR 0008): hur stor del av cellens betyg som vilar på mätt underlag.
-            # D:s täckta vikt står på kategorins EGEN nämnare även när D är ej tillämplig.
-            # DCell bär total_weight också då, så nämnaren krymper aldrig (ADR 0008 punkt 4).
+            # Nämnaren är kategorins FULLA undermåttsvikt (ADR 0011 punkt 9), inte den
+            # krympta som DCell.total_weight bär. Två hål räknas därför 0 täckt i stället för
+            # att strykas: en ej tillämplig D (ADR 0008 punkt 4) och ett uteslutet undermått.
             # Talet räknas här i pipen, aldrig i frontend (punkt 8), och rör inte betyget.
-            d_cov = (d_cell.covered_weight / d_cell.total_weight) if d_cell.total_weight else 0.0
+            d_cov = (d_cell.covered_weight / cov_den_w[c]) if cov_den_w.get(c) else 0.0
             cs["coverage"] = score.cell_coverage(a_cov_by_cat[c], b_cov, d_cov)
             crefs = []
             if (p, c) in action_by_pc:
@@ -1040,7 +1112,8 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
                 "utan hålls utanför både claims och täckningsnämnaren, med skäl per post, så "
                 "källspåret finns kvar. Sökningen efter nya poster är källstyrd och "
                 "riktningsblind: den räknar upp officiella utvärderingar per indikator och "
-                "låter verkan bli vad utvärderingen fann."),
+                "låter verkan bli vad utvärderingen fann. "
+                + _exclusion_sentence()),
         },
         "categories": catinfo,
         "scores": scores,

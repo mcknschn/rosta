@@ -58,6 +58,10 @@ def _subnat_vard_net(
     for (cat, ind), by_region in sub_series.items():
         if cat != "valfard" or (indicators is not None and ind not in indicators):
             continue
+        # Samma vakt som scorerun.category_d: _indicator_meta bär bara indikatorer MED
+        # riktning, alltså inte de uteslutna (ADR 0011). En serie utan meta hoppas över.
+        if (cat, ind) not in meta:
+            continue
         direction = meta[(cat, ind)][1]
         num = den = 0.0
         for code, series in by_region.items():

@@ -178,6 +178,7 @@ riktning läggs till (§5.7).
 | 3b | **Riktning** | `indicators[].direction` | upp · ned |
 | 3c | **Verkan** | `evidence_ledger.entries[].direction` | åtgärden rör indikatorn åt rätt håll (`positive`) · åt fel håll (`negative`) · oklart/blandat (`unclear`/`mixed`) |
 | 3d | **Uteslutningsskäl** | `indicators[].exclusion` | gränsfel (`gransfel`) · giltighetsfel (`giltighetsfel`) · neutralitetsfel (`neutralitetsfel`) |
+| 3e | **Återöppningsvillkor** | `indicators[].reopen_if` | fritext, obligatorisk på varje utesluten indikator: vad som måste ändras för att felet ska vara borta |
 
 **Regel mot begreppsförvirring:** `config/categories.yaml` är sanningskälla; **id:t** (t.ex. `nato_ukraina`) är
 det som aldrig får glida mellan dokument. De svenska visningsnamnen ovan är kanoniska — använd dem i all prosa.
@@ -196,14 +197,18 @@ på samma sätt som `A_agerande` och `C_ansvar`. Låst 2026-08-21 av
 **Riktning och Uteslutningsskäl utesluter varandra.** Riktning är ett besked om indikatorn, alltså vilket
 håll som är bättre. **Uteslutningsskäl** är ett besked om modellen, alltså varför indikatorn inte poängsätts.
 En indikator bär det ena eller det andra, aldrig båda och aldrig ingetdera. Fältet `exclusion` är sitt eget
-skäl: finns det är indikatorn utesluten, och värdet namnger felet. De tre värdena pekar var och ett på en
+skäl: finns det är indikatorn utesluten, och värdet namnger felet. Varje utesluten indikator bär dessutom
+`reopen_if`, alltså **Återöppningsvillkoret**: vad som måste ändras för att felet ska vara borta, skrivet
+så att det går att pröva mot en namngiven källa eller fil. Config-valideringen kräver båda fälten, och en
+evidenspost mot en utesluten indikator hard-failar där, oavsett vad dess syskonindikatorer bär. De tre värdena pekar var och ett på en
 beslutad regel: `gransfel` på [ADR 0001](../adr/0001-a-mater-prioritering.md) (frågan ägs av en annan
 delpoäng), `giltighetsfel` på [ADR 0009](../adr/0009-sakerheten-mater-hur-val-talet-ar-kant.md) (utfallet
 kan inte tillskrivas ett parti) och `neutralitetsfel` på CLAUDE.md:s neutralitetskrav (det bättre hållet
 går inte att ange utan att ta ett partis parti). *Kollision att hålla isär:* `coverage_exclude` i
 `config/scoring.yaml` utesluter **åtgärdstyper** ur B:s nämnare, alltså ett annat objekt och en annan
 mekanism. Liggarens `admitted` bär ADR 0006:s evidensgrind och används aldrig om indikatorer. Låst
-2026-08-26 av [ADR 0011](../adr/0011-uteslutningen-ar-ett-eget-besked.md) (biljett #13 under karta #6). (Visningsnamnen för Kategori/Undermått hämtas ur `categories.yaml`
+2026-08-26 av [ADR 0011](../adr/0011-uteslutningen-ar-ett-eget-besked.md) (biljett #13 under karta #6),
+byggd samma dag i biljett #34. (Visningsnamnen för Kategori/Undermått hämtas ur `categories.yaml`
 `name`-fältet — fyra trunkerade namn rättades 2026-06-06: Nato/Skola/Normer/Finansiering hade kapats av
 oquoterade kommatecken.)
 

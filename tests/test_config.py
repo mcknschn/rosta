@@ -43,7 +43,9 @@ def test_every_indicator_maps_to_known_submeasure() -> None:
         sub_ids = {s["id"] for s in cat["submeasures"]}
         for ind in cat.get("indicators", []):
             assert ind["submeasure"] in sub_ids, f"{cat['id']}/{ind['id']}"
-            assert ind["direction"] in {"up", "down", "target"}
+            # Riktning eller Uteslutningsskäl, aldrig båda och aldrig ingetdera (ADR 0011).
+            # Värdena prövas i tests/test_uteslutning.py.
+            assert ("direction" in ind) != ("exclusion" in ind), f"{cat['id']}/{ind['id']}"
 
 
 def test_sources_feeds_reference_valid_categories() -> None:

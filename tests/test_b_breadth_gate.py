@@ -6,7 +6,7 @@ Spår B/B2) ELLER explicit accepterad i coverage_allowlist.b_thin_breadth_accept
 och listan kan inte bära inaktuella poster. Mätaren (coverage_report.b_submeasure_breadth)
 är offline (endast config): ett icke-target-undermått räknas B-täckbart om det har minst en
 kodbar åtgärdstyp — T_s-reglerna och nämnaren DELAS med scoringen (scorerun._b_codable_
-types_by_submeasure resp. _non_target_submeasures), så grinden mäter exakt det tak som
+types_by_submeasure resp. _non_excluded_submeasures), så grinden mäter exakt det tak som
 per-parti-cov_B aldrig kan överstiga. Taket är coverage_mode-oberoende: i legacy-läget är
 grinden en ren varningslampa, i weighted_submeasure_depth är det krympningens hårda tak.
 Formel-/flagg-/mode-testerna ligger i tests/test_b_coverage_mode.py.
@@ -58,7 +58,7 @@ def test_b_breadth_partitions_and_bounds() -> None:
     """Mätaren rapporterar alla 7 kategorier; täckta + otäckta partitionerar den delade
     icke-target-nämnaren och kvoten ligger i [0,1]."""
     rep = coverage_report.b_submeasure_breadth()
-    den = scorerun._non_target_submeasures()
+    den = scorerun._non_excluded_submeasures()
     assert rep["threshold"] == coverage_report.B_BREADTH_GATE_THRESHOLD
     assert {c["id"] for c in rep["categories"]} == set(config.category_ids())
     for c in rep["categories"]:

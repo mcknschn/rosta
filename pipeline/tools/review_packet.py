@@ -38,13 +38,18 @@ def _year(date: Any) -> int | None:
 
 
 def _indicator_maps() -> tuple[dict[str, str], dict[str, str]]:
-    """indikator -> kategori, indikator -> riktning (up/down/target) ur categories.yaml."""
+    """indikator -> kategori, indikator -> riktning (up/down) ur categories.yaml.
+
+    En utesluten indikator (ADR 0011) saknar riktning och får ingen rad i ind_dir. Den kan
+    inte bära en evidenspost, så granskningspaketet möter den aldrig.
+    """
     ind_cat: dict[str, str] = {}
     ind_dir: dict[str, str] = {}
     for c in config.categories()["categories"]:
         for ind in c.get("indicators", []):
             ind_cat[ind["id"]] = c["id"]
-            ind_dir[ind["id"]] = ind["direction"]
+            if "direction" in ind:
+                ind_dir[ind["id"]] = ind["direction"]
     return ind_cat, ind_dir
 
 

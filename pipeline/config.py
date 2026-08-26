@@ -195,7 +195,6 @@ def validate(tolerance: float = 1e-6) -> None:
     if abs(sum(sub_w.values()) - 100) > tolerance:
         raise ConfigError(f"Delpoängvikterna (categories) summerar till {sum(sub_w.values())}, inte 100")
 
-    valid_dirs = {"up", "down", "target"}
     for c in cat_list:
         sub_ids = set()
         for s in c["submeasures"]:
@@ -206,11 +205,10 @@ def validate(tolerance: float = 1e-6) -> None:
             raise ConfigError(f"Submåttsvikterna i '{c['id']}' summerar till {wsum}, inte 100")
         for ind in c.get("indicators", []):
             _require(
-                {"id", "direction", "submeasure"} <= ind.keys(),
-                f"Indikator i '{c['id']}' saknar id/direction/submeasure",
+                {"id", "submeasure"} <= ind.keys(),
+                f"Indikator i '{c['id']}' saknar id/submeasure",
             )
-            if ind["direction"] not in valid_dirs:
-                raise ConfigError(f"Ogiltig riktning '{ind['direction']}' i {c['id']}/{ind['id']}")
+            _validate_indicator_direction(c["id"], ind)
             if ind["submeasure"] not in sub_ids:
                 raise ConfigError(
                     f"Indikator {c['id']}/{ind['id']} pekar på okänt submått '{ind['submeasure']}'"
@@ -220,7 +218,98 @@ def validate(tolerance: float = 1e-6) -> None:
     if len(parties) != len(set(parties)):
         raise ConfigError("Dubbletter i partikoder")
 
+    _validate_ledger_against_exclusions()
     _validate_scoring(sub_w, tolerance)
+
+
+VALID_DIRECTIONS = frozenset({"up", "down"})
+
+# Uteslutningsskälen och vad vart och ett betyder i klarspråk (ADR 0011 punkt 5). Namnet pekar
+# på den regel som fäller, aldrig på symtomet i det enskilda fallet, så det går att återanvända
+# på nästa indikator. Mappningen är enda källan: metodrutan läser den, och den giltiga mängden
+# ÄR dess nycklar, så ett fjärde skäl kan aldrig passera valideringen utan sin förklaring.
+EXCLUSION_REASONS = {
+    "gransfel": "frågan ägs redan av en annan delpoäng",
+    "giltighetsfel": "utfallet kan inte tillskrivas ett parti",
+    "neutralitetsfel": "det bättre hållet går inte att ange utan att ta ett partis parti",
+}
+VALID_EXCLUSIONS = frozenset(EXCLUSION_REASONS)
+
+
+def _validate_indicator_direction(cat_id: str, ind: dict[str, Any]) -> None:
+    """Riktning eller Uteslutningsskäl, aldrig båda och aldrig ingetdera (ADR 0011 punkt 3-4).
+
+    Riktning är ett besked om indikatorn, alltså vilket håll som är bättre. Uteslutningsskäl
+    är ett besked om modellen, alltså varför indikatorn inte poängsätts. Ett fält som bar
+    båda dolde det ena med det andra, vilket är precis vad värdet `target` gjorde.
+
+    Formen gör "utesluten utan skäl" omöjlig att skriva: fältet `exclusion` ÄR skälet, och
+    varje utesluten indikator bär dessutom `reopen_if`, alltså vad som måste ändras för att
+    felet ska vara borta (ADR 0011 punkt 8).
+    """
+    ref = f"{cat_id}/{ind.get('id', '?')}"
+    has_dir, has_exc = "direction" in ind, "exclusion" in ind
+    if has_dir and has_exc:
+        raise ConfigError(
+            f"Indikator {ref} bär både direction och exclusion (ADR 0011: aldrig båda)"
+        )
+    if not has_dir and not has_exc:
+        raise ConfigError(
+            f"Indikator {ref} saknar både direction och exclusion (ADR 0011: aldrig ingetdera)"
+        )
+    if has_dir:
+        if ind["direction"] not in VALID_DIRECTIONS:
+            raise ConfigError(
+                f"Ogiltig riktning '{ind['direction']}' i {ref} "
+                f"(tillåtna: {', '.join(sorted(VALID_DIRECTIONS))})"
+            )
+        return
+    if ind["exclusion"] not in VALID_EXCLUSIONS:
+        raise ConfigError(
+            f"Ogiltigt uteslutningsskäl '{ind['exclusion']}' i {ref} "
+            f"(tillåtna: {', '.join(sorted(VALID_EXCLUSIONS))})"
+        )
+    if not str(ind.get("reopen_if", "")).strip():
+        raise ConfigError(
+            f"Utesluten indikator {ref} saknar reopen_if, alltså återöppningsvillkoret "
+            "(ADR 0011 punkt 8)"
+        )
+
+
+def excluded_indicators() -> dict[tuple[str, str], str]:
+    """(kategori, indikator) -> Uteslutningsskäl. Enda källan till vad som är uteslutet."""
+    return {
+        (cat["id"], ind["id"]): ind["exclusion"]
+        for cat in categories()["categories"]
+        for ind in cat.get("indicators", [])
+        if "exclusion" in ind
+    }
+
+
+def _validate_ledger_against_exclusions() -> None:
+    """En utesluten indikator får inte bära en evidenspost (ADR 0011 punkt 7).
+
+    Grinden går på uteslutningsfältet och ALDRIG på om ett syskon råkar bära riktning.
+    Utan den beror utfallet på formen: en post mot `inflation` ignorerades tyst, eftersom
+    hela dess undermått låg utanför B:s nämnare, medan en post mot
+    `forsvarsanslag_andel_bnp` skulle räknas tyst, eftersom syskonindikatorn bär `up`.
+    Tyst räkna och tyst ignorera är båda fel svar. Pipen ska säga ifrån.
+
+    Grinden gäller varje post i liggaren, även en utlyft (`admitted: false`). Utlyftningen
+    är ADR 0006:s evidensgrind och svarar på en annan fråga, alltså om posten HÅLLER, inte
+    om indikatorn går att poängsätta.
+    """
+    excluded = excluded_indicators()
+    if not excluded:
+        return
+    for e in evidence_ledger().get("entries") or []:
+        key = (e.get("category"), e.get("indicator"))
+        if key in excluded:
+            raise ConfigError(
+                f"Evidensposten '{e.get('policy_type')}' pekar på den uteslutna indikatorn "
+                f"{key[0]}/{key[1]} ({excluded[key]}). En utesluten indikator poängsätts inte "
+                "och får därför inte bära en evidenspost (ADR 0011 punkt 7)."
+            )
 
 
 def _validate_scoring(sub_w: dict[str, Any], tolerance: float) -> None:

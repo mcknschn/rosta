@@ -55,7 +55,7 @@ högre coverage → mindre B-krympning → B får faktiskt genomslag.
 > `tests/test_fas3_gate.py`). Den gamla narrativa matrisen är fryst i [done/fas3_coverage.md](done/fas3_coverage.md).
 
 > **Status 2026-06-14: aktivt D-byggande är uttömt.** Våg 1–3 levererade (43/68 indikatorer, alla
-> 7 kategorier). Kvarvarande luckor i `coverage_allowlist.yaml` är antingen permanenta (target,
+> 7 kategorier). Kvarvarande luckor i `coverage_allowlist.yaml` är antingen permanenta (excluded,
 > international, design_closed, low_value) eller hårda väggar (qualitative/sekretess, no_api) eller
 > BEVAKA-bevakningar — inget direkt byggbart D-item återstår (jfr djupsvepet: blockeraren för D är
 > neutralitet/attribution, inte datatillgång). Återupptas bara om en BEVAKA-trigger faller ut eller
@@ -99,8 +99,10 @@ Detaljer + verifiering i [spar_D_datatackning.md](done/spar_D_datatackning.md).
 
 ### Medvetet **inte** för D (stäng som designbeslut)
 
-- **`target`-indikatorer** (`inflation`, `statsskuld_underskott`, `forsvarsanslag_andel_bnp`):
-  har ingen up/down-riktning (nära mål ≠ "uppåt bra") → ej D-dugliga. Behålls för B/visning.
+- **Uteslutna indikatorer** (`inflation`, `statsskuld_underskott`, `forsvarsanslag_andel_bnp`):
+  bär ett Uteslutningsskäl i stället för en riktning (ADR 0011, byggt 2026-08-26) → ej D-dugliga
+  och får inte heller bära en evidenspost. Behålls i `categories.yaml` för att kategorianspråket
+  ska synas; deras undermåttsvikt räknas 0 täckt. Varje rad bär ett återöppningsvillkor.
 - **`international`** (`korruption`/TI CPI, `mediefrihet`/RSF): förbjudna enligt CLAUDE.md
   (ej officiell svensk källa). Demokrati måste lösas via svenska akademiska källor (SOM) eller
   redovisas som låg täckning med hög osäkerhet — bygg **aldrig** internationella index för D.
@@ -191,7 +193,7 @@ företagande/investeringar samt hushållens disponibla inkomst → ekonomi 4/6 t
   valfard 4/4, forsvar 4/5, klimat 4/5, trygghet 5/5, demokrati 5/5 — inga nära-binära. Kvarvarande
   otäckta: integrations boendesegregation+normer_tillit (HOLD H3/H4), försvarets genomforbarhet_leverans
   (HOLD H6 på B-sidan — D-sidan LÖST 2026-06-12 via materielleveransutfall, se Levererat),
-  klimats industriell_konkurrenskraft + trygghets/valfards target-/indikatorlösa — se
+  klimats industriell_konkurrenskraft + trygghets/valfards uteslutna/indikatorlösa — se
   [beslutsunderlag_hold_2026-06-12.md](done/beslutsunderlag_hold_2026-06-12.md).)*
 
   | Kategori | Undermått m. B-evidens | Andel kat-vikt | Status |
@@ -210,7 +212,7 @@ företagande/investeringar samt hushållens disponibla inkomst → ekonomi 4/6 t
   kategori (≤1 undermått) och [test_fas4b_coverage.py](../tests/test_fas4b_coverage.py) + nya
   `coverage_allowlist.b_near_binary_accepted` gör regressionen synlig. **Kvar (=B2):** faktiskt höja
   spridningen till ≥2 undermått för ekonomi och demokrati. **VIKTIGT fynd från grinden:** inflation och
-  offentliga finanser (ekonomi) är target-indikatorer → kan inte få riktat B-bidrag; ekonomis enda
+  offentliga finanser (ekonomi) är UTESLUTNA indikatorer (ADR 0011) → kan inte få riktat B-bidrag; ekonomis enda
   realistiska B-mål är produktivitet och reallöner (up-indikatorer). Knyter an till B2 (ekonomi/demokrati först).
   - **Demokrati är trippel-svag** (fynd vid 79-screeningen 2026-06-05): (1) nära-binär (1/5 undermått), (2) liggaren
     är enbart `expert_opinion` (rekommendationer, ej uppmätt effekt), och (3) partiståndpunkterna bygger till stor del
@@ -224,7 +226,7 @@ företagande/investeringar samt hushållens disponibla inkomst → ekonomi 4/6 t
   APPROVE-WITH-CHANGES)* — **LEVERERAD OCH AKTIVERAD 2026-06-14** (§10.7-sign-off): enhetlig viktad
   undermåttsdjuptäckning `cov_B` (spec §3.3 — ERSÄTTER antalsmåttet så dubbelrabatten aldrig
   uppstår) är nu default `B_evidens.coverage_mode: weighted_submeasure_depth`; delar D:s
-  icke-target-nämnare (`_non_target_submeasures`), testat i
+  krympningsnämnare (`_non_excluded_submeasures`), testat i
   [test_b_coverage_mode.py](../tests/test_b_coverage_mode.py). `dist/` omräknad + snapshot
   rebaselinad — den signade switch-diffen verkställde **KD↔MP-flippen** i totalranking
   (S > L > M > MP > KD > C > SD > V; ny marginal 0,0085 inom 80 % CI-överlapp), 106 B-drivna

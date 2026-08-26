@@ -171,9 +171,9 @@ På så sätt kan en användare se vilka påståenden som ligger bakom varje po�
 | Inflation och prisstabilitet | 12 % |
 | Offentliga finanser och långsiktig hållbarhet | 15 % |
 
-*(Undermåttet "Företagande och investeringar" tillagt 2026-06-05 i B2-täckningsarbetet; övriga vikter omfördelade så summan förblir 100 % — se docs/BACKLOG.md. Trimningen av inflation/offentliga finanser påverkar inte betygen eftersom target-undermått utan B-/D-data renormaliseras bort.)*
+*(Undermåttet "Företagande och investeringar" tillagt 2026-06-05 i B2-täckningsarbetet; övriga vikter omfördelade så summan förblir 100 % — se docs/BACKLOG.md. Trimningen av inflation/offentliga finanser påverkar inte betygen, eftersom deras undermått ligger utanför den nämnare B och D krymper mot neutral med.)*
 
-*(Beslutad, ej byggd: [ADR 0011](docs/adr/0011-uteslutningen-ar-ett-eget-besked.md) tar bort riktningen `target`. Inflation och offentliga finanser blir **uteslutna** indikatorer med var sitt skäl, och deras undermått räknas 0 täckt i stället för att strykas ur nämnaren. Betygen står still. Ekonomins redovisade täckning sjunker, eftersom hålet slutar vara osynligt.)*
+*(Byggt 2026-08-26 ([ADR 0011](docs/adr/0011-uteslutningen-ar-ett-eget-besked.md), biljett #34): riktningen `target` är borta. Inflation och offentliga finanser bär **uteslutna** indikatorer med var sitt skäl, och deras undermått räknas 0 täckt i stället för att strykas ur täckningens nämnare. Betygen står still. Ekonomins redovisade täckning sjönk, eftersom hålet slutade vara osynligt.)*
 
 **Positiv riktning:**
 
@@ -186,8 +186,8 @@ På så sätt kan en användare se vilka påståenden som ligger bakom varje po�
 | Reallöner | Upp |
 | Hushållens disponibla inkomst | Upp |
 | Näringslivets investeringar | Upp |
-| Inflation | Ingen riktning. Utesluten (giltighetsfel): penningpolitiken är Riksbankens, så utfallet kan inte tillskrivas ett riksdagsparti. Se [ADR 0011](docs/adr/0011-uteslutningen-ar-ett-eget-besked.md), beslutad men ej byggd |
-| Statsskuld/underskott | Ingen riktning. Utesluten (neutralitetsfel): den bättre nivån är i sig en partiståndpunkt, så en riktning skulle privilegiera åtstramning. Se [ADR 0011](docs/adr/0011-uteslutningen-ar-ett-eget-besked.md), beslutad men ej byggd |
+| Inflation | Ingen riktning. Utesluten (giltighetsfel): penningpolitiken är Riksbankens, så utfallet kan inte tillskrivas ett riksdagsparti. Se [ADR 0011](docs/adr/0011-uteslutningen-ar-ett-eget-besked.md), byggd 2026-08-26 |
+| Statsskuld/underskott | Ingen riktning. Utesluten (neutralitetsfel): den bättre nivån är i sig en partiståndpunkt, så en riktning skulle privilegiera åtstramning. Se [ADR 0011](docs/adr/0011-uteslutningen-ar-ett-eget-besked.md), byggd 2026-08-26 |
 
 > **Viktig caveat:** Ett parti ska inte få hela äran eller skulden för konjunkturen.
 
@@ -253,7 +253,7 @@ På så sätt kan en användare se vilka påståenden som ligger bakom varje po�
 
 | Mått | Positivt |
 |------|----------|
-| Försvarsanslag som andel av BNP | Ingen riktning. Utesluten (gränsfel): anslagets storlek är delpoäng A:s fråga. Se [ADR 0011](docs/adr/0011-uteslutningen-ar-ett-eget-besked.md), beslutad men ej byggd |
+| Försvarsanslag som andel av BNP | Ingen riktning. Utesluten (gränsfel): anslagets storlek är delpoäng A:s fråga. Se [ADR 0011](docs/adr/0011-uteslutningen-ar-ett-eget-besked.md), byggd 2026-08-26 |
 | Personal och värnpliktiga | Upp, om utbildningskapacitet finns |
 | Ammunition, luftvärn, logistik, cyberförmåga | Upp |
 | Civil beredskap inom vård, energi, mat, transporter | Upp |
