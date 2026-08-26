@@ -933,7 +933,6 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
     # dagar den ännu inte suttit. Se POWER_WINDOW_END.
     today = date.today()
     fresh = data_freshness(con, today=today)
-    a_window = anchor.window()
     out = {
         "meta": {
             "generated": today.isoformat(), "window": "2014-2026",
@@ -957,14 +956,32 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
                 "A=prioritering, alltså omfattning och aldrig riktning (ADR 0001): "
                 "a2 motionsprioritering, andel av egna motioner, full; "
                 "a1 budgetprioritering gated, aktiv för "
-                f"{len(a1_active)}/{len(cats)} kategorier ur officiella utgiftsramar "
-                "(2023-2025), expertgranskad v1 2026-06-05, annars a2-fallback; "
+                f"{len(a1_active)}/{len(cats)} kategorier ur officiella utgiftsramar, "
+                "annars a2-fallback; "
                 "A är ABSOLUT sedan ADR 0005: båda halvorna mäts mot en historisk "
-                f"förankring ({a_window[0]}-{a_window[1]}), a1 mot de beslutade "
-                "utgiftsramarna i bet. FiU1 och a2 mot kammarens samtliga motioner, som "
+                "förankring, a1 mot de beslutade utgiftsramarna i bet. FiU1 och a2 mot "
+                "kammarens samtliga motioner, som "
                 "q=(andel-förankring)/(andel+förankring) avbildad med samma linjära "
                 "skala som B; A rangordnas alltså inte längre över de åtta partierna, "
                 "så ett parti som lägger ungefär som normen får ett betyg nära mitten; "
+                # ADR 0007 punkt 6: växelkursen skrivs ut, alltså vad en poäng i A betyder.
+                "VAD EN POÄNG I A BETYDER: avbildningen är symmetrisk i log, så en "
+                "fördubblad andel mot förankringen ger 0,83 poäng och en halverad ger "
+                "0,83 mindre; jämnhöjd med förankringen ger 2,50. Skalan går från 0,00, "
+                "som betyder att partiet inte lägger något alls på kategorin, mot 5,00, "
+                "som aldrig nås eftersom det skulle kräva en förankring på noll. "
+                # ADR 0007 punkt 1 och 3: fönstren skrivs ut, och att de kan skilja sig.
+                "VILKA ÅR VARJE HALVA MÄTER (ADR 0007): täljaren täcker samma år som sin "
+                f"förankring. a1 mäter budgetåren {a1_years[0]}-{a1_years[-1]} "
+                f"({len(a1_years)} år) och a2 perioden "
+                f"{anchor.a2_period()[0]} till {anchor.a2_period()[1]}. Halvorna har egna "
+                "fönster och kan hamna på olika tidsavsnitt, eftersom a1:s tillgänglighet "
+                "inte ska få kasta bort motionsår som är fullt giltiga. Fönstren faller ut "
+                "ur tre gränser som skrevs före hämtningen, och utfallet står i "
+                "docs/done/a_forankring/fonster.json. Ett långt a1-fönster blandar ett "
+                "partis regeringsår med dess oppositionsår, och för ett regeringsparti är "
+                "ramen koalitionens och inte partiets egen; attributionen per år är "
+                "citerbar och står i config/budget_ramar.yaml; "
                 "C=maktandel, vikt 0: ger inga poäng utan redovisas som upplysning om "
                 "vem som haft makten; räknas per kategori som "
                 "nationell regeringsmakt blandad med subnationell "

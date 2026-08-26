@@ -337,10 +337,12 @@ def write_budget_doc() -> None:
     lines.append("> AUTOGENERERAD av `pipeline/tools/review_packet.py` — ändra inte för hand.")
     lines.append("")
     lines.append("a1 = andel av partiets föreslagna utgiftsramar (Σ kategorins UO / Σ alla UO), "
-                 "mätt mot de BESLUTADE utgiftsramarnas andel över ett historiskt fönster "
-                 "(ADR 0005, `config/a_forankring.yaml`) — inte rangordnad över de åtta partierna. "
-                 "Manuellt transkriberade ur officiella källor (ingen runtime-parser). "
-                 "**Granska transkriberingen mot källraden.** Fel här korrumperar A (30 %).")
+                 "mätt mot de BESLUTADE utgiftsramarnas andel över SAMMA år "
+                 "(ADR 0005 och ADR 0007, `config/a_forankring.yaml`) — inte rangordnad över de "
+                 "åtta partierna. Transkriberade ur officiella källor av "
+                 "`pipeline/tools/budget_ramar_transcribe.py`, som körs för hand; det finns "
+                 "ingen runtime-parser. **Granska transkriberingen mot källraden.** Fel här "
+                 "korrumperar A (30 %).")
     lines.append("")
     lines.append(f"**a1-aktiva kategorier** (alla 8 partier har ram för varje kategori-UO): "
                  f"{', '.join(sorted(active)) or '—'}. Övriga faller på a2 (`A_a2_only`).")

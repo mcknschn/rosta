@@ -9,13 +9,22 @@ nu byggts robust och gated.
 ## Vad a1 mäter
 
 `a1(parti, kategori)` = **andelen av partiets föreslagna anslag som går till kategorins
-utgiftsområden (UO)**, rang-normaliserad över de 8 partierna. Det är ett *relativt
-prioriteringsmått* (som a2), inte ett mått på om mer pengar är rätt — rättheten fångas av B och D.
+utgiftsområden (UO)**, mätt mot samma andel i de BESLUTADE utgiftsramarna över fönstret. Det är
+ett *prioriteringsmått* (som a2), inte ett mått på om mer pengar är rätt — rättheten fångas av B
+och D.
 
 ```
 andel(parti, kat) = Σ_UO ( ram(parti, UO) · UO→kat-vikt ) / Σ_UO ram(parti, UO)
-a1(kat) = rank_normalize_över_8_partier( andel(·, kat) )
+förankring(kat)   = samma räkning på de beslutade ramarna, som medel över fönstrets år
+a1(kat)           = net_support_to_score( (andel - förankring) / (andel + förankring) )
 ```
+
+> **Uppdaterad 2026-08-26 (ADR 0007, biljett #27).** Två saker i det här dokumentet gällde det
+> gamla treåriga fönstret och är nu ersatta. Rang-normaliseringen över de åtta partierna föll
+> med **ADR 0005** (biljett #21): a1 är absolut och mäts mot en historisk förankring, inte mot
+> fältet. Fönstret gick från tre budgetår till **2011-2025** med **ADR 0007** (biljett #27):
+> täljaren täcker samma år som förankringen. Avsnitten nedan om källor, verifiering och
+> begränsningar är uppdaterade; effekttabellen längre ned är fryst historik från 2026-06-05.
 
 UO→kategori-vikterna ligger i [`config/mappings.yaml`](../../config/mappings.yaml) `expenditure_areas`
 (ett UO kan delas mellan flera kategorier). Nämnaren är partiets **totala** föreslagna ram (Σ alla
@@ -37,53 +46,72 @@ och deterministisk kod ([`pipeline/budget.py`](../../pipeline/budget.py)) konsum
 en **trogen kopia** av officiella tal — inga belopp imputeras, jämkas eller gissas. Det är
 strukturering av en officiell källa, inte fabrikation. **Version 1 — expertgranskad + mänsklig sign-off 2026-06-05; a1 aktiv i skarp betygsättning.**
 
-## Källor (budgetår 2023–2025)
+## Källor (budgetår 2011-2025)
 
-`budget_ramar.yaml` täcker nu **tre budgetår** (2023, 2024, 2025) ur respektive rambeslut. Varje
-år bidrar med en frame-uppsättning; a1 blir ett **snitt över åren** (se grinden nedan), vilket
-fångar mandatperioden bredare och dämpar enårsbrus.
+`budget_ramar.yaml` täcker **femton budgetår**, 2011 till 2025, ur respektive rambeslut. Varje år
+bidrar med en frame-uppsättning; a1 blir ett **snitt över åren** (se grinden nedan). Fönstret
+faller ut ur tre gränser som skrevs före hämtningen och står i
+[`docs/done/a_forankring/fonster.json`](a_forankring/fonster.json). Den bindande gränsen är ADR
+0007 punkt 2, "alla åtta partier har en citerbar ram": före budgetår 2011 saknade SD mandat i
+kammaren och kan därför inte ha någon ram.
 
-| Budgetår | Källa (rambeslut) | Tabell | dok_id |
-|----------|-------------------|--------|--------|
-| 2025 | bet. 2024/25:FiU1 "Statens budget 2025 – Rambeslutet" | tabell 35 | HC01FiU1 |
-| 2024 | bet. 2023/24:FiU1 "Statens budget 2024 – Rambeslutet" | tabell 2.3 | HB01FiU1 |
-| 2023 | bet. 2022/23:FiU1 "Statens budget 2023 – Rambeslutet" | tabell 2.3 | HA01FiU1 |
+Källan är samma tabell varje år, "Regeringens och oppositionspartiernas (eller motionärernas)
+förslag till utgiftsramar för `<år>`" i bet. FiU1. Ur den tas kolumnen *Regeringens förslag*
+(absolut, mnkr) plus *Avvikelse från regeringen* per parti. Varje partis absoluta ram =
+`Regeringens förslag + partiets avvikelse`, alltså mekanisk normalisering ur samma tabell.
+Dokument-id per år ges av `pipeline.tools.a_forankring_transcribe.dok_id`, och tabellens rubrik
+skrivs ut i configens `source_table` per budgetår.
 
-Ur varje tabell tas kolumnen *Regeringens förslag* (absolut, mnkr) plus *Avvikelse från regeringen*
-för S, V, C, MP. Varje oppositionspartis absoluta ram = `Regeringens förslag + partiets avvikelse`
-(mekanisk normalisering ur samma tabell). UO13/UO20 hade äldre rubriker 2023 (oförändrade UO-koder).
+Antalet ramar varierar mellan åren, eftersom antalet partier med egen budgetmotion gör det: 2011
+lade S, MP och V en gemensam motion, 2015 lade M, C, FP och KD en gemensam, och de år ett parti
+varken regerade eller lade en egen motion står det på den ram det röstade för.
 
-### Attribution (Codex P0-risk)
-Ett parti tilldelas regeringens ram endast när en officiell källa stödjer det. Strukturen är
-**identisk för alla tre åren** (Tidöregeringen M/KD/L + SD-stöd; S/V/C/MP i opposition):
-- **M, KD, L** = regeringspartier (prop. 2024/25:1, 2023/24:1, 2022/23:1) → regeringens ram.
-- **SD** = Tidö-stödparti som **röstade Ja till rambeslutet** (votering FiU1 punkt 2, per-ledamot-
-  tally M/SD/KD/L = Ja: 2025, 2024 *och* 2023) → regeringens ram, citerat till voteringen.
-- **S, V, C, MP** = egen budgetmotion respektive år → egen ram (avvikelse i rambeslutstabellen).
+**Avläsningen sker på tabellens geometri**, alltså kolumnens högerkant, aldrig på cellernas
+ordning. Betänkandenas text delar ett tal vid tusentalsmellanslaget så fort två celler är trånga
+("+2 650" blir "+2" och "650"), och en textläsning tappar då kolumnen utan att det syns i
+utfallet. Två tabeller är dessutom satta liggande på stående sida (bet. 2015/16:FiU1), vilket
+läsningen räknar om till läsriktningen. Verktyget är
+[`pipeline/tools/budget_ramar_transcribe.py`](../../pipeline/tools/budget_ramar_transcribe.py).
 
-Ett parti utan egen ram **och** utan citerbar uppslutning bakom en gemensam ram skulle utelämnas —
-aldrig gissas. För alla tre åren är alla 8 partier täckta (reservationerna på punkt 1 kommer i båda
-nya åren *enbart* från S/V/C/MP, dvs. M/KD/L/SD står bakom regeringens ram).
+### Attribution (ADR 0007 punkt 2)
+Ett parti tilldelas en ram endast på **citerbar grund**, aldrig på ett omdöme. De tre grunderna
+prövas i den ordningen, och `basis` i configen bär vilken som gällde:
+
+1. **egen_ram** - partiet har en egen kolumn i rambeslutstabellen, alltså en egen eller gemensamt
+   inlämnad budgetmotion.
+2. **regeringsstallning** - partiet står bakom budgetpropositionen för året, alltså är kolumnen
+   "Regeringens förslag" dess egen ram.
+3. **votering** - partiet röstade som regeringspartierna i voteringen om rambeslutet (FiU1
+   punkt 2), alltså slöt det upp bakom regeringens ram.
+
+Ett parti som inte når någon av de tre **utelämnas aldrig tyst**: året faller ur fönstret, och
+gränsen flyttas framåt. Det är precis vad som händer 2008-2010, där SD saknar både kolumn och rad
+i voteringen. Voteringen läses ur riksdagens `voteringlista` per parti, aldrig ur en tolkning.
 
 ### Verifiering (ingen fabrikation)
-Alla tre åren är verifierade med samma flerlagrade kontroll; 2023/2024 transkriberades aldrig för
-hand utan **genererades programmatiskt ur den officiella HTML-källan** och korsverifierades fyra vägar:
-- **Intern invariant:** för varje parti och år är `Σ(partiets ram) − Σ(regeringens ram)` lika med
-  källans egna avvikelse-totaler i raden "Summa utgiftsområden". 2024 + 2025: matchar på kronan för
-  alla fyra oppositionspartier. 2023: S/V/MP på kronan; **C +2 mnkr** — källans egen avrundning av
-  totalraden (regeringens totalrad avviker likaså −1 mnkr 2023 / −4 mnkr 2024 / −3 mnkr 2025 från
-  cellsumman; per-UO-cellerna är troget kopierade och justeras aldrig för att tvinga fram en summa).
-- **Oberoende parser** (`pandas.read_html`, helt annan kodväg än regex-extraktionen) — 0 avvikelser
-  över 270 celler (2 år × 5 ramar × 27 UO).
-- **Oberoende adversariell re-extraktion** (separat Codex-agent, lokaliserade tabellen via innehåll,
-  re-deriverade alla celler, bekräftade roll-call) — 0 avvikelser mot configen; flaggade och
-  bekräftade både C-2023-avrundningen och en split-span-cell (2023 UO13 MP `3|51`→351, korrekt).
-- **Roll-call bekräftad** ur dokumentstatus (förslagspunkt 2, "Rambeslutet"): 2024 M/SD/KD/L = Ja
-  (59/63/16/13), 2023 M/SD/KD/L = Ja (60/61/17/12); S = Nej, V/C/MP = Avstår båda åren.
+Varje budgetår verifieras fyrlagrigt vid varje körning av verktyget, och utfallet per år skrivs
+in i configens rad `verification`:
 
-*(Budget 2025 verifierades tidigare separat: intern invariant på kronan — S +30 886, V +132 499,
-C +2 821, MP +147 384 — och re-extraktion av alla 135 celler; reg-totalen avviker 3 mnkr p.g.a.
-samma avrundning.)*
+- **Intern summainvariant per kolumn:** cellsumman mot källans egen rad "Summa utgiftsområden".
+  Över de femton åren ligger varje avvikelse inom **4 mnkr**, alltså inom källans egen avrundning
+  (toleransen är 27 mnkr, en per utgiftsområde). Per-UO-cellerna är troget kopierade och justeras
+  aldrig för att tvinga fram en summa.
+- **Oberoende tabell:** betänkandets bilagor bär samma ramar ABSOLUT och i tusental kronor, läst
+  av `a_forankring`-verktygets radparser, alltså en annan tabell, en annan enhet och en annan
+  kodväg. **Regeringens ram träffar bilagan på kronan i alla femton åren.** Reservationerna
+  träffar också, inom en miljon kronor som är avrundningen, med ett undantag: allianspartiernas
+  reservation 2015 skiljer sig 200 mnkr på UO2 och 112 mnkr på UO25 från deras gemensamma
+  budgetmotion. Det är två olika dokument, och skillnaden är ett fynd om året.
+- **Oberoende parser:** samma tabell läst ur betänkandets HTML, en helt annan kodväg. Finns för
+  fem av åren; de övriga betänkandenas HTML har celler som gått sönder i konverteringen.
+- **Roll-call** ur riksdagens voteringlista, per parti, för varje års rambeslutspunkt.
+
+Utöver de fyra lagren läser `--audit` om de tre expertgranskade budgetåren 2023-2025 ur PDF:en.
+**405 celler, noll avvikelser** mot den signade configen. Det är ett prov på hela kedjan: samma
+tal som en tidigare, oberoende transkribering kom fram till.
+
+**Version per budgetår.** 2023-2025 står som `version: 1` (expertgranskade, mänsklig sign-off
+2026-06-05). De tolv nya åren står som `version: 0` och väntar på mänsklig sign-off.
 
 ## Hård grind (a1 får aldrig korrumpera A)
 
@@ -95,6 +123,11 @@ partier. Tom `budget_years` → a1 inaktiv överallt → A = a2 (ingen regressio
 [`tests/test_budget.py`](../../tests/test_budget.py) + [`tests/test_fas5.py`](../../tests/test_fas5.py).
 
 ## Effekt på rangordningen (standardvikter)
+
+> **FRYST HISTORIK från 2026-06-05.** Tabellen nedan gällde det treåriga fönstret och den
+> dåvarande rang-normaliseringen. Både fönstret och avbildningen har bytts sedan dess, av
+> ADR 0005 respektive ADR 0007, så talen går inte att jämföra med dagens. Aktuell ranking
+> står i `dist/scores.json`, och driften mellan körningar i `dist/scores.snapshot.json`.
 
 a1 är aktiv för alla 7 kategorier. Rangordningen med a1 över **tre budgetår** (2023–2025) jämfört
 med tidigare ett år (budget 2025) och ren a2:
@@ -115,17 +148,25 @@ Regeringsblocket (M/KD/L/SD) delar samma ram → identiskt a1-bidrag; deras A sk
 > rangar) jämfört med ettårsmätningen, men grundkänsligheten kvarstår som en modellegenskap (ej en
 > A1-defekt). Kandidat för framtida förfining: en dödzon/min–max på a1 för nära-oavgjorda kategorier.
 
-## Begränsningar (version 1)
+## Begränsningar
 
-- **Tre budgetår (2023–2025).** Fler år kan läggas till; grinden kräver fullständig 8-parti-täckning
-  per år (snitt-skärning), och varje nytt år ska köras genom samma fyrlagriga verifiering.
+- **Fönstret börjar 2011.** Gränsen är källans, inte ett omdöme: SD saknade mandat i kammaren före
+  valet 2010 och kan därför inte ha någon citerbar ram för budgetår 2008-2010.
+- **Ett långt fönster blandar regeringsår med oppositionsår.** För ett regeringsparti är ramen
+  koalitionens och inte partiets egen. Kostnaden är skriven i förväg i ADR 0007 Följder och står i
+  metodrutan på sajten. Attributionen per år är citerbar, så det går att se vilka år som är vilka.
+- **En gemensam budgetmotion ger flera partier samma ram.** Det gäller S, MP och V 2011 och M, C,
+  FP och KD 2015. Det är en riktig likhet i källan och jämnas aldrig ut.
 - **UO26 (statsskuldsräntor → ekonomi)** och **UO27 (EU-avgift → ingen kategori)** ingår i nämnaren
   (total budget); UO26 är ~lika för alla partier och påverkar den *relativa* a1 marginellt.
-- **Slutgranskad** (mänsklig sign-off 2026-06-05) och aktiv i skarp betygsättning, som party_positions.
+- **Sign-off per år.** 2023-2025 är slutgranskade (mänsklig sign-off 2026-06-05). De tolv nya åren
+  står som version 0 och väntar på sin.
 
 ## Reproduktion / verifiering
 
 ```bash
 python -m pytest tests/test_budget.py tests/test_fas5.py -q   # a1-matte, grind, blend
+python -m pytest tests/test_a_fonster.py -q                   # fönstret, villkorsklausulen (ADR 0007)
+python -m pipeline.tools.budget_ramar_transcribe --audit      # configen mot källan, exit 1 vid diff
 python -m pipeline.scorerun                                   # a1 aktiv -> dist/scores.json
 ```
