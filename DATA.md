@@ -189,7 +189,12 @@ De fyra delpoängen lever på **två olika nivåer** i begreppsmodellen (Kategor
 liggarens egen storhet och inte indikatorns Riktning, se ordlistan i
 `docs/done/evidens_trovardighet.md` §4.3 och [ADR 0006](docs/adr/0006-evidensgrinden-ar-symmetrisk.md).
 Varje liggarpost passerar samma evidensgrind oavsett verkan, och nya poster söks källstyrt per
-indikator, aldrig genom att leta efter en önskad verkan. Ståndpunktsfilen innehåller **269 källbelagda ståndpunkter** (192 t.o.m. B2 2026-06-05/06, varav 130 panel-harmoniserade Fas 4c + 8 FoU-avdrag + 8 företags-/ägarbeskattning + 8 hushållens disponibla inkomst + 7 grundlagsskydd domstolarnas oberoende + 8 begränsa biometrisk realtidsövervakning + 7 Nato-medlemskap + 8 snabbförfarande/lagföring + 8 åtgärder mot invasiva arter; + senare D-/B3-poster t.o.m. 2026-06-14; version 2, expertgranskad; de enhällighetsbyggda via **enhällighet-som-källa** = enhälligt betänkande → alla 8 partier supports, se docs/done/evidens_trovardighet.md); saknas rad för (parti, kategori) är B coverage-viktad mot neutral (flaggor `B_thin_coverage`/`B_no_party_evidence`). Inga ståndpunkter fabriceras.
+indikator, aldrig genom att leta efter en önskad verkan. **Beslutad, ej byggd**
+([ADR 0011](docs/adr/0011-uteslutningen-ar-ett-eget-besked.md)): en indikator bär antingen en
+Riktning (`up`/`down`) eller ett **Uteslutningsskäl**, aldrig båda. Värdet `target` är avfört och
+ersätts av fältet `exclusion` med tre värden: `gransfel` (frågan ägs av en annan delpoäng),
+`giltighetsfel` (utfallet kan inte tillskrivas ett parti) och `neutralitetsfel` (det bättre hållet
+går inte att ange utan att ta ett partis parti). En liggarpost mot en utesluten indikator hard-failar. Ståndpunktsfilen innehåller **269 källbelagda ståndpunkter** (192 t.o.m. B2 2026-06-05/06, varav 130 panel-harmoniserade Fas 4c + 8 FoU-avdrag + 8 företags-/ägarbeskattning + 8 hushållens disponibla inkomst + 7 grundlagsskydd domstolarnas oberoende + 8 begränsa biometrisk realtidsövervakning + 7 Nato-medlemskap + 8 snabbförfarande/lagföring + 8 åtgärder mot invasiva arter; + senare D-/B3-poster t.o.m. 2026-06-14; version 2, expertgranskad; de enhällighetsbyggda via **enhällighet-som-källa** = enhälligt betänkande → alla 8 partier supports, se docs/done/evidens_trovardighet.md); saknas rad för (parti, kategori) är B coverage-viktad mot neutral (flaggor `B_thin_coverage`/`B_no_party_evidence`). Inga ståndpunkter fabriceras.
 
 **C — Maktandel** (hur mycket makt partiet haft). Vikt 0: ger inga poäng och redovisas som upplysning (ADR 0002). "Genomförbarhet/ansvar" och "Ansvarsunderlag" är retirerade namn:
 - `c1` makt **(byggd, nationell + regional + kommunal, Fas 1c):** per kategori blandas andel av 2014–2026 partiet satt i nationell regering (stöd vägs 0,5) med subnationell makt (SKR-styren: 21 regioner + 290 kommuner × 3 mandatperioder), via en per-kategori region/kommun-split efter lagstadgat ansvar och rank-normaliserat (`level_weights` + `subnational_split`). Full subnationell täckning → C:s säkerhet hög; forsvar nationellt per design ([metod](docs/done/fas1c_subnational_metod.md)).
@@ -286,6 +291,14 @@ vikt a2 har i A:s blandning. En ej tillämplig D ger `d = 0` och faller aldrig u
 C räknas aldrig, eftersom den väger 0 och inte ingår i betyget.
 Talet säger inget om hur säkert det mätta är. Det beskedet bär `ci`, alltså bandet. Täckningen
 har ingen verkan på betyget: den räknas i pipen ur färdiga tal och matas aldrig tillbaka.
+
+**Beslutad, ej byggd** ([ADR 0011](docs/adr/0011-uteslutningen-ar-ett-eget-besked.md)): ekonomins
+nämnare 73 kommer av att två undermått står utanför, eftersom deras enda indikator saknar riktning.
+Efter bygget räknas Täckning i stället över kategorins fulla undermåttsvikt, alltså 100 för alla
+sju, och ett uteslutet undermått räknas 0 täckt. Det är samma regel som redan gäller en ej
+tillämplig D. B:s och D:s krympning mot neutral behåller sin nuvarande nämnare, så betygen står
+still och bara det redovisade talet rör sig. Täckning slutar därmed vara samma tal som
+`B_coverage_*` bär, vilket ändrar ADR 0008 punkt 5.
 
 **Fönstrets slut mot underlagets slut:** `window_end` är mandatperiodens formella slut, alltså nästa valdag. Det datumet ligger i framtiden tills valet hållits. `window_open` säger att perioden pågår, alltså att betygen för den är preliminära. `data_as_of` är något annat: sista dagen underlaget faktiskt når. Serierna är årsserier, så ett år som fortfarande pågår flyttar inte fram datumet. Det året syns i stället som `latest_observation_year`. De två datumen får aldrig blandas ihop (issue #3).
 

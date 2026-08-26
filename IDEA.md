@@ -173,6 +173,8 @@ På så sätt kan en användare se vilka påståenden som ligger bakom varje po�
 
 *(Undermåttet "Företagande och investeringar" tillagt 2026-06-05 i B2-täckningsarbetet; övriga vikter omfördelade så summan förblir 100 % — se docs/BACKLOG.md. Trimningen av inflation/offentliga finanser påverkar inte betygen eftersom target-undermått utan B-/D-data renormaliseras bort.)*
 
+*(Beslutad, ej byggd: [ADR 0011](docs/adr/0011-uteslutningen-ar-ett-eget-besked.md) tar bort riktningen `target`. Inflation och offentliga finanser blir **uteslutna** indikatorer med var sitt skäl, och deras undermått räknas 0 täckt i stället för att strykas ur nämnaren. Betygen står still. Ekonomins redovisade täckning sjunker, eftersom hålet slutar vara osynligt.)*
+
 **Positiv riktning:**
 
 | Mått | Positivt |
@@ -184,8 +186,8 @@ På så sätt kan en användare se vilka påståenden som ligger bakom varje po�
 | Reallöner | Upp |
 | Hushållens disponibla inkomst | Upp |
 | Näringslivets investeringar | Upp |
-| Inflation | Nära målet, inte bara lägst |
-| Statsskuld/underskott | Hållbar nivå |
+| Inflation | Ingen riktning. Utesluten (giltighetsfel): penningpolitiken är Riksbankens, så utfallet kan inte tillskrivas ett riksdagsparti. Se [ADR 0011](docs/adr/0011-uteslutningen-ar-ett-eget-besked.md), beslutad men ej byggd |
+| Statsskuld/underskott | Ingen riktning. Utesluten (neutralitetsfel): den bättre nivån är i sig en partiståndpunkt, så en riktning skulle privilegiera åtstramning. Se [ADR 0011](docs/adr/0011-uteslutningen-ar-ett-eget-besked.md), beslutad men ej byggd |
 
 > **Viktig caveat:** Ett parti ska inte få hela äran eller skulden för konjunkturen.
 
@@ -251,7 +253,7 @@ På så sätt kan en användare se vilka påståenden som ligger bakom varje po�
 
 | Mått | Positivt |
 |------|----------|
-| Försvarsanslag som andel av BNP | Upp till beslutad målnivå |
+| Försvarsanslag som andel av BNP | Ingen riktning. Utesluten (gränsfel): anslagets storlek är delpoäng A:s fråga. Se [ADR 0011](docs/adr/0011-uteslutningen-ar-ett-eget-besked.md), beslutad men ej byggd |
 | Personal och värnpliktiga | Upp, om utbildningskapacitet finns |
 | Ammunition, luftvärn, logistik, cyberförmåga | Upp |
 | Civil beredskap inom vård, energi, mat, transporter | Upp |
