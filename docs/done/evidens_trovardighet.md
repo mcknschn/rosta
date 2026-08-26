@@ -256,6 +256,24 @@ pålitlig, medan storheten mäter hur stor del som är mätt. Det är två skild
 blanda dem vore samma fel som *träffsäkerhet* gjorde för B. Bygge:
 [#29](https://github.com/mcknschn/rosta/issues/29).
 
+**Säkerheten mäter hur väl talet är känt, aldrig vad talet säger.** Låst 2026-08-26 av
+[ADR 0009](../adr/0009-sakerheten-mater-hur-val-talet-ar-kant.md) (biljett #30). En delpoäng vars
+underlag är räknat och fullständigt är väl känd även när talet den ger ligger nära mitten. Att ett
+parti ligger nära normen är ett fynd om världen, inte ett tecken på att vi vet talet sämre. Regeln
+avgör vad som får bli en säkerhetsnivå: hur nära nollpunkten ett tal ligger får det inte, och
+inte heller att en delpoäng mäter fel storhet för ett parti. Det senare är ett **giltighetsfel**,
+och att möta det med ett bredare band vore att tapetsera över det.
+
+**A:s `high` i 56 av 56 celler är ett fynd, inte en form** (ADR 0009 punkt 2). Ingenting i A
+skattas: a1:s ramar är transkriberade och citerar sin källrad, a2 räknar motioner och den tunnaste
+cellen bär 84. Konstanten skiljer sig därmed från de konstanter ADR 0004 och ADR 0005 fann, som
+båda satt i **betyget**. A:s nivå är `band_only` och kan bevisligen inte flytta en rangordning.
+
+**C:s säkerhetsnivå är overksam** (ADR 0009 punkt 5). C väger 0, så dess term i halvbredden är
+exakt 0. Nivån står kvar i `scores.json` som upplysning om datatillståndet
+(`C_missing_subnational`), men den verkar ingenstans, och `conf-low` i frontend slutar läsa den.
+En maktandel har en källa men ingen säkerhet som verkar.
+
 ### Mätbarhet — kan varje indikator mätas?
 En indikator bidrar till betyget om den har **B** (partikopplad evidens att ett instrument flyttar den) **eller**
 **D** (officiell svensk årsserie). B och D är två vägar — en stängd D dödar inte indikatorn om B bär den (t.ex.
