@@ -859,8 +859,10 @@ _CONFIG_HEADER = '''# Rösta — föreslagna utgiftsramar per utgiftsområde (UO
 #
 # INGEN RUNTIME-PARSER finns: A är tyngsta delpoängen och får aldrig kunna korrumperas av en
 # bräcklig parser. Talen läses ur PDF:ens geometri (kolumnens högerkant), aldrig ur cellernas
-# ordning, och verifieras fyrlagrigt vid varje körning: intern summainvariant, oberoende
-# HTML-parser, re-extraktion av de expertgranskade åren, och roll-call ur dokumentstatus.
+# ordning, och verifieras fyrlagrigt vid varje körning: intern summainvariant per kolumn,
+# betänkandets bilagor med absoluta belopp i tusental kronor, betänkandets HTML där den är
+# läsbar, och roll-call ur riksdagens voteringlista. Raden `verification` per budgetår bär
+# utfallet. De expertgranskade åren läses dessutom om av `--audit` och måste träffa på kronan.
 #
 # ATTRIBUTION (ADR 0007 punkt 2): ett parti får en ram bara på citerbar grund — egen
 # budgetmotion, regeringsställning, eller uppslutning bakom en gemensam ram belagd med
@@ -871,11 +873,20 @@ _CONFIG_HEADER = '''# Rösta — föreslagna utgiftsramar per utgiftsområde (UO
 '''
 
 
-def run_config(years: Iterable[int], version: int, signoff: str) -> None:
+# Budgetår som redan är expertgranskade och mänskligt signade. De läses om ur källan vid varje
+# körning och måste träffa den signade configen på kronan (--audit), så raden nedan kan inte
+# tyst drifta. Nya år står som version 0 tills en människa har signat dem.
+SIGNED_OFF: dict[int, str] = {
+    2023: "2026-06-05",
+    2024: "2026-06-05",
+    2025: "2026-06-05",
+}
+
+
+def run_config(years: Iterable[int]) -> None:
     """Skriver hela config/budget_ramar.yaml ur källan."""
     years = sorted(years, reverse=True)
-    lines = [_CONFIG_HEADER, f"# VERSION {version} — {signoff}", "", "unit: mnkr", "",
-             "budget_years:"]
+    lines = [_CONFIG_HEADER, "", "unit: mnkr", "", "budget_years:"]
     with af._client() as client:
         for year in years:
             table, problems, report = read_year(year, client)
@@ -884,10 +895,18 @@ def run_config(years: Iterable[int], version: int, signoff: str) -> None:
             for problem in problems + attribution_problems:
                 raise ValueError(f"{year}: {problem}")
             spec = af.ADOPTED[year]
+            signed = SIGNED_OFF.get(year)
             lines += [
                 f"  {year}:",
+                f"    version: {1 if signed else 0}"
+                + (f"     # expertgranskad, mänsklig sign-off {signed}"
+                   if signed else "     # väntar på mänsklig sign-off"),
                 f'    decided_in: "bet. {_rm(year)}:FiU1 ({spec.caption})"',
                 f'    source_table: "{table.caption}"',
+                f'    verification: "summainvariant '
+                f'{ {k: v for k, v in report["summainvariant_mnkr"].items()} } mnkr; '
+                f'bilagor {[k for k in report["bilagor"]]}; '
+                f'html-parser {"ja" if report["html_provad"] else "nej"}"',
                 "    ramar:",
             ]
             for col in table.columns:
@@ -983,8 +1002,6 @@ def main() -> None:
     parser.add_argument("--audit", action="store_true", help="config mot källa (default)")
     parser.add_argument("--from", dest="start", type=int, default=2011)
     parser.add_argument("--to", dest="end", type=int, default=2025)
-    parser.add_argument("--version", type=int, default=0, help="configens version (0 = ej signad)")
-    parser.add_argument("--signoff", default="v0, väntar på mänsklig sign-off")
     args = parser.parse_args()
     years = range(args.start, args.end + 1)
 
@@ -993,7 +1010,7 @@ def main() -> None:
     elif args.frames:
         run_frames(years)
     elif args.config:
-        run_config(years, args.version, args.signoff)
+        run_config(years)
     else:
         raise SystemExit(run_audit(years))
 
