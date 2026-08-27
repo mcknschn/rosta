@@ -145,6 +145,12 @@ Talen räknades ut EFTER att mekanismen låstes, enligt ADR 0005 punkt 8.
   därmed en dragen källa i känslighetsanalysen.** Närmaste kandidat är fönstret i ADR 0005
   punkt 7, men källistan är låst av ADR 0003 punkt 5 och en ny källa kräver en egen biljett.
 
+  > **Rättad av [ADR 0010](../adr/0010-ett-reglage-ar-en-vag-pipen-redan-kan-ga.md),
+  > 2026-08-27 (biljett #32).** A har åter en dragen post: blandningen `A_component_mix`,
+  > med a1 i (0,50, 0,80]. Fönstret föll som kandidat, eftersom a2:s förankring är ett
+  > aggregat utan år (punkt 6). Ordet för en dragen variationspunkt är numera **reglage**
+  > (punkt 8). Texten ovan står som den skrevs.
+
 ## 7. Kör om
 
 ```bash

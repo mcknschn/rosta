@@ -6,9 +6,11 @@ underlaget. Att två sådana band går omlott säger därför ingenting om just 
 
 Det här verktyget mäter i stället **andelen metodvarianter där två partiers inbördes ordning
 håller**. Monte Carlo bär statistiken: alla osäkra val dras samtidigt (ADR 0003 punkt 4), så
-körningen kan svara på vilken källa som dominerar. Sju namngivna scenarier körs var för sig
-och bär kommunikationen; scenario 6 och 7 är FILTER som byter vad indexet mäter och redovisas
-skilt (punkt 9).
+körningen kan svara på vilket reglage som dominerar. Ett reglage är en dragen variationspunkt
+(ADR 0010 punkt 8); nycklarna `SOURCES`, `Source` och `source_influence` står kvar tills en
+schemaändring ändå görs, så att ordbytet inte drar med sig ett gränssnittsbrott. Sju namngivna
+scenarier körs var för sig och bär kommunikationen; scenario 6 och 7 är FILTER som byter vad
+indexet mäter och redovisas skilt (punkt 9).
 
 Byggt som `pipeline/tools/c3_sensitivity.py`: kopiera `config.scoring()` och `config.claims()`,
 ändra i minnet, monkeypatcha loaderna och kör `scorerun.build(con)`. Ingen fil på disk ändras.
@@ -40,7 +42,7 @@ from . import DIST_DIR, config, schema, scorerun, warehouse
 SEED = 20260821
 N_DRAWS = 10_000          # statistiken räknas på så här många dragningar
 N_DRAWS_SHIPPED = 2_000   # så här många kategorimatriser skickas till webbläsaren
-N_INFLUENCE_BINS = 4      # kvartilfack för kontinuerliga källor (diskreta får sina alternativ)
+N_INFLUENCE_BINS = 4      # kvartilfack för kontinuerliga reglage (diskreta får sina alternativ)
 
 # --- Spannregeln (ADR 0003 punkt 6) ---------------------------------------------------
 # Diskreta val får sina BYGGDA alternativ, varken fler eller färre. Kontinuerliga parametrar
@@ -67,7 +69,7 @@ def _span(value: float, frac: float = 0.5) -> tuple[float, float]:
 
 
 class Source(NamedTuple):
-    """En dragen osäkerhetskälla: namn, spann eller alternativlista, och hur den skrivs in."""
+    """Ett draget reglage: namn, spann eller alternativlista, och hur det skrivs in."""
 
     name: str
     kind: str                                   # "range" | "choice" | "simplex"
@@ -102,6 +104,13 @@ def _set_conf(level: str) -> Callable[[Any, dict, dict], None]:
 
 def _set_default_certainty(v: str, sc: dict, _cl: dict) -> None:
     sc["uncertainty"]["default_subscore_certainty"]["A"] = v
+
+
+def _set_component_mix(v: float, sc: dict, _cl: dict) -> None:
+    """Skriver BÅDA nycklarna: bara den ena vore ett par som inte summerar till 1."""
+    comps = sc["A_agerande"]["components"]
+    comps["a1_budgetprioritering"] = v
+    comps["a2_lagstiftningsprioritering"] = 1 - v
 
 
 def _set_effect_strength(level: str) -> Callable[[Any, dict, dict], None]:
@@ -141,16 +150,22 @@ SOURCES: tuple[Source, ...] = (
     Source("confidence_numeric.low", "range", (0.20, 0.40), _R2_CN, _set_conf("low")),
     # default_subscore_certainty: scorerun sätter ALLTID en override för B, C och D per cell,
     # så bara A:s defaultnivå kan nå ett band. B/C/D lämnas därför orörda — att dra dem vore
-    # att lägga till en källa som bevisligen inte kan flytta något.
+    # att lägga till ett reglage som bevisligen inte kan flytta något.
     Source("default_subscore_certainty.A", "choice", ("high", "medium", "low"),
            f"{_BUILT}: nivåerna i confidence_numeric. Bara A:s default når ett band; "
            "B, C och D överskrids i varje cell.",
            _set_default_certainty, band_only=True),
     # A:s normalisering STRUKEN 2026-08-21 (ADR 0005, biljett #21). A normaliseras inte längre:
     # båda halvorna mäts mot en historisk förankring och avbildas med net_support_to_score, så
-    # källan har inget att dra i. Den var mest inflytelserik av samtliga 21 i #20-körningen, och
-    # A saknar därmed en dragen källa. Nästa kandidat är fönstret i ADR 0005 punkt 7, men den
-    # ligger utanför källistan i ADR 0003 punkt 5 och kräver en egen biljett.
+    # reglaget hade inget att dra i (strykningsregeln i ADR 0010 punkt 9). A:s reglage är i
+    # stället blandningen nedan: koden läser A_agerande.components och tar emot vilket par som
+    # helst utan ny kod (ADR 0010 punkt 4). Fönstret är inget reglage: a2:s förankring är ett
+    # aggregat utan år, så configen kan inte uttrycka ett annat fönster (ADR 0010 punkt 6).
+    Source("A_component_mix", "range", (0.50, 0.80),
+           "a1 i (0,50, 0,80], a2 = 1 - a1. Nedre änden ur ADR 0001, som härleder att a1 väger "
+           "mer än a2. Övre änden ur R1 på a2: _span(0.4) ger a2 minst 0,20, alltså a1 högst "
+           "0,80. Ingen av ändarna är vald (ADR 0010 punkt 5).",
+           _set_component_mix),
     Source("B_coverage_mode", "choice", ("policy_type_count", "weighted_submeasure_depth"),
            f"{_BUILT}: de två lägen scorerun bygger.", _set_b("coverage_mode")),
     Source("B_coverage_shrink", "choice", (True, False),
@@ -178,8 +193,8 @@ SOURCES: tuple[Source, ...] = (
     # region_weighting har PRECIS ETT byggt alternativ. config.validate släpper igenom
     # 'population', men ingenting i pipen läser det värdet — befolkningsvikt finns bara i
     # auditverktyget pipeline/tools/c3_sensitivity.py, som hämtar folkmängd live. Spannregeln
-    # ger då en alternativlista med ett element, och källan kan per konstruktion inte flytta
-    # något. Den står kvar i tabellen för att frånvaron ska synas.
+    # ger då en alternativlista med ett element, och reglaget kan per konstruktion inte flytta
+    # något. Det står kvar i tabellen för att frånvaron ska synas.
     Source("D_region_weighting", "choice", ("equal",),
            f"{_BUILT}: bara 'equal' är byggd i pipen; 'population' finns bara i auditverktyget.",
            _set_subnational("region_weighting")),
@@ -187,7 +202,7 @@ SOURCES: tuple[Source, ...] = (
 
 
 def draw(rng: random.Random) -> dict[str, Any]:
-    """En dragning: källnamn -> draget värde. Alla källor dras SAMTIDIGT (ADR 0003 punkt 4)."""
+    """En dragning: reglagenamn -> draget värde. Alla reglage dras SAMTIDIGT (ADR 0003 punkt 4)."""
     out: dict[str, Any] = {}
     for s in SOURCES:
         if s.kind == "range":
@@ -201,7 +216,7 @@ def draw(rng: random.Random) -> dict[str, Any]:
             parts = sorted((cuts[0], cuts[1] - cuts[0], 1.0 - cuts[1]), reverse=True)
             out[s.name] = (parts[1], parts[0], parts[2])   # (A, B, D)
         else:  # pragma: no cover - tabellen ovan är uttömmande
-            raise ValueError(f"Okänd källtyp: {s.kind}")
+            raise ValueError(f"Okänd reglagetyp: {s.kind}")
     return out
 
 
@@ -312,12 +327,12 @@ def analyse(
     baseline: Sequence[Sequence[float]], parties: Sequence[str], cats: Sequence[str],
     std_weights: Sequence[float],
 ) -> Analysis:
-    """Kategori- och totalstabilitet plus varje källas förstaordningseffekt på andelen.
+    """Kategori- och totalstabilitet plus varje reglages förstaordningseffekt på andelen.
 
-    Källinflytandet läses ur SAMMA samtidiga dragning (ADR 0003 punkt 4): för varje fack av
-    källan räknas andelen om, och inflytandet är hur många procentenheter andelen rör sig
+    Reglageinflytandet läses ur SAMMA samtidiga dragning (ADR 0003 punkt 4): för varje fack av
+    reglaget räknas andelen om, och inflytandet är hur många procentenheter andelen rör sig
     mellan det högsta och det lägsta facket, i medeltal över partiparen. Allt annat är då
-    utmedelvärdat, alltså är det källan ENSAM som flyttar talet.
+    utmedelvärdat, alltså är det reglaget ENSAMT som flyttar talet.
     """
     base_total = [sum(v * w for v, w in zip(row, std_weights, strict=True)) for row in baseline]
     total_order = order_of(base_total, parties)
@@ -521,7 +536,7 @@ def _source_meta() -> dict[str, dict[str, Any]]:
 
 def run(con: object, n_draws: int = N_DRAWS, n_shipped: int = N_DRAWS_SHIPPED,
         seed: int = SEED, progress: bool = True) -> dict[str, Any]:
-    """Hela analysen: baslinje, dragningar, stabilitet, källinflytande och scenarier."""
+    """Hela analysen: baslinje, dragningar, stabilitet, reglageinflytande och scenarier."""
     parties, cats = config.party_codes(), config.category_ids()
     std_weights = [float(c["standard_weight"]) for c in config.categories()["categories"]]
 
@@ -561,11 +576,11 @@ def run(con: object, n_draws: int = N_DRAWS, n_shipped: int = N_DRAWS_SHIPPED,
             "measure": ("Andelen metodvarianter där två partiers inbördes ordning håller "
                         "(ADR 0003 punkt 2). Ingen tröskel: andelen redovisas som den är."),
             "influence_note": (
-                "source_influence är källans förstaordningseffekt: hur många procentenheter "
-                "andelen rör sig mellan källans högsta och lägsta fack, i medeltal över "
+                "source_influence är reglagets förstaordningseffekt: hur många procentenheter "
+                "andelen rör sig mellan reglagets högsta och lägsta fack, i medeltal över "
                 "partiparen, med allt annat utmedelvärdat. Statistiken är max minus min över "
-                "facken och ligger därför en bit över noll även för en källa utan effekt. "
-                "Källor märkta band_only rör per konstruktion bara osäkerhetsbandet och aldrig "
+                "facken och ligger därför en bit över noll även för ett reglage utan effekt. "
+                "Reglage märkta band_only rör per konstruktion bara osäkerhetsbandet och aldrig "
                 "betyget (låst i tests/test_robustness.py), så deras tal läser av brusgolvet."),
         },
         "draws": {"parties": parties, "categories": cats, "scale": 100, "values": values_flat},
@@ -587,7 +602,7 @@ def report(out: dict[str, Any]) -> None:
         a, b = key.split("|")
         print(f"  {a} ligger före {b} i {100 * share:.1f} procent av metodvarianterna")
 
-    print("\n== Källinflytande (procentenheter som källan ENSAM flyttar andelen) ==")
+    print("\n== Reglageinflytande (procentenheter som reglaget ENSAMT flyttar andelen) ==")
     srcs = out["meta"]["sources"]
     ranked = sorted(out["source_influence"].items(), key=lambda kv: -kv[1]["category_points"])
     for name, inf in ranked:
@@ -602,7 +617,7 @@ def report(out: dict[str, Any]) -> None:
     floor = [inf["category_points"] for n, inf in out["source_influence"].items()
              if srcs.get(n, {}).get("band_only")]
     if floor:
-        print(f"  brusgolv (band_only-källorna): {min(floor):.2f} till {max(floor):.2f} "
+        print(f"  brusgolv (band_only-reglagen): {min(floor):.2f} till {max(floor):.2f} "
               "procentenheter")
 
     print("\n== Scenarier ==")

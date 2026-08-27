@@ -311,9 +311,10 @@ indikator med sitt skäl, så ett lägre täckningstal inte läses som att under
 `dist/robustness.json` (deployas, byggs av `python -m pipeline.robustness`): känsligheten enligt
 [ADR 0003](docs/adr/0003-skiljbarhet-och-kanslighetsanalys.md). Skiljbarhet mäts som **andelen
 metodvarianter där två partiers inbördes ordning håller**, inte som bandöverlapp. Filen bär
-`meta` (fast `seed`, `n_draws`, Monte Carlo-fel i procentenheter, och varje dragen källa med sitt
-spann eller sin alternativlista), `draws` (kategoribetygen per dragning som en flat heltalsvektor
-skalad med 100), `category_stability` per kategori och partipar, `source_influence` per källa, och
+`meta` (fast `seed`, `n_draws`, Monte Carlo-fel i procentenheter, och varje draget reglage med
+sitt spann eller sin alternativlista), `draws` (kategoribetygen per dragning som en flat
+heltalsvektor skalad med 100), `category_stability` per kategori och partipar,
+`source_influence` per reglage (fältnamnet står kvar av kontraktsskäl, ADR 0010 punkt 8), och
 de sju namngivna scenarierna, varav 6 och 7 är märkta som **filter** eftersom de byter vad indexet
 mäter. Totalen kan pipen inte förberäkna, eftersom kategorivikterna sätts i webbläsaren;
 `web/score.js` `pairStability` räknar andelen ur `draws` för användarens egna vikter.

@@ -1,9 +1,9 @@
 """Biljett #20 / ADR 0003: skiljbarhet mätt som ordningens stabilitet.
 
-Två saker låses här. Först de två configreglagen som dragningen behöver och som är
-byte-identiska med dagens betyg i sitt defaultläge (B:s krympning på/av, A:s normalisering).
-Sedan själva analysen: seed, dragningsantal, spannen och att analysen DRAR
-`numeric.effect_strength` men aldrig ÄNDRAR den.
+Två saker låses här. Först configreglagen som dragningen behöver: B:s krympning på/av
+(byte-identisk med dagens betyg i sitt defaultläge), att A:s normalisering är retirerad
+(ADR 0005) och A:s blandning a1/a2 (ADR 0010). Sedan själva analysen: seed, dragningsantal,
+spannen och att analysen DRAR `numeric.effect_strength` men aldrig ÄNDRAR den.
 
 Alla warehouse-tester kör mot `:memory:` — aldrig mot data/warehouse.duckdb.
 """
@@ -191,22 +191,51 @@ def test_vikterna_dras_ur_adr_0002s_mangd() -> None:
 
 
 def test_alla_kallor_i_adr_0003_punkt_5_dras() -> None:
-    """Källistan täcker ADR 0003 punkt 5 plus effect_strength (biljett #20).
+    """Reglagelistan täcker ADR 0003 punkt 5 plus effect_strength (biljett #20).
 
-    A:s normalisering saknas med flit: ADR 0005 tog bort normaliseringen av A, så källan har
-    inget att dra i (biljett #21).
+    A:s normalisering saknas med flit: ADR 0005 tog bort normaliseringen av A, så reglaget hade
+    inget att dra i (biljett #21). A_component_mix finns för att blandningen 0,6/0,4 är A:s
+    kvarvarande variationspunkt: koden läser A_agerande.components och tar emot vilket par som
+    helst utan ny kod (ADR 0010 punkt 4, biljett #32).
     """
     names = {s.name for s in robustness.SOURCES}
     assert names == {
         "subscore_weights", "max_interval_halfwidth",
         "confidence_numeric.high", "confidence_numeric.medium", "confidence_numeric.low",
-        "default_subscore_certainty.A",
+        "default_subscore_certainty.A", "A_component_mix",
         "B_coverage_mode", "B_coverage_shrink", "B_thin_coverage_threshold",
         "effect_strength.high", "effect_strength.medium", "effect_strength.low",
         "D_attribution_lag_years", "D_change_dead_zone", "D_min_responsibility",
         "D_thin_basis_threshold", "D_coverage_shrink", "D_thin_coverage_threshold",
         "D_subnational_enabled", "D_region_weighting",
     }
+
+
+def test_a_component_mix_spannet_ar_last_mot_adr_0010_punkt_5() -> None:
+    """a1 i (0,50, 0,80] med a2 = 1 - a1. Båda ändarna är härledda, ingen är vald.
+
+    Nedre änden ur ADR 0001, som härleder att a1 väger mer än a2; övre ur R1 på a2, som ger a2
+    minst 0,20. Posten rör betyget, alltså inte band_only. Dragningen skriver BÅDA nycklarna,
+    och bara nycklar configen redan äger: bara den ena vore ett par som inte summerar till 1,
+    och en främmande nyckel vore ett reglage som drar i tomhet.
+    """
+    src = _source("A_component_mix")
+    assert src.kind == "range"
+    assert src.spec == (0.50, 0.80)
+    assert not src.band_only
+    sc = copy.deepcopy(config.scoring())
+    orig_keys = set(sc["A_agerande"]["components"])
+    rng = random.Random(robustness.SEED)
+    for _ in range(500):
+        values = robustness.draw(rng)
+        src.apply(values["A_component_mix"], sc, {})
+        comps = sc["A_agerande"]["components"]
+        assert set(comps) == orig_keys
+        assert comps["a1_budgetprioritering"] == values["A_component_mix"]
+        assert comps["a1_budgetprioritering"] > comps["a2_lagstiftningsprioritering"]
+        assert comps["a1_budgetprioritering"] + comps["a2_lagstiftningsprioritering"] == 1.0
+    sc_full, _ = robustness.configs_for(values)   # hela vägen, en gång som i vikttestet
+    assert sc_full["A_agerande"]["components"] == comps
 
 
 def test_analysen_skriver_aldrig_till_config() -> None:
@@ -225,7 +254,7 @@ def test_analysen_skriver_aldrig_till_config() -> None:
         assert (CONFIG_DIR / name).read_bytes() == blob
 
 
-# --- band_only: nollkontrollen som gör källinflytandet läsbart ------------------------
+# --- band_only: nollkontrollen som gör reglageinflytandet läsbart ---------------------
 
 
 def _build_with(con: object, source: robustness.Source, value: object) -> dict:
@@ -245,7 +274,7 @@ def _build_with(con: object, source: robustness.Source, value: object) -> dict:
 _BAND_ONLY = [s for s in robustness.SOURCES if s.band_only]
 
 # Värden långt utanför det dragna spannet, valda så att flaggan garanterat vänder. De prövar
-# att källan NÅR bandet, inte hur brett den drar. Spannen prövas i testet ovanför.
+# att reglaget NÅR bandet, inte hur brett det drar. Spannen prövas i testet ovanför.
 _EXTREMES: dict[str, tuple[object, object]] = {
     "max_interval_halfwidth": (0.1, 5.0),
     "default_subscore_certainty.A": ("high", "low"),
@@ -257,11 +286,11 @@ _EXTREMES: dict[str, tuple[object, object]] = {
 
 @pytest.mark.parametrize("source", _BAND_ONLY, ids=lambda s: s.name)
 def test_band_only_kallor_ror_aldrig_betyget(source: robustness.Source) -> None:
-    """Fem källor når bara osäkerhetsbandet.
+    """Fem reglage når bara osäkerhetsbandet.
 
-    Det är hela ADR 0003:s poäng: bandet är ingen rangordningsstorhet, så en källa som bara rör
-    bandet kan inte flytta ett partipar. Testet gör påståendet prövbart i stället för påstått,
-    och gör band_only-talen i source_influence läsbara som ett brusgolv.
+    Det är hela ADR 0003:s poäng: bandet är ingen rangordningsstorhet, så ett reglage som bara
+    rör bandet kan inte flytta ett partipar. Testet gör påståendet prövbart i stället för
+    påstått, och gör band_only-talen i source_influence läsbara som ett brusgolv.
     """
     con = _seed_con_with_d()   # D måste vara uppmätt, annars är D:s trösklar inerta
     for lo, hi in (source.spec[0], source.spec[-1]), _EXTREMES[source.name]:
@@ -275,7 +304,7 @@ def test_band_only_kallor_ror_aldrig_betyget(source: robustness.Source) -> None:
 
 @pytest.mark.parametrize("source", _BAND_ONLY, ids=lambda s: s.name)
 def test_band_only_kallor_nar_bandet(source: robustness.Source) -> None:
-    """Motsatsen till testet ovan: källan måste faktiskt röra bandet, annars är den ingen källa."""
+    """Motsatsen till testet ovan: reglaget måste faktiskt röra bandet, annars är det inget."""
     lo, hi = _EXTREMES[source.name]
     con = _seed_con_with_d()
     a = _build_with(con, source, lo)
@@ -408,6 +437,9 @@ def test_dist_robustness_validerar_och_har_last_seed() -> None:
     assert data["meta"]["n_draws"] == robustness.N_DRAWS
     assert data["meta"]["n_draws_shipped"] == robustness.N_DRAWS_SHIPPED
     assert len(data["scenarios"]) == 7
+    # Reglagelistan i dist ska vara kodens: en glömd omkörning ska falla rött, inte skickas.
+    assert set(data["meta"]["sources"]) == {s.name for s in robustness.SOURCES}
+    assert set(data["source_influence"]) == {s.name for s in robustness.SOURCES}
 
 
 def test_c_normaliseringen_styrs_av_configen(monkeypatch: pytest.MonkeyPatch) -> None:
