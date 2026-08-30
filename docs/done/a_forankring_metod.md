@@ -18,6 +18,22 @@ under ett historiskt fönster. För varje parti och kategori gäller
 `q` ligger i [-1, 1] av konstruktion och är 0 vid jämnhöjd. Ingen konstant väljs, och båda
 halvorna får samma form. Blandningen 0,6 x a1 + 0,4 x a2 står orörd.
 
+### 1.1 Golvet är nåbart, taket är det inte
+
+Byggt 2026-08-30 i biljett [#35](https://github.com/mcknschn/rosta/issues/35) ur
+[ADR 0012](../adr/0012-vaxelkursen-i-a-ar-harledd-ur-kvotens-andar.md) punkt 5. Kod:
+`score.max_reachable_score`, `scorerun._a_ceilings` och `scorerun._a_ceiling_sentence`.
+
+Andelen är högst 1, alltså hela partiets kraft i en enda kategori, så `q` når bara
+`(1 - förankring) / (1 + förankring)`. Taket följer därför förankringens storlek och skiljer sig
+mellan kategorier, medan golvet 0,00 nås överallt. Metodrutan i `dist/scores.json` bär talet per
+kategori, räknat vid körningen ur förankringen i `config/a_forankring.yaml`, blandningen i
+`config/scoring.yaml` och a1-grinden. En ändrad förankring följer med utan att någon rör texten,
+och en inskriven konstant fäller `tests/test_a_taket.py`.
+
+Snedheten jämnas inte ut. Varje utjämning kräver en vald konstant per kategori, och den enda
+vinsten vore ett bredare spann, vilket ADR 0003 punkt 1 förbjuder som mål.
+
 ## 2. Förankringarna
 
 | Halva | Förankring | Källa |

@@ -365,6 +365,47 @@ def _coverage_denominators() -> dict[str, float]:
     return {c: sum(w.values()) for c, w in _submeasure_weights().items()}
 
 
+def _a_ceilings(
+    cats: list[str],
+    a1_anchor: dict[str, float],
+    a2_anchor: dict[str, float],
+    a1_active: set[str],
+    w_a1: float,
+    w_a2: float,
+) -> dict[str, float]:
+    """kategori -> A:s NÅBARA TAK, alltså betyget för ett parti som lägger allt i kategorin.
+
+    Taket räknas ur förankringen med score.max_reachable_score och blandas med samma vikter
+    som betyget självt, så en ändrad förankring och en ändrad blandning följer båda med. Står
+    a1 bär taket båda halvorna; faller a1 ur grinden vilar A på a2 ensam, och taket med den.
+    """
+    return {
+        c: (w_a1 * score.max_reachable_score(a1_anchor[c])
+            + w_a2 * score.max_reachable_score(a2_anchor[c])) if c in a1_active
+        else score.max_reachable_score(a2_anchor[c])
+        for c in cats
+    }
+
+
+def _a_ceiling_sentence(ceilings: dict[str, float]) -> str:
+    """Metodrutans mening om A:s nåbara tak (ADR 0012 punkt 5).
+
+    Rutan sade att 5,00 aldrig nås och lämnade läsaren med att skalan i övrigt är densamma
+    överallt. Den är den inte: taket följer förankringens storlek, så samma handling ger olika
+    betyg i olika kategorier. Talen räknas vid körningen och skrivs aldrig in som konstanter.
+    """
+    lista = ", ".join(
+        f"{cat} " + f"{tak:.2f}".replace(".", ",")
+        for cat, tak in sorted(ceilings.items(), key=lambda kv: (kv[1], kv[0]))
+    )
+    return (
+        "Taket är därför inte detsamma i alla kategorier: ett parti som la hela sin kraft på "
+        f"en enda kategori når {lista}. Golvet 0,00 är däremot nåbart överallt. Snedheten "
+        "följer förankringens storlek och är en deklarerad kostnad (ADR 0012 punkt 4). Den "
+        "jämnas inte ut, eftersom varje utjämning kräver en vald konstant per kategori. "
+    )
+
+
 def _exclusion_sentence() -> str:
     """Metodrutans rad om de uteslutna indikatorerna (ADR 0011 punkt 10).
 
@@ -1031,6 +1072,11 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
     _delad = budget.shared_frame_years(budget_cfg)
     a1_delad = (" Antal år av fönstrets där partiet delar ram med minst ett annat parti: "
                 + ", ".join(f"{p} {n}" for p, n in _delad) + "." if _delad else "")
+    # A:s nåbara tak per kategori (ADR 0012 punkt 5). Rutan sade bara att 5,00 aldrig nås.
+    # Talen räknas ur förankringen som den står i configen vid körningen, aldrig inskrivna.
+    a_tak = _a_ceiling_sentence(
+        _a_ceilings(cats, a1_anchor, a2_anchor, a1_active, w_a1, w_a2)
+    )
     out = {
         "meta": {
             "generated": today.isoformat(), "window": "2014-2026",
@@ -1068,6 +1114,7 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
                 "0,83 mindre; jämnhöjd med förankringen ger 2,50. Skalan går från 0,00, "
                 "som betyder att partiet inte lägger något alls på kategorin, mot 5,00, "
                 "som aldrig nås eftersom det skulle kräva en förankring på noll. "
+                + a_tak +
                 # ADR 0007 punkt 1 och 3: fönstren skrivs ut, och att de kan skilja sig.
                 "VILKA ÅR VARJE HALVA MÄTER (ADR 0007): täljaren täcker samma år som sin "
                 f"förankring. a1 mäter {a1_window}{a1_signoff}. a2 mäter perioden "

@@ -115,6 +115,19 @@ def net_support_to_score(net_support: float) -> float:
     return clamp(5.0 * (net_support + 1.0) / 2.0)
 
 
+def max_reachable_score(anchor: float) -> float:
+    """Högsta betyg en andel kan nå mot `anchor`, alltså halvans NÅBARA TAK (ADR 0012 punkt 4).
+
+    Andelen är högst 1, alltså hela partiets kraft i en enda kategori. Kvoten når därför bara
+    (1 - förankring) / (1 + förankring), och +1 kräver en förankring på noll, som inte finns.
+    Taket följer alltså förankringens storlek och skiljer sig mellan kategorier, medan golvet
+    0,00 är nåbart överallt: en andel på noll ger kvoten -1.
+
+    Talet räknas här och skrivs aldrig in som konstant, så en ändrad förankring följer med.
+    """
+    return net_support_to_score(bounded_quotient(1.0, anchor))
+
+
 def aggregate_B(
     indicator_net_support: Mapping[str, float | None],
     indicator_weights: Mapping[str, float],
