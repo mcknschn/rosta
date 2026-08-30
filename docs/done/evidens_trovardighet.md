@@ -314,6 +314,23 @@ ett alternativ under "Övervägda alternativ" ger det ingen plats i listan, anna
 reglage stryks med en rad om varför** (punkt 9), som `A_normalization` fick i
 [#21](https://github.com/mcknschn/rosta/issues/21).
 
+### Delpoäng A:s avbildning: Växelkurs
+
+Låst 2026-08-30 av [ADR 0012](../adr/0012-vaxelkursen-i-a-ar-harledd-ur-kvotens-andar.md) (biljett
+#28 under karta #6).
+
+**Växelkurs:** hur stor omfördelning som krävs för att flytta en delpoäng ett steg. I A är den
+härledd och inte vald: `q = (andel - förankring)/(andel + förankring)` ligger i [-1, 1] av
+konstruktion, och den linjära avbildningen på [0, 5] är den enda som lägger jämnhöjd i mitten utan
+att införa en konstant. En fördubblad andel ger 0,83 poäng i den halva som mäts, och en halverad ger
+0,83 mindre. A:s avbildning **sammanfaller** med B:s, den är inte lånad ur den.
+
+**Golvet är nåbart, taket är det inte** (ADR 0012 punkt 4). 0,00 betyder att partiet inte lägger
+något alls i kategorin. 5,00 kräver en förankring på noll, så det nåbara taket följer förankringens
+storlek och går 3,76 (välfärd) till 4,70 (trygghet). Snedheten är en deklarerad kostnad, som
+mättnaden i ADR 0005, och den jämnas inte ut, eftersom varje utjämning kräver en vald konstant per
+kategori.
+
 ### Mätbarhet — kan varje indikator mätas?
 En indikator bidrar till betyget om den har **B** (partikopplad evidens att ett instrument flyttar den) **eller**
 **D** (officiell svensk årsserie). B och D är två vägar — en stängd D dödar inte indikatorn om B bär den (t.ex.

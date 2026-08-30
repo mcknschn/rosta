@@ -140,6 +140,13 @@ Vid sidan av testet står leveransen ur beslutspunkt 6: metodrutan säger vad en
   ingen vald konstant, och A skulle bli jämförbar mellan kategorier. Den prövas om kompressionen
   står kvar när fönstren är lika. Att pröva den nu vore att mäta skalan mot ett underlag där fyra
   partier delar ram i varje år.
+
+  **Prövad och förkastad 2026-08-30 av
+  [ADR 0012](0012-vaxelkursen-i-a-ar-harledd-ur-kvotens-andar.md) punkt 3** (biljett
+  [#28](https://github.com/mcknschn/rosta/issues/28)). Reserven är alltså inte längre sparad. Båda
+  leden i skälet ovan föll: konstanten är inte en utan tre, och valet mellan dem flyttar de två
+  översta partierna, medan storheten mäter hur mycket budgetpolitiken ändrats över femton år och
+  inte hur väl talet är känt.
 - **Korta förankringen till täljarens tre år.** Förkastat. Förankringen blir då de tre
   Tidöbudgetarna, alltså M, KD, L och SD:s egen ram, vilket är det alternativ ADR 0005 förkastade
   under rubriken "Regeringens ram som nollpunkt". Beslutspunkt 4 gör förkastandet prövbart.
