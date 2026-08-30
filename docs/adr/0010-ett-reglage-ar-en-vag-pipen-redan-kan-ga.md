@@ -164,6 +164,15 @@ tvetydig mot repots källkrav. Ordet **reglage** används redan informellt för 
    utan år, så configen kan inte uttrycka ett annat fönster. Biljettens eget skäl, att alternativen
    är för få, är avfört.
 
+   > **Skälet ersatt av [ADR 0013](0013-a2s-forankring-ar-en-poolad-andel.md) punkt 5, 2026-08-30**
+   > (biljett [#36](https://github.com/mcknschn/rosta/issues/36)). Slutsatsen står, men skälet ovan
+   > var det svagare av två. Det hänger på ett lagringsval som går att bygga bort för 225 anrop, och
+   > då hade punkten fallit utan att något metodmässigt hade ändrats. Fönstret faller i stället på
+   > **spannet**: ADR 0010 punkt 5 kräver två härledda ändar, och `start` har ingen härledd övre
+   > ände. Varje kandidat är det efterhandsomdöme ADR 0005 punkt 7 redan förbjuder, och den enda
+   > kandidat som ser härledd ut, senaste mandatperiod, fyrar villkorsklausulen i ADR 0007 punkt 4
+   > vid start 2023. Det skälet står oavsett hur talen lagras. Texten ovan står oförändrad.
+
 7. **Blandningens tal rörs inte här.** Att dra ett reglage är att mäta hur mycket ett låst val
    betyder, aldrig att förbereda en ändring av det. Att koppla ihop mätningen med ändringen är
    precis vad ADR 0003 punkt 1 förbjuder. Frågan om blandningen har en härledning ur ADR 0002:s

@@ -331,6 +331,34 @@ storlek och går 3,76 (välfärd) till 4,70 (trygghet). Snedheten är en deklare
 mättnaden i ADR 0005, och den jämnas inte ut, eftersom varje utjämning kräver en vald konstant per
 kategori.
 
+### Delpoäng A:s två aggregationsformer: Poolad andel och Årsmedel
+
+Låsta 2026-08-30 av [ADR 0013](../adr/0013-a2s-forankring-ar-en-poolad-andel.md) (biljett #36 under
+karta #6).
+
+A:s två halvor väger fönstrets år olika, och de två formerna har varsitt namn.
+
+| ord | vad det betyder | var det gäller |
+| --- | --- | --- |
+| **Poolad andel** | Andelen av summan över fönstrets år. Varje år väger efter sitt eget underlag. | a2, i både täljare och förankring |
+| **Årsmedel** | Medlet av årsandelarna. Varje år väger lika. | a1, i både täljare och förankring |
+
+**Skillnaden är en följd av underlaget, inte ett val a2 ska härma.** a1 har ett tal per år och inget
+naturligt antal att poola: att poola kronor över år skulle väga senare år tyngre, eftersom budgeten
+växer. a2 har ett antal, alltså motioner, och att väga varje år efter hur många motioner det bär är
+estimatorns rätta beteende.
+
+**Täljare och förankring ska ha samma form** (ADR 0013 punkt 2). En kvot vars ändar väger åren olika
+bär viktskillnaden som om den vore en skillnad mellan partier. Det är samma fel som ADR 0007 punkt 1
+redan förbjuder i tid, uttryckt i form.
+
+**Formen bär A:s säkerhetsnivå.** Poolad bär a2:s tunnaste cell 84 motioner, och det är skälet till
+att ingenting i A skattas (ADR 0009 punkt 5). Som årsmedel bär tunnaste cellen 1 motion, och då
+måste `high` prövas om.
+
+*Skilj från Reglage:* formen är ingen dragen variationspunkt. Fönstret är inget reglage, eftersom
+`start` saknar en härledd övre ände (ADR 0013 punkt 5).
+
 ### Mätbarhet — kan varje indikator mätas?
 En indikator bidrar till betyget om den har **B** (partikopplad evidens att ett instrument flyttar den) **eller**
 **D** (officiell svensk årsserie). B och D är två vägar — en stängd D dödar inte indikatorn om B bär den (t.ex.

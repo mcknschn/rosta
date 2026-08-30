@@ -195,6 +195,12 @@ Ett parti som la hela sin kraft på välfärd skulle få 3,76, medan samma handl
    världen, inte om hur väl talet är känt. A behåller `high`, precis som ADR 0009 beslutade, och
    frågan ställs på nytt först om förankringen blir årsvis.
 
+   > **Frågan stängd av [ADR 0013](0013-a2s-forankring-ar-en-poolad-andel.md) punkt 6, 2026-08-30**
+   > (biljett [#36](https://github.com/mcknschn/rosta/issues/36)). Förankringen förblir en poolad
+   > andel, så A behåller `high` och punkten ovan står. Villkoret är utskrivet i ADR 0013: svaret
+   > hänger på formen, inte på lagringen. Byter någon till medlet av årsandelarna bär a2:s tunnaste
+   > cell 1 motion i stället för 84, och då skattas något i A, så ADR 0009 punkt 5 måste prövas om.
+
 8. **Blindheten deklareras.** Biljetten beordrade att reservens verkan skulle mätas före beslutet,
    som ADR 0006 mätte priset för utlyftet. Den som beslutade hade därför sett att en av tre
    skalvarianter sätter KD före M, och att alla tre vidgar A:s spann. Beslutet i punkt 3 är härlett
