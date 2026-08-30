@@ -159,8 +159,10 @@ SOURCES: tuple[Source, ...] = (
     # båda halvorna mäts mot en historisk förankring och avbildas med net_support_to_score, så
     # reglaget hade inget att dra i (strykningsregeln i ADR 0010 punkt 9). A:s reglage är i
     # stället blandningen nedan: koden läser A_agerande.components och tar emot vilket par som
-    # helst utan ny kod (ADR 0010 punkt 4). Fönstret är inget reglage: a2:s förankring är ett
-    # aggregat utan år, så configen kan inte uttrycka ett annat fönster (ADR 0010 punkt 6).
+    # helst utan ny kod (ADR 0010 punkt 4). Fönstret är inget reglage, och det faller på SPANNET
+    # och inte på hur talen lagras (ADR 0013 punkt 5): ADR 0010 punkt 5 kräver två härledda ändar,
+    # och `window.start` har ingen härledd övre ände. Den enda kandidat som ser härledd ut, senaste
+    # mandatperiod, fyrar villkorsklausulen i ADR 0007 punkt 4 vid start 2023.
     Source("A_component_mix", "range", (0.50, 0.80),
            "a1 i (0,50, 0,80], a2 = 1 - a1. Nedre änden ur ADR 0001, som härleder att a1 väger "
            "mer än a2. Övre änden ur R1 på a2: _span(0.4) ger a2 minst 0,20, alltså a1 högst "

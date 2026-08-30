@@ -72,6 +72,45 @@ def test_a2_forankring_ar_kammarens_kategoriandel() -> None:
     assert out["valfard"] == pytest.approx(0.6)
 
 
+def _kategoriandelar(counts: dict[str, int]) -> dict[str, float]:
+    """Kategoriandelen av ett utskottsaggregat, räknad i provet och inte av koden."""
+    per_cat = {cat: 0.0 for cat in CATS}
+    for org, cat in COMMITTEES.items():
+        per_cat[cat] += float(counts[org])
+    return {cat: n / sum(float(counts[org]) for org in COMMITTEES) for cat, n in per_cat.items()}
+
+
+def test_a2_forankring_ar_andelen_av_summan_inte_medlet_av_arsandelarna() -> None:
+    """a2:s förankring poolar åren, alltså varje år vägt efter sitt eget underlag.
+
+    ADR 0013 punkt 1 och 4. Formen är a2:s, inte a1:s: a1 har ett tal per år och inget naturligt
+    antal att poola, medan a2 har ett antal. Configen bär kammarens tal som ett enda aggregat per
+    utskott, så provet bär årsuppdelningen själv och prövar formen mot den.
+
+    Årsvolymen varierar mellan åren. Utan den variationen sammanfaller de två formerna och provet
+    blir tomt, så den första satsen prövar att provet har något att skilja på.
+    """
+    per_year = {
+        2020: {"FiU": 30, "SkU": 10, "SoU": 60},     # 100 motioner, ekonomi 0,40
+        2021: {"FiU": 6, "SkU": 2, "SoU": 2},        # 10 motioner, ekonomi 0,80
+    }
+    aggregate = {org: sum(year[org] for year in per_year.values()) for org in COMMITTEES}
+    poolad = _kategoriandelar(aggregate)
+    arsmedel = {
+        cat: sum(_kategoriandelar(year)[cat] for year in per_year.values()) / len(per_year)
+        for cat in CATS
+    }
+    assert poolad["ekonomi"] != pytest.approx(arsmedel["ekonomi"]), "fixturen skiljer inte formerna"
+
+    cfg = _cfg()
+    cfg["a2"]["chamber_motions"]["committees"] = aggregate
+    out = anchor.a2_anchor_shares(CATS, cfg=cfg, committee_map=COMMITTEES)
+
+    for cat in CATS:
+        assert out[cat] == pytest.approx(poolad[cat])
+        assert out[cat] != pytest.approx(arsmedel[cat])
+
+
 def test_a2_saknat_utskott_ar_hard_fail() -> None:
     cfg = _cfg()
     del cfg["a2"]["chamber_motions"]["committees"]["SkU"]
