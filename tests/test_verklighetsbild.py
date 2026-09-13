@@ -109,10 +109,12 @@ def test_urvalet_ryms_i_det_minsta_stratumet():
 
 
 def test_delurvalet_dras_ur_de_200():
-    urval = vb.dra_urval(vb.las_bakat(), fro=20260913, per_parti=25)
-    delurval = vb.dra_urval(urval, fro=460513, per_parti=5)
+    """Prövar de frön piloten faktiskt levererade, inte ett påhittat."""
+    urval = vb.dra_urval(vb.las_bakat(), fro=vb.FRO_URVAL, per_parti=vb.PER_PARTI)
+    delurval = vb.dra_urval(urval, fro=vb.FRO_DELURVAL, per_parti=vb.PER_PARTI_DELURVAL)
     assert len(delurval) == 40
     assert {u.id for u in delurval} <= {u.id for u in urval}
+    assert vb.FRO_DELURVAL != vb.FRO_URVAL, "delurvalet måste ha ett eget frö"
 
 
 # --------------------------------------------------------------- Krippendorffs alfa
@@ -316,9 +318,9 @@ def test_granskningen_faller_en_utsaga_utan_bade_relation_och_kod():
 
 
 def test_granskningen_faller_en_kod_utanfor_den_lasta_listan():
-    """skev ar forkastat av ADR 0016 beslutspunkt 9 och far inte smyga tillbaka."""
+    """skev är förkastat av ADR 0016 beslutspunkt 9 och får inte smyga tillbaka."""
     fel = vb.granska_kodning(_post("U-4", [_led(False, bortfall="skev")], "skev")).fel
-    assert any("utanfor den lasta listan" in f for f in fel)
+    assert any("utanför den låsta listan" in f for f in fel)
 
 
 def test_granskningen_faller_ett_provbart_led_utan_indikator():
@@ -328,11 +330,11 @@ def test_granskningen_faller_ett_provbart_led_utan_indikator():
 
 def test_granskningen_faller_en_relation_som_anda_bar_en_kod():
     fel = vb.granska_kodning(_post("U-7", [_led(True, "arbetsloshet")], "normativ")).fel
-    assert any("anda bortfallskoden" in f for f in fel)
+    assert any("ändå bortfallskoden" in f for f in fel)
 
 
 def test_fel_foretradesordning_ar_en_anmarkning_och_inget_fel():
-    """normativ star fore data_saknas. Fel ordning bryter kodboken, inte godkannandetest 4."""
+    """normativ står före data_saknas. Fel ordning bryter kodboken, inte godkännandetest 4."""
     post = _post(
         "U-6",
         [_led(False, bortfall="data_saknas"), _led(False, bortfall="normativ")],
@@ -344,7 +346,7 @@ def test_fel_foretradesordning_ar_en_anmarkning_och_inget_fel():
 
 
 def test_kodbokens_egen_motsagelse_ger_anmarkning_och_inget_fel():
-    """Avsnitt 6.5 vill ha operationaliseringen skriven, avsnitt 10 vill ha faltet tomt."""
+    """Avsnitt 6.5 vill ha operationaliseringen skriven, avsnitt 10 vill ha fältet tomt."""
     led = _led(False, bortfall="data_saknas")
     led["operationalisering"] = "matchar civil_beredskap_niva, ingen inlast serie"
     granskning = vb.granska_kodning(_post("U-8", [led], "data_saknas"))
@@ -401,7 +403,7 @@ def test_troskeln_klaras_nar_varje_utsaga_ger_en_relation():
 
 
 def test_ett_parti_under_fem_faller_hela_piloten():
-    """Kravet pa minst 5 hos SAMTLIGA atta gor regeln strangare an totalgransen."""
+    """Kravet på minst 5 hos SAMTLIGA åtta gör regeln strängare än totalgränsen."""
     a = {f"s{i}": _kodad(f"s{i}", ["arbetsloshet"]) for i in range(10)}
     a |= {f"m{i}": _kodad(f"m{i}", []) for i in range(10)}
     parti = {u: ("S" if u.startswith("s") else "M") for u in a}
@@ -419,7 +421,7 @@ def test_enkelsidiga_relationer_raknas_till_halften():
 
 
 def test_bara_provbarhetens_alfa_faller_piloten():
-    """Alfa for indikatorval kan falla utan att piloten gor det (forhandsreg. 4.1)."""
+    """Alfa för indikatorval kan falla utan att piloten gör det (förhandsreg. 4.1)."""
     a = {f"u{i}": _kodad(f"u{i}", ["arbetsloshet"]) for i in range(10)}
     b = {f"u{i}": _kodad(f"u{i}", ["vardkoer"]) for i in range(10)}
     parti = dict.fromkeys(a, "S")
@@ -436,7 +438,7 @@ def test_alfabeskedet_foljer_krippendorffs_nivaer():
 
 
 def test_odefinierad_alfa_skiljer_full_enighet_fran_tomt_besked():
-    """Alfa utan varde betyder tva skilda saker. De far inte blandas ihop."""
+    """Alfa utan värde betyder två skilda saker. De får inte blandas ihop."""
     assert vb.alfabesked(None, alla_overens=True) == "full enighet"
     assert vb.alfabesked(None, alla_overens=False) == "odefinierad"
 
@@ -448,7 +450,7 @@ def test_full_enighet_kanns_igen():
 
 
 def test_full_enighet_om_provbarheten_faller_inte_piloten():
-    """Bada kodarna sa ja pa varje utsaga. Da har troskeln inget varde att falla under."""
+    """Båda kodarna sa ja på varje utsaga. Då har tröskeln inget värde att falla under."""
     a = {f"u{i}": _kodad(f"u{i}", ["arbetsloshet"]) for i in range(10)}
     provning = vb.prova_trosklarna(a, dict(a), dict.fromkeys(a, "S"), {"S": 10})
     assert provning.alfa["provbarhet"] is None
@@ -458,7 +460,7 @@ def test_full_enighet_om_provbarheten_faller_inte_piloten():
 
 
 def test_ett_tomt_stratum_stoppar_i_stallet_for_att_krympa_namnaren():
-    """Utan stoppet skulle 896 tyst bli 100, och utbytet se storre ut an det ar."""
+    """Utan stoppet skulle 896 tyst bli 100, och utbytet se större ut än det är."""
     a = {f"u{i}": _kodad(f"u{i}", ["arbetsloshet"]) for i in range(5)}
     parti = dict.fromkeys(a, "S")
     with pytest.raises(ValueError, match="M"):
@@ -470,3 +472,21 @@ def test_kodare_utan_gemensam_utsaga_stoppar():
     b = {"u2": _kodad("u2", [])}
     with pytest.raises(ValueError, match="delar ingen utsaga"):
         vb.prova_trosklarna(a, b, {"u1": "S", "u2": "S"}, {"S": 10})
+
+
+def test_ordinal_skala_sager_ifran_om_ett_varde_ligger_utanfor():
+    """Ett led fler än kodbokens tak gav förr ett naket KeyError."""
+    par = {"u1": ["7", "1"], "u2": ["1", "1"]}
+    with pytest.raises(ValueError, match="utanför den ordinala skalan"):
+        vb.krippendorff_alfa(par, "ordinal", ["0", "1", "2", "3", "4", "5", "6"])
+
+
+def test_perioden_skrivs_ut_och_hamtas_inte_ur_en_repr():
+    import yaml
+
+    assert vb._period(None) == "null"
+    assert yaml.safe_load(f"p: {vb._period({'start': 2022, 'slut': 2025})}")["p"] == {
+        "start": 2022,
+        "slut": 2025,
+    }
+    assert yaml.safe_load(f"p: {vb._period('2022-2025')}")["p"] == "2022-2025"

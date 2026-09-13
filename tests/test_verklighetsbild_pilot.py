@@ -193,7 +193,8 @@ def test_5_forhandsregistreringen_committades_fore_kodningen():
 
 
 def test_6_tva_kodningar_fran_olika_leverantorer():
-    fulla = [_las(f) for f in _kodningsfiler() if _las(f)["uppdrag"] == "full"]
+    kodningar = [_las(f) for f in _kodningsfiler()]
+    fulla = [d for d in kodningar if d["uppdrag"] == "full"]
     if not fulla:
         pytest.skip("ingen full kodning är committad än")
     assert len(fulla) == 2
@@ -354,18 +355,20 @@ def test_kodarna_valde_bara_indikatorer_som_finns_i_modellen():
 
 
 def test_pipen_importerar_aldrig_verklighetsbild():
-    """ADR 0016: ingenting i pipen, configen eller granssnittet andras av det har.
+    """ADR 0016: ingenting i pipen, configen eller gränssnittet ändras av det här.
 
-    Verklighetsbild har vikt 0 och ingar inte i nagon poang. Verktyget ligger i
-    pipeline/tools/ och kors for hand. Drar pipen in det har nagon flyttat matt.
+    Verklighetsbild har vikt 0 och ingår inte i någon poäng. Verktyget ligger i
+    pipeline/tools/ och körs för hand. Drar pipen in det har någon flyttat måttet.
     """
-    for fil in sorted((ROT / "pipeline").glob("*.py")):
+    pipen = sorted((ROT / "pipeline").glob("*.py")) + sorted((ROT / "pipeline" / "sources").glob("*.py"))
+    assert len(pipen) > 20, "hittade för få pipelinefiler, globben är trasig"
+    for fil in pipen:
         text = fil.read_text(encoding="utf-8")
         assert "verklighetsbild" not in text, f"{fil.name} drar in Verklighetsbild i pipen"
 
 
 def test_verklighetsbild_star_utanfor_kategorimodellen():
-    """Matten i categories.yaml far inte veta att piloten finns."""
+    """Måtten i categories.yaml får inte veta att piloten finns."""
     for namn in ("categories.yaml", "scoring.yaml"):
         text = (ROT / "config" / namn).read_text(encoding="utf-8")
         assert "verklighetsbild" not in text.lower(), namn
@@ -379,11 +382,11 @@ def _svenskt(x: float) -> str:
 
 
 def test_rapportens_tal_matchar_resultatfilen():
-    """Prosan far inte glida fran rakningen. Varje rubriktal provas mot resultat.yaml."""
+    """Prosan får inte glida från räkningen. Varje rubriktal prövas mot resultat.yaml."""
     resultat = KONFIG / "resultat.yaml"
     rapport = PILOT / "resultat.md"
     if not (resultat.exists() and rapport.exists()):
-        pytest.skip("resultatet ar inte rakat an")
+        pytest.skip("resultatet är inte räknat än")
     data = _las(resultat)
     text = rapport.read_text(encoding="utf-8")
     utbyte = data["utbyte"]
@@ -400,10 +403,10 @@ def test_rapportens_tal_matchar_resultatfilen():
 def test_avslagsskalet_finns_och_namner_bada_troskelvarden():
     resultat = KONFIG / "resultat.yaml"
     if not resultat.exists() or _las(resultat)["utfall"]["piloten_klaras"]:
-        pytest.skip("troskeln har inte fallit")
+        pytest.skip("tröskeln har inte fallit")
     text = (PILOT / "avslagsskal.md").read_text(encoding="utf-8")
     data = _las(resultat)
     assert _svenskt(data["utbyte"]["designviktat"]) in text
     assert "0,20" in text
     assert "minst 5" in text.lower()
-    assert "aterupp" in text.lower() or "igen" in text.lower(), "inga aterupptagningsvillkor"
+    assert "igen" in text.lower(), "inga villkor för att ta upp frågan igen"

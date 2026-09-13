@@ -78,7 +78,7 @@ utsagor:
       - text: "Obehöriga lärare är tyvärr vardag i svensk skola, särskilt i vinstdrivande skolor men också i utanförskapsområden och på landsbygden."
         provbar: true
         indikator: behoriga_larare
-        period: {'start': 2022, 'slut': 2025}
+        period: { start: 2022, slut: 2025 }
         operationalisering: "Andelen lärare som är behöriga, där obehörighet är indikatorns komplement. Nivån 2025 jämförs med nivån 2022. Populationen är lärare i svensk skola, medan ledet särskilt framhäver vinstdrivande skolor, utanförskapsområden och landsbygden."
         bortfall: null
   - utsaga_id: Ck-044
@@ -265,7 +265,7 @@ utsagor:
       - text: "Idag står många utan jobb"
         provbar: true
         indikator: arbetsloshet
-        period: {'start': 2022, 'slut': 2025}
+        period: { start: 2022, slut: 2025 }
         operationalisering: "Antalet arbetslösa enligt AKU. Nivån 2025 jämförs med nivån 2022. Populationen är hela befolkningen 15–74 år."
         bortfall: null
       - text: "andra jobbar så mycket att de inte orkar ett helt arbetsliv."

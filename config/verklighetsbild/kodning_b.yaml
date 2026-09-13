@@ -633,7 +633,7 @@ utsagor:
       - text: "Sverige har fastnat i hög arbetslöshet"
         provbar: true
         indikator: arbetsloshet
-        period: {'start': 2022, 'slut': 2025}
+        period: { start: 2022, slut: 2025 }
         operationalisering: "Arbetslösheten enligt AKU. Nivån 2025 jämförs med nivån 2022. Hela befolkningen 15–74 år ingår."
         bortfall: null
       - text: "svag tillväxt"
@@ -645,7 +645,7 @@ utsagor:
       - text: "låg produktivitet"
         provbar: true
         indikator: produktivitet
-        period: {'start': 2022, 'slut': 2025}
+        period: { start: 2022, slut: 2025 }
         operationalisering: "Produktivitetsnivån i svensk ekonomi. Nivån 2025 jämförs med nivån 2022. Indikatorns population är hela den svenska ekonomin."
         bortfall: null
   - utsaga_id: Vk-066
@@ -736,7 +736,7 @@ utsagor:
       - text: "Obehöriga lärare är tyvärr vardag i svensk skola, särskilt i vinstdrivande skolor men också i utanförskapsområden och på landsbygden"
         provbar: true
         indikator: behoriga_larare
-        period: {'start': 2022, 'slut': 2025}
+        period: { start: 2022, slut: 2025 }
         operationalisering: "Andelen behöriga lärare i svensk skola. Nivån 2025 jämförs med nivån 2022. Hela den svenska skolpopulationen ingår; texten framhäver vinstdrivande skolor, utanförskapsområden och landsbygden som smalare grupper."
         bortfall: null
   - utsaga_id: Mk-057
@@ -1628,7 +1628,7 @@ utsagor:
       - text: "Idag står många utan jobb"
         provbar: true
         indikator: arbetsloshet
-        period: {'start': 2022, 'slut': 2025}
+        period: { start: 2022, slut: 2025 }
         operationalisering: "Indikatorn räknar antal arbetslösa enligt AKU. Nivån 2025 jämförs med nivån 2022. Populationen är personer 15–74 år i Sverige och ledet anger ingen smalare grupp."
         bortfall: null
       - text: "andra jobbar så mycket att de inte orkar ett helt arbetsliv."
@@ -2085,7 +2085,7 @@ utsagor:
       - text: "en minskning av vårdköerna"
         provbar: true
         indikator: vardkoer
-        period: {'start': 2022, 'slut': 2025}
+        period: { start: 2022, slut: 2025 }
         operationalisering: "Medianväntetid i vården, räknad i dagar. Värdet 2025 jämförs med värdet 2022. Populationen är patienter som omfattas av indikatorns nationella vårdköserie."
         bortfall: null
   - utsaga_id: Ck-127
@@ -2113,7 +2113,7 @@ utsagor:
       - text: "Regeringens utvisningspolitik skapar också otrygghet"
         provbar: true
         indikator: upplevd_otrygghet
-        period: {'start': 2022, 'slut': 2025}
+        period: { start: 2022, slut: 2025 }
         operationalisering: "Andelen som uppger att de upplever otrygghet. Värdet 2025 jämförs med värdet 2022. Populationen är Sveriges befolkning enligt indikatorns undersökning; den påstådda orsaken prövas inte."
         bortfall: null
       - text: "splittring"
@@ -2186,7 +2186,7 @@ utsagor:
       - text: "alltför många elever lämnar grundskolan utan fullständiga betyg"
         provbar: true
         indikator: skolresultat
-        period: {'start': 2022, 'slut': 2025}
+        period: { start: 2022, slut: 2025 }
         operationalisering: "Andelen elever som lämnar grundskolan utan fullständiga betyg. Värdet 2025 jämförs med värdet 2022. Populationen är elever som lämnar svensk grundskola."
         bortfall: null
       - text: "ordningen i klassrummen brister"
@@ -2467,7 +2467,7 @@ utsagor:
       - text: "Sverige befinner sig i en arbetslöshetskris där allt för många människor står utan jobb"
         provbar: true
         indikator: arbetsloshet
-        period: {'start': 2022, 'slut': 2025}
+        period: { start: 2022, slut: 2025 }
         operationalisering: "Antal eller andel arbetslösa enligt AKU. Nivån 2025 jämförs med nivån 2022. Populationen är hela befolkningen 15–74 år."
         bortfall: null
       - text: "företagen inte hittar rätt kompetens"
@@ -2519,7 +2519,7 @@ utsagor:
       - text: "Sedan den fullskaliga invasionen 2022 har Sverige lagt flera stödpaket på sammanlagt 157 miljarder kronor"
         provbar: true
         indikator: ukraina_stod
-        period: {'start': 2022, 'slut': 2025}
+        period: { start: 2022, slut: 2025 }
         operationalisering: "Indikatorn räknar Sveriges stöd till Ukraina i kronor. Det sammanlagda stödet från 2022 till 2025 jämförs med nivån 157 miljarder kronor. Populationen är samtliga svenska stödpaket till Ukraina."
         bortfall: null
   - utsaga_id: MPk-008
@@ -2675,7 +2675,7 @@ utsagor:
       - text: "Omkring 100 000 fler svenskar är arbetslösa idag än när tidöregeringen tillträdde"
         provbar: true
         indikator: arbetsloshet
-        period: {'start': 2022, 'slut': 2025}
+        period: { start: 2022, slut: 2025 }
         operationalisering: "Indikatorn räknar antalet arbetslösa enligt AKU. Antalet 2025 jämförs med antalet 2022. Populationen är hela befolkningen 15–74 år."
         bortfall: null
   - utsaga_id: KDk-033

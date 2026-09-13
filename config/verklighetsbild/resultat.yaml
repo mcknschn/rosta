@@ -1,15 +1,15 @@
 # Rösta - Verklighetsbildpilotens resultat (biljett #46 steg 6).
 #
-# Rakningen ligger i pipeline/tools/verklighetsbild.py och gar att kora om.
-# Ingen sammanjamkning har skett: de tva kodningarna star som de ar.
-# Inget tal harinne ar en sanningsandel. Piloten kodar ingen sanning alls.
+# Räkningen ligger i pipeline/tools/verklighetsbild.py och går att köra om.
+# Ingen sammanjämkning har skett: de två kodningarna står som de är.
+# Inget tal här inne är en sanningsandel. Piloten kodar ingen sanning alls.
 
 version: 1
 kodboksversion: 1
 kodningsdatum: '2026-09-13'
 kodade_utsagor: 200
 utbyte:
-  definition: provbara relationer per kodad utsaga, skattat till hela bakatmaterialet
+  definition: prövbara relationer per kodad utsaga, skattat till hela bakåtmaterialet
   designviktat: 0.0538
   skattat_antal_relationer: 48.2
   populationsstorlek: 896

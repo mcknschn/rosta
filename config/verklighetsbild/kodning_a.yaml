@@ -618,19 +618,19 @@ utsagor:
       - text: "Sverige har fastnat i hög arbetslöshet"
         provbar: true
         indikator: arbetsloshet
-        period: {'start': 2022, 'slut': 2025}
+        period: { start: 2022, slut: 2025 }
         operationalisering: "Andelen arbetslösa av arbetskraften enligt AKU. Nivån 2025 mot nivån 2022. Hela befolkningen 15-74 år, vilket är vidare än ledets ospecificerade population."
         bortfall: null
       - text: "svag tillväxt"
         provbar: true
         indikator: bnp_per_capita
-        period: {'start': 2022, 'slut': 2025}
+        period: { start: 2022, slut: 2025 }
         operationalisering: "BNP per invånare i fasta priser. Nivån 2025 mot nivån 2022. Hela befolkningen i Sverige. Vald före produktivitet, eftersom tillväxt ligger närmare BNP-storheten och ledet räknar upp produktivitet separat (6.4)."
         bortfall: null
       - text: "låg produktivitet"
         provbar: true
         indikator: produktivitet
-        period: {'start': 2022, 'slut': 2025}
+        period: { start: 2022, slut: 2025 }
         operationalisering: "Produktiviteten mätt som förädlingsvärde per arbetad timme. Nivån 2025 mot nivån 2022. Hela ekonomin, vilket är ledets population."
         bortfall: null
     anteckning: "Ingen period i texten, sa forvalsperioden i 5.2 galler."
@@ -714,7 +714,7 @@ utsagor:
       - text: "Obehöriga lärare är tyvärr vardag i svensk skola, särskilt i vinstdrivande skolor men också i utanförskapsområden och på landsbygden"
         provbar: true
         indikator: behoriga_larare
-        period: {'start': 2022, 'slut': 2025}
+        period: { start: 2022, slut: 2025 }
         operationalisering: "Andelen lärare med pedagogisk högskoleexamen eller legitimation. Nivån 2025 mot nivån 2022. Alla lärare i svensk skola, vilket är vidare än ledets tillägg om vinstdrivande skolor, utanförskapsområden och landsbygd; prövningen görs på totalserien."
         bortfall: null
     anteckning: "Presensform utan period, sa 5.2 galler."
@@ -834,7 +834,7 @@ utsagor:
       - text: "Priserna och avgifterna för vardagliga produkter och tjänster har ökat drastiskt"
         provbar: false
         indikator: inflation
-        period: {'start': 2022, 'slut': 2025}
+        period: { start: 2022, slut: 2025 }
         operationalisering: "Storheten är konsumentprisernas förändring enligt KPI. Jämförelsen är nivån vid slutåret 2025 mot referensåret 2022. Populationen är hela hushållens konsumtion, vilket är vidare än ledets vardagliga produkter och tjänster."
         bortfall: data_saknas
     anteckning: "Priserna och avgifterna läses som en storhet, konsumentpriser, alltså ett led. Matchningen står kvar i fälten trots provbar false, enligt avsnitt 6.5."
@@ -960,7 +960,7 @@ utsagor:
       - text: "Idag hotas den biologiska mångfalden både av hur vi människor använder naturen och av klimatförändringarna."
         provbar: false
         indikator: hotade_arter_naturforlust
-        period: {'start': 2022, 'slut': 2025}
+        period: { start: 2022, slut: 2025 }
         operationalisering: "Storheten är andelen hotade arter och förlusten av natur. Jämförelsen är nivån vid slutåret 2025 mot referensåret 2022. Populationen är samtliga bedömda arter och naturtyper i Sverige, vilket svarar mot ledets biologiska mångfald."
         bortfall: data_saknas
     anteckning: "hotade_arter_naturforlust ligger närmare ledets storhet och population än hackande_faglar_skog, alltså ingen flera_operationaliseringar. Matchningen står kvar i fälten trots provbar false, enligt avsnitt 6.5."
@@ -1367,7 +1367,7 @@ utsagor:
       - text: "Fler än någonsin slås ut från svensk skola"
         provbar: true
         indikator: skolresultat
-        period: {'start': 2022, 'slut': 2025}
+        period: { start: 2022, slut: 2025 }
         operationalisering: "Skolresultat räknar andelen elever som lämnar grundskolan utan fullständiga betyg. Nivå slutåret 2025 mot nivå referensåret 2022. Samtliga avgångselever i svensk grundskola, ledet anger ingen smalare grupp."
         bortfall: null
     anteckning: "Nivåuttrycket fler än någonsin namnger ingen period, alltså gäller förvalsperioden i 5.2."
@@ -1600,7 +1600,7 @@ utsagor:
       - text: "Idag står många utan jobb"
         provbar: true
         indikator: arbetsloshet
-        period: {'start': 2022, 'slut': 2025}
+        period: { start: 2022, slut: 2025 }
         operationalisering: "Indikatorn arbetsloshet räknar antalet arbetslösa enligt AKU. Nivån vid slutåret 2025 jämförs med nivån vid referensåret 2022, eftersom ledet står i presens och inte anger någon period. Populationen är hela befolkningen 15-74 år, och ledet pekar inte ut någon smalare grupp."
         bortfall: null
       - text: "samtidigt som andra jobbar så mycket att de inte orkar ett helt arbetsliv"
@@ -2059,7 +2059,7 @@ utsagor:
       - text: "vilket bland annat har genererat en minskning av vårdköerna"
         provbar: true
         indikator: vardkoer
-        period: {'start': 2022, 'slut': 2025}
+        period: { start: 2022, slut: 2025 }
         operationalisering: "Medianväntetid i dagar inom den specialiserade vården. Nivå 2025 mot nivå 2022. Alla väntande patienter i riket, och ledet pekar inte ut någon smalare grupp."
         bortfall: null
     anteckning: "Led 1 påstår att beslut fattats (4.2). Led 2 namnger ingen egen storhet som strider mot medianväntetiden, så 7.1 biter inte. Mandatperioden läses som 2022 till slutåret (5.1)."
@@ -2089,7 +2089,7 @@ utsagor:
       - text: "Regeringens utvisningspolitik skapar också otrygghet"
         provbar: true
         indikator: upplevd_otrygghet
-        period: {'start': 2022, 'slut': 2025}
+        period: { start: 2022, slut: 2025 }
         operationalisering: "Andelen som uppger otrygghet enligt NTU. Nivå 2025 mot nivå 2022. Hela befolkningen 16-84 år, och ledet namnger ingen smalare grupp."
         bortfall: null
       - text: "och splittring"
@@ -2167,7 +2167,7 @@ utsagor:
       - text: "alltför många elever lämnar grundskolan utan fullständiga betyg"
         provbar: true
         indikator: skolresultat
-        period: {'start': 2022, 'slut': 2025}
+        period: { start: 2022, slut: 2025 }
         operationalisering: "Kunskapsresultat i grundskolan, mätt som andelen elever som lämnar årskurs nio utan fullständiga betyg. Nivå 2025 mot nivå 2022. Alla avgångselever i grundskolan i riket."
         bortfall: null
       - text: "ordningen i klassrummen brister"
@@ -2305,7 +2305,7 @@ utsagor:
       - text: "Utsläppen har ökat"
         provbar: true
         indikator: territoriella_utslapp
-        period: {'start': 2022, 'slut': 2025}
+        period: { start: 2022, slut: 2025 }
         operationalisering: "Territoriella växthusgasutsläpp i koldioxidekvivalenter. Nivå 2025 mot nivå 2022. Alla utsläpp inom Sveriges gränser, och ledet pekar inte ut någon smalare sektor."
         bortfall: null
       - text: "elektrifieringen bromsat in"
@@ -2416,7 +2416,7 @@ utsagor:
       - text: "Sverige befinner sig i en arbetslöshetskris där allt för många människor står utan jobb"
         provbar: true
         indikator: arbetsloshet
-        period: {'start': 2022, 'slut': 2025}
+        period: { start: 2022, slut: 2025 }
         operationalisering: "Andelen arbetslösa enligt AKU. Nivå 2025 mot nivå 2022 enligt förvalsperioden i 5.2. Hela befolkningen 15-74 år, och ledet pekar inte ut någon smalare grupp."
         bortfall: null
       - text: "samtidigt som företagen inte hittar rätt kompetens"
@@ -2469,7 +2469,7 @@ utsagor:
       - text: "Sedan den fullskaliga invasionen 2022 har Sverige lagt flera stödpaket på sammanlagt 157 miljarder kronor"
         provbar: true
         indikator: ukraina_stod
-        period: {'start': 2022, 'slut': 2025}
+        period: { start: 2022, slut: 2025 }
         operationalisering: "Svenskt stöd till Ukraina räknat i kronor. Summan över åren 2022 till 2025 mot ledets nivå 157 miljarder kronor. Allt svenskt stöd, och ledet avser samma helhet."
         bortfall: null
   - utsaga_id: MPk-008
@@ -2626,7 +2626,7 @@ utsagor:
       - text: "Omkring 100 000 fler svenskar är arbetslösa idag än när tidöregeringen tillträdde"
         provbar: true
         indikator: arbetsloshet
-        period: {'start': 2022, 'slut': 2025}
+        period: { start: 2022, slut: 2025 }
         operationalisering: "Antal arbetslösa enligt AKU. Nivå 2025 mot nivå 2022. Hela befolkningen 15-74 år, och ledet pekar inte ut någon smalare grupp."
         bortfall: null
   - utsaga_id: KDk-033
@@ -3025,7 +3025,7 @@ utsagor:
       - text: "Vid köksbord i hela Sverige går familjer igenom sin ekonomi med en växande insikt om att marginalerna blivit mindre, trots att ansträngningen är densamma"
         provbar: true
         indikator: hushallens_reala_disponibla_inkomst
-        period: {'start': 2022, 'slut': 2025}
+        period: { start: 2022, slut: 2025 }
         operationalisering: "Storheten är hushållens reala disponibla inkomst enligt SCB, alltså den köpkraft som blir kvar sedan priserna räknats bort. Jämförelsen är nivån 2025 mot nivån 2022, eftersom ledet inte anger någon period (5.2). Populationen är samtliga hushåll i Sverige, och ledet gäller samma population utan att smalna av den. Indikatorn väljs före realloner, eftersom ledet talar om familjens hela hushållsekonomi och inte om lönen (6.4)."
         bortfall: null
     anteckning: "Trots-satsen motiverar bara huvudsatsen (3.1 regel 4), alltså ett led."

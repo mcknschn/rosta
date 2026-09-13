@@ -88,7 +88,7 @@ utsagor:
       - text: "Obehöriga lärare är tyvärr vardag i svensk skola"
         provbar: true
         indikator: behoriga_larare
-        period: {'start': 2022, 'slut': 2025}
+        period: { start: 2022, slut: 2025 }
         operationalisering: "Andelen lärare med behörighet i svensk skola, läst som sin komplementandel obehöriga. Nivå vid slutåret 2025 mot nivå vid referensåret 2022, enligt förvalsperioden i 5.2. Populationen är samtliga lärare i svensk skola, vilket är ledets egen population."
         bortfall: null
       - text: "särskilt i vinstdrivande skolor"
@@ -310,7 +310,7 @@ utsagor:
       - text: "Idag står många utan jobb"
         provbar: true
         indikator: arbetsloshet
-        period: {'start': 2022, 'slut': 2025}
+        period: { start: 2022, slut: 2025 }
         operationalisering: "Antalet och andelen arbetslösa enligt AKU. Nivå vid slutåret 2025 mot nivå vid referensåret 2022, enligt förvalsperioden i 5.2. Populationen är befolkningen 15-74 år, och ledet gäller hela befolkningen."
         bortfall: null
       - text: "andra jobbar så mycket att de inte orkar ett helt arbetsliv"
@@ -593,7 +593,7 @@ utsagor:
       - text: "kriminalitet ökar"
         provbar: true
         indikator: brottsutsatthet
-        period: {'start': 2022, 'slut': 2025}
+        period: { start: 2022, slut: 2025 }
         operationalisering: "Andelen personer som uppger sig ha utsatts for brott enligt NTU. Niva vid slutaret mot niva 2022, dar slutaret ar seriens sista observationsar, hogst 2025. Hela befolkningen, vilket ar vidare an ledet, och den generella brottsnivaserien ligger narmare ledets storhet an dodligt_vald och skjutningar_sprangningar, som bada mater smalare brottstyper."
         bortfall: null
       - text: "hotas människors frihet"

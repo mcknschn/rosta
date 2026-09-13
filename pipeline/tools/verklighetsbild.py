@@ -5,21 +5,28 @@ någon poäng och rör varken `dist/`, `config/categories.yaml` eller gränssnit
 (ADR 0016, sista följdpunkten). Därför ligger den i `pipeline/tools/` och importeras
 inte av `pipeline/build_all.py`.
 
-    python -m pipeline.tools.verklighetsbild --manifest   # hämtmanifest med SHA-256
-    python -m pipeline.tools.verklighetsbild --korpus     # bakåt- och framåtkorpus -> config
-    python -m pipeline.tools.verklighetsbild --urval      # dra pilotens 200 + delurvalets 40
-    python -m pipeline.tools.verklighetsbild --uppdrag    # kodningsunderlag per kodare
-    python -m pipeline.tools.verklighetsbild --resultat   # utbyte, alfa och tröskelprövning
+Stegen körs i biljettens ordning, och varje steg committas innan nästa börjar:
 
-Modulen innehåller fyra räkningar, alla prövade i `tests/test_verklighetsbild.py`:
+    python -m pipeline.tools.verklighetsbild --urval               # steg 3: dra 200 + 40
+    python -m pipeline.tools.verklighetsbild --uppdrag KATALOG     # steg 4: blindat underlag
+    python -m pipeline.tools.verklighetsbild --kodning A KATALOG   # steg 4: råsvar -> config
+    python -m pipeline.tools.verklighetsbild --resultat            # steg 6: utbyte och alfa
+    python -m pipeline.tools.verklighetsbild --manifest            # steg 8: SHA-256 per PDF
+    python -m pipeline.tools.verklighetsbild --skriv-korpus        # steg 7 och 8: korpus
+    python -m pipeline.tools.verklighetsbild --korpus              # räkna korpusen, skriv inget
+
+Räkningarna, alla prövade i `tests/test_verklighetsbild.py`:
 
   las_bakat / las_framat   läser de tre markdownfilerna i docs/valmanifest_2026/ och ger
                            utsagor med stabila id. Mappade poster behåller sitt eget id.
                            Kandidater får ett härlett id av formen `<PARTI>k-<nnn>`, satt
                            av ordningen i filen.
   dra_urval                stratifierad dragning utan återläggning, 25 per parti, med frö.
+  blinda                   ger varje utsaga ett blint id, så kodaren aldrig ser partikoden.
+  granska_kodning          prövar en kodad utsaga mot ADR 0016 godkännandetest 4.
   krippendorff_alfa        alfa för nominal och ordinal skala, med förväxlingsmatris.
   skatta_utbyte            designviktat medelvärde med ändlighetskorrektion per stratum.
+  prova_trosklarna         de två trösklarna i förhandsregistreringen.
 
 Ingen av dem avgör om ett påstående är sant. Piloten mäter utbyte och reliabilitet
 (se `docs/verklighetsbild_pilot/kodbok_pilot.md` avsnitt 1).
@@ -36,6 +43,8 @@ import re
 from collections import Counter
 from dataclasses import dataclass
 from pathlib import Path
+
+import yaml
 
 ROT = Path(__file__).resolve().parents[2]
 KALLKATALOG = ROT / "docs" / "valmanifest_2026"
@@ -76,6 +85,10 @@ FRO_BLINDNING_DELURVAL = 20264602
 PER_PARTI = 25
 PER_PARTI_DELURVAL = 5
 UTSAGOR_PER_BATCH = 25
+
+# Kodboken avsnitt 3.1 regel 7 sätter taket till sex led per utsaga. Skalan för
+# avgränsningens ordinala alfa följer det taket.
+LEDORDNING = [str(n) for n in range(0, 7)]
 
 
 @dataclass(frozen=True)
@@ -220,6 +233,9 @@ def _delta_kvadrat(skala: str, ordning: list[str] | None, marginal: Counter[str]
     if ordning is None:
         raise ValueError("ordinal skala kräver en ordning")
     index = {v: i for i, v in enumerate(ordning)}
+    utanfor = sorted(v for v in marginal if v not in index)
+    if utanfor:
+        raise ValueError(f"värden utanför den ordinala skalan: {', '.join(utanfor)}")
 
     def delta(c: str, k: str) -> float:
         if c == k:
@@ -470,8 +486,6 @@ def skriv_urval(ut: Path = UTKATALOG / "urval_pilot.yaml") -> Path:
 
 def las_urval(fil: Path = UTKATALOG / "urval_pilot.yaml") -> list[dict]:
     """Läser den dragna urvalsfilen utan att dra om den."""
-    import yaml
-
     return yaml.safe_load(fil.read_text(encoding="utf-8"))["urval"]
 
 
@@ -502,9 +516,13 @@ sammanfattning, inga kodstaket.
 
 
 def skriv_uppdrag(ut: Path, batchstorlek: int = UTSAGOR_PER_BATCH) -> list[Path]:
-    """Skriver kodningsunderlaget, ett blindat parti utsagor per batchfil."""
-    import yaml
+    """Skriver kodningsunderlaget, ett blindat parti utsagor per batchfil.
 
+    Skriver också nyckeln till `config/verklighetsbild/blindning.yaml`, alltså UTANFÖR
+    `ut`. De två hör ihop: utan nyckeln går kodarens svar inte att översätta tillbaka.
+    Batchfilerna går till `ut`, som ligger utanför repot, eftersom de bär kodboken plus
+    utdragen och är helt härledbara ur nyckeln och korpusen.
+    """
     kodbok = (PILOTKATALOG / "kodbok_pilot.md").read_text(encoding="utf-8")
     text_per_id = {u.id: u.text for u in las_bakat()}
     urval = las_urval()
@@ -609,7 +627,7 @@ def granska_kodning(post: dict) -> Granskning:
     uid = post.get("utsaga_id", "?")
     led = post.get("led") or []
     if not led:
-        fel.append(f"{uid}: bar inga led")
+        fel.append(f"{uid}: bär inga led")
 
     bortfall_i_led: list[str] = []
     for nr, ett_led in enumerate(led, start=1):
@@ -617,18 +635,18 @@ def granska_kodning(post: dict) -> Granskning:
         if ett_led.get("provbar"):
             saknade = [f for f in ("indikator", "period", "operationalisering") if not ett_led.get(f)]
             if saknade:
-                fel.append(f"{plats}: provbart led saknar {', '.join(saknade)}")
+                fel.append(f"{plats}: prövbart led saknar {', '.join(saknade)}")
             if ett_led.get("bortfall") is not None:
-                anmarkningar.append(f"{plats}: provbart led bar anda en bortfallskod")
+                anmarkningar.append(f"{plats}: prövbart led bär ändå en bortfallskod")
         else:
             kod = ett_led.get("bortfall")
             if kod not in BORTFALLSKODER:
-                fel.append(f"{plats}: bortfallskoden {kod!r} star utanfor den lasta listan")
+                fel.append(f"{plats}: bortfallskoden {kod!r} står utanför den låsta listan")
             else:
                 bortfall_i_led.append(kod)
             satta = [f for f in ("indikator", "period", "operationalisering") if ett_led.get(f)]
             if satta:
-                anmarkningar.append(f"{plats}: ej provbart led bar anda {', '.join(satta)}")
+                anmarkningar.append(f"{plats}: ej prövbart led bär ändå {', '.join(satta)}")
 
     har_relation = any(
         ett_led.get("provbar") and ett_led.get("indikator") for ett_led in led
@@ -636,14 +654,14 @@ def granska_kodning(post: dict) -> Granskning:
     utsagans_kod = post.get("bortfall")
     if har_relation:
         if utsagans_kod is not None:
-            fel.append(f"{uid}: bar en relation men anda bortfallskoden {utsagans_kod!r}")
+            fel.append(f"{uid}: bär en relation men ändå bortfallskoden {utsagans_kod!r}")
     elif utsagans_kod not in BORTFALLSKODER:
-        fel.append(f"{uid}: saknar relation och bar ingen giltig bortfallskod")
+        fel.append(f"{uid}: saknar relation och bär ingen giltig bortfallskod")
     elif bortfall_i_led:
         vantad = min(bortfall_i_led, key=BORTFALLSKODER.index)
         if utsagans_kod != vantad:
             anmarkningar.append(
-                f"{uid}: utsagans kod ar {utsagans_kod!r}, men foretradesordningen ger {vantad!r}"
+                f"{uid}: utsagans kod är {utsagans_kod!r}, men företrädesordningen ger {vantad!r}"
             )
     return Granskning(fel=fel, anmarkningar=anmarkningar)
 
@@ -654,8 +672,6 @@ def las_kodning(filer: list[Path], nyckel: dict[str, str] | None = None) -> dict
     `nyckel` översätter blinda id till utsage-id och behövs för kodarens råsvar. De
     normaliserade configfilerna bär redan utsage-id, och då lämnas nyckeln utanför.
     """
-    import yaml
-
     kodade: dict[str, KodadUtsaga] = {}
     for fil in sorted(filer):
         dokument = yaml.safe_load(fil.read_text(encoding="utf-8"))
@@ -704,14 +720,27 @@ KODARE = {
 }
 
 
+def _period(period: object) -> str:
+    """Perioden som YAML-flödesmappning, skriven ut i stället för tagen ur en repr.
+
+    Kodarens svar är fritt YAML, så perioden kan komma i mer än en form. Att lita på
+    Pythons repr skulle skriva en sträng som råkar se ut som YAML, och den räddningen
+    håller inte för ett värde ingen förutsåg.
+    """
+    if not period:
+        return "null"
+    if isinstance(period, dict):
+        delar = ", ".join(f"{nyckel}: {varde}" for nyckel, varde in period.items())
+        return "{ " + delar + " }"
+    return _citat(str(period))
+
+
 def _kodningsfil(kodare: str) -> str:
     return f"kodning_{kodare.lower().replace('-', '_')}.yaml"
 
 
 def skriv_kodning(kallfiler: list[Path], kodare: str, ut: Path) -> tuple[Path, list[str], list[str]]:
     """Översätter en kodares råsvar till configformat och prövar dem mot reglerna."""
-    import yaml
-
     if kodare not in KODARE:
         raise ValueError(f"okänd kodare {kodare!r}")
     fakta = KODARE[kodare]
@@ -724,9 +753,9 @@ def skriv_kodning(kallfiler: list[Path], kodare: str, ut: Path) -> tuple[Path, l
     rader = [
         f"# Rösta - kodning {kodare} i Verklighetsbildpiloten (biljett #46 steg 4 och 5).",
         "#",
-        "# Rasvaren ar oversatta fran blinda id till utsage-id via blindning.yaml. Ingenting",
-        "# annat ar andrat: leden, koderna och operationaliseringarna star som kodaren skrev",
-        "# dem. Ingen sammanjamkning har skett (forhandsregistreringen avsnitt 4.2).",
+        "# Råsvaren är översatta från blinda id till utsage-id via blindning.yaml. Ingenting",
+        "# annat är ändrat: leden, koderna och operationaliseringarna står som kodaren skrev",
+        "# dem. Ingen sammanjämkning har skett (förhandsregistreringen avsnitt 4.2).",
         "",
         "version: 1",
         f"kodare: {kodare}",
@@ -759,15 +788,14 @@ def skriv_kodning(kallfiler: list[Path], kodare: str, ut: Path) -> tuple[Path, l
                 "    led:",
             ]
             for ett_led in post.get("led") or []:
-                period = ett_led.get("period")
+                operationalisering = ett_led.get("operationalisering")
                 rader += [
                     f"      - text: {_citat(str(ett_led.get('text') or ''))}",
                     f"        provbar: {'true' if ett_led.get('provbar') else 'false'}",
                     f"        indikator: {ett_led.get('indikator') or 'null'}",
-                    f"        period: {period if period else 'null'}",
-                    f"        operationalisering: {_citat(str(ett_led['operationalisering']))}"
-                    if ett_led.get("operationalisering")
-                    else "        operationalisering: null",
+                    f"        period: {_period(ett_led.get('period'))}",
+                    "        operationalisering: "
+                    + (_citat(str(operationalisering)) if operationalisering else "null"),
                     f"        bortfall: {ett_led.get('bortfall') or 'null'}",
                 ]
             if post.get("anteckning"):
@@ -877,9 +905,8 @@ def prova_trosklarna(
         snitt_per_parti[parti] += snitt
 
     par = momentpar(a, b)
-    ledordning = [str(n) for n in range(0, 7)]
     alfa = {
-        "avgransning": krippendorff_alfa(par["avgransning"], "ordinal", ledordning),
+        "avgransning": krippendorff_alfa(par["avgransning"], "ordinal", LEDORDNING),
         "provbarhet": krippendorff_alfa(par["provbarhet"], "nominal"),
         "indikatorval": krippendorff_alfa(par["indikatorval"], "nominal"),
         "kodvarde": krippendorff_alfa(par["kodvarde"], "nominal"),
@@ -898,6 +925,12 @@ def prova_trosklarna(
 
 
 # ----------------------------------------------------------------------- resultatet
+
+
+def _avrundad(par: Par) -> float | None:
+    """Nominal alfa avrundad, utan besked och utan matris."""
+    alfa = krippendorff_alfa(par, "nominal")
+    return None if alfa is None else round(alfa, 4)
 
 
 def _alfapost(par: Par, skala: str, ordning: list[str] | None = None) -> dict:
@@ -919,16 +952,16 @@ def rakna_resultat(
     delurval: dict[str, dict[str, KodadUtsaga]],
 ) -> dict:
     """Sammanställer utbytet, reliabiliteten och tröskelprövningen."""
-    utsagor = {u.id: u for u in las_bakat()}
+    korpus = las_bakat()
+    utsagor = {u.id: u for u in korpus}
     okanda = sorted((set(a) | set(b)) - set(utsagor))
     if okanda:
         raise ValueError(f"kodade utsagor som inte finns i korpusen: {', '.join(okanda[:5])}")
     parti_per_utsaga = {uid: utsagor[uid].parti for uid in set(a) | set(b)}
-    population = Counter(u.parti for u in las_bakat())
+    population = Counter(u.parti for u in korpus)
 
     provning = prova_trosklarna(a, b, parti_per_utsaga, dict(population))
     par = momentpar(a, b)
-    ledordning = [str(n) for n in range(0, 7)]
 
     per_parti: dict[str, dict] = {}
     for parti in PARTIER:
@@ -972,9 +1005,9 @@ def rakna_resultat(
             "kodare": [x, y],
             "samma_leverantor": KODARE[x]["leverantor"] == KODARE[y]["leverantor"],
             "enheter": len(gemensamma),
-            "provbarhet_alfa": _alfapost(delpar["provbarhet"], "nominal")["alfa"],
-            "kodvarde_alfa": _alfapost(delpar["kodvarde"], "nominal")["alfa"],
-            "indikatorval_alfa": _alfapost(delpar["indikatorval"], "nominal")["alfa"],
+            "provbarhet_alfa": _avrundad(delpar["provbarhet"]),
+            "kodvarde_alfa": _avrundad(delpar["kodvarde"]),
+            "indikatorval_alfa": _avrundad(delpar["indikatorval"]),
         }
 
     hela = rakna_relationer(
@@ -986,7 +1019,7 @@ def rakna_resultat(
         "kodningsdatum": "2026-09-13",
         "kodade_utsagor": len(set(a) & set(b)),
         "utbyte": {
-            "definition": "provbara relationer per kodad utsaga, skattat till hela bakatmaterialet",
+            "definition": "prövbara relationer per kodad utsaga, skattat till hela bakåtmaterialet",
             "designviktat": round(provning.utbyte.utbyte, 4),
             "skattat_antal_relationer": round(provning.utbyte.skattat_antal_relationer, 1),
             "populationsstorlek": provning.utbyte.populationsstorlek,
@@ -1002,7 +1035,7 @@ def rakna_resultat(
         },
         "per_parti": per_parti,
         "reliabilitet": {
-            "avgransning": _alfapost(par["avgransning"], "ordinal", ledordning),
+            "avgransning": _alfapost(par["avgransning"], "ordinal", LEDORDNING),
             "provbarhet": _alfapost(par["provbarhet"], "nominal"),
             "indikatorval": _alfapost(par["indikatorval"], "nominal"),
             "kodvarde": _alfapost(par["kodvarde"], "nominal"),
@@ -1215,8 +1248,6 @@ def _main(argv: list[str] | None = None) -> int:
         for rad in anmarkningar:
             print(f"  anm {rad}")
     if args.resultat:
-        import yaml
-
         kodningar: dict[str, dict[str, KodadUtsaga]] = {}
         for kodare in KODARE:
             fil = UTKATALOG / _kodningsfil(kodare)
@@ -1234,9 +1265,9 @@ def _main(argv: list[str] | None = None) -> int:
         ut.write_text(
             "# Rösta - Verklighetsbildpilotens resultat (biljett #46 steg 6).\n"
             "#\n"
-            "# Rakningen ligger i pipeline/tools/verklighetsbild.py och gar att kora om.\n"
-            "# Ingen sammanjamkning har skett: de tva kodningarna star som de ar.\n"
-            "# Inget tal harinne ar en sanningsandel. Piloten kodar ingen sanning alls.\n\n"
+            "# Räkningen ligger i pipeline/tools/verklighetsbild.py och går att köra om.\n"
+            "# Ingen sammanjämkning har skett: de två kodningarna står som de är.\n"
+            "# Inget tal här inne är en sanningsandel. Piloten kodar ingen sanning alls.\n\n"
             + yaml.safe_dump(resultat, allow_unicode=True, sort_keys=False, default_flow_style=False),
             encoding="utf-8",
         )
