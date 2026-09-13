@@ -712,11 +712,37 @@ def momentpar(a: dict[str, KodadUtsaga], b: dict[str, KodadUtsaga]) -> dict[str,
     }
 
 
+# Kodarna och deras körningsspår. `spar` pekar på var körningen går att belägga utanför
+# repot. Codexkörningarna ligger som sessionsfiler under CODEX_HOME, på samma villkor som
+# valmanifestens PDF:er: de går att peka på men inte att versionshantera här.
+# BEGRÄNSNINGEN i klartext: ingen av spåren ligger i git, så godkännandetest 6 kan pröva
+# att två SKILDA kodningar finns, men inte vem som skrev dem. Leverantörsraden är en
+# uppgift från den som körde.
 KODARE = {
-    "A": {"leverantor": "Anthropic", "modell": "Claude Opus 5", "uppdrag": "full"},
-    "B": {"leverantor": "OpenAI", "modell": "Codex", "uppdrag": "full"},
-    "A-prim": {"leverantor": "Anthropic", "modell": "Claude Opus 5", "uppdrag": "delurval"},
-    "B-prim": {"leverantor": "OpenAI", "modell": "Codex", "uppdrag": "delurval"},
+    "A": {
+        "leverantor": "Anthropic",
+        "modell": "Claude Opus 5",
+        "uppdrag": "full",
+        "spar": "Claude Code-subagenter, 8 batchar om 25, 2026-09-13",
+    },
+    "B": {
+        "leverantor": "OpenAI",
+        "modell": "Codex",
+        "uppdrag": "full",
+        "spar": "codex exec, 8 sessioner 21:52-22:03 under CODEX_HOME/sessions/2026/09/13",
+    },
+    "A-prim": {
+        "leverantor": "Anthropic",
+        "modell": "Claude Opus 5",
+        "uppdrag": "delurval",
+        "spar": "Claude Code-subagenter, 2 batchar, 2026-09-13",
+    },
+    "B-prim": {
+        "leverantor": "OpenAI",
+        "modell": "Codex",
+        "uppdrag": "delurval",
+        "spar": "codex exec, 2 sessioner 22:05-22:07 under CODEX_HOME/sessions/2026/09/13",
+    },
 }
 
 
@@ -762,6 +788,7 @@ def skriv_kodning(kallfiler: list[Path], kodare: str, ut: Path) -> tuple[Path, l
         f"leverantor: {fakta['leverantor']}",
         f"modell: '{fakta['modell']}'",
         f"uppdrag: {fakta['uppdrag']}",
+        f"spar: {_citat(fakta['spar'])}",
         "kodboksversion: 1",
         "kodningsdatum: 2026-09-13",
         "sag_andra_kodarens_svar: false",
@@ -927,6 +954,24 @@ def prova_trosklarna(
 # ----------------------------------------------------------------------- resultatet
 
 
+def _andel_med_fpc(traffar: int, n: int, stor_n: int) -> tuple[float, float, list[float]]:
+    """Andel med ändlighetskorrektion, som förhandsregistreringen avsnitt 2 utfäster.
+
+        Var(p) = (1 - n/N) * p*(1-p) / (n-1)
+
+    BEGRÄNSNINGEN: vid p = 0 eller p = 1 kollapsar det normala intervallet till en punkt
+    och säger ingenting. Fyra partier ligger på 0. Intervallet redovisas ändå, eftersom
+    förhandsregistreringen utfäste det, och kollapsen skrivs ut i resultatet.
+    """
+    p = traffar / n
+    varians = (1 - n / stor_n) * p * (1 - p) / (n - 1) if n > 1 else 0.0
+    halva = 1.96 * math.sqrt(varians)
+    return round(p, 4), round(math.sqrt(varians), 4), [
+        round(max(0.0, p - halva), 4),
+        round(min(1.0, p + halva), 4),
+    ]
+
+
 def _avrundad(par: Par) -> float | None:
     """Nominal alfa avrundad, utan besked och utan matris."""
     alfa = krippendorff_alfa(par, "nominal")
@@ -972,16 +1017,21 @@ def rakna_resultat(
         kategorier = {
             utsagor[uid].kategori for uid in ids if mangder_a[uid] or mangder_b[uid]
         }
+        med_relation = sum(1 for uid in ids if mangder_a[uid] or mangder_b[uid])
+        andel, standardfel, intervall = _andel_med_fpc(med_relation, len(ids), population[parti])
         per_parti[parti] = {
             "kodade_utsagor": len(ids),
             "population": population[parti],
             "urvalsandel": round(len(ids) / population[parti], 3),
+            "andel_med_relation": andel,
+            "andel_standardfel": standardfel,
+            "andel_intervall_95": intervall,
             "kodare_a": tal.kodare_a,
             "kodare_b": tal.kodare_b,
             "delade": tal.delade,
             "union": tal.union,
             "snitt": tal.snitt,
-            "utsagor_med_relation": sum(1 for uid in ids if mangder_a[uid] or mangder_b[uid]),
+            "utsagor_med_relation": med_relation,
             "representerade_kategorier": len(kategorier),
         }
 
@@ -1060,8 +1110,15 @@ BRYTPUNKT = "2030-09-08"
 # En framåtutsaga får ett förhandsregistrerat indikatorval bara om den bär BÅDE en storhet
 # och en period (ADR 0016 beslutspunkt 4). Filtret är grovt med flit: det ska hellre släppa
 # igenom för mycket än sålla bort en utsaga som bär båda.
+#
+# Storhetsprovet följer kodbokens avsnitt 4 punkt 3, som godtar `en riktning ELLER en nivå`.
+# Ett tal krävs alltså inte: `fler brott utreds` bär storheten antal utredda brott och en
+# riktning. Ett snävare prov, som bara letat tal och storhetsord, hade sållat bort dem och
+# gjort utfallet till en artefakt av filtret i stället för ett besked om korpusen.
 STORHET = re.compile(
-    r"\d|procent|procentenhet|kronor|miljard|miljon|andel|antal|dubbl|halver|fördubbl|tredubbl",
+    r"\d|procent|procentenhet|kronor|miljard|miljon|andel|antal|dubbl|halver|fördubbl|tredubbl"
+    r"|\bfler\b|\bfärre\b|\bökad|\bökar\b|\bminskad|\bminskar\b|\bhögre\b|\blägre\b"
+    r"|\bstarkare\b|\bkortare\b|\blängre\b|\bsnabbare\b",
     re.IGNORECASE,
 )
 PERIOD = re.compile(
@@ -1073,6 +1130,37 @@ PERIOD = re.compile(
 def forhandsregistrerbara(utsagor: list[Utsaga]) -> list[Utsaga]:
     """De framåtutsagor som bär både en storhet och en period."""
     return [u for u in utsagor if STORHET.search(u.text) and PERIOD.search(u.text)]
+
+
+# Förhandsregistreringen av indikatorval för de utsagor som klarar filtret ovan
+# (ADR 0016 beslutspunkt 4). Bedömningen är gjord 2026-09-13, alltså före periodens slut,
+# och den binder den som prövar posterna efter brytpunkten. Den är inte gjord av pilotens
+# blindade kodare, eftersom framåthalvan lämnade instrumentet i beslutspunkt 4.
+FORHANDSREGISTRERING = {
+    "M-108": {
+        "storhet": "antal brott som utreds",
+        "period": "nästa mandatperiod, 2026-10 till 2030-09",
+        "provade_indikatorer": ["uppklaringsgrad", "handlaggningstid"],
+        "utfall": "ingen_kompatibel_indikator",
+        "skal": (
+            "Utsagan räknar ANTAL utredda brott. uppklaringsgrad mäter ANDELEN uppklarade "
+            "brott, och de två är skilda storheter: antalet kan stiga medan andelen faller, "
+            "om anmälda brott stiger snabbare. Kodboken avsnitt 7.1 ger då ingen relation. "
+            "Ledet om att livsstilskriminella sitter inne längre rör strafftid, och ingen "
+            "av de 68 indikatorerna mäter den."
+        ),
+    },
+    "M-117": {
+        "storhet": "antal brott som utreds och leder till lagföring",
+        "period": "nästa mandatperiod, 2026-10 till 2030-09",
+        "provade_indikatorer": ["uppklaringsgrad", "handlaggningstid"],
+        "utfall": "ingen_kompatibel_indikator",
+        "skal": (
+            "Samma skäl som M-108. Lagföringsledet ligger nära uppklaringsgradens "
+            "personuppklaring, men utsagans storhet är antalet och indikatorns är andelen."
+        ),
+    },
+}
 
 
 def skriv_hamtmanifest(ut: Path = UTKATALOG / "hamtmanifest.yaml") -> Path:
@@ -1202,17 +1290,35 @@ def skriv_korpus(ut: Path = UTKATALOG) -> list[Path]:
                 "  perioden inte slut och ingen framåtpost går att pröva.",
                 "",
                 "# ADR 0016 beslutspunkt 4: indikatorval förhandsregistreras BARA där utsagan bär",
-                "# både en storhet och en period. Villkoret uppfylls av NOLL av de 1 073 posterna.",
-                "#",
-                "# Skälet står i mappning_framat.md: posten är rubriken eller punkten, och den",
-                "# fulla texten står i PDF:en. Rubriker bär sällan tal och aldrig en period. Noll",
-                "# poster bär ett årtal, och 22 bär över huvud taget en siffra.",
-                "#",
-                "# Detta är ett fynd om korpusens FORM och inte om partiernas löften. Ska",
-                "# förhandsregistrering bli möjlig måste posterna bära den fulla lydelsen ur",
-                "# PDF:en, inte rubriken. Filtret ligger i",
+                "# både en storhet och en period. Storhetsprovet följer kodbokens avsnitt 4 punkt",
+                "# 3, som godtar en riktning utan tal. Filtret ligger i",
                 "# pipeline/tools/verklighetsbild.py:forhandsregistrerbara och går att köra om.",
-                f"forhandsregistrerade_indikatorval: []   # {len(kandidater)} poster klarade filtret",
+                "#",
+                f"# {len(kandidater)} av de 1 073 posterna klarar filtret. Båda bedömdes 2026-09-13,",
+                "# alltså före periodens slut, och bedömningen binder den som prövar dem efter",
+                "# brytpunkten. Ingen av dem gav ett registrerat indikatorval: båda faller på att",
+                "# utsagans storhet är ett ANTAL och indikatorns en ANDEL (kodboken avsnitt 7.1).",
+                "#",
+                "# Att så få klarar filtret är ett fynd om korpusens FORM och inte om partiernas",
+                "# löften. Posten är rubriken, inte den fulla texten ur PDF:en. Noll poster bär ett",
+                "# årtal och 22 bär över huvud taget en siffra. Ska framåthalvan någonsin prövas",
+                "# måste posterna bära den fulla lydelsen.",
+                "forhandsregistrering:",]
+    + [
+        rad
+        for u in kandidater
+        for rad in (
+            f"  - utsaga_id: {u.id}",
+            f"    storhet: {_citat(FORHANDSREGISTRERING[u.id]['storhet'])}",
+            f"    period: {_citat(FORHANDSREGISTRERING[u.id]['period'])}",
+            "    provade_indikatorer: ["
+            + ", ".join(FORHANDSREGISTRERING[u.id]["provade_indikatorer"])
+            + "]",
+            f"    utfall: {FORHANDSREGISTRERING[u.id]['utfall']}",
+            f"    skal: {_citat(FORHANDSREGISTRERING[u.id]['skal'])}",
+        )
+    ]
+    + [
                 "",
                 f"antal: {len(framat)}",
                 "pastaenden:",

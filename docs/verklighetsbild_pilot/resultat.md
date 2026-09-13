@@ -60,6 +60,28 @@ Snittet prövas mot kravet på minst 5 relationer hos samtliga åtta.
 Kategorispridningen i sista kolumnen är diagnostisk och aldrig en stoppregel
 (ADR 0016 beslutspunkt 8). Den skrivs ut utan omdöme.
 
+Tröskelregel 5 kräver osäkerhetsintervall oavsett utfall. Andelen utsagor som gav minst en
+relation, med ändlighetskorrektion enligt förhandsregistreringen avsnitt 2:
+
+| Parti | Andel | Standardfel | 95-procentigt intervall | n / N |
+|---|---|---|---|---|
+| S | 0,120 | 0,054 | 0,015 till 0,225 | 25 / 72 |
+| M | 0,000 | 0,000 | 0,000 till 0,000 | 25 / 300 |
+| SD | 0,080 | 0,045 | 0,000 till 0,167 | 25 / 71 |
+| C | 0,160 | 0,069 | 0,025 till 0,295 | 25 / 158 |
+| V | 0,000 | 0,000 | 0,000 till 0,000 | 25 / 94 |
+| KD | 0,000 | 0,000 | 0,000 till 0,000 | 25 / 55 |
+| MP | 0,120 | 0,038 | 0,046 till 0,194 | 25 / 37 |
+| L | 0,000 | 0,000 | 0,000 till 0,000 | 25 / 109 |
+
+Ändlighetskorrektionen syns i talen. S och MP har samma andel, men MP:s intervall är smalare,
+eftersom två tredjedelar av MP:s hela material är kodat mot en tredjedel av S:s.
+
+**Begränsningen skrivs ut:** vid andelen 0 kollapsar det normala intervallet till en punkt och
+säger ingenting. Fyra partier ligger där. Intervallet redovisas ändå, eftersom
+förhandsregistreringen utfäste det, men `0,000 till 0,000` ska inte läsas som att saken är
+avgjord för de fyra.
+
 ### 1.3 En lucka i tröskelreglerna
 
 Tröskelregel 3 gäller 0 till 2 relationer och regel 4 gäller 3 eller 4. Snittet kan bli ett
@@ -173,12 +195,51 @@ Alla tio reglerna i ADR 0016 är prövade i `tests/test_verklighetsbild_pilot.py
 Ordningen mellan kodboken, tröskelvärdena och kodningen går att se på commit-datum, och testet
 läser dem ur git i stället för att lita på en rad i filen.
 
-## 6. Vad som inte gick att göra
+## 6. Framåtkorpusens förhandsregistrering
 
-- **Framåtkorpusens förhandsregistrering är tom.** Noll av de 1 073 framåtposterna bär både en
-  storhet och en period, så ADR 0016 beslutspunkt 4 registrerar noll indikatorval. Skälet är
-  korpusens form: posten är rubriken, inte den fulla texten ur PDF:en. Korpusen är ändå fryst, med
-  hashar, fasta id och brytpunkten 2030-09-08.
+Två av de 1 073 framåtposterna bär både en storhet och en period, alltså villkoret i ADR 0016
+beslutspunkt 4. Båda är M:s, och båda säger att `fler brott utreds` under `nästa mandatperiod`.
+
+Båda är bedömda 2026-09-13, före periodens slut, och bedömningen binder den som prövar dem efter
+brytpunkten. Ingen av dem gav ett registrerat indikatorval:
+
+| Post | Storhet | Prövade indikatorer | Utfall |
+|---|---|---|---|
+| `M-108` | antal brott som utreds | `uppklaringsgrad`, `handlaggningstid` | `ingen_kompatibel_indikator` |
+| `M-117` | antal brott som utreds och leder till lagföring | `uppklaringsgrad`, `handlaggningstid` | `ingen_kompatibel_indikator` |
+
+Skälet står i korpusfilen: utsagan räknar **antalet** utredda brott, medan `uppklaringsgrad` mäter
+**andelen** uppklarade. Antalet kan stiga medan andelen faller, om anmälda brott stiger snabbare.
+Kodbokens avsnitt 7.1 ger då ingen relation.
+
+Att bara två poster klarar filtret är ett fynd om korpusens **form** och inte om partiernas löften.
+Posten är rubriken, inte den fulla texten ur PDF:en. Noll poster bär ett årtal, och 22 bär över
+huvud taget en siffra.
+
+**En rättelse.** Filtrets storhetsprov krävde först ett tal eller ett storhetsord, och gav då noll
+poster. Det provet var snävare än kodbokens eget, som i avsnitt 4 punkt 3 godtar `en riktning eller
+en nivå`. Provet är rättat och följer nu kodboken. Det första talet var en artefakt av filtret.
+
+## 7. Vad som inte gick att göra
+
 - **Hämtmanifestets URL-fält är tomma.** Adresserna till de åtta PDF:erna skrevs aldrig ned vid
   hämtningen och står varken i mappningsfilerna, i biljett #42 eller i PDF-metadatan. De gissas
   inte. Hashen styrker vilket dokument som lästes men återskapar det inte.
+- **Sidnumret saknas i 1 303 av 1 969 poster.** ADR 0016 beslutspunkt 3 kräver sida per post.
+  Fältet är ifyllt för de 666 kandidaterna, som bär en sidmarkör i källfilen, men tomt för de 230
+  mappade bakåtposterna och för alla 1 073 framåtposter. Källfilerna bär inget sidnummer för dem,
+  så fältet går inte att fylla utan att läsa om PDF:erna. Det gissas inte.
+- **Godkännandetest 6 kan inte belägga vem som kodade.** Testet prövar att två skilda kodningar
+  finns, och de skiljer sig på 115 av 200 utsagor, alltså är de inte kopior av varandra. Vilken
+  leverantör som skrev vilken vilar däremot på uppgiften i `leverantor`-fältet och på
+  körningsspåret i `spar`. Codexkörningarna ligger som tio sessionsfiler under `CODEX_HOME`, på
+  samma villkor som valmanifestens PDF:er: de går att peka på men inte att versionshantera här.
+
+## 8. Två avsteg från specen, båda medvetna
+
+1. **Blindningen gäller alla fyra kodarna, inte bara delurvalet.** ADR 0016 krävde blindning bara i
+   steg 5. Utsage-id bär partikoden i sitt prefix, så kodbokens regel 11.4 om att aldrig väga in
+   partiet vore annars ett löfte och ingen regel. Avsteget är strängare än specen, aldrig lösare.
+2. **Avslagsskälet bär villkor för att ta upp frågan igen.** Biljetten krävde bara ett daterat
+   skäl. Villkoren följer projektets eget mönster: ADR 0011 gav varje utesluten indikator ett
+   `reopen_if` skrivet så att det går att pröva.

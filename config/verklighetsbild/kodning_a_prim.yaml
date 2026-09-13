@@ -1,14 +1,15 @@
 # Rösta - kodning A-prim i Verklighetsbildpiloten (biljett #46 steg 4 och 5).
 #
-# Rasvaren ar oversatta fran blinda id till utsage-id via blindning.yaml. Ingenting
-# annat ar andrat: leden, koderna och operationaliseringarna star som kodaren skrev
-# dem. Ingen sammanjamkning har skett (forhandsregistreringen avsnitt 4.2).
+# Råsvaren är översatta från blinda id till utsage-id via blindning.yaml. Ingenting
+# annat är ändrat: leden, koderna och operationaliseringarna står som kodaren skrev
+# dem. Ingen sammanjämkning har skett (förhandsregistreringen avsnitt 4.2).
 
 version: 1
 kodare: A-prim
 leverantor: Anthropic
 modell: 'Claude Opus 5'
 uppdrag: delurval
+spar: "Claude Code-subagenter, 2 batchar, 2026-09-13"
 kodboksversion: 1
 kodningsdatum: 2026-09-13
 sag_andra_kodarens_svar: false

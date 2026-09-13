@@ -29,6 +29,11 @@ per_parti:
     kodade_utsagor: 25
     population: 72
     urvalsandel: 0.347
+    andel_med_relation: 0.12
+    andel_standardfel: 0.0536
+    andel_intervall_95:
+    - 0.015
+    - 0.225
     kodare_a: 3
     kodare_b: 2
     delade: 2
@@ -40,6 +45,11 @@ per_parti:
     kodade_utsagor: 25
     population: 300
     urvalsandel: 0.083
+    andel_med_relation: 0.0
+    andel_standardfel: 0.0
+    andel_intervall_95:
+    - 0.0
+    - 0.0
     kodare_a: 0
     kodare_b: 0
     delade: 0
@@ -51,6 +61,11 @@ per_parti:
     kodade_utsagor: 25
     population: 71
     urvalsandel: 0.352
+    andel_med_relation: 0.08
+    andel_standardfel: 0.0446
+    andel_intervall_95:
+    - 0.0
+    - 0.1674
     kodare_a: 2
     kodare_b: 2
     delade: 2
@@ -62,6 +77,11 @@ per_parti:
     kodade_utsagor: 25
     population: 158
     urvalsandel: 0.158
+    andel_med_relation: 0.16
+    andel_standardfel: 0.0687
+    andel_intervall_95:
+    - 0.0254
+    - 0.2946
     kodare_a: 6
     kodare_b: 4
     delade: 4
@@ -73,6 +93,11 @@ per_parti:
     kodade_utsagor: 25
     population: 94
     urvalsandel: 0.266
+    andel_med_relation: 0.0
+    andel_standardfel: 0.0
+    andel_intervall_95:
+    - 0.0
+    - 0.0
     kodare_a: 0
     kodare_b: 0
     delade: 0
@@ -84,6 +109,11 @@ per_parti:
     kodade_utsagor: 25
     population: 55
     urvalsandel: 0.455
+    andel_med_relation: 0.0
+    andel_standardfel: 0.0
+    andel_intervall_95:
+    - 0.0
+    - 0.0
     kodare_a: 0
     kodare_b: 0
     delade: 0
@@ -95,6 +125,11 @@ per_parti:
     kodade_utsagor: 25
     population: 37
     urvalsandel: 0.676
+    andel_med_relation: 0.12
+    andel_standardfel: 0.0378
+    andel_intervall_95:
+    - 0.046
+    - 0.194
     kodare_a: 3
     kodare_b: 2
     delade: 2
@@ -106,6 +141,11 @@ per_parti:
     kodade_utsagor: 25
     population: 109
     urvalsandel: 0.229
+    andel_med_relation: 0.0
+    andel_standardfel: 0.0
+    andel_intervall_95:
+    - 0.0
+    - 0.0
     kodare_a: 0
     kodare_b: 0
     delade: 0

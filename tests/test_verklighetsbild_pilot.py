@@ -207,6 +207,27 @@ def test_6_ingen_kodare_sag_den_andras_svar():
         assert _las(fil)["sag_andra_kodarens_svar"] is False, fil.name
 
 
+def test_6_de_tva_kodningarna_ar_faktiskt_skilda():
+    """Fältet `leverantor` är en uppgift. Att svaren skiljer sig är ett faktum.
+
+    Testet kan inte belägga VEM som kodade, men det fäller en påstådd andra kodning som
+    i själva verket är en kopia av den första.
+    """
+    fulla = [_las(f) for f in _kodningsfiler() if _las(f)["uppdrag"] == "full"]
+    if len(fulla) != 2:
+        pytest.skip("bada de fulla kodningarna ar inte committade an")
+    a, b = ({p["utsaga_id"]: p for p in d["utsagor"]} for d in fulla)
+    assert set(a) == set(b), "kodningarna tacker olika utsagor"
+    skilda = sum(1 for uid in a if a[uid]["led"] != b[uid]["led"])
+    assert skilda > 0, "de tva kodningarna ar identiska och kan inte vara oberoende"
+
+
+def test_6_varje_kodning_pekar_pa_sitt_korningsspar():
+    for fil in _kodningsfiler():
+        spar = _las(fil).get("spar")
+        assert spar and spar.strip(), f"{fil.name} saknar korningsspar"
+
+
 def test_6_kodarna_fick_bara_kodboken_och_blinda_id():
     """Utsage-id bär partikoden i sitt prefix, så kodaren måste få ett blint id."""
     nyckel = _las(KONFIG / "blindning.yaml")
@@ -396,8 +417,36 @@ def test_rapportens_tal_matchar_resultatfilen():
     assert _svenskt(lo) in text and _svenskt(hi) in text, "intervallet saknas"
     for moment, post in data["reliabilitet"].items():
         assert _svenskt(post["alfa"]) in text, f"alfa for {moment} saknas i rapporten"
-    for parti in data["per_parti"]:
+    for parti, post in data["per_parti"].items():
         assert parti in text, parti
+        assert _svenskt(post["andel_med_relation"]) in text, f"andelen for {parti} saknas"
+        for grans in post["andel_intervall_95"]:
+            assert _svenskt(grans) in text, f"intervallgransen {grans} for {parti} saknas"
+
+
+def test_troskelregel_5_kraver_osakerhetsintervall_aven_per_parti():
+    """Punktskattningar, partiresultat OCH osakerhetsintervall, oavsett utfall."""
+    resultat = KONFIG / "resultat.yaml"
+    if not resultat.exists():
+        pytest.skip("resultatet ar inte raknat an")
+    for parti, post in _las(resultat)["per_parti"].items():
+        assert "andel_med_relation" in post, parti
+        assert "andel_standardfel" in post, parti
+        lo, hi = post["andel_intervall_95"]
+        assert 0.0 <= lo <= hi <= 1.0, parti
+
+
+def test_andlighetskorrektionen_biter_pa_mp_och_kd():
+    """MP och KD har storst urvalsandel, sa korrektionen ska synas mest dar."""
+    resultat = KONFIG / "resultat.yaml"
+    if not resultat.exists():
+        pytest.skip("resultatet ar inte raknat an")
+    per_parti = _las(resultat)["per_parti"]
+    assert per_parti["MP"]["urvalsandel"] == pytest.approx(25 / 37, abs=0.001)
+    assert per_parti["KD"]["urvalsandel"] == pytest.approx(25 / 55, abs=0.001)
+    # S och MP bar samma andel men olika urvalsandel: MP:s intervall ska vara smalare.
+    assert per_parti["S"]["andel_med_relation"] == per_parti["MP"]["andel_med_relation"]
+    assert per_parti["MP"]["andel_standardfel"] < per_parti["S"]["andel_standardfel"]
 
 
 def test_avslagsskalet_finns_och_namner_bada_troskelvarden():

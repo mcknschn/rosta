@@ -83,8 +83,9 @@ Tre fynd är värda att bära med sig, oberoende av att måttet lades ned.
 
 1. **Kodboken motsäger sig själv** i avsnitt 6.5 mot avsnitt 10. Tre kodare hittade det oberoende
    av varandra. Skrivs ett liknande instrument någon gång, är den motsägelsen först att laga.
-2. **Framåtkorpusen bär rubriker, inte full text.** Noll av 1 073 poster bär både en storhet och en
-   period. Ska framåthalvan någonsin prövas måste posterna bära den fulla lydelsen ur PDF:en.
+2. **Framåtkorpusen bär rubriker, inte full text.** Två av 1 073 poster bär både en storhet och en
+   period, och båda faller på att partiets storhet är ett antal medan indikatorns är en andel.
+   Ska framåthalvan någonsin prövas måste posterna bära den fulla lydelsen ur PDF:en.
 3. **Hämtmanifestets URL-fält är tomma.** Adresserna skrevs aldrig ned. Nästa gång dokument hämtas
    utifrån förs adressen in samtidigt som filen.
 

@@ -32,17 +32,32 @@ brytpunkt_skal: |
   perioden inte slut och ingen framåtpost går att pröva.
 
 # ADR 0016 beslutspunkt 4: indikatorval förhandsregistreras BARA där utsagan bär
-# både en storhet och en period. Villkoret uppfylls av NOLL av de 1 073 posterna.
-#
-# Skälet står i mappning_framat.md: posten är rubriken eller punkten, och den
-# fulla texten står i PDF:en. Rubriker bär sällan tal och aldrig en period. Noll
-# poster bär ett årtal, och 22 bär över huvud taget en siffra.
-#
-# Detta är ett fynd om korpusens FORM och inte om partiernas löften. Ska
-# förhandsregistrering bli möjlig måste posterna bära den fulla lydelsen ur
-# PDF:en, inte rubriken. Filtret ligger i
+# både en storhet och en period. Storhetsprovet följer kodbokens avsnitt 4 punkt
+# 3, som godtar en riktning utan tal. Filtret ligger i
 # pipeline/tools/verklighetsbild.py:forhandsregistrerbara och går att köra om.
-forhandsregistrerade_indikatorval: []   # 0 poster klarade filtret
+#
+# 2 av de 1 073 posterna klarar filtret. Båda bedömdes 2026-09-13,
+# alltså före periodens slut, och bedömningen binder den som prövar dem efter
+# brytpunkten. Ingen av dem gav ett registrerat indikatorval: båda faller på att
+# utsagans storhet är ett ANTAL och indikatorns en ANDEL (kodboken avsnitt 7.1).
+#
+# Att så få klarar filtret är ett fynd om korpusens FORM och inte om partiernas
+# löften. Posten är rubriken, inte den fulla texten ur PDF:en. Noll poster bär ett
+# årtal och 22 bär över huvud taget en siffra. Ska framåthalvan någonsin prövas
+# måste posterna bära den fulla lydelsen.
+forhandsregistrering:
+  - utsaga_id: M-108
+    storhet: "antal brott som utreds"
+    period: "nästa mandatperiod, 2026-10 till 2030-09"
+    provade_indikatorer: [uppklaringsgrad, handlaggningstid]
+    utfall: ingen_kompatibel_indikator
+    skal: "Utsagan räknar ANTAL utredda brott. uppklaringsgrad mäter ANDELEN uppklarade brott, och de två är skilda storheter: antalet kan stiga medan andelen faller, om anmälda brott stiger snabbare. Kodboken avsnitt 7.1 ger då ingen relation. Ledet om att livsstilskriminella sitter inne längre rör strafftid, och ingen av de 68 indikatorerna mäter den."
+  - utsaga_id: M-117
+    storhet: "antal brott som utreds och leder till lagföring"
+    period: "nästa mandatperiod, 2026-10 till 2030-09"
+    provade_indikatorer: [uppklaringsgrad, handlaggningstid]
+    utfall: ingen_kompatibel_indikator
+    skal: "Samma skäl som M-108. Lagföringsledet ligger nära uppklaringsgradens personuppklaring, men utsagans storhet är antalet och indikatorns är andelen."
 
 antal: 1073
 pastaenden:
