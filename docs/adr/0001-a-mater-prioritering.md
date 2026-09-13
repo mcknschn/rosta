@@ -48,6 +48,28 @@ eftersom en vikt satt före det här beslutet är satt om något annat.
 - `a2` läser en restkanal för regeringspartier, eftersom de driver politik genom proposition och
   budget snarare än genom motioner. Begränsningen accepteras. `a1` väger 0,6 och bär
   regeringskanalen.
+
+  > **Daterad not 2026-09-13, skriven i biljett [#33](https://github.com/mcknschn/rosta/issues/33)
+  > under [ADR 0015](0015-as-tva-kanaler-vager-lika.md).** Meningen ovan är det enda nedskrivna
+  > skälet till att `a1` väger mer än `a2`, och den är nu prövad. Skälet **håller inte** som
+  > härledning, av tre skäl som mättes 2026-09-13 mot `docs/done/a_forankring/fonster.json`.
+  >
+  > Restkanalen finns i **volymen**: fem av sex prövbara partier skriver färre motioner i
+  > regeringsställning, med kvoten 1,37 till 1,90, och KD gör det inte alls (0,99). Men `a2` mäter
+  > **andel** och inte volym, så volymfallet är redan neutraliserat av konstruktionen.
+  >
+  > I fördelningen är effekten liten och pekar inte åt samma håll. Med epokeffekten bortrensad har
+  > bara två av sju kategorier samstämmigt tecken över de sex prövbara partierna, och rollskiftet
+  > är 0,07 till 0,39 gånger det som skiljer partierna åt.
+  >
+  > `a1` kan dessutom inte fylla luckan. Varje parti ligger på en **delad** ram i 3 till 9 av 15 år,
+  > och något enskilt år finns bara 3 till 7 distinkta ramar bland åtta partier. Ett regeringsparti
+  > får regeringens ram, delad med koalitionspartner och stödparti. De två kanalerna tunnas alltså
+  > ut i samma år, för samma partier, av samma orsak. Meningen ovan förutsatte att de tunnas ut
+  > komplementärt.
+  >
+  > Blandningen är därefter **0,5 x a1 + 0,5 x a2** (ADR 0015 punkt 1). Förkastandet av en
+  > rollberoende blandning, längre ned i den här ADR:n, står kvar och prövades inte om.
 - Voteringsprovet i `actions` matar inget betyg och får inte matas in i A. Det är inte en lucka att
   täppa.
 - Namnet "Faktiskt agerande" är avfört. `IDEA.md` och ordlistan i

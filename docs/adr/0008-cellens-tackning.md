@@ -73,6 +73,13 @@ grad över alla signaler, utan en grad över den signal som ännu står oläst.
    utgiftsområde i kategorin. Faller a1 ur vilar A på a2 ensam, och a2 väger 0,4 av A. Talet är
    konstant 100 i dag, och just därför skrivs regeln nu: den ska vara rätt den dag grinden stänger.
 
+   > **Daterad not 2026-09-13, skriven i biljett [#33](https://github.com/mcknschn/rosta/issues/33)
+   > under [ADR 0015](0015-as-tva-kanaler-vager-lika.md).** Talet 40 är `a2`:s vikt, inte en egen
+   > konstant, och koden ärver det ur configen. Blandningen blev **0,5 / 0,5** i ADR 0015 punkt 1,
+   > så grindfallets täckning är **50** efter den slicen. Regeln ovan står oförändrad: den säger
+   > att A:s täckning är `a2`:s vikt när `A_a2_only` står. Bara talet flyttar. Ändringen är
+   > vilande, eftersom `A_a1_active` står i alla 56 celler i dag.
+
 4. **En ej tillämplig D räknas som 0 täckt, aldrig bort ur nämnaren.** Precedensen är
    `docs/done/d_coverage_krympning_spec.md`, som slutade renormalisera bort saknade undermått för
    att en cell inte ska göra ett helt kategorianspråk på en delmängd. Samma aritmetik gäller ett steg

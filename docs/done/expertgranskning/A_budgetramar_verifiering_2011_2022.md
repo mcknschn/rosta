@@ -127,6 +127,14 @@ Kvar blir två fall, mätta som andel per kategori i stället för i miljoner:
 Efter medelvärdet över femton år, kvoten och vikterna 0,6 och 0,30 landar hela effekten kring
 0,0004 på ett kategoribetyg, alltså under en avrundning. Valet avgör en princip, ingen siffra.
 
+> **Daterad not 2026-09-13, skriven i biljett
+> [#33](https://github.com/mcknschn/rosta/issues/33) under
+> [ADR 0015](../../adr/0015-as-tva-kanaler-vager-lika.md).** Vikten 0,6 i stycket ovan är
+> `a1`:s andel av A, och den blev **0,5** i ADR 0015 punkt 1. Granskningen skrivs inte om,
+> eftersom den är signerad och räknade effekten mot det läge som gällde då. Räkningen håller
+> ändå: vid 0,5 blir effekten omkring 0,0003 i stället för 0,0004, alltså fortfarande under en
+> avrundning, och slutsatsen står oförändrad.
+
 Configen använder motionen, eftersom a1 mäter partiets **egen** prioritering. Notera att 2019
 vann just den reservationen, så förankringen det året **är** M och KD:s reservation: de två mäts
 mot ett facit de själva var med och skrev.

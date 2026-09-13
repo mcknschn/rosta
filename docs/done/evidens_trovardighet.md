@@ -341,7 +341,7 @@ Låst 2026-08-30 av [ADR 0012](../adr/0012-vaxelkursen-i-a-ar-harledd-ur-kvotens
 **Växelkurs:** hur stor omfördelning som krävs för att flytta en delpoäng ett steg. I A är den
 härledd och inte vald: `q = (andel - förankring)/(andel + förankring)` ligger i [-1, 1] av
 konstruktion, och den linjära avbildningen på [0, 5] är den enda som lägger jämnhöjd i mitten utan
-att införa en konstant. En fördubblad andel ger 0,83 poäng i den halva som mäts, och en halverad ger
+att införa en konstant. En fördubblad andel ger 0,83 poäng i den kanal som mäts, och en halverad ger
 0,83 mindre. A:s avbildning **sammanfaller** med B:s, den är inte lånad ur den.
 
 **Golvet är nåbart, taket är det inte** (ADR 0012 punkt 4). 0,00 betyder att partiet inte lägger
@@ -350,12 +350,34 @@ storlek och går 3,76 (välfärd) till 4,70 (trygghet). Snedheten är en deklare
 mättnaden i ADR 0005, och den jämnas inte ut, eftersom varje utjämning kräver en vald konstant per
 kategori.
 
+### Delpoäng A:s två vägar: Kanal
+
+Låst 2026-09-13 av [ADR 0015](../adr/0015-as-tva-kanaler-vager-lika.md) (biljett #33 under karta #6).
+
+**Kanal:** en av de två vägar delpoäng A mäter prioritering genom, var och en mätt mot sin egen
+förankring. `a1` är budgetkanalen, alltså andelen av partiets föreslagna utgiftsramar. `a2` är
+motionskanalen, alltså andelen av partiets egna motioner.
+
+**De två kanalerna mäter en storhet, inte två.** Faller `a1` ur sin grind bär `a2` hela A ensam,
+och skalan räknas inte om. Det går bara om de mäter samma sak. Efter förankringen säger båda samma
+sorts tal: hur mycket mer än kanalens eget normalläge partiet lägger på kategorin.
+
+**Kanalerna väger lika**, alltså `0,5 x a1 + 0,5 x a2` (ADR 0015 punkt 1). Vikten är härledd och
+inte vald. Det enda nedskrivna skälet till en asymmetri var att `a2` läser en restkanal för
+regeringspartier, och det skälet är prövat och fällt. Restkanalen finns i volymen, men `a2` mäter
+andel och inte volym.
+
+**En vikt är inte instrumentet för tvivel** (ADR 0015 punkt 3). Att en kanal är brusig bärs av
+Säkerheten, aldrig av vikten. Att en kanal mäter fel storhet för ett parti är ett `giltighetsfel`
+och möts med uteslutning eller med att skrivas ut. *Avfört ord:* **halva** som namn på en kanal.
+En kanal mäter hela storheten, inte halva den.
+
 ### Delpoäng A:s två aggregationsformer: Poolad andel och Årsmedel
 
 Låsta 2026-08-30 av [ADR 0013](../adr/0013-a2s-forankring-ar-en-poolad-andel.md) (biljett #36 under
 karta #6).
 
-A:s två halvor väger fönstrets år olika, och de två formerna har varsitt namn.
+A:s två kanaler väger fönstrets år olika, och de två formerna har varsitt namn.
 
 | ord | vad det betyder | var det gäller |
 | --- | --- | --- |

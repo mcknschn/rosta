@@ -160,6 +160,19 @@ tvetydig mot repots källkrav. Ordet **reglage** används redan informellt för 
    att analysen prövar **härledningens slutsats** i stället för en godtycklig omviktning. Här prövar
    den magnituden och lämnar riktningen i fred.
 
+   > **Nedre änden omhärledd 2026-09-13 av
+   > [ADR 0015](0015-as-tva-kanaler-vager-lika.md) punkt 5**, skriven i biljett
+   > [#33](https://github.com/mcknschn/rosta/issues/33). Den nedre änden vilade på ADR 0001:s
+   > påstående att `a1` väger mer än `a2`. Det påståendet är fällt som härledning, så änden tappade
+   > sin grund. Punkt 5 ovan kräver två härledda ändar, alltså måste spannet räknas om.
+   >
+   > Efter ADR 0015 är blandningen 0,5 / 0,5 och spannet blir **R1 på det beslutade värdet**,
+   > alltså `a1` i [0,25, 0,75]. Invändningen i stycket ovan upphör därmed av sig själv: vid jämn
+   > blandning ger R1 samma intervall räknat från båda kanalerna, så R1 på den ena bryter inte R1
+   > för den andra. Det är en **följd** av beslutet och stod aldrig som skäl för det. Att välja ett
+   > betygstal för att känslighetsanalysen blir prydligare är precis den koppling den här ADR:n
+   > förkastade under Övervägda alternativ.
+
 6. **Fönstret är inget reglage.** Det faller på regelns andra led: a2:s förankring är ett aggregat
    utan år, så configen kan inte uttrycka ett annat fönster. Biljettens eget skäl, att alternativen
    är för få, är avfört.
