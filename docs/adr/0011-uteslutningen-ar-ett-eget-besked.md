@@ -140,6 +140,24 @@ egen nämnare även när D är ej tillämplig, med noten att nämnaren aldrig kr
    indikatorn inte hör hemma i delpoängen alls. Ett giltighetsfel gör riktningsprovet meningslöst,
    eftersom en riktning ingen kan tillskrivas ett parti inte hjälper någon.
 
+   > **Utvidgad 2026-09-13 av [ADR 0014](0014-mattaket-ar-modellens-inte-partiets.md) punkt 5,
+   > beslutad i biljett [#39](https://github.com/mcknschn/rosta/issues/39).** Regeln ovan prövar en
+   > indikator. Den prövar nu också ett **undermått**, i samma tre steg och i samma ordning. Punkt
+   > 4:s form gäller ett steg upp: ett undermått bär antingen minst en indikator eller ett
+   > Uteslutningsskäl, aldrig båda och aldrig ingetdera. Ett uteslutet undermått ryker ur
+   > krympningens nämnare och räknas 0 täckt i Täckning, precis som punkt 9 redan säger.
+   >
+   > Skälet till utvidgningen är att punkt 4 gjorde "utesluten utan skäl" omöjlig att skriva för en
+   > indikator men lämnade tillståndet öppet ett steg upp. Klimats `industriell_konkurrenskraft`
+   > väger 15 av 100 och har noll indikatorer, alltså kan den aldrig mätas av vare sig B eller D,
+   > och ingen regel fällde den. ADR 0014 punkt 6 ger den `neutralitetsfel` och ett
+   > återöppningsvillkor. Den är regelns enda medlem av 35 undermått.
+   >
+   > Ett undermått vars indikatorer **alla** är uteslutna bär inget eget skäl. Det bär en indikator
+   > och passerar regeln, och indikatorgrinden ovan fäller det ett steg ned. Två skäl för samma fall
+   > vore punkt 11:s egen varning en gång till. I dag gäller det ekonomis `inflation_prisstabilitet`
+   > och `offentliga_finanser`.
+
 3. **Riktningen håller bara `up` och `down`.** Värdet `target` förs av. Riktning är ett besked om
    indikatorn, alltså vilket håll som är bättre. Uteslutningen är ett besked om modellen, alltså
    varför indikatorn inte poängsätts. Ett fält kan inte bära båda utan att det ena döljer det

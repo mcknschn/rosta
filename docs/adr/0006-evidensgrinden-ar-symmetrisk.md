@@ -149,6 +149,22 @@ världen också lutar går inte att pröva härifrån, och det står kvar som k�
   `opposes` i rubriken §1 till §4 står oförändrade, och binär stance består.
 - **Täckningskrympningen B5 rörs inte.** Utlyftet ändrar vad nämnaren innehåller, aldrig hur den
   räknas.
+
+  > **Daterad not 2026-09-13, skriven i biljett [#39](https://github.com/mcknschn/rosta/issues/39)
+  > under [ADR 0014](0014-mattaket-ar-modellens-inte-partiets.md).** Meningen ovan är sann om
+  > räknesättet och missvisande om följden. Mätt i efterhand tömde utlyftet **tio undermått** på
+  > varje kodbar åtgärdstyp, exakt som diagnosen punkt 5 förutsåg, och det sänkte kategoriernas
+  > medeltak för B-täckning från **0,921 till 0,629**. Demokrati föll från 1,00 till 0,45, välfärd
+  > och trygghet från 1,00 till 0,50 respektive 0,85, ekonomi från 1,00 till 0,753, försvar från
+  > 0,95 till 0,50 och klimat från 0,85 till 0,70. Integration stod still på 0,65.
+  >
+  > Andelen av krympningen som är modellens egen tystnad steg därmed från cirka 8 till **77
+  > procent**. Reglaget `B_coverage_shrink` blev däremot **mindre** inflytelserikt, från 8,263 till
+  > 6,822 kategoripoäng, eftersom en kategorikonstant inte kan vända ordningen mellan två partier.
+  >
+  > Noten ändrar inget beslut. ADR 0014 fann att krympningen räknar rätt och lät den stå. Noten
+  > finns för att en läsare som bara läser den här ADR:n annars får veta att krympningen inte
+  > rördes, vilket är sant om formeln och inte om vad modellen sedan mäter.
 - **Världshypotesen avgörs inte.** Att officiella utvärderingar kan luta mot åtgärder någon trodde
   på står kvar som känd svaghet utan åtgärd.
 
