@@ -71,8 +71,11 @@ BORTFALLSKODER = (
 
 FRO_URVAL = 20260913
 FRO_DELURVAL = 20260946
+FRO_BLINDNING = 20264601
+FRO_BLINDNING_DELURVAL = 20264602
 PER_PARTI = 25
 PER_PARTI_DELURVAL = 5
+UTSAGOR_PER_BATCH = 25
 
 
 @dataclass(frozen=True)
@@ -370,8 +373,23 @@ def sha256(fil: Path) -> str:
 
 
 def _citat(text: str) -> str:
-    """YAML-sträng i dubbla citattecken, med backslash och citattecken skyddade."""
-    return '"' + text.replace("\\", "\\\\").replace('"', '\\"') + '"'
+    """YAML-sträng i dubbla citattecken, med lydelsen bevarad tecken för tecken.
+
+    Styrtecken skyddas som `\\xNN` i stället för att tas bort. `mappning_framat.md` bär ett
+    sådant, ett BEL i början av `S-008`, som följt med ur PDF-extraktionen. Korpusen ska
+    bära dokumentets lydelse och inte en städad version av den, så tecknet stannar.
+    """
+    ut = []
+    for tecken in text:
+        if tecken == "\\":
+            ut.append("\\\\")
+        elif tecken == '"':
+            ut.append('\\"')
+        elif ord(tecken) < 0x20 or ord(tecken) == 0x7F:
+            ut.append(f"\\x{ord(tecken):02x}")
+        else:
+            ut.append(tecken)
+    return '"' + "".join(ut) + '"'
 
 
 def skriv_urval(ut: Path = UTKATALOG / "urval_pilot.yaml") -> Path:
@@ -447,16 +465,296 @@ def skriv_urval(ut: Path = UTKATALOG / "urval_pilot.yaml") -> Path:
     return ut
 
 
+# ------------------------------------------------------------------- kodningsuppdrag
+
+
+def las_urval(fil: Path = UTKATALOG / "urval_pilot.yaml") -> list[dict]:
+    """Läser den dragna urvalsfilen utan att dra om den."""
+    import yaml
+
+    return yaml.safe_load(fil.read_text(encoding="utf-8"))["urval"]
+
+
+def blinda(utsage_id: list[str], fro: int, prefix: str) -> dict[str, str]:
+    """Ger varje utsaga ett blint id i ny slumpordning.
+
+    Utsage-id:t bär partikoden i sitt prefix. Ett blint id är det enda sättet att hålla
+    kodbokens regel 11.4, alltså att kodaren aldrig väger in vilket parti utsagan kom
+    från. Nyckeln ligger i `config/verklighetsbild/blindning.yaml` och når aldrig en kodare.
+    """
+    blandad = list(utsage_id)
+    random.Random(fro).shuffle(blandad)
+    return {f"{prefix}-{i:03d}": u for i, u in enumerate(blandad, start=1)}
+
+
+UPPDRAGSRAM = """\
+Du granskar ett mätinstrument. Uppgiften är ren kodning mot en låst kodbok.
+
+Du ska INTE avgöra om något påstående är sant. Du ska INTE bedöma något politiskt parti.
+Texterna nedan är avidentifierade utdrag ur svenska offentliga dokument, och de bär
+varken avsändare eller partikod. Din uppgift är att avgöra om varje utdrag skulle gå att
+pröva mot en på förhand definierad statistisk indikator, och i så fall vilken.
+
+Följ kodboken ordagrant. Där kodboken ger en regel gäller regeln och inte ditt omdöme.
+Svara med ett enda YAML-dokument och ingenting annat: ingen inledning, ingen
+sammanfattning, inga kodstaket.
+"""
+
+
+def skriv_uppdrag(ut: Path, batchstorlek: int = UTSAGOR_PER_BATCH) -> list[Path]:
+    """Skriver kodningsunderlaget, ett blindat parti utsagor per batchfil."""
+    import yaml
+
+    kodbok = (PILOTKATALOG / "kodbok_pilot.md").read_text(encoding="utf-8")
+    text_per_id = {u.id: u.text for u in las_bakat()}
+    urval = las_urval()
+
+    nyckel_full = blinda([r["id"] for r in urval], FRO_BLINDNING, "U")
+    nyckel_del = blinda(
+        [r["id"] for r in urval if r["delurval"]], FRO_BLINDNING_DELURVAL, "D"
+    )
+
+    nyckelfil = UTKATALOG / "blindning.yaml"
+    nyckelfil.write_text(
+        "# Rösta - blindningsnyckeln för Verklighetsbildpiloten (biljett #46 steg 4 och 5).\n"
+        "#\n"
+        "# Utsage-id bär partikoden i sitt prefix. Kodarna får därför blinda id, och den här\n"
+        "# filen är kopplingen tillbaka. Den når ALDRIG en kodare. Fröna står i\n"
+        "# pipeline/tools/verklighetsbild.py, så nyckeln går att göra om.\n"
+        "#\n"
+        "# `full` gäller kodare A och B, `delurval` gäller A-prim och B-prim. De två har\n"
+        "# skilda fron och skild ordning, så en kodare inte kan känna igen en utsaga.\n\n"
+        + yaml.safe_dump(
+            {"version": 1, "fro_full": FRO_BLINDNING, "fro_delurval": FRO_BLINDNING_DELURVAL,
+             "full": nyckel_full, "delurval": nyckel_del},
+            allow_unicode=True, sort_keys=False, default_flow_style=False,
+        ),
+        encoding="utf-8",
+    )
+
+    ut.mkdir(parents=True, exist_ok=True)
+    skrivna: list[Path] = []
+    for märke, nyckel in (("full", nyckel_full), ("delurval", nyckel_del)):
+        poster = sorted(nyckel.items())
+        for nr in range(0, len(poster), batchstorlek):
+            batch = poster[nr : nr + batchstorlek]
+            fil = ut / f"uppdrag_{märke}_{nr // batchstorlek + 1:02d}.md"
+            rader = [
+                UPPDRAGSRAM,
+                "\n---\n\n# Kodboken\n\n",
+                kodbok,
+                "\n---\n\n# Utdragen\n\n",
+                "Koda vart och ett av utdragen nedan. Använd det id som står först på raden.\n\n",
+            ]
+            for blint, riktigt in batch:
+                rader.append(f"- `{blint}` {text_per_id[riktigt]}\n")
+            rader.append(
+                f"\n---\n\n# Svaret\n\nEtt YAML-dokument med exakt {len(batch)} poster under "
+                "`utsagor`, i samma ordning som utdragen ovan, enligt kodbokens avsnitt 10. "
+                "Sätt `kodare` till det namn du fått, `kodboksversion: 1` och `kodningsdatum` "
+                "till dagens datum.\n"
+            )
+            fil.write_text("".join(rader), encoding="utf-8")
+            skrivna.append(fil)
+    return skrivna
+
+
+# ------------------------------------------------------ hämtmanifest och konfigkorpus
+
+# Brytpunkten för framåtkorpusen. Ordinarie val hålls andra söndagen i september
+# (vallagen 1 kap. 3 §). Regeln ger 2014-09-14, 2018-09-09, 2022-09-11 och 2026-09-13,
+# alltså exakt de fyra valdagar `config/mappings.yaml` redan bär. Nästa blir 2030-09-08.
+BRYTPUNKT = "2030-09-08"
+
+# En framåtutsaga får ett förhandsregistrerat indikatorval bara om den bär BÅDE en storhet
+# och en period (ADR 0016 beslutspunkt 4). Filtret är grovt med flit: det ska hellre släppa
+# igenom för mycket än sålla bort en utsaga som bär båda.
+STORHET = re.compile(
+    r"\d|procent|procentenhet|kronor|miljard|miljon|andel|antal|dubbl|halver|fördubbl|tredubbl",
+    re.IGNORECASE,
+)
+PERIOD = re.compile(
+    r"(19|20)\d{2}|senast|inom \w+ år|mandatperiod|per år|årlig|året|fram till|till och med",
+    re.IGNORECASE,
+)
+
+
+def forhandsregistrerbara(utsagor: list[Utsaga]) -> list[Utsaga]:
+    """De framåtutsagor som bär både en storhet och en period."""
+    return [u for u in utsagor if STORHET.search(u.text) and PERIOD.search(u.text)]
+
+
+def skriv_hamtmanifest(ut: Path = UTKATALOG / "hamtmanifest.yaml") -> Path:
+    """Ett hämtmanifest per källdokument: filnamn, hämtdatum, storlek och SHA-256."""
+    rader = [
+        "# Rösta - hämtmanifest för valmanifesten 2026 (ADR 0016 beslutspunkt 3, biljett #46).",
+        "#",
+        "# PDF:erna ligger UTANFÖR git. Repot är publikt och dokumenten är upphovsrättsskyddade",
+        "# verk, och instrumentet behöver för sin prövning bara de citerade meningarna.",
+        "# `.gitignore` håller dem utanför sedan d82100d.",
+        "#",
+        "# BEGRÄNSNINGEN, i klartext: hashen styrker VILKET dokument som lästes, men den",
+        "# återskapar det inte. Dör partiets URL finns ingen väg tillbaka till dokumentet.",
+        "#",
+        "# `url` är TOM för alla åtta. Adresserna skrevs inte ned vid hämtningen 2026-09-13 och",
+        "# står varken i mappningsfilerna, i biljett #42 eller i PDF:ernas metadata. De gissas",
+        "# inte här. Fältet fylls av den som kan belägga adressen, och `arkivadress` är ett",
+        "# frivilligt fält för en kopia hos oberoende tredje part.",
+        "#",
+        "# `hamtdatum` vilar på två ben: mappningsfilerna säger själva att materialet är",
+        "# framställt 2026-09-13 ur dessa filer, och filernas tidsstämplar ligger samma dag.",
+        "",
+        "version: 1",
+        "hamtdatum_kalla: 'mappningsfilernas egen ingress plus filernas tidsstämpel'",
+        "dokument:",
+    ]
+    for parti in PARTIER:
+        filnamn = KALLDOKUMENT[parti]
+        fil = KALLKATALOG / filnamn
+        if not fil.exists():
+            raise FileNotFoundError(f"{filnamn} saknas i {KALLKATALOG}")
+        rader += [
+            f"  - id: {parti}",
+            f"    filnamn: {filnamn}",
+            "    hamtdatum: 2026-09-13",
+            "    url: null",
+            "    arkivadress: null",
+            f"    byte: {fil.stat().st_size}",
+            f"    sha256: {sha256(fil)}",
+        ]
+    ut.parent.mkdir(parents=True, exist_ok=True)
+    ut.write_text("\n".join(rader) + "\n", encoding="utf-8")
+    return ut
+
+
+def _korpusrader(utsagor: list[Utsaga]) -> list[str]:
+    rader = []
+    for u in utsagor:
+        rader += [
+            f"  - id: {u.id}",
+            f"    dokument: {u.parti}",
+            f"    kategori: {_citat(u.kategori)}",
+            f"    sida: {u.sida if u.sida is not None else 'null'}",
+            f"    kalla: {u.kalla}",
+        ]
+        if u.anmarkning:
+            rader.append(f"    anmarkning: {u.anmarkning}")
+        rader.append(f"    citat: {_citat(u.text)}")
+    return rader
+
+
+def skriv_korpus(ut: Path = UTKATALOG) -> list[Path]:
+    """Skriver bakåt- och framåtkorpusen i configformat (ADR 0016 beslutspunkt 3 och 4)."""
+    huvud = [
+        "# Påstående, observation och indikator är TRE SKILDA OBJEKT (ADR 0016 beslutspunkt 3).",
+        "#",
+        "#   pastaenden   textens egen utsaga, med bevarad lydelse. Ligger nedan.",
+        "#   indikatorer  modellens på förhand definierade mätvariabler. Ligger i",
+        "#                config/categories.yaml och dubbleras ALDRIG hit.",
+        "#   observationer  ett indikatorvärde för en viss period och population. Tom i v0:",
+        "#                piloten kodar ingen sanning (kodboken avsnitt 1).",
+        "#",
+        "# Semantisk likhet räcker inte som koppling mellan de tre. Publicerade bedömningar",
+        "# är append-only: en post ändras aldrig, den läggs till.",
+        "",
+        "version: 1",
+        "hamtmanifest: hamtmanifest.yaml",
+        "indikatorregister: '../categories.yaml'",
+        "observationer: []",
+    ]
+
+    bakat = las_bakat()
+    bakatfil = ut / "korpus_bakat.yaml"
+    bakatfil.write_text(
+        "\n".join(
+            [
+                "# Rösta - bakåtkorpusen för Verklighetsbild (biljett #46 steg 8).",
+                "#",
+                "# 896 bakåtblickande utsagor ur de åtta valmanifesten: 230 mappade och 666",
+                "# kandidater. Lydelsen är partiets egen. Kandidaternas id är härledda av",
+                "# ordningen i kandidater_bakat.md och är därefter fasta.",
+                "",
+                *huvud,
+                "",
+                f"antal: {len(bakat)}",
+                "pastaenden:",
+                *_korpusrader(bakat),
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+    framat = las_framat()
+    kandidater = forhandsregistrerbara(framat)
+    framatfil = ut / "korpus_framat.yaml"
+    framatfil.write_text(
+        "\n".join(
+            [
+                "# Rösta - den FRYSTA framåtkorpusen för Verklighetsbild (biljett #46 steg 7).",
+                "#",
+                "# 1 073 framåtblickande poster. Framåthalvan lämnade instrumentet i ADR 0016",
+                "# beslutspunkt 4 och fryses här. Ett rent uteslutande räckte inte, eftersom det",
+                "# öppnar för efterhandsval av formulering, indikator och tröskel när perioden",
+                "# väl är slut.",
+                "#",
+                "# FRYSNINGEN BINDER: originaltexten ändras aldrig, id är fasta, dokumenthashen",
+                "# ligger i hamtmanifest.yaml, och ingen post får läggas till eller tas bort.",
+                "",
+                *huvud,
+                "",
+                f"brytpunkt: {BRYTPUNKT}",
+                "brytpunkt_skal: |",
+                "  Ordinarie val hålls andra söndagen i september. Regeln ger 2014-09-14,",
+                "  2018-09-09, 2022-09-11 och 2026-09-13, alltså exakt de fyra valdagar",
+                "  config/mappings.yaml redan bär, och därefter 2030-09-08. Före den dagen är",
+                "  perioden inte slut och ingen framåtpost går att pröva.",
+                "",
+                "# ADR 0016 beslutspunkt 4: indikatorval förhandsregistreras BARA där utsagan bär",
+                "# både en storhet och en period. Villkoret uppfylls av NOLL av de 1 073 posterna.",
+                "#",
+                "# Skälet står i mappning_framat.md: posten är rubriken eller punkten, och den",
+                "# fulla texten står i PDF:en. Rubriker bär sällan tal och aldrig en period. Noll",
+                "# poster bär ett årtal, och 22 bär över huvud taget en siffra.",
+                "#",
+                "# Detta är ett fynd om korpusens FORM och inte om partiernas löften. Ska",
+                "# förhandsregistrering bli möjlig måste posterna bära den fulla lydelsen ur",
+                "# PDF:en, inte rubriken. Filtret ligger i",
+                "# pipeline/tools/verklighetsbild.py:forhandsregistrerbara och går att köra om.",
+                f"forhandsregistrerade_indikatorval: []   # {len(kandidater)} poster klarade filtret",
+                "",
+                f"antal: {len(framat)}",
+                "pastaenden:",
+                *_korpusrader(framat),
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    return [bakatfil, framatfil]
+
+
 def _main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--korpus", action="store_true", help="räkna korpusen och skriv en sammanfattning")
     p.add_argument("--urval", action="store_true", help="dra de 200 och delurvalets 40 -> config")
+    p.add_argument("--uppdrag", metavar="KATALOG", help="skriv blindat kodningsunderlag dit")
+    p.add_argument("--manifest", action="store_true", help="skriv hämtmanifestet med SHA-256")
+    p.add_argument("--skriv-korpus", action="store_true", help="skriv bakåt- och framåtkorpus -> config")
     args = p.parse_args(argv)
+    if args.manifest:
+        print(f"skrev {skriv_hamtmanifest()}")
+    if args.skriv_korpus:
+        for fil in skriv_korpus():
+            print(f"skrev {fil}")
     if args.korpus:
         bakat, framat = las_bakat(), las_framat()
         print(json.dumps({"bakat": len(bakat), "framat": len(framat)}, ensure_ascii=False))
     if args.urval:
         print(f"skrev {skriv_urval()}")
+    if args.uppdrag:
+        for fil in skriv_uppdrag(Path(args.uppdrag)):
+            print(f"skrev {fil}")
     return 0
 
 

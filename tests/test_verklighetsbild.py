@@ -267,3 +267,21 @@ def test_jaccard_hoppar_over_utsagor_dar_bada_lamnade_tomt():
     a = {"u1": {"arbetsloshet"}, "u2": set()}
     b = {"u1": {"arbetsloshet"}, "u2": set()}
     assert vb.rakna_relationer(a, b).jaccard == pytest.approx(1.0)
+
+
+# ------------------------------------------------------------------------ citatform
+
+
+def test_citatet_bevarar_styrtecken_i_stallet_for_att_stada_bort_dem():
+    """mappning_framat.md bär ett BEL i S-008. Korpusen ska bära lydelsen, inte en städad version."""
+    import yaml
+
+    original = "\x07Inför en arbetarepension"
+    assert yaml.safe_load(f"citat: {vb._citat(original)}")["citat"] == original
+
+
+def test_citatet_skyddar_backslash_och_citattecken():
+    import yaml
+
+    original = 'en \\ och ett "citat"'
+    assert yaml.safe_load(f"t: {vb._citat(original)}")["t"] == original
