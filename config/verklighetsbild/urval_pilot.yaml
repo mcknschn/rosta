@@ -1,0 +1,250 @@
+# Rösta - Verklighetsbildpilotens urval (ADR 0016 beslutspunkt 6, biljett #46 steg 3)
+#
+# Dragningen är reproducerbar. Fröet och metoden står nedan, och hasharna binder
+# dragningen till de två källfilerna. Ändras en källfil ändras hashen, och urvalet
+# måste dras om. Filen skrivs av `python -m pipeline.tools.verklighetsbild --urval`.
+#
+# Urvalet är stratifierat på parti, 25 per parti, utan återläggning. Partierna är
+# strata och ingenting annat: kodaren får aldrig se partikoden (kodboken avsnitt 11).
+
+version: 1
+beslutad_av: 'ADR 0016 beslutspunkt 6'
+kodbok: 'docs/verklighetsbild_pilot/kodbok_pilot.md version 1'
+forhandsregistrering: 'docs/verklighetsbild_pilot/forhandsregistrering.md version 1'
+
+metod: |
+  1. Läs mappning_bakat.md och kandidater_bakat.md i den ordning posterna står.
+     Mappade poster behåller sitt eget id. Kandidater får id `<PARTI>k-<nnn>`, satt av
+     ordningen i filen.
+  2. Så ett random.Random(fro) en gång.
+  3. Dra per parti i ordningen S, M, SD, C, V, KD, MP, L med random.sample, 25 per parti.
+  4. Dra delurvalet ur de 200 på samma sätt, med eget frö och 5 per parti.
+  Metoden ligger i pipeline/tools/verklighetsbild.py:dra_urval och prövas i
+  tests/test_verklighetsbild.py.
+
+fro: 20260913
+per_parti: 25
+fro_delurval: 20260946
+per_parti_delurval: 5
+
+# SHA-256 över källfilerna som dragningen läste.
+korpus:
+  - { fil: mappning_bakat.md, poster: 230, sha256: e0832b12791beda742fe0dd5cdfb099b24d72ad429e6645701962f365da3bd42 }
+  - { fil: kandidater_bakat.md, poster: 666, sha256: 94c35a202519ecda432c399f21dd1be6c4622e62ecfa7443bb349072279abd9b }
+
+# N_h per stratum. Urvalsandelen n_h/N_h bär ändlighetskorrektionen i
+# förhandsregistreringen avsnitt 2. Den biter hårdast på MP och KD.
+population:
+  S:  { N:  72, urvalsandel: 0.347 }
+  M:  { N: 300, urvalsandel: 0.083 }
+  SD: { N:  71, urvalsandel: 0.352 }
+  C:  { N: 158, urvalsandel: 0.158 }
+  V:  { N:  94, urvalsandel: 0.266 }
+  KD: { N:  55, urvalsandel: 0.455 }
+  MP: { N:  37, urvalsandel: 0.676 }
+  L:  { N: 109, urvalsandel: 0.229 }
+summa_population: 896
+
+# De 200 dragna utsagorna, i dragningsordning. `delurval: true` märker de 40 som
+# A-prim och B-prim kodar blindat (förhandsregistreringen avsnitt 6).
+urval:
+  - { id: Sb-014,    parti: S,   kalla: mappning_bakat.md,    delurval: false }
+  - { id: Sk-007,    parti: S,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Sk-012,    parti: S,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Sk-030,    parti: S,   kalla: kandidater_bakat.md,  delurval: true  }
+  - { id: Sk-031,    parti: S,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Sk-036,    parti: S,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Sk-025,    parti: S,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Sb-006,    parti: S,   kalla: mappning_bakat.md,    delurval: true  }
+  - { id: Sk-029,    parti: S,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Sk-008,    parti: S,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Sk-037,    parti: S,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Sb-015,    parti: S,   kalla: mappning_bakat.md,    delurval: false }
+  - { id: Sk-041,    parti: S,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Sk-017,    parti: S,   kalla: kandidater_bakat.md,  delurval: true  }
+  - { id: Sk-027,    parti: S,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Sb-009,    parti: S,   kalla: mappning_bakat.md,    delurval: false }
+  - { id: Sk-040,    parti: S,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Sb-011,    parti: S,   kalla: mappning_bakat.md,    delurval: false }
+  - { id: Sk-038,    parti: S,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Sb-003,    parti: S,   kalla: mappning_bakat.md,    delurval: false }
+  - { id: Sk-014,    parti: S,   kalla: kandidater_bakat.md,  delurval: true  }
+  - { id: Sk-034,    parti: S,   kalla: kandidater_bakat.md,  delurval: true  }
+  - { id: Sb-010,    parti: S,   kalla: mappning_bakat.md,    delurval: false }
+  - { id: Sk-045,    parti: S,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Sk-033,    parti: S,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Mk-107,    parti: M,   kalla: kandidater_bakat.md,  delurval: true  }
+  - { id: M-195,     parti: M,   kalla: mappning_bakat.md,    delurval: false }
+  - { id: Mk-019,    parti: M,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: M-056,     parti: M,   kalla: mappning_bakat.md,    delurval: false }
+  - { id: Mk-047,    parti: M,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Mk-078,    parti: M,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Mk-157,    parti: M,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: M-305,     parti: M,   kalla: mappning_bakat.md,    delurval: false }
+  - { id: Mk-122,    parti: M,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: M-298,     parti: M,   kalla: mappning_bakat.md,    delurval: true  }
+  - { id: Mk-159,    parti: M,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Mk-150,    parti: M,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Mk-187,    parti: M,   kalla: kandidater_bakat.md,  delurval: true  }
+  - { id: M-129,     parti: M,   kalla: mappning_bakat.md,    delurval: false }
+  - { id: Mk-038,    parti: M,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Mk-066,    parti: M,   kalla: kandidater_bakat.md,  delurval: true  }
+  - { id: Mk-120,    parti: M,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Mk-134,    parti: M,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Mk-139,    parti: M,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Mk-057,    parti: M,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: M-132,     parti: M,   kalla: mappning_bakat.md,    delurval: true  }
+  - { id: M-219,     parti: M,   kalla: mappning_bakat.md,    delurval: false }
+  - { id: Mk-018,    parti: M,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: M-010,     parti: M,   kalla: mappning_bakat.md,    delurval: false }
+  - { id: Mk-113,    parti: M,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: SDk-049,   parti: SD,  kalla: kandidater_bakat.md,  delurval: true  }
+  - { id: SDk-004,   parti: SD,  kalla: kandidater_bakat.md,  delurval: false }
+  - { id: SDk-029,   parti: SD,  kalla: kandidater_bakat.md,  delurval: false }
+  - { id: SDb-001,   parti: SD,  kalla: mappning_bakat.md,    delurval: false }
+  - { id: SDk-014,   parti: SD,  kalla: kandidater_bakat.md,  delurval: true  }
+  - { id: SDk-030,   parti: SD,  kalla: kandidater_bakat.md,  delurval: false }
+  - { id: SDb-006,   parti: SD,  kalla: mappning_bakat.md,    delurval: false }
+  - { id: SDb-012,   parti: SD,  kalla: mappning_bakat.md,    delurval: false }
+  - { id: SDk-022,   parti: SD,  kalla: kandidater_bakat.md,  delurval: false }
+  - { id: SDb-004,   parti: SD,  kalla: mappning_bakat.md,    delurval: false }
+  - { id: SDk-005,   parti: SD,  kalla: kandidater_bakat.md,  delurval: false }
+  - { id: SDk-006,   parti: SD,  kalla: kandidater_bakat.md,  delurval: false }
+  - { id: SDk-040,   parti: SD,  kalla: kandidater_bakat.md,  delurval: true  }
+  - { id: SDk-036,   parti: SD,  kalla: kandidater_bakat.md,  delurval: false }
+  - { id: SDk-031,   parti: SD,  kalla: kandidater_bakat.md,  delurval: false }
+  - { id: SDk-032,   parti: SD,  kalla: kandidater_bakat.md,  delurval: false }
+  - { id: SDk-037,   parti: SD,  kalla: kandidater_bakat.md,  delurval: false }
+  - { id: SDb-005,   parti: SD,  kalla: mappning_bakat.md,    delurval: true  }
+  - { id: SDk-018,   parti: SD,  kalla: kandidater_bakat.md,  delurval: false }
+  - { id: SDk-011,   parti: SD,  kalla: kandidater_bakat.md,  delurval: false }
+  - { id: SDb-003,   parti: SD,  kalla: mappning_bakat.md,    delurval: false }
+  - { id: SDk-034,   parti: SD,  kalla: kandidater_bakat.md,  delurval: true  }
+  - { id: SDk-055,   parti: SD,  kalla: kandidater_bakat.md,  delurval: false }
+  - { id: SDk-041,   parti: SD,  kalla: kandidater_bakat.md,  delurval: false }
+  - { id: SDk-042,   parti: SD,  kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Ck-049,    parti: C,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Ck-135,    parti: C,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Ck-118,    parti: C,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Ck-003,    parti: C,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Ck-129,    parti: C,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Cb-003,    parti: C,   kalla: mappning_bakat.md,    delurval: true  }
+  - { id: Ck-127,    parti: C,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Ck-038,    parti: C,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Ck-009,    parti: C,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Ck-124,    parti: C,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Ck-136,    parti: C,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Ck-089,    parti: C,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Ck-103,    parti: C,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Ck-128,    parti: C,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Ck-013,    parti: C,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Ck-017,    parti: C,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Ck-131,    parti: C,   kalla: kandidater_bakat.md,  delurval: true  }
+  - { id: Ck-005,    parti: C,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Ck-085,    parti: C,   kalla: kandidater_bakat.md,  delurval: true  }
+  - { id: Ck-080,    parti: C,   kalla: kandidater_bakat.md,  delurval: true  }
+  - { id: Ck-097,    parti: C,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Ck-014,    parti: C,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Ck-044,    parti: C,   kalla: kandidater_bakat.md,  delurval: true  }
+  - { id: Ck-108,    parti: C,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Cb-004,    parti: C,   kalla: mappning_bakat.md,    delurval: false }
+  - { id: Vk-020,    parti: V,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Vk-016,    parti: V,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Vb-005,    parti: V,   kalla: mappning_bakat.md,    delurval: false }
+  - { id: Vk-015,    parti: V,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Vb-017,    parti: V,   kalla: mappning_bakat.md,    delurval: false }
+  - { id: Vb-003,    parti: V,   kalla: mappning_bakat.md,    delurval: false }
+  - { id: Vk-045,    parti: V,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Vk-005,    parti: V,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Vk-056,    parti: V,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Vb-010,    parti: V,   kalla: mappning_bakat.md,    delurval: false }
+  - { id: Vk-047,    parti: V,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Vk-011,    parti: V,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Vk-004,    parti: V,   kalla: kandidater_bakat.md,  delurval: true  }
+  - { id: Vb-018,    parti: V,   kalla: mappning_bakat.md,    delurval: false }
+  - { id: Vb-009,    parti: V,   kalla: mappning_bakat.md,    delurval: false }
+  - { id: Vk-059,    parti: V,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Vb-006,    parti: V,   kalla: mappning_bakat.md,    delurval: true  }
+  - { id: Vk-038,    parti: V,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Vk-066,    parti: V,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Vk-029,    parti: V,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Vk-006,    parti: V,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Vk-049,    parti: V,   kalla: kandidater_bakat.md,  delurval: true  }
+  - { id: Vb-007,    parti: V,   kalla: mappning_bakat.md,    delurval: false }
+  - { id: Vk-068,    parti: V,   kalla: kandidater_bakat.md,  delurval: true  }
+  - { id: Vb-015,    parti: V,   kalla: mappning_bakat.md,    delurval: true  }
+  - { id: KDk-036,   parti: KD,  kalla: kandidater_bakat.md,  delurval: false }
+  - { id: KDk-039,   parti: KD,  kalla: kandidater_bakat.md,  delurval: true  }
+  - { id: KDk-019,   parti: KD,  kalla: kandidater_bakat.md,  delurval: false }
+  - { id: KDk-028,   parti: KD,  kalla: kandidater_bakat.md,  delurval: true  }
+  - { id: KDb-004,   parti: KD,  kalla: mappning_bakat.md,    delurval: true  }
+  - { id: KDk-009,   parti: KD,  kalla: kandidater_bakat.md,  delurval: false }
+  - { id: KDk-026,   parti: KD,  kalla: kandidater_bakat.md,  delurval: false }
+  - { id: KDk-037,   parti: KD,  kalla: kandidater_bakat.md,  delurval: false }
+  - { id: KDk-023,   parti: KD,  kalla: kandidater_bakat.md,  delurval: false }
+  - { id: KDk-014,   parti: KD,  kalla: kandidater_bakat.md,  delurval: true  }
+  - { id: KDk-044,   parti: KD,  kalla: kandidater_bakat.md,  delurval: false }
+  - { id: KDk-031,   parti: KD,  kalla: kandidater_bakat.md,  delurval: false }
+  - { id: KDk-033,   parti: KD,  kalla: kandidater_bakat.md,  delurval: false }
+  - { id: KDk-035,   parti: KD,  kalla: kandidater_bakat.md,  delurval: false }
+  - { id: KDk-030,   parti: KD,  kalla: kandidater_bakat.md,  delurval: false }
+  - { id: KDk-018,   parti: KD,  kalla: kandidater_bakat.md,  delurval: false }
+  - { id: KDb-008,   parti: KD,  kalla: mappning_bakat.md,    delurval: false }
+  - { id: KDk-004,   parti: KD,  kalla: kandidater_bakat.md,  delurval: true  }
+  - { id: KDk-025,   parti: KD,  kalla: kandidater_bakat.md,  delurval: false }
+  - { id: KDk-042,   parti: KD,  kalla: kandidater_bakat.md,  delurval: false }
+  - { id: KDb-007,   parti: KD,  kalla: mappning_bakat.md,    delurval: false }
+  - { id: KDk-022,   parti: KD,  kalla: kandidater_bakat.md,  delurval: false }
+  - { id: KDk-001,   parti: KD,  kalla: kandidater_bakat.md,  delurval: false }
+  - { id: KDk-020,   parti: KD,  kalla: kandidater_bakat.md,  delurval: false }
+  - { id: KDk-017,   parti: KD,  kalla: kandidater_bakat.md,  delurval: false }
+  - { id: MPk-016,   parti: MP,  kalla: kandidater_bakat.md,  delurval: false }
+  - { id: MPk-015,   parti: MP,  kalla: kandidater_bakat.md,  delurval: false }
+  - { id: MPk-005,   parti: MP,  kalla: kandidater_bakat.md,  delurval: true  }
+  - { id: MPb-010,   parti: MP,  kalla: mappning_bakat.md,    delurval: false }
+  - { id: MPb-004,   parti: MP,  kalla: mappning_bakat.md,    delurval: false }
+  - { id: MPk-008,   parti: MP,  kalla: kandidater_bakat.md,  delurval: false }
+  - { id: MPb-011,   parti: MP,  kalla: mappning_bakat.md,    delurval: true  }
+  - { id: MPk-019,   parti: MP,  kalla: kandidater_bakat.md,  delurval: false }
+  - { id: MPk-022,   parti: MP,  kalla: kandidater_bakat.md,  delurval: false }
+  - { id: MPb-012,   parti: MP,  kalla: mappning_bakat.md,    delurval: false }
+  - { id: MPk-024,   parti: MP,  kalla: kandidater_bakat.md,  delurval: false }
+  - { id: MPb-007,   parti: MP,  kalla: mappning_bakat.md,    delurval: false }
+  - { id: MPk-011,   parti: MP,  kalla: kandidater_bakat.md,  delurval: true  }
+  - { id: MPb-003,   parti: MP,  kalla: mappning_bakat.md,    delurval: false }
+  - { id: MPb-008,   parti: MP,  kalla: mappning_bakat.md,    delurval: false }
+  - { id: MPk-012,   parti: MP,  kalla: kandidater_bakat.md,  delurval: false }
+  - { id: MPk-018,   parti: MP,  kalla: kandidater_bakat.md,  delurval: false }
+  - { id: MPk-001,   parti: MP,  kalla: kandidater_bakat.md,  delurval: false }
+  - { id: MPk-013,   parti: MP,  kalla: kandidater_bakat.md,  delurval: false }
+  - { id: MPb-005,   parti: MP,  kalla: mappning_bakat.md,    delurval: false }
+  - { id: MPk-007,   parti: MP,  kalla: kandidater_bakat.md,  delurval: false }
+  - { id: MPk-010,   parti: MP,  kalla: kandidater_bakat.md,  delurval: true  }
+  - { id: MPb-002,   parti: MP,  kalla: mappning_bakat.md,    delurval: false }
+  - { id: MPk-003,   parti: MP,  kalla: kandidater_bakat.md,  delurval: true  }
+  - { id: MPk-009,   parti: MP,  kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Lk-009,    parti: L,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Lk-048,    parti: L,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Lk-040,    parti: L,   kalla: kandidater_bakat.md,  delurval: true  }
+  - { id: Lk-078,    parti: L,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Lb-015,    parti: L,   kalla: mappning_bakat.md,    delurval: false }
+  - { id: Lk-014,    parti: L,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Lk-066,    parti: L,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Lk-006,    parti: L,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Lk-080,    parti: L,   kalla: kandidater_bakat.md,  delurval: true  }
+  - { id: Lk-071,    parti: L,   kalla: kandidater_bakat.md,  delurval: true  }
+  - { id: Lk-041,    parti: L,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Lk-023,    parti: L,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Lk-050,    parti: L,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Lk-025,    parti: L,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Lk-024,    parti: L,   kalla: kandidater_bakat.md,  delurval: true  }
+  - { id: Lb-016,    parti: L,   kalla: mappning_bakat.md,    delurval: false }
+  - { id: Lk-004,    parti: L,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Lk-082,    parti: L,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Lk-035,    parti: L,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Lk-032,    parti: L,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Lb-018,    parti: L,   kalla: mappning_bakat.md,    delurval: false }
+  - { id: Lk-076,    parti: L,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Lk-042,    parti: L,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Lk-068,    parti: L,   kalla: kandidater_bakat.md,  delurval: false }
+  - { id: Lk-054,    parti: L,   kalla: kandidater_bakat.md,  delurval: true  }
