@@ -1,13 +1,20 @@
 """D-undermåttsbredd (docs/done/d_coverage_krympning_spec.md): nämnare, krympning, flaggor och grind.
 
-Grinden speglar fas4b-mönstret (test_fas4b_coverage): varje kategori under
-thin_coverage_threshold är ANTINGEN åtgärdad ELLER explicit accepterad i
+Grinden speglar B-sidans (test_b_breadth_gate): varje kategori med minst ett OTÄCKT
+undermått är ANTINGEN åtgärdad ELLER explicit accepterad i
 coverage_allowlist.d_thin_breadth_accepted med skäl, och listan kan inte bära inaktuella
 poster. Mätaren (coverage_report.d_submeasure_breadth) är offline: ett undermått räknas
-täckt om det har en up/down-indikator som inte är coverage-allowlistad — Fas 3-gatens
+täckt om det har en up/down-indikator som inte är coverage-allowlistad. Fas 3-gatens
 invariant (test_fas3_gate: inläst ELLER allowlistad, aldrig båda) garanterar att en sådan
 indikator faktiskt är inläst. End-to-end-testerna kör scorerun.build mot ett seedat
 in-memory-warehouse med coverage_shrink påslagen via config-override.
+
+TRÖSKELN UTGICK 2026-09-13 som grindvillkor (biljett #41, samma skäl som ADR 0014 punkt 9
+gav B: ADR 0003 punkt 3 och ADR 0008 punkt 6). Listan stod TOM, inte för att D var komplett
+utan för att tröskeln 0,75 dolde tre väggar, och ett register med noll medlemmar är den
+mekanism ADR 0011 punkt 1 avvisade. Tröskeln lever kvar i mätaren och svarar där på en annan
+fråga: skulle D:s cellflagga fyra för ett fullt täckande parti? Det är ADR 0014 punkt 7:s
+kontroll, och den läses av godkännandetestets regel 8 i tests/test_mattak.py.
 """
 
 from __future__ import annotations
@@ -53,33 +60,51 @@ def test_d_denominator_faller_bara_pa_ett_uteslutningsskal() -> None:
 # --- grind: tunn D-bredd passerar aldrig tyst (allowlist-mönstret) --------------------
 
 
-def _thin() -> set[str]:
+def _med_otackt_undermatt() -> set[str]:
     rep = coverage_report.d_submeasure_breadth()
-    return {c["id"] for c in rep["categories"] if c["thin"]}
+    return {c["id"] for c in rep["categories"] if c["uncovered_submeasures"]}
 
 
 def _accepted() -> set[str]:
     return {e["category"] for e in (config.coverage_allowlist().get("d_thin_breadth_accepted") or [])}
 
 
-def test_no_unaccounted_thin_d_breadth() -> None:
-    """Varje kategori med viktad D-bredd under tröskeln måste vara explicit accepterad i
-    coverage_allowlist.d_thin_breadth_accepted — annars är det en TYST regression."""
-    unaccounted = _thin() - _accepted()
+def test_no_unaccounted_uncovered_d_submeasure() -> None:
+    """Varje kategori med ett otäckt undermått måste vara explicit accepterad i
+    coverage_allowlist.d_thin_breadth_accepted, annars är det en TYST regression."""
+    unaccounted = _med_otackt_undermatt() - _accepted()
     assert not unaccounted, (
-        "Tunn D-bredd utan motivering — bredda D-täckningen (Spår D) eller lägg posten i "
+        "Otäckt D-undermått utan motivering. Bredda D-täckningen (Spår D) eller lägg posten i "
         f"coverage_allowlist.d_thin_breadth_accepted med skäl: {sorted(unaccounted)}"
     )
 
 
 def test_d_thin_allowlist_shrinks() -> None:
-    """En accepterad post måste fortfarande VARA under tröskeln. När D-täckningen breddas
-    ska posten tas bort — listan krymper, växer aldrig tyst."""
-    stale = _accepted() - _thin()
+    """En accepterad post måste fortfarande HA ett otäckt undermått. När D-täckningen breddas
+    ska posten tas bort: listan krymper, växer aldrig tyst."""
+    stale = _accepted() - _med_otackt_undermatt()
     assert not stale, (
-        "Kategori i d_thin_breadth_accepted är inte längre under tröskeln (luckan löst) — "
+        "Kategori i d_thin_breadth_accepted har inga otäckta undermått kvar (luckan löst), "
         f"ta bort posten: {sorted(stale)}"
     )
+
+
+def test_d_registret_bar_skalet_och_aldrig_talet() -> None:
+    """Pipen äger talet, registret äger skälet. Spegel av B-sidans grind (ADR 0014 punkt 9).
+
+    Skältexterna bar en gång bredden och undermåttsvikterna, och två av B-sidans hade då
+    ruttnat mot configen. Ett skäl får namnge undermåtten och källorna, aldrig bära talen.
+    """
+    vikter = {
+        str(int(w)) for vikt in scorerun._submeasure_weights().values() for w in vikt.values()
+    }
+    for e in config.coverage_allowlist().get("d_thin_breadth_accepted") or []:
+        reason = e["reason"]
+        assert "D-bredd " not in reason, f"{e['category']}: bredden står i skälet"
+        for vikt in vikter:
+            assert f"({vikt})" not in reason, (
+                f"{e['category']}: undermåttsvikten {vikt} står i skälet, pipen äger talet"
+            )
 
 
 def test_d_thin_allowlist_valid() -> None:

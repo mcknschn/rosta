@@ -294,9 +294,11 @@ def main() -> None:
     print(f"\n== D-undermåttsbredd (coverage_shrink: {'på' if d_on else 'av'},"
           f" tröskel {dsb['threshold']}) ==")
     print("  Viktad icke-utesluten undermåttstäckning per kategori (kategori-global översikt;"
-          " scoringens\n  numerator är per parti/kategori). ⚠ = under tröskeln (D_thin_coverage).\n")
+          " scoringens\n  numerator är per parti/kategori). ⚠ = minst ett otäckt undermått,"
+          " alltså en post i\n  d_thin_breadth_accepted (biljett #41). THIN = taket under"
+          " tröskeln, vilket inget D-tak är.\n")
     for c in dsb["categories"]:
-        thin = "  ⚠ THIN" if c["thin"] else ""
+        thin = "  ⚠ THIN" if c["thin"] else ("  ⚠ OTÄCKT UNDERMÅTT" if c["uncovered_submeasures"] else "")
         print(f"  {c['id']:12} {c['covered_weight']:>4g}/{c['total_weight']:<4g}"
               f"  {c['ratio']:.2f}{thin}")
         if c["uncovered_submeasures"]:

@@ -316,9 +316,12 @@ def test_inget_d_tak_ligger_under_d_troskeln() -> None:
     och då ska delningen prövas igen.
     """
     rep = coverage_report.d_submeasure_breadth()
-    thr = float(config.scoring()["D_resultat"]["thin_coverage_threshold"])
-    under = [c["id"] for c in rep["categories"] if c["ratio"] < thr]
-    assert not under, f"D-tak under tröskeln {thr} — pröva delningen igen: {under}"
+    thr = rep["threshold"]
+    assert thr == float(config.scoring()["D_resultat"]["thin_coverage_threshold"])
+    # Mätarens `thin` ÄR den här frågan, och sedan biljett #41 är den dess enda läsare:
+    # registergrinden läser otäckta undermått i stället (spegel av ADR 0014 punkt 9).
+    under = [c["id"] for c in rep["categories"] if c["thin"]]
+    assert not under, f"D-tak under tröskeln {thr}, pröva delningen igen: {under}"
 
 
 # --- regel 9: tomt men EJ uteslutet undermått ligger kvar i krympningens nämnare ------

@@ -145,22 +145,31 @@ b_near_binary_accepted:
   []
 
 # ---------------------------------------------------------------------------------------------------
-# D-BREDD — kategorier under thin_coverage_threshold (docs/done/d_coverage_krympning_spec.md)
+# D-BREDD - kategorier med minst ett OTÄCKT undermått (docs/done/d_coverage_krympning_spec.md)
 # ---------------------------------------------------------------------------------------------------
-# Kategorier vars viktade D-undermåttsbredd (icke-uteslutna undermått med D-duglig serie) ligger under
-# scoring.D_resultat.thin_coverage_threshold. Sådana celler får D_thin_coverage + sänkt säkerhet i
-# scores.json; här listas de EXPLICIT med skäl så tunn D-bredd aldrig passerar tyst.
+# Otäckt undermått = ett icke-uteslutet undermått utan en enda D-duglig indikator, alltså utan
+# officiell årsserie att attribuera. Det bidrar 0 till D:s täljare och behåller full vikt i
+# nämnaren: det är VÅR tystnad och inte partiets, precis som på B-sidan.
+#
+# INGEN TRÖSKEL (ADR 0003 punkt 3, ADR 0008 punkt 6, spegel av ADR 0014 punkt 9 på B-sidan).
+# Villkoret var en gång "D-bredd under 0,75", och listan stod TOM, inte för att D var komplett
+# utan för att tröskeln dolde tre väggar. Ett register med noll medlemmar är den mekanism
+# ADR 0011 punkt 1 avvisade. Talen räknas i pipen; här står bara orsaken och återöppningstriggern.
+#
+# Tröskeln lever kvar på ETT ställe, och svarar där på en annan fråga:
+# scoring.D_resultat.thin_coverage_threshold styr cellflaggan D_thin_coverage, alltså krympningen
+# per parti. Inget D-tak ligger under den, vilket är skälet till att D:s tröskelflagga INTE delades
+# i två (ADR 0014 punkt 7). Kontrollen är godkännandetestets regel 8 i tests/test_mattak.py.
 # Invariant (tests/test_d_breadth_gate.py, mätare pipeline.tools.coverage_report.d_submeasure_breadth):
-#   - varje kategori under tröskeln MÅSTE stå här (annars tyst regression), OCH
-#   - varje post här MÅSTE fortfarande vara under tröskeln (listan krymper när D-täckningen breddas).
+#   - varje kategori med minst ett otäckt undermått MÅSTE stå här (annars tyst regression), OCH
+#   - varje post här MÅSTE fortfarande ha ett otäckt undermått (listan krymper när D-täckningen breddas).
 d_thin_breadth_accepted:
-  # forsvar borttagen 2026-06-12: materielleveransutfall (FMV ÅR, leveransindex ap. 1:3.1)
-  # öppnade genomforbarhet_leverans -> 75/100 (militar_formaga 35 + civil_beredskap 20 +
-  # nato_ukraina 15 + genomforbarhet_leverans 5) = tröskeln 0.75 passerad (grinden
-  # test_d_thin_allowlist_shrinks kräver att inaktuella poster tas bort). Kvarvarande otäckt:
-  # ekonomisk_ambition 25 (forsvarsfinansiering_upptrappning_mot_mal B-only,
-  # forsvarsanslag_andel_bnp utesluten — utanför D per design).
-  []
+  - category: valfard
+    reason: "D-vägg: finansiering_styrning saknar D-duglig indikator. Undermåttets enda indikator valfardsbrottslighet är allowlistad på no_api, alltså finns ingen ren officiell årsserie för välfärdsbrottslighet att attribuera. Skälet står per indikator i allowlist-listan ovan och skrivs inte om här. Återöppningstrigger: en officiell, maskinläsbar årsserie över välfärdsbrottslighet. Posten tas bort när serien finns och indikatorn läses in."
+  - category: trygghet
+    reason: "D-vägg: forebyggande saknar D-duglig indikator. Undermåttets enda indikator kommunalt_brottsforebyggande_arbete är B-only: den byggdes 2026-06-07 ur lagen (2023:196) om kommuners brottsförebyggande ansvar, och Brå publicerar ingen nationell maskinläsbar årsserie över kommunal brottsförebyggande kapacitet. Samma undermått står i b_thin_breadth_accepted av ett ANNAT skäl, alltså att liggarposten föll på evidensgrinden. Två skilda tystnader om samma undermått, och båda är redovisade. Återöppningstrigger: en officiell årsserie över kommunal brottsförebyggande kapacitet eller utfall. Posten tas bort när serien finns och indikatorn läses in."
+  - category: forsvar
+    reason: "D-vägg: ekonomisk_ambition saknar D-duglig indikator. Undermåttets två indikatorer faller av var sitt skäl: forsvarsfinansiering_upptrappning_mot_mal är B-only, alltså ett åtagande om upptrappning mot beslutad målnivå och inte en utfallsårsserie, och forsvarsanslag_andel_bnp är UTESLUTEN på gransfel (ADR 0011), alltså utan riktning att attribuera. Anslagets storlek är delpoäng A:s fråga. Kategorin stod här före 2026-06-12 och togs bort när materielleveransutfall (FMV ÅR, leveransindex ap. 1:3.1) öppnade genomforbarhet_leverans och bredden passerade den dåvarande tröskeln. Väggen fanns kvar hela tiden. Återöppningstrigger: en officiell utfallsårsserie för undermåttet som inte mäter anslagets storlek. Posten tas bort när serien finns och indikatorn läses in."
 
 # ---------------------------------------------------------------------------------------------------
 # B-BREDD - kategorier med minst ett TOMT undermått (ADR 0014 punkt 9)
