@@ -184,6 +184,16 @@ Gränsen 2011 är alltså ett år konservativ. Nivåskillnaden är verklig men e
    båda hållen, precis som `test_a1_forankring_ar_medel_over_fonstrets_ar` redan gör för a1. Utan
    låset är punkt 1 oskyddad, eftersom ingenting i dag hindrar ett formbyte.
 
+   > **Jämförelsen med a1 höll inte, rättad i biljett
+   > [#38](https://github.com/mcknschn/rosta/issues/38), 2026-09-13.** Slutsatsen står, och a2:s lås
+   > gör det den säger. Men `test_a1_forankring_ar_medel_over_fonstrets_ar` föll aldrig åt båda
+   > hållen: fixturen `_cfg()` i `tests/test_anchor.py` gav båda budgetåren totalen 400, så
+   > årsmedlet och den poolade andelen sammanföll på 0,375 och provet kunde inte skilja formerna.
+   > Luckan vägde tyngre för a1 än för a2, eftersom `decided_frames` bär ramarna år för år och
+   > formbytet därför är byggbart. Den stängdes med
+   > `test_a1_forankring_ar_medlet_av_arsandelarna_inte_andelen_av_summan`, som räknar båda formerna
+   > själv på en fixtur med olika årstotaler. Texten ovan står oförändrad.
+
 5. **Fönstret är inget reglage, och skälet är ett annat än ADR 0010 punkt 6:s.** Det faller på
    **spannet**, inte på underlaget: spannets övre ände har ingen härledning (fynd 8), och den enda
    kandidat som ser härledd ut leder rakt mot villkorsklausulen (fynd 9). Skälet står oavsett hur

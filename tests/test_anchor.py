@@ -44,6 +44,55 @@ def test_a1_forankring_ar_medel_over_fonstrets_ar() -> None:
     assert out["valfard"] == pytest.approx(0.25)
 
 
+def _ram_kategoriandelar(cells: dict[str, float]) -> dict[str, float]:
+    """Kategoriandelen av en beslutad ram, räknad i provet och inte av koden.
+
+    Nämnaren är hela ramen, alltså även UO3, som saknar kategori.
+    """
+    total = sum(cells[uo] for uo in UO_MAP)
+    per_cat = {cat: 0.0 for cat in CATS}
+    for uo, spec in UO_MAP.items():
+        for cat, weight in spec["map"].items():
+            per_cat[cat] += cells[uo] * weight
+    return {cat: n / total for cat, n in per_cat.items()}
+
+
+def test_a1_forankring_ar_medlet_av_arsandelarna_inte_andelen_av_summan() -> None:
+    """a1:s förankring väger varje år lika, alltså inte varje krona lika.
+
+    ADR 0013 punkt 1 och 4. Formen är a1:s egen, inte a2:s: a1 har ett tal per år och inget
+    naturligt antal att poola, och att poola kronor över år skulle väga senare år tyngre, eftersom
+    budgeten växer.
+
+    Fixturen bär olika årstotaler. Utan den skillnaden sammanfaller de två formerna och provet blir
+    tomt, så den första satsen prövar att provet har något att skilja på. `_cfg()` är just en sådan
+    tom fixtur: båda dess år summerar till 400.
+    """
+    per_year = {
+        2020: {"UO1": 100.0, "UO2": 100.0, "UO3": 200.0},     # ram 400, ekonomi 0,25
+        2021: {"UO1": 200.0, "UO2": 100.0, "UO3": 700.0},     # ram 1000, ekonomi 0,20
+    }
+    arsmedel = {
+        cat: sum(_ram_kategoriandelar(cells)[cat] for cells in per_year.values()) / len(per_year)
+        for cat in CATS
+    }
+    poolad = _ram_kategoriandelar(
+        {uo: sum(cells[uo] for cells in per_year.values()) for uo in UO_MAP}
+    )
+    for cat in CATS:
+        assert arsmedel[cat] != pytest.approx(poolad[cat]), f"fixturen skiljer inte formerna: {cat}"
+
+    cfg = _cfg()
+    cfg["a1"]["decided_frames"] = {
+        year: {"source_ref": "x", **cells} for year, cells in per_year.items()
+    }
+    out = anchor.a1_anchor_shares(CATS, cfg=cfg, uo_map=UO_MAP)
+
+    for cat in CATS:
+        assert out[cat] == pytest.approx(arsmedel[cat])
+        assert out[cat] != pytest.approx(poolad[cat])
+
+
 def test_a1_forankring_raknar_bara_fonstrets_ar() -> None:
     """Ett år utanför fönstret finns i configen men får inte påverka medlet."""
     cfg = _cfg()
