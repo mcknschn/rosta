@@ -1,0 +1,3118 @@
+# Rösta - kodning B i Verklighetsbildpiloten (biljett #46 steg 4 och 5).
+#
+# Rasvaren ar oversatta fran blinda id till utsage-id via blindning.yaml. Ingenting
+# annat ar andrat: leden, koderna och operationaliseringarna star som kodaren skrev
+# dem. Ingen sammanjamkning har skett (forhandsregistreringen avsnitt 4.2).
+
+version: 1
+kodare: B
+leverantor: OpenAI
+modell: 'Codex'
+uppdrag: full
+kodboksversion: 1
+kodningsdatum: 2026-09-13
+sag_andra_kodarens_svar: false
+antal: 200
+utsagor:
+  - utsaga_id: Ck-017
+    parti: C
+    blint_id: U-001
+    bortfall: normativ
+    led:
+      - text: "Idag försvinner stora delar av inkomstökningen i minskade bidrag"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "människor som vill arbeta fastnar i trösklar bort från bidragen"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: KDk-004
+    parti: KD
+    blint_id: U-002
+    bortfall: normativ
+    led:
+      - text: "Reavinstskatten är i praktiken en flyttskatt"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+      - text: "människor bor kvar i för stora eller felanpassade bostäder då flytten utlöser en skattesmäll"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: MPk-003
+    parti: MP
+    blint_id: U-003
+    bortfall: normativ
+    led:
+      - text: "Miljardärerna blir rikare"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "andra har svårt att få hushållsekonomin att gå ihop"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: M-305
+    parti: M
+    blint_id: U-004
+    bortfall: normativ
+    led:
+      - text: "Tagit fram en kulturkanon"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+      - text: "gjort kulturen till en del av totalförsvaret"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: Mk-122
+    parti: M
+    blint_id: U-005
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Omkring hälften av de företagare som utsatts för brott har avstått från att polisanmäla."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: MPk-015
+    parti: MP
+    blint_id: U-006
+    bortfall: normativ
+    led:
+      - text: "De som tjänar på vårt fossilberoende är stater som Ryssland, Saudiarabien och Iran."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: Lk-014
+    parti: L
+    blint_id: U-007
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Många barnfamiljer pressas av att pengarna ska räcka till."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: KDk-019
+    parti: KD
+    blint_id: U-008
+    bortfall: normativ
+    led:
+      - text: "När den är som sämst präglas vården av köer"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+      - text: "av ojämlikhet"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: otillracklig_kontext
+  - utsaga_id: Vk-020
+    parti: V
+    blint_id: U-009
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Hushållen får höga bolån"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "dyra avgifter"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "nästintill ingen ränta på insatta pengar"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: KDk-022
+    parti: KD
+    blint_id: U-010
+    bortfall: framtida_utfall
+    led:
+      - text: "Vårdgarantin i barn- och ungdomspsykiatrin blir nu lag"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: framtida_utfall
+      - text: "väntetiderna måste vara korta"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: MPb-004
+    parti: MP
+    blint_id: U-011
+    bortfall: otillracklig_kontext
+    led:
+      - text: "Maten har blivit dyrare"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "elräkningarna"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: otillracklig_kontext
+      - text: "hyrorna högre"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "räntorna har pressat ekonomin"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: KDk-009
+    parti: KD
+    blint_id: U-012
+    bortfall: otillracklig_kontext
+    led:
+      - text: "Det är här basen byggs för människors privatekonomi och för finansieringen av vår gemensamma välfärd."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: otillracklig_kontext
+  - utsaga_id: Ck-108
+    parti: C
+    blint_id: U-013
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Idag bromsas utbyggnaden av osäkra marknadsvillkor, otydliga spelregler, bromsande politik och höga risker."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: Vk-045
+    parti: V
+    blint_id: U-014
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Många unga vuxna slutar att besöka tandvården i förebyggande syfte när de inte längre har tillgång till avgiftsfri tandvård."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: Sk-037
+    parti: S
+    blint_id: U-015
+    bortfall: normativ
+    led:
+      - text: "FN och den regelbaserade världsordningen är under attack."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: SDk-031
+    parti: SD
+    blint_id: U-016
+    bortfall: normativ
+    led:
+      - text: "Skogen är en oerhört viktig resurs i Sverige, både som exportvara"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+      - text: "för alla de arbetstillfällen den genererar på landsbygden"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: Sk-030
+    parti: S
+    blint_id: U-017
+    bortfall: normativ
+    led:
+      - text: "Kina flyttar fram sina positioner såväl ekonomiskt"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+      - text: "säkerhetspolitiskt"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: otillracklig_kontext
+  - utsaga_id: Vk-015
+    parti: V
+    blint_id: U-018
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Miljardärer betalar ofta lägre andel av sin inkomst i skatt än resten av befolkningen."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: SDk-032
+    parti: SD
+    blint_id: U-019
+    bortfall: framtida_utfall
+    led:
+      - text: "Att sänka utsläppen ytterligare i Sverige är mycket dyrt"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: data_saknas
+      - text: "den globala klimateffekten av sänkta utsläpp i Sverige är försumbar"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "kostnaden för hushåll och företag blir enorm"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: framtida_utfall
+  - utsaga_id: Sk-027
+    parti: S
+    blint_id: U-020
+    bortfall: otillracklig_kontext
+    led:
+      - text: "Bakom ungdomsgängen finns en växande organiserad brottslighet"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "blivit mer etablerad"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: otillracklig_kontext
+      - text: "förgrenat sig in i samhällsviktiga institutioner"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: otillracklig_kontext
+  - utsaga_id: Lk-068
+    parti: L
+    blint_id: U-021
+    bortfall: normativ
+    led:
+      - text: "Det sker efter en lång tid med hög invandring"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: otillracklig_kontext
+      - text: "en integration som inte fungerat tillräckligt väl"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: MPb-008
+    parti: MP
+    blint_id: U-022
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Tillgången till vård har blivit mer ojämlik"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: Sk-012
+    parti: S
+    blint_id: U-023
+    bortfall: normativ
+    led:
+      - text: "Sverigedemokraterna och regeringen lovade att vända utvecklingen."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+      - text: "I stället har de prioriterat skattesänkningar för de allra rikaste."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: Lk-082
+    parti: L
+    blint_id: U-024
+    bortfall: normativ
+    led:
+      - text: "Våra folkbibliotek fungerar som hubbar för kunskap och bildning i hela landet"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+      - text: "samtidigt sparar många kommuner in på biblioteken"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: KDk-037
+    parti: KD
+    blint_id: U-025
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Undersökningar visar att de flesta svenskar vill bo i villa eller radhus."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: Ck-103
+    parti: C
+    blint_id: U-026
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Sverige är idag beroende av globala leveranskedjor för viktiga varor som livsmedel, läkemedel och energi"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "beredskapen"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: data_saknas
+      - text: "lagren vi idag har otillräckliga för sådana större avbrott"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: SDk-049
+    parti: SD
+    blint_id: U-027
+    bortfall: data_saknas
+    led:
+      - text: "Det har förekommit allvarliga systembrister med fusk och bidragsmissbruk där skattemedel inte använts på avsett sätt"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: data_saknas
+  - utsaga_id: Ck-131
+    parti: C
+    blint_id: U-028
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Servicen försvinner"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "skyltfönster släcks ner"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "välfärden flyttar längre bort"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: Ck-136
+    parti: C
+    blint_id: U-029
+    bortfall: otillracklig_kontext
+    led:
+      - text: "Tåg är försenade"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "vägar förfaller"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "resor blir dyrare"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "mer osäkra"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: otillracklig_kontext
+  - utsaga_id: SDk-034
+    parti: SD
+    blint_id: U-030
+    bortfall: framtida_utfall
+    led:
+      - text: "skogsråvaran vi producerar viktig för att kunna fasa ut fossila produkter"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+      - text: "vi vill stärka och öka svensk skogsproduktion"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: framtida_utfall
+      - text: "det är det bästa för Sverige, landsbygden, ekonomin, skogsägaren och klimatet"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: Vb-003
+    parti: V
+    blint_id: U-031
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Välfärden har tvingats till nedskärningar"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: Vk-047
+    parti: V
+    blint_id: U-032
+    bortfall: normativ
+    led:
+      - text: "Psykiatrin fungerar inte i Sverige"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: Lb-015
+    parti: L
+    blint_id: U-033
+    bortfall: normativ
+    led:
+      - text: "Under snart fyra år i regering har vi rott i hamn EU:s nya klimatlagar"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: Ck-005
+    parti: C
+    blint_id: U-034
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Svenskt jordbruk pressas från flera håll samtidigt av ökade kostnader"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "osäkra villkor"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "regelverk som gör det svårare att få verksamheten att gå runt"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: Lk-048
+    parti: L
+    blint_id: U-035
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "När och hur du får vård beror alltför ofta på ditt postnummer"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: SDb-001
+    parti: SD
+    blint_id: U-036
+    bortfall: normativ
+    led:
+      - text: "Vi har lagt fram förslag som tar bort Socialdemokraternas mängdrabatt på brott"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: MPk-010
+    parti: MP
+    blint_id: U-037
+    bortfall: normativ
+    led:
+      - text: "Geopolitiska spänningar"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+      - text: "demokratisk tillbakagång"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: flera_operationaliseringar
+      - text: "organiserad brottslighet"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+      - text: "våldsbejakande extremism påverkar vår trygghet och säkerhet"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: Ck-009
+    parti: C
+    blint_id: U-038
+    bortfall: null
+    led:
+      - text: "Sverige har fastnat i hög arbetslöshet"
+        provbar: true
+        indikator: arbetsloshet
+        period: {'start': 2022, 'slut': 2025}
+        operationalisering: "Arbetslösheten enligt AKU. Nivån 2025 jämförs med nivån 2022. Hela befolkningen 15–74 år ingår."
+        bortfall: null
+      - text: "svag tillväxt"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "låg produktivitet"
+        provbar: true
+        indikator: produktivitet
+        period: {'start': 2022, 'slut': 2025}
+        operationalisering: "Produktivitetsnivån i svensk ekonomi. Nivån 2025 jämförs med nivån 2022. Indikatorns population är hela den svenska ekonomin."
+        bortfall: null
+  - utsaga_id: Vk-066
+    parti: V
+    blint_id: U-039
+    bortfall: normativ
+    led:
+      - text: "Flera av förslagen som då utreddes genomfördes aldrig"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: Sk-025
+    parti: S
+    blint_id: U-040
+    bortfall: normativ
+    led:
+      - text: "De omfattande problemen med bristande geografisk tillgång till tandvård behöver få en lösning"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: KDk-028
+    parti: KD
+    blint_id: U-041
+    bortfall: normativ
+    led:
+      - text: "Återkommande kriser"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "en ökad politisk polarisering"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "passivitet"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+      - text: "brist på ambitioner för det gemensamma bästa"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: Ck-044
+    parti: C
+    blint_id: U-042
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "I storstäderna är trycket istället högt"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "långa köer"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "hög belastning"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "stora skillnader i livschanser mellan områden som ligger nära varandra"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: Sk-014
+    parti: S
+    blint_id: U-043
+    bortfall: null
+    led:
+      - text: "Obehöriga lärare är tyvärr vardag i svensk skola, särskilt i vinstdrivande skolor men också i utanförskapsområden och på landsbygden"
+        provbar: true
+        indikator: behoriga_larare
+        period: {'start': 2022, 'slut': 2025}
+        operationalisering: "Andelen behöriga lärare i svensk skola. Nivån 2025 jämförs med nivån 2022. Hela den svenska skolpopulationen ingår; texten framhäver vinstdrivande skolor, utanförskapsområden och landsbygden som smalare grupper."
+        bortfall: null
+  - utsaga_id: Mk-057
+    parti: M
+    blint_id: U-044
+    bortfall: normativ
+    led:
+      - text: "Allt för länge har kvinnors hälsa åsidosatts"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: Ck-038
+    parti: C
+    blint_id: U-045
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Samtidigt pressas lantbrukare av ökade kostnader"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "hård konkurrens"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "regelverk som inte bara försvårar utveckling"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "leder till många nedläggningar"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: SDk-005
+    parti: SD
+    blint_id: U-046
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Matkostnader utgör en stor del av hushållens utgifter, särskilt för barnfamiljer"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: Sk-008
+    parti: S
+    blint_id: U-047
+    bortfall: normativ
+    led:
+      - text: "Sverige är hem för ett framgångsrikt näringsliv"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+      - text: "en stark industri"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: Mk-019
+    parti: M
+    blint_id: U-048
+    bortfall: normativ
+    led:
+      - text: "Sverige har goda förutsättningar"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: Vk-049
+    parti: V
+    blint_id: U-049
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Många barn börjar och slutar sin dag på fritidshemmet"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: MPk-009
+    parti: MP
+    blint_id: U-050
+    bortfall: normativ
+    led:
+      - text: "I Sverige ska du kunna lita på att få bra vård"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+      - text: "omsorg"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+      - text: "assistans - oavsett var du bor och hur mycket du tjänar"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+      - text: "Så ser det inte ut idag"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: otillracklig_kontext
+  - utsaga_id: Cb-004
+    parti: C
+    blint_id: U-051
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Priserna och avgifterna för vardagliga produkter och tjänster har ökat drastiskt"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: Mk-018
+    parti: M
+    blint_id: U-052
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "människor som vill bygga, utveckla eller investera möts av osäkerhet i stället för tydliga besked"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: Mk-078
+    parti: M
+    blint_id: U-053
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "på senare tid har rapporter kommit om att kommuner i stället dragit ner på uppskattade och näringsrika maträtter som lax och kött på äldreboenden"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: M-056
+    parti: M
+    blint_id: U-054
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Dömda våldtäktsmän med hög återfallsrisk släpptes ut i förtid"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: KDk-026
+    parti: KD
+    blint_id: U-055
+    bortfall: normativ
+    led:
+      - text: "Svensk mat är dessutom producerad med ett stort ansvarstagande för både djur och natur."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: MPk-019
+    parti: MP
+    blint_id: U-056
+    bortfall: otillracklig_kontext
+    led:
+      - text: "När skyddet monteras ner märks det i vår vardag: i det vi äter, det vi dricker och den natur vi har omkring oss."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: otillracklig_kontext
+  - utsaga_id: SDb-005
+    parti: SD
+    blint_id: U-057
+    bortfall: otillracklig_kontext
+    led:
+      - text: "Vi har bland annat drastiskt minskat inblandningen av biodrivmedel i bensin och diesel"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "vilket sänkte priset med flera kronor över en natt"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: otillracklig_kontext
+  - utsaga_id: M-219
+    parti: M
+    blint_id: U-058
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Knappt tre procent av alla domslut mot utländska brottslingar ledde till utvisning under 2020-2023"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: Mk-107
+    parti: M
+    blint_id: U-059
+    bortfall: normativ
+    led:
+      - text: "Systemet har inte varit byggt för den verklighet där barn används som soldater i kriminella nätverk."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: KDb-008
+    parti: KD
+    blint_id: U-060
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Sveriges försvar har stärkts"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: MPk-018
+    parti: MP
+    blint_id: U-061
+    bortfall: data_saknas
+    led:
+      - text: "Idag hotas den biologiska mångfalden både av hur vi människor använder naturen och av klimatförändringarna."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: data_saknas
+    anteckning: "Ledet matchar indikatorn hotade_arter_naturforlust, men serien är inte inläst."
+  - utsaga_id: Mk-139
+    parti: M
+    blint_id: U-062
+    bortfall: framtida_utfall
+    led:
+      - text: "Riksdagens åtta partier är överens om att permanent finansiering ska komma på plats senast 2035"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: framtida_utfall
+      - text: "regeringen ska i varje budgetproposition från och med 2027 redovisa hur arbetet med finansieringen fortgår."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: framtida_utfall
+  - utsaga_id: Lk-080
+    parti: L
+    blint_id: U-063
+    bortfall: normativ
+    led:
+      - text: "vår svenska demokrati står stark"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "behöver vi stärka rättsstaten så att dina rättigheter alltid försvaras."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: KDk-030
+    parti: KD
+    blint_id: U-064
+    bortfall: otillracklig_kontext
+    led:
+      - text: "Svenska makthavare och opinionsbildare har alltför länge förminskat"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: otillracklig_kontext
+      - text: "ibland förnekat det som är Sveriges värdegrund."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: otillracklig_kontext
+  - utsaga_id: Mk-113
+    parti: M
+    blint_id: U-065
+    bortfall: otillracklig_kontext
+    led:
+      - text: "Det gäller även de brott som brukar benämnas mängdbrott"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: otillracklig_kontext
+      - text: "där en liten grupp står för flertalet brott som drabbar människor i vardagen."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: KDk-014
+    parti: KD
+    blint_id: U-066
+    bortfall: otillracklig_kontext
+    led:
+      - text: "Här får många unga chansen att få sitt första jobb."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: otillracklig_kontext
+  - utsaga_id: Ck-097
+    parti: C
+    blint_id: U-067
+    bortfall: normativ
+    led:
+      - text: "Hot och hat måste tas på större allvar"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+      - text: "transpersoner som idag lever i en mycket utsatt position."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: Vb-018
+    parti: V
+    blint_id: U-068
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Bostadsbidraget har urholkats under lång tid"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "färre har fått ta del av det"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "det ersätter en mindre del av boendekostnaden"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: MPb-003
+    parti: MP
+    blint_id: U-069
+    bortfall: normativ
+    led:
+      - text: "Tidöregeringen har prioriterat skattesänkningar för de rikaste framför satsningar på välfärden"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: KDk-044
+    parti: KD
+    blint_id: U-070
+    bortfall: normativ
+    led:
+      - text: "Sverige ser olika ut på olika platser."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: KDk-035
+    parti: KD
+    blint_id: U-071
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Endast tre procent av Sveriges yta är bebyggd mark."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: SDk-040
+    parti: SD
+    blint_id: U-072
+    bortfall: normativ
+    led:
+      - text: "Den nya anvisningslagen är bättre än den äldre"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+      - text: "den löser inte problemet."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: Lk-041
+    parti: L
+    blint_id: U-073
+    bortfall: normativ
+    led:
+      - text: "I flera större städer har partierna till vänster försämrat kollektivtrafik"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "vård"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+      - text: "klarar inte ens av att få snöskottningen att fungera."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: Ck-118
+    parti: C
+    blint_id: U-074
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Regeringen har stängt servicekontor på många orter"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "centraliserad byråkrati har byggts upp under lång tid."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: Vk-059
+    parti: V
+    blint_id: U-075
+    bortfall: normativ
+    led:
+      - text: "Svensk välfärd befinner sig i kris."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: MPb-010
+    parti: MP
+    blint_id: U-076
+    bortfall: normativ
+    led:
+      - text: "Tidöregeringen har kraftigt försvagat natur- och miljöskyddet"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+      - text: "dragit ner på budgeten för att skydda värdefull natur"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: KDk-018
+    parti: KD
+    blint_id: U-077
+    bortfall: normativ
+    led:
+      - text: "Det var året då svensk sjukvård senast reformerades."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: Vk-016
+    parti: V
+    blint_id: U-078
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Att två aktörer dominerar marknaden är ett marknadsmisslyckande."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: Cb-003
+    parti: C
+    blint_id: U-079
+    bortfall: normativ
+    led:
+      - text: "Den ekonomiska tryggheten har minskat för alldeles för många svenska hushåll"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: KDk-025
+    parti: KD
+    blint_id: U-080
+    bortfall: normativ
+    led:
+      - text: "Samhällsgemenskapen utmanas och försvagas."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: KDk-020
+    parti: KD
+    blint_id: U-081
+    bortfall: normativ
+    led:
+      - text: "När vården är som bäst är den i världsklass."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: M-298
+    parti: M
+    blint_id: U-082
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "En kultursektor i stark offentlig beroendeställning"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: Vk-029
+    parti: V
+    blint_id: U-083
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Bara hälften av alla kvinnor med ett arbetaryrke har en fast heltidsanställning."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: MPb-005
+    parti: MP
+    blint_id: U-084
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Barnfattigdomen ökar"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "fler barn vräks från sina hem"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: Ck-014
+    parti: C
+    blint_id: U-085
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Sverige har bland världens högsta skatter på att anställa personer med låga inkomster"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "över en tredjedel av de så kallade arbetsgivaravgifterna är en ren skatt på anställningen utan att finansiera förmåner som sjukledighet eller pension."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: MPk-016
+    parti: MP
+    blint_id: U-086
+    bortfall: framtida_utfall
+    led:
+      - text: "Efter fyra år med Tidöregeringen är resultaten förödande."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: framtida_utfall
+  - utsaga_id: Vk-068
+    parti: V
+    blint_id: U-087
+    bortfall: otillracklig_kontext
+    led:
+      - text: "Det har bidragit till förseningar och tågkaos."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: otillracklig_kontext
+  - utsaga_id: Sk-036
+    parti: S
+    blint_id: U-088
+    bortfall: normativ
+    led:
+      - text: "Natomedlemskapet gör Sverige säkrare"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+      - text: "Nato starkare."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: Sk-007
+    parti: S
+    blint_id: U-089
+    bortfall: normativ
+    led:
+      - text: "Små- och medelstora företag är helt avgörande för svensk ekonomi."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: Sb-009
+    parti: S
+    blint_id: U-090
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Fler än någonsin slås ut från svensk skola"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: Vk-038
+    parti: V
+    blint_id: U-091
+    bortfall: normativ
+    led:
+      - text: "Regeringens svar har varit otillräckligt, närmast obefintligt."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: Vk-004
+    parti: V
+    blint_id: U-092
+    bortfall: otillracklig_kontext
+    led:
+      - text: "I dag ser det inte ut så."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: otillracklig_kontext
+  - utsaga_id: Lk-035
+    parti: L
+    blint_id: U-093
+    bortfall: framtida_utfall
+    led:
+      - text: "Så kan Sverige gå från sämst klassrumsdisciplin i Europa till bäst i Norden."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: framtida_utfall
+  - utsaga_id: KDk-023
+    parti: KD
+    blint_id: U-094
+    bortfall: normativ
+    led:
+      - text: "En stark svensk värdering är att alla ska kunna känna sig trygga med att vården, skolan och omsorgen fungerar och inte är en fråga om pengar, kontakter eller social status."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: Sk-017
+    parti: S
+    blint_id: U-095
+    bortfall: normativ
+    led:
+      - text: "Det ska vara enkelt att komma i kontakt med vårdcentralen"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+      - text: "man ska inte behöva vänta onödigt länge på en nödvändig operation"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+      - text: "personalen ska ha tid för dig."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+      - text: "Men så är det långtifrån alltid idag."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: otillracklig_kontext
+  - utsaga_id: Mk-187
+    parti: M
+    blint_id: U-096
+    bortfall: normativ
+    led:
+      - text: "Vi vill göra det mer gynnsamt för företag att sponsra kultur"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+      - text: "har utrett utökad avdragsrätt för privatpersoner att ge"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+      - text: "införandet av ett matchningssystem."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: Sk-031
+    parti: S
+    blint_id: U-097
+    bortfall: normativ
+    led:
+      - text: "Ryssland fortsätter hota stabiliteten på hela vår kontinent."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: MPb-011
+    parti: MP
+    blint_id: U-098
+    bortfall: normativ
+    led:
+      - text: "Med Miljöpartiet i regering infördes ett klimatpolitiskt ramverk med tydligare mål och bättre och mer öppen granskning av klimatpolitiken"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: SDb-006
+    parti: SD
+    blint_id: U-099
+    bortfall: otillracklig_kontext
+    led:
+      - text: "Därefter har vi sänkt priset ytterligare"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: otillracklig_kontext
+      - text: "pressa ned skatten till EU:s miniminivå, och även passerat den"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: otillracklig_kontext
+  - utsaga_id: Lk-078
+    parti: L
+    blint_id: U-100
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Samtidigt ser vi hur intoleransen ökar."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: SDk-029
+    parti: SD
+    blint_id: U-101
+    bortfall: normativ
+    led:
+      - text: "I Sverige har vi fantastisk åkermark"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+      - text: "tyvärr försvinner den i rask takt när kommuner väljer att exploatera denna med bostäder och industrier"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "det vill vi stoppa"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+      - text: "åkermark ska odlas, inte bebyggas"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: SDk-030
+    parti: SD
+    blint_id: U-102
+    bortfall: normativ
+    led:
+      - text: "På senare år har många skogsägare hamnat i kläm när de försökt bruka sin skog, helt orimligt tycker vi."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: Mk-157
+    parti: M
+    blint_id: U-103
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Trots vår långa kustlinje och våra stora fiskevatten importerar vi i dag mer fisk och skaldjur för konsumtion än vi producerar själva."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: SDk-042
+    parti: SD
+    blint_id: U-104
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Det finns många röda, gröna och i vissa fall blåa kommuner i Sverige som fortfarande är av uppfattningen att invandringen berikar vårt land."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: Lk-025
+    parti: L
+    blint_id: U-105
+    bortfall: normativ
+    led:
+      - text: "Sverige är ett bra land att växa upp i."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+      - text: "Men samtidigt finns det brister som drabbar barn och unga."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: MPk-005
+    parti: MP
+    blint_id: U-106
+    bortfall: null
+    led:
+      - text: "Idag står många utan jobb"
+        provbar: true
+        indikator: arbetsloshet
+        period: {'start': 2022, 'slut': 2025}
+        operationalisering: "Indikatorn räknar antal arbetslösa enligt AKU. Nivån 2025 jämförs med nivån 2022. Populationen är personer 15–74 år i Sverige och ledet anger ingen smalare grupp."
+        bortfall: null
+      - text: "andra jobbar så mycket att de inte orkar ett helt arbetsliv."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: Mk-150
+    parti: M
+    blint_id: U-107
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Snåriga beslutsprocesser gör det exempelvis svårt och dyrt att bygga vindkraft."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: Ck-135
+    parti: C
+    blint_id: U-108
+    bortfall: normativ
+    led:
+      - text: "Idag fungerar inte infrastrukturen som den ska."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: Mk-120
+    parti: M
+    blint_id: U-109
+    bortfall: normativ
+    led:
+      - text: "Moderaterna har genomfört en lång rad reformer för att skydda barnen och straffa förövarna."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: KDb-007
+    parti: KD
+    blint_id: U-110
+    bortfall: framtida_utfall
+    led:
+      - text: "Ny kärnkraft är på väg"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: framtida_utfall
+  - utsaga_id: MPk-024
+    parti: MP
+    blint_id: U-111
+    bortfall: normativ
+    led:
+      - text: "Sverige har allt som krävs för att vara ett bra land att leva i."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: Lk-042
+    parti: L
+    blint_id: U-112
+    bortfall: normativ
+    led:
+      - text: "Vardagslivet kan vara fantastiskt."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+      - text: "Men det kan vara svårt att få vardagen att gå ihop när tiden är för knapp och marginalerna för små."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: Vb-005
+    parti: V
+    blint_id: U-113
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Fattigdomen brett ut sig"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: Ck-129
+    parti: C
+    blint_id: U-114
+    bortfall: normativ
+    led:
+      - text: "I vissa delar växer möjligheterna"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+      - text: "i andra krymper de."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: otillracklig_kontext
+  - utsaga_id: M-195
+    parti: M
+    blint_id: U-115
+    bortfall: data_saknas
+    led:
+      - text: "Stärkt Sveriges försörjningsberedskap bland annat genom spannmålslager"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: "Ledet matchar civil_beredskap_niva, som mäter nivån på Sveriges civila beredskap, men serien är inte inläst."
+        bortfall: data_saknas
+  - utsaga_id: SDk-004
+    parti: SD
+    blint_id: U-116
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Den tillfälliga sänkningen av matmomsen har visat sig vara ett effektivt verktyg för att få ner matpriserna."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: Sk-041
+    parti: S
+    blint_id: U-117
+    bortfall: framtida_utfall
+    led:
+      - text: "Sillen, strömmingen, torsken och andra svaga bestånd riskerar att slås ut"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: framtida_utfall
+      - text: "det storskaliga industrifisket fångar fisk i en snabbare takt än bestånden hinner återhämta sig"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "miljögifter sprids i våra hav."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: Sb-011
+    parti: S
+    blint_id: U-118
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "En växande gängkriminalitet"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "våldet blivit allt grövre"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "de kriminella allt yngre"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: Lk-032
+    parti: L
+    blint_id: U-119
+    bortfall: normativ
+    led:
+      - text: "Och när AI är vardag blir det ännu viktigare att varje ung människa får med sig de kunskaper som behövs för att vara källkritisk."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: Sk-040
+    parti: S
+    blint_id: U-120
+    bortfall: data_saknas
+    led:
+      - text: "Den biologiska mångfalden hotas när arter trängs undan och hela ekosystem utarmas."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: "Ledet matchar hotade_arter_naturforlust, som mäter hotade arter och naturförlust, men serien är inte inläst."
+        bortfall: data_saknas
+  - utsaga_id: Sb-014
+    parti: S
+    blint_id: U-121
+    bortfall: normativ
+    led:
+      - text: "Sverige befinner sig i det allvarligaste säkerhetsläget sedan andra världskriget"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: M-129
+    parti: M
+    blint_id: U-122
+    bortfall: normativ
+    led:
+      - text: "Infört språkkrav och bakgrundskontroller på äldreomsorgspersonal"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: MPk-012
+    parti: MP
+    blint_id: U-123
+    bortfall: normativ
+    led:
+      - text: "Sverige och Europa befinner sig i ett allvarligt säkerhetspolitiskt läge."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: Lk-076
+    parti: L
+    blint_id: U-124
+    bortfall: otillracklig_kontext
+    led:
+      - text: "Frihet, demokrati och jämställdhet är självklarheter för de flesta i vårt land."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "Men inte för alla."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: otillracklig_kontext
+  - utsaga_id: SDk-022
+    parti: SD
+    blint_id: U-125
+    bortfall: normativ
+    led:
+      - text: "I Socialdemokraternas Sverige har brottsofferperspektivet glömts bort."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: MPk-022
+    parti: MP
+    blint_id: U-126
+    bortfall: normativ
+    led:
+      - text: "kvinnors och HBTQI-personers rättigheter attackeras"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "rasism och extremism ökar"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "civilsamhället pressas tillbaka"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "försvagas vårt öppna samhälle"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: SDk-041
+    parti: SD
+    blint_id: U-127
+    bortfall: normativ
+    led:
+      - text: "Idag har kommunerna inga reella möjligheter att tacka nej till att ta emot asylinvandrare"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "det vill vi ändra på"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: Vb-017
+    parti: V
+    blint_id: U-128
+    bortfall: otillracklig_kontext
+    led:
+      - text: "De senaste årens snabba prisökningar på basvaror såsom el"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "boende"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: otillracklig_kontext
+      - text: "mat"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: otillracklig_kontext
+      - text: "drivmedel"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: otillracklig_kontext
+      - text: "fler har haft svårt att klara sin grundläggande försörjning"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: Ck-089
+    parti: C
+    blint_id: U-129
+    bortfall: normativ
+    led:
+      - text: "Brott mot företagare är ett stort problem"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+      - text: "företag används som brottsverktyg"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: SDk-037
+    parti: SD
+    blint_id: U-130
+    bortfall: normativ
+    led:
+      - text: "Det svenska språkets särart hotas idag från flera håll"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: Sk-045
+    parti: S
+    blint_id: U-131
+    bortfall: otillracklig_kontext
+    led:
+      - text: "Framväxten av utsatta områden"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "ger näring åt kriminalitet"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: otillracklig_kontext
+      - text: "religiös extremism"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: otillracklig_kontext
+      - text: "hedersförtryck"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: otillracklig_kontext
+  - utsaga_id: Sb-006
+    parti: S
+    blint_id: U-132
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "De senaste åren har barnbidraget urholkats"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: Sk-029
+    parti: S
+    blint_id: U-133
+    bortfall: normativ
+    led:
+      - text: "Den pågående massnedläggningen av skyddade boenden"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "behöver stoppas"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: SDk-055
+    parti: SD
+    blint_id: U-134
+    bortfall: normativ
+    led:
+      - text: "Sverige har en enorm kulturarvsskuld"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+      - text: "i dagsläget saknas en samlad bild av hur omfattande den faktiskt är"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: otillracklig_kontext
+  - utsaga_id: SDb-003
+    parti: SD
+    blint_id: U-135
+    bortfall: null
+    led:
+      - text: "Under den gångna mandatperioden har betydande steg tagits för att förbättra svensk sjukvård"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+      - text: "en minskning av vårdköerna"
+        provbar: true
+        indikator: vardkoer
+        period: {'start': 2022, 'slut': 2025}
+        operationalisering: "Medianväntetid i vården, räknad i dagar. Värdet 2025 jämförs med värdet 2022. Populationen är patienter som omfattas av indikatorns nationella vårdköserie."
+        bortfall: null
+  - utsaga_id: Ck-127
+    parti: C
+    blint_id: U-136
+    bortfall: otillracklig_kontext
+    led:
+      - text: "kvinnor i många fall tar ett större ansvar för familjen"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "gör det svårare för dem att påverka samhället som fritidspolitiker"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: otillracklig_kontext
+  - utsaga_id: MPb-012
+    parti: MP
+    blint_id: U-137
+    bortfall: null
+    led:
+      - text: "Regeringens utvisningspolitik skapar också otrygghet"
+        provbar: true
+        indikator: upplevd_otrygghet
+        period: {'start': 2022, 'slut': 2025}
+        operationalisering: "Andelen som uppger att de upplever otrygghet. Värdet 2025 jämförs med värdet 2022. Populationen är Sveriges befolkning enligt indikatorns undersökning; den påstådda orsaken prövas inte."
+        bortfall: null
+      - text: "splittring"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: otillracklig_kontext
+  - utsaga_id: MPk-013
+    parti: MP
+    blint_id: U-138
+    bortfall: normativ
+    led:
+      - text: "Vi lever i en orolig tid"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+      - text: "en osäker omvärld"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: Mk-159
+    parti: M
+    blint_id: U-139
+    bortfall: normativ
+    led:
+      - text: "Den som har invandrat till Sverige behöver numera kvalificera sig genom att arbeta och bidra innan den får tillgång till hela välfärden"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: Lk-040
+    parti: L
+    blint_id: U-140
+    bortfall: normativ
+    led:
+      - text: "Att kombinera föräldraskap och jobb ställer krav som ofta gör vardagen till en balansakt"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: Mk-047
+    parti: M
+    blint_id: U-141
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Sverige har, även efter att enprocentmålet avskaffats, ett av världens mest generösa bistånd"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: Ck-049
+    parti: C
+    blint_id: U-142
+    bortfall: null
+    led:
+      - text: "Skolan sviker också"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+      - text: "alltför många elever lämnar grundskolan utan fullständiga betyg"
+        provbar: true
+        indikator: skolresultat
+        period: {'start': 2022, 'slut': 2025}
+        operationalisering: "Andelen elever som lämnar grundskolan utan fullständiga betyg. Värdet 2025 jämförs med värdet 2022. Populationen är elever som lämnar svensk grundskola."
+        bortfall: null
+      - text: "ordningen i klassrummen brister"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "elever som behöver stöd får det inte i tid"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: Vk-006
+    parti: V
+    blint_id: U-143
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Den ökande fattigdomen"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "försämringar inom trygghetssystemen"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "prisökningar"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: flera_operationaliseringar
+  - utsaga_id: MPk-007
+    parti: MP
+    blint_id: U-144
+    bortfall: normativ
+    led:
+      - text: "Sverige har alla förutsättningar för att vara ett bra land för alla - oavsett varifrån du kommer eller hur mycket pengar du har"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+      - text: "idag är verkligheten en annan"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: otillracklig_kontext
+  - utsaga_id: Sk-034
+    parti: S
+    blint_id: U-145
+    bortfall: normativ
+    led:
+      - text: "Den svenska försvarsindustrin är en vital del av Sveriges försvarsförmåga"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: Vb-007
+    parti: V
+    blint_id: U-146
+    bortfall: normativ
+    led:
+      - text: "Barnbidraget har urholkats över tid"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "Den senaste höjning genomfördes 2018"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: Vb-010
+    parti: V
+    blint_id: U-147
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Barn- och ungdomspsykiatrin dras med långa köer"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "30 dagars-garantin uppfylls inte för de flesta av barnen"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: SDk-018
+    parti: SD
+    blint_id: U-148
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "För ungdomar på landsbygden är kollektivtrafiken sällan ett fungerande alternativ efter skoltid"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: KDb-004
+    parti: KD
+    blint_id: U-149
+    bortfall: data_saknas
+    led:
+      - text: "Inflationen tryckts ner"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: data_saknas
+    anteckning: "Ledet matchar indikatorn inflation, men serien är inte inläst."
+  - utsaga_id: MPb-002
+    parti: MP
+    blint_id: U-150
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Utsläppen har ökat"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: flera_operationaliseringar
+      - text: "elektrifieringen bromsat in"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "utbyggnaden av förnybar el tvärnitat"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: Ck-128
+    parti: C
+    blint_id: U-151
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "avståndet till vård"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "jobb"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "service ökar lite mer för varje år"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: SDk-036
+    parti: SD
+    blint_id: U-152
+    bortfall: normativ
+    led:
+      - text: "Det handlar även om påverkan från språkgrupper som kommit till Sverige, såsom arabiska."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: MPk-011
+    parti: MP
+    blint_id: U-153
+    bortfall: framtida_utfall
+    led:
+      - text: "hat"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "våld"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "kriminalitet ökar"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "hotas människors frihet"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: framtida_utfall
+      - text: "tilliten i samhället"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: framtida_utfall
+  - utsaga_id: KDk-031
+    parti: KD
+    blint_id: U-154
+    bortfall: normativ
+    led:
+      - text: "En allt större fara mot goda värderingar är också sociala medier och andra sammanhang på nätet"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+      - text: "polarisera"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "sprida desinformation"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "mata barn och unga med värderingar som skadar deras självkänsla"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "möjlighet till hälsa"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "utveckling"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: Lk-054
+    parti: L
+    blint_id: U-155
+    bortfall: normativ
+    led:
+      - text: "Liberalerna drev igenom assistansreformen på 90-talet"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+      - text: "nu är det hög tid för en ny LSS-reform som reparerar hålen efter många års försämringar"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: Ck-013
+    parti: C
+    blint_id: U-156
+    bortfall: null
+    led:
+      - text: "Sverige befinner sig i en arbetslöshetskris där allt för många människor står utan jobb"
+        provbar: true
+        indikator: arbetsloshet
+        period: {'start': 2022, 'slut': 2025}
+        operationalisering: "Antal eller andel arbetslösa enligt AKU. Nivån 2025 jämförs med nivån 2022. Populationen är hela befolkningen 15–74 år."
+        bortfall: null
+      - text: "företagen inte hittar rätt kompetens"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: Vk-011
+    parti: V
+    blint_id: U-157
+    bortfall: otillracklig_kontext
+    led:
+      - text: "höga matpriser"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: data_saknas
+      - text: "stigande hyror"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "urholkade bidrag"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "pressen på hushållen ökat kraftigt"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "allra hårdast slår det mot ensamstående barnfamiljerna"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: otillracklig_kontext
+  - utsaga_id: SDb-004
+    parti: SD
+    blint_id: U-158
+    bortfall: null
+    led:
+      - text: "Sedan den fullskaliga invasionen 2022 har Sverige lagt flera stödpaket på sammanlagt 157 miljarder kronor"
+        provbar: true
+        indikator: ukraina_stod
+        period: {'start': 2022, 'slut': 2025}
+        operationalisering: "Indikatorn räknar Sveriges stöd till Ukraina i kronor. Det sammanlagda stödet från 2022 till 2025 jämförs med nivån 157 miljarder kronor. Populationen är samtliga svenska stödpaket till Ukraina."
+        bortfall: null
+  - utsaga_id: MPk-008
+    parti: MP
+    blint_id: U-159
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Hälsoskillnaderna är stora."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: Lk-004
+    parti: L
+    blint_id: U-160
+    bortfall: normativ
+    led:
+      - text: "Jobbskapare hindras av byråkrati."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: Mk-134
+    parti: M
+    blint_id: U-161
+    bortfall: normativ
+    led:
+      - text: "Den tekniska utvecklingen i världen påverkar utrikes- och säkerhetspolitiken både positivt och negativt."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: Ck-085
+    parti: C
+    blint_id: U-162
+    bortfall: otillracklig_kontext
+    led:
+      - text: "Många mängdbrott som inbrott, cykelstölder och dieselstölder från jordbrukare anmäls sällan ens"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "människor inte litar på att det leder till något"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: otillracklig_kontext
+  - utsaga_id: SDk-006
+    parti: SD
+    blint_id: U-163
+    bortfall: normativ
+    led:
+      - text: "Under mandatperioden har Sverigedemokraterna varit starkt pådrivande för att sänka priset på drivmedel."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: Lb-018
+    parti: L
+    blint_id: U-164
+    bortfall: normativ
+    led:
+      - text: "Under snart fyra år i regering har vi lagt om integrationspolitiken med ökat fokus på språk, arbete, utbildning och värderingar"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: Vb-009
+    parti: V
+    blint_id: U-165
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Bara en tredjedel av befolkningen uppger idag att de har en fast läkarkontakt på sin vårdcentral"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: Ck-124
+    parti: C
+    blint_id: U-166
+    bortfall: normativ
+    led:
+      - text: "svenskarna är samhällsengagerade"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+      - text: "färre med i ett politiskt parti än förut"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "en ännu mindre skara vill axla ansvaret som folkvald"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: Lk-066
+    parti: L
+    blint_id: U-167
+    bortfall: framtida_utfall
+    led:
+      - text: "Samtidigt tänker vi sätta stopp för den exploatering av människor"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: framtida_utfall
+      - text: "skuggsamhället har tillåtits växa"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: Lk-006
+    parti: L
+    blint_id: U-168
+    bortfall: normativ
+    led:
+      - text: "Skatten på arbete är fortfarande för hög."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: Mk-066
+    parti: M
+    blint_id: U-169
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Flera tusen kvinnor drabbas årligen av allvarliga bristningsskador."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: Sb-003
+    parti: S
+    blint_id: U-170
+    bortfall: null
+    led:
+      - text: "Omkring 100 000 fler svenskar är arbetslösa idag än när tidöregeringen tillträdde"
+        provbar: true
+        indikator: arbetsloshet
+        period: {'start': 2022, 'slut': 2025}
+        operationalisering: "Indikatorn räknar antalet arbetslösa enligt AKU. Antalet 2025 jämförs med antalet 2022. Populationen är hela befolkningen 15–74 år."
+        bortfall: null
+  - utsaga_id: KDk-033
+    parti: KD
+    blint_id: U-171
+    bortfall: otillracklig_kontext
+    led:
+      - text: "Detta har Sverige förutsättningarna till."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: otillracklig_kontext
+  - utsaga_id: KDk-001
+    parti: KD
+    blint_id: U-172
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Alltför många har svårt att få ekonomin att gå ihop."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: Sb-015
+    parti: S
+    blint_id: U-173
+    bortfall: normativ
+    led:
+      - text: "Kriget i Ukraina fortgår på sitt femte år"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: Mk-038
+    parti: M
+    blint_id: U-174
+    bortfall: normativ
+    led:
+      - text: "Sverige har en låg offentlig skuldsättning"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: data_saknas
+      - text: "offentliga finanser i världsklass"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: MPk-001
+    parti: MP
+    blint_id: U-175
+    bortfall: normativ
+    led:
+      - text: "Sverige är ett land med långa avstånd"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "en fungerande infrastruktur är helt avgörande för att det ska gå att arbeta och bo i hela landet"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: Vb-006
+    parti: V
+    blint_id: U-176
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "730 000 svenskar lever i materiell och social fattigdom, en fördubbling jämfört med 2021"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: Lk-023
+    parti: L
+    blint_id: U-177
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Många barn växer upp i en tillvaro där skärmarna tränger undan allt annat som är viktigt."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "Resultatet blir att allt fler unga fastnar i en värld fylld av likes och scrollande."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: KDk-042
+    parti: KD
+    blint_id: U-178
+    bortfall: normativ
+    led:
+      - text: "På samma sätt som stadens villaförort och utanförskapsområden skiljer sig från varandra"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+      - text: "finns det flera olika landsbygder och glesbygder."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: KDk-036
+    parti: KD
+    blint_id: U-179
+    bortfall: normativ
+    led:
+      - text: "Här finns utrymme för nytänkande och modernitet"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+      - text: "förebilden finns i de trädgårdsstäder som byggdes för runt 100 år sedan på flera platser runt om i Sverige."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: Lk-050
+    parti: L
+    blint_id: U-180
+    bortfall: otillracklig_kontext
+    led:
+      - text: "Samtidigt har många som använder LSS under lång tid mött försämringar"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "indraget stöd."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: otillracklig_kontext
+  - utsaga_id: Lk-024
+    parti: L
+    blint_id: U-181
+    bortfall: otillracklig_kontext
+    led:
+      - text: "Och unga som inte får det stöd de behöver, trots tydliga risksignaler."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: otillracklig_kontext
+  - utsaga_id: Sk-038
+    parti: S
+    blint_id: U-182
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "I många år var Sverige ledande i klimatomställningen."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "sänkta klimatutsläpp"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: period_saknas
+      - text: "fler jobb"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: period_saknas
+      - text: "tillväxt"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: period_saknas
+      - text: "minskat oljeberoende"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: period_saknas
+      - text: "stärkt konkurrenskraft."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: Sk-033
+    parti: S
+    blint_id: U-183
+    bortfall: normativ
+    led:
+      - text: "USA riktar i ökad utsträckning sitt fokus mot andra delar av världen."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: Vk-005
+    parti: V
+    blint_id: U-184
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "730 000 svenskar lever i materiell och social fattigdom, en fördubbling jämfört med 2021."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "Av dessa lever t 400 000 personer i allvarlig materiell och social fattigdom."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: Sb-010
+    parti: S
+    blint_id: U-185
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Samtidigt gör friskoleföretagen rekordvinster"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: MPb-007
+    parti: MP
+    blint_id: U-186
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Det skiljer flera år i livslängd mellan bostadsområden som ligger nära varandra"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: Vk-056
+    parti: V
+    blint_id: U-187
+    bortfall: normativ
+    led:
+      - text: "Nätläkare i sin nuvarande form urholkar vården"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+      - text: "minskar resurserna för de patienter som behöver vården mest."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: KDk-039
+    parti: KD
+    blint_id: U-188
+    bortfall: normativ
+    led:
+      - text: "I dag kan en enskild fågel eller en liten planta sätta stopp för viktiga investeringar."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: Lk-009
+    parti: L
+    blint_id: U-189
+    bortfall: normativ
+    led:
+      - text: "Det är framgångsrika företagare som gjort Sverige rikt."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: SDk-014
+    parti: SD
+    blint_id: U-190
+    bortfall: otillracklig_kontext
+    led:
+      - text: "Staten tar resten."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: otillracklig_kontext
+  - utsaga_id: KDk-017
+    parti: KD
+    blint_id: U-191
+    bortfall: normativ
+    led:
+      - text: "Men vi ser också allt som fortfarande brister."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: M-010
+    parti: M
+    blint_id: U-192
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Säkerställt att Sverige har bland de högsta tillväxttakterna i EU"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: Lk-071
+    parti: L
+    blint_id: U-193
+    bortfall: normativ
+    led:
+      - text: "Länge styrdes Sverige av politiker som lät stora samhällsproblem växa."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+      - text: "Men för fyra år sedan fick vi väljarnas förtroende att göra något åt detta."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+      - text: "Sedan dess tar vi ansvar."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: M-132
+    parti: M
+    blint_id: U-194
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Sett till att kommunerna nu får mer pengar av staten än någonsin"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: SDk-011
+    parti: SD
+    blint_id: U-195
+    bortfall: data_saknas
+    led:
+      - text: "Samtidigt ligger skuldsättningen fortfarande inom ramverket för andelen av BNP."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: "Matchar indikatorn statsskuld_underskott, som mäter den offentliga skuldsättningen i förhållande till BNP. Nivån 2025 skulle jämföras med nivån 2022 och med den nivå som ramverket anger. Populationen är Sveriges offentliga sektor."
+        bortfall: data_saknas
+  - utsaga_id: SDb-012
+    parti: SD
+    blint_id: U-196
+    bortfall: normativ
+    led:
+      - text: "Sverigedemokraterna har under mandatperioden redan sänkt elskatten"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ
+  - utsaga_id: Ck-003
+    parti: C
+    blint_id: U-197
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Vid köksbord i hela Sverige går familjer igenom sin ekonomi med en växande insikt om att marginalerna blivit mindre, trots att ansträngningen är densamma."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: Vb-015
+    parti: V
+    blint_id: U-198
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Elnätet har blivit en avgörande flaskhals för både klimatomställningen och den ekonomiska utvecklingen"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: Ck-080
+    parti: C
+    blint_id: U-199
+    bortfall: ingen_kompatibel_indikator
+    led:
+      - text: "Kvinnors frihet begränsas"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "äldre känner oro"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "företagare utsätts för brott"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+      - text: "brott som sällan leder till konsekvenser."
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: ingen_kompatibel_indikator
+  - utsaga_id: Lb-016
+    parti: L
+    blint_id: U-200
+    bortfall: normativ
+    led:
+      - text: "Storsatsat på svensk forskning"
+        provbar: false
+        indikator: null
+        period: null
+        operationalisering: null
+        bortfall: normativ

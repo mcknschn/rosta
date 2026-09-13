@@ -285,3 +285,188 @@ def test_citatet_skyddar_backslash_och_citattecken():
 
     original = 'en \\ och ett "citat"'
     assert yaml.safe_load(f"t: {vb._citat(original)}")["t"] == original
+
+
+# ------------------------------------------------------------------ inlast kodning
+
+
+def _post(uid, led, bortfall=None):
+    return {"utsaga_id": uid, "led": led, "bortfall": bortfall}
+
+
+def _led(provbar, indikator=None, bortfall=None):
+    return {
+        "text": "x",
+        "provbar": provbar,
+        "indikator": indikator,
+        "period": {"start": 2022, "slut": 2025} if provbar else None,
+        "operationalisering": "x" if provbar else None,
+        "bortfall": bortfall,
+    }
+
+
+def test_granskningen_slapper_igenom_en_riktig_post():
+    assert vb.granska_kodning(_post("U-1", [_led(True, "arbetsloshet")])).fel == []
+    assert vb.granska_kodning(_post("U-2", [_led(False, bortfall="normativ")], "normativ")).fel == []
+
+
+def test_granskningen_faller_en_utsaga_utan_bade_relation_och_kod():
+    fel = vb.granska_kodning(_post("U-3", [_led(False, bortfall="normativ")], None)).fel
+    assert any("ingen giltig bortfallskod" in f for f in fel)
+
+
+def test_granskningen_faller_en_kod_utanfor_den_lasta_listan():
+    """skev ar forkastat av ADR 0016 beslutspunkt 9 och far inte smyga tillbaka."""
+    fel = vb.granska_kodning(_post("U-4", [_led(False, bortfall="skev")], "skev")).fel
+    assert any("utanfor den lasta listan" in f for f in fel)
+
+
+def test_granskningen_faller_ett_provbart_led_utan_indikator():
+    fel = vb.granska_kodning(_post("U-5", [_led(True, None)])).fel
+    assert any("saknar indikator" in f for f in fel)
+
+
+def test_granskningen_faller_en_relation_som_anda_bar_en_kod():
+    fel = vb.granska_kodning(_post("U-7", [_led(True, "arbetsloshet")], "normativ")).fel
+    assert any("anda bortfallskoden" in f for f in fel)
+
+
+def test_fel_foretradesordning_ar_en_anmarkning_och_inget_fel():
+    """normativ star fore data_saknas. Fel ordning bryter kodboken, inte godkannandetest 4."""
+    post = _post(
+        "U-6",
+        [_led(False, bortfall="data_saknas"), _led(False, bortfall="normativ")],
+        "data_saknas",
+    )
+    granskning = vb.granska_kodning(post)
+    assert granskning.fel == []
+    assert any("normativ" in a for a in granskning.anmarkningar)
+
+
+def test_kodbokens_egen_motsagelse_ger_anmarkning_och_inget_fel():
+    """Avsnitt 6.5 vill ha operationaliseringen skriven, avsnitt 10 vill ha faltet tomt."""
+    led = _led(False, bortfall="data_saknas")
+    led["operationalisering"] = "matchar civil_beredskap_niva, ingen inlast serie"
+    granskning = vb.granska_kodning(_post("U-8", [led], "data_saknas"))
+    assert granskning.fel == []
+    assert any("operationalisering" in a for a in granskning.anmarkningar)
+
+
+def test_momentparen_tar_bara_utsagor_bada_kodat():
+    a = {
+        "x": vb.KodadUtsaga("x", 2, ("arbetsloshet",), "arbetsloshet", "relation"),
+        "y": vb.KodadUtsaga("y", 1, (), "ingen", "normativ"),
+    }
+    b = {"x": vb.KodadUtsaga("x", 3, (), "ingen", "normativ")}
+    par = vb.momentpar(a, b)
+    assert set(par) == {"avgransning", "provbarhet", "indikatorval", "kodvarde"}
+    assert list(par["avgransning"]) == ["x"]
+    assert par["avgransning"]["x"] == ["2", "3"]
+    assert par["provbarhet"]["x"] == ["ja", "nej"]
+    assert par["indikatorval"]["x"] == ["arbetsloshet", "ingen"]
+    assert par["kodvarde"]["x"] == ["relation", "normativ"]
+
+
+# ------------------------------------------------------------------ troskelprovning
+
+
+def _kodad(uid, relationer, antal_led=1):
+    rel = tuple(relationer)
+    return vb.KodadUtsaga(
+        utsaga_id=uid,
+        antal_led=antal_led,
+        relationer=rel,
+        forsta_indikator=rel[0] if rel else "ingen",
+        kodvarde="relation" if rel else "normativ",
+    )
+
+
+def test_troskeln_faller_nar_utbytet_ar_for_lagt():
+    a = {f"u{i}": _kodad(f"u{i}", []) for i in range(10)}
+    b = dict(a)
+    provning = vb.prova_trosklarna(a, b, dict.fromkeys(a, "S"), {"S": 100})
+    assert provning.utbyte.utbyte == 0.0
+    assert not provning.utbyte_klaras
+    assert not provning.piloten_klaras
+
+
+def test_troskeln_klaras_nar_varje_utsaga_ger_en_relation():
+    a = {f"u{i}": _kodad(f"u{i}", ["arbetsloshet"]) for i in range(10)}
+    b = dict(a)
+    provning = vb.prova_trosklarna(a, b, dict.fromkeys(a, "S"), {"S": 100})
+    assert provning.utbyte.utbyte == 1.0
+    assert provning.utbyte_klaras
+    assert provning.snitt_per_parti["S"] == 10
+    assert provning.partier_under_fem == {}
+
+
+def test_ett_parti_under_fem_faller_hela_piloten():
+    """Kravet pa minst 5 hos SAMTLIGA atta gor regeln strangare an totalgransen."""
+    a = {f"s{i}": _kodad(f"s{i}", ["arbetsloshet"]) for i in range(10)}
+    a |= {f"m{i}": _kodad(f"m{i}", []) for i in range(10)}
+    parti = {u: ("S" if u.startswith("s") else "M") for u in a}
+    provning = vb.prova_trosklarna(a, dict(a), parti, {"S": 20, "M": 20})
+    assert provning.utbyte_klaras
+    assert set(provning.partier_under_fem) == {"M"}
+    assert not provning.piloten_klaras
+
+
+def test_enkelsidiga_relationer_raknas_till_halften():
+    a = {"u1": _kodad("u1", ["arbetsloshet"]), "u2": _kodad("u2", ["vardkoer"])}
+    b = {"u1": _kodad("u1", ["arbetsloshet"]), "u2": _kodad("u2", [])}
+    provning = vb.prova_trosklarna(a, b, dict.fromkeys(a, "S"), {"S": 2})
+    assert provning.snitt_per_parti["S"] == 1.5
+
+
+def test_bara_provbarhetens_alfa_faller_piloten():
+    """Alfa for indikatorval kan falla utan att piloten gor det (forhandsreg. 4.1)."""
+    a = {f"u{i}": _kodad(f"u{i}", ["arbetsloshet"]) for i in range(10)}
+    b = {f"u{i}": _kodad(f"u{i}", ["vardkoer"]) for i in range(10)}
+    parti = dict.fromkeys(a, "S")
+    provning = vb.prova_trosklarna(a, b, parti, {"S": 10})
+    assert provning.alfa["indikatorval"] is None or provning.alfa["indikatorval"] < 1.0
+    assert provning.provbarheten_haller
+
+
+def test_alfabeskedet_foljer_krippendorffs_nivaer():
+    assert vb.alfabesked(0.81) == "haller"
+    assert vb.alfabesked(0.80) == "haller"
+    assert vb.alfabesked(0.70) == "tentativt"
+    assert vb.alfabesked(0.60) == "haller inte"
+
+
+def test_odefinierad_alfa_skiljer_full_enighet_fran_tomt_besked():
+    """Alfa utan varde betyder tva skilda saker. De far inte blandas ihop."""
+    assert vb.alfabesked(None, alla_overens=True) == "full enighet"
+    assert vb.alfabesked(None, alla_overens=False) == "odefinierad"
+
+
+def test_full_enighet_kanns_igen():
+    assert vb.full_overensstammelse({"u1": ["a", "a"], "u2": ["b", "b"]})
+    assert not vb.full_overensstammelse({"u1": ["a", "a"], "u2": ["b", "a"]})
+    assert not vb.full_overensstammelse({"u1": ["a", None]})
+
+
+def test_full_enighet_om_provbarheten_faller_inte_piloten():
+    """Bada kodarna sa ja pa varje utsaga. Da har troskeln inget varde att falla under."""
+    a = {f"u{i}": _kodad(f"u{i}", ["arbetsloshet"]) for i in range(10)}
+    provning = vb.prova_trosklarna(a, dict(a), dict.fromkeys(a, "S"), {"S": 10})
+    assert provning.alfa["provbarhet"] is None
+    assert provning.full_enighet["provbarhet"]
+    assert provning.provbarheten_haller
+    assert provning.piloten_klaras
+
+
+def test_ett_tomt_stratum_stoppar_i_stallet_for_att_krympa_namnaren():
+    """Utan stoppet skulle 896 tyst bli 100, och utbytet se storre ut an det ar."""
+    a = {f"u{i}": _kodad(f"u{i}", ["arbetsloshet"]) for i in range(5)}
+    parti = dict.fromkeys(a, "S")
+    with pytest.raises(ValueError, match="M"):
+        vb.prova_trosklarna(a, dict(a), parti, {"S": 100, "M": 100})
+
+
+def test_kodare_utan_gemensam_utsaga_stoppar():
+    a = {"u1": _kodad("u1", [])}
+    b = {"u2": _kodad("u2", [])}
+    with pytest.raises(ValueError, match="delar ingen utsaga"):
+        vb.prova_trosklarna(a, b, {"u1": "S", "u2": "S"}, {"S": 10})

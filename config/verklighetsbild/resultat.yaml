@@ -1,0 +1,224 @@
+# Rösta - Verklighetsbildpilotens resultat (biljett #46 steg 6).
+#
+# Rakningen ligger i pipeline/tools/verklighetsbild.py och gar att kora om.
+# Ingen sammanjamkning har skett: de tva kodningarna star som de ar.
+# Inget tal harinne ar en sanningsandel. Piloten kodar ingen sanning alls.
+
+version: 1
+kodboksversion: 1
+kodningsdatum: '2026-09-13'
+kodade_utsagor: 200
+utbyte:
+  definition: provbara relationer per kodad utsaga, skattat till hela bakatmaterialet
+  designviktat: 0.0538
+  skattat_antal_relationer: 48.2
+  populationsstorlek: 896
+  standardfel: 0.0189
+  intervall_95:
+  - 0.0168
+  - 0.0907
+  troskel: 0.2
+  kodare_a_relationer: 14
+  kodare_b_relationer: 10
+  delade_relationer: 10
+  union_relationer: 14
+  snitt_relationer: 12.0
+  jaccard: 0.7222
+per_parti:
+  S:
+    kodade_utsagor: 25
+    population: 72
+    urvalsandel: 0.347
+    kodare_a: 3
+    kodare_b: 2
+    delade: 2
+    union: 3
+    snitt: 2.5
+    utsagor_med_relation: 3
+    representerade_kategorier: 2
+  M:
+    kodade_utsagor: 25
+    population: 300
+    urvalsandel: 0.083
+    kodare_a: 0
+    kodare_b: 0
+    delade: 0
+    union: 0
+    snitt: 0.0
+    utsagor_med_relation: 0
+    representerade_kategorier: 0
+  SD:
+    kodade_utsagor: 25
+    population: 71
+    urvalsandel: 0.352
+    kodare_a: 2
+    kodare_b: 2
+    delade: 2
+    union: 2
+    snitt: 2.0
+    utsagor_med_relation: 2
+    representerade_kategorier: 2
+  C:
+    kodade_utsagor: 25
+    population: 158
+    urvalsandel: 0.158
+    kodare_a: 6
+    kodare_b: 4
+    delade: 4
+    union: 6
+    snitt: 5.0
+    utsagor_med_relation: 4
+    representerade_kategorier: 2
+  V:
+    kodade_utsagor: 25
+    population: 94
+    urvalsandel: 0.266
+    kodare_a: 0
+    kodare_b: 0
+    delade: 0
+    union: 0
+    snitt: 0.0
+    utsagor_med_relation: 0
+    representerade_kategorier: 0
+  KD:
+    kodade_utsagor: 25
+    population: 55
+    urvalsandel: 0.455
+    kodare_a: 0
+    kodare_b: 0
+    delade: 0
+    union: 0
+    snitt: 0.0
+    utsagor_med_relation: 0
+    representerade_kategorier: 0
+  MP:
+    kodade_utsagor: 25
+    population: 37
+    urvalsandel: 0.676
+    kodare_a: 3
+    kodare_b: 2
+    delade: 2
+    union: 3
+    snitt: 2.5
+    utsagor_med_relation: 3
+    representerade_kategorier: 3
+  L:
+    kodade_utsagor: 25
+    population: 109
+    urvalsandel: 0.229
+    kodare_a: 0
+    kodare_b: 0
+    delade: 0
+    union: 0
+    snitt: 0.0
+    utsagor_med_relation: 0
+    representerade_kategorier: 0
+reliabilitet:
+  avgransning:
+    skala: ordinal
+    enheter: 200
+    alfa: 0.8844
+    besked: haller
+    forvaxlingsmatris:
+      1 | 1: 109
+      1 | 2: 9
+      1 | 3: 1
+      1 | 6: 1
+      2 | 1: 2
+      2 | 2: 44
+      2 | 3: 2
+      2 | 4: 2
+      2 | 5: 1
+      3 | 3: 15
+      3 | 4: 2
+      4 | 4: 8
+      5 | 4: 1
+      5 | 5: 2
+      6 | 6: 1
+  provbarhet:
+    skala: nominal
+    enheter: 200
+    alfa: 0.8496
+    besked: haller
+    forvaxlingsmatris:
+      ja | ja: 9
+      ja | nej: 3
+      nej | nej: 188
+  indikatorval:
+    skala: nominal
+    enheter: 200
+    alfa: 0.8528
+    besked: haller
+    forvaxlingsmatris:
+      arbetsloshet | arbetsloshet: 4
+      behoriga_larare | behoriga_larare: 1
+      hushallens_reala_disponibla_inkomst | ingen: 1
+      ingen | ingen: 188
+      skolresultat | ingen: 1
+      skolresultat | skolresultat: 1
+      territoriella_utslapp | ingen: 1
+      ukraina_stod | ukraina_stod: 1
+      upplevd_otrygghet | upplevd_otrygghet: 1
+      vardkoer | vardkoer: 1
+  kodvarde:
+    skala: nominal
+    enheter: 200
+    alfa: 0.6766
+    besked: tentativt
+    forvaxlingsmatris:
+      data_saknas | data_saknas: 6
+      data_saknas | ingen_kompatibel_indikator: 1
+      flera_operationaliseringar | ingen_kompatibel_indikator: 1
+      framtida_utfall | framtida_utfall: 4
+      ingen_kompatibel_indikator | ingen_kompatibel_indikator: 42
+      ingen_kompatibel_indikator | normativ: 3
+      ingen_kompatibel_indikator | otillracklig_kontext: 7
+      normativ | framtida_utfall: 6
+      normativ | ingen_kompatibel_indikator: 12
+      normativ | normativ: 88
+      normativ | otillracklig_kontext: 6
+      otillracklig_kontext | ingen_kompatibel_indikator: 2
+      otillracklig_kontext | normativ: 1
+      otillracklig_kontext | otillracklig_kontext: 9
+      relation | ingen_kompatibel_indikator: 3
+      relation | relation: 9
+delurval:
+  a_mot_a_prim:
+    kodare:
+    - A
+    - A-prim
+    samma_leverantor: true
+    enheter: 40
+    provbarhet_alfa: 0.7893
+    kodvarde_alfa: 0.7752
+    indikatorval_alfa: 0.7937
+  b_mot_b_prim:
+    kodare:
+    - B
+    - B-prim
+    samma_leverantor: true
+    enheter: 40
+    provbarhet_alfa: 1.0
+    kodvarde_alfa: 0.7519
+    indikatorval_alfa: 1.0
+  a_prim_mot_b_prim:
+    kodare:
+    - A-prim
+    - B-prim
+    samma_leverantor: false
+    enheter: 40
+    provbarhet_alfa: 0.7893
+    kodvarde_alfa: 0.818
+    indikatorval_alfa: 0.7937
+utfall:
+  utbyte_klaras: false
+  partier_under_fem:
+  - KD
+  - L
+  - M
+  - MP
+  - S
+  - SD
+  - V
+  provbarheten_haller: true
+  piloten_klaras: false
