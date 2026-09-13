@@ -21,4 +21,9 @@ web/playwright-report/
 web/blob-report/
 web/.playwright/
 
+# Valmanifest 2026: källdokumenten stannar utanför git (ADR 0016 beslutspunkt 3).
+# Repot är publikt och dokumenten är upphovsrättsskyddade verk. Instrumentet behöver bara de
+# citerade meningarna, och hämtmanifestet bär URL, hämtdatum, filnamn och SHA-256.
+docs/valmanifest_2026/*.pdf
+
 # Obs: /dist/ (scores.json + evidence.json) är deploy-artefakten och versionshanteras.
