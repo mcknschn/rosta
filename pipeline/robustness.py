@@ -156,17 +156,17 @@ SOURCES: tuple[Source, ...] = (
            "B, C och D överskrids i varje cell.",
            _set_default_certainty, band_only=True),
     # A:s normalisering STRUKEN 2026-08-21 (ADR 0005, biljett #21). A normaliseras inte längre:
-    # båda halvorna mäts mot en historisk förankring och avbildas med net_support_to_score, så
+    # båda kanalerna mäts mot en historisk förankring och avbildas med net_support_to_score, så
     # reglaget hade inget att dra i (strykningsregeln i ADR 0010 punkt 9). A:s reglage är i
     # stället blandningen nedan: koden läser A_agerande.components och tar emot vilket par som
     # helst utan ny kod (ADR 0010 punkt 4). Fönstret är inget reglage, och det faller på SPANNET
     # och inte på hur talen lagras (ADR 0013 punkt 5): ADR 0010 punkt 5 kräver två härledda ändar,
     # och `window.start` har ingen härledd övre ände. Den enda kandidat som ser härledd ut, senaste
     # mandatperiod, fyrar villkorsklausulen i ADR 0007 punkt 4 vid start 2023.
-    Source("A_component_mix", "range", (0.50, 0.80),
-           "a1 i (0,50, 0,80], a2 = 1 - a1. Nedre änden ur ADR 0001, som härleder att a1 väger "
-           "mer än a2. Övre änden ur R1 på a2: _span(0.4) ger a2 minst 0,20, alltså a1 högst "
-           "0,80. Ingen av ändarna är vald (ADR 0010 punkt 5).",
+    Source("A_component_mix", "range", _span(0.5),
+           f"{_R1}: a1 i [0,25, 0,75], a2 = 1 - a1. Spannet är R1 på det beslutade värdet 0,5 "
+           "(ADR 0015 punkt 5). Vid jämn blandning ger R1 samma spann sett från a2, så båda "
+           "ändarna faller ur samma regel och ingen av dem är vald (ADR 0010 punkt 5).",
            _set_component_mix),
     Source("B_coverage_mode", "choice", ("policy_type_count", "weighted_submeasure_depth"),
            f"{_BUILT}: de två lägen scorerun bygger.", _set_b("coverage_mode")),

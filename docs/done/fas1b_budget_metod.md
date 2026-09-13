@@ -1,7 +1,7 @@
 # Fas 1b — a1 budgetprioritering (delpoäng A)
 
 Metod för **a1**, budgetdelen av delpoäng A (faktiskt agerande). A väger 0,40 — den tyngsta
-delpoängen — och `A = 0,6·a1 + 0,4·a2` (vikter i [`config/scoring.yaml`](../../config/scoring.yaml)
+delpoängen — och `A = 0,5·a1 + 0,5·a2` (vikter i [`config/scoring.yaml`](../../config/scoring.yaml)
 `A_agerande.components`). a2 (motionsprioritering) byggdes i Fas 1; a1 var **medvetet uppskjuten**
 tills den kunde byggas utan att en bräcklig parser korrumperar A. Detta dokument beskriver hur a1
 nu byggts robust och gated.

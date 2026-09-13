@@ -82,7 +82,7 @@ skiljbarhet som andelen metodvarianter där två partiers ordning håller
 ## Status
 
 Hela pipelinen kör lokalt end-to-end (Fas 0–6 + b-faser). Datatäckningen är medvetet **avgränsad
-och loggad**: **A = 0,6·a1 + 0,4·a2** — a2 (motionsprioritering, andel av egna motioner) har full
+och loggad**: **A = 0,5·a1 + 0,5·a2** — a2 (motionsprioritering, andel av egna motioner) har full
 täckning, och **a1 (budgetprioritering) är nu byggd och gated**: partiernas föreslagna utgiftsramar
 per UO ur officiella källor (budget 2025, bet. 2024/25:FiU1; troget transkriberade, ingen runtime-
 parser; [metod](docs/done/fas1b_budget_metod.md)) — a1 vägs in bara när alla 8 partier har verifierad ram

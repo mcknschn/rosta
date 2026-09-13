@@ -20,7 +20,13 @@ granskningen spårbar och fokuserade den på de rader som faktiskt rör betygen.
 |-----|-----------------|------|----------------|
 | `config/party_positions.yaml` (130 ståndpunkter) | **B** | 35 % | [B_partistandpunkter.md](B_partistandpunkter.md) |
 | `config/evidence_ledger.yaml` (30 poster) | **B** | 35 % | [B_evidensliggare.md](B_evidensliggare.md) |
-| `config/budget_ramar.yaml` (a1) | **A** | 40 % (a1 = 0,6·A) | [A_budgetramar.md](A_budgetramar.md) |
+| `config/budget_ramar.yaml` (a1) | **A** | 40 % (a1 = 0,5·A) | [A_budgetramar.md](A_budgetramar.md) |
+
+> **Daterad not (2026-09-13, [ADR 0015](../../adr/0015-as-tva-kanaler-vager-lika.md) i biljett #43):**
+> delpoängvikterna i kolumnen ovan är de som gällde när paketet byggdes, alltså före ADR 0002.
+> A väger 0,30 och B 0,50 i dag. Bara a1:s andel av A är uppdaterad här, eftersom ADR 0015
+> flyttade den från 0,6 till 0,5. Tabellen skrivs i övrigt inte om: den är en beskrivning av ett
+> läge som gällde då.
 
 Allt under `docs/expertgranskning/` (utom denna README + [adversariell_verifiering.md](adversariell_verifiering.md))
 är **autogenererat** av `pipeline/tools/review_packet.py`. Regenerera efter varje configändring:

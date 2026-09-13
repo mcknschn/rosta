@@ -483,7 +483,7 @@ def _a_ceilings(
 
     Taket räknas ur förankringen med score.max_reachable_score och blandas med samma vikter
     som betyget självt, så en ändrad förankring och en ändrad blandning följer båda med. Står
-    a1 bär taket båda halvorna; faller a1 ur grinden vilar A på a2 ensam, och taket med den.
+    a1 bär taket båda kanalerna; faller a1 ur grinden vilar A på a2 ensam, och taket med den.
     """
     return {
         c: (w_a1 * score.max_reachable_score(a1_anchor[c])
@@ -899,12 +899,12 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
     #        gated — se budget.py), mot de beslutade utgiftsramarna i fönstret. a1 vägs in ENDAST
     #        för kategorier där grinden är uppfylld; annars faller A tillbaka på a2 helt
     #        (A_a2_only-flagga).
-    # Formen är densamma i båda halvorna: q = (andel - förankring) / (andel + förankring) i
+    # Formen är densamma i båda kanalerna: q = (andel - förankring) / (andel + förankring) i
     # [-1, 1], sedan score.net_support_to_score. Ingen normalisering och ingen vald konstant.
     #
-    # ADR 0007 punkt 1: TÄLJAREN täcker samma år som FÖRANKRINGEN, i båda halvorna. En kvot
+    # ADR 0007 punkt 1: TÄLJAREN täcker samma år som FÖRANKRINGEN, i båda kanalerna. En kvot
     # vars täljare och nämnare täcker olika år bär skillnaden mellan åren som om den vore en
-    # skillnad mellan partier. Halvorna har egna fönster (punkt 3), och båda prövas hårt här.
+    # skillnad mellan partier. Kanalerna har egna fönster (punkt 3), och båda prövas hårt här.
     a1_share, a1_active, a1_years = budget.a1_shares(cats, parties, ramar_cfg=budget_cfg)
     if a1_years and a1_years != anchor.a1_years():
         raise ValueError(
@@ -943,8 +943,8 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
     w_a2 = float(a_comp["a2_lagstiftningsprioritering"])
     a_by_cat: dict[str, dict[str, float]] = {}
     a_flag_by_cat: dict[str, str] = {}
-    # A:s TÄCKNING per kategori (ADR 0008 punkt 3): står a1 vilar A på båda halvorna och är
-    # helt täckt; faller a1 ur grinden vilar A på a2 ensam, och a2 väger 0,4 av A. Talet ÄRVER
+    # A:s TÄCKNING per kategori (ADR 0008 punkt 3): står a1 vilar A på båda kanalerna och är
+    # helt täckt; faller a1 ur grinden vilar A på a2 ensam, och a2 väger 0,5 av A. Talet ÄRVER
     # blandningen ur configen i stället för att sättas här, så en ändrad blandning följer med.
     a_cov_by_cat: dict[str, float] = {}
     for c in cats:
@@ -1265,7 +1265,7 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
                 "a1 budgetprioritering gated, aktiv för "
                 f"{len(a1_active)}/{len(cats)} kategorier ur officiella utgiftsramar, "
                 "annars a2-fallback; "
-                "A är ABSOLUT sedan ADR 0005: båda halvorna mäts mot en historisk "
+                "A är ABSOLUT sedan ADR 0005: båda kanalerna mäts mot en historisk "
                 "förankring, a1 mot de beslutade utgiftsramarna i bet. FiU1 och a2 mot "
                 "kammarens samtliga motioner, som "
                 "q=(andel-förankring)/(andel+förankring) avbildad med samma linjära "
@@ -1279,9 +1279,9 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
                 "som aldrig nås eftersom det skulle kräva en förankring på noll. "
                 + a_tak +
                 # ADR 0007 punkt 1 och 3: fönstren skrivs ut, och att de kan skilja sig.
-                "VILKA ÅR VARJE HALVA MÄTER (ADR 0007): täljaren täcker samma år som sin "
+                "VILKA ÅR VARJE KANAL MÄTER (ADR 0007): täljaren täcker samma år som sin "
                 f"förankring. a1 mäter {a1_window}{a1_signoff}. a2 mäter perioden "
-                f"{anchor.a2_period()[0]} till {anchor.a2_period()[1]}. Halvorna har egna "
+                f"{anchor.a2_period()[0]} till {anchor.a2_period()[1]}. Kanalerna har egna "
                 "fönster och kan hamna på olika tidsavsnitt, eftersom a1:s tillgänglighet "
                 "inte ska få kasta bort motionsår som är fullt giltiga. Fönstren faller ut "
                 "ur tre gränser som skrevs före hämtningen, och utfallet står i "
@@ -1356,7 +1356,7 @@ def main() -> None:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     con = warehouse.connect()
     # Ett tomt motionslager ger a2 = 0,00 åt varje parti i varje kategori, eftersom andelen 0
-    # mot en positiv förankring är kvoten -1. Det är en tyst nolla i den halva som väger 0,4 av
+    # mot en positiv förankring är kvoten -1. Det är en tyst nolla i den kanal som väger 0,5 av
     # A, och den skulle inte synas i något betyg. build() lämnas tillåtande, så att B- och
     # D-proven kan köra utan motionsrader, men den som SKRIVER dist/ måste ha dem.
     (n_motion,) = con.execute(

@@ -419,7 +419,7 @@ def _validate_scoring(sub_w: dict[str, Any], tolerance: float) -> None:
             "(tillåtna: policy_type_count, weighted_submeasure_depth)"
         )
 
-    # A normaliseras inte längre (ADR 0005): båda halvorna mäts mot en historisk förankring och
+    # A normaliseras inte längre (ADR 0005): båda kanalerna mäts mot en historisk förankring och
     # avbildas med score.net_support_to_score, samma avbildning som B. En kvarlämnad
     # normalization.per_subscore.A vore en config som beskriver ett beteende koden inte har, och
     # den regeln är hela skälet till att nyckeln en gång lästes här. Den ska alltså vara borta.

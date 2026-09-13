@@ -380,7 +380,9 @@ function buildMethod() {
        <li><b>A. Vad partiet driver (30 %).</b> Hur stor del av de pengar partiet vill anslå som går
          till kategorin. Vi räknar också hur stor del av partiets egna motioner som handlar om den.
          Båda talen jämförs med hur stor del kategorin brukat få i riksdagen sedan 2011. Ett parti
-         som lägger ungefär som vanligt hamnar därför mitt på skalan, inte högst eller lägst.</li>
+         som lägger ungefär som vanligt hamnar därför mitt på skalan, inte högst eller lägst.
+         Budgeten och motionerna väger lika tungt. Båda mäts mot sitt eget normalläge, och ingen
+         skillnad mellan dem ger ett sakligt skäl att väga den ena högre.</li>
        <li><b>B. Hur mycket åtgärderna brukar ge (50 %).</b> Officiell statistik och forskning får avgöra
          hur stor förbättring de åtgärder partiet driver brukar ge. En åtgärd med liten känd effekt
          ger färre poäng än en med stor.</li>

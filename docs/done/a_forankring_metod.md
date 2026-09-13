@@ -16,7 +16,9 @@ under ett historiskt fönster. För varje parti och kategori gäller
     delpoäng = score.net_support_to_score(q)
 
 `q` ligger i [-1, 1] av konstruktion och är 0 vid jämnhöjd. Ingen konstant väljs, och båda
-halvorna får samma form. Blandningen 0,6 x a1 + 0,4 x a2 står orörd.
+kanalerna får samma form. Blandningen är 0,5 x a1 + 0,5 x a2 sedan
+[ADR 0015](../adr/0015-as-tva-kanaler-vager-lika.md); när den här slicen byggdes stod den på
+0,6 x a1 + 0,4 x a2.
 
 ### 1.1 Golvet är nåbart, taket är det inte
 

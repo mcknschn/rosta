@@ -168,7 +168,7 @@ def test_a2_saknat_utskott_ar_hard_fail() -> None:
 
 
 def test_forankringarna_summerar_till_ett_over_kategorierna() -> None:
-    """Båda halvorna är andelar av samma helhet, så de kan jämföras med partiernas andelar."""
+    """Båda kanalerna är andelar av samma helhet, så de kan jämföras med partiernas andelar."""
     a1 = anchor.a1_anchor_shares(CATS, cfg=_cfg(), uo_map=UO_MAP)
     a2 = anchor.a2_anchor_shares(CATS, cfg=_cfg(), committee_map=COMMITTEES)
     assert sum(a2.values()) == pytest.approx(1.0)

@@ -50,7 +50,7 @@ def a1_years(cfg: Mapping[str, Any] | None = None) -> list[int]:
 
     Fönstret börjar vid den SENASTE av a1:s två gränser och slutar vid senaste färdiga år.
     Den första gränsen bär förankringen (FiU1 listar utgiftsområde 1-27), den andra täljaren
-    (alla åtta partier har en citerbar ram). Halvorna har egna fönster: a2 ska inte falla bara
+    (alla åtta partier har en citerbar ram). Kanalerna har egna fönster: a2 ska inte falla bara
     för att budgetkällan har en lucka (ADR 0007 punkt 3).
     """
     cfg = config.a_forankring() if cfg is None else cfg

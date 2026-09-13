@@ -1,6 +1,6 @@
 """Hämtar, prövar och transkriberar PARTIERNAS EGNA UTGIFTSRAMAR till a1 (ADR 0007).
 
-a1 är budgethalvan av delpoäng A. Täljaren är varje partis egen föreslagna ram per
+a1 är budgetkanalen i delpoäng A. Täljaren är varje partis egen föreslagna ram per
 utgiftsområde, förankringen är de beslutade ramarna över ett historiskt fönster. ADR 0007
 punkt 1 kräver att de två täcker samma år. Det här verktyget bygger täljaren för hela
 fönstret, ur samma FiU1-rambeslutstabell som förankringen redan läser.

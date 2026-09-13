@@ -27,7 +27,7 @@ def _weights() -> dict[str, float]:
 
 
 def _a_weights() -> tuple[float, float]:
-    """A:s blandning 0,6 a1 + 0,4 a2. Talet 40 i ADR 0008 punkt 3 ÄRVER den (ADR 0008 följder)."""
+    """A:s blandning 0,5 a1 + 0,5 a2. Talet i ADR 0008 punkt 3 ÄRVER den (ADR 0015 punkt 6)."""
     comp = config.scoring()["A_agerande"]["components"]
     return float(comp["a1_budgetprioritering"]), float(comp["a2_lagstiftningsprioritering"])
 

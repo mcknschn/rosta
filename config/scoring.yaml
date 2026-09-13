@@ -35,7 +35,7 @@ scale_semantics:
 # Nyckeln STYR C:s normalisering: scorerun.category_c läser den, och ett saknat eller felstavat
 # värde hard-failar i pipeline/config.py. Fram till 2026-08-21 hårdkodade koden rank medan
 # configen deklarerade den, alltså en config som beskrev ett beteende koden inte hade.
-# per_subscore.A är BORTTAGEN (ADR 0005 punkt 3): A:s båda halvor mäts mot en historisk
+# per_subscore.A är BORTTAGEN (ADR 0005 punkt 3): A:s båda kanaler mäts mot en historisk
 # förankring, q = (andel - förankring) / (andel + förankring), och avbildas med
 # net_support_to_score. En kvarlämnad nyckel hard-failar i pipeline/config.py.
 normalization:
@@ -45,8 +45,9 @@ normalization:
 
 # A - Prioritering (ADR 0001). A mäter omfattning, aldrig riktning och aldrig kvalitet.
 # Frågan är: hur stor andel av partiets föreslagna anslag och egna motioner går till
-# kategorin? a1 budgetprioritering väger 0,6 och a2 motionsprioritering 0,4. Båda är
-# riktningsneutrala andelar. Riktningen ligger i B, där voteringarna hör hemma.
+# kategorin? A mäts i två KANALER som väger lika, a1 budgetprioritering 0,5 och a2
+# motionsprioritering 0,5. Båda är riktningsneutrala andelar. Riktningen ligger i B, där
+# voteringarna hör hemma.
 # ADR 0005: andelen mäts mot en HISTORISK FÖRANKRING, inte mot de sju andra partierna. För
 # varje parti och kategori gäller q = (andel - förankring) / (andel + förankring), som ligger i
 # [-1, 1] av konstruktion och är 0 vid jämnhöjd; betyget blir net_support_to_score(q), samma
@@ -55,9 +56,15 @@ normalization:
 # samtliga motioner, båda som medel över ett gemensamt historiskt fönster.
 A_agerande:
   components:
-    a1_budgetprioritering: 0.6      # andel av föreslagna anslag till kategorins UO (Fas 1b)
-    a2_lagstiftningsprioritering: 0.4  # ANDEL av partiets egna motioner som rör kategorin
-  # Blandningen 0,6/0,4 står orörd efter ADR 0005 punkt 4. Båda halvorna får SAMMA form, för
+    a1_budgetprioritering: 0.5      # andel av föreslagna anslag till kategorins UO (Fas 1b)
+    a2_lagstiftningsprioritering: 0.5  # ANDEL av partiets egna motioner som rör kategorin
+  # Blandningen 0,5/0,5 är HÄRLEDD (ADR 0015 punkt 1) och inte vald. Kanalerna mäter en storhet:
+  # faller a1 ur grinden bär a2 hela A ensam. Båda mäts mot sin egen förankring med samma
+  # avbildning, så en poäng betyder samma sak i båda. Det enda nedskrivna skälet till en
+  # asymmetri, att a2 läser en restkanal för regeringspartier (ADR 0001), är prövat och fällt:
+  # restkanalen finns i volymen, och a2 mäter andel och inte volym. Då är 1:1 det enda tal som
+  # inte inför en konstant utöver vad storheten kräver. En vikt är aldrig instrumentet för
+  # tvivel; tvivel bärs av Säkerheten (ADR 0015 punkt 3). Båda kanalerna får SAMMA form, för
   # att blanda ett rangmått med ett kvotmått i en viktad summa vore ett formfel i sig.
   # a2 mäter andel (motioner i kategorins utskott / partiets totala motioner), INTE rå volym
   # -> stora partier blir inte höga i varje kategori.
@@ -65,7 +72,7 @@ A_agerande:
   # officiella källor (config/budget_ramar.yaml, version 0). HÅRD GRIND (pipeline/budget.py): a1 vägs
   # in för en (budgetår, kategori) endast när alla 8 partier har verifierad ram för varje kategori-UO;
   # annars A = a2 (flagga A_a2_only). Saknad/ogiltig cell -> hård fail, aldrig tyst 0. Se
-  # docs/done/fas1b_budget_metod.md. A = a1*0.6 + a2*0.4 där a1 aktiv, annars A = a2.
+  # docs/done/fas1b_budget_metod.md. A = a1*0.5 + a2*0.5 där a1 aktiv, annars A = a2.
   notes: Mäter prioritering relativt partiets storlek, inte om politiken är rätt. Rättheten fångas av B och D.
 
 # B — Evidens. Hur stor förbättring väntas av de åtgärder partiet driver?

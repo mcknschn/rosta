@@ -31,7 +31,7 @@ def _seed(period: str = _A2_PERIOD) -> object:
     return con
 
 
-# --- 1. Täljare och förankring täcker samma år, i båda halvorna ---------------------------
+# --- 1. Täljare och förankring täcker samma år, i båda kanalerna --------------------------
 
 def test_a1_taljaren_tacker_exakt_forankringens_ar() -> None:
     """Kravet i ADR 0007 punkt 1, prövat för varje parti och kategori genom kvotens år."""
@@ -138,7 +138,7 @@ def test_villkorsklausulen_tar_bort_a1_ur_A_nar_den_faller_ut() -> None:
         anchor.a1_years = original
     con.close()
 
-    # Täckningens A-halva faller från 0,30 till 0,30 x 0,4, alltså 0,18 i varje cell
+    # Täckningens A-del faller från 0,30 till 0,30 x 0,5, alltså 0,15 i varje cell
     # (ADR 0008 punkt 3). Talet härleds ur configen och skrivs inte av.
     vikter = config.scoring()
     tapp = (float(vikter["subscore_weights"]["A"])

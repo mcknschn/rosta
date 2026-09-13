@@ -39,7 +39,7 @@ def _mix() -> tuple[float, float]:
 
 
 def _hogst(forankring: float) -> float:
-    """Taket för en halva, skrivet ut ur ADR 0012 och inte lånat ur koden."""
+    """Taket för en kanal, skrivet ut ur ADR 0012 och inte lånat ur koden."""
     return 5.0 * ((1.0 - forankring) / (1.0 + forankring) + 1.0) / 2.0
 
 
@@ -83,13 +83,14 @@ def test_taket_sjunker_nar_forankringen_stiger() -> None:
     assert tak == sorted(tak, reverse=True), tak
 
 
-# --- 2. Taket per kategori blandar halvorna precis som betyget gör -------------------------
+# --- 2. Taket per kategori blandar kanalerna precis som betyget gör ------------------------
 
-def test_taket_per_kategori_blandar_halvorna_nar_a1_star() -> None:
+def test_taket_per_kategori_blandar_kanalerna_nar_a1_star() -> None:
+    """Vikterna läses ur configen, aldrig skrivna hit: en ändrad blandning ska följa med."""
     cats = config.category_ids()
     a1 = {c: 0.10 for c in cats}
     a2 = {c: 0.20 for c in cats}
-    w_a1, w_a2 = 0.6, 0.4
+    w_a1, w_a2 = _mix()
     tak = scorerun._a_ceilings(cats, a1, a2, set(cats), w_a1, w_a2)
     vantat = w_a1 * score.max_reachable_score(0.10) + w_a2 * score.max_reachable_score(0.20)
     for c in cats:
@@ -101,7 +102,7 @@ def test_taket_vilar_pa_a2_ensam_nar_a1_faller_ur_grinden() -> None:
     cats = config.category_ids()
     a1 = {c: 0.10 for c in cats}
     a2 = {c: 0.20 for c in cats}
-    tak = scorerun._a_ceilings(cats, a1, a2, set(), 0.6, 0.4)
+    tak = scorerun._a_ceilings(cats, a1, a2, set(), *_mix())
     for c in cats:
         assert tak[c] == pytest.approx(score.max_reachable_score(0.20)), c
 

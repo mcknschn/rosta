@@ -9,7 +9,7 @@ C väger 0 och ger inga poäng. Den räknas ut som förut och redovisas som makt
 
 Skalsemantik (se scoring.yaml): C är RELATIV (rangordnas över de 8 partierna). A, B och D är
 ABSOLUTA (net_support=0 -> 2.5 oberoende av andra partier). A blev absolut i ADR 0005: dess båda
-halvor mäts mot en historisk förankring med bounded_quotient och avbildas med
+kanaler mäts mot en historisk förankring med bounded_quotient och avbildas med
 net_support_to_score, samma avbildning som B.
 """
 
@@ -116,7 +116,7 @@ def net_support_to_score(net_support: float) -> float:
 
 
 def max_reachable_score(anchor: float) -> float:
-    """Högsta betyg en andel kan nå mot `anchor`, alltså halvans NÅBARA TAK (ADR 0012 punkt 4).
+    """Högsta betyg en andel kan nå mot `anchor`, alltså kanalens NÅBARA TAK (ADR 0012 punkt 4).
 
     Andelen är högst 1, alltså hela partiets kraft i en enda kategori. Kvoten når därför bara
     (1 - förankring) / (1 + förankring), och +1 kräver en förankring på noll, som inte finns.

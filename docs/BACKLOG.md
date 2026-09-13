@@ -260,7 +260,8 @@ företagande/investeringar samt hushållens disponibla inkomst → ekonomi 4/6 t
   (b) Röst*volym/deltagande* per kategori är agendadrivet (alla partier röstar på samma ärenden)
   → odifferentierande och redundant med a2 (motionsandel). Voteringsprovet behålls som **källa**
   (matar B/provenans), inte som egen A-komponent. Återöppnas bara om ett neutralt emfas-mått ur
-  röstdata identifieras som a2 inte redan fångar. A = 0,6·a1 + 0,4·a2 (oförändrat).
+  röstdata identifieras som a2 inte redan fångar. A = 0,5·a1 + 0,5·a2 (oförändrat av den här posten;
+  blandningen härleddes om i ADR 0015).
 
 ---
 

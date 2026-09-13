@@ -104,7 +104,7 @@ def test_b_coverage_shrink_av_ger_okrympt_b(monkeypatch: pytest.MonkeyPatch) -> 
 def test_a_normaliseringen_ar_borta_ur_configen() -> None:
     """A:s normalisering var det största reglaget i #20 och finns inte längre.
 
-    ADR 0005 gjorde A absolut: båda halvorna mäts mot en historisk förankring och avbildas med
+    ADR 0005 gjorde A absolut: båda kanalerna mäts mot en historisk förankring och avbildas med
     net_support_to_score. En kvarlämnad nyckel vore en config som beskriver ett beteende koden
     inte har, alltså exakt det fel ADR 0004 punkt 3 fällde.
     """
@@ -194,9 +194,9 @@ def test_alla_kallor_i_adr_0003_punkt_5_dras() -> None:
     """Reglagelistan täcker ADR 0003 punkt 5 plus effect_strength (biljett #20).
 
     A:s normalisering saknas med flit: ADR 0005 tog bort normaliseringen av A, så reglaget hade
-    inget att dra i (biljett #21). A_component_mix finns för att blandningen 0,6/0,4 är A:s
-    kvarvarande variationspunkt: koden läser A_agerande.components och tar emot vilket par som
-    helst utan ny kod (ADR 0010 punkt 4, biljett #32).
+    inget att dra i (biljett #21). A_component_mix finns för att blandningen mellan kanalerna är
+    A:s kvarvarande variationspunkt: koden läser A_agerande.components och tar emot vilket par
+    som helst utan ny kod (ADR 0010 punkt 4, biljett #32).
     """
     names = {s.name for s in robustness.SOURCES}
     assert names == {
@@ -212,16 +212,18 @@ def test_alla_kallor_i_adr_0003_punkt_5_dras() -> None:
 
 
 def test_a_component_mix_spannet_ar_last_mot_adr_0010_punkt_5() -> None:
-    """a1 i (0,50, 0,80] med a2 = 1 - a1. Båda ändarna är härledda, ingen är vald.
+    """a1 i [0,25, 0,75] med a2 = 1 - a1. Båda ändarna är härledda, ingen är vald.
 
-    Nedre änden ur ADR 0001, som härleder att a1 väger mer än a2; övre ur R1 på a2, som ger a2
-    minst 0,20. Posten rör betyget, alltså inte band_only. Dragningen skriver BÅDA nycklarna,
-    och bara nycklar configen redan äger: bara den ena vore ett par som inte summerar till 1,
-    och en främmande nyckel vore ett reglage som drar i tomhet.
+    Spannet är R1 på det beslutade värdet 0,5 (ADR 0015 punkt 5). Vid jämn blandning ger R1
+    samma spann sett från a2, så båda ändarna faller ur samma regel. Provet säger ingenting om
+    vilken kanal som väger mest: ADR 0015 punkt 2 fällde det påståendet. Posten rör betyget,
+    alltså inte band_only. Dragningen skriver BÅDA nycklarna, och bara nycklar configen redan
+    äger: bara den ena vore ett par som inte summerar till 1, och en främmande nyckel vore ett
+    reglage som drar i tomhet.
     """
     src = _source("A_component_mix")
     assert src.kind == "range"
-    assert src.spec == (0.50, 0.80)
+    assert src.spec == robustness._span(0.5) == (0.25, 0.75)
     assert not src.band_only
     sc = copy.deepcopy(config.scoring())
     orig_keys = set(sc["A_agerande"]["components"])
@@ -232,7 +234,6 @@ def test_a_component_mix_spannet_ar_last_mot_adr_0010_punkt_5() -> None:
         comps = sc["A_agerande"]["components"]
         assert set(comps) == orig_keys
         assert comps["a1_budgetprioritering"] == values["A_component_mix"]
-        assert comps["a1_budgetprioritering"] > comps["a2_lagstiftningsprioritering"]
         assert comps["a1_budgetprioritering"] + comps["a2_lagstiftningsprioritering"] == 1.0
     sc_full, _ = robustness.configs_for(values)   # hela vägen, en gång som i vikttestet
     assert sc_full["A_agerande"]["components"] == comps
@@ -440,6 +441,21 @@ def test_dist_robustness_validerar_och_har_last_seed() -> None:
     # Reglagelistan i dist ska vara kodens: en glömd omkörning ska falla rött, inte skickas.
     assert set(data["meta"]["sources"]) == {s.name for s in robustness.SOURCES}
     assert set(data["source_influence"]) == {s.name for s in robustness.SOURCES}
+
+
+@pytest.mark.skipif(
+    not (DIST_DIR / "robustness.json").exists(), reason="dist saknas; kör pipeline.robustness"
+)
+def test_dist_robustness_bar_kodens_motiveringar_ord_for_ord() -> None:
+    """Reglagens SPANN och SKÄL i dist ska vara kodens, inte bara deras namn.
+
+    Namnlistan ovan fångar ett tillagt eller struket reglage. Den fångar inte ett ändrat spann
+    eller ett ändrat skäl, och just det var hålet: ADR 0001:s fällda skäl för A_component_mix låg
+    publicerat i klartext i den här filen, och ADR 0015 krävde en omkörning för att få bort det.
+    Ett skäl är ett påstående om metoden, alltså ska en glömd omkörning falla rött här.
+    """
+    data = json.loads((DIST_DIR / "robustness.json").read_text(encoding="utf-8"))
+    assert data["meta"]["sources"] == robustness._source_meta()
 
 
 def test_c_normaliseringen_styrs_av_configen(monkeypatch: pytest.MonkeyPatch) -> None:
