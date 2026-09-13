@@ -7,9 +7,12 @@
 version: 1
 kodare: B-prim
 leverantor: OpenAI
-modell: 'Codex'
+modell: 'Codex, gpt-5.6-sol'
 uppdrag: delurval
-spar: "codex exec, 2 sessioner 22:05-22:07 under CODEX_HOME/sessions/2026/09/13"
+spar: "codex exec, 2 sessioner 2026-09-13 22:05-22:07, se sessioner nedan"
+sessioner:
+  - 01a09c60-1c42-7f12-b3a1-c64f524ec2e5
+  - 01a09c62-0056-7a51-acf2-bcf921c85482
 kodboksversion: 1
 kodningsdatum: 2026-09-13
 sag_andra_kodarens_svar: false

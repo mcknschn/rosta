@@ -715,9 +715,10 @@ def momentpar(a: dict[str, KodadUtsaga], b: dict[str, KodadUtsaga]) -> dict[str,
 # Kodarna och deras körningsspår. `spar` pekar på var körningen går att belägga utanför
 # repot. Codexkörningarna ligger som sessionsfiler under CODEX_HOME, på samma villkor som
 # valmanifestens PDF:er: de går att peka på men inte att versionshantera här.
-# BEGRÄNSNINGEN i klartext: ingen av spåren ligger i git, så godkännandetest 6 kan pröva
-# att två SKILDA kodningar finns, men inte vem som skrev dem. Leverantörsraden är en
-# uppgift från den som körde.
+# BEGRÄNSNINGEN i klartext: inget av spåren ligger i git. Godkännandetest 6 prövar att två
+# SKILDA kodningar finns, och att varje kodning pekar ut sitt spår. Att spåret finns går
+# att kontrollera på maskinen som körde, men inte ur repot. Anthropicsidan bär inga
+# sessions-id alls, eftersom subagentkörningarna inte ger några.
 KODARE = {
     "A": {
         "leverantor": "Anthropic",
@@ -727,9 +728,19 @@ KODARE = {
     },
     "B": {
         "leverantor": "OpenAI",
-        "modell": "Codex",
+        "modell": "Codex, gpt-5.6-sol",
         "uppdrag": "full",
-        "spar": "codex exec, 8 sessioner 21:52-22:03 under CODEX_HOME/sessions/2026/09/13",
+        "spar": "codex exec, 8 sessioner 2026-09-13 21:52-22:03, se sessioner nedan",
+        "sessioner": [
+            "01a09c53-b691-76b2-8b3b-c7a473c814fa",
+            "01a09c55-4071-7c42-a20d-feb4e0521c6f",
+            "01a09c56-8673-7dc3-8d08-92251fe4633a",
+            "01a09c58-3e9e-77e1-b614-836945b9a6a1",
+            "01a09c59-8f5d-7a42-bf24-ad1113f4cd14",
+            "01a09c5b-2de7-7003-829c-8c9422d7469e",
+            "01a09c5c-ce53-7d52-8372-d22cc0b1404f",
+            "01a09c5e-4c20-7300-83d9-c835effd08c0",
+        ],
     },
     "A-prim": {
         "leverantor": "Anthropic",
@@ -739,9 +750,13 @@ KODARE = {
     },
     "B-prim": {
         "leverantor": "OpenAI",
-        "modell": "Codex",
+        "modell": "Codex, gpt-5.6-sol",
         "uppdrag": "delurval",
-        "spar": "codex exec, 2 sessioner 22:05-22:07 under CODEX_HOME/sessions/2026/09/13",
+        "spar": "codex exec, 2 sessioner 2026-09-13 22:05-22:07, se sessioner nedan",
+        "sessioner": [
+            "01a09c60-1c42-7f12-b3a1-c64f524ec2e5",
+            "01a09c62-0056-7a51-acf2-bcf921c85482",
+        ],
     },
 }
 
@@ -789,6 +804,11 @@ def skriv_kodning(kallfiler: list[Path], kodare: str, ut: Path) -> tuple[Path, l
         f"modell: '{fakta['modell']}'",
         f"uppdrag: {fakta['uppdrag']}",
         f"spar: {_citat(fakta['spar'])}",
+        *(
+            ["sessioner:"] + [f"  - {s}" for s in fakta["sessioner"]]
+            if fakta.get("sessioner")
+            else ["sessioner: []"]
+        ),
         "kodboksversion: 1",
         "kodningsdatum: 2026-09-13",
         "sag_andra_kodarens_svar: false",

@@ -229,11 +229,19 @@ en nivå`. Provet är rättat och följer nu kodboken. Det första talet var en 
   Fältet är ifyllt för de 666 kandidaterna, som bär en sidmarkör i källfilen, men tomt för de 230
   mappade bakåtposterna och för alla 1 073 framåtposter. Källfilerna bär inget sidnummer för dem,
   så fältet går inte att fylla utan att läsa om PDF:erna. Det gissas inte.
-- **Godkännandetest 6 kan inte belägga vem som kodade.** Testet prövar att två skilda kodningar
-  finns, och de skiljer sig på 115 av 200 utsagor, alltså är de inte kopior av varandra. Vilken
-  leverantör som skrev vilken vilar däremot på uppgiften i `leverantor`-fältet och på
-  körningsspåret i `spar`. Codexkörningarna ligger som tio sessionsfiler under `CODEX_HOME`, på
-  samma villkor som valmanifestens PDF:er: de går att peka på men inte att versionshantera här.
+- **Godkännandetest 6 vilar delvis på ett spår utanför git.** Testet prövar tre saker. Att två
+  kodningar finns med skilda leverantörsfält. Att de faktiskt skiljer sig, vilket de gör på 115 av
+  200 utsagor, så den ena kan inte vara en kopia av den andra. Och att varje Codexkörning pekar ut
+  sitt sessions-id, som prövas mot sessionsfilen när den går att nå.
+
+  De tio Codexsessionerna ligger under `CODEX_HOME`, körda 21:52 till 22:07 den 2026-09-13, alltså
+  efter kodbokens commit 21:48 och före kodningens 22:13. Modellen som svarade är `gpt-5.6-sol`.
+  Sessions-id står i `kodning_b.yaml` och `kodning_b_prim.yaml`.
+
+  **Begränsningen skrivs ut:** sessionsfilerna ligger utanför git, på samma villkor som
+  valmanifestens PDF:er. Den som bara har repot kan pröva att två skilda kodningar finns, men inte
+  vem som skrev dem. Anthropicsidan bär inga sessions-id alls, eftersom subagentkörningarna inte
+  ger några. Av de tio godkännandetesterna är detta det enda vars belägg inte ligger i repot.
 
 ## 8. Två avsteg från specen, båda medvetna
 

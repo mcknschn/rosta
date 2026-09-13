@@ -10,6 +10,7 @@ leverantor: Anthropic
 modell: 'Claude Opus 5'
 uppdrag: delurval
 spar: "Claude Code-subagenter, 2 batchar, 2026-09-13"
+sessioner: []
 kodboksversion: 1
 kodningsdatum: 2026-09-13
 sag_andra_kodarens_svar: false

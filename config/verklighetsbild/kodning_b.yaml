@@ -7,9 +7,18 @@
 version: 1
 kodare: B
 leverantor: OpenAI
-modell: 'Codex'
+modell: 'Codex, gpt-5.6-sol'
 uppdrag: full
-spar: "codex exec, 8 sessioner 21:52-22:03 under CODEX_HOME/sessions/2026/09/13"
+spar: "codex exec, 8 sessioner 2026-09-13 21:52-22:03, se sessioner nedan"
+sessioner:
+  - 01a09c53-b691-76b2-8b3b-c7a473c814fa
+  - 01a09c55-4071-7c42-a20d-feb4e0521c6f
+  - 01a09c56-8673-7dc3-8d08-92251fe4633a
+  - 01a09c58-3e9e-77e1-b614-836945b9a6a1
+  - 01a09c59-8f5d-7a42-bf24-ad1113f4cd14
+  - 01a09c5b-2de7-7003-829c-8c9422d7469e
+  - 01a09c5c-ce53-7d52-8372-d22cc0b1404f
+  - 01a09c5e-4c20-7300-83d9-c835effd08c0
 kodboksversion: 1
 kodningsdatum: 2026-09-13
 sag_andra_kodarens_svar: false

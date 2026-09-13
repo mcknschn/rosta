@@ -17,6 +17,7 @@ och ingen regel nämner ett parti.
 
 from __future__ import annotations
 
+import os
 import re
 import subprocess
 from pathlib import Path
@@ -226,6 +227,31 @@ def test_6_varje_kodning_pekar_pa_sitt_korningsspar():
     for fil in _kodningsfiler():
         spar = _las(fil).get("spar")
         assert spar and spar.strip(), f"{fil.name} saknar korningsspar"
+
+
+def test_6_codexsessionerna_bar_det_material_de_pastar():
+    """Provar sparet dar det gar att na, alltsa pa maskinen som korde.
+
+    Sessionsfilerna ligger utanfor git, pa samma villkor som valmanifestens PDF:er.
+    Testet hoppar over nar CODEX_HOME saknas, och faller bara nar sparet finns men
+    inte bar det material kodningen sager sig komma ur.
+    """
+    hem = os.environ.get("CODEX_HOME")
+    if not hem or not (Path(hem) / "sessions").is_dir():
+        pytest.skip("CODEX_HOME saknas, sparet gar inte att na harifran")
+    filer = list((Path(hem) / "sessions").rglob("*.jsonl"))
+    provade = 0
+    for fil in _kodningsfiler():
+        dokument = _las(fil)
+        for sessions_id in dokument.get("sessioner") or []:
+            traff = [f for f in filer if sessions_id in f.name]
+            assert traff, f"{fil.name}: session {sessions_id} finns inte under CODEX_HOME"
+            text = traff[0].read_text(encoding="utf-8", errors="replace")
+            assert "Pilotkodbok f" in text, f"session {sessions_id} bar inte kodboken"
+            provade += 1
+    if not provade:
+        pytest.skip("ingen kodning bar sessions-id")
+    assert provade == 10, f"vantade 10 codexsessioner, hittade {provade}"
 
 
 def test_6_kodarna_fick_bara_kodboken_och_blinda_id():
