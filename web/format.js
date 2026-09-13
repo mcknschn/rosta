@@ -8,16 +8,20 @@ export function fmtNum(x, decimals = 2) {
 
 // Täckningen: hur stor del av cellens betyg som vilar på mätt underlag (ADR 0008). Talet
 // räknas i pipen och står som det är, utan tröskel och utan omdöme (ADR 0008 punkt 6).
+// Samma formatering bär kategorins MÄTTAK (ADR 0014), alltså det högsta tal täckningen kan
+// nå där. De två står på samma skala och ska därför se likadana ut.
 export function fmtCoverage(x) {
   if (x === null || x === undefined || Number.isNaN(Number(x))) return "-";
   return `${Math.round(Number(x) * 100)} %`;
 }
 
 // Flaggkolumnen visar bara det som INTE är täckning (ADR 0008 punkt 9). A_a1_active,
-// A_a2_only, B_coverage_* och D_coverage_* säger samma sak som täckningskolumnen, fast sämre.
+// A_a2_only, B_shrink_* och D_shrink_* säger samma sak som täckningskolumnen, fast sämre.
+// De två sista bar ordet coverage i namnet fram till ADR 0014, fast de bär KRYMPNINGENS
+// täljare och nämnare, som efter ADR 0011 är ett annat tal än täckningen.
 // Kvar står flaggorna som markerar något annat: en ej tillämplig del, ett tunt underlag,
 // en åtgärd i modellen eller en subnationell attribution.
-const COVERAGE_FLAGS = [/^A_a1_active$/, /^A_a2_only$/, /^B_coverage_/, /^D_coverage_/];
+const COVERAGE_FLAGS = [/^A_a1_active$/, /^A_a2_only$/, /^B_shrink_/, /^D_shrink_/];
 
 export function visibleFlags(flags) {
   return (flags || []).filter((f) => !COVERAGE_FLAGS.some((re) => re.test(f)));

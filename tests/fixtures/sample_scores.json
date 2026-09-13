@@ -6,7 +6,8 @@
     "model_version": 1
   },
   "categories": [
-    { "id": "ekonomi", "name": "Ekonomi och jobb", "submeasures": ["sysselsattning_arbetsloshet", "bnp_produktivitet"] }
+    { "id": "ekonomi", "name": "Ekonomi och jobb", "standard_weight": 20, "coverage_ceiling": 0.9,
+      "submeasures": ["sysselsattning_arbetsloshet", "bnp_produktivitet"] }
   ],
   "scores": {
     "M": {

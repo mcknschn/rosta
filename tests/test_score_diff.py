@@ -52,7 +52,7 @@ def test_diff_fangar_betyg_total_och_ranking() -> None:
 
 def test_diff_fangar_flaggandring() -> None:
     old = summarize(_scores(s_flags=["A_a1_active"]))
-    new = summarize(_scores(s_flags=["A_a2_only", "B_thin_coverage"]))
+    new = summarize(_scores(s_flags=["A_a2_only", "B_thin_party_coverage"]))
     changes = "\n".join(diff_snapshots(old, new))
     assert "FLAGGOR S/ekonomi" in changes
     assert "A_a2_only" in changes  # tillagd

@@ -17,18 +17,19 @@ from typing import Any
 
 from .. import config, score, warehouse
 from ..scorerun import (
-    _b_codable_types_by_submeasure,
+    _b_covered_submeasures,
+    _d_covered_submeasures,
     _d_denominator_submeasures,
     _non_excluded_submeasures,
 )
 
 NATIONAL = ("Riket", "0000")
 EVIDENCE_TARGET = 3  # ROADMAP T3.9: >=3 evidence_effect-poster per kategori
-# B5-spec §6.4: kategori vars viktade cov_B-TAK ligger under denna grindtröskel måste stå i
-# coverage_allowlist.b_thin_breadth_accepted med skäl (tests/test_b_breadth_gate.py). Samma
-# nivå som D-grinden (0.75) — taket är kategori-globalt och strängare än runtime-flaggans
-# per-parti-tröskel (B_evidens.thin_coverage_threshold 0.5 på cov_B).
-B_BREADTH_GATE_THRESHOLD = 0.75
+# B-breddsgrindens tröskel UTGICK 2026-09-13 (ADR 0014 punkt 9). Villkoret är nu att kategorin
+# har minst ett TOMT undermått, alltså ett utan kodbar åtgärdstyp, och registret
+# coverage_allowlist.b_thin_breadth_accepted listar exakt dem (tests/test_b_breadth_gate.py).
+# Skälet: en tröskel gömde ekonomi och trygghet, som båda bär ett tomt undermått men låg över
+# 0,75. En redovisad storhet får inte ha en tröskel (ADR 0003 punkt 3, ADR 0008 punkt 6).
 
 
 def _observed_series(con: Any) -> dict[tuple[str, str], dict[str, Any]]:
@@ -124,19 +125,20 @@ def d_submeasure_breadth() -> dict[str, Any]:
     inläst med D-duglig serie. Nämnaren = icke-uteslutna undermått (scorerun). Kategori-global
     översikt; scoringens numerator är per (parti, kategori) eftersom attribution kan saknas
     i korta serier.
+
+    Mängderna kommer ur scorerun (_d_covered_submeasures), alltså samma definition som
+    Mättaket räknas på i pipen. Två kopior av ett tal bör ha en källa och inte två
+    (ADR 0014 punkt 9).
     """
-    allow = {(e["category"], e["indicator"]) for e in config.coverage_allowlist()["allowlist"]}
     d_den = _d_denominator_submeasures()
+    d_cov = _d_covered_submeasures()
     thr = float(config.scoring()["D_resultat"].get("thin_coverage_threshold", 0.75))
     cats_out: list[dict[str, Any]] = []
     for cat in config.categories()["categories"]:
         cid = cat["id"]
         weights = {s["id"]: float(s["weight"]) for s in cat["submeasures"]}
         den = d_den[cid]
-        covered = {
-            ind["submeasure"] for ind in cat.get("indicators", [])
-            if ind.get("direction") in ("up", "down") and (cid, ind["id"]) not in allow
-        } & den
+        covered = d_cov[cid]
         total_w = sum(weights[s] for s in den)
         covered_w = sum(weights[s] for s in covered)
         ratio = covered_w / total_w if total_w else 0.0
@@ -161,28 +163,32 @@ def b_submeasure_breadth() -> dict[str, Any]:
     sänker taket permanent tills de byggs bort (Spår B/B2). Nämnaren = icke-uteslutna undermått
     (scorerun._non_excluded_submeasures, samma som D). Kategori-global översikt; scoringens
     cov_B är per (parti, kategori) och har dessutom djupledet |K_s|/|T_s|.
+
+    Mängderna kommer ur scorerun (_b_covered_submeasures), alltså samma definition som pipen
+    räknar Mättaket och kategoriflaggan på (ADR 0014 punkt 9).
+
+    INGEN TRÖSKEL (ADR 0014 punkt 9). Registergrinden läser `uncovered_submeasures`, alltså
+    om kategorin har minst ett TOMT undermått. Ett fast tal ruttnar tyst den dag en vägg byggs
+    bort, vilket är samma fel som tröskeln fast med en annan konstant.
     """
-    t_by_cat = _b_codable_types_by_submeasure()
     ej_uteslutna = _non_excluded_submeasures()
-    thr = B_BREADTH_GATE_THRESHOLD
+    b_cov = _b_covered_submeasures()
     cats_out: list[dict[str, Any]] = []
     for cat in config.categories()["categories"]:
         cid = cat["id"]
         weights = {s["id"]: float(s["weight"]) for s in cat["submeasures"]}
         den = ej_uteslutna[cid]
-        t_subs = t_by_cat.get(cid, {})
-        covered = {s for s in den if t_subs.get(s)}
+        covered = b_cov[cid]
         total_w = sum(weights[s] for s in den)
         covered_w = sum(weights[s] for s in covered)
-        ratio = covered_w / total_w if total_w else 0.0
         cats_out.append({
             "id": cid,
-            "covered_weight": covered_w, "total_weight": total_w, "ratio": ratio,
+            "covered_weight": covered_w, "total_weight": total_w,
+            "ratio": covered_w / total_w if total_w else 0.0,
             "covered_submeasures": sorted(covered),
             "uncovered_submeasures": sorted(den - covered),
-            "thin": ratio < thr,
         })
-    return {"threshold": thr, "categories": cats_out}
+    return {"categories": cats_out}
 
 
 def b_submeasure_spread() -> dict[str, Any]:
@@ -299,13 +305,12 @@ def main() -> None:
     # --- B-undermåttsbredd (B5): viktat cov_B-tak per kategori (krympningsnämnaren) ---
     bsb = b_submeasure_breadth()
     b_mode = config.scoring()["B_evidens"].get("coverage_mode", "policy_type_count")
-    print(f"\n== B-undermåttsbredd (coverage_mode: {b_mode},"
-          f" grindtröskel {bsb['threshold']}) ==")
+    print(f"\n== B-undermåttsbredd (coverage_mode: {b_mode}, ingen tröskel) ==")
     print("  Viktat cov_B-TAK per kategori (alla kodbara åtgärdstyper kodade; nämnare ="
-          " icke-uteslutna,\n  delad med D). ⚠ = tak under grindtröskeln"
-          " (b_thin_breadth_accepted, spec §6.4).\n")
+          " icke-uteslutna,\n  delad med D). ⚠ = minst ett tomt undermått, alltså en post i"
+          " b_thin_breadth_accepted\n  (ADR 0014 punkt 9).\n")
     for c in bsb["categories"]:
-        thin = "  ⚠ THIN" if c["thin"] else ""
+        thin = "  ⚠ TOMT UNDERMÅTT" if c["uncovered_submeasures"] else ""
         print(f"  {c['id']:12} {c['covered_weight']:>4g}/{c['total_weight']:<4g}"
               f"  {c['ratio']:.2f}{thin}")
         if c["uncovered_submeasures"]:

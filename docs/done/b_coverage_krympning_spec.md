@@ -246,6 +246,20 @@ eftersom `net_support_to_score` och krympningen är linjära (jfr D-spec §3.3).
 
 ### 3.4 Nämnaren: varför D:s icke-target-definition — och varför inte alternativen
 
+> **NOT 2026-09-13 ([ADR 0014](../adr/0014-mattaket-ar-modellens-inte-partiets.md) punkt 5-6,
+> biljett [#40](https://github.com/mcknschn/rosta/issues/40)):** meningen nedan om att undermått
+> utan indikatorer ingår i nämnaren gäller inte längre utan villkor. Ett undermått bär sedan
+> ADR 0014 minst en indikator ELLER ett eget Uteslutningsskäl med återöppningsvillkor, prövat i
+> ADR 0011:s tre steg. Ett uteslutet undermått ryker ur nämnaren; ett undermått som bara står
+> TOMT ligger kvar, eftersom det är vår tystnad och inte partiets. Exemplet i punkt 1,
+> `industriell_konkurrenskraft`, är sedan 2026-09-13 uteslutet på `neutralitetsfel` och ligger
+> alltså UTANFÖR: klimats nämnare föll från 100 till 85. B-väggarna i punkt 1 ligger kvar precis
+> som texten säger, och taket de sätter heter numera **Mättak** när det räknas på Täckningens
+> nämnare. Samma form som ADR 0011 gav ADR 0008 punkt 5.
+>
+> Tröskeln i B-breddgrinden (§6.4) utgick samtidigt. Registret listar exakt de kategorier som
+> har minst ett tomt undermått, och talen räknas i pipen i stället för i skältexterna.
+
 Frågan "vilka undermått är B-bara?" måste avgöras maskinellt. Kandidater:
 
 1. **Icke-target-undermått ur `categories.yaml` (= D:s nämnare). REKOMMENDERAS.**

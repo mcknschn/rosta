@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import json
 import sys
+from collections.abc import Mapping
 from datetime import date, timedelta
 from typing import NamedTuple
 
@@ -328,9 +329,14 @@ def _non_excluded_submeasures() -> dict[str, set[str]]:
     """kategori -> icke-uteslutna undermått: KRYMPNINGENS nämnare, som B och D DELAR
     (spec docs/done/d_coverage_krympning_spec.md §3.1 / docs/done/b_coverage_krympning_spec.md §3.4).
 
-    Uteslutet undermått = undermåttet har minst en indikator OCH alla dess indikatorer bär
-    ett Uteslutningsskäl (ADR 0011). Undermått UTAN indikatorer är inte uteslutna — de är en
-    del av kategorianspråket och ingår i nämnaren (t.ex. klimats industriell_konkurrenskraft).
+    Ett undermått ligger utanför nämnaren på ETT av två sätt, aldrig båda (ADR 0014 punkt 5):
+      - det bär sitt EGET Uteslutningsskäl, alltså står tomt av ett prövat skäl, eller
+      - det har minst en indikator OCH alla dess indikatorer bär ett skäl (ADR 0011).
+
+    Ett undermått som bara är TOMT ligger kvar. Det är VÅR tystnad och inte partiets, och
+    krympningen räknar den rätt: full vikt i nämnaren, noll i täljaren, alltså 2,5 för den
+    delen (ADR 0014 punkt 2). Skillnaden mot en uteslutning är att vi där VÄGRAR poängsätta,
+    medan vi här bara inte vet.
 
     Det här är INTE täckningens nämnare. Krympningen mot neutral betyder "vet ej", och den
     behåller sin nämnare (ADR 0011 punkt 9). Täckningen räknas på kategorins FULLA
@@ -341,7 +347,11 @@ def _non_excluded_submeasures() -> dict[str, set[str]]:
         excl: dict[str, list[bool]] = {s["id"]: [] for s in cat["submeasures"]}
         for ind in cat.get("indicators", []):
             excl[ind["submeasure"]].append("exclusion" in ind)
-        out[cat["id"]] = {sid for sid, es in excl.items() if not (es and all(es))}
+        eget_skal = {s["id"] for s in cat["submeasures"] if "exclusion" in s}
+        out[cat["id"]] = {
+            sid for sid, es in excl.items()
+            if sid not in eget_skal and not (es and all(es))
+        }
     return out
 
 
@@ -363,6 +373,102 @@ def _coverage_denominators() -> dict[str, float]:
     uteslutet undermått är inte "vet ej" utan "går inte att fråga" (ADR 0011 punkt 9).
     """
     return {c: sum(w.values()) for c, w in _submeasure_weights().items()}
+
+
+def _b_covered_submeasures() -> dict[str, set[str]]:
+    """kategori -> undermått inom krympningens nämnare med minst en KODBAR åtgärdstyp.
+
+    Mängden är B:s tak uttryckt i undermått: ett undermått utan kodbar typ (T_s tom, alltså
+    en B-vägg) kan aldrig bidra till någon cells täljare, hur mycket ett parti än kodar.
+    Resten av modellen läser mängden i stället för att räkna om den: Mättaket i
+    _coverage_ceilings, kategoriflaggan i _b_shrink_ceilings och registergrinden i
+    pipeline.tools.coverage_report. Pipen äger talet (ADR 0014 punkt 9).
+    """
+    t_by_cat = _b_codable_types_by_submeasure()
+    return {
+        c: {s for s in den if t_by_cat.get(c, {}).get(s)}
+        for c, den in _non_excluded_submeasures().items()
+    }
+
+
+def _d_covered_submeasures() -> dict[str, set[str]]:
+    """kategori -> undermått inom krympningens nämnare med minst en D-DUGLIG indikator.
+
+    Offline-härledning ur configen, alltså samma som pipeline.tools.coverage_report en gång
+    gjorde för sig: ett undermått är D-dugligt om det har minst en up/down-indikator som inte
+    är coverage-allowlistad. Fas 3-gatens invariant (tests/test_fas3_gate: inläst ELLER
+    allowlistad, aldrig båda) gör att en sådan indikator faktiskt är inläst.
+
+    Mängden är ett TAK och inte en mätning: om en attribution uteblir för ett enskilt parti
+    ligger undermåttet ändå kvar här, eftersom taket säger vad modellen kan veta och inte vad
+    ett parti råkar ha underlag för.
+    """
+    allow = {(e["category"], e["indicator"]) for e in config.coverage_allowlist()["allowlist"]}
+    namnare = _non_excluded_submeasures()
+    out: dict[str, set[str]] = {}
+    for cat in config.categories()["categories"]:
+        den = namnare[cat["id"]]
+        out[cat["id"]] = {
+            ind["submeasure"] for ind in cat.get("indicators", [])
+            if ind.get("direction") in ("up", "down")
+            and (cat["id"], ind["id"]) not in allow
+        } & den
+    return out
+
+
+def _b_shrink_ceilings() -> dict[str, float]:
+    """kategori -> B:s tak på KRYMPNINGENS skala, alltså talet cov_B aldrig kan överstiga.
+
+    Talet är internt och namnlöst (ADR 0014 punkt 4). Bara kategoriflaggan i ADR 0014 punkt 7
+    jämför det mot en tröskel, och den tröskeln (B_evidens.thin_coverage_threshold) hör till
+    just den här skalan: cellens egen cov_B räknas på samma nämnare. Mättaket är en annan
+    storhet på en annan nämnare och heter något annat, se _coverage_ceilings.
+    """
+    sub_w = _submeasure_weights()
+    tackbara = _b_covered_submeasures()
+    out: dict[str, float] = {}
+    for c, den in _non_excluded_submeasures().items():
+        total = sum(sub_w[c][s] for s in den)
+        out[c] = (sum(sub_w[c][s] for s in tackbara[c]) / total) if total else 0.0
+    return out
+
+
+def _coverage_ceilings(
+    a_ceiling_by_cat: Mapping[str, float], b_mode: str = "weighted_submeasure_depth"
+) -> dict[str, float]:
+    """kategori -> MÄTTAKET, alltså det högsta tal Täckning kan anta (ADR 0014 punkt 4).
+
+    Blandas med ADR 0008 punkt 5:s vikter genom score.cell_coverage, så vikterna kommer ur
+    config/scoring.yaml och skrivs aldrig om för hand. De tre taken:
+      - A:s tak är redan en kategorikonstant: 1,00 när a1 står, annars a2:s vikt ensam.
+      - B:s tak är den täckbara undermåttsvikten över TÄCKNINGENS nämnare.
+      - D:s tak är den D-dugliga undermåttsvikten över samma nämnare.
+
+    B:s tak FÖLJER LÄGET. I legacy-läget policy_type_count räknar cellens täckning kodade
+    åtgärdstyper och känner inga undermåttsvikter, så varje kodbar typ går att koda och
+    taket är 1,00. Ett undermåttsviktat tak vore då inget tak alls: det skulle ligga UNDER
+    tal cellerna faktiskt når, och godkännandetest 4 skulle falla. Legacy-grenen körs skarpt,
+    eftersom pipeline.robustness drar B_coverage_mode som reglage i varje känslighetskörning.
+
+    Talet står en gång per kategori och aldrig på cellen: det är samma tal för alla åtta
+    partier, och 56 kopior av sju tal är sju tal för mycket.
+
+    Utan taket ser locket ut att sitta på partiet. Demokratis B kan aldrig bli högre än 3,63
+    hur bra demokratipolitik ett parti än driver, och det är modellens tystnad och inte
+    partiets (ADR 0014 punkt 3).
+    """
+    sub_w = _submeasure_weights()
+    cov_den = _coverage_denominators()
+    b_cov = _b_covered_submeasures()
+    d_cov = _d_covered_submeasures()
+    viktat_b = b_mode == "weighted_submeasure_depth"
+    out: dict[str, float] = {}
+    for c, a in a_ceiling_by_cat.items():
+        den = cov_den.get(c, 0.0)
+        b = (sum(sub_w[c][s] for s in b_cov[c]) / den if den else 0.0) if viktat_b else 1.0
+        d = sum(sub_w[c][s] for s in d_cov[c]) / den if den else 0.0
+        out[c] = score.cell_coverage(a, b, d)
+    return out
 
 
 def _a_ceilings(
@@ -415,7 +521,8 @@ def _exclusion_sentence() -> str:
     indikator namnges med sitt eget skäl.
     """
     excluded = config.excluded_indicators()
-    if not excluded:
+    egna = config.excluded_submeasures()
+    if not excluded and not egna:
         return ""
     n_ind = sum(len(c.get("indicators", [])) for c in config.categories()["categories"])
     # Vilka undermått som faktiskt förlorar sin täckning: de vars VARJE indikator är utesluten.
@@ -423,9 +530,28 @@ def _exclusion_sentence() -> str:
     sub_w = _submeasure_weights()
     kvar = _non_excluded_submeasures()
     helt = sorted(
-        f"{c}/{s}" for c, w in sub_w.items() for s in w if s not in kvar[c]
+        f"{c}/{s}" for c, w in sub_w.items() for s in w
+        if s not in kvar[c] and (c, s) not in egna
     )
     utesluten_lista = ", ".join(helt) if helt else "inget undermått i dag"
+    # Ett undermått som bär sitt EGET skäl står för sig (ADR 0014 punkt 5). Att blanda in det
+    # i meningen ovan skulle säga att dess indikatorer är uteslutna, och det har inga.
+    egen_mening = ""
+    if egna:
+        egen_poster = "; ".join(
+            f"{c}/{s} ({r}, alltså {config.EXCLUSION_REASONS[r]})"
+            for (c, s), r in sorted(egna.items())
+        )
+        egen_mening = (
+            "UTESLUTNA UNDERMÅTT (ADR 0014 punkt 5): ett undermått bär minst en indikator "
+            "eller ett eget uteslutningsskäl, prövat i samma tre steg och med samma krav på "
+            f"återöppningsvillkor. Uteslutet är {egen_poster}. Det räknas likaså 0 täckt på "
+            "kategorins fulla vikt och ryker ur krympningens nämnare. Ett undermått som bara "
+            "står TOMT utesluts inte: det är vår tystnad och inte partiets, och krympningen "
+            "räknar den som vet ej (ADR 0014 punkt 2). "
+        )
+    if not excluded:
+        return egen_mening
     poster = "; ".join(
         f"{cat}/{ind} ({reason}, alltså {config.EXCLUSION_REASONS[reason]})"
         for (cat, ind), reason in sorted(excluded.items())
@@ -440,7 +566,7 @@ def _exclusion_sentence() -> str:
         "som förut, alltså ekonomisk_ambition i forsvar. Ekonomins redovisade täckning är därför "
         "lägre än före 2026-08-26, utan att något underlag blivit sämre. Krympningen mot "
         "neutral behåller sin egen nämnare, så inget betyg rör sig. Varje utesluten indikator "
-        "bär ett återöppningsvillkor i config/categories.yaml. "
+        "bär ett återöppningsvillkor i config/categories.yaml. " + egen_mening
     )
 
 
@@ -467,14 +593,24 @@ def _b_codable_types_by_submeasure() -> dict[str, dict[str, set[str]]]:
     return out
 
 
-def _b_coverage_flag(covered_weight: float, total_weight: float) -> str:
-    """B_coverage-flaggan i nya moden — formatet är LÅST (B5-spec §4).
+# Flaggnamnen (ADR 0014 punkt 7-8). De två B_shrink/D_shrink-flaggorna bär KRYMPNINGENS
+# täljare och nämnare, alltså kvoten betyget krymps med, aldrig Täckningen. Orden byttes i
+# ADR 0014, eftersom de två talen slutade vara samma i ADR 0011 och namnet "coverage" därmed
+# sade fel sak om det ena. De två tunn-flaggorna delar ett gammalt namn i två besked:
+# kategorins tak under tröskeln är MODELLENS tystnad, partiets egen täckning under tröskeln
+# är partiets. De är ömsesidigt uteslutande, så säkerheten sänks ett steg och aldrig två.
+B_THIN_CATEGORY = "B_thin_category_ceiling"
+B_THIN_PARTY = "B_thin_party_coverage"
+
+
+def _b_shrink_flag(covered_weight: float, total_weight: float) -> str:
+    """B:s krympningsflagga i nya moden. Formatet är LÅST (B5-spec §4, omdöpt av ADR 0014).
 
     covered_weight kan bli icke-heltal pga |K_s|/|T_s|-bråken och avrundas till 1 decimal;
     :g skriver heltal utan decimal (86.666… -> '86.7', 73.0 -> '73', aldrig '73.0').
     total_weight är alltid heltal ur categories.yaml.
     """
-    return f"B_coverage_{round(covered_weight, 1):g}/{total_weight:g}"
+    return f"B_shrink_{round(covered_weight, 1):g}/{total_weight:g}"
 
 
 class DCell(NamedTuple):
@@ -901,6 +1037,8 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
     b_codable = _b_codable_types_by_submeasure()  # kategori -> {undermått -> T_s}
     b_shrink_den = _non_excluded_submeasures()    # delad B/D-nämnare för KRYMPNINGEN
     cov_den_w = _coverage_denominators()          # kategorins FULLA vikt: TÄCKNINGENS nämnare
+    b_shrink_tak = _b_shrink_ceilings()           # kategorins tak PÅ KRYMPNINGENS skala
+    mattak = _coverage_ceilings(a_cov_by_cat, b_mode)  # kategorins MÄTTAK (ADR 0014 punkt 4)
 
     # Claims (provenance för evidence.json) + index. Sorteras på id så provenansen (claim_refs,
     # särskilt obs_by_cat[:3]-urvalet) blir REPRODUCERBAR — claims byggs annars i hash-randomiserad
@@ -935,7 +1073,8 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
                     t_by_sub, sub_w.get(c, {}), b_shrink_den.get(c, ()),
                 )
                 coverage = covered_w / total_w if total_w else 0.0
-                cov_flag = _b_coverage_flag(covered_w, total_w)
+                cov_flag = _b_shrink_flag(covered_w, total_w)
+                cat_ceiling = b_shrink_tak[c]
                 # ... men B:s TÄCKNING står på kategorins FULLA vikt (ADR 0011 punkt 9): ett
                 # uteslutet undermått räknas 0 täckt i stället för att strykas ur nämnaren.
                 # Krympningen ovan behåller sin nämnare, så betyget rör sig inte.
@@ -944,9 +1083,13 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
                 den = len(cov_den.get(c, ()))
                 num = len(cov_num.get((p, c), ()))
                 coverage = (num / den) if den else 0.0
-                cov_flag = f"B_coverage_{num}/{den}"
+                cov_flag = f"B_shrink_{num}/{den}"
                 # Legacy räknar åtgärdstyper och känner inga undermåttsvikter, alltså inga
-                # uteslutna undermått heller. Täckningen följer med dit, som förut.
+                # uteslutna undermått heller. Täckningen följer med dit, som förut. Taket är
+                # 1,00 av samma skäl: varje kodbar typ GÅR att koda, alltså finns ingen
+                # strukturell vägg att skylla på och tunn täckning är alltid partiets. Samma
+                # tal står i Mättaket för läget, se _coverage_ceilings.
+                cat_ceiling = 1.0
                 b_cov_measured = coverage
             b_flags: list[str] = []
             if b_inputs and coverage > 0:
@@ -960,16 +1103,28 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
                 b_flags.append(cov_flag)
                 thin = coverage < thin_cov
                 if thin:
-                    b_flags.append("B_thin_coverage")  # beskriver täckningen, inte säkerheten
+                    # Vems är locket? Ligger KATEGORINS tak under tröskeln kan inget parti nå
+                    # över den, alltså mäter tröskeln modellen och inte partiet (ADR 0014
+                    # punkt 7). Först när taket räcker säger ett tunt tal något om partiet.
+                    # Exakt en av flaggorna sätts, så säkerheten sänks ett steg och bandet
+                    # står still i varje cell.
+                    # Villkoret är strikt mindre än, alltså hamnar ett tak som ligger PÅ
+                    # tröskeln hos partiet. Det gäller välfärd och försvar, båda 0,50: taket
+                    # räcker precis, och ett parti måste koda varenda kodbar typ för att nå
+                    # upp. Gränsfallet är ADR:ns bokstav och står här för att det är snävt.
+                    b_flags.append(
+                        B_THIN_CATEGORY if cat_ceiling < thin_cov else B_THIN_PARTY
+                    )
                 # conf_cat: samma undermåttsvikter och samma nämnare som B_raw.
                 conf_cat = score.submeasure_weighted_mean(
                     b_conf_in.get((p, c), {}), b_weights
                 ) or 0.0
                 b_conf = _b_confidence(conf_cat, b_n_claims.get((p, c), 0), thin)
                 # B:s TÄCKNING (ADR 0008 punkt 5, ändrad av ADR 0011 punkt 9). Talet är INTE
-                # längre samma som B_coverage-flaggan bär: flaggan visar krympningens täljare
-                # och nämnare, medan täckningen står på kategorins fulla undermåttsvikt. Den
-                # identiteten skrevs när det bara fanns en nämnare, och upphörde här.
+                # samma som B_shrink-flaggan bär: flaggan visar krympningens täljare och
+                # nämnare, medan täckningen står på kategorins fulla undermåttsvikt. Den
+                # identiteten skrevs när det bara fanns en nämnare, och upphörde här. Att
+                # flaggan hette B_coverage ända fram till ADR 0014 var resten av det felet.
                 b_cov = b_cov_measured
             else:
                 b_val, b_conf = b_missing, b_missing_conf
@@ -990,7 +1145,7 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
                     # ansvarsunderlag (thin_basis) och tunn bredd (thin_coverage) är
                     # ortogonala. Legacy-grenen (shrink av) förblir byte-identisk.
                     flags.append(
-                        f"D_coverage_{d_cell.covered_weight:g}/{d_cell.total_weight:g}"
+                        f"D_shrink_{d_cell.covered_weight:g}/{d_cell.total_weight:g}"
                     )
                     if d_cell.thin_coverage:
                         flags.append("D_thin_coverage")
@@ -1022,8 +1177,12 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
             cs["evidence_refs"] = []
             scores[p][c] = cs
 
+    # MÄTTAKET står här, en gång per kategori (ADR 0014 punkt 4). Talet är en
+    # kategorikonstant: samma för alla åtta partier, alltså hör det till kategorin och
+    # aldrig till cellen.
     catinfo = [
         {"id": c["id"], "name": c["name"], "standard_weight": c["standard_weight"],
+         "coverage_ceiling": mattak[c["id"]],
          "submeasures": [s["id"] for s in c["submeasures"]]}
         for c in config.categories()["categories"]
     ]
@@ -1094,7 +1253,11 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
                          "mäts med officiella årsserier. Vem som haft makten räknas både "
                          "nationellt och i regioner och kommuner, men det ger inga poäng och "
                          "visas bara som upplysning. Där underlaget är tunt drar vi betyget mot "
-                         "mitten i stället för att gissa."),
+                         "mitten i stället för att gissa. Ofta är det VÅRT underlag som är "
+                         "tunt och inte partiets: i varje kategori finns ett tak för hur stor "
+                         "del av betyget som alls går att mäta i dag, och det taket är samma "
+                         "för alla partier. Ett lågt tal betyder alltså oftare att vi saknar "
+                         "mått än att partiet saknar politik."),
             "coverage_technical": (
                 "Preliminär: formel 0,30 A + 0,50 B + 0,20 D, C=0 (ADR 0002). "
                 "A=prioritering, alltså omfattning och aldrig riktning (ADR 0001): "
@@ -1144,8 +1307,19 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
                 f"för ALLA 7 kategorier via {n_positions_feeding_b} av {n_positions} "
                 "källbelagda, adversariellt verifierade + panel-harmoniserade "
                 "partiståndpunkter (riksdagsvotering/motion, Fas 4c); B krymps mot neutral "
-                "efter viktad undermåttsdjuptäckning "
-                "(B_thin_coverage-flagga vid tunn täckning). B mäter VÄNTAD STORLEK och "
+                "efter viktad undermåttsdjuptäckning. "
+                # ADR 0014 punkt 3 och 7: vems är locket? Utan det beskedet läser en granskare
+                # ett lågt tal som ett omdöme om partiet.
+                "MÄTTAK (ADR 0014): varje kategori bär i categories[] det HÖGSTA tal "
+                "Täckning kan anta där, blandat med samma delpoängvikter som Täckningen "
+                "själv. Talet är en KATEGORIKONSTANT och lika för alla åtta partier: det "
+                "säger vad modellen kan mäta, aldrig vad partiet driver. Ligger kategorins "
+                "tak under tröskeln kan inget parti nå över den, och cellen bär "
+                f"{B_THIN_CATEGORY} i stället för {B_THIN_PARTY}; den senare sätts först "
+                "när taket räcker och partiet ändå täcker tunt. Exakt en av dem sätts, så "
+                "säkerheten sänks ett steg och aldrig två. Krympningens egen täljare och "
+                "nämnare står i B_shrink-flaggan och är en ANNAN nämnare än Täckningens "
+                "(ADR 0011 punkt 9). B mäter VÄNTAD STORLEK och "
                 "inte riktning (ADR 0004): net_support är ett kvalitetsviktat medel av "
                 "storlekar med tecken, Σ(q·m)/Σq med q=evidence_level×confidence och "
                 "m=effect_strength×tecken(riktning), så ett ensamt claim ger sin egen "

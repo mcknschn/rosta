@@ -262,6 +262,7 @@ Låst 2026-08-23 av [ADR 0008](../adr/0008-cellens-tackning.md) (biljett #12 und
 | Storhet | Frågan den ställer | Var den bor |
 |---|---|---|
 | **Täckning** | Hur stor del av cellens betyg vilar på mätt underlag? | Ett tal per (parti, kategori) i `scores.json`, vägt `0,30 x A + 0,50 x B + 0,20 x D` |
+| **Mättak** | Hur stor del går det ALLS att mäta i kategorin? | Ett tal per kategori i `scores.json` (`categories[].coverage_ceiling`), vägt med samma vikter |
 | **Säkerhet** | Hur säkert är det som är mätt? | En nivå per delpoäng (`high`/`medium`/`low`), hopvägd till bandets halvbredd |
 
 **Täckning och Säkerhet är två storheter, inte en.** En fullt täckt cell kan vila på svag evidens,
@@ -274,6 +275,24 @@ ADR 0008 gör det till kategorinivåns hopvägning av samma sak.
 pålitlig, medan storheten mäter hur stor del som är mätt. Det är två skilda påståenden, och att
 blanda dem vore samma fel som *träffsäkerhet* gjorde för B. Bygge:
 [#29](https://github.com/mcknschn/rosta/issues/29).
+
+**Mättaket är modellens, inte partiets.** Låst 2026-09-13 av
+[ADR 0014](../adr/0014-mattaket-ar-modellens-inte-partiets.md) (biljett #39), byggt i
+[#40](https://github.com/mcknschn/rosta/issues/40). Mättak är det högsta tal Täckning kan anta i en
+kategori, blandat med samma delpoängvikter som Täckningen själv. Talet är en **kategorikonstant**:
+samma för alla åtta partier, alltså står det en gång per kategori och aldrig på cellen. Utan det ser
+locket ut att sitta på partiet: demokratis B kan aldrig nå lika högt som trygghets, hur bra
+demokratipolitik ett parti än driver, och den skillnaden säger ingenting om partierna. Ingen cells
+Täckning överstiger sitt Mättak. *(Mätt 2026-09-13 i ADR 0014: demokratis B-tak 3,63 mot trygghets
+4,63, och sex av sju kategorier hade ett parti exakt på Mättaket. Talen är den mätningens, inte
+ordlistans: de räknas i pipen och står i `dist/scores.json`.)*
+
+*Retirerad synonym:* flaggan `B_coverage` → **B_shrink**, och `D_coverage` → **D_shrink**. De bär
+KRYMPNINGENS täljare och nämnare, som efter [ADR 0011](../adr/0011-uteslutningen-ar-ett-eget-besked.md)
+punkt 9 är ett annat tal än Täckningen. Ordet lovade alltså fel storhet. Flaggan `B_thin_coverage`
+delades samtidigt i `B_thin_category_ceiling` (kategorins tak ligger under tröskeln, alltså modellens
+tystnad) och `B_thin_party_coverage` (taket räcker, partiet täcker ändå tunt). Exakt en av dem sätts,
+så säkerheten sänks ett steg och bandet står still.
 
 **Säkerheten mäter hur väl talet är känt, aldrig vad talet säger.** Låst 2026-08-26 av
 [ADR 0009](../adr/0009-sakerheten-mater-hur-val-talet-ar-kant.md) (biljett #30). En delpoäng vars

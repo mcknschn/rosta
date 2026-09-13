@@ -17,7 +17,7 @@ import pytest
 from pipeline import DIST_DIR, ROOT, config, score, scorerun, warehouse
 from pipeline.sources import government
 
-# Flaggan B_coverage/D_coverage avrundar den täckta vikten till en decimal, så (a, b, d)
+# Flaggan B_shrink/D_shrink avrundar den täckta vikten till en decimal, så (a, b, d)
 # läst tillbaka ur den kan skilja sig från den oavrundade i tredje decimalen.
 _FLAGGTOLERANS = 0.002
 
@@ -49,7 +49,7 @@ def _coverage_denominators() -> dict[str, float]:
 
 
 def _d_flag_emitted() -> bool:
-    """D_coverage-flaggan skrivs bara när D-breddskrympningen är på (scorerun.build).
+    """D_shrink-flaggan skrivs bara när D-breddskrympningen är på (scorerun.build).
 
     Utan flaggan går d inte att läsa tillbaka ur utdatan, och efterräkningen nedan skulle
     falla på FLAGGAN och skylla på formeln. Läget avgör alltså om testet kan köras, aldrig
@@ -75,7 +75,7 @@ def _parts_from_flags(
     a = w_a1 + w_a2 if "A_a1_active" in flags else w_a2
     b = d = 0.0
     for f in flags:
-        m = re.fullmatch(r"(B|D)_coverage_([\d.]+)/([\d.]+)", f)
+        m = re.fullmatch(r"(B|D)_shrink_([\d.]+)/([\d.]+)", f)
         if not m:
             continue
         tackt = float(m.group(2))
@@ -135,14 +135,21 @@ def test_tackningens_namnare_ar_kategorins_fulla_undermattsvikt() -> None:
 
 
 def test_krympningens_namnare_star_still() -> None:
-    """B:s och D:s krympning mot neutral behåller sin egen nämnare: ekonomi 73, övriga 100.
+    """B:s och D:s krympning mot neutral behåller sin egen nämnare: ekonomi 73, klimat 85,
+    övriga 100.
 
     Krympningen betyder "vet ej", och ett uteslutet undermått är inte "vet ej" utan "går
     inte att fråga". Att flytta DEN här nämnaren skulle flytta betygen (ADR 0011 punkt 9).
+
+    Klimat föll från 100 till 85 i ADR 0014 punkt 6, när industriell_konkurrenskraft
+    uteslöts på neutralitetsfel. Det är samma regel ett steg upp, alltså undermåttet i
+    stället för indikatorn, och betyget rör sig därför EN gång. Ett undermått som bara står
+    tomt ligger kvar i nämnaren, se tests/test_mattak.py.
     """
     den = _shrink_denominators()
     assert den["ekonomi"] == 73
-    ovriga = {c: v for c, v in den.items() if c != "ekonomi"}
+    assert den["klimat"] == 85
+    ovriga = {c: v for c, v in den.items() if c not in ("ekonomi", "klimat")}
     assert set(ovriga.values()) == {100}
 
 
@@ -193,7 +200,7 @@ def test_pipen_ger_ej_tillamplig_d_noll_tackning_med_orord_namnare() -> None:
             assert cell["coverage"] == pytest.approx(vantad, abs=_FLAGGTOLERANS), f"{p}/{c}"
             # Flaggan bär krympningens nämnare, och den krymper aldrig för att D saknas.
             for f in flaggor:
-                m = re.fullmatch(r"B_coverage_[\d.]+/([\d.]+)", f)
+                m = re.fullmatch(r"B_shrink_[\d.]+/([\d.]+)", f)
                 if m:
                     assert float(m.group(1)) == shrink_den[c], f"{p}/{c}"
             # Renormalisering över A och B skulle ge ett HÖGRE tal. Den grinden ska bita.
@@ -221,7 +228,7 @@ def test_tackningen_ror_aldrig_betyget() -> None:
 def test_varje_cell_i_dist_bar_talet_och_det_stammer_mot_flaggorna() -> None:
     """Den byggda artefakten räknas efter mot sina egna flaggor, cell för cell."""
     if not _d_flag_emitted():
-        pytest.skip("D_coverage-flaggan skrivs inte i det här läget; d går inte att läsa tillbaka")
+        pytest.skip("D_shrink-flaggan skrivs inte i det här läget; d går inte att läsa tillbaka")
     data = json.loads((DIST_DIR / "scores.json").read_text(encoding="utf-8"))
     w = _weights()
     w_a1, w_a2 = _a_weights()
@@ -277,5 +284,5 @@ def test_flaggkolumnen_gar_genom_filtret() -> None:
         "flaggkolumnen renderar råa flaggor igen; täckningsflaggorna slipper då tillbaka"
     )
     format_js = _web("format.js")
-    for flagga in ("A_a1_active", "A_a2_only", "B_coverage_", "D_coverage_"):
+    for flagga in ("A_a1_active", "A_a2_only", "B_shrink_", "D_shrink_"):
         assert flagga in format_js, f"{flagga} saknas i täckningsfiltret"

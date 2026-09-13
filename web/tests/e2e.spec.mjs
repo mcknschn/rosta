@@ -108,7 +108,7 @@ test("täckningskolumnen ersätter täckningsflaggorna i detaljtabellen (ADR 000
   // De tre täckningsflaggorna är borta ur flaggkolumnen, resten står kvar.
   const flaggor = (await detail.locator("tbody .tag").allTextContents());
   for (const f of flaggor) {
-    expect(f).not.toMatch(/^A_a1_active$|^A_a2_only$|^B_coverage_|^D_coverage_/);
+    expect(f).not.toMatch(/^A_a1_active$|^A_a2_only$|^B_shrink_|^D_shrink_/);
   }
 });
 

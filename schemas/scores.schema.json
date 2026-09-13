@@ -37,10 +37,18 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["id"],
+        "additionalProperties": false,
+        "required": ["id", "coverage_ceiling"],
         "properties": {
           "id": { "type": "string" },
           "name": { "type": "string" },
+          "standard_weight": { "type": "number", "minimum": 0, "maximum": 100 },
+          "coverage_ceiling": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Mättak: det högsta tal Täckning kan anta i kategorin (ADR 0014). Blandat med samma delpoängvikter som Täckningen. En kategorikonstant, alltså samma tal för alla partier: locket sitter på modellen och inte på partiet. Ingen cells coverage överstiger det."
+          },
           "submeasures": { "type": "array", "items": { "type": "string" } }
         }
       }

@@ -91,17 +91,21 @@ B_evidens:
   # Coverage-viktning (Fas 4b'): B_just = 2.5 + (B_raw - 2.5) * coverage, där
   # coverage = kodade åtgärdstyper / kategorins kodbara åtgärdstyper. Frånvaro av ståndpunkt =
   # "vet ej" och drar B mot neutral (straffar ej, belönar ej tom täckning); ett ensamt
-  # supports-claim ger alltså inte längre maxbetyg. Tunn täckning -> B_thin_coverage-flagga och
-  # ett steg ned i säkerhet; flaggan beskriver täckningen, inte säkerheten.
+  # supports-claim ger alltså inte längre maxbetyg. Tunn täckning -> flagga och ett steg ned i
+  # säkerhet; flaggan beskriver täckningen, inte säkerheten. Sedan ADR 0014 punkt 7 finns TVÅ
+  # flaggor, och tröskeln nedan avgör vilken: ligger KATEGORINS tak under den kan inget parti
+  # nå över, alltså B_thin_category_ceiling (modellens tystnad); räcker taket men partiets egen
+  # täckning ligger under, B_thin_party_coverage (partiets). Exakt en sätts, så säkerheten
+  # sänks ett steg och aldrig två.
   # B5 — täckningsmått-läge (docs/done/b_coverage_krympning_spec.md). Två lägen:
   #   policy_type_count:         legacy (byte-identisk baseline). coverage = kodade åtgärdstyper /
   #                              kategorins kodbara åtgärdstyper (ANTAL; nämnaren = liggarens
   #                              innehåll, undermått utan kodbart instrument osynliga). Flagga:
-  #                              B_coverage_<num>/<den> (antal).
+  #                              B_shrink_<num>/<den> (antal).
   #   weighted_submeasure_depth: viktad undermåttsdjuptäckning (spec §3.3). cov_B =
   #                              Σ w_s·|K_s|/|T_s| / Σ w_s över kategorins icke-uteslutna undermått
   #                              (SAMMA nämnare som D, _non_excluded_submeasures); B-väggar stannar
-  #                              i nämnaren med bidrag 0. Flagga: B_coverage_<covered_weight>/
+  #                              i nämnaren med bidrag 0. Flagga: B_shrink_<covered_weight>/
   #                              <total_weight> (LÅST format, spec §4). thin_coverage_threshold
   #                              mäts då på cov_B.
   # OBS: switch till weighted_submeasure_depth kräver mänsklig sign-off av spec §10 —
@@ -117,6 +121,9 @@ B_evidens:
   # Nämnaren gäller KRYMPNINGEN. Täckningen står sedan ADR 0011 punkt 9 på kategorins FULLA
   # undermåttsvikt, alltså ett annat tal (scorerun._coverage_denominators).
   coverage_denominator: non_excluded_submeasure_weight  # krympningens nämnare (samma som D)
+  # Tröskeln mäts på KRYMPNINGENS skala, alltså på cov_B och på kategorins tak räknat över
+  # samma nämnare (ADR 0014 punkt 4: det taket är internt och namnlöst). Mättaket på
+  # categories[] står på TÄCKNINGENS nämnare och jämförs aldrig mot en tröskel.
   thin_coverage_threshold: 0.5
   # Åtgärdstyper som lyfts ur coverage-nämnaren. GENERALISERAD regel (docs/done/fas4c_rubrik.md §7):
   # en policy_type får exkluderas ENDAST på en principiell grund, som måste anges i

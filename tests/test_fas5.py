@@ -9,6 +9,11 @@ from pipeline.sources import government
 # perioden ur configen i stället för att skriva av den, så provet följer med om den ändras.
 _A2_PERIOD = "/".join(anchor.a2_period())
 
+# Cellens B vilar på tunt eller inget underlag: antingen saknas partievidens helt, eller så
+# ligger täckningen under tröskeln. Sedan ADR 0014 punkt 7 säger två flaggor det senare, och
+# skillnaden mellan dem (modellens tystnad eller partiets) rör inte proven här.
+_TUNN_ELLER_TOM = {"B_no_party_evidence", scorerun.B_THIN_CATEGORY, scorerun.B_THIN_PARTY}
+
 
 def _seed_con():
     con = warehouse.connect(":memory:")
@@ -41,7 +46,7 @@ def test_scorerun_build_is_schema_valid_and_complete() -> None:
             # (ADR 0004). Utan ståndpunkter är den låg per config.
             if "B_no_party_evidence" in v["flags"]:
                 assert v["confidence"]["B"] == "low"
-            elif "B_thin_coverage" in v["flags"]:
+            elif {scorerun.B_THIN_CATEGORY, scorerun.B_THIN_PARTY} & set(v["flags"]):
                 assert v["confidence"]["B"] in {"medium", "low"}  # steget ned utesluter high
             else:
                 assert v["confidence"]["B"] in {"high", "medium", "low"}
@@ -49,7 +54,7 @@ def test_scorerun_build_is_schema_valid_and_complete() -> None:
 
 
 def test_b_sakerhet_foljer_inte_langre_tackningsflaggan() -> None:
-    """ADR 0004 diagnos punkt 3: B:s etikett följde B_thin_coverage i 56 av 56 celler, alltså
+    """ADR 0004 diagnos punkt 3: B:s etikett följde tunn-flaggan i 56 av 56 celler, alltså
     läste den aldrig evidensen. Testet låser att etiketten INTE är en funktion av flaggan.
 
     Vittnet bytte form 2026-08-23 (#26, ADR 0006). Fram till dess var vittnet en cell med GOD
@@ -64,7 +69,7 @@ def test_b_sakerhet_foljer_inte_langre_tackningsflaggan() -> None:
     con.close()
     god_tackning = [
         v["confidence"]["B"] for _p, cats in sc.items() for _c, v in cats.items()
-        if not {"B_no_party_evidence", "B_thin_coverage"} & set(v["flags"])
+        if not _TUNN_ELLER_TOM & set(v["flags"])
     ]
     assert len(set(god_tackning)) > 1, (
         "B:s säkerhet är konstant över alla väl täckta celler — etiketten läser inte evidensen "
@@ -83,7 +88,7 @@ def test_lag_b_sakerhet_kraver_tunn_tackning_efter_symmetriska_grinden() -> None
     lackor = [
         (p, c) for p, cats in sc.items() for c, v in cats.items()
         if v["confidence"]["B"] == "low"
-        and not {"B_no_party_evidence", "B_thin_coverage"} & set(v["flags"])
+        and not _TUNN_ELLER_TOM & set(v["flags"])
     ]
     assert not lackor, f"låg B-säkerhet utan tunn täckning — grinden läcker: {lackor}"
 
@@ -155,7 +160,7 @@ def test_scorerun_d_attribution_credits_governing_party() -> None:
     # D_thin_coverage + säkerhet sänkt ett steg (medium -> low). Se test_d_breadth_gate.
     assert s_eco["components"]["D"] > 2.5
     assert "D_not_applicable" not in s_eco["flags"]
-    assert "D_coverage_22/73" in s_eco["flags"]
+    assert "D_shrink_22/73" in s_eco["flags"]
     assert "D_thin_coverage" in s_eco["flags"]
     assert s_eco["confidence"]["D"] == "low"
     # V satt aldrig i regering -> D ej tillämplig (neutral 2.5, flaggad, låg säkerhet).

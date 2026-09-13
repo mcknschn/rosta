@@ -214,6 +214,12 @@ def test_tackningens_namnare_ar_kategorins_fulla_undermattsvikt() -> None:
 
 
 def test_de_tva_namnarna_ar_skilda_dar_ett_undermatt_ar_uteslutet() -> None:
+    """De två nämnarna skiljer sig med exakt de uteslutna undermåttens vikt.
+
+    Ekonomi bär två undermått vars INDIKATORER alla är uteslutna (ADR 0011), klimat ett
+    undermått som bär sitt EGET skäl (ADR 0014 punkt 6). De två vägarna ut är olika, och
+    utfallet är detsamma: vikten lämnar krympningens nämnare och räknas 0 täckt i Täckningen.
+    """
     sub_w = scorerun._submeasure_weights()
     shrink = scorerun._non_excluded_submeasures()
     cov = scorerun._coverage_denominators()
@@ -221,8 +227,8 @@ def test_de_tva_namnarna_ar_skilda_dar_ett_undermatt_ar_uteslutet() -> None:
         krympt = sum(sub_w[c][s] for s in kvar)
         utesluten_vikt = cov[c] - krympt
         assert utesluten_vikt >= 0
-        # Ekonomi är den enda kategorin där alla indikatorer i ett undermått är uteslutna.
-        assert (utesluten_vikt > 0) == (c == "ekonomi"), c
+        assert (utesluten_vikt > 0) == (c in ("ekonomi", "klimat")), c
+    assert cov["klimat"] - sum(sub_w["klimat"][s] for s in shrink["klimat"]) == 15
 
 
 # --- metodrutan namnger de uteslutna och skälen (ADR 0011 punkt 10) ------------

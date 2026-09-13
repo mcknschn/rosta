@@ -203,6 +203,9 @@ def validate(tolerance: float = 1e-6) -> None:
         wsum = sum(s["weight"] for s in c["submeasures"])
         if abs(wsum - 100) > tolerance:
             raise ConfigError(f"Submåttsvikterna i '{c['id']}' summerar till {wsum}, inte 100")
+        med_indikator = {ind.get("submeasure") for ind in c.get("indicators", [])}
+        for s in c["submeasures"]:
+            _validate_submeasure_exclusion(c["id"], s, s["id"] in med_indikator)
         for ind in c.get("indicators", []):
             _require(
                 {"id", "submeasure"} <= ind.keys(),
@@ -274,6 +277,59 @@ def _validate_indicator_direction(cat_id: str, ind: dict[str, Any]) -> None:
             f"Utesluten indikator {ref} saknar reopen_if, alltså återöppningsvillkoret "
             "(ADR 0011 punkt 8)"
         )
+
+
+def _validate_submeasure_exclusion(cat_id: str, sub: dict[str, Any], har_indikator: bool) -> None:
+    """Ett undermått bär minst en indikator eller ett Uteslutningsskäl (ADR 0014 punkt 5).
+
+    Det är _validate_indicator_direction ett steg upp, med samma tre prov i samma ordning
+    och samma krav på återöppningsvillkor. Utan regeln kan ett undermått stå tomt utan att
+    någon behöver säga varför, och då bär krympningens nämnare full vikt för ett anspråk
+    ingen prövat.
+
+    Ett undermått vars indikatorer ALLA är uteslutna bär inget eget skäl: det bär en
+    indikator, och ADR 0011 fäller det ett steg ned. Två skäl för samma fall vore ADR 0011
+    punkt 11:s egen varning en gång till, alltså fälls kombinationen här.
+    """
+    ref = f"{cat_id}/{sub.get('id', '?')}"
+    har_exc = "exclusion" in sub
+    if har_indikator and har_exc:
+        raise ConfigError(
+            f"Undermått {ref} bär både indikatorer och exclusion (ADR 0014 punkt 5: aldrig "
+            "båda: ett undermått vars indikatorer alla är uteslutna bär inget eget skäl)"
+        )
+    if not har_indikator and not har_exc:
+        raise ConfigError(
+            f"Undermått {ref} saknar både indikator och exclusion (ADR 0014 punkt 5: aldrig "
+            "ingetdera)"
+        )
+    if not har_exc:
+        return
+    if sub["exclusion"] not in VALID_EXCLUSIONS:
+        raise ConfigError(
+            f"Ogiltigt uteslutningsskäl '{sub['exclusion']}' i undermått {ref} "
+            f"(tillåtna: {', '.join(sorted(VALID_EXCLUSIONS))})"
+        )
+    if not str(sub.get("reopen_if", "")).strip():
+        raise ConfigError(
+            f"Uteslutet undermått {ref} saknar reopen_if, alltså återöppningsvillkoret "
+            "(ADR 0011 punkt 8)"
+        )
+
+
+def excluded_submeasures() -> dict[tuple[str, str], str]:
+    """(kategori, undermått) -> Uteslutningsskäl. Enda källan till vad som är uteslutet.
+
+    Skild från excluded_indicators: här står undermått som bär sitt EGET skäl (ADR 0014
+    punkt 5). Ett undermått vars indikatorer alla är uteslutna står inte här, eftersom det
+    faller på ADR 0011 i stället.
+    """
+    return {
+        (cat["id"], sub["id"]): sub["exclusion"]
+        for cat in categories()["categories"]
+        for sub in cat["submeasures"]
+        if "exclusion" in sub
+    }
 
 
 def excluded_indicators() -> dict[tuple[str, str], str]:

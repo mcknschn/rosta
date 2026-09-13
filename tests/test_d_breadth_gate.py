@@ -33,10 +33,21 @@ def test_d_denominator_excludes_fully_excluded_submeasures() -> None:
     assert "ekonomisk_ambition" in den["forsvar"]
 
 
-def test_d_denominator_keeps_indicatorless_submeasure() -> None:
-    # undermått utan indikatorer är inte uteslutna per automatik — de är en del av
-    # kategorianspråket och ska dra mot neutral tills en indikator byggs
-    assert "industriell_konkurrenskraft" in scorerun._d_denominator_submeasures()["klimat"]
+def test_d_denominator_faller_bara_pa_ett_uteslutningsskal() -> None:
+    """Nämnaren rör sig när ett undermått UTESLUTS, aldrig av att det bara står tomt.
+
+    klimats industriell_konkurrenskraft låg kvar i nämnaren så länge den var indikatorlös
+    UTAN skäl. ADR 0014 punkt 6 gav den ett eget skäl, neutralitetsfel, och då föll den ur.
+    Skillnaden är hela poängen: tomt betyder "vi vet inte" och krymper mot neutral, uteslutet
+    betyder "vi vägrar poängsätta" och lämnar nämnaren (ADR 0014 punkt 2).
+    """
+    den = scorerun._d_denominator_submeasures()
+    assert "industriell_konkurrenskraft" not in den["klimat"]
+    assert ("klimat", "industriell_konkurrenskraft") in config.excluded_submeasures()
+    # Ett undermått utan kodbar åtgärdstyp men utan skäl ligger kvar: demokrati bär tre.
+    tomma = (scorerun._non_excluded_submeasures()["demokrati"]
+             - scorerun._b_covered_submeasures()["demokrati"])
+    assert tomma
 
 
 # --- grind: tunn D-bredd passerar aldrig tyst (allowlist-mönstret) --------------------
@@ -138,7 +149,7 @@ def test_coverage_shrink_krymper_d_och_flaggar(monkeypatch: pytest.MonkeyPatch) 
     _shrink_on(monkeypatch)
     shrunk = scorerun.build(con)["scores"]["scores"]["S"]["ekonomi"]
     # ekonomi-nämnare = 73 (22+18+18+15; de helt uteslutna undermåtten exkluderade), täckt = 22
-    assert "D_coverage_22/73" in shrunk["flags"]
+    assert "D_shrink_22/73" in shrunk["flags"]
     assert "D_thin_coverage" in shrunk["flags"]      # 22/73 ≈ 0.30 < 0.75
     assert "D_thin_basis" not in shrunk["flags"]     # ansvarsunderlaget (7 helår) är inte tunt
     assert shrunk["confidence"]["D"] == "low"        # medium -1 steg (endast thin_coverage)
@@ -169,8 +180,8 @@ def test_coverage_ar_per_parti(monkeypatch: pytest.MonkeyPatch) -> None:
                      _obs("arbetsloshet", "sysselsattning_arbetsloshet", ARBETSLOSHET)
                      + _obs("bnp_per_capita", "bnp_produktivitet", BNP, unit="index"))
     sc = scorerun.build(con)["scores"]["scores"]
-    assert "D_coverage_40/73" in sc["S"]["ekonomi"]["flags"]   # 22 + 18 täckta
-    assert "D_coverage_18/73" in sc["M"]["ekonomi"]["flags"]   # bara bnp_produktivitet
+    assert "D_shrink_40/73" in sc["S"]["ekonomi"]["flags"]   # 22 + 18 täckta
+    assert "D_shrink_18/73" in sc["M"]["ekonomi"]["flags"]   # bara bnp_produktivitet
     con.close()
 
 

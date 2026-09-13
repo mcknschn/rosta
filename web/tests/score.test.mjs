@@ -157,7 +157,7 @@ test("fmtCoverage: talet visas i procent, utan tröskel och utan omdöme", () =>
 test("visibleFlags: de tre täckningsflaggorna utgår ur flaggkolumnen", () => {
   // Talet i täckningskolumnen säger samma sak som de här flaggorna, fast bättre.
   const kvar = visibleFlags([
-    "A_a1_active", "A_a2_only", "B_coverage_86.7/100", "D_coverage_73/100",
+    "A_a1_active", "A_a2_only", "B_shrink_86.7/100", "D_shrink_73/100",
   ]);
   assert.deepEqual(kvar, []);
 });
@@ -166,12 +166,12 @@ test("visibleFlags: allt som inte är täckning står orört", () => {
   // Tröskelflaggorna stannar kvar trots att de går att härleda ur talet: de markerar en
   // ÅTGÄRD i modellen, inte bara ett faktum (ADR 0008 punkt 9).
   const flaggor = [
-    "B_coverage_86.7/100", "B_thin_coverage", "A_a1_active", "D_coverage_73/100",
+    "B_shrink_86.7/100", "B_thin_party_coverage", "A_a1_active", "D_shrink_73/100",
     "D_thin_coverage", "D_thin_basis", "D_not_applicable", "B_no_party_evidence",
     "C_national_only_by_design", "D_subnational_region_0.81",
   ];
   assert.deepEqual(visibleFlags(flaggor), [
-    "B_thin_coverage", "D_thin_coverage", "D_thin_basis", "D_not_applicable",
+    "B_thin_party_coverage", "D_thin_coverage", "D_thin_basis", "D_not_applicable",
     "B_no_party_evidence", "C_national_only_by_design", "D_subnational_region_0.81",
   ]);
 });

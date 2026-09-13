@@ -1,6 +1,7 @@
 {
   "categories": [
     {
+      "coverage_ceiling": 0.721,
       "id": "ekonomi",
       "name": "Ekonomi och jobb",
       "standard_weight": 20,
@@ -14,6 +15,7 @@
       ]
     },
     {
+      "coverage_ceiling": 0.71,
       "id": "valfard",
       "name": "Välfärd",
       "standard_weight": 20,
@@ -25,6 +27,7 @@
       ]
     },
     {
+      "coverage_ceiling": 0.895,
       "id": "trygghet",
       "name": "Lag och trygghet",
       "standard_weight": 15,
@@ -37,6 +40,7 @@
       ]
     },
     {
+      "coverage_ceiling": 0.7,
       "id": "forsvar",
       "name": "Försvar och beredskap",
       "standard_weight": 15,
@@ -49,6 +53,7 @@
       ]
     },
     {
+      "coverage_ceiling": 0.82,
       "id": "klimat",
       "name": "Klimat, miljö och energi",
       "standard_weight": 12.5,
@@ -61,6 +66,7 @@
       ]
     },
     {
+      "coverage_ceiling": 0.825,
       "id": "integration",
       "name": "Integration och social sammanhållning",
       "standard_weight": 10,
@@ -73,6 +79,7 @@
       ]
     },
     {
+      "coverage_ceiling": 0.725,
       "id": "demokrati",
       "name": "Frihet, demokrati och institutioner",
       "standard_weight": 7.5,
@@ -86,10 +93,10 @@
     }
   ],
   "meta": {
-    "coverage": "Underlaget i den här versionen: alla 7 kategorier har betyg i alla tre delar som räknas. Partiernas ståndpunkter bygger på 184 av 269 belagda röster och motioner i riksdagen; resten rör åtgärder där det saknas en officiell utvärdering som är stark nog. Hur det gick mäts med officiella årsserier. Vem som haft makten räknas både nationellt och i regioner och kommuner, men det ger inga poäng och visas bara som upplysning. Där underlaget är tunt drar vi betyget mot mitten i stället för att gissa.",
-    "coverage_technical": "Preliminär: formel 0,30 A + 0,50 B + 0,20 D, C=0 (ADR 0002). A=prioritering, alltså omfattning och aldrig riktning (ADR 0001): a2 motionsprioritering, andel av egna motioner, full; a1 budgetprioritering gated, aktiv för 7/7 kategorier ur officiella utgiftsramar, annars a2-fallback; A är ABSOLUT sedan ADR 0005: båda halvorna mäts mot en historisk förankring, a1 mot de beslutade utgiftsramarna i bet. FiU1 och a2 mot kammarens samtliga motioner, som q=(andel-förankring)/(andel+förankring) avbildad med samma linjära skala som B; A rangordnas alltså inte längre över de åtta partierna, så ett parti som lägger ungefär som normen får ett betyg nära mitten; VAD EN POÄNG I A BETYDER: avbildningen är symmetrisk i log, så en fördubblad andel mot förankringen ger 0,83 poäng och en halverad ger 0,83 mindre; jämnhöjd med förankringen ger 2,50. Skalan går från 0,00, som betyder att partiet inte lägger något alls på kategorin, mot 5,00, som aldrig nås eftersom det skulle kräva en förankring på noll. Taket är därför inte detsamma i alla kategorier: ett parti som la hela sin kraft på en enda kategori når valfard 3,76, ekonomi 3,91, integration 4,64, forsvar 4,64, demokrati 4,68, klimat 4,69, trygghet 4,70. Golvet 0,00 är däremot nåbart överallt. Snedheten följer förankringens storlek och är en deklarerad kostnad (ADR 0012 punkt 4). Den jämnas inte ut, eftersom varje utjämning kräver en vald konstant per kategori. VILKA ÅR VARJE HALVA MÄTER (ADR 0007): täljaren täcker samma år som sin förankring. a1 mäter budgetåren 2011-2025 (15 år), alla expertgranskade med mänsklig sign-off. a2 mäter perioden 2011-01-01 till 2025-12-31. Halvorna har egna fönster och kan hamna på olika tidsavsnitt, eftersom a1:s tillgänglighet inte ska få kasta bort motionsår som är fullt giltiga. Fönstren faller ut ur tre gränser som skrevs före hämtningen, och utfallet står i docs/done/a_forankring/fonster.json. Ett långt a1-fönster blandar ett partis regeringsår med dess oppositionsår, och för ett regeringsparti är ramen koalitionens och inte partiets egen; attributionen per år är citerbar och står i config/budget_ramar.yaml. Antal år av fönstrets där partiet delar ram med minst ett annat parti: L 10, MP 9, S 9, KD 8, M 8, C 7, V 6, SD 3. C=maktandel, vikt 0: ger inga poäng utan redovisas som upplysning om vem som haft makten; räknas per kategori som nationell regeringsmakt blandad med subnationell makt (SKR-styren, 21 regioner + 290 kommuner x 3 mandatperioder) via en per-kategori region/kommun-split efter lagstadgat ansvar; forsvar nationellt per design; c2 finansiering PARKERAD som designbeslut 2026-06-14 (inget riktningsneutralt finansieringsmått går att bygga ur officiell svensk data), alltså C=c1 makt; D=resultatattribution från officiella årsserier för ALLA 7 kategorier (ekonomi/välfärd/trygghet/klimat/integration/försvar/demokrati) där partiet haft nationell makt (medel säkerhet, ej tillämplig för partier utan makt i fönstret); för välfärd blandas nationell nivå med region-nivå vårdutfall attribuerat till regionstyrande parti (soundness-grindat); D krymps mot neutral efter viktad undermåttsbredd. B är AKTIVERAD för ALLA 7 kategorier via 184 av 269 källbelagda, adversariellt verifierade + panel-harmoniserade partiståndpunkter (riksdagsvotering/motion, Fas 4c); B krymps mot neutral efter viktad undermåttsdjuptäckning (B_thin_coverage-flagga vid tunn täckning). B mäter VÄNTAD STORLEK och inte riktning (ADR 0004): net_support är ett kvalitetsviktat medel av storlekar med tecken, Σ(q·m)/Σq med q=evidence_level×confidence och m=effect_strength×tecken(riktning), så ett ensamt claim ger sin egen effektstyrka i stället för ±1; B:s säkerhet härleds ur evidensens confidence (tröskel 0,85/0,60 + min_claims_for_high_confidence) och sänks ett steg vid tunn täckning. party_positions expertgranskad v2 (mänsklig sign-off 2026-06-07). evidence_ledger v3 (2026-08-23, ADR 0006): den symmetriska EVIDENSGRINDEN gäller varje post OAVSETT VERKAN — evidence_level i {authority_evaluation, systematic_review}, confidence minst medium, evidens som avser exakt indikatorn. Poster som faller raderas inte utan hålls utanför både claims och täckningsnämnaren, med skäl per post, så källspåret finns kvar. Sökningen efter nya poster är källstyrd och riktningsblind: den räknar upp officiella utvärderingar per indikator och låter verkan bli vad utvärderingen fann. UTESLUTNA INDIKATORER (ADR 0011): 3 av 68 indikatorer poängsätts inte. Varje indikator prövas i tre steg, och det första steg som fäller den ger dess uteslutningsskäl: gränsprovet, giltighetsprovet och riktningsprovet. De uteslutna är ekonomi/inflation (giltighetsfel, alltså utfallet kan inte tillskrivas ett parti); ekonomi/statsskuld_underskott (neutralitetsfel, alltså det bättre hållet går inte att ange utan att ta ett partis parti); forsvar/forsvarsanslag_andel_bnp (gransfel, alltså frågan ägs redan av en annan delpoäng). Där ALLA indikatorer i ett undermått är uteslutna räknas undermåttets vikt 0 TÄCKT i stället för att strykas ur täckningens nämnare, så hålet syns i talet. Det gäller ekonomi/inflation_prisstabilitet, ekonomi/offentliga_finanser. Bär undermåttet en syskonindikator med riktning står det kvar som förut, alltså ekonomisk_ambition i forsvar. Ekonomins redovisade täckning är därför lägre än före 2026-08-26, utan att något underlag blivit sämre. Krympningen mot neutral behåller sin egen nämnare, så inget betyg rör sig. Varje utesluten indikator bär ett återöppningsvillkor i config/categories.yaml. ",
+    "coverage": "Underlaget i den här versionen: alla 7 kategorier har betyg i alla tre delar som räknas. Partiernas ståndpunkter bygger på 184 av 269 belagda röster och motioner i riksdagen; resten rör åtgärder där det saknas en officiell utvärdering som är stark nog. Hur det gick mäts med officiella årsserier. Vem som haft makten räknas både nationellt och i regioner och kommuner, men det ger inga poäng och visas bara som upplysning. Där underlaget är tunt drar vi betyget mot mitten i stället för att gissa. Ofta är det VÅRT underlag som är tunt och inte partiets: i varje kategori finns ett tak för hur stor del av betyget som alls går att mäta i dag, och det taket är samma för alla partier. Ett lågt tal betyder alltså oftare att vi saknar mått än att partiet saknar politik.",
+    "coverage_technical": "Preliminär: formel 0,30 A + 0,50 B + 0,20 D, C=0 (ADR 0002). A=prioritering, alltså omfattning och aldrig riktning (ADR 0001): a2 motionsprioritering, andel av egna motioner, full; a1 budgetprioritering gated, aktiv för 7/7 kategorier ur officiella utgiftsramar, annars a2-fallback; A är ABSOLUT sedan ADR 0005: båda halvorna mäts mot en historisk förankring, a1 mot de beslutade utgiftsramarna i bet. FiU1 och a2 mot kammarens samtliga motioner, som q=(andel-förankring)/(andel+förankring) avbildad med samma linjära skala som B; A rangordnas alltså inte längre över de åtta partierna, så ett parti som lägger ungefär som normen får ett betyg nära mitten; VAD EN POÄNG I A BETYDER: avbildningen är symmetrisk i log, så en fördubblad andel mot förankringen ger 0,83 poäng och en halverad ger 0,83 mindre; jämnhöjd med förankringen ger 2,50. Skalan går från 0,00, som betyder att partiet inte lägger något alls på kategorin, mot 5,00, som aldrig nås eftersom det skulle kräva en förankring på noll. Taket är därför inte detsamma i alla kategorier: ett parti som la hela sin kraft på en enda kategori når valfard 3,76, ekonomi 3,91, integration 4,64, forsvar 4,64, demokrati 4,68, klimat 4,69, trygghet 4,70. Golvet 0,00 är däremot nåbart överallt. Snedheten följer förankringens storlek och är en deklarerad kostnad (ADR 0012 punkt 4). Den jämnas inte ut, eftersom varje utjämning kräver en vald konstant per kategori. VILKA ÅR VARJE HALVA MÄTER (ADR 0007): täljaren täcker samma år som sin förankring. a1 mäter budgetåren 2011-2025 (15 år), alla expertgranskade med mänsklig sign-off. a2 mäter perioden 2011-01-01 till 2025-12-31. Halvorna har egna fönster och kan hamna på olika tidsavsnitt, eftersom a1:s tillgänglighet inte ska få kasta bort motionsår som är fullt giltiga. Fönstren faller ut ur tre gränser som skrevs före hämtningen, och utfallet står i docs/done/a_forankring/fonster.json. Ett långt a1-fönster blandar ett partis regeringsår med dess oppositionsår, och för ett regeringsparti är ramen koalitionens och inte partiets egen; attributionen per år är citerbar och står i config/budget_ramar.yaml. Antal år av fönstrets där partiet delar ram med minst ett annat parti: L 10, MP 9, S 9, KD 8, M 8, C 7, V 6, SD 3. C=maktandel, vikt 0: ger inga poäng utan redovisas som upplysning om vem som haft makten; räknas per kategori som nationell regeringsmakt blandad med subnationell makt (SKR-styren, 21 regioner + 290 kommuner x 3 mandatperioder) via en per-kategori region/kommun-split efter lagstadgat ansvar; forsvar nationellt per design; c2 finansiering PARKERAD som designbeslut 2026-06-14 (inget riktningsneutralt finansieringsmått går att bygga ur officiell svensk data), alltså C=c1 makt; D=resultatattribution från officiella årsserier för ALLA 7 kategorier (ekonomi/välfärd/trygghet/klimat/integration/försvar/demokrati) där partiet haft nationell makt (medel säkerhet, ej tillämplig för partier utan makt i fönstret); för välfärd blandas nationell nivå med region-nivå vårdutfall attribuerat till regionstyrande parti (soundness-grindat); D krymps mot neutral efter viktad undermåttsbredd. B är AKTIVERAD för ALLA 7 kategorier via 184 av 269 källbelagda, adversariellt verifierade + panel-harmoniserade partiståndpunkter (riksdagsvotering/motion, Fas 4c); B krymps mot neutral efter viktad undermåttsdjuptäckning. MÄTTAK (ADR 0014): varje kategori bär i categories[] det HÖGSTA tal Täckning kan anta där, blandat med samma delpoängvikter som Täckningen själv. Talet är en KATEGORIKONSTANT och lika för alla åtta partier: det säger vad modellen kan mäta, aldrig vad partiet driver. Ligger kategorins tak under tröskeln kan inget parti nå över den, och cellen bär B_thin_category_ceiling i stället för B_thin_party_coverage; den senare sätts först när taket räcker och partiet ändå täcker tunt. Exakt en av dem sätts, så säkerheten sänks ett steg och aldrig två. Krympningens egen täljare och nämnare står i B_shrink-flaggan och är en ANNAN nämnare än Täckningens (ADR 0011 punkt 9). B mäter VÄNTAD STORLEK och inte riktning (ADR 0004): net_support är ett kvalitetsviktat medel av storlekar med tecken, Σ(q·m)/Σq med q=evidence_level×confidence och m=effect_strength×tecken(riktning), så ett ensamt claim ger sin egen effektstyrka i stället för ±1; B:s säkerhet härleds ur evidensens confidence (tröskel 0,85/0,60 + min_claims_for_high_confidence) och sänks ett steg vid tunn täckning. party_positions expertgranskad v2 (mänsklig sign-off 2026-06-07). evidence_ledger v3 (2026-08-23, ADR 0006): den symmetriska EVIDENSGRINDEN gäller varje post OAVSETT VERKAN — evidence_level i {authority_evaluation, systematic_review}, confidence minst medium, evidens som avser exakt indikatorn. Poster som faller raderas inte utan hålls utanför både claims och täckningsnämnaren, med skäl per post, så källspåret finns kvar. Sökningen efter nya poster är källstyrd och riktningsblind: den räknar upp officiella utvärderingar per indikator och låter verkan bli vad utvärderingen fann. UTESLUTNA INDIKATORER (ADR 0011): 3 av 68 indikatorer poängsätts inte. Varje indikator prövas i tre steg, och det första steg som fäller den ger dess uteslutningsskäl: gränsprovet, giltighetsprovet och riktningsprovet. De uteslutna är ekonomi/inflation (giltighetsfel, alltså utfallet kan inte tillskrivas ett parti); ekonomi/statsskuld_underskott (neutralitetsfel, alltså det bättre hållet går inte att ange utan att ta ett partis parti); forsvar/forsvarsanslag_andel_bnp (gransfel, alltså frågan ägs redan av en annan delpoäng). Där ALLA indikatorer i ett undermått är uteslutna räknas undermåttets vikt 0 TÄCKT i stället för att strykas ur täckningens nämnare, så hålet syns i talet. Det gäller ekonomi/inflation_prisstabilitet, ekonomi/offentliga_finanser. Bär undermåttet en syskonindikator med riktning står det kvar som förut, alltså ekonomisk_ambition i forsvar. Ekonomins redovisade täckning är därför lägre än före 2026-08-26, utan att något underlag blivit sämre. Krympningen mot neutral behåller sin egen nämnare, så inget betyg rör sig. Varje utesluten indikator bär ett återöppningsvillkor i config/categories.yaml. UTESLUTNA UNDERMÅTT (ADR 0014 punkt 5): ett undermått bär minst en indikator eller ett eget uteslutningsskäl, prövat i samma tre steg och med samma krav på återöppningsvillkor. Uteslutet är klimat/industriell_konkurrenskraft (neutralitetsfel, alltså det bättre hållet går inte att ange utan att ta ett partis parti). Det räknas likaså 0 täckt på kategorins fulla vikt och ryker ur krympningens nämnare. Ett undermått som bara står TOMT utesluts inte: det är vår tystnad och inte partiets, och krympningen räknar den som vet ej (ADR 0014 punkt 2). ",
     "data_as_of": "2025-12-31",
-    "generated": "2026-08-30",
+    "generated": "2026-09-13",
     "latest_observation_year": 2026,
     "model_version": 1,
     "parties": [
@@ -105,7 +112,7 @@
     "power_window_end": "2025-12-31",
     "window": "2014-2026",
     "window_end": "2026-09-13",
-    "window_open": true
+    "window_open": false
   },
   "scores": {
     "C": {
@@ -142,10 +149,10 @@
         "coverage": 0.725,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_45/100",
-          "B_thin_coverage",
+          "B_shrink_45/100",
+          "B_thin_category_ceiling",
           "A_a1_active",
-          "D_coverage_100/100"
+          "D_shrink_100/100"
         ],
         "score": 2.917
       },
@@ -182,9 +189,9 @@
         "coverage": 0.721,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_55/73",
+          "B_shrink_55/73",
           "A_a1_active",
-          "D_coverage_73/73"
+          "D_shrink_73/73"
         ],
         "score": 2.877
       },
@@ -221,10 +228,10 @@
         "coverage": 0.67,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_50/100",
+          "B_shrink_50/100",
           "A_a1_active",
           "C_national_only_by_design",
-          "D_coverage_60/100",
+          "D_shrink_60/100",
           "D_thin_coverage"
         ],
         "score": 3.07
@@ -262,16 +269,16 @@
         "coverage": 0.825,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_65/100",
+          "B_shrink_65/100",
           "A_a1_active",
-          "D_coverage_100/100"
+          "D_shrink_100/100"
         ],
         "score": 3.097
       },
       "klimat": {
         "ci": [
-          1.96,
-          3.385
+          1.98,
+          3.405
         ],
         "claim_refs": [
           "claim:action:C:klimat:motioner",
@@ -288,9 +295,9 @@
         ],
         "components": {
           "A": 2.688,
-          "B": 2.725,
+          "B": 2.765,
           "C": 1.429,
-          "D": 2.517
+          "D": 2.52
         },
         "confidence": {
           "A": "high",
@@ -301,12 +308,12 @@
         "coverage": 0.545,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_15/100",
-          "B_thin_coverage",
+          "B_shrink_15/85",
+          "B_thin_party_coverage",
           "A_a1_active",
-          "D_coverage_85/100"
+          "D_shrink_85/85"
         ],
-        "score": 2.672
+        "score": 2.693
       },
       "trygghet": {
         "ci": [
@@ -341,10 +348,10 @@
         "coverage": 0.645,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_35/100",
-          "B_thin_coverage",
+          "B_shrink_35/100",
+          "B_thin_party_coverage",
           "A_a1_active",
-          "D_coverage_85/100"
+          "D_shrink_85/100"
         ],
         "score": 2.74
       },
@@ -381,9 +388,9 @@
         "coverage": 0.71,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_50/100",
+          "B_shrink_50/100",
           "A_a1_active",
-          "D_coverage_80/100",
+          "D_shrink_80/100",
           "D_subnational_region_1.1"
         ],
         "score": 2.792
@@ -423,10 +430,10 @@
         "coverage": 0.725,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_45/100",
-          "B_thin_coverage",
+          "B_shrink_45/100",
+          "B_thin_category_ceiling",
           "A_a1_active",
-          "D_coverage_100/100"
+          "D_shrink_100/100"
         ],
         "score": 2.562
       },
@@ -463,9 +470,9 @@
         "coverage": 0.721,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_55/73",
+          "B_shrink_55/73",
           "A_a1_active",
-          "D_coverage_73/73"
+          "D_shrink_73/73"
         ],
         "score": 2.864
       },
@@ -502,10 +509,10 @@
         "coverage": 0.7,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_50/100",
+          "B_shrink_50/100",
           "A_a1_active",
           "C_national_only_by_design",
-          "D_coverage_75/100"
+          "D_shrink_75/100"
         ],
         "score": 3.223
       },
@@ -542,16 +549,16 @@
         "coverage": 0.762,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_52.5/100",
+          "B_shrink_52.5/100",
           "A_a1_active",
-          "D_coverage_100/100"
+          "D_shrink_100/100"
         ],
         "score": 3.113
       },
       "klimat": {
         "ci": [
-          2.358,
-          3.333
+          2.425,
+          3.4
         ],
         "claim_refs": [
           "claim:action:KD:klimat:motioner",
@@ -568,9 +575,9 @@
         ],
         "components": {
           "A": 2.368,
-          "B": 3.259,
+          "B": 3.393,
           "C": 2.143,
-          "D": 2.526
+          "D": 2.531
         },
         "confidence": {
           "A": "high",
@@ -581,11 +588,11 @@
         "coverage": 0.782,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_62.5/100",
+          "B_shrink_62.5/85",
           "A_a1_active",
-          "D_coverage_85/100"
+          "D_shrink_85/85"
         ],
-        "score": 2.845
+        "score": 2.913
       },
       "trygghet": {
         "ci": [
@@ -620,9 +627,9 @@
         "coverage": 0.715,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_55/100",
+          "B_shrink_55/100",
           "A_a1_active",
-          "D_coverage_70/100",
+          "D_shrink_70/100",
           "D_thin_coverage"
         ],
         "score": 3.117
@@ -660,9 +667,9 @@
         "coverage": 0.71,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_50/100",
+          "B_shrink_50/100",
           "A_a1_active",
-          "D_coverage_80/100",
+          "D_shrink_80/100",
           "D_subnational_region_0.74"
         ],
         "score": 2.82
@@ -703,10 +710,10 @@
         "coverage": 0.725,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_45/100",
-          "B_thin_coverage",
+          "B_shrink_45/100",
+          "B_thin_category_ceiling",
           "A_a1_active",
-          "D_coverage_100/100"
+          "D_shrink_100/100"
         ],
         "score": 2.632
       },
@@ -744,9 +751,9 @@
         "coverage": 0.721,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_55/73",
+          "B_shrink_55/73",
           "A_a1_active",
-          "D_coverage_73/73"
+          "D_shrink_73/73"
         ],
         "score": 2.942
       },
@@ -784,10 +791,10 @@
         "coverage": 0.7,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_50/100",
+          "B_shrink_50/100",
           "A_a1_active",
           "C_national_only_by_design",
-          "D_coverage_75/100"
+          "D_shrink_75/100"
         ],
         "score": 3.175
       },
@@ -825,16 +832,16 @@
         "coverage": 0.775,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_55/100",
+          "B_shrink_55/100",
           "A_a1_active",
-          "D_coverage_100/100"
+          "D_shrink_100/100"
         ],
         "score": 3.023
       },
       "klimat": {
         "ci": [
-          2.301,
-          3.276
+          2.366,
+          3.341
         ],
         "claim_refs": [
           "claim:action:L:klimat:motioner",
@@ -852,9 +859,9 @@
         ],
         "components": {
           "A": 2.233,
-          "B": 3.259,
+          "B": 3.393,
           "C": 3.571,
-          "D": 2.448
+          "D": 2.439
         },
         "confidence": {
           "A": "high",
@@ -865,11 +872,11 @@
         "coverage": 0.782,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_62.5/100",
+          "B_shrink_62.5/85",
           "A_a1_active",
-          "D_coverage_85/100"
+          "D_shrink_85/85"
         ],
-        "score": 2.789
+        "score": 2.854
       },
       "trygghet": {
         "ci": [
@@ -905,9 +912,9 @@
         "coverage": 0.745,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_55/100",
+          "B_shrink_55/100",
           "A_a1_active",
-          "D_coverage_85/100"
+          "D_shrink_85/100"
         ],
         "score": 2.976
       },
@@ -945,10 +952,10 @@
         "coverage": 0.66,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_40/100",
-          "B_thin_coverage",
+          "B_shrink_40/100",
+          "B_thin_party_coverage",
           "A_a1_active",
-          "D_coverage_80/100",
+          "D_shrink_80/100",
           "D_subnational_region_0.8"
         ],
         "score": 2.76
@@ -988,10 +995,10 @@
         "coverage": 0.725,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_45/100",
-          "B_thin_coverage",
+          "B_shrink_45/100",
+          "B_thin_category_ceiling",
           "A_a1_active",
-          "D_coverage_100/100"
+          "D_shrink_100/100"
         ],
         "score": 2.531
       },
@@ -1028,9 +1035,9 @@
         "coverage": 0.721,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_55/73",
+          "B_shrink_55/73",
           "A_a1_active",
-          "D_coverage_73/73"
+          "D_shrink_73/73"
         ],
         "score": 3.046
       },
@@ -1067,10 +1074,10 @@
         "coverage": 0.7,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_50/100",
+          "B_shrink_50/100",
           "A_a1_active",
           "C_national_only_by_design",
-          "D_coverage_75/100"
+          "D_shrink_75/100"
         ],
         "score": 3.064
       },
@@ -1107,16 +1114,16 @@
         "coverage": 0.775,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_55/100",
+          "B_shrink_55/100",
           "A_a1_active",
-          "D_coverage_100/100"
+          "D_shrink_100/100"
         ],
         "score": 3.129
       },
       "klimat": {
         "ci": [
-          2.422,
-          3.397
+          2.49,
+          3.465
         ],
         "claim_refs": [
           "claim:action:M:klimat:motioner",
@@ -1133,9 +1140,9 @@
         ],
         "components": {
           "A": 2.584,
-          "B": 3.259,
+          "B": 3.393,
           "C": 2.857,
-          "D": 2.526
+          "D": 2.531
         },
         "confidence": {
           "A": "high",
@@ -1146,11 +1153,11 @@
         "coverage": 0.782,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_62.5/100",
+          "B_shrink_62.5/85",
           "A_a1_active",
-          "D_coverage_85/100"
+          "D_shrink_85/85"
         ],
-        "score": 2.91
+        "score": 2.978
       },
       "trygghet": {
         "ci": [
@@ -1185,10 +1192,10 @@
         "coverage": 0.615,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_35/100",
-          "B_thin_coverage",
+          "B_shrink_35/100",
+          "B_thin_party_coverage",
           "A_a1_active",
-          "D_coverage_70/100",
+          "D_shrink_70/100",
           "D_thin_coverage"
         ],
         "score": 3.066
@@ -1226,9 +1233,9 @@
         "coverage": 0.71,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_50/100",
+          "B_shrink_50/100",
           "A_a1_active",
-          "D_coverage_80/100",
+          "D_shrink_80/100",
           "D_subnational_region_0.81"
         ],
         "score": 2.847
@@ -1269,10 +1276,10 @@
         "coverage": 0.725,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_45/100",
-          "B_thin_coverage",
+          "B_shrink_45/100",
+          "B_thin_category_ceiling",
           "A_a1_active",
-          "D_coverage_100/100"
+          "D_shrink_100/100"
         ],
         "score": 2.914
       },
@@ -1310,9 +1317,9 @@
         "coverage": 0.721,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_55/73",
+          "B_shrink_55/73",
           "A_a1_active",
-          "D_coverage_73/73"
+          "D_shrink_73/73"
         ],
         "score": 3.047
       },
@@ -1350,11 +1357,11 @@
         "coverage": 0.457,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_7.5/100",
-          "B_thin_coverage",
+          "B_shrink_7.5/100",
+          "B_thin_party_coverage",
           "A_a1_active",
           "C_national_only_by_design",
-          "D_coverage_60/100",
+          "D_shrink_60/100",
           "D_thin_coverage"
         ],
         "score": 2.645
@@ -1393,17 +1400,17 @@
         "coverage": 0.662,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_32.5/100",
-          "B_thin_coverage",
+          "B_shrink_32.5/100",
+          "B_thin_party_coverage",
           "A_a1_active",
-          "D_coverage_100/100"
+          "D_shrink_100/100"
         ],
         "score": 2.731
       },
       "klimat": {
         "ci": [
-          2.199,
-          3.174
+          2.218,
+          3.193
         ],
         "claim_refs": [
           "claim:action:MP:klimat:motioner",
@@ -1421,9 +1428,9 @@
         ],
         "components": {
           "A": 2.776,
-          "B": 2.545,
+          "B": 2.553,
           "C": 4.286,
-          "D": 2.909
+          "D": 2.981
         },
         "confidence": {
           "A": "high",
@@ -1434,11 +1441,11 @@
         "coverage": 0.782,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_62.5/100",
+          "B_shrink_62.5/85",
           "A_a1_active",
-          "D_coverage_85/100"
+          "D_shrink_85/85"
         ],
-        "score": 2.687
+        "score": 2.705
       },
       "trygghet": {
         "ci": [
@@ -1474,9 +1481,9 @@
         "coverage": 0.895,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_85/100",
+          "B_shrink_85/100",
           "A_a1_active",
-          "D_coverage_85/100"
+          "D_shrink_85/100"
         ],
         "score": 2.987
       },
@@ -1514,10 +1521,10 @@
         "coverage": 0.66,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_40/100",
-          "B_thin_coverage",
+          "B_shrink_40/100",
+          "B_thin_party_coverage",
           "A_a1_active",
-          "D_coverage_80/100",
+          "D_shrink_80/100",
           "D_subnational_region_0.89"
         ],
         "score": 2.703
@@ -1559,10 +1566,10 @@
         "coverage": 0.725,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_45/100",
-          "B_thin_coverage",
+          "B_shrink_45/100",
+          "B_thin_category_ceiling",
           "A_a1_active",
-          "D_coverage_100/100"
+          "D_shrink_100/100"
         ],
         "score": 2.563
       },
@@ -1601,9 +1608,9 @@
         "coverage": 0.721,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_55/73",
+          "B_shrink_55/73",
           "A_a1_active",
-          "D_coverage_73/73"
+          "D_shrink_73/73"
         ],
         "score": 3.017
       },
@@ -1642,10 +1649,10 @@
         "coverage": 0.7,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_50/100",
+          "B_shrink_50/100",
           "A_a1_active",
           "C_national_only_by_design",
-          "D_coverage_75/100"
+          "D_shrink_75/100"
         ],
         "score": 3.103
       },
@@ -1684,17 +1691,17 @@
         "coverage": 0.713,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_42.5/100",
-          "B_thin_coverage",
+          "B_shrink_42.5/100",
+          "B_thin_party_coverage",
           "A_a1_active",
-          "D_coverage_100/100"
+          "D_shrink_100/100"
         ],
         "score": 2.743
       },
       "klimat": {
         "ci": [
-          2.23,
-          3.655
+          2.314,
+          3.739
         ],
         "claim_refs": [
           "claim:action:S:klimat:motioner",
@@ -1713,9 +1720,9 @@
         ],
         "components": {
           "A": 2.374,
-          "B": 3.282,
+          "B": 3.42,
           "C": 5.0,
-          "D": 2.944
+          "D": 3.023
         },
         "confidence": {
           "A": "high",
@@ -1726,12 +1733,12 @@
         "coverage": 0.67,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_40/100",
-          "B_thin_coverage",
+          "B_shrink_40/85",
+          "B_thin_party_coverage",
           "A_a1_active",
-          "D_coverage_85/100"
+          "D_shrink_85/85"
         ],
-        "score": 2.942
+        "score": 3.027
       },
       "trygghet": {
         "ci": [
@@ -1768,9 +1775,9 @@
         "coverage": 0.795,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_65/100",
+          "B_shrink_65/100",
           "A_a1_active",
-          "D_coverage_85/100"
+          "D_shrink_85/100"
         ],
         "score": 2.903
       },
@@ -1809,10 +1816,10 @@
         "coverage": 0.61,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_30/100",
-          "B_thin_coverage",
+          "B_shrink_30/100",
+          "B_thin_party_coverage",
           "A_a1_active",
-          "D_coverage_80/100",
+          "D_shrink_80/100",
           "D_subnational_region_1.2"
         ],
         "score": 2.735
@@ -1849,10 +1856,10 @@
         "coverage": 0.6,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_20/100",
-          "B_thin_coverage",
+          "B_shrink_20/100",
+          "B_thin_category_ceiling",
           "A_a1_active",
-          "D_coverage_100/100"
+          "D_shrink_100/100"
         ],
         "score": 2.424
       },
@@ -1886,9 +1893,9 @@
         "coverage": 0.721,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_55/73",
+          "B_shrink_55/73",
           "A_a1_active",
-          "D_coverage_73/73"
+          "D_shrink_73/73"
         ],
         "score": 2.869
       },
@@ -1922,10 +1929,10 @@
         "coverage": 0.7,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_50/100",
+          "B_shrink_50/100",
           "A_a1_active",
           "C_national_only_by_design",
-          "D_coverage_75/100"
+          "D_shrink_75/100"
         ],
         "score": 3.148
       },
@@ -1959,17 +1966,17 @@
         "coverage": 0.662,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_32.5/100",
-          "B_thin_coverage",
+          "B_shrink_32.5/100",
+          "B_thin_party_coverage",
           "A_a1_active",
-          "D_coverage_100/100"
+          "D_shrink_100/100"
         ],
         "score": 2.922
       },
       "klimat": {
         "ci": [
-          1.973,
-          2.948
+          1.97,
+          2.945
         ],
         "claim_refs": [
           "claim:action:SD:klimat:motioner",
@@ -1983,9 +1990,9 @@
         ],
         "components": {
           "A": 2.424,
-          "B": 2.455,
+          "B": 2.447,
           "C": 0.714,
-          "D": 2.526
+          "D": 2.531
         },
         "confidence": {
           "A": "high",
@@ -1996,11 +2003,11 @@
         "coverage": 0.782,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_62.5/100",
+          "B_shrink_62.5/85",
           "A_a1_active",
-          "D_coverage_85/100"
+          "D_shrink_85/85"
         ],
-        "score": 2.46
+        "score": 2.457
       },
       "trygghet": {
         "ci": [
@@ -2032,10 +2039,10 @@
         "coverage": 0.64,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_40/100",
-          "B_thin_coverage",
+          "B_shrink_40/100",
+          "B_thin_party_coverage",
           "A_a1_active",
-          "D_coverage_70/100",
+          "D_shrink_70/100",
           "D_thin_coverage"
         ],
         "score": 3.039
@@ -2070,9 +2077,9 @@
         "coverage": 0.71,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_50/100",
+          "B_shrink_50/100",
           "A_a1_active",
-          "D_coverage_80/100"
+          "D_shrink_80/100"
         ],
         "score": 2.547
       }
@@ -2110,8 +2117,8 @@
         "coverage": 0.525,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_45/100",
-          "B_thin_coverage",
+          "B_shrink_45/100",
+          "B_thin_category_ceiling",
           "A_a1_active",
           "D_not_applicable"
         ],
@@ -2149,7 +2156,7 @@
         "coverage": 0.575,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_55/73",
+          "B_shrink_55/73",
           "A_a1_active",
           "D_not_applicable"
         ],
@@ -2187,7 +2194,7 @@
         "coverage": 0.55,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_50/100",
+          "B_shrink_50/100",
           "A_a1_active",
           "C_national_only_by_design",
           "D_not_applicable"
@@ -2226,8 +2233,8 @@
         "coverage": 0.525,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_45/100",
-          "B_thin_coverage",
+          "B_shrink_45/100",
+          "B_thin_party_coverage",
           "A_a1_active",
           "D_not_applicable"
         ],
@@ -2235,8 +2242,8 @@
       },
       "klimat": {
         "ci": [
-          1.897,
-          3.052
+          1.901,
+          3.056
         ],
         "claim_refs": [
           "claim:action:V:klimat:motioner",
@@ -2252,7 +2259,7 @@
         ],
         "components": {
           "A": 2.339,
-          "B": 2.545,
+          "B": 2.553,
           "C": 0.0,
           "D": 2.5
         },
@@ -2265,11 +2272,11 @@
         "coverage": 0.613,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_62.5/100",
+          "B_shrink_62.5/85",
           "A_a1_active",
           "D_not_applicable"
         ],
-        "score": 2.474
+        "score": 2.478
       },
       "trygghet": {
         "ci": [
@@ -2303,7 +2310,7 @@
         "coverage": 0.725,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_85/100",
+          "B_shrink_85/100",
           "A_a1_active",
           "D_not_applicable"
         ],
@@ -2341,10 +2348,10 @@
         "coverage": 0.56,
         "evidence_refs": [],
         "flags": [
-          "B_coverage_40/100",
-          "B_thin_coverage",
+          "B_shrink_40/100",
+          "B_thin_party_coverage",
           "A_a1_active",
-          "D_coverage_30/100",
+          "D_shrink_30/100",
           "D_thin_coverage",
           "D_thin_basis",
           "D_subnational_region_0.58"

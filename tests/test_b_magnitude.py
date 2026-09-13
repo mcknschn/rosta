@@ -185,7 +185,7 @@ def test_b_kan_na_high(monkeypatch: pytest.MonkeyPatch) -> None:
     warehouse.upsert(con, "responsibility", government.build_national_responsibility())
     cell = scorerun.build(con)["scores"]["scores"]["S"]["klimat"]
     con.close()
-    assert "B_thin_coverage" not in cell["flags"]
+    assert not {scorerun.B_THIN_CATEGORY, scorerun.B_THIN_PARTY} & set(cell["flags"])
     assert cell["confidence"]["B"] == "high"
 
 

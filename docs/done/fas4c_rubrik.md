@@ -1,6 +1,6 @@
 # Fas 4c — förregistrerad rubrik för B-differentiering
 
-> **Status: version 2, fryst 2026-08-21.** Denna rubrik är gemensam för Plan B (harmonisering av
+> **Status: version 3, fryst 2026-09-13.** Denna rubrik är gemensam för Plan B (harmonisering av
 > befintliga partiståndpunkter) och Plan A (utökning av evidensliggaren). Den är **förregistrerad**:
 > reglerna låses INNAN data bedöms, och får inte ändras under en körning för att passa ett önskat
 > utfall. Ändringar av rubriken kräver ny version + motivering här. Designen är fastlagd i samråd
@@ -17,6 +17,13 @@
 >   [ADR 0004](../adr/0004-vad-delpoang-b-mater.md) byggdes. En svag positiv post ger sedan dess
 >   3,25 i stället för 5,00 och drar alltså ned. Nivån i §5 är oförändrad från version 1. Den
 >   tillämpas nu åt båda håll i stället för åt ett.
+> - **version 3, 2026-09-13** ([ADR 0014](../adr/0014-mattaket-ar-modellens-inte-partiets.md),
+>   biljett [#40](https://github.com/mcknschn/rosta/issues/40)). §8 fick en mening om att
+>   förbudet gäller också när höjningen träffar alla åtta lika. Skälet: den gamla lydelsen
+>   förbjöd att fylla luckor "för att höja ett partis coverage", och nio av de fjorton poster
+>   som ADR 0006 lyfte ut är konsensusmått med alla åtta partierna. En sådan post höjer allas
+>   täckning samtidigt och alltså inget enskilt partis, så lydelsen täckte inte fallet. Nivån
+>   i §5 är oförändrad från version 1.
 
 Syftet är att ta bort de två svagheterna i den nuvarande B (version 0): (1) **isolerings-inducerade
 verifierar-asymmetrier** (samma slags källa bedömdes olika strängt för olika partier), och (2) **svag
@@ -135,6 +142,14 @@ Varken harmonisering (Plan B) eller utökning (Plan A) får styras mot en önska
 önskad fördelning supports/opposes. Coverage är ett *utfall* av vilka instrument-exakta källor som faktiskt
 finns, aldrig ett *mål*. Att "fylla luckor" för att höja ett partis coverage är förbjudet; en lucka som inte
 kan beläggas instrument-exakt förblir en lucka.
+
+**Förbudet gäller också när höjningen träffar alla åtta lika** (version 3, 2026-09-13,
+[ADR 0014](../adr/0014-mattaket-ar-modellens-inte-partiets.md) punkt 10). "Det skulle höja täckningen" får
+aldrig vara ett skäl för att släppa in en post, oavsett vems täckning som höjs. Nio av de fjorton poster som
+ADR 0006 lyfte ut bär alla åtta partierna och är alltså konsensusmått: de höjer allas täckning samtidigt och
+inget enskilt partis. En sådan post flyttar bara krympningen, alltså är den ett rent separationsreglage
+förklätt till en evidensfråga, och [ADR 0003](../adr/0003-skiljbarhet-och-kanslighetsanalys.md) punkt 1
+förbjuder just det.
 
 ## 9. Panel-verifieringsprotokoll (Plan B & A4)
 

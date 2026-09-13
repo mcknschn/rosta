@@ -19,6 +19,12 @@
 # Varje utesluten indikator bär dessutom reopen_if: villkoret som fäller uteslutningen,
 # skrivet så att det går att pröva (ADR 0011 punkt 8).
 #
+# Samma form gäller UNDERMÅTTET ett steg upp (ADR 0014 punkt 5): ett undermått bär minst en
+# indikator ELLER ett eget exclusion med reopen_if, aldrig båda och aldrig ingetdera. Ett
+# undermått vars indikatorer alla är uteslutna bär INGET eget skäl. Det bär en indikator,
+# och ADR 0011 fäller det ett steg ned. Ett uteslutet undermått ryker ur krympningens
+# nämnare och räknas 0 täckt i Täckningen, precis som en utesluten indikator.
+#
 # Standardvikterna summerar till 100. Submåttsvikterna summerar till 100 per kategori.
 # Testas i tests/test_config.py.
 
@@ -159,7 +165,10 @@ categories:
       - { id: energi_elpriser,             name: Energiförsörjning och elpriser, weight: 25 }
       - { id: kostnadseffektivitet,        name: Omställningens kostnadseffektivitet, weight: 15 }
       - { id: biologisk_mangfald,          name: Biologisk mångfald och natur, weight: 15 }
-      - { id: industriell_konkurrenskraft, name: Industriell konkurrenskraft i omställningen, weight: 15 }
+      - { id: industriell_konkurrenskraft, name: Industriell konkurrenskraft i omställningen, weight: 15,
+          exclusion: neutralitetsfel,
+          note: "UTESLUTEN 2026-09-13 (ADR 0014 punkt 6, ADR 0011 punkt 2 steg 3 riktningsprovet): undermåttet har noll indikatorer. Dubbelväggen i docs/done/evidens_trovardighet.md §8.7 har en halva i varje ände, och dubbelräkningshalvan är ett skäl mot EN kandidatindikator (utsläppsintensitet, som redan bär kostnadseffektivitet) och inte mot undermåttet. Steg 1 frågar om en annan DELPOÄNG äger frågan, och klimat mot klimat är inte det. Kvar står att inget neutralt ankare finns: det enda acklamerade ankaret, elnätsutbyggnaden i bet. 2023/24:NU15 p1, saknar rent steg-1-belägg, eftersom Tillväxtanalys läser elektrifieringen som förlorad konkurrenskraft och RiR 2024:17 säger oklart. Undermåttet ryker ur krympningens nämnare och räknas 0 täckt i Täckningen (ADR 0011 punkt 9).",
+          reopen_if: "En officiell källa gör det möjligt att namnge en INDIKATOR på industriell konkurrenskraft i omställningen vars bättre håll går att ange utan att ta ett partis parti. Prövas mot elnätsankaret i bet. 2023/24:NU15 p1: ett rent positivt konkurrenskraftsbelägg för elnätsutbyggnad utan elpris-motverkan, eller en nettoutvärdering från Konjunkturinstitutet eller Tillväxtanalys som väger de två hållen mot varandra. Bevaka NU10 (2025/26) och prop. 2025/26:238." }
     indicators:
       - { id: territoriella_utslapp,        submeasure: utslappsminskningar, direction: down }
       - { id: konsumtionsbaserade_utslapp,  submeasure: utslappsminskningar, direction: down }

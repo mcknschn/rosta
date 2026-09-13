@@ -308,13 +308,15 @@ function detailHTML(row) {
         <th class="num" title="Vad partiet driver">A</th><th class="num" title="Hur mycket åtgärderna brukar ge">B</th>
         <th class="num" title="Hur det gick">D</th>
         <th class="num nocount" title="Hur mycket makt partiet haft, på skalan 0-5 jämfört med de andra partierna. Räknas inte in i betyget.">Maktandel</th>
-        <th class="num" title="Hur stor del av betyget som vilar på mätt underlag. Säger inget om hur säkert det mätta är. Det beskedet bär spannet.">Täckning</th>
+        <th class="num" title="Hur stor del av betyget som vilar på mätt underlag. Varje kategori har ett tak, lika för alla partier, som säger hur mycket vi alls kan mäta där. Taken står i rutan Så räknar vi. Talet säger inget om hur säkert det mätta är. Det beskedet bär spannet.">Täckning</th>
         <th>Flaggor</th></tr></thead>
       <tbody>${catRows}</tbody>
     </table></div>
     <p class="hint">A = vad partiet driver. B = hur mycket åtgärderna brukar ge. D = hur det gick.
       Maktandelen visar hur stor del av tiden partiet haft makt, jämfört med de andra partierna på skalan 0-5.
       Den ger inga poäng. Täckningen visar hur stor del av betyget som vilar på mätt underlag.
+      Varje kategori har ett tak för hur högt det talet kan gå, och taket är samma för alla
+      partier: det säger vad vi kan mäta, inte vad partiet driver.
       Flaggor visar var underlaget är tunt eller saknas.</p>
     ${evidenceHTML(row)}`;
 }
@@ -355,6 +357,21 @@ function stabilityMethodHTML() {
      skillnad räknas som stor nog. Talet står som det blev, också när det är lågt.</p>`;
 }
 
+// Mättaket (ADR 0014): det högsta tal täckningen kan nå i en kategori. Talet räknas i pipen
+// och står på kategorin, aldrig på cellen, så rutan läser det i stället för att räkna. Utan
+// det här stycket ser ett lågt tal ut som ett omdöme om partiet, fast locket är vårt.
+function ceilingMethodHTML() {
+  const rader = (DATA.categories || [])
+    .filter((c) => typeof c.coverage_ceiling === "number")
+    .map((c) => `${c.name}: ${fmtCoverage(c.coverage_ceiling)}`);
+  if (!rader.length) return "";
+  return `<p>Täckningen har ett <b>tak</b> i varje kategori, och taket är samma för alla partier.
+     Det säger hur stor del av betyget vi över huvud taget kan mäta i dag, alltså hur mycket vi
+     själva vet. Ett parti som säger allt som går att mäta landar på taket och aldrig högre.
+     Läs därför ett lågt tal som att vårt underlag är tunt, inte som att partiet gjort något fel.
+     Taken nu: ${rader.join(". ")}.</p>`;
+}
+
 function buildMethod() {
   const body = $("method-body");
   body.innerHTML =
@@ -378,6 +395,7 @@ function buildMethod() {
      kategoribetyget är. Det säger däremot ingenting om vilket av två partier som ligger före det
      andra.</p>
      ${stabilityMethodHTML()}
+     ${ceilingMethodHTML()}
      <p>Appen mäter vad ett förslag väntas ge för resultat, inte vilken väg partiet väljer dit.
      Ett parti får alltså inte poäng för att tycka rätt, utan för åtgärder som statistiken talar för.</p>
      <p class="warn"><b>Demonstration, inte färdigt röstråd.</b> Alla tre delar räknas i alla 7 kategorier,

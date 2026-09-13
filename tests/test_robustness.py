@@ -94,7 +94,7 @@ def test_b_coverage_shrink_av_ger_okrympt_b(monkeypatch: pytest.MonkeyPatch) -> 
     cell_off = off["C"]["integration"]["components"]["B"]
     assert cell_on == pytest.approx(3.475, abs=1e-3)   # 2,5 + (4,00 - 2,5) * 0,65
     assert cell_off == pytest.approx(4.0, abs=1e-3)    # B_raw, okrympt
-    assert "B_coverage_65/100" in off["C"]["integration"]["flags"]
+    assert "B_shrink_65/100" in off["C"]["integration"]["flags"]
     con.close()
 
 

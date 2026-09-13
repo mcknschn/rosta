@@ -124,10 +124,10 @@ def test_b_codable_respekterar_kodbarhetsreglerna() -> None:
 
 
 def test_flaggformat_last_och_deterministiskt() -> None:
-    assert scorerun._b_coverage_flag(86.66666666666667, 100.0) == "B_coverage_86.7/100"
-    assert scorerun._b_coverage_flag(73.0, 73.0) == "B_coverage_73/73"  # aldrig '73.0'
-    assert scorerun._b_coverage_flag(42.5, 100.0) == "B_coverage_42.5/100"
-    assert scorerun._b_coverage_flag(0.0, 100.0) == "B_coverage_0/100"
+    assert scorerun._b_shrink_flag(86.66666666666667, 100.0) == "B_shrink_86.7/100"
+    assert scorerun._b_shrink_flag(73.0, 73.0) == "B_shrink_73/73"  # aldrig '73.0'
+    assert scorerun._b_shrink_flag(42.5, 100.0) == "B_shrink_42.5/100"
+    assert scorerun._b_shrink_flag(0.0, 100.0) == "B_shrink_0/100"
 
 
 # --- config-validering: ogiltigt läge hard-failar (spec §7) ----------------------------
@@ -187,10 +187,10 @@ def test_default_ar_weighted_och_byte_identisk_med_explicit_mode(monkeypatch: py
     legacy = scorerun.build(con)["scores"]["scores"]
     cov_flags = [
         f for cell in _b_cells(legacy).values()
-        for f in cell["flags"] if f.startswith("B_coverage_")
+        for f in cell["flags"] if f.startswith("B_shrink_")
     ]
     assert cov_flags
-    assert all(re.fullmatch(r"B_coverage_\d+/\d+", f) for f in cov_flags)
+    assert all(re.fullmatch(r"B_shrink_\d+/\d+", f) for f in cov_flags)
     con.close()
 
 
@@ -204,26 +204,32 @@ def test_ny_mode_ger_viktad_djuptackning_handraknat(monkeypatch: pytest.MonkeyPa
     # stannar i nämnaren -> cov_B = 0.65. B_raw = 4.00 (ADR 0004: kvalitetsviktat medel av
     # storlekar; före rättningen 5.00, alltså taket) -> B = 2.5 + 1.5*0.65 = 3.475
     c_int = sc["C"]["integration"]
-    assert "B_coverage_65/100" in c_int["flags"]
+    assert "B_shrink_65/100" in c_int["flags"]
     assert c_int["components"]["B"] == pytest.approx(3.475, abs=1e-3)
     # M/demokrati: korruption_tillit (20), yttrandefrihet_medier (20) och transparens_ansvar (15)
     # tömdes 2026-08-23 av den symmetriska grinden (#26) -> taket är personlig_frihet (20) +
     # rattsstat_maktdelning (25) = 45, och M kodar båda fullt. Var 86,7/100 före utlyftet.
     m_dem = sc["M"]["demokrati"]
-    assert "B_coverage_45/100" in m_dem["flags"]
-    assert "B_thin_coverage" in m_dem["flags"]  # 0.45 < thin_coverage_threshold 0.5
+    assert "B_shrink_45/100" in m_dem["flags"]
+    # Demokratis TAK är 0,45 och ligger under tröskeln 0,5, alltså kan inget parti nå över
+    # den: locket är modellens och inte M:s (ADR 0014 punkt 7).
+    assert scorerun.B_THIN_CATEGORY in m_dem["flags"]
+    assert scorerun.B_THIN_PARTY not in m_dem["flags"]
     # ekonomi: de uteslutna undermåtten (12+15) ur nämnaren -> nämnaren är 73, aldrig '73.0' (LÅST format,
     # spec §4). realloner_hushall (18) tömdes av utlyftet, så S täcker 22+18+15 = 55 av 73.
     s_eco = sc["S"]["ekonomi"]
-    assert "B_coverage_55/73" in s_eco["flags"]
+    assert "B_shrink_55/73" in s_eco["flags"]
     assert not any(".0/" in f or f.endswith(".0") for f in s_eco["flags"])
     # MP/forsvar: civil_beredskap (20), ekonomisk_ambition (25) och genomforbarhet_leverans (5)
     # saknar kodbar typ; militar_formaga (35) har ateraktiverad_utokad_varnplikt som MP inte
     # kodar -> kvar är nato_ukraina 1/2 kodbara typer (dca_avtal_usa kodad opposes,
     # nato_medlemskap=none) -> 15 * 1/2 = 7.5. Var 32,5/100 innan ekonomisk_ambition tömdes.
     mp_for = sc["MP"]["forsvar"]
-    assert "B_coverage_7.5/100" in mp_for["flags"]
-    assert "B_thin_coverage" in mp_for["flags"]
+    assert "B_shrink_7.5/100" in mp_for["flags"]
+    # Försvarets tak är 0,50 och ligger PÅ tröskeln, inte under (villkoret är strikt mindre
+    # än), alltså räcker taket och de 7,5 är MP:s egen tystnad.
+    assert scorerun.B_THIN_PARTY in mp_for["flags"]
+    assert scorerun.B_THIN_CATEGORY not in mp_for["flags"]
     assert mp_for["confidence"]["B"] == "low"
     con.close()
 
@@ -262,22 +268,24 @@ def test_formelekvivalens_mellan_moderna(monkeypatch: pytest.MonkeyPatch) -> Non
     new = scorerun.build(con)["scores"]["scores"]
     checked = 0
     for (p, c), leg_cell in _b_cells(legacy).items():
-        leg_flag = next((f for f in leg_cell["flags"] if f.startswith("B_coverage_")), None)
+        leg_flag = next((f for f in leg_cell["flags"] if f.startswith("B_shrink_")), None)
         if leg_flag is None:
             continue  # B_no_party_evidence i legacy -> ingen jämförbar krympning
-        num, den = (int(x) for x in leg_flag.removeprefix("B_coverage_").split("/"))
+        num, den = (int(x) for x in leg_flag.removeprefix("B_shrink_").split("/"))
         covered_w, total_w = _independent_cov_b(p, c)
         cov_b = covered_w / total_w
         new_cell = new[p][c]
         if cov_b == 0:
             assert "B_no_party_evidence" in new_cell["flags"]
             continue
-        assert scorerun._b_coverage_flag(covered_w, total_w) in new_cell["flags"]
+        assert scorerun._b_shrink_flag(covered_w, total_w) in new_cell["flags"]
         b_leg, b_new = leg_cell["components"]["B"], new_cell["components"]["B"]
         assert b_new == pytest.approx(2.5 + (b_leg - 2.5) * cov_b / (num / den), abs=5e-3)
-        # tunn täckning mäts på cov_B i nya moden
+        # Tunn täckning mäts på cov_B i nya moden. Exakt en av de två flaggorna sätts när
+        # talet ligger under tröskeln, och ingen när det inte gör det (ADR 0014 punkt 7).
         thr = float(config.scoring()["B_evidens"]["thin_coverage_threshold"])
-        assert ("B_thin_coverage" in new_cell["flags"]) == (cov_b < thr)
+        tunna = {scorerun.B_THIN_CATEGORY, scorerun.B_THIN_PARTY} & set(new_cell["flags"])
+        assert len(tunna) == int(cov_b < thr)
         checked += 1
     assert checked >= 40  # 8 partier x 7 kategorier, nästan alla celler har B-evidens
     con.close()
@@ -312,12 +320,12 @@ def test_kodad_typ_mot_uteslutet_undermatt_gatear_pa_cov_b(monkeypatch: pytest.M
     con = _seed_con()
     _set_mode(monkeypatch, "policy_type_count")
     leg = scorerun.build(con)["scores"]["scores"]["S"]["ekonomi"]
-    assert any(f.startswith("B_coverage_") for f in leg["flags"])  # legacy: typen "täcker"
+    assert any(f.startswith("B_shrink_") for f in leg["flags"])  # legacy: typen "täcker"
 
     _set_mode(monkeypatch, "weighted_submeasure_depth")
     new = scorerun.build(con)["scores"]["scores"]["S"]["ekonomi"]
     assert "B_no_party_evidence" in new["flags"]
     assert new["components"]["B"] == 2.5
-    assert not any(f.startswith("B_coverage_") for f in new["flags"])
+    assert not any(f.startswith("B_shrink_") for f in new["flags"])
     assert new["confidence"]["B"] == "low"
     con.close()
