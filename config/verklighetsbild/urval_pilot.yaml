@@ -29,8 +29,8 @@ per_parti_delurval: 5
 
 # SHA-256 över källfilerna som dragningen läste.
 korpus:
-  - { fil: mappning_bakat.md, poster: 230, sha256: e0832b12791beda742fe0dd5cdfb099b24d72ad429e6645701962f365da3bd42 }
-  - { fil: kandidater_bakat.md, poster: 666, sha256: 94c35a202519ecda432c399f21dd1be6c4622e62ecfa7443bb349072279abd9b }
+  - { fil: mappning_bakat.md, poster: 230, sha256: 63a4583b686130ab7ecdd58665d1b9378b1168be8b4cfa5962799e6e67c7fcf6 }
+  - { fil: kandidater_bakat.md, poster: 666, sha256: a8c1e201c5d5fae104a2c68a01fade6cb80091deedec45322ff67573d987c7fe }
 
 # N_h per stratum. Urvalsandelen n_h/N_h bär ändlighetskorrektionen i
 # förhandsregistreringen avsnitt 2. Den biter hårdast på MP och KD.

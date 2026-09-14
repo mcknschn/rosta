@@ -63,16 +63,35 @@ def _dist_hashar() -> dict[str, str]:
     }
 
 
-def _lades_till_i(fil: Path) -> str | None:
-    """Datum för den commit som lade till filen, eller None utanför ett git-träd."""
+def _git(*argument: str) -> str | None:
+    """Utdata från ett git-anrop, eller None utanför ett git-träd."""
     try:
         ut = subprocess.run(
-            ["git", "log", "--diff-filter=A", "--format=%cI", "--", str(fil.relative_to(ROT))],
-            cwd=ROT, capture_output=True, text=True, timeout=30, check=False,
+            ["git", *argument], cwd=ROT, capture_output=True, text=True, timeout=30, check=False,
         )
     except (OSError, subprocess.SubprocessError):  # pragma: no cover - beror på miljön
         return None
-    rader = [r for r in ut.stdout.splitlines() if r.strip()]
+    return ut.stdout if ut.returncode == 0 else None
+
+
+def _ytligt_trad() -> bool:
+    """Är historien avhuggen? En grund klon bär bara en commit.
+
+    `actions/checkout` klonar grunt som standard, och då bär VARJE fil samma commit-datum.
+    Ordningen går alltså inte att se, och ett prov på den skulle avgöras av en slump.
+    Provet hoppas över i stället, och CI hämtar hela historien (`fetch-depth: 0`).
+    """
+    return (_git("rev-parse", "--is-shallow-repository") or "").strip() == "true"
+
+
+def _lades_till_i(fil: Path) -> str | None:
+    """Datum för den commit som lade till filen, eller None när ordningen inte går att läsa."""
+    if _ytligt_trad():
+        return None
+    ut = _git("log", "--diff-filter=A", "--format=%cI", "--", str(fil.relative_to(ROT)))
+    if ut is None:
+        return None
+    rader = [r for r in ut.splitlines() if r.strip()]
     return rader[-1] if rader else None
 
 

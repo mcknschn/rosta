@@ -42,8 +42,24 @@ def _kodningsfiler() -> list[Path]:
     return sorted(KONFIG.glob("kodning_*.yaml"))
 
 
+def _ytligt_trad() -> bool:
+    """Är historien avhuggen? En grund klon bär bara en commit, och då får varje fil samma
+    commit-datum. Ordningen går alltså inte att se, och provet hoppas över i stället för att
+    avgöras av en slump. CI hämtar hela historien (`fetch-depth: 0` i ci.yml)."""
+    try:
+        ut = subprocess.run(
+            ["git", "rev-parse", "--is-shallow-repository"],
+            cwd=ROT, capture_output=True, text=True, timeout=30, check=False,
+        )
+    except (OSError, subprocess.SubprocessError):  # pragma: no cover - beror på miljön
+        return False
+    return ut.stdout.strip() == "true"
+
+
 def _lades_till_i(fil: Path) -> str | None:
-    """Datum för den commit som lade till filen, eller None utanför ett git-träd."""
+    """Datum för den commit som lade till filen, eller None när ordningen inte går att läsa."""
+    if _ytligt_trad():
+        return None
     try:
         ut = subprocess.run(
             ["git", "log", "--diff-filter=A", "--format=%cI", "--", str(fil.relative_to(ROT))],

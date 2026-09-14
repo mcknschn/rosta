@@ -12,6 +12,11 @@ jobs:
         python-version: ["3.11", "3.12"]
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Hela historien, inte bara sista commiten. Piloten (#46) och POC:en (#47) prövar
+          # ATT trösklarna committades före räkningen, och läser ordningen ur commit-datum.
+          # En grund klon ger varje fil samma datum, och då går ordningen inte att se alls.
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
