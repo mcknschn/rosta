@@ -17,7 +17,7 @@ säger om ett parti för en bra politik. Ett glapp är ett glapp.
 | Tröskel | Krav | Utfall | Besked |
 |---|---|---|---|
 | 1. Skiljbarhet | minst 5 skilda värden, spann minst 0,10 | 8 skilda, spann **0,491** | klaras |
-| 2. Längdkonfunden | Pearsons \|r\| under 0,7 | r = **-0,355** | klaras |
+| 2. Längdkonfunden | Pearsons \|r\| under 0,7 | r = **-0,354** | klaras |
 | 3. Neutralitet | mellan högst inom | mellan 0,084 mot inom 0,167 | klaras |
 
 Ingen tröskel ligger nära sin gräns. Spannet är nästan fem gånger kravet, längdkonfunden hälften
@@ -36,7 +36,7 @@ manifestposter, med frö 20260914.
 |---|---|---|---|---|
 | V | **0,663** | 0,625 till 0,694 | 159 | 16 |
 | KD | **0,463** | 0,395 till 0,531 | 147 | 20 |
-| L | **0,364** | 0,304 till 0,430 | 197 | 11 |
+| L | **0,365** | 0,304 till 0,431 | 197 | 11 |
 | MP | **0,333** | 0,253 till 0,413 | 100 | 7 |
 | C | **0,279** | 0,236 till 0,323 | 434 | 52 |
 | S | **0,254** | 0,198 till 0,336 | 147 | 15 |
@@ -58,9 +58,9 @@ oftare än det lägger kraft där, mätt så som avsnitt 3 i förhandsregistreri
 |---|---|---|---|---|---|---|---|
 | S | +0,170 | +0,084 | -0,047 | -0,029 | -0,001 | -0,070 | -0,107 |
 | M | +0,053 | +0,086 | +0,054 | -0,038 | -0,018 | -0,042 | -0,095 |
-| SD | +0,044 | +0,065 | +0,005 | -0,101 | -0,027 | +0,058 | -0,044 |
+| SD | +0,044 | +0,064 | +0,004 | -0,101 | -0,027 | +0,059 | -0,044 |
 | C | +0,099 | +0,141 | +0,040 | -0,055 | -0,058 | -0,114 | -0,052 |
-| V | +0,435 | +0,228 | -0,144 | -0,159 | -0,066 | -0,153 | -0,141 |
+| V | +0,434 | +0,228 | -0,143 | -0,159 | -0,067 | -0,154 | -0,140 |
 | KD | +0,240 | +0,223 | -0,057 | -0,152 | -0,079 | -0,069 | -0,107 |
 | L | +0,087 | +0,278 | -0,024 | -0,118 | -0,089 | -0,078 | -0,056 |
 | MP | +0,051 | +0,051 | -0,053 | -0,103 | +0,231 | -0,106 | -0,071 |
@@ -71,14 +71,14 @@ Glappet summerar till noll inom varje parti, eftersom båda profilerna summerar 
 
 | Parti | Kategori | Glapp | Biljettens handräkning |
 |---|---|---|---|
-| V | ekonomi | +0,435 | +0,43 |
+| V | ekonomi | +0,434 | +0,43 |
 | L | välfärd | +0,278 | +0,28 |
 | KD | ekonomi | +0,240 | +0,24 |
 | MP | klimat | +0,231 | +0,23 |
 | S | ekonomi | +0,170 | +0,17 |
 | C | välfärd | +0,141 | +0,14 |
 | M | välfärd | +0,086 | +0,09 |
-| SD | välfärd | +0,065 | +0,06 |
+| SD | välfärd | +0,064 | +0,06 |
 
 **Räkningen reproducerar biljettens handräkning cell för cell.** Handräkningen gjordes 2026-09-13
 på tio minuter och kallades uttryckligen varken metod eller resultat. Att den ändå träffar rätt
@@ -93,8 +93,8 @@ inte får ändra något besked ovan, visar var skiljbarheten kommer ifrån.
 | Prov | Pearsons r |
 |---|---|
 | Avståndet mot **retorikens** avstånd till en jämn profil | **0,998** |
-| Avståndet mot **handlingens** avstånd till en jämn profil | 0,163 |
-| Avståndet med A mot avståndet med a1 rå | **-0,129** |
+| Avståndet mot **handlingens** avstånd till en jämn profil | 0,065 |
+| Avståndet med A mot avståndet med a1 rå | **-0,141** |
 
 Talet 0,998 betyder att profilavståndet, på tre decimaler, är samma tal som hur spetsig partiets
 retorikprofil är. Handlingssidan flyttar det knappt.
@@ -104,7 +104,7 @@ Skälet syns direkt i profilerna:
 | Sida | Minsta spridning inom ett parti | Största |
 |---|---|---|
 | Retoriken | 0,157 (SD) | 0,572 (V) |
-| Handlingen, A normerad | 0,022 (L) | 0,036 (MP) |
+| Handlingen, A normerad | 0,023 (M) | 0,036 (MP) |
 
 **A:s normerade profil är nästan jämn för alla åtta partier.** Varje cell ligger mellan 0,123 och
 0,165, alltså tätt runt 1/7 = 0,143. Det var förutsagt i förhandsregistreringen 3.2 punkt 1 och 2:
@@ -114,7 +114,7 @@ landar nära mitten i alla sju kategorier, och normeringen kan inte skapa en spe
 Följden är att den primära uppställningen i praktiken mäter **hur koncentrerat valmanifestet är**,
 och inte glappet mellan två sidor. Det är inte samma sak som biljettens fråga.
 
-Raden `-0,129` är den andra halvan av samma fynd. Byts handlingssidan från A till a1 rå, alltså
+Raden `-0,141` är den andra halvan av samma fynd. Byts handlingssidan från A till a1 rå, alltså
 till en äkta andel av pengar, blir per-parti-talen i stort sett obesläktade med den primära
 uppställningens. Måttets utfall hänger alltså på vilken kanal handlingssidan läser, och den frågan
 är inte avgjord.
@@ -125,29 +125,29 @@ Alla räknas om hela vägen och prövas mot samma trösklar. Ingen av dem avgör
 
 | Variant | Skilda | Spann | Pearson mot längd | mellan / inom | Klarar |
 |---|---|---|---|---|---|
-| Primär: union mot A | 8 | 0,491 | -0,355 | 0,084 / 0,167 | ja |
-| a1 rå som handlingssida | 8 | 0,250 | -0,192 | 0,040 / 0,096 | ja |
+| Primär: union mot A | 8 | 0,491 | -0,354 | 0,084 / 0,167 | ja |
+| a1 rå som handlingssida | 8 | 0,253 | -0,189 | 0,039 / 0,097 | ja |
 | Bara bakåtkorpusen | 8 | 0,547 | -0,238 | 0,114 / 0,171 | ja |
 | Bara framåtkorpusen | 8 | 0,456 | -0,507 | 0,074 / 0,153 | ja |
-| Största positiva glappet | 8 | 0,370 | -0,418 | 0,077 / 0,121 | ja |
-| SD utanför båda blocken | bara neutralitet | - | - | 0,042 / 0,165 | ja |
+| Största positiva glappet | 8 | 0,370 | -0,417 | 0,077 / 0,121 | ja |
+| SD utanför båda blocken | bara neutralitet | - | - | 0,042 / 0,166 | ja |
 
 Varje variant klarar alla tre trösklarna. Det gör utfallet robust mot de val
 förhandsregistreringen fick göra, med ett undantag: **rangordningen mellan partierna är det inte.**
 
 | Parti | Avstånd med A | Avstånd med a1 rå |
 |---|---|---|
-| V | 0,663 | 0,315 |
+| V | 0,663 | 0,312 |
 | KD | 0,463 | 0,176 |
-| L | 0,364 | 0,124 |
+| L | 0,365 | 0,123 |
 | MP | 0,333 | 0,373 |
 | C | 0,279 | 0,212 |
 | S | 0,254 | 0,220 |
 | M | 0,192 | 0,285 |
-| SD | 0,172 | 0,375 |
+| SD | 0,172 | 0,376 |
 
 SD ligger lägst i den ena kolumnen och högst i den andra. L ligger tredje högst i den ena och
-lägst i den andra. Det är samma sak som `r = -0,129` säger, uttryckt i tal läsaren kan följa.
+lägst i den andra. Det är samma sak som `r = -0,141` säger, uttryckt i tal läsaren kan följa.
 
 ### 5.1 Bakåt mot framåt
 
@@ -163,12 +163,12 @@ Redovisas enligt förhandsregistreringen 6.1. Utfallet avgör ingenting.
 
 | Kategori | Skilda värden | Spann | Klarar |
 |---|---|---|---|
-| ekonomi | 8 | 0,390 | ja |
+| ekonomi | 8 | 0,391 | ja |
 | klimat | 8 | 0,320 | ja |
 | välfärd | 8 | 0,227 | ja |
-| integration | 8 | 0,211 | ja |
+| integration | 8 | 0,213 | ja |
 | trygghet | 8 | 0,197 | ja |
-| försvar | 8 | 0,131 | ja |
+| försvar | 8 | 0,130 | ja |
 | demokrati | 7 | **0,096** | nej |
 
 Sex av sju kategorier klarar provet. Demokrati faller på spannet, med 0,096 mot kravet 0,10.
@@ -189,7 +189,7 @@ Oppositionen ligger högre, men skillnaden är halva spridningen inom blocken. T
 skillnaden inte överstiger spridningen, och den gör den inte.
 
 Känslighetsprovet där SD står utanför båda blocken ger en ännu mindre skillnad, 0,042 mot en
-spridning på 0,165, alltså d = 0,256.
+spridning på 0,166, alltså d = 0,256.
 
 **Begränsningen skrivs ut:** fyra partier per block ger en mycket osäker skattning av både
 skillnad och spridning. Talet säger att måttet inte slår grovt åt ett håll, och ingenting mer.

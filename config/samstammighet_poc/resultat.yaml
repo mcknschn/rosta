@@ -344,29 +344,29 @@ handling:
       integration: 0.138433095
       demokrati: 0.136757569
     SD:
-      ekonomi: 0.136658326
-      valfard: 0.140127389
-      trygghet: 0.152638763
-      forsvar: 0.148089172
-      klimat: 0.136885805
-      integration: 0.130914468
-      demokrati: 0.154686078
+      ekonomi: 0.137145461
+      valfard: 0.140391844
+      trygghet: 0.153434332
+      forsvar: 0.148137601
+      klimat: 0.137031553
+      integration: 0.129570566
+      demokrati: 0.154288643
     C:
-      ekonomi: 0.14799008
-      valfard: 0.133571717
-      trygghet: 0.137205144
-      forsvar: 0.135820982
-      klimat: 0.157390853
-      integration: 0.148739835
-      demokrati: 0.139281389
+      ekonomi: 0.147906816
+      valfard: 0.13354861
+      trygghet: 0.137239073
+      forsvar: 0.135855149
+      klimat: 0.157478953
+      integration: 0.148656441
+      demokrati: 0.139314958
     V:
-      ekonomi: 0.137798176
-      valfard: 0.136608306
-      trygghet: 0.143860842
-      forsvar: 0.15927248
-      klimat: 0.128789167
-      integration: 0.153153153
-      demokrati: 0.140517876
+      ekonomi: 0.137833399
+      valfard: 0.136530947
+      trygghet: 0.143213092
+      forsvar: 0.15872926
+      klimat: 0.129792174
+      integration: 0.153689337
+      demokrati: 0.14021179
     KD:
       ekonomi: 0.140633875
       valfard: 0.137793934
@@ -376,13 +376,13 @@ handling:
       integration: 0.136714756
       demokrati: 0.141485857
     L:
-      ekonomi: 0.141679075
-      valfard: 0.143568892
-      trygghet: 0.141049135
-      forsvar: 0.153304318
-      klimat: 0.124155309
-      integration: 0.143797961
-      demokrati: 0.15244531
+      ekonomi: 0.141613698
+      valfard: 0.143560671
+      trygghet: 0.141155586
+      forsvar: 0.153352803
+      klimat: 0.124090935
+      integration: 0.143732463
+      demokrati: 0.152493844
     MP:
       ekonomi: 0.138575078
       valfard: 0.139483395
@@ -409,29 +409,29 @@ handling:
       integration: 0.052699629
       demokrati: 0.048721256
     SD:
-      ekonomi: 0.273191858
-      valfard: 0.446593057
-      trygghet: 0.053524774
-      forsvar: 0.087807212
-      klimat: 0.04951521
-      integration: 0.042952353
-      demokrati: 0.046415535
+      ekonomi: 0.280809009
+      valfard: 0.448019462
+      trygghet: 0.052136967
+      forsvar: 0.080088909
+      klimat: 0.048169763
+      integration: 0.044172345
+      demokrati: 0.046603545
     C:
-      ekonomi: 0.262096006
-      valfard: 0.442722012
-      trygghet: 0.051367403
-      forsvar: 0.089800161
-      klimat: 0.050848247
-      integration: 0.052885162
-      demokrati: 0.050281009
+      ekonomi: 0.263134014
+      valfard: 0.440828981
+      trygghet: 0.051497132
+      forsvar: 0.090216174
+      klimat: 0.050337849
+      integration: 0.053973691
+      demokrati: 0.050012159
     V:
-      ekonomi: 0.266135579
-      valfard: 0.441544332
-      trygghet: 0.048411293
-      forsvar: 0.084911634
-      klimat: 0.054101824
-      integration: 0.055647307
-      demokrati: 0.04924803
+      ekonomi: 0.266106157
+      valfard: 0.443990011
+      trygghet: 0.0492036
+      forsvar: 0.088518965
+      klimat: 0.056853904
+      integration: 0.046606728
+      demokrati: 0.048720635
     KD:
       ekonomi: 0.262607198
       valfard: 0.44512781
@@ -441,13 +441,13 @@ handling:
       integration: 0.053024635
       demokrati: 0.049774826
     L:
-      ekonomi: 0.262105952
-      valfard: 0.443646379
-      trygghet: 0.051586952
-      forsvar: 0.089781542
-      klimat: 0.049570073
-      integration: 0.053281849
-      demokrati: 0.050027252
+      ekonomi: 0.263145449
+      valfard: 0.441895465
+      trygghet: 0.051750413
+      forsvar: 0.090194678
+      klimat: 0.04886328
+      integration: 0.054431296
+      demokrati: 0.049719418
     MP:
       ekonomi: 0.264255584
       valfard: 0.438049186
@@ -475,29 +475,29 @@ glapp:
       integration: -0.042047552
       demokrati: -0.094588894
     SD:
-      ekonomi: 0.044444036
-      valfard: 0.064597021
-      trygghet: 0.004841552
-      forsvar: -0.100845077
-      klimat: -0.026649585
-      integration: 0.05806191
-      demokrati: -0.044449858
+      ekonomi: 0.043956901
+      valfard: 0.064332565
+      trygghet: 0.004045983
+      forsvar: -0.100893507
+      klimat: -0.026795332
+      integration: 0.059405812
+      demokrati: -0.044052423
     C:
-      ekonomi: 0.098553699
-      valfard: 0.140621831
-      trygghet: 0.04021421
-      forsvar: -0.05517582
-      klimat: -0.058312512
-      integration: -0.114177623
-      demokrati: -0.051723785
+      ekonomi: 0.098636963
+      valfard: 0.140644938
+      trygghet: 0.040180282
+      forsvar: -0.055209988
+      klimat: -0.058400612
+      integration: -0.114094229
+      demokrati: -0.051757354
     V:
-      ekonomi: 0.434528868
-      valfard: 0.228171568
-      trygghet: -0.143860842
-      forsvar: -0.15927248
-      klimat: -0.065896085
-      integration: -0.153153153
-      demokrati: -0.140517876
+      ekonomi: 0.434493645
+      valfard: 0.228248927
+      trygghet: -0.143213092
+      forsvar: -0.15872926
+      klimat: -0.066899092
+      integration: -0.153689337
+      demokrati: -0.14021179
     KD:
       ekonomi: 0.240318506
       valfard: 0.222750284
@@ -507,13 +507,13 @@ glapp:
       integration: -0.068687545
       demokrati: -0.107472252
     L:
-      ekonomi: 0.086747321
-      valfard: 0.277750905
-      trygghet: -0.024297866
-      forsvar: -0.117771323
-      klimat: -0.088622314
-      integration: -0.077808114
-      demokrati: -0.055998609
+      ekonomi: 0.086812698
+      valfard: 0.277759126
+      trygghet: -0.024404317
+      forsvar: -0.117819808
+      klimat: -0.08855794
+      integration: -0.077742615
+      demokrati: -0.056047144
     MP:
       ekonomi: 0.051424922
       valfard: 0.050516605
@@ -540,29 +540,29 @@ glapp:
       integration: 0.043685913
       demokrati: -0.006552581
     SD:
-      ekonomi: -0.092089496
-      valfard: -0.241868648
-      trygghet: 0.103955541
-      forsvar: -0.040563118
-      klimat: 0.06072101
-      integration: 0.146024025
-      demokrati: 0.063820685
+      ekonomi: -0.099706646
+      valfard: -0.243295053
+      trygghet: 0.105343348
+      forsvar: -0.032844814
+      klimat: 0.062066457
+      integration: 0.144804032
+      demokrati: 0.063632676
     C:
-      ekonomi: -0.015552228
-      valfard: -0.168528464
-      trygghet: 0.126051952
-      forsvar: -0.009155
-      klimat: 0.048230094
-      integration: -0.01832295
-      demokrati: 0.037276595
+      ekonomi: -0.016590236
+      valfard: -0.166635433
+      trygghet: 0.125922223
+      forsvar: -0.009571013
+      klimat: 0.048740492
+      integration: -0.019411479
+      demokrati: 0.037545445
     V:
-      ekonomi: 0.306191465
-      valfard: -0.076764458
-      trygghet: -0.048411293
-      forsvar: -0.084911634
-      klimat: 0.008791258
-      integration: -0.055647307
-      demokrati: -0.04924803
+      ekonomi: 0.306220887
+      valfard: -0.079210136
+      trygghet: -0.0492036
+      forsvar: -0.088518965
+      klimat: 0.006039177
+      integration: -0.046606728
+      demokrati: -0.048720635
     KD:
       ekonomi: 0.118345183
       valfard: -0.084583592
@@ -572,13 +572,13 @@ glapp:
       integration: 0.015002576
       demokrati: -0.015761221
     L:
-      ekonomi: -0.033679556
-      valfard: -0.022326582
-      trygghet: 0.065164317
-      forsvar: -0.054248547
-      klimat: -0.014037079
-      integration: 0.012707998
-      demokrati: 0.046419448
+      ekonomi: -0.034719053
+      valfard: -0.020575668
+      trygghet: 0.065000856
+      forsvar: -0.054661683
+      klimat: -0.013330285
+      integration: 0.011558551
+      demokrati: 0.046727282
     MP:
       ekonomi: -0.074255584
       valfard: -0.248049186
@@ -591,11 +591,11 @@ profilavstand:
   primar:
     S: 0.254228627
     M: 0.192416303
-    SD: 0.17194452
-    C: 0.27938974
-    V: 0.662700436
+    SD: 0.171741262
+    C: 0.279462183
+    V: 0.662742571
     KD: 0.46306879
-    L: 0.364498226
+    L: 0.364571824
     MP: 0.332986091
   intervall:
     S:
@@ -605,20 +605,20 @@ profilavstand:
     - 0.152291858
     - 0.234584977
     SD:
-    - 0.119858873
-    - 0.261591157
+    - 0.120451184
+    - 0.262183468
     C:
-    - 0.235610939
-    - 0.323168542
+    - 0.235683381
+    - 0.323240985
     V:
-    - 0.624964587
-    - 0.694146977
+    - 0.625006722
+    - 0.694189112
     KD:
     - 0.395041579
     - 0.531096001
     L:
-    - 0.30358452
-    - 0.430488074
+    - 0.303658119
+    - 0.430561672
     MP:
     - 0.252986091
     - 0.412986091
@@ -631,83 +631,83 @@ storsta_positiva_glapp:
     glapp: 0.08573072
   SD:
     kategori: valfard
-    glapp: 0.064597021
+    glapp: 0.064332565
   C:
     kategori: valfard
-    glapp: 0.140621831
+    glapp: 0.140644938
   V:
     kategori: ekonomi
-    glapp: 0.434528868
+    glapp: 0.434493645
   KD:
     kategori: ekonomi
     glapp: 0.240318506
   L:
     kategori: valfard
-    glapp: 0.277750905
+    glapp: 0.277759126
   MP:
     kategori: klimat
     glapp: 0.231044564
 skiljbarhet_per_kategori:
   ekonomi:
     skilda: 8
-    spann: 0.390084832
-    hogsta: 0.434528868
-    lagsta: 0.044444036
+    spann: 0.390536743
+    hogsta: 0.434493645
+    lagsta: 0.043956901
     klarar: true
     skal: ''
   valfard:
     skilda: 8
-    spann: 0.227234299
-    hogsta: 0.277750905
+    spann: 0.227242521
+    hogsta: 0.277759126
     lagsta: 0.050516605
     klarar: true
     skal: ''
   trygghet:
     skilda: 8
-    spann: 0.197464209
+    spann: 0.196816459
     hogsta: 0.053603367
-    lagsta: -0.143860842
+    lagsta: -0.143213092
     klarar: true
     skal: ''
   forsvar:
     skilda: 8
-    spann: 0.130620422
+    spann: 0.130077202
     hogsta: -0.028652058
-    lagsta: -0.15927248
+    lagsta: -0.15872926
     klarar: true
     skal: ''
   klimat:
     skilda: 8
-    spann: 0.319666878
+    spann: 0.319602504
     hogsta: 0.231044564
-    lagsta: -0.088622314
+    lagsta: -0.08855794
     klarar: true
     skal: ''
   integration:
     skilda: 8
-    spann: 0.211215063
-    hogsta: 0.05806191
-    lagsta: -0.153153153
+    spann: 0.213095149
+    hogsta: 0.059405812
+    lagsta: -0.153689337
     klarar: true
     skal: ''
   demokrati:
     skilda: 7
-    spann: 0.096068019
-    hogsta: -0.044449858
-    lagsta: -0.140517876
+    spann: 0.096159367
+    hogsta: -0.044052423
+    lagsta: -0.14021179
     klarar: false
     skal: spann 0.096, kräver 0.1
 trosklar:
   primar:
     skiljbarhet:
       skilda: 8
-      spann: 0.490755916
-      hogsta: 0.662700436
-      lagsta: 0.17194452
+      spann: 0.491001309
+      hogsta: 0.662742571
+      lagsta: 0.171741262
       klarar: true
       skal: ''
     langd:
-      pearson: -0.354750769
+      pearson: -0.354484985
       spearman: 0.0
       n: 8
       grans: 0.7
@@ -724,11 +724,11 @@ trosklar:
       - MP
       - S
       - V
-      medel_regeringssidan: 0.29798196
-      medel_oppositionen: 0.382326224
-      mellan: 0.084344264
-      inom: 0.166711668
-      d: 0.505928979
+      medel_regeringssidan: 0.297949545
+      medel_oppositionen: 0.382354868
+      mellan: 0.084405323
+      inom: 0.166746548
+      d: 0.506189329
       klarar: true
       skal: ''
     klarar: true
@@ -737,13 +737,13 @@ trosklar:
     a1_ra:
       skiljbarhet:
         skilda: 8
-        spann: 0.250229498
-        hogsta: 0.374521261
-        lagsta: 0.124291763
+        spann: 0.252559824
+        hogsta: 0.375846513
+        lagsta: 0.123286689
         klarar: true
         skal: ''
       langd:
-        pearson: -0.191648976
+        pearson: -0.189076106
         spearman: -0.50300303
         n: 8
         grans: 0.7
@@ -760,11 +760,11 @@ trosklar:
         - MP
         - S
         - V
-        medel_regeringssidan: 0.24001772
-        medel_oppositionen: 0.279858716
-        mellan: 0.039840996
-        inom: 0.096476829
-        d: 0.41295922
+        medel_regeringssidan: 0.240097764
+        medel_oppositionen: 0.279340431
+        mellan: 0.039242667
+        inom: 0.096751671
+        d: 0.405601952
         klarar: true
         skal: ''
       klarar: true
@@ -772,13 +772,13 @@ trosklar:
     bakat:
       skiljbarhet:
         skilda: 8
-        spann: 0.547197289
-        hogsta: 0.67908189
-        lagsta: 0.131884601
+        spann: 0.54679286
+        hogsta: 0.679124025
+        lagsta: 0.132331165
         klarar: true
         skal: ''
       langd:
-        pearson: -0.2380573
+        pearson: -0.23833907
         spearman: 0.0
         n: 8
         grans: 0.7
@@ -795,11 +795,11 @@ trosklar:
         - MP
         - S
         - V
-        medel_regeringssidan: 0.28424644
-        medel_oppositionen: 0.397926016
-        mellan: 0.113679576
-        inom: 0.171240522
-        d: 0.663859083
+        medel_regeringssidan: 0.284376481
+        medel_oppositionen: 0.39795466
+        mellan: 0.113578179
+        inom: 0.171187154
+        d: 0.66347373
         klarar: true
         skal: ''
       klarar: true
@@ -807,13 +807,13 @@ trosklar:
     storsta_glapp:
       skiljbarhet:
         skilda: 8
-        spann: 0.369931847
-        hogsta: 0.434528868
-        lagsta: 0.064597021
+        spann: 0.37016108
+        hogsta: 0.434493645
+        lagsta: 0.064332565
         klarar: true
         skal: ''
       langd:
-        pearson: -0.41760814
+        pearson: -0.417226483
         spearman: -0.023952525
         n: 8
         grans: 0.7
@@ -830,11 +830,11 @@ trosklar:
         - MP
         - S
         - V
-        medel_regeringssidan: 0.167099288
-        medel_oppositionen: 0.244067421
-        mellan: 0.076968133
-        inom: 0.120660339
-        d: 0.637890903
+        medel_regeringssidan: 0.167035229
+        medel_oppositionen: 0.244064392
+        mellan: 0.077029162
+        inom: 0.120686506
+        d: 0.638258287
         klarar: true
         skal: ''
       klarar: true
@@ -851,11 +851,11 @@ trosklar:
         - MP
         - S
         - V
-        medel_regeringssidan: 0.33999444
-        medel_oppositionen: 0.382326224
-        mellan: 0.042331784
-        inom: 0.165499052
-        d: 0.255782636
+        medel_regeringssidan: 0.340018972
+        medel_oppositionen: 0.382354868
+        mellan: 0.042335896
+        inom: 0.165506168
+        d: 0.255796482
         klarar: true
         skal: ''
       klarar: true
@@ -863,13 +863,13 @@ trosklar:
     framat:
       skiljbarhet:
         skilda: 8
-        spann: 0.455713437
-        hogsta: 0.643401737
+        spann: 0.455755572
+        hogsta: 0.643443872
         lagsta: 0.1876883
         klarar: true
         skal: ''
       langd:
-        pearson: -0.506831814
+        pearson: -0.506537549
         spearman: -0.167667677
         n: 8
         grans: 0.7
@@ -886,11 +886,11 @@ trosklar:
         - MP
         - S
         - V
-        medel_regeringssidan: 0.315030303
-        medel_oppositionen: 0.388632062
-        mellan: 0.073601759
-        inom: 0.152508223
-        d: 0.482608459
+        medel_regeringssidan: 0.314997888
+        medel_oppositionen: 0.388660707
+        mellan: 0.073662818
+        inom: 0.152530777
+        d: 0.482937408
         klarar: true
         skal: ''
       klarar: true
@@ -909,15 +909,15 @@ diagnostik:
   handlingens_koncentration:
     S: 0.027025893
     M: 0.023267523
-    SD: 0.026842584
-    C: 0.02554934
-    V: 0.027715047
+    SD: 0.027289148
+    C: 0.025470781
+    V: 0.027060261
     KD: 0.024691258
-    L: 0.02168791
+    L: 0.02171121
     MP: 0.029504075
-  r_avstand_mot_retorikens_koncentration: 0.997542536
-  r_avstand_mot_handlingens_koncentration: 0.163129601
-  r_primar_mot_a1: -0.129197022
+  r_avstand_mot_retorikens_koncentration: 0.997556845
+  r_avstand_mot_handlingens_koncentration: 0.064816929
+  r_primar_mot_a1: -0.140505277
   spridning_i_profilen:
     retorik:
       S: 0.285714286
@@ -931,11 +931,11 @@ diagnostik:
     handling:
       S: 0.025607894
       M: 0.0231107
-      SD: 0.023771611
-      C: 0.023819136
-      V: 0.030483314
+      SD: 0.024718077
+      C: 0.023930343
+      V: 0.028937086
       KD: 0.032488924
-      L: 0.029149009
+      L: 0.029261868
       MP: 0.035708203
 utfall:
   klarar: true
@@ -952,9 +952,9 @@ kallor:
 kallhashar:
   korpus_bakat: f6a6ae73ba232eec8de3ecae5238ad2f395e81978e45b1134e9dab8751d83f8e
   korpus_framat: 07b690fbb816a07aebcda9f4eba146c0d2b04e4df474b87e364078384e7b3b74
-  delpoang_a: 3d1467bf781dd83c9a214b24175849837bfda517ee493219a828fa1779db32f0
+  delpoang_a: cbed5f939e0b5c60115d4cc8e818e00617b64b833841eadc8ef1b6b995441a41
   a1_ra: ab7f4f22d745b150adba3acec1e22a3fdf9b723e3df26e0a972e35c9df183b08
   kategorier: 800c06249817efc30b056a2d9b5fbb82f7f71f4be34c24c88c12e7fb38d12f55
-  poangsattning: 849449c40f2ffe20fad074b8f807e632492248255b17b70284c6ebaf23c5cd92
+  poangsattning: ddec9ff42c029e58eff535849c21b73dce94a15a0d0650fabe5fd1fb30ad8016
   blocken: ba989ca999664586518bfa3573feab10f01270be02d0586392510642448535a2
   forhandsregistrering: 45a8038182369bc27a7782d39664328a9ac8988ac64871d1431c1efebda621bc

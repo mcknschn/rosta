@@ -14,7 +14,7 @@ av de fem varianterna.
 | Tröskel | Krav | Utfall |
 |---|---|---|
 | Skiljbarhet | 5 skilda värden, spann 0,10 | 8 skilda, spann 0,491 |
-| Längdkonfunden | \|r\| under 0,7 | -0,355 |
+| Längdkonfunden | \|r\| under 0,7 | -0,354 |
 | Neutralitet | mellan högst inom | 0,084 mot 0,167 |
 
 Enligt biljetten graderas då en grillning som avgör måttets form. **Den graderas.**
@@ -24,8 +24,8 @@ Enligt biljetten graderas då en grillning som avgör måttets form. **Den grade
 POC:ens efterhandsprov visar att skiljbarheten kommer från en enda av de två sidorna.
 
 - Profilavståndet korrelerar **0,998** med hur koncentrerad partiets retorikprofil är.
-- Det korrelerar **0,163** med handlingssidans egen koncentration.
-- Byts handlingssidan från A till a1 rå korrelerar de två uppsättningarna **-0,129** med varandra.
+- Det korrelerar **0,065** med handlingssidans egen koncentration.
+- Byts handlingssidan från A till a1 rå korrelerar de två uppsättningarna **-0,141** med varandra.
 
 Den primära uppställningen mäter alltså i praktiken hur koncentrerat valmanifestet är, och knappt
 alls ett glapp mellan två sidor. Byts kanalen på handlingssidan byter partierna plats.
@@ -54,7 +54,7 @@ Biljettens sju öppna frågor står kvar. POC:en lägger till en åttonde, och f
 
 | # | Fråga | Vad POC:en tillför |
 |---|---|---|
-| **0** | **Vad är handlingssidan?** | A normerad bär nästan ingen spridning (0,022 till 0,036 inom ett parti). a1 rå bär mer men grindas och delas mellan koalitionspartier. a2 rå ligger utanför repot. Frågan är olöst och blockerar resten. |
+| **0** | **Vad är handlingssidan?** | A normerad bär nästan ingen spridning (0,023 till 0,036 inom ett parti). a1 rå bär mer men grindas och delas mellan koalitionspartier. a2 rå ligger utanför repot. Frågan är olöst och blockerar resten. |
 | 1 | Tillstånd 3, alltså nämner och arbetar emot | Orört. POC:en behandlar tillstånd 3 som tillstånd 2. |
 | 2 | Nämnaren, sju kategorier eller bara de nämnda | POC:en körde på alla sju. V nämner tre och får därför det största avståndet, 0,663. Valet är alltså inte oskyldigt. |
 | 3 | Får framåtkorpusen läsas | POC:en läste den utan att pröva någon post mot ett utfall. Utfallet ändras inte nämnvärt av valet: bakåt ger spann 0,547 och framåt 0,456. |
