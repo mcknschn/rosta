@@ -70,9 +70,24 @@ A_agerande:
   # -> stora partier blir inte höga i varje kategori.
   # a1 (Fas 1b, byggd): andel av partiets föreslagna utgiftsramar (Σ kategorins UO / Σ alla UO) ur
   # officiella källor (config/budget_ramar.yaml, version 0). HÅRD GRIND (pipeline/budget.py): a1 vägs
-  # in för en (budgetår, kategori) endast när alla 8 partier har verifierad ram för varje kategori-UO;
-  # annars A = a2 (flagga A_a2_only). Saknad/ogiltig cell -> hård fail, aldrig tyst 0. Se
+  # in för en (budgetår, kategori) endast när varje parti har verifierad ram för varje kategori-UO i
+  # varje år PARTIET SJÄLVT mäts på (ADR 0017 punkt 5, lossad från per år till per parti); annars
+  # A = a2 (flagga A_a2_only). Saknad/ogiltig cell -> hård fail, aldrig tyst 0. Se
   # docs/done/fas1b_budget_metod.md. A = a1*0.5 + a2*0.5 där a1 aktiv, annars A = a2.
+  # KLASSREGELN (ADR 0017 punkt 3): parti-år vars enda citerbara grund är en röst i rambeslutet
+  # hör inte hemma i a1. Vad partiet sade var ja till en ram; vad a1 läser är en fördelning över 27
+  # utgiftsområden, och ingen källa bär den fördelningen. Det är ADR 0011 punkt 2 steg 2, alltså ett
+  # giltighetsfel, och regeln är ADR 0011:s form ett steg ned: objektet är ett (parti, budgetår)
+  # inne i en kanal. Regeln bor HÄR och aldrig i config/budget_ramar.yaml, som är autogenererad:
+  # `basis` bokför källan, `exclusion` är modellens dom, och ett fält bär ett besked (ADR 0011
+  # punkt 3). `votering` är klassvillkoret, aldrig skälets namn. Gemensam motion och regeringsram
+  # står kvar: båda är författarskap. Prövas av pipeline/config.py och pipeline/budget.py.
+  a1_exclusions:
+    - basis: votering
+      exclusion: giltighetsfel
+      reopen_if: >-
+        en citerbar officiell svensk källa belägger att partiet författat eller undertecknat den
+        aktuella ramen, inte bara röstat för den
   notes: Mäter prioritering relativt partiets storlek, inte om politiken är rätt. Rättheten fångas av B och D.
 
 # B — Evidens. Hur stor förbättring väntas av de åtgärder partiet driver?

@@ -34,11 +34,19 @@ def _seed(period: str = _A2_PERIOD) -> object:
 # --- 1. Täljare och förankring täcker samma år, i båda kanalerna --------------------------
 
 def test_a1_taljaren_tacker_exakt_forankringens_ar() -> None:
-    """Kravet i ADR 0007 punkt 1, prövat för varje parti och kategori genom kvotens år."""
+    """Kravet i ADR 0007 punkt 1, prövat för varje parti och kategori genom kvotens år.
+
+    Efter ADR 0017 mäts partierna på egna årsmängder, så kravet ställs per parti: mängden
+    ligger inom fönstret, och unionen är exakt fönstret. Vad som får fattas ur ett partis
+    mängd prövas i tests/test_a_forfattarskap.py.
+    """
     cats, parties = config.category_ids(), config.party_codes()
     shares, active, years = budget.a1_shares(cats, parties)
-    assert years == anchor.a1_years()
-    assert years, "a1 saknar budgetår"
+    assert set(years) == set(parties), years
+    for party in parties:
+        assert years[party], f"{party} saknar budgetår"
+        assert set(years[party]) <= set(anchor.a1_years()), party
+    assert {y for ar in years.values() for y in ar} == set(anchor.a1_years())
     # Andelen finns för varje parti och kategori, alltså är varje kvot räknad på samma år.
     for party in parties:
         for category in cats:
@@ -50,8 +58,9 @@ def test_a1_forankringen_laggs_pa_taljarens_ar_och_ingenting_annat() -> None:
     """Ett år utanför täljaren får inte väga in i förankringen."""
     cats = config.category_ids()
     _shares, _active, years = budget.a1_shares(cats, config.party_codes())
-    full = anchor.a1_anchor_shares(cats, years=years)
-    kortare = anchor.a1_anchor_shares(cats, years=years[1:])
+    ar = years[config.party_codes()[0]]
+    full = anchor.a1_anchor_shares(cats, years=ar)
+    kortare = anchor.a1_anchor_shares(cats, years=ar[1:])
     assert full != kortare, "förankringen ändras inte när ett år tas bort - läser den åren alls?"
 
 
@@ -106,17 +115,24 @@ def test_villkorsklausulen_faller_inte_ut_pa_det_beslutade_fonstret() -> None:
 
 
 def test_villkorsklausulen_faller_ut_pa_ett_kort_fonster() -> None:
-    """Klausulen är inte tom: med bara Tidöåren är den antagna ramen regeringens.
+    """Klausulen är inte tom: med bara alliansåren är den antagna ramen regeringens.
 
     Det är precis det ADR 0005 förkastade under rubriken "Regeringens ram som nollpunkt", och
     klausulen finns för att ett kort fönster inte ska kunna återinföra det bakvägen.
+
+    Fönstret är 2011-2014, alltså de enda sammanhängande åren utan voteringspost (ADR 0017
+    diagnos 7). Tidöåren ensamma skulle lämna SD utan giltiga år, och då är frågan en annan:
+    a1 kan inte mätas alls för partiet, vilket årsvakten i scorerun äger.
     """
     decided = config.a_forankring()["a1"]["decided_frames"]
     cfg = copy.deepcopy(config.budget_ramar())
-    cfg["budget_years"] = {y: b for y, b in cfg["budget_years"].items() if y >= 2023}
-    ok, offenders = budget.a1_admissible(config.party_codes(), decided, ramar_cfg=cfg)
+    cfg["budget_years"] = {y: b for y, b in cfg["budget_years"].items() if y <= 2014}
+    ok, offenders = budget.a1_admissible(
+        config.party_codes(), decided, ramar_cfg=cfg,
+        years_by_party=budget.valid_party_years(cfg),
+    )
     assert not ok
-    assert set(offenders) == {"M", "KD", "L", "SD"}, offenders
+    assert set(offenders) == {"M", "C", "KD", "L"}, offenders
 
 
 def test_villkorsklausulen_tar_bort_a1_ur_A_nar_den_faller_ut() -> None:
@@ -126,12 +142,12 @@ def test_villkorsklausulen_tar_bort_a1_ur_A_nar_den_faller_ut() -> None:
     så att det inte förväxlas med en lucka i underlaget.
     """
     short = copy.deepcopy(config.budget_ramar())
-    short["budget_years"] = {y: b for y, b in short["budget_years"].items() if y >= 2023}
+    short["budget_years"] = {y: b for y, b in short["budget_years"].items() if y <= 2014}
     con = _seed()
     med_a1 = scorerun.build(con)["scores"]["scores"]
     # Fönsterprovet i punkt 1 gäller täljarens år; här prövas punkt 4, så åren tillåts matcha.
     original = anchor.a1_years
-    anchor.a1_years = lambda cfg=None: [2023, 2024, 2025]        # noqa: ARG005
+    anchor.a1_years = lambda cfg=None: [2011, 2012, 2013, 2014]   # noqa: ARG005
     try:
         utan_a1 = scorerun.build(con, budget_cfg=short)["scores"]["scores"]
     finally:
@@ -143,16 +159,21 @@ def test_villkorsklausulen_tar_bort_a1_ur_A_nar_den_faller_ut() -> None:
     vikter = config.scoring()
     tapp = (float(vikter["subscore_weights"]["A"])
             * float(vikter["A_agerande"]["components"]["a1_budgetprioritering"]))
+    _shares, _active, giltiga = budget.a1_shares(config.category_ids(), config.party_codes())
+    andel = {p: len(ar) / len(anchor.a1_years()) for p, ar in giltiga.items()}
     for party, cats in utan_a1.items():
         for category, cell in cats.items():
             assert "A_a2_only" in cell["flags"], f"{party}/{category}"
             # Flaggan namnger partierna som fällde klausulen, inte bara att den föll.
-            assert "A_a1_inadmissible:KD,L,M,SD" in cell["flags"], f"{party}/{category}"
+            assert "A_a1_inadmissible:C,KD,L,M" in cell["flags"], f"{party}/{category}"
             assert "A_a1_active" in med_a1[party][category]["flags"]
-            # Den publicerade täckningen är avrundad till tre decimaler, så skillnaden mellan
-            # två avrundade tal kan missa med en tusendel åt vardera hållet.
+            # Tappet är a1:s vikt gånger den andel av fönstret partiet hade GILTIGA år på
+            # (ADR 0017 punkt 10), så ett parti med uteslutna år tappar mindre. Den publicerade
+            # täckningen är avrundad till tre decimaler, så skillnaden mellan två avrundade tal
+            # kan missa med en tusendel åt vardera hållet.
             tappet = med_a1[party][category]["coverage"] - cell["coverage"]
-            assert tappet == pytest.approx(tapp, abs=0.0011), f"{party}/{category}: {tappet}"
+            assert tappet == pytest.approx(tapp * andel[party], abs=0.0011), \
+                f"{party}/{category}: {tappet}"
 
 
 # --- 3. Grinden i pipeline/budget.py lämnas orörd (ADR 0007 punkt 5) ----------------------
@@ -162,7 +183,7 @@ def test_grinden_star_kvar_och_passerar() -> None:
     cats, parties = config.category_ids(), config.party_codes()
     _shares, active, years = budget.a1_shares(cats, parties)
     assert active == set(cats)
-    assert len(years) == 15, years
+    assert {y for ar in years.values() for y in ar} == set(anchor.a1_years())
 
 
 def test_grinden_slacker_kategorin_nar_ett_ar_ar_ofullstandigt() -> None:
@@ -226,16 +247,18 @@ def test_voteringsgrunden_slar_inte_till_nar_ett_regeringsparti_saknar_rost() ->
 # regeringstid går sämre att skilja åt i a1. Metodrutan nämnde förhållandet men gav inga tal,
 # och läsaren kunde därför inte se hur stor asymmetrin är. Sign-off 2e 2026-08-26.
 
-def test_delad_ram_raknas_per_parti_over_hela_fonstret() -> None:
-    """Talet är antal år av fönstrets, per parti, där ramen bärs av mer än ett parti."""
-    delad = dict(budget.shared_frame_years())
+def test_delad_ram_raknas_per_parti_over_partiets_giltiga_ar() -> None:
+    """Talet är antal år, per parti, där ramen bärs av mer än ett parti.
+
+    Nämnaren är partiets GILTIGA år efter ADR 0017, inte fönstrets femton. Hela åttavektorn
+    låses i tests/test_a_forfattarskap.py, som ADR 0017 godkännandetest 9 kräver.
+    """
+    delad = budget.shared_frame_years()
     _shares, _active, years = budget.a1_shares(config.category_ids(), config.party_codes())
-    assert set(delad) == set(config.party_codes())
-    for party, n in delad.items():
-        assert 0 <= n <= len(years), f"{party}: {n} av {len(years)}"
-    # Ytterkanterna, som underlaget till sign-offen redovisar dem.
-    assert delad["L"] == 10, delad
-    assert delad["SD"] == 3, delad
+    assert {r.party for r in delad} == set(config.party_codes())
+    for r in delad:
+        assert r.valid == len(years[r.party]), r
+        assert 0 <= r.shared <= r.valid, r
 
 
 def test_delad_ram_ar_tom_utan_budgetkalla() -> None:
@@ -249,7 +272,8 @@ def test_metodrutan_ger_talen_for_delad_ram() -> None:
     out = scorerun.build(con)
     text = out["scores"]["meta"]["coverage_technical"]
     assert "delar ram med minst ett annat parti" in text, text
-    assert "L 10" in text and "SD 3" in text, text
+    for r in budget.shared_frame_years():
+        assert f"{r.party} {r.shared} av {r.valid}" in text, r
 
 
 def test_metodrutan_tiger_om_luckan_nar_alla_ar_ar_signade() -> None:
@@ -258,7 +282,8 @@ def test_metodrutan_tiger_om_luckan_nar_alla_ar_ar_signade() -> None:
     text = scorerun.build(con)["scores"]["meta"]["coverage_technical"]
     signade = sum(1 for b in config.budget_ramar()["budget_years"].values()
                   if int(b.get("version", 0)) >= 1)
-    _shares, _active, years = budget.a1_shares(config.category_ids(), config.party_codes())
+    _shares, _active, giltiga = budget.a1_shares(config.category_ids(), config.party_codes())
+    years = sorted({y for ar in giltiga.values() for y in ar})
     if signade >= len(years):
         assert "alla expertgranskade med mänsklig sign-off" in text
         assert "står i version 0" not in text, text

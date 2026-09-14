@@ -484,7 +484,17 @@ def _a_ceilings(
     Taket räknas ur förankringen med score.max_reachable_score och blandas med samma vikter
     som betyget självt, så en ändrad förankring och en ändrad blandning följer båda med. Står
     a1 bär taket båda kanalerna; faller a1 ur grinden vilar A på a2 ensam, och taket med den.
+
+    Förankringen är HELA fönstrets, aldrig den partivisa (ADR 0017 punkt 12). Taket är
+    modellens och inte partiets (ADR 0014 punkt 3), och ADR 0012 punkt 5 införde meningen som
+    ett kategoribesked. Åtta tak per kategori vore samma fel som 56 kopior av sju tal, så en
+    partivis förankring faller hårt här i stället för att tyst bli åtta tal.
     """
+    if any(isinstance(v, Mapping) for v in a1_anchor.values()):
+        raise ValueError(
+            "A:s tak räknas på EN förankring per kategori, aldrig på den partivisa "
+            "(ADR 0017 punkt 12)"
+        )
     return {
         c: (w_a1 * score.max_reachable_score(a1_anchor[c])
             + w_a2 * score.max_reachable_score(a2_anchor[c])) if c in a1_active
@@ -883,6 +893,51 @@ def _require_a2_period(con: object) -> None:
         )
 
 
+def _require_a1_years(
+    years_by_party: dict[str, list[int]], budget_cfg: dict[str, object] | None
+) -> None:
+    """Årsvakten för a1: tre hårda krav (ADR 0007 punkt 1, ADR 0017 punkt 5 och 6).
+
+    Efter lossningen mäter partierna på olika årsmängder, och då räcker det inte att jämföra
+    en enda lista mot fönstret. Kraven är:
+
+    1. Varje partis årsmängd ligger inom förankringens fönster. Ett år utanför vore en kvot
+       vars täljare och nämnare täcker olika år.
+    2. Varje år som fattas i ett partis mängd förklaras av en klassregel. Annars är det en
+       lucka i underlaget som utger sig för att vara en modelldom.
+    3. Unionen av de åtta mängderna är EXAKT fönstret. Annars har fönstret krympt tyst.
+
+    Att mängden är icke-tom prövas ett steg tidigare, i budget.a1_shares: den frågan gäller
+    grindens underlag och inte förhållandet mellan täljare och förankring.
+
+    Tom årsmängd för alla (ingen budgetkälla) är giltig: a1 faller på grinden och A vilar på
+    a2, precis som före ADR 0007.
+    """
+    if not years_by_party:
+        return
+    fonster = anchor.a1_years()
+    utesluten = budget.excluded_party_years(budget_cfg)
+    union: set[int] = set()
+    for party, ar in sorted(years_by_party.items()):
+        if not set(ar) <= set(fonster):
+            raise ValueError(
+                f"A: a1:s täljare för {party} täcker {sorted(set(ar) - set(fonster))} utanför "
+                f"förankringens fönster {fonster[0]}-{fonster[-1]} (ADR 0007 punkt 1)"
+            )
+        oforklarade = set(fonster) - set(ar) - utesluten.get(party, set())
+        if oforklarade:
+            raise ValueError(
+                f"A: a1:s täljare för {party} saknar {sorted(oforklarade)} som förankringen "
+                "täcker, utan en klassregel som förklarar luckan (ADR 0007 punkt 1)"
+            )
+        union |= set(ar)
+    if union != set(fonster):
+        raise ValueError(
+            f"A: a1:s täljare täcker {sorted(union)} men förankringen "
+            f"{fonster[0]}-{fonster[-1]} (ADR 0007 punkt 1)"
+        )
+
+
 def build(con: object | None = None, budget_cfg: dict[str, object] | None = None) -> dict[str, object]:
     """Bygger scores/evidence. budget_cfg=None -> läs config/budget_ramar.yaml (produktion);
     skicka {} (eller en fixtur) för att isolera/injicera a1 i test (jfr budget.a1_shares)."""
@@ -906,20 +961,34 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
     # vars täljare och nämnare täcker olika år bär skillnaden mellan åren som om den vore en
     # skillnad mellan partier. Kanalerna har egna fönster (punkt 3), och båda prövas hårt här.
     a1_share, a1_active, a1_years = budget.a1_shares(cats, parties, ramar_cfg=budget_cfg)
-    if a1_years and a1_years != anchor.a1_years():
-        raise ValueError(
-            f"A: a1:s täljare täcker {a1_years[0]}-{a1_years[-1]} men förankringen "
-            f"{anchor.a1_years()[0]}-{anchor.a1_years()[-1]} (ADR 0007 punkt 1)"
-        )
+    _require_a1_years(a1_years, budget_cfg)
     # Villkorsklausulen (ADR 0007 punkt 4). Faller den ut vilar A på a2 ensam, alltså exakt
     # det tillstånd grinden ger, och cellens täckning följer med av sig själv (ADR 0008
-    # punkt 3). Skälet är ett annat än grindens, och det står som en egen flagga.
+    # punkt 3). Skälet är ett annat än grindens, och det står som en egen flagga. Klausulen
+    # prövas på partiets EGEN giltiga årsmängd (ADR 0017 punkt 8); rättsverkan är global.
     a1_ok, a1_offenders = budget.a1_admissible(
-        parties, config.a_forankring()["a1"]["decided_frames"], ramar_cfg=budget_cfg
+        parties, config.a_forankring()["a1"]["decided_frames"], ramar_cfg=budget_cfg,
+        years_by_party=a1_years or None,
     )
     if not a1_ok:
         a1_active = set()
-    a1_anchor = anchor.a1_anchor_shares(cats, years=a1_years or None)
+    # Förankringen läggs på PARTIETS år (ADR 0007 punkt 1, ADR 0017 punkt 6). Den är ingen
+    # partistorhet: den är de antagna ramarnas andel, alltså en egenskap hos året, så två
+    # partier med samma årsmängd delar förankring. Memoiseringen håller antalet anrop vid
+    # antalet DISTINKTA årsmängder, alltså fyra i dag och inte åtta.
+    _anchor_per_arsmangd: dict[frozenset[int], dict[str, float]] = {}
+
+    def _a1_anchor_for(years: list[int]) -> dict[str, float]:
+        nyckel = frozenset(years)
+        if nyckel not in _anchor_per_arsmangd:
+            _anchor_per_arsmangd[nyckel] = anchor.a1_anchor_shares(cats, years=years)
+        return _anchor_per_arsmangd[nyckel]
+
+    a1_anchor = {p: _a1_anchor_for(ar) for p, ar in a1_years.items() if ar}
+    # A:s NÅBARA TAK räknas på EN förankring per kategori, alltså hela fönstrets. Taket är
+    # modellens och inte partiets (ADR 0014 punkt 3, ADR 0017 punkt 12): åtta tak per kategori
+    # vore samma fel som 56 kopior av sju tal.
+    a1_anchor_fonstret = anchor.a1_anchor_shares(cats)
     a2_anchor = anchor.a2_anchor_shares(cats)
     _require_a2_period(con)
     counts = {(p, c): 0.0 for p in parties for c in cats}
@@ -943,25 +1012,43 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
     w_a2 = float(a_comp["a2_lagstiftningsprioritering"])
     a_by_cat: dict[str, dict[str, float]] = {}
     a_flag_by_cat: dict[str, str] = {}
-    # A:s TÄCKNING per kategori (ADR 0008 punkt 3): står a1 vilar A på båda kanalerna och är
-    # helt täckt; faller a1 ur grinden vilar A på a2 ensam, och a2 väger 0,5 av A. Talet ÄRVER
-    # blandningen ur configen i stället för att sättas här, så en ändrad blandning följer med.
-    a_cov_by_cat: dict[str, float] = {}
+    # A:s TÄCKNING står på TVÅ ställen, och de är två skilda storheter efter ADR 0017 punkt 12.
+    #
+    #   a_cov_ceiling_by_cat  A:s del av MÄTTAKET. En KATEGORIKONSTANT: samma tal för alla åtta
+    #                         partier, eftersom taket säger vad modellen kan mäta (ADR 0014).
+    #   a_cov_by_cell         CELLENS A-täckning, per parti: a1 täcker partiets giltiga år av
+    #                         fönstrets, alltså w_a1 x (giltiga / fönstret) + w_a2.
+    #
+    # Båda ÄRVER blandningen ur configen i stället för att sättas här, så en ändrad blandning
+    # följer med. Det som fattas räknas delvis täckt på FULL nämnare, aldrig bort ur den
+    # (ADR 0008 punkt 4), och täckningen rör aldrig betyget (ADR 0008 punkt 7).
+    a_cov_ceiling_by_cat: dict[str, float] = {}
+    a_cov_by_cell: dict[tuple[str, str], float] = {}
+    fonster_ar = len(anchor.a1_years())
+    a1_arsandel = {p: len(a1_years.get(p, ())) / fonster_ar if fonster_ar else 0.0
+                   for p in parties}
     for c in cats:
         if c in a1_active:
             # a1_share[(p,c)] finns för alla partier när c är aktiv (grinden garanterar det);
             # direkt indexering => hård fail om en cell mot förmodan saknas (aldrig tyst 0).
+            # Förankringen är partiets egen (ADR 0017 punkt 6), alltså samma år som täljaren.
             a1_scored = {
-                p: score.net_support_to_score(score.bounded_quotient(a1_share[(p, c)], a1_anchor[c]))
+                p: score.net_support_to_score(
+                    score.bounded_quotient(a1_share[(p, c)], a1_anchor[p][c])
+                )
                 for p in parties
             }
             a_by_cat[c] = {p: w_a1 * a1_scored[p] + w_a2 * a2_by_cat[c][p] for p in parties}
             a_flag_by_cat[c] = "A_a1_active"
-            a_cov_by_cat[c] = w_a1 + w_a2
+            a_cov_ceiling_by_cat[c] = w_a1 + w_a2
+            for p in parties:
+                a_cov_by_cell[(p, c)] = w_a1 * a1_arsandel[p] + w_a2
         else:
             a_by_cat[c] = a2_by_cat[c]
             a_flag_by_cat[c] = "A_a2_only"
-            a_cov_by_cat[c] = w_a2
+            a_cov_ceiling_by_cat[c] = w_a2
+            for p in parties:
+                a_cov_by_cell[(p, c)] = w_a2
     # Flaggan namnger partiet som fällde klausulen, annars säger den bara att något gick fel
     # utan att säga vad. Sorterad, så flaggan är stabil mellan körningar.
     a_extra_flags = ([] if a1_ok
@@ -1038,7 +1125,7 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
     b_shrink_den = _non_excluded_submeasures()    # delad B/D-nämnare för KRYMPNINGEN
     cov_den_w = _coverage_denominators()          # kategorins FULLA vikt: TÄCKNINGENS nämnare
     b_shrink_tak = _b_shrink_ceilings()           # kategorins tak PÅ KRYMPNINGENS skala
-    mattak = _coverage_ceilings(a_cov_by_cat, b_mode)  # kategorins MÄTTAK (ADR 0014 punkt 4)
+    mattak = _coverage_ceilings(a_cov_ceiling_by_cat, b_mode)  # kategorins MÄTTAK (ADR 0014 punkt 4)
 
     # Claims (provenance för evidence.json) + index. Sorteras på id så provenansen (claim_refs,
     # särskilt obs_by_cat[:3]-urvalet) blir REPRODUCERBAR — claims byggs annars i hash-randomiserad
@@ -1167,7 +1254,7 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
             # att strykas: en ej tillämplig D (ADR 0008 punkt 4) och ett uteslutet undermått.
             # Talet räknas här i pipen, aldrig i frontend (punkt 8), och rör inte betyget.
             d_cov = (d_cell.covered_weight / cov_den_w[c]) if cov_den_w.get(c) else 0.0
-            cs["coverage"] = score.cell_coverage(a_cov_by_cat[c], b_cov, d_cov)
+            cs["coverage"] = score.cell_coverage(a_cov_by_cell[(p, c)], b_cov, d_cov)
             crefs = []
             if (p, c) in action_by_pc:
                 crefs.append(action_by_pc[(p, c)])
@@ -1210,31 +1297,52 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
     fresh = data_freshness(con, today=today)
     # a1:s fönster i klartext. Utan budgetkälla finns inget a1-fönster, och metodrutan ska
     # säga det i stället för att indexera en tom lista.
-    a1_window = (f"budgetåren {a1_years[0]}-{a1_years[-1]} ({len(a1_years)} år)"
-                 if a1_years else "inga budgetår, alltså vilar A på a2 ensam")
+    # Fönstret är unionen av partiernas årsmängder, och årsvakten har redan prövat att den är
+    # exakt förankringens. Per parti kan mängden vara mindre, och det står i uteslutningen.
+    a1_fonster = sorted({y for ar in a1_years.values() for y in ar})
+    a1_window = (f"budgetåren {a1_fonster[0]}-{a1_fonster[-1]} ({len(a1_fonster)} år)"
+                 if a1_fonster else "inga budgetår, alltså vilar A på a2 ensam")
     # Sign-off per budgetår. Talen matar betygen oavsett, men läsaren ska se hur många år som
     # ännu inte är expertgranskade i stället för att anta att alla är det.
     _signed = sum(1 for b in (config.budget_ramar().get("budget_years") or {}).values()
                   if int(b.get("version", 0)) >= 1)
     # Svansen finns för att visa en lucka. Är luckan noll ska den falla bort i stället för att
     # stå kvar som "och 0 står i version 0".
-    if not a1_years:
+    if not a1_fonster:
         a1_signoff = ""
-    elif _signed >= len(a1_years):
+    elif _signed >= len(a1_fonster):
         a1_signoff = ", alla expertgranskade med mänsklig sign-off"
     else:
         a1_signoff = (f", varav {_signed} är expertgranskade med mänsklig sign-off och "
-                      f"{len(a1_years) - _signed} står i version 0")
+                      f"{len(a1_fonster) - _signed} står i version 0")
     # Hur stor sammanblandningen är, parti för parti. Metodrutan nämnde att ett regeringsår
     # mäts på koalitionens ram, men gav inga tal, så läsaren kunde inte se att det gäller
     # nästan varje år för ett parti och nästan inget för ett annat (sign-off 2e 2026-08-26).
+    # Talet räknas på de år a1 FAKTISKT mäter partiet, och uteslutningen står i en egen mening
+    # (ADR 0017). Att bara byta ut den ena vektorn mot den andra vore att byta ett missvisande
+    # tal mot ett annat, så rutan bär båda kolumnerna.
     _delad = budget.shared_frame_years(budget_cfg)
-    a1_delad = (" Antal år av fönstrets där partiet delar ram med minst ett annat parti: "
-                + ", ".join(f"{p} {n}" for p, n in _delad) + "." if _delad else "")
+    a1_delad = (" Antal år partiet delar ram med minst ett annat parti, av de år a1 mäter "
+                "partiet: "
+                + ", ".join(f"{r.party} {r.shared} av {r.valid}" for r in _delad) + "."
+                if _delad else "")
+    # Uteslutningen namnges, av samma skäl som ADR 0011 punkt 10 gav: ett sjunkande
+    # täckningstal utan förklaring inbjuder till slutsatsen att budgetdata blivit sämre.
+    # Skälets klarspråk läses ur configens egen mappning, aldrig skrivet av här.
+    _uteslutna = [r for r in _delad if r.excluded]
+    a1_uteslutna = (
+        f" {sum(r.excluded for r in _uteslutna)} parti-år är uteslutna ur a1 (giltighetsfel, "
+        f"alltså {config.EXCLUSION_REASONS['giltighetsfel']}, ADR 0017): partiets enda "
+        "citerbara grund de åren är en röst i rambeslutet, och ett ja bär ingen fördelning "
+        "över de 27 utgiftsområdena. Gemensam motion och regeringsram står kvar, eftersom "
+        "båda är författarskap. Uteslutna år per parti: "
+        + ", ".join(f"{r.party} {r.excluded}" for r in _uteslutna)
+        + ". Uteslutningen sänker partiets TÄCKNING i A och rör aldrig betyget."
+        if _uteslutna else "")
     # A:s nåbara tak per kategori (ADR 0012 punkt 5). Rutan sade bara att 5,00 aldrig nås.
     # Talen räknas ur förankringen som den står i configen vid körningen, aldrig inskrivna.
     a_tak = _a_ceiling_sentence(
-        _a_ceilings(cats, a1_anchor, a2_anchor, a1_active, w_a1, w_a2)
+        _a_ceilings(cats, a1_anchor_fonstret, a2_anchor, a1_active, w_a1, w_a2)
     )
     out = {
         "meta": {
@@ -1288,7 +1396,7 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
                 "docs/done/a_forankring/fonster.json. Ett långt a1-fönster blandar ett "
                 "partis regeringsår med dess oppositionsår, och för ett regeringsparti är "
                 "ramen koalitionens och inte partiets egen; attributionen per år är "
-                f"citerbar och står i config/budget_ramar.yaml.{a1_delad} "
+                f"citerbar och står i config/budget_ramar.yaml.{a1_delad}{a1_uteslutna} "
                 "C=maktandel, vikt 0: ger inga poäng utan redovisas som upplysning om "
                 "vem som haft makten; räknas per kategori som "
                 "nationell regeringsmakt blandad med subnationell "

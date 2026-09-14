@@ -246,7 +246,8 @@ företagande/investeringar samt hushållens disponibla inkomst → ekonomi 4/6 t
   gemensamma ramar, motion framför reservation, och kostnaden för ett långt fönster. Punkt 2a och
   2b granskades oberoende av Codex. Ur 2b kom en verklig men latent lucka: `gov_votes` hoppade
   över regeringspartier som saknades i voteringlistan, nu stängd i `attribute`. Ur 2e kom att
-  metodrutan skriver ut hur många år varje parti delar ram med ett annat (L 10, SD 3). Codex
+  metodrutan skriver ut hur många år varje parti delar ram med ett annat (L 10, SD 3; talen står
+  sedan ADR 0017 på partiets giltiga år, alltså L 8 av 13 och SD 0 av 12). Codex
   förslag om rösttäckningskrav infördes **inte**: det faller bara på 2021, då hela kammaren avgav
   55 röster av 349 och samma test fäller regeringens egen röst. Sign-offen ändrade ingen siffra
   (`score_diff`: inga betygsändringar). Underlag:

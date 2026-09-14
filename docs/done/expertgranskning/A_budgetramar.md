@@ -4,7 +4,9 @@
 
 a1 = andel av partiets föreslagna utgiftsramar (Σ kategorins UO / Σ alla UO), mätt mot de BESLUTADE utgiftsramarnas andel över SAMMA år (ADR 0005 och ADR 0007, `config/a_forankring.yaml`) — inte rangordnad över de åtta partierna. Transkriberade ur officiella källor av `pipeline/tools/budget_ramar_transcribe.py`, som körs för hand; det finns ingen runtime-parser. **Granska transkriberingen mot källraden.** Fel här korrumperar A (30 %).
 
-**a1-aktiva kategorier** (alla 8 partier har ram för varje kategori-UO): demokrati, ekonomi, forsvar, integration, klimat, trygghet, valfard. Övriga faller på a2 (`A_a2_only`).
+**a1-aktiva kategorier** (varje parti har ram för varje kategori-UO i varje år partiet mäts på): demokrati, ekonomi, forsvar, integration, klimat, trygghet, valfard. Övriga faller på a2 (`A_a2_only`).
+
+**Uteslutna parti-år ur a1** (ADR 0017, klassregel i `config/scoring.yaml`): C 2020, 2021; L 2020, 2021; SD 2023, 2024, 2025; V 2015, 2016, 2017, 2018, 2019. Grunden `votering` bär ingen fördelning över utgiftsområdena, alltså ett giltighetsfel. Partiets kvarvarande år: C 13, KD 15, L 13, M 15, MP 15, S 15, SD 12, V 10.
 
 ## Budgetår 2025
 
@@ -867,10 +869,10 @@ Beslutat i: bet. 2010/11:FiU1 (Förslag till utgiftsramar 2011)
 
 | Kategori | S | M | SD | C | V | KD | L | MP |
 |----|----|----|----|----|----|----|----|----|
-| ekonomi ✓a1 | 0.255 | 0.252 | 0.263 | 0.252 | 0.256 | 0.253 | 0.252 | 0.255 |
-| valfard ✓a1 | 0.426 | 0.429 | 0.430 | 0.426 | 0.426 | 0.428 | 0.427 | 0.422 |
-| trygghet ✓a1 | 0.048 | 0.050 | 0.051 | 0.049 | 0.047 | 0.049 | 0.050 | 0.048 |
-| forsvar ✓a1 | 0.084 | 0.085 | 0.084 | 0.086 | 0.082 | 0.086 | 0.086 | 0.083 |
-| klimat ✓a1 | 0.049 | 0.048 | 0.048 | 0.049 | 0.052 | 0.047 | 0.048 | 0.055 |
-| integration ✓a1 | 0.053 | 0.051 | 0.041 | 0.051 | 0.054 | 0.051 | 0.051 | 0.052 |
+| ekonomi ✓a1 | 0.255 | 0.252 | 0.270 | 0.253 | 0.257 | 0.253 | 0.253 | 0.255 |
+| valfard ✓a1 | 0.426 | 0.429 | 0.431 | 0.424 | 0.428 | 0.428 | 0.425 | 0.422 |
+| trygghet ✓a1 | 0.048 | 0.050 | 0.050 | 0.050 | 0.047 | 0.049 | 0.050 | 0.048 |
+| forsvar ✓a1 | 0.084 | 0.085 | 0.077 | 0.087 | 0.085 | 0.086 | 0.087 | 0.083 |
+| klimat ✓a1 | 0.049 | 0.048 | 0.046 | 0.048 | 0.055 | 0.047 | 0.047 | 0.055 |
+| integration ✓a1 | 0.053 | 0.051 | 0.042 | 0.052 | 0.045 | 0.051 | 0.052 | 0.052 |
 | demokrati ✓a1 | 0.048 | 0.047 | 0.045 | 0.048 | 0.047 | 0.048 | 0.048 | 0.048 |

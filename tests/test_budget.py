@@ -24,11 +24,17 @@ PARTIES = ["A", "B"]
 def _cfg(ramar_a=None, ramar_b=None) -> dict:
     ra = ramar_a or {"source_ref": "riksdag:mot:A", "UO1": 100, "UO2": 50, "UO3": 50}
     rb = ramar_b or {"source_ref": "riksdag:mot:B", "UO1": 10, "UO2": 180, "UO3": 10}
+    # `basis` och `note` är obligatoriska sedan ADR 0017: grunden är sluten och källraden ska
+    # belägga den. Klassreglerna i config/scoring.yaml läser fälten (se tests/test_a_forfattarskap).
     return {"budget_years": {2025: {
         "decided_in": "bet. 2024/25:FiU1",
         "ramar": {"fa": ra, "fb": rb},
-        "party_frame": {"A": {"frame": "fa", "role": "opposition"},
-                        "B": {"frame": "fb", "role": "opposition"}},
+        "party_frame": {
+            "A": {"frame": "fa", "role": "opposition", "basis": "egen_ram",
+                  "note": "egen budgetmotion i bet. 2024/25:FiU1 (kolumn A)"},
+            "B": {"frame": "fb", "role": "opposition", "basis": "egen_ram",
+                  "note": "egen budgetmotion i bet. 2024/25:FiU1 (kolumn B)"},
+        },
     }}}
 
 
@@ -45,7 +51,7 @@ def test_andelar_ar_anslag_till_kategori_delat_med_total() -> None:
 
 def test_tom_config_ger_inga_aktiva_kategorier() -> None:
     """Tomt budget_years => a1 inaktiv => A faller på a2 (ingen regression)."""
-    assert budget.a1_shares(CATS, PARTIES, ramar_cfg={"budget_years": {}}, uo_map=UO_MAP) == ({}, set(), [])
+    assert budget.a1_shares(CATS, PARTIES, ramar_cfg={"budget_years": {}}, uo_map=UO_MAP) == ({}, set(), {})
 
 
 def test_grind_saknat_uo_inaktiverar_just_den_kategorin() -> None:
@@ -55,11 +61,16 @@ def test_grind_saknat_uo_inaktiverar_just_den_kategorin() -> None:
     assert active == {"ekonomi"}  # valfard kräver UO2 -> inaktiv
 
 
-def test_grind_saknat_parti_inaktiverar_allt() -> None:
+def test_saknat_parti_ar_hard_fail_och_inte_en_tyst_grind() -> None:
+    """Ett parti utan ram ett år är en LUCKA, inte en modelldom (ADR 0017 diagnos 6).
+
+    Före ADR 0017 nollade raden hela årets grind tyst, och a1 föll för alla åtta utan att
+    något sades. Nu faller körningen, om inte en klassregel förklarar luckan.
+    """
     cfg = _cfg()
     del cfg["budget_years"][2025]["party_frame"]["B"]
-    _shares, active, _years = budget.a1_shares(CATS, ["A", "B"], ramar_cfg=cfg, uo_map=UO_MAP)
-    assert active == set()
+    with pytest.raises(ValueError, match="klassregel"):
+        budget.a1_shares(CATS, ["A", "B"], ramar_cfg=cfg, uo_map=UO_MAP)
 
 
 def test_total_noll_ger_hard_fail_inte_tyst_noll() -> None:

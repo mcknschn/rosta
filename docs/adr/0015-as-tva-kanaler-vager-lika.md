@@ -83,6 +83,14 @@ Rollskiftet är dessutom litet mot det som skiljer partierna åt. Kvoten går fr
 Varje parti ligger på en delad ram i 3 till 9 av 15 år: L 9, S 8, MP 8, M 7, KD 7, C 6, V 5, SD 3.
 Något enskilt år finns bara 3 till 7 distinkta ramar bland åtta partier.
 
+> **Daterad not 2026-09-13, skriven i biljett [#44](https://github.com/mcknschn/rosta/issues/44)
+> under [ADR 0017](0017-a1-laser-forfattarskap-inte-uppslutning.md).** Vektorn ovan är antalet år
+> partiet står på ramen `regeringen`, inte antalet år det delar ram. Rätt vektor är
+> **L 10, MP 9, S 9, KD 8, M 8, C 7, V 6, SD 3**, alltså spannet 3 till 10. Skillnaden är sju
+> parti-år på gemensam oppositionsmotion: ramen `S_MP_V` 2011 och ramen `M_C_L_KD` 2015.
+> Slutsatsen i avsnittet överlever, eftersom delningen är STÖRRE än den sade. Efter ADR 0017
+> räknas talet dessutom på partiets giltiga år, och metodrutan bär båda kolumnerna.
+
 Därför är `a1`:s partispann 1,02 till 1,30, medan `a2`:s är 1,35 till 2,95. Ett regeringsparti får
 regeringens ram, delad med koalitionspartner och stödparti. De två kanalerna tunnas alltså ut i
 samma år, för samma partier, av samma orsak. Skälet i ADR 0001 förutsatte att de tunnas ut

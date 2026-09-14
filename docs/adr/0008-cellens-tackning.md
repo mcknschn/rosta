@@ -80,6 +80,15 @@ grad över alla signaler, utan en grad över den signal som ännu står oläst.
    > att A:s täckning är `a2`:s vikt när `A_a2_only` står. Bara talet flyttar. Ändringen är
    > vilande, eftersom `A_a1_active` står i alla 56 celler i dag.
 
+   > **Daterad not 2026-09-14, skriven i biljett [#48](https://github.com/mcknschn/rosta/issues/48)
+   > under [ADR 0017](0017-a1-laser-forfattarskap-inte-uppslutning.md).** Talet 100 gäller inte
+   > längre när `A_a1_active` står. `a1` mäter partiet på partiets egna giltiga budgetår, så
+   > A:s täckning är `w_a1 × (giltiga år / fönstrets år) + w_a2` och därmed **per parti**
+   > (ADR 0017 punkt 10). Regeln om grindfallet står oförändrad: faller `a1` ur grinden är
+   > A:s täckning fortfarande `a2`:s vikt ensam. Mättakets A-del är kvar som
+   > kategorikonstant `w_a1 + w_a2`, eftersom taket säger vad modellen kan mäta och aldrig vad
+   > partiet driver (ADR 0014 punkt 3, ADR 0017 punkt 12).
+
 4. **En ej tillämplig D räknas som 0 täckt, aldrig bort ur nämnaren.** Precedensen är
    `docs/done/d_coverage_krympning_spec.md`, som slutade renormalisera bort saknade undermått för
    att en cell inte ska göra ett helt kategorianspråk på en delmängd. Samma aritmetik gäller ett steg

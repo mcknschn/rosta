@@ -334,7 +334,7 @@ def write_budget_doc() -> None:
     cfg = config.budget_ramar()
     cats = config.category_ids()
     parties = config.party_codes()
-    shares, active, _years = budget.a1_shares(cats, parties)
+    shares, active, giltiga_ar = budget.a1_shares(cats, parties)
 
     lines: list[str] = []
     lines.append("# Granskning A:a1 — budgetramar (`config/budget_ramar.yaml`)")
@@ -349,9 +349,21 @@ def write_budget_doc() -> None:
                  "ingen runtime-parser. **Granska transkriberingen mot källraden.** Fel här "
                  "korrumperar A (30 %).")
     lines.append("")
-    lines.append(f"**a1-aktiva kategorier** (alla 8 partier har ram för varje kategori-UO): "
-                 f"{', '.join(sorted(active)) or '—'}. Övriga faller på a2 (`A_a2_only`).")
+    lines.append(f"**a1-aktiva kategorier** (varje parti har ram för varje kategori-UO i varje "
+                 f"år partiet mäts på): {', '.join(sorted(active)) or '—'}. Övriga faller på "
+                 "a2 (`A_a2_only`).")
     lines.append("")
+    utesluten = budget.excluded_party_years()
+    if any(utesluten.values()):
+        lines.append("**Uteslutna parti-år ur a1** (ADR 0017, klassregel i "
+                     "`config/scoring.yaml`): "
+                     + "; ".join(f"{p} {', '.join(str(y) for y in sorted(ar))}"
+                                 for p, ar in sorted(utesluten.items()) if ar)
+                     + ". Grunden `votering` bär ingen fördelning över utgiftsområdena, alltså "
+                     "ett giltighetsfel. Partiets kvarvarande år: "
+                     + ", ".join(f"{p} {len(ar)}" for p, ar in sorted(giltiga_ar.items()))
+                     + ".")
+        lines.append("")
     for y, block in (cfg.get("budget_years") or {}).items():
         lines.append(f"## Budgetår {y}")
         lines.append("")

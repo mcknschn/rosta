@@ -58,8 +58,21 @@ def _d_flag_emitted() -> bool:
     return bool(config.scoring()["D_resultat"].get("coverage_shrink", False))
 
 
+def _a1_arsandel() -> dict[str, float]:
+    """parti -> giltiga budgetår delat med fönstrets (ADR 0017 punkt 10).
+
+    a1:s bidrag till cellens A-täckning är proportionellt mot den andelen, så talet måste in
+    i efterräkningen. Flaggan bär det inte: täckningskolumnen bär beskedet per parti, och
+    ingen ny flagga infördes (ADR 0017 Följder).
+    """
+    from pipeline import anchor, budget
+    _shares, _active, ar = budget.a1_shares(config.category_ids(), config.party_codes())
+    fonster = len(anchor.a1_years())
+    return {p: len(y) / fonster for p, y in ar.items()}
+
+
 def _parts_from_flags(
-    flags: list[str], w_a1: float, w_a2: float, cov_den: float
+    flags: list[str], w_a1: float, w_a2: float, cov_den: float, a1_andel: float = 1.0
 ) -> tuple[float, float, float]:
     """Läser tillbaka (a, b, d) ur cellens flaggor.
 
@@ -72,7 +85,7 @@ def _parts_from_flags(
     för varje kategori som har ett uteslutet undermått, alltså precis det hål ADR 0011 tog
     fram i ljuset.
     """
-    a = w_a1 + w_a2 if "A_a1_active" in flags else w_a2
+    a = w_a1 * a1_andel + w_a2 if "A_a1_active" in flags else w_a2
     b = d = 0.0
     for f in flags:
         m = re.fullmatch(r"(B|D)_shrink_([\d.]+)/([\d.]+)", f)
@@ -188,13 +201,14 @@ def test_pipen_ger_ej_tillamplig_d_noll_tackning_med_orord_namnare() -> None:
     con.close()
     w = _weights()
     w_a1, w_a2 = _a_weights()
+    andel = _a1_arsandel()
     shrink_den = _shrink_denominators()
     cov_den = _coverage_denominators()
     for p, cats in sc.items():
         for c, cell in cats.items():
             flaggor = cell["flags"]
             assert "D_not_applicable" in flaggor, f"{p}/{c} har D-underlag i en tom warehouse"
-            a, b, d = _parts_from_flags(flaggor, w_a1, w_a2, cov_den[c])
+            a, b, d = _parts_from_flags(flaggor, w_a1, w_a2, cov_den[c], andel[p])
             assert d == 0.0
             vantad = w["A"] * a + w["B"] * b
             assert cell["coverage"] == pytest.approx(vantad, abs=_FLAGGTOLERANS), f"{p}/{c}"
@@ -232,11 +246,12 @@ def test_varje_cell_i_dist_bar_talet_och_det_stammer_mot_flaggorna() -> None:
     data = json.loads((DIST_DIR / "scores.json").read_text(encoding="utf-8"))
     w = _weights()
     w_a1, w_a2 = _a_weights()
+    andel = _a1_arsandel()
     cov_den = _coverage_denominators()
     for p, cats in data["scores"].items():
         for c, cell in cats.items():
             assert "coverage" in cell, f"{p}/{c} saknar täckning"
-            a, b, d = _parts_from_flags(cell["flags"], w_a1, w_a2, cov_den[c])
+            a, b, d = _parts_from_flags(cell["flags"], w_a1, w_a2, cov_den[c], andel[p])
             vantad = w["A"] * a + w["B"] * b + w["D"] * d
             assert cell["coverage"] == pytest.approx(vantad, abs=_FLAGGTOLERANS), f"{p}/{c}"
 

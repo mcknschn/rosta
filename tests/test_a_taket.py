@@ -44,10 +44,14 @@ def _hogst(forankring: float) -> float:
 
 
 def _forvantade_tak(cfg: dict | None = None) -> dict[str, float]:
-    """Taket per kategori, räknat vid sidan av koden ur samma config."""
+    """Taket per kategori, räknat vid sidan av koden ur samma config.
+
+    Förankringen är HELA fönstrets, aldrig ett partis (ADR 0017 punkt 12): taket är modellens
+    och inte partiets, alltså ett tal per kategori och inte åtta.
+    """
     cats, parties = config.category_ids(), config.party_codes()
-    _shares, active, years = budget.a1_shares(cats, parties)
-    a1 = anchor.a1_anchor_shares(cats, years=years, cfg=cfg)
+    _shares, active, _years = budget.a1_shares(cats, parties)
+    a1 = anchor.a1_anchor_shares(cats, cfg=cfg)
     a2 = anchor.a2_anchor_shares(cats, cfg=cfg)
     w_a1, w_a2 = _mix()
     return {
@@ -110,10 +114,10 @@ def test_taket_vilar_pa_a2_ensam_nar_a1_faller_ur_grinden() -> None:
 def test_taket_haerleds_ur_configen_som_den_star() -> None:
     """Körningens tal mot ett tal räknat vid sidan av koden ur samma config."""
     cats, parties = config.category_ids(), config.party_codes()
-    _shares, active, years = budget.a1_shares(cats, parties)
+    _shares, active, _years = budget.a1_shares(cats, parties)
     w_a1, w_a2 = _mix()
     tak = scorerun._a_ceilings(
-        cats, anchor.a1_anchor_shares(cats, years=years), anchor.a2_anchor_shares(cats),
+        cats, anchor.a1_anchor_shares(cats), anchor.a2_anchor_shares(cats),
         active, w_a1, w_a2,
     )
     for c, vantat in _forvantade_tak().items():

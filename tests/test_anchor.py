@@ -204,14 +204,19 @@ def test_incheckad_config_tacker_varje_utskott_i_mappningen() -> None:
 # --- Godkännandetest ur biljett #21, skrivna före körningen -------------------------
 
 def _a1_scores(category: str) -> dict[str, float]:
-    """a1-delbetyget per parti i en kategori, mot den incheckade förankringen."""
+    """a1-delbetyget per parti i en kategori, mot den incheckade förankringen.
+
+    Förankringen är partiets egen årsmängd (ADR 0017 punkt 6), alltså samma år som täljaren.
+    """
     from pipeline import budget, score
     cats, parties = config.category_ids(), config.party_codes()
     shares, _active, years = budget.a1_shares(cats, parties)
-    a1_anchor = anchor.a1_anchor_shares(cats, years=years)
     return {
         p: score.net_support_to_score(
-            score.bounded_quotient(shares[(p, category)], a1_anchor[category])
+            score.bounded_quotient(
+                shares[(p, category)],
+                anchor.a1_anchor_shares(cats, years=years[p])[category],
+            )
         )
         for p in parties
     }
@@ -224,19 +229,27 @@ def test_godkannande_nastan_lika_andelar_ger_nastan_lika_betyg() -> None:
     under det treåriga fönstret. Efter ADR 0007 mäter a1 femton år, och just det paret finns
     inte längre. Egenskapen provet skyddar är avbildningens KONTINUITET, som rangnormaliseringen
     bröt, och den skrivs här som den egenskapen i stället för som ett tal om ett visst par.
+
+    Paren läses inom samma ÅRSMÄNGD efter ADR 0017: två partier som mäts på olika år mäts mot
+    olika förankringar, så lika andelar ska då INTE ge lika betyg. Kontinuiteten gäller
+    avbildningen av kvoten, och kvoten har två led.
     """
     from pipeline import budget
     cats, parties = config.category_ids(), config.party_codes()
-    shares, _active, _years = budget.a1_shares(cats, parties)
+    shares, _active, years = budget.a1_shares(cats, parties)
+    samma_forankring: dict[tuple[int, ...], list[str]] = {}
+    for p in parties:
+        samma_forankring.setdefault(tuple(years[p]), []).append(p)
     pairs = 0
     for category in cats:
         a1 = _a1_scores(category)
-        for i, first in enumerate(parties):
-            for second in parties[i + 1:]:
-                if abs(shares[(first, category)] - shares[(second, category)]) >= 1e-4:
-                    continue
-                pairs += 1
-                assert abs(a1[first] - a1[second]) < 0.01, f"{category}: {first} mot {second}"
+        for medlemmar in samma_forankring.values():
+            for i, first in enumerate(medlemmar):
+                for second in medlemmar[i + 1:]:
+                    if abs(shares[(first, category)] - shares[(second, category)]) >= 1e-4:
+                        continue
+                    pairs += 1
+                    assert abs(a1[first] - a1[second]) < 0.01, f"{category}: {first} mot {second}"
     assert pairs, "inget nära par i underlaget: provet skulle vara tomt"
 
 

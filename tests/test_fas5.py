@@ -120,19 +120,28 @@ def test_scorerun_a1_budget_blends_into_A_when_gated_active() -> None:
         for p in a1_on for c in a1_on[p]
     )
     # Bara S och M har seedad motionsaktivitet, så de sex övriga partierna delar exakt samma a2.
-    # Deras A skiljer sig därmed bara genom a1, och ska följa a1-andelen: samma andel ger samma A,
-    # och en högre andel ger ett högre A. Biljett #21 skrev provet som ett tal om att M, KD, L och
-    # SD delade ram, vilket gällde det treåriga fönstret. Över 2011-2025 delar de ram bara de år de
+    # Deras A skiljer sig därmed bara genom a1, och ska följa a1: samma a1 ger samma A, och ett
+    # högre a1 ger ett högre A. Biljett #21 skrev provet som ett tal om att M, KD, L och SD
+    # delade ram, vilket gällde det treåriga fönstret. Över 2011-2025 delar de ram bara de år de
     # regerade tillsammans, så provet skrivs som den egenskap det faktiskt skyddade.
-    from pipeline import budget
+    # Efter ADR 0017 mäts partierna på egna årsmängder och därmed mot egna förankringar, så det
+    # A ska följa är KVOTEN mot partiets egen förankring och inte den råa andelen.
+    from pipeline import anchor, budget, score
     cats, parties = config.category_ids(), config.party_codes()
-    shares, _active, _years = budget.a1_shares(cats, parties)
+    shares, _active, years = budget.a1_shares(cats, parties)
+    kvot = {
+        p: score.bounded_quotient(
+            shares[(p, "ekonomi")],
+            anchor.a1_anchor_shares(cats, years=years[p])["ekonomi"],
+        )
+        for p in parties
+    }
     tysta = [p for p in parties if p not in ("S", "M")]
-    ordning = sorted(tysta, key=lambda p: shares[(p, "ekonomi")])
+    ordning = sorted(tysta, key=lambda p: kvot[p])
     a_values = [a1_on[p]["ekonomi"]["components"]["A"] for p in ordning]
     assert a_values == sorted(a_values), dict(zip(ordning, a_values, strict=True))
     for first, second in zip(ordning, ordning[1:], strict=False):
-        if shares[(first, "ekonomi")] == shares[(second, "ekonomi")]:
+        if kvot[first] == kvot[second]:
             assert (a1_on[first]["ekonomi"]["components"]["A"]
                     == a1_on[second]["ekonomi"]["components"]["A"])
 

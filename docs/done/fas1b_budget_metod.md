@@ -115,12 +115,22 @@ tal som en tidigare, oberoende transkribering kom fram till.
 
 ## Hård grind (a1 får aldrig korrumpera A)
 
-a1 räknas in i A för en `(budgetår, kategori)` **endast** när alla 8 partier har en verifierad ram
-som täcker **varje** UO i kategorin, i **alla** inkluderade budgetår (snitt-skärning). Annars faller
-A tillbaka på a2 helt för den kategorin (flagga `A_a2_only`; aktiv = `A_a1_active`). En saknad eller
-icke-numerisk cell ger **hård fail** (aldrig tyst 0), och a1 rang-normaliseras aldrig över färre än 8
-partier. Tom `budget_years` → a1 inaktiv överallt → A = a2 (ingen regression). Testat i
-[`tests/test_budget.py`](../../tests/test_budget.py) + [`tests/test_fas5.py`](../../tests/test_fas5.py).
+a1 räknas in i A för en `(budgetår, kategori)` **endast** när varje parti har en verifierad ram
+som täcker **varje** UO i kategorin, i **varje år partiet självt mäts på** (snitt-skärning per
+parti). Annars faller A tillbaka på a2 helt för den kategorin (flagga `A_a2_only`; aktiv =
+`A_a1_active`). En saknad eller icke-numerisk cell ger **hård fail** (aldrig tyst 0), och ett
+parti utan giltiga år ger hård fail i stället för en tyst grind. Tom `budget_years` → a1
+inaktiv överallt → A = a2 (ingen regression). a1 rang-normaliseras inte alls sedan ADR 0005:
+andelen mäts mot en historisk förankring. Testat i [`tests/test_budget.py`](../../tests/test_budget.py) +
+[`tests/test_fas5.py`](../../tests/test_fas5.py).
+
+**Grindens räckvidd lossades 2026-09-14** ([ADR 0017](../adr/0017-a1-laser-forfattarskap-inte-uppslutning.md)
+punkt 5), från alla partier per år till partiet självt. Skälet är uteslutningen i samma ADR: ett
+parti-år vars enda citerbara grund är en röst i rambeslutet bär inget besked om partiets egen
+fördelning över utgiftsområdena och hålls utanför a1 på `giltighetsfel`. Utan lossningen hade
+uteslutningen tagit a1 från 7 kategorier till 0, tyst. Varje kategori behåller samma fönster, och
+varje parti samma årsmängd i alla sju kategorier. Ett parti som saknar ram utan att en klassregel
+förklarar luckan ger **hård fail**, aldrig en tyst grind.
 
 ## Effekt på rangordningen (standardvikter)
 

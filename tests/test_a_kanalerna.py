@@ -23,7 +23,7 @@ import random
 
 import pytest
 
-from pipeline import anchor, config, robustness, scorerun, warehouse
+from pipeline import anchor, budget, config, robustness, scorerun, warehouse
 from pipeline.sources import government
 
 _A2_PERIOD = "/".join(anchor.a2_period())
@@ -36,9 +36,11 @@ _SCORING = copy.deepcopy(config.scoring())
 # (ADR 0015 godkännandetest regel 2).
 _MUTATIONER = ((0.25, 0.75), (0.75, 0.25))
 
-# Tidöåren ensamma fäller villkorsklausulen i ADR 0007 punkt 4, och då vilar A på a2 i varje
+# Alliansåren ensamma fäller villkorsklausulen i ADR 0007 punkt 4, och då vilar A på a2 i varje
 # cell. Det är den enda vägen till A_a2_only som inte kräver att grinden i budget.py rörs.
-_KORT_FONSTER = (2023, 2024, 2025)
+# 2011-2014 är de enda sammanhängande åren utan voteringspost (ADR 0017 diagnos 7): Tidöåren
+# ensamma skulle lämna SD utan giltiga år, och då faller körningen på årsvakten i stället.
+_KORT_FONSTER = (2011, 2012, 2013, 2014)
 
 
 def _seed() -> object:
@@ -154,6 +156,8 @@ def test_a_ar_a2_ensam_och_tackningen_foljer_blandningen_nar_grinden_stanger(
     con = _seed()
     produktion = _mix()
     vikt_a = float(_SCORING["subscore_weights"]["A"])
+    _shares, _active, giltiga = budget.a1_shares(config.category_ids(), config.party_codes())
+    andel = {p: len(ar) / len(anchor.a1_years()) for p, ar in giltiga.items()}
     try:
         a2_ensam = _a(_bygg(con, monkeypatch, 0.0, 1.0))
         vantade_tapp = []
@@ -168,10 +172,11 @@ def test_a_ar_a2_ensam_och_tackningen_foljer_blandningen_nar_grinden_stanger(
 
             # Täckningen publiceras med tre decimaler, så två avrundade tal kan missa med en
             # tusendel åt vardera hållet. Det väntade tappet härleds ur configen, aldrig skrivet.
+            # Tappet är a1:s vikt gånger partiets andel av fönstrets år (ADR 0017 punkt 10).
             for p, cats in utan_a1.items():
                 for c, cell in cats.items():
                     tapp = med_a1[p][c]["coverage"] - cell["coverage"]
-                    assert tapp == pytest.approx(vikt_a * w_a1, abs=0.0011), f"{p}/{c}"
+                    assert tapp == pytest.approx(vikt_a * w_a1 * andel[p], abs=0.0011), f"{p}/{c}"
             vantade_tapp.append(round(vikt_a * w_a1, 6))
         # Tre skilda tapp: täckningen FÖLJER blandningen och står inte still under den.
         assert len(set(vantade_tapp)) == len(vantade_tapp), vantade_tapp

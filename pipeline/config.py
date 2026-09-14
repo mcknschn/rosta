@@ -238,6 +238,47 @@ EXCLUSION_REASONS = {
 }
 VALID_EXCLUSIONS = frozenset(EXCLUSION_REASONS)
 
+# Grunderna ett parti kan få en utgiftsram på (config/budget_ramar.yaml, fältet `basis`), och
+# vad källraden måste belägga för var och en. Mängden är sluten: en fjärde grund ska falla i
+# pipeline/budget.validate i stället för att tyst bli en klass ingen regel känner till.
+# Vokabulären bor här därför att både budget.py och klassreglerna i scoring.yaml läser den.
+VALID_FRAME_BASES = frozenset({"egen_ram", "regeringsstallning", "votering"})
+
+
+def _validate_a1_exclusions() -> None:
+    """Klassreglerna i A_agerande.a1_exclusions (ADR 0017 punkt 3).
+
+    Det är _validate_indicator_direction ett steg NED, från indikator till ett (parti, budgetår)
+    inne i en kanal: samma tre prov i samma ordning, samma krav på återöppningsvillkor. Utan
+    regeln kan ett parti-år försvinna ur a1 utan att någon behöver säga varför, och ett
+    sjunkande täckningstal skulle då se ut som en lucka i budgetdata (ADR 0011 punkt 10).
+
+    Nyckelmängden är sluten. En regel som selekterade på något annat än `basis` skulle kunna
+    gå på rollen, och rollen är C:s fråga (ADR 0001, ADR 0017 diagnos 4).
+    """
+    tillatna = {"basis", "exclusion", "reopen_if"}
+    for i, regel in enumerate(a1_exclusions()):
+        ref = f"a1_exclusions[{i}]"
+        if not isinstance(regel, dict) or set(regel) != tillatna:
+            raise ConfigError(
+                f"{ref} måste bära exakt {sorted(tillatna)}, har "
+                f"{sorted(regel) if isinstance(regel, dict) else type(regel).__name__}"
+            )
+        if regel["basis"] not in VALID_FRAME_BASES:
+            raise ConfigError(
+                f"{ref}: okänt klassvillkor basis='{regel['basis']}' "
+                f"(tillåtna: {', '.join(sorted(VALID_FRAME_BASES))})"
+            )
+        if regel["exclusion"] not in VALID_EXCLUSIONS:
+            raise ConfigError(
+                f"{ref}: ogiltigt uteslutningsskäl '{regel['exclusion']}' "
+                f"(tillåtna: {', '.join(sorted(VALID_EXCLUSIONS))})"
+            )
+        if not str(regel.get("reopen_if", "")).strip():
+            raise ConfigError(
+                f"{ref} saknar reopen_if, alltså återöppningsvillkoret (ADR 0011 punkt 8)"
+            )
+
 
 def _validate_indicator_direction(cat_id: str, ind: dict[str, Any]) -> None:
     """Riktning eller Uteslutningsskäl, aldrig båda och aldrig ingetdera (ADR 0011 punkt 3-4).
@@ -330,6 +371,16 @@ def excluded_submeasures() -> dict[tuple[str, str], str]:
         for sub in cat["submeasures"]
         if "exclusion" in sub
     }
+
+
+def a1_exclusions() -> list[dict[str, Any]]:
+    """Klassreglerna som håller parti-år utanför a1 (ADR 0017 punkt 3). Enda källan.
+
+    Varje regel bär ett klassvillkor (`basis`), ett Uteslutningsskäl och ett
+    återöppningsvillkor. Regeln bor i scoring.yaml och aldrig i budget_ramar.yaml, som är
+    autogenererad: källan bokförs där, domen fälls här (ADR 0011 punkt 3).
+    """
+    return list((scoring().get("A_agerande") or {}).get("a1_exclusions") or [])
 
 
 def excluded_indicators() -> dict[tuple[str, str], str]:
@@ -437,6 +488,8 @@ def _validate_scoring(sub_w: dict[str, Any], tolerance: float) -> None:
     semantics = s.get("scale_semantics") or {}
     if "A" in (semantics.get("relative") or []):
         raise ConfigError("scale_semantics: A är absolut efter ADR 0005, inte relativ")
+
+    _validate_a1_exclusions()
 
     # C3: subnationell D-config — validera struktur tidigt (jfr coverage_mode). Frånvaro är OK
     # (legacy nationell D); finns blocket måste det vara välformat.
