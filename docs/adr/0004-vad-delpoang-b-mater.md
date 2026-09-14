@@ -59,6 +59,15 @@ faktiskt räknar är andelen av partiets kodade ståndpunkter som backar liggare
    Storlek, inte riktning. Det följer ur det låsta anspråket i ADR 0002: ett kategoribetyg svarar
    på hur mycket kategorin väntas förbättras. Ett rent tecken kan inte svara på "hur mycket".
 
+   > **Daterad not 2026-09-14, skriven i biljett [#45](https://github.com/mcknschn/rosta/issues/45)
+   > under [ADR 0018](0018-bs-medelvarde-bar-inte-anspraket.md).** Anspråket ovan gäller inte
+   > längre. Formen i beslut 3 är ett medelvärde, och ett medelvärde mäter portföljens
+   > genomsnittliga storlek och inte den väntade förbättringens. Skillnaden är mätt: en tillagd
+   > post med belagd positiv effekt sänkte sju av åtta partiers välfärdsbetyg. Tills formen är
+   > rättad svarar B i stället på *hur stark är den belagda effekten i genomsnitt hos de åtgärder
+   > partiet driver, justerat för täckning?* (ADR 0018 punkt 3). Beslut 3 står oförändrat till
+   > dess, och rättelsen är en normaliserad summa med förhandsbestämd nämnare (ADR 0018 punkt 7).
+
 2. **Storlek och säkerhet skiljs åt.** `effect_strength` bär storleken och går in i poängen.
    `evidence_level` och `confidence` bär säkerheten och går till säkerhetsetiketten och därmed
    till bandet. Storleken är punktskattningen, säkerheten är osäkerheten kring den. Det är samma

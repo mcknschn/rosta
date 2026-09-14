@@ -536,9 +536,15 @@ partiet är formell avsändare, röstat för, eller står bakom via utskott. Ett
 facto kollektiv stance — och den **renaste neutraliteten**: alla kodas lika, inget straffas.
 
 **Caveat:** (1) Acklamation ≠ alltid enhällighet — hämta fulltexten och bekräfta att *just den punkten*
-saknar reservation mot sakinnehållet. (2) Det ger **täckning, inte rankning** (likformigt lyft). (3)
-Lägger man ett konsensus-undermått bredvid ett differentierande i samma kategori späds differentieringen
-(undermåttsviktat medel) — gör ett undermått i taget, inte en flod.
+saknar reservation mot sakinnehållet. (2) **Lyftet är likformigt bara när posten är ensam på sin
+indikator.** Delar posten indikator med andra poster dras varje parti in i indikatorns
+kvalitetsviktade medel, och rörelsen blir olika stor och kan byta tecken. Mätt 2026-09-14: en 8/8-post
+ensam på sin indikator lyfte alla åtta exakt +0,3000 i B, medan en 8/8-post bredvid tre
+differentierande poster sänkte sju partier och höjde ett. Den gamla lydelsen "täckning, inte rankning
+(likformigt lyft)" skrevs före ADR 0004 och gällde den dåvarande formen `tecken(stance) gånger
+täckning`. Se [ADR 0018](../adr/0018-bs-medelvarde-bar-inte-anspraket.md) punkt 4. (3) Utspädningen
+sker inom **indikatorn**, ett steg under undermåttet: gör ett undermått i taget, inte en flod, och
+lägg helst inte en svag konsensuspost på en indikator som redan differentierar.
 
 ### 5.3 Budget- och kommittémotion — där differentieringen oftast bor
 **Vad:** En budget- eller kommittémotion visar ett partis hållning på det *specifika instrumentet* även
