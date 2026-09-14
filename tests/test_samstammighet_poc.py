@@ -508,7 +508,14 @@ def test_5_blockskillnaden_ar_redovisad():
     for nyckel in ("mellan", "inom", "d", "regeringssidan", "oppositionen"):
         assert nyckel in neutralitet
     assert set(neutralitet["regeringssidan"]) == {"M", "KD", "L", "SD"}
-    assert "sd_utanfor" in res["trosklar"]["varianter"], "känslighetsprovet i 6.3 saknas"
+
+    sd_ut = res["trosklar"]["varianter"].get("sd_utanfor")
+    assert sd_ut, "känslighetsprovet i 6.3 saknas"
+    assert "SD" not in sd_ut["neutralitet"]["regeringssidan"]
+    assert "SD" not in sd_ut["neutralitet"]["oppositionen"]
+    # Provet gäller BARA neutraliteten. Skiljbarhet och längd räknas på samma per-parti-värden
+    # som den primära, så de skulle bara upprepa primärens tal under en missvisande etikett.
+    assert set(sd_ut) == {"galler", "neutralitet", "klarar", "fallna"}
 
 
 @pytest.mark.skipif(not RESULTAT_YAML.exists(), reason="ingen körning är committad än")
@@ -524,24 +531,53 @@ def test_4_spridningen_ar_redovisad_for_varje_parti():
 # ----------------------------------------------------------------- godkännandetest 6
 
 
-_OHEDERLIGT = ("ohederlig", "lögn", "bluff", "svek", "löftesbrott", "vilseled", "falsk")
+# Anklagande ord, med böjning: 'svek', 'sveket', 'ohederligt', 'lögner'.
+_OHEDERLIGT = (r"ohederlig\w*", r"lögn\w*", r"bluff\w*", r"svek\w*", r"löftesbrott\w*",
+               r"vilseled\w*", r"falsk\w*")
+# Nekande ord, UTAN fri böjning. 'inte\w*' skulle matcha 'integration', och då nekar varje
+# mening om integration sig själv och provet slutar bita.
+_NEKANDE = (r"aldrig", r"ingen\w*", r"inget", r"inte", r"varken")
 
 
-_NEKANDE = ("aldrig", "ingen", "inget", "inte", "varken")
+def _bar(stycke: str, monster: tuple[str, ...]) -> bool:
+    """Ordgränsat prov mot en mängd mönster."""
+    return any(re.search(rf"\b{m}\b", stycke, re.IGNORECASE) for m in monster)
+
+
+def _ohederliga_stycken(stycken: list[str]) -> list[str]:
+    """Stycken som använder ett anklagande ord utan att neka det."""
+    return [st for st in stycken if _bar(st, _OHEDERLIGT) and not _bar(st, _NEKANDE)]
+
+
+def _stycken(fil: Path) -> list[str]:
+    """Meningar ur en markdownfil, rader ur en yamlfil.
+
+    Markdown radbryts för hand, så en rad där är ingen enhet. Yaml skrivs av verktyget och
+    radbryts aldrig mitt i en mening, och dess enda fritext är huvudkommentaren. Att flata ut
+    yamlfilen till meningar ger i stället sju stycken på upp till 15 000 tecken, och då räcker
+    ett enda nekande ord någonstans i filen för att släppa igenom allt.
+    """
+    text = fil.read_text(encoding="utf-8")
+    if fil.suffix == ".yaml":
+        return [r for r in text.splitlines() if r.strip()]
+    return re.split(r"(?<=[.!?]) ", re.sub(r"\s+", " ", text))
+
+
+def test_ohederlighetsprovet_biter_pa_en_dold_anklagelse():
+    """Provet som vaktar godkännandetest 6 måste självt vara provätt."""
+    assert _ohederliga_stycken(["Glappet i integration visar ett svek mot väljarna."])
+    assert _ohederliga_stycken(["Partiets intervall döljer en lögn."])
+    assert not _ohederliga_stycken(["Ingen text kallar ett glapp ohederlighet."])
+    assert not _ohederliga_stycken(["Ett glapp är aldrig ett löftesbrott."])
+    assert not _ohederliga_stycken(["Integration och intervall nämns i samma mening."])
 
 
 @pytest.mark.skipif(not RESULTAT_YAML.exists(), reason="ingen körning är committad än")
 def test_6_ingen_text_framstaller_ett_glapp_som_ohederlighet():
-    """En mening som SLÅR FAST regeln får nämna orden. En mening som använder dem får inte.
-
-    Provet går på mening och inte på rad: var markdownfilen råkar radbrytas är ingen betydelse.
-    """
+    """En mening som SLÅR FAST regeln får nämna orden. En mening som använder dem får inte."""
     traffar = []
     for fil in sorted(POC.glob("*.md")) + sorted(KONFIG.glob("*.yaml")):
-        flat = re.sub(r"\s+", " ", fil.read_text(encoding="utf-8").lower())
-        for mening in re.split(r"(?<=[.!?]) ", flat):
-            if any(o in mening for o in _OHEDERLIGT) and not any(n in mening for n in _NEKANDE):
-                traffar.append(f"{fil.name}: {mening.strip()}")
+        traffar += [f"{fil.name}: {st.strip()}" for st in _ohederliga_stycken(_stycken(fil))]
     assert not traffar, "texten läser ett glapp som ohederlighet: " + "; ".join(traffar)
 
 
@@ -568,13 +604,27 @@ def test_7_granssnittet_vet_inte_att_poc_en_finns():
         assert "samstammighet" not in text and "samstämmighet" not in text, fil.name
 
 
-def test_7_verktyget_har_en_enda_utkatalog_och_den_ligger_inte_i_dist():
+_SKRIVANDE = (
+    r"\.write_text\(", r"\.write_bytes\(", r"\.mkdir\(", r"\.touch\(", r"\.unlink\(",
+    r"\bopen\([^)]*[\"']\s*[wax]", r"\bjson\.dump\(", r"\byaml\.(safe_)?dump_all\(",
+    r"\bshutil\.", r"\bos\.(remove|replace|rename|makedirs)\(",
+)
+
+
+def test_7_verktyget_skriver_bara_i_sin_egen_utkatalog():
+    """Varje skrivande rad i verktyget måste utgå från UTKATALOG, och den ligger inte i dist/."""
     assert sam.UTKATALOG == ROT / "config" / "samstammighet_poc"
+    assert sam.UTKATALOG.relative_to(ROT).parts[0] == "config"
     kallan = (ROT / "pipeline" / "tools" / "samstammighet.py").read_text(encoding="utf-8")
-    skrivrader = [r.strip() for r in kallan.splitlines() if ".write_text(" in r or ".mkdir(" in r]
+    skrivrader = [
+        r.strip() for r in kallan.splitlines()
+        if any(re.search(rx, r) for rx in _SKRIVANDE) and not r.strip().startswith(("#", "r\""))
+    ]
     assert skrivrader, "hittade ingen skrivning alls, testet prövar ingenting"
     for rad in skrivrader:
-        assert rad.startswith(("UTKATALOG", "fil.")), f"okänd skrivning: {rad}"
+        assert rad.startswith(("UTKATALOG.mkdir", "fil.write_text")), f"okänd skrivning: {rad}"
+    kropp = kallan[kallan.index("def skriv_resultat"):]
+    assert 'fil = UTKATALOG / "resultat.yaml"' in kropp, "utfilen byggs inte ur UTKATALOG"
 
 
 def test_7_en_korning_lamnar_dist_orort():

@@ -25,7 +25,7 @@ POC:ens efterhandsprov visar att skiljbarheten kommer från en enda av de två s
 
 - Profilavståndet korrelerar **0,998** med hur koncentrerad partiets retorikprofil är.
 - Det korrelerar **0,163** med handlingssidans egen koncentration.
-- Byts handlingssidan från A till a1 rå korrelerar de två uppsättningarna **-0,140** med varandra.
+- Byts handlingssidan från A till a1 rå korrelerar de två uppsättningarna **-0,129** med varandra.
 
 Den primära uppställningen mäter alltså i praktiken hur koncentrerat valmanifestet är, och knappt
 alls ett glapp mellan två sidor. Byts kanalen på handlingssidan byter partierna plats.

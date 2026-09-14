@@ -576,12 +576,21 @@ def rakna_resultat(
         "storsta_glapp": _provning(
             {p: storsta[p]["glapp"] for p in partier}, langder, regeringssidan, oppositionen
         ),
-        "sd_utanfor": _provning(
-            tv_primar,
-            langder,
-            [p for p in regeringssidan if p != "SD"],
-            [p for p in oppositionen if p != "SD"],
-        ),
+    }
+    # SD utanför båda blocken är känslighetsprovet i 6.3, alltså BARA en neutralitetsfråga.
+    # Skiljbarheten och längdkonfunden räknas på samma per-parti-värden som den primära
+    # uppställningen, så att köra dem här skulle publicera primärens egna tal under en etikett
+    # som säger att SD står utanför. Därför står de inte här.
+    sd_ut = blockskillnad(
+        tv_primar,
+        [p for p in regeringssidan if p != "SD"],
+        [p for p in oppositionen if p != "SD"],
+    )
+    varianter["sd_utanfor"] = {
+        "galler": "bara neutraliteten",
+        "neutralitet": sd_ut,
+        "klarar": sd_ut["klarar"],
+        "fallna": [] if sd_ut["klarar"] else ["neutralitet"],
     }
     if framat:
         varianter["framat"] = _provning(
@@ -636,11 +645,18 @@ def rakna_resultat(
     return ut
 
 
+# Varje fil räkningen läser. Listan är pinnets nämnare: en källa som saknas här kan röra sig
+# utan att något test säger det, och då faller reproducerbarheten tyst.
+#   categories  partikoder, kategori-id och kategorinamnen bryggan bygger på
+#   scoring     A:s blandning mellan a1 och a2, och a1:s egna regler
+#   mappings    utgiftsområdenas kategorimappning OCH blocken
 KALLOR = {
     "korpus_bakat": "config/verklighetsbild/korpus_bakat.yaml",
     "korpus_framat": "config/verklighetsbild/korpus_framat.yaml",
     "delpoang_a": "dist/scores.json",
     "a1_ra": "config/budget_ramar.yaml",
+    "kategorier": "config/categories.yaml",
+    "poangsattning": "config/scoring.yaml",
     "blocken": "config/mappings.yaml",
     "forhandsregistrering": "docs/samstammighet_poc/forhandsregistrering.md",
 }

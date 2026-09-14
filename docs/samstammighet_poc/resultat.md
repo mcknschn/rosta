@@ -94,7 +94,7 @@ inte får ändra något besked ovan, visar var skiljbarheten kommer ifrån.
 |---|---|
 | Avståndet mot **retorikens** avstånd till en jämn profil | **0,998** |
 | Avståndet mot **handlingens** avstånd till en jämn profil | 0,163 |
-| Avståndet med A mot avståndet med a1 rå | **-0,140** |
+| Avståndet med A mot avståndet med a1 rå | **-0,129** |
 
 Talet 0,998 betyder att profilavståndet, på tre decimaler, är samma tal som hur spetsig partiets
 retorikprofil är. Handlingssidan flyttar det knappt.
@@ -114,7 +114,7 @@ landar nära mitten i alla sju kategorier, och normeringen kan inte skapa en spe
 Följden är att den primära uppställningen i praktiken mäter **hur koncentrerat valmanifestet är**,
 och inte glappet mellan två sidor. Det är inte samma sak som biljettens fråga.
 
-Raden `-0,140` är den andra halvan av samma fynd. Byts handlingssidan från A till a1 rå, alltså
+Raden `-0,129` är den andra halvan av samma fynd. Byts handlingssidan från A till a1 rå, alltså
 till en äkta andel av pengar, blir per-parti-talen i stort sett obesläktade med den primära
 uppställningens. Måttets utfall hänger alltså på vilken kanal handlingssidan läser, och den frågan
 är inte avgjord.
@@ -126,28 +126,28 @@ Alla räknas om hela vägen och prövas mot samma trösklar. Ingen av dem avgör
 | Variant | Skilda | Spann | Pearson mot längd | mellan / inom | Klarar |
 |---|---|---|---|---|---|
 | Primär: union mot A | 8 | 0,491 | -0,355 | 0,084 / 0,167 | ja |
-| a1 rå som handlingssida | 8 | 0,253 | -0,189 | 0,039 / 0,097 | ja |
+| a1 rå som handlingssida | 8 | 0,250 | -0,192 | 0,040 / 0,096 | ja |
 | Bara bakåtkorpusen | 8 | 0,547 | -0,238 | 0,114 / 0,171 | ja |
 | Bara framåtkorpusen | 8 | 0,456 | -0,507 | 0,074 / 0,153 | ja |
 | Största positiva glappet | 8 | 0,370 | -0,418 | 0,077 / 0,121 | ja |
-| SD utanför båda blocken | 8 | 0,491 | -0,355 | 0,042 / 0,165 | ja |
+| SD utanför båda blocken | bara neutralitet | - | - | 0,042 / 0,165 | ja |
 
 Varje variant klarar alla tre trösklarna. Det gör utfallet robust mot de val
 förhandsregistreringen fick göra, med ett undantag: **rangordningen mellan partierna är det inte.**
 
 | Parti | Avstånd med A | Avstånd med a1 rå |
 |---|---|---|
-| V | 0,663 | 0,312 |
+| V | 0,663 | 0,315 |
 | KD | 0,463 | 0,176 |
-| L | 0,364 | 0,123 |
+| L | 0,364 | 0,124 |
 | MP | 0,333 | 0,373 |
 | C | 0,279 | 0,212 |
 | S | 0,254 | 0,220 |
 | M | 0,192 | 0,285 |
-| SD | 0,172 | 0,376 |
+| SD | 0,172 | 0,375 |
 
 SD ligger lägst i den ena kolumnen och högst i den andra. L ligger tredje högst i den ena och
-lägst i den andra. Det är samma sak som `r = -0,140` säger, uttryckt i tal läsaren kan följa.
+lägst i den andra. Det är samma sak som `r = -0,129` säger, uttryckt i tal läsaren kan följa.
 
 ### 5.1 Bakåt mot framåt
 
@@ -224,6 +224,16 @@ om POC:en. Att lossa provet är inte rättelsen. Körningen tar under två sekun
 
 **Detta är ett tillägg till specen.** Biljetten krävde bara att räkningen är reproducerbar ur
 repot. Pinnet är strängare, aldrig lösare: det prövar påståendet i stället för att utfästa det.
+
+### 8.2 Körningen skedde i ett rent träd
+
+Talen är räknade i en `git worktree` på den committade HEAD, och inte i ett arbetsträd med
+oincheckade ändringar. Skälet är att a1 rå läser `pipeline/budget.py`, alltså kod och inte bara
+data. Räknas POC:en i ett träd där den koden är under ombyggnad bär resultatet tal som ingen kan
+återskapa ur ett klonat repo, och pinnet i 8.1 skulle inte fånga det: hasharna täcker källfilerna
+och inte koden som läser dem.
+
+Den som kör om POC:en ska därför göra det i ett rent träd.
 
 ## 9. Begränsningarna
 

@@ -409,29 +409,29 @@ handling:
       integration: 0.052699629
       demokrati: 0.048721256
     SD:
-      ekonomi: 0.280809009
-      valfard: 0.448019462
-      trygghet: 0.052136967
-      forsvar: 0.080088909
-      klimat: 0.048169763
-      integration: 0.044172345
-      demokrati: 0.046603545
+      ekonomi: 0.273191858
+      valfard: 0.446593057
+      trygghet: 0.053524774
+      forsvar: 0.087807212
+      klimat: 0.04951521
+      integration: 0.042952353
+      demokrati: 0.046415535
     C:
-      ekonomi: 0.263134014
-      valfard: 0.440828981
-      trygghet: 0.051497132
-      forsvar: 0.090216174
-      klimat: 0.050337849
-      integration: 0.053973691
-      demokrati: 0.050012159
+      ekonomi: 0.262096006
+      valfard: 0.442722012
+      trygghet: 0.051367403
+      forsvar: 0.089800161
+      klimat: 0.050848247
+      integration: 0.052885162
+      demokrati: 0.050281009
     V:
-      ekonomi: 0.266106157
-      valfard: 0.443990011
-      trygghet: 0.0492036
-      forsvar: 0.088518965
-      klimat: 0.056853904
-      integration: 0.046606728
-      demokrati: 0.048720635
+      ekonomi: 0.266135579
+      valfard: 0.441544332
+      trygghet: 0.048411293
+      forsvar: 0.084911634
+      klimat: 0.054101824
+      integration: 0.055647307
+      demokrati: 0.04924803
     KD:
       ekonomi: 0.262607198
       valfard: 0.44512781
@@ -441,13 +441,13 @@ handling:
       integration: 0.053024635
       demokrati: 0.049774826
     L:
-      ekonomi: 0.263145449
-      valfard: 0.441895465
-      trygghet: 0.051750413
-      forsvar: 0.090194678
-      klimat: 0.04886328
-      integration: 0.054431296
-      demokrati: 0.049719418
+      ekonomi: 0.262105952
+      valfard: 0.443646379
+      trygghet: 0.051586952
+      forsvar: 0.089781542
+      klimat: 0.049570073
+      integration: 0.053281849
+      demokrati: 0.050027252
     MP:
       ekonomi: 0.264255584
       valfard: 0.438049186
@@ -540,29 +540,29 @@ glapp:
       integration: 0.043685913
       demokrati: -0.006552581
     SD:
-      ekonomi: -0.099706646
-      valfard: -0.243295053
-      trygghet: 0.105343348
-      forsvar: -0.032844814
-      klimat: 0.062066457
-      integration: 0.144804032
-      demokrati: 0.063632676
+      ekonomi: -0.092089496
+      valfard: -0.241868648
+      trygghet: 0.103955541
+      forsvar: -0.040563118
+      klimat: 0.06072101
+      integration: 0.146024025
+      demokrati: 0.063820685
     C:
-      ekonomi: -0.016590236
-      valfard: -0.166635433
-      trygghet: 0.125922223
-      forsvar: -0.009571013
-      klimat: 0.048740492
-      integration: -0.019411479
-      demokrati: 0.037545445
+      ekonomi: -0.015552228
+      valfard: -0.168528464
+      trygghet: 0.126051952
+      forsvar: -0.009155
+      klimat: 0.048230094
+      integration: -0.01832295
+      demokrati: 0.037276595
     V:
-      ekonomi: 0.306220887
-      valfard: -0.079210136
-      trygghet: -0.0492036
-      forsvar: -0.088518965
-      klimat: 0.006039177
-      integration: -0.046606728
-      demokrati: -0.048720635
+      ekonomi: 0.306191465
+      valfard: -0.076764458
+      trygghet: -0.048411293
+      forsvar: -0.084911634
+      klimat: 0.008791258
+      integration: -0.055647307
+      demokrati: -0.04924803
     KD:
       ekonomi: 0.118345183
       valfard: -0.084583592
@@ -572,13 +572,13 @@ glapp:
       integration: 0.015002576
       demokrati: -0.015761221
     L:
-      ekonomi: -0.034719053
-      valfard: -0.020575668
-      trygghet: 0.065000856
-      forsvar: -0.054661683
-      klimat: -0.013330285
-      integration: 0.011558551
-      demokrati: 0.046727282
+      ekonomi: -0.033679556
+      valfard: -0.022326582
+      trygghet: 0.065164317
+      forsvar: -0.054248547
+      klimat: -0.014037079
+      integration: 0.012707998
+      demokrati: 0.046419448
     MP:
       ekonomi: -0.074255584
       valfard: -0.248049186
@@ -737,13 +737,13 @@ trosklar:
     a1_ra:
       skiljbarhet:
         skilda: 8
-        spann: 0.252559824
-        hogsta: 0.375846513
-        lagsta: 0.123286689
+        spann: 0.250229498
+        hogsta: 0.374521261
+        lagsta: 0.124291763
         klarar: true
         skal: ''
       langd:
-        pearson: -0.189076106
+        pearson: -0.191648976
         spearman: -0.50300303
         n: 8
         grans: 0.7
@@ -760,11 +760,11 @@ trosklar:
         - MP
         - S
         - V
-        medel_regeringssidan: 0.240097764
-        medel_oppositionen: 0.279340431
-        mellan: 0.039242667
-        inom: 0.096751671
-        d: 0.405601952
+        medel_regeringssidan: 0.24001772
+        medel_oppositionen: 0.279858716
+        mellan: 0.039840996
+        inom: 0.096476829
+        d: 0.41295922
         klarar: true
         skal: ''
       klarar: true
@@ -840,20 +840,7 @@ trosklar:
       klarar: true
       fallna: []
     sd_utanfor:
-      skiljbarhet:
-        skilda: 8
-        spann: 0.490755916
-        hogsta: 0.662700436
-        lagsta: 0.17194452
-        klarar: true
-        skal: ''
-      langd:
-        pearson: -0.354750769
-        spearman: 0.0
-        n: 8
-        grans: 0.7
-        klarar: true
-        skal: ''
+      galler: bara neutraliteten
       neutralitet:
         regeringssidan:
         - KD
@@ -930,7 +917,7 @@ diagnostik:
     MP: 0.029504075
   r_avstand_mot_retorikens_koncentration: 0.997542536
   r_avstand_mot_handlingens_koncentration: 0.163129601
-  r_primar_mot_a1: -0.140203583
+  r_primar_mot_a1: -0.129197022
   spridning_i_profilen:
     retorik:
       S: 0.285714286
@@ -958,6 +945,8 @@ kallor:
   korpus_framat: config/verklighetsbild/korpus_framat.yaml
   delpoang_a: dist/scores.json
   a1_ra: config/budget_ramar.yaml
+  kategorier: config/categories.yaml
+  poangsattning: config/scoring.yaml
   blocken: config/mappings.yaml
   forhandsregistrering: docs/samstammighet_poc/forhandsregistrering.md
 kallhashar:
@@ -965,5 +954,7 @@ kallhashar:
   korpus_framat: 07b690fbb816a07aebcda9f4eba146c0d2b04e4df474b87e364078384e7b3b74
   delpoang_a: 3d1467bf781dd83c9a214b24175849837bfda517ee493219a828fa1779db32f0
   a1_ra: ab7f4f22d745b150adba3acec1e22a3fdf9b723e3df26e0a972e35c9df183b08
+  kategorier: 800c06249817efc30b056a2d9b5fbb82f7f71f4be34c24c88c12e7fb38d12f55
+  poangsattning: 849449c40f2ffe20fad074b8f807e632492248255b17b70284c6ebaf23c5cd92
   blocken: ba989ca999664586518bfa3573feab10f01270be02d0586392510642448535a2
   forhandsregistrering: 45a8038182369bc27a7782d39664328a9ac8988ac64871d1431c1efebda621bc
