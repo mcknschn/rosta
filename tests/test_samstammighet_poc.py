@@ -56,7 +56,17 @@ def _las(fil: Path) -> dict:
     return yaml.safe_load(fil.read_text(encoding="utf-8"))
 
 
-def _vagar(farskt: object, committat: object, vag: str = "") -> list[str]:
+# Hur nära två körningar måste ligga för att räknas som samma räkning. POC:ens trösklar
+# avgörs på TRE decimaler, så 1e-6 är tusen gånger strängare än något beslut kräver.
+#
+# Bit-exakthet vore fel krav. Talen lagras med nio decimaler, och ett av dem, den bakåtvända
+# variantens blockskillnad, ligger 1,3e-17 från avrundningsgränsen i nionde decimalen. Minsta
+# skillnad i sista biten flyttar då den nionde decimalen ett steg. Ett krav på bit-exakthet
+# vore alltså ett löfte om maskinen och inte om repot.
+TOLERANS = 1e-6
+
+
+def _vagar(farskt: object, committat: object, vag: str = "", tol: float = TOLERANS) -> list[str]:
     """Vägarna där två nästlade strukturer skiljer sig, som `a/b/c: nytt != gammalt`.
 
     Ett blott `trosklar skiljer sig` säger inte vilket tal som rörde sig, och då måste den som
@@ -65,10 +75,16 @@ def _vagar(farskt: object, committat: object, vag: str = "") -> list[str]:
     if isinstance(farskt, dict) and isinstance(committat, dict):
         ut = []
         for nyckel in sorted(set(farskt) | set(committat)):
-            if farskt.get(nyckel) != committat.get(nyckel):
-                ut += _vagar(farskt.get(nyckel), committat.get(nyckel), f"{vag}/{nyckel}")
+            ut += _vagar(farskt.get(nyckel), committat.get(nyckel), f"{vag}/{nyckel}", tol)
         return ut
-    return [f"{vag}: {farskt!r} != {committat!r}"]
+    if isinstance(farskt, list) and isinstance(committat, list) and len(farskt) == len(committat):
+        ut = []
+        for i, (a, b) in enumerate(zip(farskt, committat, strict=True)):
+            ut += _vagar(a, b, f"{vag}[{i}]", tol)
+        return ut
+    if isinstance(farskt, float) and isinstance(committat, float):
+        return [] if abs(farskt - committat) <= tol else [f"{vag}: {farskt!r} != {committat!r}"]
+    return [] if farskt == committat else [f"{vag}: {farskt!r} != {committat!r}"]
 
 
 def _dist_hashar() -> dict[str, str]:
@@ -494,11 +510,19 @@ def test_2_rakningen_ar_reproducerbar_ur_repot():
         pytest.skip("underlaget har ändrats; se test_2_kallorna_ar_desamma_som_vid_korningen")
     farskt = sam.kor()
     for nyckel in ("retorik", "handling", "glapp", "profilavstand", "trosklar", "utfall"):
-        assert farskt[nyckel] == committat[nyckel], (
-            f"{nyckel} skiljer sig från det committade: " + "; ".join(_vagar(
-                farskt[nyckel], committat[nyckel], nyckel,
-            )[:6])
+        avvikelser = _vagar(farskt[nyckel], committat[nyckel], nyckel)
+        assert not avvikelser, (
+            f"{nyckel} skiljer sig från det committade: " + "; ".join(avvikelser[:6])
         )
+
+
+def test_reproducerbarhetsprovet_ser_en_verklig_andring():
+    """Provet som vaktar godkännandetest 2 måste självt vara provätt."""
+    assert not _vagar({"a": 1.0}, {"a": 1.0 + TOLERANS / 2})
+    assert _vagar({"a": 1.0}, {"a": 1.01})
+    assert _vagar({"a": [1.0, 2.0]}, {"a": [1.0, 2.5]})
+    assert _vagar({"a": True}, {"a": False})
+    assert _vagar({"a": 1.0}, {"b": 1.0})
 
 
 @pytest.mark.skipif(not RESULTAT_YAML.exists(), reason="ingen körning är committad än")

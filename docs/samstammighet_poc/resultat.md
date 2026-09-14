@@ -222,6 +222,12 @@ resultatet kunna bära tal ingen längre kan återskapa, och ingenting skulle s�
 Rör sig en källa faller `test_2_kallorna_ar_desamma_som_vid_korningen`, och rättelsen är att köra
 om POC:en. Att lossa provet är inte rättelsen. Körningen tar under två sekunder.
 
+Ligger källorna still räknas hela POC:en om och jämförs mot filen, med **toleransen 1e-6**.
+Trösklarna avgörs på tre decimaler, så provet är tusen gånger strängare än något beslut kräver.
+Bit-exakthet vore däremot fel krav: ett av talen ligger 1,3e-17 från avrundningsgränsen i nionde
+decimalen, och minsta skillnad i sista biten flyttar då den decimalen ett steg. Ett krav på
+bit-exakthet vore ett löfte om maskinen och inte om repot.
+
 **Detta är ett tillägg till specen.** Biljetten krävde bara att räkningen är reproducerbar ur
 repot. Pinnet är strängare, aldrig lösare: det prövar påståendet i stället för att utfästa det.
 
