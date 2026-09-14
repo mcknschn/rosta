@@ -56,6 +56,21 @@ def _las(fil: Path) -> dict:
     return yaml.safe_load(fil.read_text(encoding="utf-8"))
 
 
+def _vagar(farskt: object, committat: object, vag: str = "") -> list[str]:
+    """Vägarna där två nästlade strukturer skiljer sig, som `a/b/c: nytt != gammalt`.
+
+    Ett blott `trosklar skiljer sig` säger inte vilket tal som rörde sig, och då måste den som
+    felsöker köra hela räkningen för hand. Meddelandet ska peka på cellen.
+    """
+    if isinstance(farskt, dict) and isinstance(committat, dict):
+        ut = []
+        for nyckel in sorted(set(farskt) | set(committat)):
+            if farskt.get(nyckel) != committat.get(nyckel):
+                ut += _vagar(farskt.get(nyckel), committat.get(nyckel), f"{vag}/{nyckel}")
+        return ut
+    return [f"{vag}: {farskt!r} != {committat!r}"]
+
+
 def _dist_hashar() -> dict[str, str]:
     return {
         f.name: hashlib.sha256(f.read_bytes()).hexdigest()
@@ -479,7 +494,11 @@ def test_2_rakningen_ar_reproducerbar_ur_repot():
         pytest.skip("underlaget har ändrats; se test_2_kallorna_ar_desamma_som_vid_korningen")
     farskt = sam.kor()
     for nyckel in ("retorik", "handling", "glapp", "profilavstand", "trosklar", "utfall"):
-        assert farskt[nyckel] == committat[nyckel], f"{nyckel} skiljer sig från det committade"
+        assert farskt[nyckel] == committat[nyckel], (
+            f"{nyckel} skiljer sig från det committade: " + "; ".join(_vagar(
+                farskt[nyckel], committat[nyckel], nyckel,
+            )[:6])
+        )
 
 
 @pytest.mark.skipif(not RESULTAT_YAML.exists(), reason="ingen körning är committad än")

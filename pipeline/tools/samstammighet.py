@@ -32,6 +32,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 import random
 from collections import Counter
 from dataclasses import dataclass
@@ -290,7 +291,10 @@ def pearson(xs: list[float], ys: list[float]) -> float:
     syy = sum((y - my) ** 2 for y in ys)
     if sxx <= 0 or syy <= 0:
         raise ValueError("pearson: en av serierna är konstant")
-    return sxy / (sxx * syy) ** 0.5
+    # math.sqrt och inte ** 0.5: potensen går via plattformens pow() och kan skilja sig i
+    # sista biten mellan Windows och Linux. Kvadratroten är korrekt avrundad enligt IEEE 754
+    # och ger samma tal överallt. Räkningen ska vara reproducerbar ur repot, inte ur maskinen.
+    return sxy / math.sqrt(sxx * syy)
 
 
 def _rangordna(vs: list[float]) -> list[float]:
@@ -358,7 +362,7 @@ def blockskillnad(
     reg = [float(varden[p]) for p in regeringssidan]
     opp = [float(varden[p]) for p in oppositionen]
     mellan = abs(_medel(reg) - _medel(opp))
-    inom = ((_stickprovsvarians(reg) + _stickprovsvarians(opp)) / 2) ** 0.5
+    inom = math.sqrt((_stickprovsvarians(reg) + _stickprovsvarians(opp)) / 2)  # se pearson
     if inom <= 0:
         raise ValueError("blockskillnad: spridningen inom blocken är noll")
     return {
