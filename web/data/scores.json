@@ -152,6 +152,7 @@
         "flags": [
           "B_shrink_45/100",
           "B_terms_2",
+          "B_unclipped_max_0.20",
           "B_thin_category_ceiling",
           "A_a1_active",
           "D_shrink_100/100"
@@ -193,6 +194,7 @@
         "flags": [
           "B_shrink_55/73",
           "B_terms_5",
+          "B_unclipped_max_0.40",
           "A_a1_active",
           "D_shrink_73/73"
         ],
@@ -233,6 +235,7 @@
         "flags": [
           "B_shrink_50/100",
           "B_terms_3",
+          "B_unclipped_max_0.53",
           "A_a1_active",
           "C_national_only_by_design",
           "D_shrink_60/100",
@@ -275,6 +278,7 @@
         "flags": [
           "B_shrink_65/100",
           "B_terms_6",
+          "B_unclipped_max_0.60",
           "A_a1_active",
           "D_shrink_100/100"
         ],
@@ -315,6 +319,7 @@
         "flags": [
           "B_shrink_15/85",
           "B_terms_1",
+          "B_unclipped_max_0.20",
           "B_thin_party_coverage",
           "A_a1_active",
           "D_shrink_85/85"
@@ -356,6 +361,7 @@
         "flags": [
           "B_shrink_35/100",
           "B_terms_2",
+          "B_unclipped_max_0.20",
           "B_thin_party_coverage",
           "A_a1_active",
           "D_shrink_85/100"
@@ -397,6 +403,7 @@
         "flags": [
           "B_shrink_50/100",
           "B_terms_4",
+          "B_unclipped_max_0.50",
           "A_a1_active",
           "D_shrink_80/100",
           "D_subnational_region_1.1"
@@ -440,6 +447,7 @@
         "flags": [
           "B_shrink_45/100",
           "B_terms_2",
+          "B_unclipped_max_0.20",
           "B_thin_category_ceiling",
           "A_a1_active",
           "D_shrink_100/100"
@@ -481,6 +489,7 @@
         "flags": [
           "B_shrink_55/73",
           "B_terms_5",
+          "B_unclipped_max_0.20",
           "A_a1_active",
           "D_shrink_73/73"
         ],
@@ -521,6 +530,7 @@
         "flags": [
           "B_shrink_50/100",
           "B_terms_3",
+          "B_unclipped_max_0.53",
           "A_a1_active",
           "C_national_only_by_design",
           "D_shrink_75/100"
@@ -562,6 +572,7 @@
         "flags": [
           "B_shrink_52.5/100",
           "B_terms_5",
+          "B_unclipped_max_0.60",
           "A_a1_active",
           "D_shrink_100/100"
         ],
@@ -602,6 +613,7 @@
         "flags": [
           "B_shrink_70/85",
           "B_terms_3",
+          "B_unclipped_max_0.33",
           "A_a1_active",
           "D_shrink_85/85"
         ],
@@ -642,6 +654,7 @@
         "flags": [
           "B_shrink_55/100",
           "B_terms_3",
+          "B_unclipped_max_0.20",
           "A_a1_active",
           "D_shrink_70/100",
           "D_thin_coverage"
@@ -683,6 +696,7 @@
         "flags": [
           "B_shrink_50/100",
           "B_terms_4",
+          "B_unclipped_max_0.50",
           "A_a1_active",
           "D_shrink_80/100",
           "D_subnational_region_0.74"
@@ -727,6 +741,7 @@
         "flags": [
           "B_shrink_45/100",
           "B_terms_2",
+          "B_unclipped_max_0.20",
           "B_thin_category_ceiling",
           "A_a1_active",
           "D_shrink_100/100"
@@ -769,6 +784,7 @@
         "flags": [
           "B_shrink_55/73",
           "B_terms_5",
+          "B_unclipped_max_0.20",
           "A_a1_active",
           "D_shrink_73/73"
         ],
@@ -810,6 +826,7 @@
         "flags": [
           "B_shrink_50/100",
           "B_terms_3",
+          "B_unclipped_max_0.53",
           "A_a1_active",
           "C_national_only_by_design",
           "D_shrink_75/100"
@@ -852,6 +869,7 @@
         "flags": [
           "B_shrink_55/100",
           "B_terms_5",
+          "B_unclipped_max_0.40",
           "A_a1_active",
           "D_shrink_100/100"
         ],
@@ -893,6 +911,7 @@
         "flags": [
           "B_shrink_70/85",
           "B_terms_3",
+          "B_unclipped_max_0.33",
           "A_a1_active",
           "D_shrink_85/85"
         ],
@@ -934,6 +953,7 @@
         "flags": [
           "B_shrink_55/100",
           "B_terms_3",
+          "B_unclipped_max_0.20",
           "A_a1_active",
           "D_shrink_85/100"
         ],
@@ -975,6 +995,7 @@
         "flags": [
           "B_shrink_40/100",
           "B_terms_3",
+          "B_unclipped_max_0.30",
           "B_thin_party_coverage",
           "A_a1_active",
           "D_shrink_80/100",
@@ -1019,6 +1040,7 @@
         "flags": [
           "B_shrink_45/100",
           "B_terms_2",
+          "B_unclipped_max_0.20",
           "B_thin_category_ceiling",
           "A_a1_active",
           "D_shrink_100/100"
@@ -1060,6 +1082,7 @@
         "flags": [
           "B_shrink_55/73",
           "B_terms_5",
+          "B_unclipped_max_0.40",
           "A_a1_active",
           "D_shrink_73/73"
         ],
@@ -1100,6 +1123,7 @@
         "flags": [
           "B_shrink_50/100",
           "B_terms_3",
+          "B_unclipped_max_0.53",
           "A_a1_active",
           "C_national_only_by_design",
           "D_shrink_75/100"
@@ -1141,6 +1165,7 @@
         "flags": [
           "B_shrink_55/100",
           "B_terms_5",
+          "B_unclipped_max_0.40",
           "A_a1_active",
           "D_shrink_100/100"
         ],
@@ -1181,6 +1206,7 @@
         "flags": [
           "B_shrink_70/85",
           "B_terms_3",
+          "B_unclipped_max_0.33",
           "A_a1_active",
           "D_shrink_85/85"
         ],
@@ -1221,6 +1247,7 @@
         "flags": [
           "B_shrink_35/100",
           "B_terms_2",
+          "B_unclipped_max_0.20",
           "B_thin_party_coverage",
           "A_a1_active",
           "D_shrink_70/100",
@@ -1263,6 +1290,7 @@
         "flags": [
           "B_shrink_50/100",
           "B_terms_4",
+          "B_unclipped_max_0.50",
           "A_a1_active",
           "D_shrink_80/100",
           "D_subnational_region_0.81"
@@ -1307,6 +1335,7 @@
         "flags": [
           "B_shrink_45/100",
           "B_terms_2",
+          "B_unclipped_max_0.20",
           "B_thin_category_ceiling",
           "A_a1_active",
           "D_shrink_100/100"
@@ -1349,6 +1378,7 @@
         "flags": [
           "B_shrink_55/73",
           "B_terms_5",
+          "B_unclipped_max_0.40",
           "A_a1_active",
           "D_shrink_73/73"
         ],
@@ -1390,6 +1420,7 @@
         "flags": [
           "B_shrink_7.5/100",
           "B_terms_1",
+          "B_unclipped_max_0.20",
           "B_thin_party_coverage",
           "A_a1_active",
           "C_national_only_by_design",
@@ -1434,6 +1465,7 @@
         "flags": [
           "B_shrink_32.5/100",
           "B_terms_3",
+          "B_unclipped_max_0.20",
           "B_thin_party_coverage",
           "A_a1_active",
           "D_shrink_100/100"
@@ -1476,6 +1508,7 @@
         "flags": [
           "B_shrink_70/85",
           "B_terms_3",
+          "B_unclipped_max_0.40",
           "A_a1_active",
           "D_shrink_85/85"
         ],
@@ -1517,6 +1550,7 @@
         "flags": [
           "B_shrink_85/100",
           "B_terms_4",
+          "B_unclipped_max_0.20",
           "A_a1_active",
           "D_shrink_85/100"
         ],
@@ -1558,6 +1592,7 @@
         "flags": [
           "B_shrink_40/100",
           "B_terms_3",
+          "B_unclipped_max_0.30",
           "B_thin_party_coverage",
           "A_a1_active",
           "D_shrink_80/100",
@@ -1604,6 +1639,7 @@
         "flags": [
           "B_shrink_45/100",
           "B_terms_2",
+          "B_unclipped_max_0.20",
           "B_thin_category_ceiling",
           "A_a1_active",
           "D_shrink_100/100"
@@ -1647,6 +1683,7 @@
         "flags": [
           "B_shrink_55/73",
           "B_terms_5",
+          "B_unclipped_max_0.40",
           "A_a1_active",
           "D_shrink_73/73"
         ],
@@ -1689,6 +1726,7 @@
         "flags": [
           "B_shrink_50/100",
           "B_terms_3",
+          "B_unclipped_max_0.53",
           "A_a1_active",
           "C_national_only_by_design",
           "D_shrink_75/100"
@@ -1732,6 +1770,7 @@
         "flags": [
           "B_shrink_42.5/100",
           "B_terms_4",
+          "B_unclipped_max_0.40",
           "B_thin_party_coverage",
           "A_a1_active",
           "D_shrink_100/100"
@@ -1775,6 +1814,7 @@
         "flags": [
           "B_shrink_40/85",
           "B_terms_2",
+          "B_unclipped_max_0.33",
           "B_thin_party_coverage",
           "A_a1_active",
           "D_shrink_85/85"
@@ -1818,6 +1858,7 @@
         "flags": [
           "B_shrink_65/100",
           "B_terms_3",
+          "B_unclipped_max_0.20",
           "A_a1_active",
           "D_shrink_85/100"
         ],
@@ -1860,6 +1901,7 @@
         "flags": [
           "B_shrink_30/100",
           "B_terms_3",
+          "B_unclipped_max_0.50",
           "B_thin_party_coverage",
           "A_a1_active",
           "D_shrink_80/100",
@@ -1901,6 +1943,7 @@
         "flags": [
           "B_shrink_20/100",
           "B_terms_1",
+          "B_unclipped_max_0.20",
           "B_thin_category_ceiling",
           "A_a1_active",
           "D_shrink_100/100"
@@ -1939,6 +1982,7 @@
         "flags": [
           "B_shrink_55/73",
           "B_terms_5",
+          "B_unclipped_max_0.20",
           "A_a1_active",
           "D_shrink_73/73"
         ],
@@ -1976,6 +2020,7 @@
         "flags": [
           "B_shrink_50/100",
           "B_terms_3",
+          "B_unclipped_max_0.53",
           "A_a1_active",
           "C_national_only_by_design",
           "D_shrink_75/100"
@@ -2014,6 +2059,7 @@
         "flags": [
           "B_shrink_32.5/100",
           "B_terms_3",
+          "B_unclipped_max_0.20",
           "B_thin_party_coverage",
           "A_a1_active",
           "D_shrink_100/100"
@@ -2052,6 +2098,7 @@
         "flags": [
           "B_shrink_70/85",
           "B_terms_3",
+          "B_unclipped_max_0.40",
           "A_a1_active",
           "D_shrink_85/85"
         ],
@@ -2089,6 +2136,7 @@
         "flags": [
           "B_shrink_40/100",
           "B_terms_2",
+          "B_unclipped_max_0.20",
           "B_thin_party_coverage",
           "A_a1_active",
           "D_shrink_70/100",
@@ -2128,6 +2176,7 @@
         "flags": [
           "B_shrink_50/100",
           "B_terms_4",
+          "B_unclipped_max_0.30",
           "A_a1_active",
           "D_shrink_80/100"
         ],
@@ -2169,6 +2218,7 @@
         "flags": [
           "B_shrink_45/100",
           "B_terms_2",
+          "B_unclipped_max_0.20",
           "B_thin_category_ceiling",
           "A_a1_active",
           "D_not_applicable"
@@ -2209,6 +2259,7 @@
         "flags": [
           "B_shrink_55/73",
           "B_terms_5",
+          "B_unclipped_max_0.40",
           "A_a1_active",
           "D_not_applicable"
         ],
@@ -2248,6 +2299,7 @@
         "flags": [
           "B_shrink_50/100",
           "B_terms_3",
+          "B_unclipped_max_0.53",
           "A_a1_active",
           "C_national_only_by_design",
           "D_not_applicable"
@@ -2288,6 +2340,7 @@
         "flags": [
           "B_shrink_45/100",
           "B_terms_4",
+          "B_unclipped_max_0.40",
           "B_thin_party_coverage",
           "A_a1_active",
           "D_not_applicable"
@@ -2328,6 +2381,7 @@
         "flags": [
           "B_shrink_70/85",
           "B_terms_3",
+          "B_unclipped_max_0.40",
           "A_a1_active",
           "D_not_applicable"
         ],
@@ -2367,6 +2421,7 @@
         "flags": [
           "B_shrink_85/100",
           "B_terms_4",
+          "B_unclipped_max_0.20",
           "A_a1_active",
           "D_not_applicable"
         ],
@@ -2406,6 +2461,7 @@
         "flags": [
           "B_shrink_40/100",
           "B_terms_3",
+          "B_unclipped_max_0.30",
           "B_thin_party_coverage",
           "A_a1_active",
           "D_shrink_30/100",

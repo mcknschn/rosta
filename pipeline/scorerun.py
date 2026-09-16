@@ -1081,9 +1081,20 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
     # härleds ur dem (ADR 0004 punkt 5). Innan dess slängdes confidence här.
     b_conf_in: dict[tuple[str, str], dict[str, float]] = {}
     b_n_claims: dict[tuple[str, str], int] = {}
+    # ADR 0019 beslut 7 och 8: två diagnostiker som aggregatet räknar men som annars aldrig
+    # lämnar minnet. indicator_effects skrivs inte till dist, så de rullas upp hit.
+    b_unclipped: dict[tuple[str, str], float] = {}
+    b_sign_conflict: dict[tuple[str, str], set[str]] = {}
     for e in ind_effects:
         b_net.setdefault((e["party"], e["category"]), {})[e["indicator"]] = e["net_support"]
         b_conf_in.setdefault((e["party"], e["category"]), {})[e["indicator"]] = e["confidence"]
+        key = (e["party"], e["category"])
+        # Cellens STÖRSTA oklippta belopp. Maximum och inte summa: frågan beslut 7 ställer är
+        # hur nära klippet den mest ansträngda indikatorn ligger, inte hur mycket cellen rör
+        # sig totalt. Ett tal över 1,0 betyder att klippningen faktiskt tog av.
+        b_unclipped[key] = max(b_unclipped.get(key, 0.0), abs(e.get("net_support_unclipped", 0.0)))
+        if e.get("sign_conflict_types"):
+            b_sign_conflict.setdefault(key, set()).update(e["sign_conflict_types"])
     b_terms: dict[tuple[str, str], set[str]] = {}
     for cl in ee_claims:
         key = (cl["party"], cl["category"])
@@ -1202,6 +1213,15 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
                 # antal led betyder olika nåbar poängvidd. Utan talet syns inte den
                 # skillnaden i jämförelsen mellan partier.
                 b_flags.append(f"B_terms_{len(b_terms.get((p, c), ()))}")
+                # ADR 0019 beslut 7: den oklippta summan redovisas diagnostiskt. Talet står
+                # ALLTID, inte bara när klippningen tog av, eftersom marginalen till taket är
+                # det som säger hur nära mättnaden materialet ligger. Över 1,00 betyder klippt.
+                b_flags.append(f"B_unclipped_max_{b_unclipped.get((p, c), 0.0):.2f}")
+                # ADR 0019 beslut 8: rent deskriptiv, utan automatisk verkan. Flaggan sätts
+                # bara när oenighet finns; en flagga på varje cell som säger "ingen konflikt"
+                # vore brus.
+                if b_sign_conflict.get((p, c)):
+                    b_flags.append(f"B_sign_conflict_{len(b_sign_conflict[(p, c)])}")
                 thin = coverage < thin_cov
                 if thin:
                     # Vems är locket? Ligger KATEGORINS tak under tröskeln kan inget parti nå

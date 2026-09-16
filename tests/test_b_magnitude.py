@@ -374,3 +374,86 @@ def test_motsagelse_inom_samma_estimand_hard_failar() -> None:
     analysenheten, aldrig ett tyst medelvärde."""
     with pytest.raises(config.ConfigError, match="motsägelsefull"):
         _net([_post(), _post(effect_strength="high")])
+
+
+# --- ADR 0019 beslut 7 och 8: de två diagnostikerna ------------------------------------
+
+
+def test_oklippta_summan_redovisas_och_ar_exakt_den_som_klipps() -> None:
+    """ADR 0019 beslut 7. Klippningen döljer hur stort överskottet var, så talet står kvar.
+
+    Under taket sammanfaller de två, och det är själva poängen: `net_support_unclipped` är
+    inte en andra skattning utan samma tal före klippet. Skiljer de sig har klippningen tagit
+    av, och först då säger flaggan något nytt."""
+    eff = effects.aggregate_effects(
+        [_claim("c1", "positive", "medium", "authority_evaluation", "medium")]
+    )
+    assert eff[0]["net_support_unclipped"] == pytest.approx(0.6 / _k(), abs=1e-4)
+    assert eff[0]["net_support_unclipped"] == pytest.approx(eff[0]["net_support"], abs=1e-4)
+
+
+def test_oklippta_summan_overlever_klippningen() -> None:
+    """Över taket skiljer sig talen, och överskottet blir synligt i stället för att döljas.
+
+    R + 1 åtgärdstyper som var och en bidrar maximalt ger en summa över budgeten. net_support
+    klipps till 1,0, medan det oklippta talet visar hur långt förbi taket cellen gick."""
+    r = int(config.scoring()["B_evidens"]["saturation_action_types"])
+    claims = [
+        _claim(f"c{i}", "positive", "high", "authority_evaluation", "medium", policy=f"typ_{i}")
+        for i in range(r + 1)
+    ]
+    eff = effects.aggregate_effects(claims)
+    assert eff[0]["net_support"] == pytest.approx(1.0, abs=1e-9)
+    assert eff[0]["net_support_unclipped"] == pytest.approx((r + 1) / r, abs=1e-4)
+    assert eff[0]["net_support_unclipped"] > eff[0]["net_support"]
+
+
+def test_teckenoenighet_inom_en_typ_flaggas() -> None:
+    """ADR 0019 beslut 8, andra halvan. Poolen medelvärdesbildar, så utan flaggan syns inget."""
+    eff = effects.aggregate_effects([
+        _claim("c1", "positive", "high", "authority_evaluation", "medium", policy="typ_a"),
+        _claim("c2", "negative", "low", "authority_evaluation", "medium", policy="typ_a"),
+    ])
+    assert eff[0]["sign_conflict_types"] == ["typ_a"]
+
+
+def test_teckenoenighet_har_ingen_automatisk_verkan() -> None:
+    """Flaggan är RENT deskriptiv. Betyg och säkerhet ska vara identiska med och utan den.
+
+    ADR 0019 beslut 8 avvisade en automatisk nedgradering som ospecificerad: den lämnar öppet
+    hur svag en motröst får vara, och om +0,01 mot -0,01 är samma konflikt som +1 mot -1."""
+    oense = effects.aggregate_effects([
+        _claim("c1", "positive", "high", "authority_evaluation", "medium", policy="typ_a"),
+        _claim("c2", "negative", "high", "authority_evaluation", "medium", policy="typ_a"),
+    ])[0]
+    # Samma två storlekar, samma kvalitet, men ense om tecknet och på var sin typ.
+    assert oense["sign_conflict_types"] == ["typ_a"]
+    assert oense["net_support"] == pytest.approx(0.0, abs=1e-9)
+    assert oense["confidence"] == pytest.approx(
+        effects.aggregate_effects([
+            _claim("c1", "positive", "high", "authority_evaluation", "medium", policy="typ_a"),
+            _claim("c2", "positive", "high", "authority_evaluation", "medium", policy="typ_a"),
+        ])[0]["confidence"],
+        abs=1e-9,
+    )
+
+
+def test_tecknet_delas_inte_av_skilda_typer() -> None:
+    """Oenighet MELLAN åtgärdstyper är inte oenighet. De är skilda ingrepp som får peka olika.
+
+    Det är hela skälet till att ADR 0019 skiljer poolning från summa. Flaggan gäller bara
+    upprepade mätningar av SAMMA storhet."""
+    eff = effects.aggregate_effects([
+        _claim("c1", "positive", "high", "authority_evaluation", "medium", policy="typ_a"),
+        _claim("c2", "negative", "high", "authority_evaluation", "medium", policy="typ_b"),
+    ])
+    assert eff[0]["sign_conflict_types"] == []
+
+
+def test_noll_effekt_ar_ingen_motrost() -> None:
+    """m = 0 (mixed/unclear) drar sin typ mot noll men är inget ställningstagande mot."""
+    eff = effects.aggregate_effects([
+        _claim("c1", "positive", "high", "authority_evaluation", "medium", policy="typ_a"),
+        _claim("c2", "mixed", "high", "authority_evaluation", "medium", policy="typ_a"),
+    ])
+    assert eff[0]["sign_conflict_types"] == []

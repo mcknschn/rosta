@@ -13,6 +13,8 @@
     "expected_direction": { "type": "string", "enum": ["up", "down"], "description": "Indikatorns Riktning. En utesluten indikator (ADR 0011) har ingen och kan inte bära en effekt." },
     "net_support": { "type": "number", "minimum": -1, "maximum": 1, "description": "Nettostöd: >0 stödjer positiv riktning, <0 motsäger." },
     "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "net_support_unclipped": { "type": "number", "description": "Summan INNAN klippning, alltså x_sum/K (ADR 0019 beslut 7). Saknar gränser med avsikt: talet finns just för att visa hur stort det oklippta överskottet var, och net_support döljer det." },
+    "sign_conflict_types": { "type": "array", "items": { "type": "string" }, "description": "Åtgärdstyper vars poolade utvärderingar är oense om tecknet (ADR 0019 beslut 8). Rent deskriptiv, utan automatisk verkan på betyg eller säkerhet." },
     "supporting_claims": { "type": "array", "items": { "type": "string" } },
     "contradicting_claims": { "type": "array", "items": { "type": "string" } }
   }

@@ -102,6 +102,7 @@ def aggregate_effects(claims: Iterable[dict[str, Any]]) -> list[dict[str, Any]]:
             (supporting if s >= 0 else contradicting).append(c.get("id", ""))
 
         x_sum = 0.0
+        sign_conflict: list[str] = []
         for policy, qm in per_type.items():
             q_t = sum(q for q, _ in qm)
             if q_t <= 0:
@@ -111,13 +112,26 @@ def aggregate_effects(claims: Iterable[dict[str, Any]]) -> list[dict[str, Any]]:
                     f"Σq = 0 för åtgärdstypen {policy} i {party}/{cat}/{ind}: "
                     "poolningen är odefinierad"
                 )
+            # ADR 0019 beslut 8, andra halvan: utvärderingar inom EN typ som är oense om
+            # tecknet bär en RENT DESKRIPTIV flagga. Poolen medelvärdesbildar dem, så utan
+            # flaggan syns oenigheten inte alls. Ingen automatisk verkan: en nedgradering av
+            # säkerheten avvisades som ospecificerad, eftersom den lämnar öppet hur svag en
+            # motröst får vara och om +0,01 mot -0,01 är samma konflikt som +1 mot -1.
+            # m = 0 (mixed/unclear/unknown) är ingen motröst och räknas inte som oenighet.
+            if len({m > 0 for _, m in qm if m}) > 1:
+                sign_conflict.append(policy)
             x_sum += sum(q * m for q, m in qm) / q_t
-        net = max(-1.0, min(1.0, x_sum / k_budget)) if per_type else 0.0
+        # ADR 0019 beslut 7: klippningen döljer hur stort det oklippta överskottet var, så
+        # summan redovisas diagnostiskt. Talet är x_sum/K, alltså exakt det net klipper.
+        unclipped = x_sum / k_budget if per_type else 0.0
+        net = max(-1.0, min(1.0, unclipped))
         conf = sum(conf_vals) / len(conf_vals) if conf_vals else 0.0
         effects.append({
             "party": party, "category": cat, "indicator": ind,
             "expected_direction": directions.get((cat, ind), "up"),
             "net_support": round(net, 4), "confidence": round(conf, 4),
+            "net_support_unclipped": round(unclipped, 4),
+            "sign_conflict_types": sorted(sign_conflict),
             "supporting_claims": [s for s in supporting if s],
             "contradicting_claims": [c for c in contradicting if c],
         })
