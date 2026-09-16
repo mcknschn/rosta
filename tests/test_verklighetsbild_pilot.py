@@ -57,12 +57,18 @@ def _ytligt_trad() -> bool:
 
 
 def _lades_till_i(fil: Path) -> str | None:
-    """Datum för den commit som lade till filen, eller None när ordningen inte går att läsa."""
+    """Datum för den commit som lade till filen, eller None när ordningen inte går att läsa.
+
+    `--follow` behövs sedan materialet flyttade till `loften/` 2026-09-16. Utan flaggan
+    läser git bara den nuvarande sökvägen, och flyttcommitten ser då ut som filens födelse.
+    Ordningen mellan kodbok och kodning är ett faktum om historien, inte om sökvägen.
+    """
     if _ytligt_trad():
         return None
     try:
         ut = subprocess.run(
-            ["git", "log", "--diff-filter=A", "--format=%cI", "--", str(fil.relative_to(ROT))],
+            ["git", "log", "--follow", "--diff-filter=A", "--format=%cI",
+             "--", str(fil.relative_to(ROT))],
             cwd=ROT, capture_output=True, text=True, timeout=30, check=False,
         )
     except (OSError, subprocess.SubprocessError):  # pragma: no cover - beror på miljön

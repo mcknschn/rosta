@@ -119,7 +119,7 @@ def _lades_till_i(fil: Path) -> str | None:
     """Datum för den commit som lade till filen, eller None när ordningen inte går att läsa."""
     if _ytligt_trad():
         return None
-    ut = _git("log", "--diff-filter=A", "--format=%cI", "--", str(fil.relative_to(ROT)))
+    ut = _git("log", "--follow", "--diff-filter=A", "--format=%cI", "--", str(fil.relative_to(ROT)))
     if ut is None:
         return None
     rader = [r for r in ut.splitlines() if r.strip()]
