@@ -5,7 +5,7 @@
 > Beslut 7 i [beslutsdokumentet](../beslut/2026-09-16-sparets-form.md) kräver att de två
 > genomgångarna får samma instruktion och arbetar i skilda kontexter.
 >
-> **Version 2, 2026-09-16.** Ändringen mot version 1 står längst ned.
+> **Version 3, 2026-09-16.** Ändringarna mot tidigare versioner står längst ned.
 
 ## Uppgiften
 
@@ -57,12 +57,15 @@ Fyra signaler pekar ut en post. De gäller i denna ordning:
 Posten bär **hela punkten**: den inledande meningen och den förklaring som hör till den.
 Den förkortas aldrig.
 
+Bär en del av dokumentet ingen av de fyra signalerna, läs avsnittet
+`Avsnitt utan liststruktur` nedan. Det avsnittet gäller då i stället.
+
 ## Vad som inte är en post
 
 - Rubriker, kapitelrubriker och mellanrubriker.
 - Löpande brödtext, inledningar och resonemang som inte står som en punkt i en lista.
-  **Denna punkt gäller bara dokument som bär en lista.** Saknar dokumentet lista helt,
-  läs avsnittet `Dokument utan liststruktur` nedan.
+  **Denna punkt gäller bara inom ett avsnitt som bär en lista.** Se
+  `Avsnitt utan liststruktur` nedan.
 - Den rad som annonserar listan, alltså raden som slutar med kolon.
 - Innehållsförteckning, sidnummer, sidhuvud och sidfot.
 - Tryckortsuppgifter, ISBN, upplaga, grafisk form, webbadresser och konton i sociala
@@ -74,16 +77,22 @@ Den förkortas aldrig.
 En punkt är en post även när innehållet ligger utanför de sju kategorier Rösta mäter
 (beslut 9). Ingen punkt sorteras bort på ämne.
 
-## Dokument utan liststruktur
+## Avsnitt utan liststruktur
 
-Ett dokument kan sakna lista helt: ingen listmarkör, inget löpnummer, och ingen rad som
-annonserar en uppräkning. Då är den finaste nivå dokumentet självt markerar **stycket**, och
-**varje stycke i dokumentets löpande text är en post**.
+Ett dokument, eller en del av ett dokument, kan sakna lista helt: ingen listmarkör, inget
+löpnummer, och ingen rad som annonserar en uppräkning. Då är den finaste nivå dokumentet
+självt markerar **stycket**, och **varje stycke i den löpande texten är en post**.
 
-Tre saker binder när regeln gäller:
+Ett **listlöst avsnitt** är en följd av block som ingen av de fyra signalerna rör. Det
+börjar där föregående posts sista rad slutar, eller vid dokumentets början, och det slutar
+på raden före nästa listsignal, eller vid dokumentets slut. Bär dokumentet ingen lista alls
+är hela dokumentet ett enda listlöst avsnitt.
 
-1. **Regeln gäller hela dokumentet eller inte alls.** Bär dokumentet en lista någonstans
-   gäller de fyra signalerna ovan i stället, också i de kapitel som saknar lista.
+Fyra saker binder när regeln gäller:
+
+1. **Regeln gäller avsnitt för avsnitt.** Ett dokument kan bära listor i några kapitel och
+   löpande text i andra. Då gäller de fyra signalerna där listan står, och styckeregeln där
+   den inte står. Att dokumentet bär en lista någon annanstans befriar inget avsnitt.
 2. **Innehållet avgör aldrig.** Ett stycke som bara beskriver ett problem är en post lika
    mycket som ett stycke som namnger en åtgärd. Var stycket står i dokumentet avgör inte
    heller: ett stycke i inledningen och ett i slutkapitlet är poster på samma villkor som ett
@@ -93,6 +102,9 @@ Tre saker binder när regeln gäller:
    innehållsförteckning, tryckortsuppgifter och namnunderskrifter. Ingenting annat utesluts.
    Ett stycke som slutar med en uppmaning att rösta är alltså en post, medan en rubrik som
    lyder `Rösta på partiet!` inte är det.
+4. **Stycket är blocket.** Underlagets `# ---- block ----` är dokumentets egen styckning,
+   och den avgör var ett stycke börjar och slutar. Två block slås aldrig ihop till en post,
+   utom när sidbrytningen delat ett och samma stycke, se `Sidbrytningen` nedan.
 
 Skälet till punkt 2: prövbarheten avgörs av handlingsprovet i beslut 6, i en senare biljett.
 Sållar genomgången på innehåll redan här görs det provet två gånger, en gång utan nedskriven
@@ -135,6 +147,47 @@ poster:
    dokumentet blir det två poster.
 
 ## Ändringar
+
+### Version 3, 2026-09-16: klausulen flyttad från dokument till avsnitt
+
+Version 2 band styckeregeln till hela dokumentet: bar dokumentet en lista någonstans gällde
+de fyra signalerna överallt, också i kapitel utan lista. Den klausulen gjorde registret
+osymmetriskt mellan dokumenten.
+
+En mätning på det låsta registret, gjord i två pass som gav samma tal, visade följden. Av
+dokumentens brödtext låg 379 stycken utanför registret, tillsammans 104 677 tecken. De låg
+inte där jag först antog, alltså i inledningar före en lista. För C och M var det
+kapiteltexten själv, skriven i prosa och med uttryckliga förslag i sig. S:s slutkapitel
+`En stark global röst` bar hela partiets utrikespolitik i åtta stycken utan en enda punkt.
+
+Andelen av brödtexten som föll utanför:
+
+| Dokument | Andel utanför |
+| --- | --- |
+| C | 62 % |
+| M | 61 % |
+| S | 38 % |
+| SD | 36 % |
+| KD | 34 % |
+| L | 33 % |
+| MP | 20 % |
+| V | 0 % |
+
+V, som bara skriver löpande text, fick hela sitt dokument i registret. C, som skriver både
+lista och löpande text, fick bara listan. Talet mäter då dokumentets typografi och inte
+partiets löften, och det går åt olika håll för olika partier.
+
+Att V:s egna poster redan bär problembeskrivningar utan åtgärd, vilket version 2 slog fast
+med avsikt, gör saken tyngre. Registret blandar redan. Att låta samma regel gälla listlösa
+avsnitt i de andra dokumenten gör dem mer lika V, inte mindre.
+
+**Följden:** alla åtta dokument körs om, båda genomgångarna, under version 3. V är
+kontrollfallet: V bär ingen lista, så V:s avsnitt är hela dokumentet, och V:s resultat ska
+stå stilla. Gör det inte det är regeln inte den jag tror att den är.
+
+Det låsta registret från version 2 ligger kvar i
+[`arkiv/register_version2.yaml`](../../config/loftesregister_2022/arkiv/register_version2.yaml)
+och ändras aldrig.
 
 ### Version 2, 2026-09-16: avsnittet `Dokument utan liststruktur` tillagt
 
