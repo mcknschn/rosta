@@ -40,10 +40,11 @@ alltså dokumentets egen form.
 
 ### Läsordningen
 
-Alla åtta dokument är spaltsatta. Läsordningen tas fram med ett rekursivt XY-snitt: snittet läggs
-vid den bredaste luckan, och en lodrät lucka provas före en vågrät. En rubrik som går över båda
-spalterna hindrar den lodräta delningen, så bandet med rubriken skiljs av först och spalterna
-delas därefter. Sorterar man i stället på höjd flätas spalterna ihop rad för rad.
+S, M och KD är spaltsatta. De fem andra är ensspaltiga. Läsordningen tas fram med ett rekursivt
+XY-snitt: snittet läggs vid den bredaste luckan, och en lodrät lucka provas före en vågrät. En
+rubrik som går över båda spalterna hindrar den lodräta delningen, så bandet med rubriken skiljs av
+först och spalterna delas därefter. Sorterar man i stället på höjd flätas spalterna ihop rad för
+rad.
 
 **Två trösklar styr snittet, och båda är mätta och inte valda.**
 
@@ -52,16 +53,18 @@ delas därefter. Sorterar man i stället på höjd flätas spalterna ihop rad f�
 | `RANNA_MIN` | 8,5 punkter | Spaltrännan från radavståndet inom en spalt |
 | `BAND_MIN` | 0,1 punkter | Ett band från nästa band, vågrätt |
 
-M sätter sina spalter med 8,9 till 12,2 punkters ränna, medan S har 85 punkter och KD 50. Med den
-första låsningens tröskel på 14,0 vägrades den lodräta delningen för M på 28 av 40 sidor, och
-spalterna flätades ihop. Utfallet är identiskt för varje tröskel mellan 7,0 och 10,0, och 8,5
-ligger mitt på den platån.
+Textspaltrännan är 11,09 till 19,33 punkter hos M, 85 hos S och 21 hos KD. Med den första
+låsningens `RANNA_MIN` på 14,0 vägrades den lodräta delningen för M överallt, och läsordningen blev
+en annan på **26 av M:s 40 sidor**. Utfallet är identiskt för varje tröskel mellan 6,2 och 10,1.
+Platåns övre kant sätts inte av spalterna utan av en rad ikoner på M:s sida 29, där luckan mellan
+två ikoner är 10,15 punkter. 8,5 ligger inne på platån med marginal åt båda hållen.
 
 Den vågräta delningen bevarar alltid ordningen, eftersom den skiljer band uppifrån och ned. Den
 behöver därför ingen bred lucka för att vara säker. KD sätter luckan under rubriken
-`REDO FÖR EN NY REGERING`, som korsar rännan, till 0,2 punkter. Med den första låsningens tröskel
-på 3,0 gick varken den lodräta eller den vågräta delningen, och sidan föll igenom till en
-sortering på höjd. Utfallet är identiskt för varje tröskel mellan 0,01 och 0,2.
+`REDO FÖR EN NY REGERING`, som korsar rännan, till 0,2 punkter. Med den första låsningens
+`BAND_MIN` på 3,0 gick varken den lodräta eller den vågräta delningen, och sidan föll igenom till
+en sortering på höjd. Utfallet är identiskt för varje tröskel mellan 0 och 0,21, och KD:s sida 2 är
+det enda ställe i hela korpusen där sänkningen ändrar något.
 
 Måttet på om läsordningen stämmer är språkligt och inte typografiskt: **ett block som börjar mitt
 i en mening ska föregås av ett block som slutar mitt i en mening.** M hade sex sådana brott och KD
@@ -91,9 +94,11 @@ Den första låsningen gav 729 poster och byggde på instruktionens version 2. D
 styckeregeln till hela dokumentet: bar dokumentet en lista någonstans gällde listsignalerna
 överallt, också i kapitel utan lista.
 
-En mätning på det låsta registret visade vad klausulen kostade. Mätningen kördes i två pass som
-gav **exakt samma tal** på alla åtta dokument och alla tre prövade storleksgränser: 63 listlösa
-sträckor, 379 brödtextstycken utanför registret, tillsammans 104 677 tecken.
+En mätning på det låsta registret visade vad klausulen kostade. Mätningen kördes i två pass, ett av
+mig och ett av Codex i eget sammanhang med samma definition, och de gav **exakt samma tal** på alla
+åtta dokument och alla tre prövade storleksgränser. Med gränsen 120 tecken: 63 listlösa sträckor om
+minst två stycken, tillsammans 319 stycken och 104 677 tecken. Räknar man varje otäckt stycke för
+sig, utan kravet på en sträcka, blir det 379.
 
 De styckena låg inte där man först kunde tro, alltså i inledningar före en lista. För C och M var
 det kapiteltexten själv, skriven i prosa och med uttryckliga förslag i sig:
@@ -107,26 +112,33 @@ S:s slutkapitel `En stark global röst` bar hela partiets utrikespolitik i åtta
 enda punkt, och låg utanför registret i sin helhet.
 
 **Följden var att registret mätte typografi och inte löften.** Andelen av dokumentets brödtext som
-kom med berodde på hur partiet råkade sätta sin text:
+kom med berodde på hur partiet råkade sätta sin text. Talet är tecken i tagna rader genom alla
+tecken i underlaget, räknat likadant för båda versionerna.
 
-| Dokument | Andel av dokumentets tecken, version 2 | Andel, version 3 |
+| Dokument | Version 2 | Version 3 |
 |---|---|---|
-| S | 54 % | 95 % |
-| M | 27 % | 89 % |
-| SD | 61 % | 99 % |
-| C | 35 % | 94 % |
-| V | 98 % | 99 % |
-| KD | 49 % | 95 % |
-| MP | 51 % | 95 % |
-| L | 66 % | 100 % |
+| S | 54,8 % | 93,4 % |
+| SD | 61,7 % | 98,1 % |
+| C | 35,4 % | 93,4 % |
+| V | 98,4 % | 98,4 % |
+| MP | 51,0 % | 94,4 % |
+| L | 66,1 % | 98,9 % |
+| M | ingen jämförelse | 87,8 % |
+| KD | ingen jämförelse | 93,2 % |
 
-V, som bara skriver löpande text, fick hela sitt dokument i registret. C, som skriver både lista
-och löpande text, fick bara listan. Spannet gick från 27 till 98 procent, och det spannet var en
-egenskap hos satsen och inte hos partierna.
+M och KD saknar version 2-tal därför att deras underlag drogs om när läsordningen rättades. Deras
+gamla radspann pekar på andra rader i det nya underlaget, så ett tal räknat på dem vore inte det
+det ser ut att vara. De sex övriga dokumentens underlag är byte för byte oförändrade.
+
+För de sex jämförbara gick spannet från **35 till 98 procent** till **93 till 99**. Med M och KD
+inräknade är version 3-spannet 88 till 99.
+
+V, som bara skriver löpande text, fick hela sitt dokument i registret redan under version 2. C, som
+skriver både lista och löpande text, fick bara listan. Spannet var en egenskap hos satsen och inte
+hos partierna.
 
 Version 3 flyttar klausulen från dokument till avsnitt: **en följd av block som ingen listsignal
 rör har stycket som enhet.** Det är samma regel som redan gällde V, tillämpad där den biter.
-Spannet är nu 89 till 100 procent.
 
 Den första låsningen ligger kvar i
 [`arkiv/register_version2.yaml`](../../config/loftesregister_2022/arkiv/register_version2.yaml)
@@ -207,7 +219,7 @@ Fem av åtta dokument gav noll i alla tre talen, alltså samma svar på varje po
 | KD | 56 | 52 | 58 | 50 |
 | MP | 138 | 138 | 138 | 138 |
 | L | 120 | 120 | 120 | 120 |
-| **Summa** | **1120** | **1111** | **1128** | **1106** |
+| **Summa** | **1120** | **1111** | **1122** | **1106** |
 
 **1106 av 1120 poster drogs exakt lika av tre oberoende genomgångar.**
 
@@ -235,6 +247,28 @@ olika, och där A:s hopfogning följer instruktionens avsnitt `Sidbrytningen`.
 Princip 3 är den som bär registrets omfång, och den är hela poängen med version 3. Att
 `Framtiden är grön.` är satt i 9,7 punkter, exakt sidans brödtextgrad, är ett faktum om satsen.
 Att meningen låter som ett slagord är ett faktum om innehållet, och innehållet avgör aldrig.
+
+**Ett observandum: alla 15 fall gick till A, inget till B.** Pass C stöder A i 14 av de 15, så
+avgörandena har stöd av två genomgångar av tre. Men A och C är samma modell, och förfarandet har
+därmed inget fall som visar att ett avgörande kan falla mot A. Det är inte ett fel i något enskilt
+avgörande, vars skäl går att pröva var för sig i
+[`differens.yaml`](../../config/loftesregister_2022/differens.yaml), men det är värt att veta när
+nästa årgång körs.
+
+## Formberoendet som är kvar
+
+Version 3 tog bort skevheten mellan lista och löptext, men inte all formberoende. Ett stycke i ett
+listlöst avsnitt är en post. En inledning i ett block som bär en lista är det inte, eftersom de
+fyra signalerna gäller där och instruktionens långa lista utesluter inledningar.
+
+I hela korpusen slår det igenom på **ett ställe**: MP:s sida 3, raderna 6-7, 260 tecken. Blocket
+bär både brödtexten och de tre solidaritetspunkterna, och rad 7 slutar
+`Allt vi gör bygger på solidaritet i ord och handling:`, alltså den rad som annonserar listan. Alla
+tre genomgångarna uteslöt raderna.
+
+Stället är namngivet i provet `test_ingen_lang_radfoljd_ligger_utanfor_registret`, som annars
+faller på det. Provet mäter otagna **radföljder** och inte otagna block, just för att ett block kan
+bära både tagen och otagen text.
 
 ## Antal poster per parti
 
@@ -296,10 +330,17 @@ hämtmanifestet plus underlagets hash. `tests/test_loftesregister_2022.py` räkn
 är kört mot en ändrad bokstav i en lydelse och föll, och passerade igen när bokstaven lades
 tillbaka.
 
-Ett prov till bär version 3: **inget block på 200 tecken eller mer får ligga utanför registret.**
-En rubrik, en bildtext, ett sidnummer eller en tryckortsrad är aldrig så lång, så ett långt block
-utanför registret är ett stycke som en genomgång tappade. Provet har ett enda namngivet undantag,
-de 27 landsnamnen under stapelaxeln i diagrammet på M:s sida 5.
+Två prov till bär version 3. Det första: **ingen otagen radföljd på 200 tecken eller mer får ligga
+utanför registret.** En rubrik, en bildtext, ett sidnummer eller en tryckortsrad är aldrig så lång,
+så en lång radföljd utanför registret är ett stycke som en genomgång tappade. Provet mäter
+radföljder och inte block, eftersom ett block kan bära både tagen och otagen text. Det har två
+namngivna undantag, de 27 landsnamnen under stapelaxeln i diagrammet på M:s sida 5 och MP:s
+inledning på sida 3.
+
+Det andra: **registret pinnar det underlag det drogs ur.** Registret bär bara radspann, så en
+lydelse är sann bara relativt ett bestämt underlag. Ändras utvinningen glider radnumren, och då
+pekar spannen på annan text utan att `innehall_sha256` reagerar. `underlag_sha256` är spärren, och
+provet räknar om den mot filen på disk.
 
 Efter låsningen ändras ingen post. Enda öppningen är en **errata-rad** för ett avskrivningsfel som
 går att belägga mot PDF:en, med datum och skäl (beslut 8). Fältet `errata` finns i filen och är

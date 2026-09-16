@@ -217,8 +217,8 @@ trösklar får inte bära ett avslagsskäl.
   kategorifält (beslut 11). Bredvid ligger de **tre** blinda genomgångarna, differensen med
   projektägarens 15 avgöranden, och arkivet över den första låsningen på 729 poster. Den första
   låsningen band styckeregeln till hela dokumentet, vilket lät registret mäta typografi: andelen
-  av dokumentets text som kom med gick från 27 procent hos M till 98 hos V. Version 3 av
-  instruktionen flyttar regeln till avsnittsnivå, och spannet är nu 89 till 100 procent.
+  av dokumentets text som kom med gick från 35 procent hos C till 98 hos V. Version 3 av
+  instruktionen flyttar regeln till avsnittsnivå, och spannet är nu 88 till 99 procent.
   Läsanvisningen står i
   [`docs/loftesregister_2022/registret.md`](docs/loftesregister_2022/registret.md).
 

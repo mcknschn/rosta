@@ -156,12 +156,16 @@ def test_smal_lucka_delar_inte_spalter():
 
 
 def test_smal_ranna_delar_anda_spalterna():
-    """M sätter sina spalter med elva punkters ränna, och tröskeln måste ligga under den.
+    """M sätter sina textspalter med elva punkters ränna, och tröskeln måste ligga under den.
 
     Ligger tröskeln över rännan vägras den lodräta delningen, och snittet faller tillbaka
     på vågräta band. Då läses sidan vänster, höger, vänster, höger, och ett stycke som
     löper från vänsterspaltens fot till högerspaltens hjässa får sin andra halva före sin
-    första. Måtten är hämtade ur M:s sida 3.
+    första.
+
+    Måtten är de fyra brödtextblockens verkliga rutor på M:s sida 3, där rännan är 11,1
+    punkter. Korpusens smalaste textspaltränna är 11,09 och ligger på M:s sida 32, alltså
+    en hårsmån under. Provet skyddar därför hela korpusen mot en för hög tröskel.
     """
     rutor = [
         _ruta(304.7, 206.8, 527.6, 264.6, "hoger ett"),
@@ -423,6 +427,10 @@ def _register() -> dict:
     return yaml.safe_load(REGISTER.read_text(encoding="utf-8"))
 
 
+def _underlag_finns() -> bool:
+    return all(lr.underlagsfil(d["id"]).is_file() for d in lr.dokument())
+
+
 pytestmark_register = pytest.mark.skipif(
     not REGISTER.is_file(), reason="registret ar inte byggt an"
 )
@@ -444,6 +452,24 @@ def test_registret_pinnar_samma_pdf_som_hamtmanifestet():
     manifest = {d["id"]: d["sha256"] for d in lr.dokument()}
     for dok, pinnad in _register()["dokument"].items():
         assert pinnad["pdf_sha256"] == manifest[dok]
+
+
+@pytest.mark.skipif(
+    not REGISTER.is_file() or not _underlag_finns(),
+    reason="underlaget ligger utanfor git, och provet kan inte koras utan det",
+)
+def test_registret_pinnar_det_underlag_det_drogs_ur():
+    """Bindningen mellan register och underlag ar det som gor registret reproducerbart.
+
+    Registret bar bara radspann, sa en lydelse ar sann bara relativt ett bestamt underlag.
+    Andras utvinningen glider radnumren, och da pekar spannen pa annan text utan att
+    `innehall_sha256` reagerar, eftersom den bara hashar registerfilen. `underlag_sha256`
+    ar spärren, och utan det har provet var den obevakad.
+    """
+    for dok, pinnad in _register()["dokument"].items():
+        assert pinnad["underlag_sha256"] == lr.sha256_text(lr.underlagsfil(dok)), (
+            f"{dok}: underlaget pa disk ar inte det registret drogs ur"
+        )
 
 
 @pytestmark_register
@@ -545,6 +571,17 @@ TILLATNA_LANGA_LUCKOR: dict[str, dict[int, str]] = {
     # som langt bara for att namnen fogas ihop till en strang, inte for att det bar
     # lopande text. Blocket fore ar diagramrubriken och blocken efter ar axeltalen.
     "M": {51: "axeletiketterna i diagrammet pa sida 5, 27 landsnamn"},
+    # MP:s sida 3. Blocket bar bade brodtext (rad 6-7) och tre listpunkter (rad 8-10).
+    # Raderna 6-7 ar inledningen, och rad 7 slutar `Allt vi gor bygger pa solidaritet i
+    # ord och handling:`, alltsa den rad som annonserar listan. Blocket bar en lista, sa
+    # de fyra signalerna galler dar och inte styckeregeln, och instruktionens langa lista
+    # utesluter bade inledningar och den annonserande raden. Alla tre genomgangarna
+    # uteslot dem.
+    #
+    # Detta ar den kvarvarande formberoendet i version 3: en inledning fore en lista ar
+    # ingen post, medan ett stycke i ett listlost avsnitt ar det. Undantaget ar ett och
+    # bara ett i hela korpusen, och det star nedskrivet i registret.md.
+    "MP": {3: "inledningen som annonserar solidaritetslistan pa sida 3"},
 }
 
 # En rubrik, en bildtext, ett sidnummer, ett sidhuvud eller en tryckortsrad ar aldrig
@@ -553,20 +590,20 @@ TILLATNA_LANGA_LUCKOR: dict[str, dict[int, str]] = {
 LANGT_BLOCK = 200
 
 
-def _underlag_finns() -> bool:
-    return all(lr.underlagsfil(d["id"]).is_file() for d in lr.dokument())
-
 
 @pytest.mark.skipif(
     not REGISTER.is_file() or not _underlag_finns(),
     reason="underlaget ligger utanfor git, och provet kan inte koras utan det",
 )
-def test_inget_langt_block_ligger_utanfor_registret():
+def test_ingen_lang_radfoljd_ligger_utanfor_registret():
     """Version 3 av instruktionen: ett listlost avsnitt har stycket som enhet.
 
     Foljden ska vara att inget stycke av partiets text hamnar utanfor registret. Provet
-    mater just det, och det ar det enda provet som skulle ha fallit pa version 2: da lag
-    379 brodtextstycken utanfor, darav hela S:s slutkapitel om utrikespolitiken.
+    mater otagna RADFOLJDER och inte otagna block. Skillnaden ar inte akademisk: MP:s
+    block 3 bar 259 tecken lopande text pa raderna 6-7 och tre tagna listpunkter pa
+    raderna 8-10. Ett prov som hoppar over blocket sa fort en rad ar tagen ar tyst om de
+    259 tecknen, och skulle ocksa vara tyst om en genomgang tog forsta punkten i ett
+    block och tappade resten.
     """
     tagna: dict[str, set[int]] = {}
     for post in _register()["poster"]:
@@ -581,11 +618,16 @@ def test_inget_langt_block_ligger_utanfor_registret():
             block.setdefault(rad.block, []).append(rad)
         tillatna = TILLATNA_LANGA_LUCKOR.get(kod, {})
         for nr, rader in block.items():
-            if any(r.nr in tagna.get(kod, set()) for r in rader):
+            if nr in tillatna:
                 continue
-            text = " ".join(r.text for r in rader)
-            if len(text) < LANGT_BLOCK or nr in tillatna:
-                continue
-            luckor.append(f"{kod} block {nr} (rad {rader[0].nr}): {text[:70]}")
+            foljd: list = []
+            for rad in [*rader, None]:
+                if rad is not None and rad.nr not in tagna.get(kod, set()):
+                    foljd.append(rad)
+                    continue
+                text = " ".join(r.text for r in foljd)
+                if len(text) >= LANGT_BLOCK:
+                    luckor.append(f"{kod} block {nr} (rad {foljd[0].nr}): {text[:70]}")
+                foljd = []
 
-    assert not luckor, f"{len(luckor)} langa block ligger utanfor registret: {luckor[:8]}"
+    assert not luckor, f"{len(luckor)} langa radfoljder ligger utanfor registret: {luckor[:8]}"
