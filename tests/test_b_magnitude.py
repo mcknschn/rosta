@@ -7,8 +7,9 @@ Två lås:
     nämnaren, så formen kan aldrig kollapsa till tecknet. Det är regressionen ADR 0004
     diagnostiserade: den gamla nämnaren Σ|w| gjorde varje enhällig cell till exakt ±1.
   * Säkerheten (pipeline/scorerun.py). B:s grundnivå härleds ur evidensaggregatets
-    confidence med min_claims_for_high_confidence, och sänks ett steg vid tunn täckning.
-    B kan för första gången nå high.
+    confidence med min_evaluations_for_high_confidence, och sänks ett steg vid tunn täckning.
+    B kan för första gången nå high. Vad grinden RÄKNAR, alltså oberoende evaluationer och
+    aldrig råa rader, ägs av ADR 0020 och låses i tests/test_sakerhetsmodellen.py.
   * Anspråket (metodrutan). ADR 0018 punkt 3 tog anspråket om den väntade förbättringens
     storlek ifrån B, eftersom Σ q i nämnaren gör talet till ett medelvärde. Formen står
     orörd tills biljett #50 avgör nämnaren, så texten är det enda som rättas här, och
@@ -106,21 +107,28 @@ def test_mixed_drar_mot_neutral_men_behaller_sin_vikt() -> None:
     assert med_oklar == pytest.approx(0.5 / _k(), abs=1e-4)
 
 
-def test_unknown_effect_strength_ger_ingen_storlek() -> None:
-    eff = effects.aggregate_effects(
+def test_unknown_effect_strength_star_utanfor_formen() -> None:
+    """ÄNDRAD av ADR 0020 beslut 10. Fram till dess gav unknown m = 0 med behållet q, alltså
+    drog posten cellen mot neutral precis som mixed. Det var att läsa frånvaron av en skattning
+    som en skattning om exakt neutral verkan. Posten lämnar nu formen helt, och en cell där
+    ingen post bär storlek finns inte i B_rått."""
+    assert effects.aggregate_effects(
         [_claim("c1", "positive", "unknown", "authority_evaluation", "high")]
-    )
-    assert eff[0]["net_support"] == pytest.approx(0.0, abs=1e-4)
+    ) == []
 
 
-def test_unknown_effect_strength_drar_mot_neutral_som_mixed() -> None:
-    """unknown har ingen storlek att bidra med, men lämnar inte nämnaren: källan drar cellen
-    mot neutral i stället för att försvinna. Före ADR 0004 föll den ur båda leden."""
+def test_unknown_effect_strength_drar_inte_mot_neutral() -> None:
+    """Gränsen går vid STORLEKEN och inte vid verkan: mixed/unclear behåller sitt q (testet
+    ovan), medan okänd storlek varken får täljare eller nämnare (ADR 0020 beslut 10)."""
+    ensam = effects.aggregate_effects(
+        [_claim("c1", "positive", "high", "authority_evaluation", "high")]
+    )[0]["net_support"]
     med_unknown = effects.aggregate_effects([
-        _claim("c1", "positive", "high", "authority_evaluation", "high"),      # q=0.68, m=1.0
-        _claim("c2", "positive", "unknown", "authority_evaluation", "high"),   # q=0.68, m=0
+        _claim("c1", "positive", "high", "authority_evaluation", "high"),
+        _claim("c2", "positive", "unknown", "authority_evaluation", "high"),
     ])[0]["net_support"]
-    assert med_unknown == pytest.approx(0.5 / _k(), abs=1e-4)
+    assert med_unknown == pytest.approx(ensam, abs=1e-9)
+    assert ensam == pytest.approx(1.0 / _k(), abs=1e-4)
 
 
 def test_claims_delas_pa_tecknet_som_forut() -> None:
@@ -149,27 +157,29 @@ def _num() -> dict[str, float]:
     return config.claims()["numeric"]["confidence"]
 
 
-def _min_claims() -> int:
-    return int(config.claims()["aggregation"]["min_claims_for_high_confidence"])
+def _min_evaluations() -> int:
+    return int(config.claims()["aggregation"]["min_evaluations_for_high_confidence"])
 
 
 def test_b_confidence_trosklarna_ar_claims_yaml_baklanges() -> None:
-    num, mc = _num(), _min_claims()
+    num, mc = _num(), _min_evaluations()
     assert scorerun._b_confidence(num["high"], mc, False) == "high"
     assert scorerun._b_confidence(num["high"] - 0.01, mc, False) == "medium"
     assert scorerun._b_confidence(num["medium"], mc, False) == "medium"
     assert scorerun._b_confidence(num["medium"] - 0.01, mc, False) == "low"
 
 
-def test_b_confidence_kraver_min_claims_for_high() -> None:
-    """min_claims_for_high_confidence i claims.yaml användes av ingenting (diagnos punkt 3)."""
-    num, mc = _num(), _min_claims()
-    assert scorerun._b_confidence(num["high"], mc - 1, False) == "medium"
+def test_gamla_claims_grinden_star_inte_kvar_i_configen() -> None:
+    """Grinden räknade råa kodade rader fram till ADR 0020 beslut 5, och en rad är inte en
+    studie. Nyckeln bytte namn med innebörden, så att ingen kan läsa ett antal rader ur ett
+    fält som numera bär ett antal evaluationer. Vad grinden RÄKNAR låses i
+    tests/test_sakerhetsmodellen.py."""
+    assert "min_claims_for_high_confidence" not in config.claims()["aggregation"]
 
 
 def test_b_confidence_sanks_ett_steg_vid_tunn_tackning() -> None:
     """Evidenssäkerhet och täckningssäkerhet förstärker varandra (ADR 0004 punkt 5)."""
-    num, mc = _num(), _min_claims()
+    num, mc = _num(), _min_evaluations()
     assert scorerun._b_confidence(num["high"], mc, True) == "medium"
     assert scorerun._b_confidence(num["medium"], mc, True) == "low"
     assert scorerun._b_confidence(0.0, mc, True) == "low"
@@ -178,8 +188,11 @@ def test_b_confidence_sanks_ett_steg_vid_tunn_tackning() -> None:
 def test_b_kan_na_high(monkeypatch: pytest.MonkeyPatch) -> None:
     """Diagnos punkt 3: ingen B-cell nådde någonsin high. Med en kategori vars kodbara
     åtgärdstyper alla har confidence high, full täckning och minst
-    min_claims_for_high_confidence ståndpunkter, ska B nå high."""
-    mc = _min_claims()
+    min_evaluations_for_high_confidence OBEROENDE EVALUATIONER, ska B nå high.
+
+    Posterna bär därför var sin källa. Med en delad källa vore de EN evaluation efter ADR 0020
+    beslut 5, och testet skulle mäta grinden i stället för taket."""
+    mc = _min_evaluations()
     led = copy.deepcopy(config.evidence_ledger())
     led["entries"] = [
         e for e in led["entries"] if e["category"] != "klimat" or e["confidence"] == "high"
@@ -189,7 +202,7 @@ def test_b_kan_na_high(monkeypatch: pytest.MonkeyPatch) -> None:
             "category": "klimat", "indicator": "territoriella_utslapp",
             "policy_type": f"test_hogsaker_{i}", "direction": "positive",
             "evidence_level": "systematic_review", "effect_strength": "medium",
-            "confidence": "high", "source": "test",
+            "confidence": "high", "source": f"test-{i}",
         })
     pos = copy.deepcopy(config.party_positions())
     pos["entries"] = [
@@ -207,10 +220,11 @@ def test_b_kan_na_high(monkeypatch: pytest.MonkeyPatch) -> None:
     assert cell["confidence"]["B"] == "high"
 
 
-def test_n_claims_raknas_per_parti_och_kategori(monkeypatch: pytest.MonkeyPatch) -> None:
-    """min_claims_for_high_confidence grindar på kategorins ALLA evidence_effect-claims, inte
-    på en enskild indikatorcells. En kategori med tre indikatorer som var för sig vilar på ett
-    claim ska alltså kunna nå high. Låser vilken storhet grinden mäter."""
+def test_grinden_raknas_per_parti_och_kategori(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Grinden räknar på kategorins ALLA evidence_effect-claims, inte på en enskild
+    indikatorcells. En kategori med tre indikatorer som var för sig vilar på ett claim ska
+    alltså kunna nå high. Låser vilken storhet som når _b_confidence: antalet OBEROENDE
+    EVALUATIONER (ADR 0020 beslut 5) och aldrig antalet rader."""
     sedda: list[int] = []
     orig = scorerun._b_confidence
     monkeypatch.setattr(
@@ -223,16 +237,19 @@ def test_n_claims_raknas_per_parti_och_kategori(monkeypatch: pytest.MonkeyPatch)
     con.close()
     sc = res["scores"]
 
-    per_kategori = Counter(
-        (c["party"], c["category"]) for c in positions.build_evidence_effect_claims()
-    )
+    cl = positions.build_evidence_effect_claims()
+    per_kategori = scorerun._b_evaluations(cl)
+    rader = Counter((c["party"], c["category"]) for c in cl)
     vantade = [
-        per_kategori[(p, c)]
+        per_kategori.get((p, c), 0)
         for p in res["meta"]["parties"] for c in (k["id"] for k in res["categories"])
         if "B_no_party_evidence" not in sc[p][c]["flags"]
     ]
     assert sedda == vantade
     assert max(sedda) > 1  # annars säger testet ingenting om vilken storhet som räknas
+    assert per_kategori != dict(rader), (
+        "evaluationer och rader ger samma tal i varje cell — då skiljer testet dem inte åt"
+    )
 
 
 def _metodrutan() -> str:
@@ -263,7 +280,11 @@ def test_metodrutan_skriver_ut_garantins_rackvidd() -> None:
     text = _metodrutan()
     assert "GARANTINS RÄCKVIDD" in text
     assert "oförändrat indikatormedlemskap" in text
-    assert "KVARSTÅENDE FEL" in text  # upprullningen rättas inte här, och det ska stå
+    # ADR 0020 beslut 8 lade ned påståendet om ett konstruktfel en nivå upp, men aldrig risken.
+    # Nedläggningen får inte dölja att den renormerade nämnaren står kvar.
+    assert "UPPRULLNINGEN BÄR INTE SAMMA KONSTRUKTFEL" in text
+    assert "KÄND MODELLRISK" in text
+    assert "aldrig bevis för konstruktvaliditet" in text
 
 
 def test_metodrutan_namner_registret_och_sparren() -> None:

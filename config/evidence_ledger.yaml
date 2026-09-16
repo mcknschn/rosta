@@ -17,6 +17,26 @@
 # Fält: category, indicator (ur categories.yaml), policy_type (åtgärdstyp), direction (relativt
 # indikatorns positiva riktning: positive = åtgärden rör indikatorn ÅT RÄTT HÅLL), evidence_level,
 # effect_strength, confidence, source (+ source_url/note för spårbarhet i verified_draft).
+#
+# OBEROENDE: säkerhetsgrinden räknar VÄSENTLIGEN OBEROENDE EVALUATIONER och aldrig råa rader
+# (ADR 0020 beslut 5 och 7). En rad är inte en studie. Identiteten är `evaluation_id`, härledd ur
+# källan och därmed okänslig för hur många rader någon råkar skriva om samma utvärdering. Det är
+# det MEKANISKA GOLVET. Utöver golvet får en post bära `shared_analysis_with: <annan posts
+# evaluation_id eller källadress>` för KÄNT DELAT ANALYSUNDERLAG, till exempel två utvärderingar
+# som bygger på samma registerdata. De två räknas då som EN evaluation, och deklarationen är
+# transitiv. En pekare utan mottagare ger HÅRD FAIL. SAKNAS DEKLARATION ANTAS OBEROENDE: det är
+# en känd begränsning, och den står utskriven i metodrutan i stället för att döljas. Ingen post
+# deklarerar något i dag.
+#
+# EVIDENSKLASS ÄR INTE SÄKERHETSETIKETT (ADR 0020 beslut 11). `evidence_level` är en regel om
+# INTRÄDE och verkar bara genom grinden nedan. `confidence` är det som sätter B:s säkerhetsetikett
+# efter inträdet. De två hålls isär, både begreppsligt och som fält, eftersom en sammanslagning
+# skulle låta en regel om inträde se ut som en regel om säkerhet.
+#
+# OKÄND STORLEK ÄR FRÅNVARO AV EN SKATTNING (ADR 0020 beslut 10). En post med
+# `effect_strength: unknown` står utanför B_rått och räknas bara som dokumentation. Den är aldrig
+# ett belägg för exakt neutral verkan. Skilt från `direction: mixed/unclear`, som ÄR en skattning
+# om verkan och behåller sin vikt.
 
 # ADMISSION: fältet `admitted: false` + `admission_note` håller en post UTANFÖR poängen utan att
 # radera den. Grinden är symmetrisk och gäller oavsett verkan (ADR 0006, rubriken §5):

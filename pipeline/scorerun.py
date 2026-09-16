@@ -15,9 +15,9 @@ from __future__ import annotations
 
 import json
 import sys
-from collections.abc import Mapping
+from collections.abc import Iterable, Mapping
 from datetime import date, timedelta
-from typing import NamedTuple
+from typing import Any, NamedTuple
 
 from . import DIST_DIR, anchor, budget, config, effects, positions, schema, score, warehouse
 from . import claims as claims_mod
@@ -786,26 +786,131 @@ def _step_down_confidence(level: str, steps: int) -> str:
     return _CONF_ORDER[i]
 
 
-def _b_confidence(conf_cat: float, n_claims: int, thin_coverage: bool) -> str:
-    """B:s säkerhet ur evidensen (ADR 0004 punkt 5), sänkt ett steg vid tunn täckning.
+def _b_evaluations(
+    claims: Iterable[Mapping[str, Any]], independence: Mapping[str, str] | None = None,
+) -> dict[tuple[str, str], int]:
+    """(parti, kategori) -> antal VÄSENTLIGEN OBEROENDE evaluationer bakom cellen.
+
+    ADR 0020 beslut 5: en rad är inte en studie. Tre estimand ur samma studie är EN studie, och
+    grinden för hög säkerhet räknade fram till nu råa kodade rader. Identiteten är claimets
+    `evaluation_id`, alltså det mekaniska golvet i ADR 0019 beslut 10, sammanslaget med de
+    deklarationer av delat analysunderlag som configen bär (config.evaluation_independence).
+
+    En evaluation utan STORLEK står inte bakom cellens tal och räknas inte (ADR 0020 beslut 10).
+    Samma uteslutning som B_terms gör: en post utan känd storlek bildar inget led i summan, och
+    utan den här raden kunde en cell med ett enda storleksbärande belägg nå hög säkerhet på två
+    storlekslösa poster. Noll medlemmar i dag, regeln skrivs ändå.
+
+    Ett claim utan identitet ger hård fail. Identitetslösa claims skulle falla ihop till en
+    enda evaluation och sänka talet tyst, och en tyst sänkning är fel svar även när den lutar
+    åt det försiktiga hållet.
+    """
+    karta = config.evaluation_independence() if independence is None else independence
+    grupper: dict[tuple[str, str], set[str]] = {}
+    for c in claims:
+        if c.get("effect_strength") == "unknown":
+            continue
+        ev = str(c.get("evaluation_id") or "")
+        if not ev:
+            raise config.ConfigError(
+                f"claim saknar evaluation_id och kan inte räknas mot säkerhetsgrinden: "
+                f"{c.get('id')}"
+            )
+        grupper.setdefault((c["party"], c["category"]), set()).add(karta.get(ev, ev))
+    return {k: len(v) for k, v in grupper.items()}
+
+
+def _b_confidence(conf_cat: float, n_evaluations: int, thin_coverage: bool) -> str:
+    """B:s säkerhetsETIKETT, sänkt ett steg vid tunn täckning (ADR 0020 beslut 1).
+
+    Kedjan är SEKVENTIELL och ordinal, aldrig två tal som vägs ihop: `evidence_level` avgör
+    genom inträdesgrinden vilka påståenden som får bidra alls, därefter sätter `confidence`
+    etiketten här, därefter kan tunn täckning ge ett steg ned. Efter inträdet skiljer
+    `evidence_level` INTE mellan band, och funktionen läser därför aldrig fältet. Det är inte
+    en glömska utan beslutet: grinden har redan gjort det arbetet, och en `min`-regel över de
+    två nivåer grinden släpper in ger antingen idel medel eller ingen verkan alls.
 
     conf_cat är evidensaggregatets confidence rullat upp över kategorin med SAMMA
     undermåttsvikter som B_raw använder. Trösklarna är claims.yaml numeric.confidence läst
-    baklänges: high-talet kräver dessutom minst min_claims_for_high_confidence claims bakom
-    cellen, alltså regeln som stod i configen men aldrig kördes. Evidenssäkerhet och
-    täckningssäkerhet är båda osäkerhet och ska förstärka varandra, inte ersätta varandra —
-    därför steget ned i stället för en egen låg-nivå.
+    baklänges. High kräver dessutom minst min_evaluations_for_high_confidence VÄSENTLIGEN
+    OBEROENDE evaluationer bakom cellen (ADR 0020 beslut 5), aldrig ett antal rader.
+
+    Evidenssäkerhet och täckningssäkerhet är båda osäkerhet och ska förstärka varandra, inte
+    ersätta varandra — därför steget ned i stället för en egen låg-nivå.
     """
     cl = config.claims()
     num = cl["numeric"]["confidence"]
-    min_claims = int(cl["aggregation"]["min_claims_for_high_confidence"])
-    if conf_cat >= num["high"] and n_claims >= min_claims:
+    min_ev = int(cl["aggregation"]["min_evaluations_for_high_confidence"])
+    if conf_cat >= num["high"] and n_evaluations >= min_ev:
         level = "high"
     elif conf_cat >= num["medium"]:
         level = "medium"
     else:
         level = "low"
     return _step_down_confidence(level, int(thin_coverage))
+
+
+def _safety_sentence(thin_cov: float, min_evaluations: int) -> str:
+    """Metodrutans stycke om B:s säkerhet, bandet och krympningen (ADR 0020).
+
+    Texten följer med dist/scores.json och är därmed det anspråk som når en granskare utanför
+    repot. Fem saker står här som annars bara syns i koden: att kedjan är sekventiell, att
+    skalans två ytterlägen är tomma respektive bara nås utifrån, att bandet är heuristiskt och
+    aldrig kalibrerat, vad krympningen faktiskt mäter, och den rådande räkneordningen.
+
+    Talen räknas ur configen vid körningen och skrivs aldrig in som literaler: en tröskel som
+    ändras i configen men står kvar i texten publicerar ett tal modellen inte använder. Bara de
+    MÄTTA talen står inskrivna, alltså skillnaden mellan de två täckningsbegreppen, eftersom de
+    kommer ur ADR 0020:s diagnos och inte ur den här körningen.
+    """
+    num = config.claims()["numeric"]["confidence"]
+    halvbredd = config.scoring()["uncertainty"]["max_interval_halfwidth"]
+
+    def _sv(x: float, d: int = 2) -> str:
+        return f"{x:.{d}f}".replace(".", ",")
+
+    grans = _sv(thin_cov)
+    troskel = f"{_sv(num['high'])}/{_sv(num['medium'])}"
+    return (
+        "SÄKERHETEN ÄR SEKVENTIELL OCH ORDINAL (ADR 0020 beslut 1 och 2), aldrig två tal som "
+        "vägs ihop: evidence_level avgör genom INTRÄDESGRINDEN vilka poster som får bidra "
+        f"alls, därefter sätter evidensens confidence etiketten (tröskel {troskel}), därefter "
+        "ger tunn täckning ETT steg ned. Efter inträdet skiljer evidence_level INTE mellan "
+        "band, eftersom grinden redan har gjort det arbetet; evidensklassen finns kvar i "
+        "datamodellen men ingår inte i etikettkedjan. EVIDENSKVALITETEN ÄR TECKENOBEROENDE "
+        "och skiljer aldrig på positivt och negativt bidrag (ADR 0006). HÖG SÄKERHET KRÄVER "
+        f"MINST {min_evaluations} VÄSENTLIGEN OBEROENDE EVALUATIONER (ADR 0020 beslut 5): en "
+        "rad är inte en studie, och tre estimand ur samma studie är en studie. Identiteten är "
+        "evaluation_id, alltså källan normaliserad, plus liggarens deklarationer av känt delat "
+        "analysunderlag; SAKNAS DEKLARATION ANTAS OBEROENDE, och det antagandet är en känd "
+        "begränsning. SKALANS ÄNDAR ÄR TOMMA: hög har NOLL MEDLEMMAR på dagens underlag, låg "
+        "uppstår bara genom täckningsnedgradering, och aggregatet före nedgradering ger därför "
+        "bara mellanläget. Onåbarheten är EMPIRISK och inte strukturell: en enda ytterligare "
+        "oberoende evaluation återställer nivån. Instrumentets särskiljningsförmåga är därmed "
+        "ÖVERLAG LÅG, och det beskedet står här i klartext i stället för att bara ritas som "
+        "ett streck. SPANNET ÄR ETT HEURISTISKT OSÄKERHETSBAND (ADR 0020 beslut 3): det är "
+        f"valt och aldrig kalibrerat mot något utfall. Halvbredden är {_sv(halvbredd, 1)} × "
+        "Σ vikt × (1 − säkerhet), och bredden trimmas inte efter den observerade spridningen, "
+        "eftersom "
+        "en bredd vald efter utfallet vore samma fel som ADR 0003 punkt 1 förbjuder. Att "
+        "medianbandet är "
+        "bredare än fältets spridning räcker INTE för slutsatsen att partier inte kan skiljas "
+        "åt; det kräver parvisa band och deras beroenden. KRYMPNINGEN MÄTER EVIDENSDJUP "
+        "(ADR 0020 beslut 9), aldrig neutral imputering av saknade indikatorer: den räknar "
+        "viktat undermåttsdjup över KODADE ÅTGÄRDSTYPER, medan medlet räknar INDIKATORER MED "
+        "VÄRDE. De två talen går isär med median 0,225, och i 55 av 56 celler krymper modellen "
+        "MINDRE än en neutral imputering skulle kräva, alltså lutar felet mot överdriven "
+        "säkerhet. Måtten förs inte samman här; det vore en skaländring med omkörning. "
+        "RÄKNEORDNINGEN är KLIPP PER INDIKATOR, därefter viktning över undermått, därefter en "
+        f"yttre klampning. Tunn täckning är viktat undermåttsdjup under {grans}. En post utan "
+        "KÄND STORLEK står utanför B_rått (ADR 0020 beslut 10): okänd effektstorlek är "
+        "frånvaro av en skattning, aldrig en skattning om exakt neutral verkan, och en sådan "
+        "post räknas bara som dokumentation. En saknad eller icke mappningsbar kvalitetsklass "
+        "ger HÅRD FAIL (ADR 0019 beslut 10). MEDIANVARIANTEN ÄR NEDLAGD: ingen viktad median "
+        "finns någonstans i poängkedjan, så deklarationen saknar medlemmar. Varningsfärgen på "
+        "sajten utlöses bara av uttryckligt LÅG i en delpoäng som väger; saknade och ej "
+        "tillämpliga värden utlöser ingenting. "
+    )
 
 
 def category_c(
@@ -1077,10 +1182,11 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
     ee_claims = positions.build_evidence_effect_claims()
     ind_effects = effects.aggregate_effects(ee_claims)
     b_net: dict[tuple[str, str], dict[str, float]] = {}
-    # Aggregatets confidence per indikator + antalet claims bakom cellen: B:s säkerhet
-    # härleds ur dem (ADR 0004 punkt 5). Innan dess slängdes confidence här.
+    # Aggregatets confidence per indikator + antalet OBEROENDE EVALUATIONER bakom cellen: B:s
+    # säkerhetsetikett härleds ur dem (ADR 0004 punkt 5, ADR 0020 beslut 1 och 5). Innan dess
+    # slängdes confidence här, och grinden räknade råa rader.
     b_conf_in: dict[tuple[str, str], dict[str, float]] = {}
-    b_n_claims: dict[tuple[str, str], int] = {}
+    b_n_evaluations = _b_evaluations(ee_claims)
     # ADR 0019 beslut 7 och 8: två diagnostiker som aggregatet räknar men som annars aldrig
     # lämnar minnet. indicator_effects skrivs inte till dist, så de rullas upp hit.
     b_unclipped: dict[tuple[str, str], float] = {}
@@ -1097,10 +1203,12 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
             b_sign_conflict.setdefault(key, set()).update(e["sign_conflict_types"])
     b_terms: dict[tuple[str, str], set[str]] = {}
     for cl in ee_claims:
-        key = (cl["party"], cl["category"])
-        b_n_claims[key] = b_n_claims.get(key, 0) + 1
-        if cl.get("policy_type"):
-            b_terms.setdefault(key, set()).add(cl["policy_type"])
+        # Flaggan räknar de åtgärdstyper som faktiskt bildade ett LED i summan. En post utan
+        # känd storlek bildar inget led (ADR 0020 beslut 10), så den räknas inte heller här.
+        # Noll medlemmar i dag; regeln står ändå, annars säger flaggan fel tal den dag en
+        # sådan post landar.
+        if cl.get("policy_type") and cl.get("effect_strength") != "unknown":
+            b_terms.setdefault((cl["party"], cl["category"]), set()).add(cl["policy_type"])
     meta = _indicator_meta()
     sub_w = _submeasure_weights()
     b_evidens = config.scoring()["B_evidens"]
@@ -1110,12 +1218,26 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
     # Coverage-viktning (Fas 4b'): B krymps mot neutral proportionellt mot hur stor andel av
     # kategorins KODBARA åtgärdstyper partiet faktiskt har en ståndpunkt på. Frånvaro av ståndpunkt
     # = "vet ej", inte motstånd -> ett ensamt supports-claim kan inte längre ge maxbetyg i kategorin.
+    # VAD TALET MÄTER (ADR 0020 beslut 9): EVIDENSDJUP, alltså hur stor del av kategorins kodbara
+    # instrument partiet är kodat på. Det är INTE neutral imputering av saknade indikatorer.
+    # Krympningen vore likvärdig med en sådan imputering bara om täckningen vore
+    # Σ närvarande indikatorvikt / Σ all indikatorvikt, och den räknar något annat: krympningens
+    # tal har median 0,500 mot indikatorviktstäckningens 0,260, alltså en differens på 0,225, och
+    # i 55 av 56 celler krymper modellen MINDRE än en neutral imputering skulle kräva. Felet lutar
+    # mot överdriven säkerhet. Att föra samman de två måtten är en SKALÄNDRING med omkörning och
+    # görs aldrig tyst här.
     signed = config.claims()["aggregation"]["signed_direction"]
     # Utlyfta poster (admitted: false) och spärrade åtgärdstyper (ADR 0019) är inte kodbara:
     # de ger varken claims eller nämnare. Skilda uteslutningar, samma verkan här.
     ledger_entries = config.scoring_eligible_ledger_entries()
     pol2cat = {e["policy_type"]: e["category"] for e in ledger_entries}
     b_exclude = set(b_evidens.get("coverage_exclude", []))
+    # ÖPPEN PUNKT, namngiven och inte tyst rättad: en post utan känd storlek gör fortfarande sin
+    # åtgärdstyp KODBAR här, fast den inte bidrar med ett enda led till B_rått (ADR 0020 beslut
+    # 10). Den höjer alltså täckningen och krymper B mindre mot neutral. Att flytta gränsen är en
+    # ändring av krympningens mått, och ADR 0020 beslut 9 låser uttryckligen de två
+    # täckningsbegreppen i det här bygget: de ska VALIDERAS, aldrig tyst byggas om. Mätt: 0 av
+    # liggarens poängberättigade poster bär unknown i dag, så punkten har noll medlemmar.
     cov_den: dict[str, set[str]] = {}  # kategori -> kodbara åtgärdstyper (signed != 0, ej exkluderade)
     for e in ledger_entries:
         if signed.get(e["direction"], 0) != 0 and e["policy_type"] not in b_exclude:
@@ -1240,7 +1362,7 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
                 conf_cat = score.submeasure_weighted_mean(
                     b_conf_in.get((p, c), {}), b_weights
                 ) or 0.0
-                b_conf = _b_confidence(conf_cat, b_n_claims.get((p, c), 0), thin)
+                b_conf = _b_confidence(conf_cat, b_n_evaluations.get((p, c), 0), thin)
                 # B:s TÄCKNING (ADR 0008 punkt 5, ändrad av ADR 0011 punkt 9). Talet är INTE
                 # samma som B_shrink-flaggan bär: flaggan visar krympningens täljare och
                 # nämnare, medan täckningen står på kategorins fulla undermåttsvikt. Den
@@ -1375,6 +1497,9 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
         if _uteslutna else "")
     # A:s nåbara tak per kategori (ADR 0012 punkt 5). Rutan sade bara att 5,00 aldrig nås.
     # Talen räknas ur förankringen som den står i configen vid körningen, aldrig inskrivna.
+    # Säkerhetsgrindens tröskel läses ur configen och skrivs aldrig in i texten (ADR 0020
+    # beslut 5): ändras tröskeln ska metodrutan följa med utan att någon minns att rätta den.
+    min_evaluations = int(config.claims()["aggregation"]["min_evaluations_for_high_confidence"])
     a_tak = _a_ceiling_sentence(
         _a_ceilings(cats, a1_anchor_fonstret, a2_anchor, a1_active, w_a1, w_a2)
     )
@@ -1385,14 +1510,14 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
             "power_window_end": POWER_WINDOW_END.isoformat(),
             "data_as_of": fresh.as_of, "latest_observation_year": fresh.latest_year,
             "parties": parties, "model_version": 1,
-            # ADR 0019 beslut 12: bandets bredd läser bara säkerhetsetiketterna, medan
-            # ADR 0019 beslut 1 bytte vad net ÄR. En bredd satt för den gamla skalan hängd
-            # runt ett tal på den nya är alltså OKALIBRERAD. Felet lutar åt det försiktiga
-            # hållet: betygen komprimeras mot neutral medan bredden står still, så bandet
-            # överdriver osäkerheten snarare än tvärtom. Därför märks det i stället för att
-            # döljas - att ta bort ett band som överdriver osäkerhet gör sidan mer
-            # tvärsäker, inte ärligare. Märkningen lyfts när säkerhetsmodellen är byggd.
-            "safety_model_status": "provisional",
+            # ADR 0020 beslut 3: ADR 0019 beslut 12:s `safety_model_status: provisional`
+            # ERSÄTTS här och lyfts inte. Ett preliminärt tillstånd väntar på en rättelse,
+            # medan detta är en BESTÅENDE EGENSKAP: halvbredden 1,5 × Σ vikt × (1 − säkerhet)
+            # är vald och aldrig kalibrerad mot något utfall, och den kalibreras inte heller
+            # efter den observerade spridningen, eftersom en bredd vald efter utfallet är
+            # precis det ADR 0003 punkt 1 förbjuder. Fältet är maskinläst och permanent, så
+            # att en granskare kan läsa bandets status utan att tolka en fritext.
+            "uncertainty_band_status": "heuristic_never_calibrated",
             # coverage = banderollen på sajten: vanlig svenska, för en förstagångsbesökare.
             # coverage_technical = samma körning för granskare, med termer och beslut.
             "coverage": (f"Underlaget i den här versionen: alla {len(cats)} kategorier har betyg "
@@ -1487,9 +1612,18 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
                 "monotoniciteten är ovillkorlig för net inom indikatorn, gäller B_rått "
                 "bara vid oförändrat indikatormedlemskap, och gäller INTE publicerat B, "
                 "eftersom krympningen FÖRSTÄRKER avvikelsen från neutral åt båda håll "
-                "när täckningen ökar. KVARSTÅENDE FEL, mätt och utskrivet: samma "
-                "konstruktfel finns en nivå upp i upprullningen över indikatorer, där en "
-                "ny post på en tom indikator kan sänka B_rått; det rättas inte här. "
+                "när täckningen ökar. UPPRULLNINGEN BÄR INTE SAMMA KONSTRUKTFEL "
+                "(ADR 0020 beslut 8, som lägger ned påståendet): flera åtgärdstyper är "
+                "skilda ingrepp vars effekter adderas, medan flera indikatorer inom en "
+                "kategori är ASPEKTER SOM MÄTS av samma storhet, och att mäta en aspekt "
+                "till kan inte göra förbättringen större. Medelvärdet är därför rätt form "
+                "en nivå upp. Att en ny post på en tidigare tom indikator kan sänka B_rått "
+                "avgörs av en BRYTPUNKT: talet sjunker exakt när postens indikatorbetyg "
+                "ligger under cellens nivå, alltså i 42 av 56 celler för effect_strength "
+                "low och i 5 av 56 för high. NEDLÄGGNINGEN DÖLJER INGENTING: den "
+                "renormerade nämnarens känslighet för smal indikatortäckning KVARSTÅR SOM "
+                "KÄND MODELLRISK, och att rangordningen stod still i elva prövade fall är "
+                "stöd för EMPIRISK ROBUSTHET och aldrig bevis för konstruktvaliditet. "
                 "ÅTGÄRDSTYPSREGISTRET är slutet (config/atgardstyper.yaml): en typ "
                 "utanför det ger hård fail, och att dela eller slå ihop en typ är en "
                 "SKALÄNDRING, eftersom indelningen är en del av mätskalan. SPÄRR: en "
@@ -1499,9 +1633,9 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
                 "ÅTTA KODADE (ADR 0018 punkt 5): en post där bara några partier har "
                 "en position är PARTIELLT KODAD ENSIDIGHET och beskrivs aldrig som "
                 "konsensus. En SAKNAD POSITION är UTTRYCKLIGEN OKÄND och läses varken "
-                "som stöd eller som motstånd. B:s säkerhet härleds ur evidensens "
-                "confidence (tröskel 0,85/0,60 + min_claims_for_high_confidence) och sänks "
-                "ett steg vid tunn täckning. party_positions expertgranskad v2 (mänsklig "
+                "som stöd eller som motstånd. "
+                + _safety_sentence(thin_cov, min_evaluations)
+                + "party_positions expertgranskad v2 (mänsklig "
                 "sign-off 2026-06-07). evidence_ledger v4: SAMTLIGA poster är nu "
                 "expertgranskade med mänsklig sign-off, den sista 2026-09-16. Grinden "
                 "sattes i v3 (2026-08-23, ADR 0006): den "

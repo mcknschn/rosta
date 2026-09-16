@@ -199,3 +199,12 @@ test("hasLowConfidence: tomt eller saknat objekt ger false, aldrig ett kast", ()
   assert.equal(hasLowConfidence(undefined), false);
   assert.equal(hasLowConfidence(null), false);
 });
+
+test("hasLowConfidence: bara UTTRYCKLIGT low tänder varningen (ADR 0020 beslut 15)", () => {
+  // Saknade och ej tillämpliga värden utlöser ingenting. Ett null eller en okänd etikett är
+  // inte ett besked om låg säkerhet, och att färga cellen på den vore att läsa vår tystnad
+  // som en mätning.
+  assert.equal(hasLowConfidence({ A: null, B: "medium", C: "high", D: undefined }), false);
+  assert.equal(hasLowConfidence({ A: "not_applicable", B: "medium", C: "high", D: "" }), false);
+  assert.equal(hasLowConfidence({ A: "medium", B: "low", C: "high", D: "medium" }), true);
+});

@@ -166,8 +166,15 @@ def coverage_shrink(raw: float, coverage: float, neutral: float = 2.5) -> float:
     """Krymper ett betyg mot neutral proportionellt mot täckning i [0,1].
 
     coverage=1 -> oförändrat, coverage=0 -> neutral. Samma matte som B:s inline-krympning
-    (scorerun) och ekvivalent med D:s neutral-missing-rollup (se spec §3.3) eftersom
-    net_support_to_score är linjär.
+    (scorerun).
+
+    EKVIVALENSEN MED NEUTRAL IMPUTERING GÄLLER BARA D (ADR 0020 beslut 9). För D är
+    krympningen samma sak som neutral-missing-rollup över undermått (spec §3.3), eftersom
+    net_support_to_score är linjär OCH täckningen står på samma nämnare som medlet. B:s
+    täckning gör det inte: den räknar viktat undermåttsdjup över KODADE ÅTGÄRDSTYPER, medan
+    B:s medel räknar INDIKATORER MED VÄRDE. De två talen går isär med median 0,225, och i
+    55 av 56 celler krymper modellen MINDRE än en neutral imputering skulle kräva. B:s
+    krympning mäter alltså EVIDENSDJUP och aldrig neutral imputering av saknade indikatorer.
     """
     return neutral + (raw - neutral) * coverage
 

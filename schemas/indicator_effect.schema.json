@@ -16,6 +16,7 @@
     "net_support_unclipped": { "type": "number", "description": "Summan INNAN klippning, alltså x_sum/K (ADR 0019 beslut 7). Saknar gränser med avsikt: talet finns just för att visa hur stort det oklippta överskottet var, och net_support döljer det." },
     "sign_conflict_types": { "type": "array", "items": { "type": "string" }, "description": "Åtgärdstyper vars poolade utvärderingar är oense om tecknet (ADR 0019 beslut 8). Rent deskriptiv, utan automatisk verkan på betyg eller säkerhet." },
     "supporting_claims": { "type": "array", "items": { "type": "string" } },
-    "contradicting_claims": { "type": "array", "items": { "type": "string" } }
+    "contradicting_claims": { "type": "array", "items": { "type": "string" } },
+    "size_unknown_claims": { "type": "array", "items": { "type": "string" }, "description": "Claims vars effect_strength är unknown (ADR 0020 beslut 10). De står UTANFÖR B_rått: okänd storlek är frånvaro av en skattning, aldrig en skattning om neutral verkan. Fältet bär dokumentationstäckningen, aldrig belägg. Finns bara när cellen bär minst en storlek; bär ingen post storlek finns ingen cell, och källspåret ligger i claimet och i evidence.json." }
   }
 }

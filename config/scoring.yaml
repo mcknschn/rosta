@@ -105,9 +105,9 @@ B_evidens:
   # tre skilda åtgärdstyper var och en bidrar med maximal belagd effekt i samma riktning.
   # Summor med större absolut magnitud klipps vid skalans ändpunkt. Modellen skiljer därefter
   # inte mellan tillräcklig och större sammanlagd effekt." Talet är NORMATIVT och inte härlett;
-  # min_claims_for_high_confidence avvisades uttryckligen som ankare, eftersom den deklarerades
-  # för säkerhetsetiketten och återanvändning hade gjort en säkerhetsparameter till en dold
-  # breddparameter. Ett nytt R är en NY MODELLVERSION. R dras INTE i robustness.SOURCES:
+  # min_evaluations_for_high_confidence avvisades uttryckligen som ankare, eftersom den
+  # deklarerades för säkerhetsetiketten och återanvändning hade gjort en säkerhetsparameter till
+  # en dold breddparameter. Ett nytt R är en NY MODELLVERSION. R dras INTE i robustness.SOURCES:
   # ADR 0003:s mått saknar strukturellt känslighet för en gemensam positiv skalning före
   # klippning, så R redovisas som egen nivå- och klippningsdiagnostik (ADR 0019, D5).
   saturation_action_types: 3
@@ -126,15 +126,25 @@ B_evidens:
   missing_indicator: skip                  # indikator utan effekt utelämnas ur medlet (inte 2.5)
   missing_all_score: 2.5                   # HELA kategorin saknar effekter -> neutral
   missing_all_confidence: low
-  # B:s säkerhet per kategori härleds ur indicator_effects-aggregatets confidence (ADR 0004
-  # punkt 5): conf_kat = Σ(w_undermått · confidence) / Σ w_undermått, med SAMMA vikter som
-  # B_raw. conf_kat >= confidence_numeric.high OCH minst claims.yaml
-  # min_claims_for_high_confidence claims i kategorin -> high; >= confidence_numeric.medium
-  # -> medium; annars low. Nivån sänks sedan ETT steg vid tunn täckning (samma
-  # _step_down_confidence som C och D), eftersom evidenssäkerhet och täckningssäkerhet är två
-  # skilda osäkerheter som ska förstärka varandra, inte ersätta varandra.
+  # B:s säkerhetsETIKETT per kategori är SEKVENTIELL och ordinal (ADR 0020 beslut 1 och 2), i tre
+  # led som aldrig vägs ihop till ett tal:
+  #   1. evidence_level avgör genom INTRÄDESGRINDEN vilka poster som får bidra alls.
+  #   2. confidence sätter etiketten: conf_kat = Σ(w_undermått · confidence) / Σ w_undermått, med
+  #      SAMMA vikter som B_raw. conf_kat >= confidence_numeric.high OCH minst claims.yaml
+  #      min_evaluations_for_high_confidence VÄSENTLIGEN OBEROENDE EVALUATIONER i kategorin ->
+  #      high; >= confidence_numeric.medium -> medium; annars low.
+  #   3. tunn täckning sänker ETT steg (samma _step_down_confidence som C och D), eftersom
+  #      evidenssäkerhet och täckningssäkerhet är två skilda osäkerheter som ska förstärka
+  #      varandra, inte ersätta varandra.
+  # EFTER INTRÄDET SKILJER evidence_level INTE MELLAN BAND. Det är beslutet och ingen glömska:
+  # grinden släpper bara in två nivåer, så en min-regel över dem ger antingen idel medel eller
+  # ingen verkan alls. Evidensklassen hålls därför begreppsligt och datamässigt SKILD från
+  # etiketten, och evidenskvaliteten är teckenoberoende (ADR 0006).
   # Coverage-viktning (Fas 4b'): B_just = 2.5 + (B_raw - 2.5) * coverage, där
-  # coverage = kodade åtgärdstyper / kategorins kodbara åtgärdstyper. Frånvaro av ståndpunkt =
+  # coverage = kodade åtgärdstyper / kategorins kodbara åtgärdstyper. Talet mäter EVIDENSDJUP och
+  # ALDRIG neutral imputering av saknade indikatorer (ADR 0020 beslut 9): det räknar kodade
+  # åtgärdstyper, medan medlet räknar indikatorer med värde, och de går isär med median 0,225.
+  # Frånvaro av ståndpunkt =
   # "vet ej" och drar B mot neutral (straffar ej, belönar ej tom täckning); ett ensamt
   # supports-claim ger alltså inte längre maxbetyg. Tunn täckning -> flagga och ett steg ned i
   # säkerhet; flaggan beskriver täckningen, inte säkerheten. Sedan ADR 0014 punkt 7 finns TVÅ

@@ -90,6 +90,10 @@ def build_evidence_effect_claims(
                 "policy_type": policy,
                 "category": e["category"], "indicator": e["indicator"],
                 "direction": direction,
+                # Utvärderingens identitet följer med claimet (ADR 0020 beslut 5). Utan fältet
+                # måste säkerhetsgrinden slå upp liggaren igen och gissa vilken rad som gav
+                # claimet, och då blir antalet rader en dold vikt en gång till.
+                "evaluation_id": config.evaluation_id(e),
                 "evidence_level": e["evidence_level"],
                 "effect_strength": e["effect_strength"],
                 "confidence": e["confidence"],

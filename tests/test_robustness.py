@@ -160,9 +160,15 @@ def test_effect_strength_spannet_ar_last() -> None:
 
 
 def test_effect_strength_i_configen_ar_orord() -> None:
-    """Analysen DRAR talen, den ÄNDRAR dem inte (ADR 0004 punkt 4, neutralitetsfråga)."""
+    """Analysen DRAR talen, den ÄNDRAR dem inte (ADR 0004 punkt 4, neutralitetsfråga).
+
+    Tabellen mappar BARA kända storlekar. `unknown: 0.0` stod här fram till ADR 0020 beslut 10
+    och togs bort där, eftersom okänd effektstorlek är frånvaro av en skattning och aldrig en
+    skattning om exakt neutral verkan. Det är ett beslut om vad som får räknas, inte en
+    ändring av de tre talen känsligheten drar, och de tre står orörda.
+    """
     assert config.claims()["numeric"]["effect_strength"] == {
-        "low": 0.3, "medium": 0.6, "high": 1.0, "unknown": 0.0
+        "low": 0.3, "medium": 0.6, "high": 1.0
     }
 
 

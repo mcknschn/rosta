@@ -50,10 +50,18 @@ def aggregate_effects(claims: Iterable[dict[str, Any]]) -> list[dict[str, Any]]:
     som håller ADR 0004 beslut 2 sant, alltså att effect_strength bär storleken medan
     evidence_level och confidence bär säkerheten.
 
-    mixed/unclear ger m = 0 men behåller sitt q inom typen, alltså drar en källa som säger
-    "oklart" sin egen åtgärdstyp mot noll; effect_strength unknown beter sig likadant. Fältet
-    confidence är oförändrat ett medel av claimens confidence och bär osäkerheten kring
-    storleken (scorerun läser det till B:s säkerhetsnivå).
+    mixed/unclear ger m = 0 men behåller sitt q inom typen, alltså drar en källa som fann oklar
+    VERKAN sin egen åtgärdstyp mot noll. Okänd STORLEK är något annat och står UTANFÖR hela
+    formen (ADR 0020 beslut 10): okänd effektstorlek är frånvaro av en skattning, aldrig en
+    skattning om exakt neutral verkan, så en sådan post får varken täljare eller nämnare. Bär
+    cellen minst en storlek redovisas den storlekslösa posten under `size_unknown_claims`. Bär
+    ingen post i cellen en storlek finns cellen inte alls, och då finns heller inget fält att
+    redovisa den i: källspåret ligger kvar i claimet och i dist/evidence.json, aldrig i ett
+    indicator_effect utan tal. Regeln har noll medlemmar i dag och skrevs före dem, som ADR
+    0003 punkt 1 kräver.
+
+    Fältet confidence är oförändrat ett medel av claimens confidence och bär osäkerheten kring
+    storleken (scorerun läser det till B:s säkerhetsetikett).
     """
     cfg = config.claims()
     ev_levels: dict[str, float] = cfg["evidence_levels"]
@@ -83,13 +91,9 @@ def aggregate_effects(claims: Iterable[dict[str, Any]]) -> list[dict[str, Any]]:
         conf_vals: list[float] = []
         supporting: list[str] = []
         contradicting: list[str] = []
+        size_unknown: list[str] = []
         per_type: dict[str, list[tuple[float, float]]] = {}
         for c in cs:
-            conf_num = num["confidence"].get(c.get("confidence", "low"), 0.0)
-            # q = kvalitet: vems storlek man tror på. m = storlek med tecken, i [-1, 1].
-            q = ev_levels.get(c.get("evidence_level", ""), 0.0) * conf_num
-            s = signed.get(c.get("direction", "unclear"), 0)
-            m = num["effect_strength"].get(c.get("effect_strength", "unknown"), 0.0) * s
             policy = c.get("policy_type")
             if not policy:
                 # Utan grupperingsnyckel går formen inte att räkna. Hård fail, aldrig en
@@ -97,9 +101,30 @@ def aggregate_effects(claims: Iterable[dict[str, Any]]) -> list[dict[str, Any]]:
                 raise config.ConfigError(
                     f"claim saknar policy_type och kan inte grupperas: {c.get('id')}"
                 )
+            strength = c.get("effect_strength", "unknown")
+            if strength == "unknown":
+                # ADR 0020 beslut 10: frånvaro av skattning, aldrig en skattning om neutral
+                # verkan. Posten lämnar både täljare och nämnare och räknas som dokumentation.
+                size_unknown.append(c.get("id", ""))
+                continue
+            if strength not in num["effect_strength"]:
+                raise config.ConfigError(
+                    f"claim {c.get('id')} bär effect_strength {strength!r}, som saknas i "
+                    "claims.yaml numeric.effect_strength: storleken går inte att mappa"
+                )
+            conf_num = num["confidence"].get(c.get("confidence", "low"), 0.0)
+            # q = kvalitet: vems storlek man tror på. m = storlek med tecken, i [-1, 1].
+            q = ev_levels.get(c.get("evidence_level", ""), 0.0) * conf_num
+            s = signed.get(c.get("direction", "unclear"), 0)
+            m = num["effect_strength"][strength] * s
             per_type.setdefault(policy, []).append((q, m))
             conf_vals.append(conf_num)
             (supporting if s >= 0 else contradicting).append(c.get("id", ""))
+
+        if not per_type:
+            # Ingen post i cellen bär en storlek, alltså finns cellen inte i B_rått. Den står
+            # utanför medlet i stället för att dra det mot neutral (ADR 0020 beslut 10).
+            continue
 
         x_sum = 0.0
         sign_conflict: list[str] = []
@@ -134,5 +159,6 @@ def aggregate_effects(claims: Iterable[dict[str, Any]]) -> list[dict[str, Any]]:
             "sign_conflict_types": sorted(sign_conflict),
             "supporting_claims": [s for s in supporting if s],
             "contradicting_claims": [c for c in contradicting if c],
+            "size_unknown_claims": [s for s in size_unknown if s],
         })
     return effects

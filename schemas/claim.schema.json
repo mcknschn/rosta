@@ -91,6 +91,10 @@
     "policy_type": {
       "type": "string",
       "description": "Åtgärdstypen claimet grupperas på (ADR 0019 beslut 1). Grupperingsnyckeln står i det som grupperas, aldrig i en sidotabell. Valideras mot typregistret."
+    },
+    "evaluation_id": {
+      "type": "string",
+      "description": "Den underliggande utvärderingens identitet (ADR 0019 beslut 10). Säkerhetsgrinden räknar distinkta evaluationer och aldrig rader (ADR 0020 beslut 5), så identiteten följer med claimet i stället för att slås upp i liggaren."
     }
   }
 }

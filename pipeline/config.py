@@ -91,10 +91,74 @@ def evaluation_id(entry: Mapping[str, Any]) -> str:
     explicit = str(entry.get("evaluation_id") or "").strip()
     if explicit:
         return explicit
-    raw = str(entry.get("source_url") or entry.get("source") or "").strip()
-    raw = re.sub(r"^https?://", "", raw, flags=re.IGNORECASE).rstrip("/")
-    raw = re.sub(r"\.(text|html|json)$", "", raw, flags=re.IGNORECASE)
-    return re.sub(r"\s+", " ", raw).casefold()
+    return _normalize_evaluation_ref(entry.get("source_url") or entry.get("source") or "")
+
+
+def _normalize_evaluation_ref(raw: Any) -> str:
+    """Källidentitet -> jämförbar sträng. Samma normalisering för id och för pekare."""
+    text = re.sub(r"^https?://", "", str(raw or "").strip(), flags=re.IGNORECASE).rstrip("/")
+    text = re.sub(r"\.(text|html|json)$", "", text, flags=re.IGNORECASE)
+    return re.sub(r"\s+", " ", text).casefold()
+
+
+# Liggarfältet som deklarerar KÄNT DELAT ANALYSUNDERLAG (ADR 0020 beslut 7). Värdet pekar ut
+# en annan posts utvärdering, antingen som dess `evaluation_id` eller som dess källadress.
+SHARED_BASIS_FIELD = "shared_analysis_with"
+
+
+def evaluation_independence() -> dict[str, str]:
+    """evaluation_id -> kanonisk grupp för VÄSENTLIGEN OBEROENDE evaluationer (ADR 0020 beslut 7).
+
+    `evaluation_id` är det MEKANISKA GOLVET: samma källa räknas en gång, oavsett hur många rader
+    någon råkar skriva om den. Utöver golvet får en liggarpost deklarera att den vilar på samma
+    analysunderlag som en annan post, och då räknas de två som EN evaluation.
+
+    SAKNAS DEKLARATION ANTAS OBEROENDE. Motsatsen, att anta beroende när inget sägs, gör hög
+    säkerhet onåbar för alltid och byter en empirisk lucka mot en strukturell. Antagandet är en
+    känd begränsning och står utskrivet i metodrutan i stället för att döljas.
+
+    Kartan bär BARA de evaluationer som faktiskt slagits ihop, alltså är en tom karta beskedet
+    att ingen post deklarerar något. Deklarationen är transitiv: pekar A på B och B på C är alla
+    tre ett analysunderlag, annars skulle talet bero på vilken post redaktören råkade peka från.
+
+    En pekare utan mottagare ger HÅRD FAIL. En pekare som ser ut som en deklaration men inte
+    träffar något vore värre än ingen alls: den lämnar räkningen orörd utan att någon märker det.
+    """
+    entries = evidence_ledger().get("entries") or []
+    kanda = {evaluation_id(e) for e in entries}
+    foralder: dict[str, str] = {}
+
+    def rot(x: str) -> str:
+        while foralder.get(x, x) != x:
+            x = foralder[x]
+        return x
+
+    for e in entries:
+        pekare = str(e.get(SHARED_BASIS_FIELD) or "").strip()
+        if not pekare:
+            continue
+        mal = pekare if pekare in kanda else _normalize_evaluation_ref(pekare)
+        egen = evaluation_id(e)
+        if mal == egen:
+            # Två rader ur SAMMA källa är redan en evaluation genom det mekaniska golvet, så
+            # en deklaration dem emellan säger ingenting nytt. Felet namnger utvärderingen och
+            # inte raden, eftersom pekaren mycket väl kan träffa en annan rad.
+            raise ConfigError(
+                f"Posten '{e.get('policy_type')}' deklarerar delat analysunderlag med samma "
+                f"utvärdering som den själv bär ({mal}). Golvet räknar dem redan som en, så "
+                "deklarationen är antingen överflödig eller ett klipp-och-klistra-fel "
+                "(ADR 0020 beslut 7)."
+            )
+        if mal not in kanda:
+            raise ConfigError(
+                f"Posten '{e.get('policy_type')}' deklarerar delat analysunderlag med '{pekare}', "
+                "som ingen post i liggaren bär. En pekare utan mottagare ger hård fail "
+                "(ADR 0020 beslut 7)."
+            )
+        a, b = rot(egen), rot(mal)
+        if a != b:
+            foralder[max(a, b)] = min(a, b)
+    return {e_id: rot(e_id) for e_id in kanda if rot(e_id) != e_id}
 
 
 def estimand_id(entry: Mapping[str, Any]) -> str:
@@ -266,6 +330,26 @@ def _validate_atgardstyper() -> None:
         _require(bool(grund.strip()), f"Spärren för '{pt}' saknar grund")
 
 
+def _validate_evaluations() -> None:
+    """Varje liggarpost måste bära en identifierbar utvärdering (ADR 0020 beslut 5 och 7).
+
+    Säkerhetsgrinden räknar oberoende evaluationer. En post utan identitet skulle falla ihop
+    med varje annan identitetslös post till en enda, alltså SÄNKA talet tyst. Hård fail i
+    stället, av samma skäl som en saknad kvalitetsklass hard-failar (ADR 0019 beslut 10).
+
+    Anropet till evaluation_independence() nedan är inte bara en kontroll: det är där en
+    pekare utan mottagare fälls, och det ska ske vid configens validering och aldrig först
+    när ett betyg räknas.
+    """
+    for e in evidence_ledger().get("entries") or []:
+        _require(
+            bool(evaluation_id(e)),
+            f"Evidensposten '{e.get('policy_type')}' saknar både source_url och source, "
+            "alltså går dess utvärdering inte att identifiera (ADR 0020 beslut 7).",
+        )
+    evaluation_independence()
+
+
 def validate(tolerance: float = 1e-6) -> None:
     """Kontrollerar modellinvarianterna. Höjer ConfigError vid fel (aldrig KeyError)."""
     cats = categories()
@@ -319,6 +403,7 @@ def validate(tolerance: float = 1e-6) -> None:
     _validate_scoring(sub_w, tolerance)
     # Sist, så att äldre och mer specifika invarianter behåller sin felprioritet.
     _validate_atgardstyper()
+    _validate_evaluations()
 
 
 VALID_DIRECTIONS = frozenset({"up", "down"})

@@ -387,8 +387,8 @@ function buildMethod() {
          hur stark effekt de åtgärder partiet driver brukar ha. En åtgärd med liten känd effekt
          ger färre poäng än en med stor. Talet är ett genomsnitt över partiets åtgärder, alltså hur
          stark den typiska åtgärden är. Det säger inte hur stor förbättringen blir sammanlagt.
-         Genomsnittet har en känd svaghet som vi håller på att rätta: en åtgärd till med svag men
-         belagd effekt kan dra ner talet.</li>
+         Hittar vi en ny utvärdering som visar att en åtgärd fungerar sämre än vi trodde, sjunker
+         talet. Det är meningen: vi lär oss av nya siffror.</li>
        <li><b>D. Hur det gick (20 %).</b> Om siffrorna blev bättre under tiden partiet hade ansvar.</li>
      </ul>
      <p>Vi räknar också ut varje partis <b>maktandel</b>, alltså hur mycket makt partiet haft.
@@ -399,10 +399,15 @@ function buildMethod() {
      <p>Efter varje betyg står ett spann, till exempel 3,3-4,1. Spannet visar hur säkert
      kategoribetyget är. Det säger däremot ingenting om vilket av två partier som ligger före det
      andra.</p>
-     <p class="warn"><b>Spannet är preliminärt.</b> Vi har nyligen ändrat hur betygen räknas, men
-     spannets bredd är ännu satt efter det gamla sättet. Den är alltså inte omräknad för de nya
-     talen. Felet går åt det försiktiga hållet: spannet är hellre för brett än för smalt. Vi
-     räknar om det, och till dess ska spannet läsas som ungefärligt.</p>
+     <p class="warn"><b>Spannet är en tumregel, inte ett mått.</b> Bredden är vald och har aldrig
+     prövats mot utfallet. Vi kalibrerar den inte heller efter hur betygen råkar falla, för då
+     vore den vald i efterhand. Spannet är i regel bredare än hela avståndet mellan partierna.
+     Läs det som en påminnelse om att talen är osäkra, aldrig som ett besked om vem som ligger
+     före. Appens förmåga att skilja partier åt är överlag låg.</p>
+     <p class="warn"><b>Så säkert vet vi det.</b> Varje betyg får en säkerhetsnivå i tre steg.
+     Vi kräver tre av varandra oberoende utvärderingar för högsta nivån, och i dag når ingen
+     kategori dit. Lägsta nivån sätts bara när vårt underlag är tunt. Nästan allt hamnar därför
+     i mitten. Det beror på hur mycket forskning som finns, inte på partierna.</p>
      ${stabilityMethodHTML()}
      ${ceilingMethodHTML()}
      <p>Appen mäter vad ett förslag väntas ge för resultat, inte vilken väg partiet väljer dit.

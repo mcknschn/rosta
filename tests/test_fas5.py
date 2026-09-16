@@ -61,8 +61,39 @@ def test_b_sakerhet_foljer_inte_langre_tackningsflaggan() -> None:
     täckning men LÅG säkerhet, alltså svag evidens bakom en väl täckt cell. Den symmetriska
     evidensgrinden tar bort just den möjligheten: varje admitterad liggarpost bär numera
     confidence minst medium, så conf_kat kan aldrig hamna under medium-tröskeln och en låg
-    B-etikett kan bara komma ur steget ned vid tunn täckning. Egenskapen prövas därför nu på
-    VARIATION i stället: bland cellerna med god täckning ska mer än en säkerhetsnivå förekomma.
+    B-etikett kan bara komma ur steget ned vid tunn täckning. Egenskapen prövades därför på
+    VARIATION i stället: bland cellerna med god täckning skulle mer än en säkerhetsnivå
+    förekomma.
+
+    VITTNET FÖLL 2026-09-16 (ADR 0020 beslut 5 och 6). När grinden för hög säkerhet började
+    räkna oberoende evaluationer i stället för råa rader tömdes hög på medlemmar, och
+    aggregatet ger sedan dess bara mellanläget. Att varje väl täckt cell bär samma etikett är
+    alltså ett MÄTT utfall och inte ett tecken på att etiketten följer flaggan igen. ADR 0020
+    beslut 6 kräver att det redovisas, och tests/test_sakerhetsmodellen.py låser det.
+
+    Egenskapen prövas här på funktionen i stället, alltså där den går att pröva: etiketten
+    varierar med evidensen vid OFÖRÄNDRAD täckningsflagga. Kan den inte det är den en funktion
+    av flaggan, oavsett vad dagens material råkar ge.
+    """
+    num = config.claims()["numeric"]["confidence"]
+    min_ev = int(config.claims()["aggregation"]["min_evaluations_for_high_confidence"])
+    vid_god_tackning = {
+        scorerun._b_confidence(num["high"], min_ev, False),
+        scorerun._b_confidence(num["high"], min_ev - 1, False),
+        scorerun._b_confidence(num["medium"] - 0.01, min_ev, False),
+    }
+    assert vid_god_tackning == {"high", "medium", "low"}, (
+        "B:s etikett varierar inte med evidensen vid oförändrad täckningsflagga — då är den "
+        f"en funktion av flaggan: {sorted(vid_god_tackning)}"
+    )
+
+
+def test_b_sakerhet_ar_konstant_over_val_tackta_celler_i_dag() -> None:
+    """Det mätta utfallet efter ADR 0020 beslut 5, skrivet i stället för dolt.
+
+    Hög har noll medlemmar, låg nås bara genom täckningsnedgradering, alltså bär varje väl
+    täckt cell mellanläget. Rör sig det här talet ska det UTREDAS och aldrig accepteras tyst,
+    så provet står här och inte bara som en mening i ADR:n.
     """
     con = _seed_con()
     sc = scorerun.build(con)["scores"]["scores"]
@@ -71,9 +102,9 @@ def test_b_sakerhet_foljer_inte_langre_tackningsflaggan() -> None:
         v["confidence"]["B"] for _p, cats in sc.items() for _c, v in cats.items()
         if not _TUNN_ELLER_TOM & set(v["flags"])
     ]
-    assert len(set(god_tackning)) > 1, (
-        "B:s säkerhet är konstant över alla väl täckta celler — etiketten läser inte evidensen "
-        f"utan följer täckningsflaggan igen: {sorted(set(god_tackning))}"
+    assert set(god_tackning) == {"medium"}, (
+        "de väl täckta cellernas säkerhet ligger inte längre på mellanläget ensamt — utfallet "
+        f"ska utredas och aldrig accepteras tyst: {sorted(set(god_tackning))}"
     )
 
 
