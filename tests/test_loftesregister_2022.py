@@ -559,6 +559,42 @@ def test_registret_pinnar_det_underlag_det_drogs_ur():
 
 
 @pytestmark_register
+def test_registret_pinnar_den_instruktion_genomgangarna_kordes_under():
+    """Version 3:s register pinnade instruktionen med en sokvag, och filen skrevs om.
+
+    Da hanvisade ett last register till en regel det aldrig kordes under. Hashen ar
+    spärren. Provet faller ocksa om instruktionen andras utan att registret byggs om,
+    vilket ar meningen: en ny regel kraver en ny genomgang.
+    """
+    reg = _register()
+    assert reg["instruktion_version"] == lr.INSTRUKTION_VERSION
+    assert reg["instruktion_sha256"] == lr.sha256_text(lr.INSTRUKTION), (
+        "instruktionen pa disk ar inte den registret byggdes under"
+    )
+
+
+@pytest.mark.skipif(
+    not REGISTER.is_file() or not _underlag_finns(),
+    reason="underlaget ligger utanfor git, och provet kan inte koras utan det",
+)
+def test_ingen_post_i_registret_slutar_mitt_i_en_mening():
+    """Krav 5 i instruktionen, prövat på det byggda registret.
+
+    Version 3 bar en post som slutade `for att trygga var` medan orden `fred och frihet.`
+    stod pa nasta rad. Alla tre genomgangarna gjorde samma fel, sa differensen gav ingen
+    signal. Provet ar den enda spärren mot det.
+    """
+    underlag = lr.alla_underlag()
+    per: dict[str, list[lr.Post]] = {}
+    for post in _register()["poster"]:
+        per.setdefault(post["parti"], []).append(
+            lr.Post(id=post["id"], dokument=post["parti"], spann=lr.tolka_spann(post["rader"]))
+        )
+    fel = [rad for dok, poster in per.items() for rad in lr.avhuggna_poster(underlag[dok], poster)]
+    assert fel == []
+
+
+@pytestmark_register
 def test_varje_post_bar_lydelse_sidnummer_och_parti():
     for post in _register()["poster"]:
         assert post["parti"] in {d["id"] for d in lr.dokument()}

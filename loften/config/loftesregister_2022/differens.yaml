@@ -18,106 +18,234 @@ version: 1
 
 summa:
   bara_a: 10
-  bara_b: 1
-  styckat_olika: 4
+  bara_b: 21
+  styckat_olika: 1
 
 dokument:
   S:
-    poster_a: 81
-    poster_b: 81
-    delade: 81
+    poster_a: 82
+    poster_b: 80
+    delade: 79
+    bara_a: 2
+    bara_b: 0
+    styckat_olika: 1
+    fall:
+      - slag: bara_a
+        sida: 6
+        a_rader: '162-165'
+        b_rader: null
+        a: "Alla som kan jobba ska jobba och bidra för att bli en del av samhället. Det gäller oavsett var man är född. Att lära sig god svenska, delta i arbetsmarknadsinsatser och studier är centralt. Barn ska ha goda förebilder och se båda sina föräldrar gå till jobbet."
+        b: null
+        beslut: 'a'
+        skal: "Princip 1. Rad 165 slutar `...ga till jobbet.` med punkt och rad 168 borjar `Fler insatser kravs` med versal. Det sprakliga provet ger tva poster, inte en over sidbrytningen. Pass C stoder A."
+      - slag: styckat_olika
+        sida: 7
+        a_rader: '168-177'
+        b_rader: '162-165,168-177'
+        a: "Fler insatser krävs för att utlandsfödda kvinnor ska komma i arbete och vi säger nej till alla förslag om vårdnadsbidrag eller barnomsorgspeng, som låser fast utlandsfödda kvinnor i hemmet. Det bör även ställas språkkrav för att få permanent uppehållstillstånd. Att kunna lära sig ett yrke parallellt med studier i svenska är ytterligare ett sätt att öka chansen att få jobb. Vi vill införa språkkrav för anställda inom förskola och äldreomsorg, med möjlighet till språkutbildning för den som inte har tillräckliga kunskaper. För att ingen ska fastna i passivitet behöver det ställas krav på aktivitet för att få försörjningsstöd. Diskrimineringen på arbetsmarknaden ska motarbetas."
+        b: "Alla som kan jobba ska jobba och bidra för att bli en del av samhället. Det gäller oavsett var man är född. Att lära sig god svenska, delta i arbetsmarknadsinsatser och studier är centralt. Barn ska ha goda förebilder och se båda sina föräldrar gå till jobbet. Fler insatser krävs för att utlandsfödda kvinnor ska komma i arbete och vi säger nej till alla förslag om vårdnadsbidrag eller barnomsorgspeng, som låser fast utlandsfödda kvinnor i hemmet. Det bör även ställas språkkrav för att få permanent uppehållstillstånd. Att kunna lära sig ett yrke parallellt med studier i svenska är ytterligare ett sätt att öka chansen att få jobb. Vi vill införa språkkrav för anställda inom förskola och äldreomsorg, med möjlighet till språkutbildning för den som inte har tillräckliga kunskaper. För att ingen ska fastna i passivitet behöver det ställas krav på aktivitet för att få försörjningsstöd. Diskrimineringen på arbetsmarknaden ska motarbetas."
+        beslut: 'a'
+        skal: "Princip 1, andra halvan av samma avgorande. B fogade ihop block 53 och 55 over sidbrytningen fast satsen inte brutit nagon mening. Pass C stoder A."
+      - slag: bara_a
+        sida: 17
+        a_rader: '588-590'
+        b_rader: null
+        a: "Socialdemokraterna kommer aldrig att medverka till att ge makt åt Sverigedemokraterna, ett parti som inte står upp för alla människors lika värde och rätt."
+        b: null
+        beslut: 'a'
+        skal: "Tre rader lopande prosa som slutar med punkt, satta i 12,0 punkter mot sidans 9,5. En ingress ar ingen rubrik och inget slagord. Pass C stoder A."
+  M:
+    poster_a: 376
+    poster_b: 376
+    delade: 376
     bara_a: 0
     bara_b: 0
     styckat_olika: 0
     fall: []
-  M:
-    poster_a: 377
-    poster_b: 375
-    delade: 372
-    bara_a: 2
-    bara_b: 0
-    styckat_olika: 3
-    fall:
-      - slag: styckat_olika
-        sida: 16
-        a_rader: '904-910'
-        b_rader: '904-914,916-918'
-        a: "Mitt i klimatkrisen tvingas Sverige elda 140 000 liter olja i timmen i Karlshamnsverket för att elen ska räcka. Det är inte en hållbar energipolitik. Och en helt ohållbar klimatpolitik. Utan ren och stabil el till rimligt pris blir det ingen klimatomställning. Moderaterna tänker genomdriva en ny energipolitik - med mer kärnkraft - både för klimatets och för energiförsörjningens skull."
-        b: "Mitt i klimatkrisen tvingas Sverige elda 140 000 liter olja i timmen i Karlshamnsverket för att elen ska räcka. Det är inte en hållbar energipolitik. Och en helt ohållbar klimatpolitik. Utan ren och stabil el till rimligt pris blir det ingen klimatomställning. Moderaterna tänker genomdriva en ny energipolitik - med mer kärnkraft - både för klimatets och för energiförsörjningens skull. Vi ska som land ta fullt ansvar här hemma och nå nettonollutsläpp senast år 2045. Det gör vi genom att ersätta fossil energi med ren el och innovativa tekniker som minskar eller tar bort utsläppen. Samtidigt ska vi hjälpa andra länder att minska sina utsläpp genom effektivt internationellt samarbete."
-        beslut: 'a'
-        skal: "Princip 1, ett stycke ar ett stycke. Rad 904-910 ar block 366 och slutar med punkt. Rad 911 borjar en ny mening i block 367. Tva stycken, alltsa tva poster."
-      - slag: bara_a
-        sida: 16
-        a_rader: '911-914,916-918'
-        b_rader: null
-        a: "Vi ska som land ta fullt ansvar här hemma och nå nettonollutsläpp senast år 2045. Det gör vi genom att ersätta fossil energi med ren el och innovativa tekniker som minskar eller tar bort utsläppen. Samtidigt ska vi hjälpa andra länder att minska sina utsläpp genom effektivt internationellt samarbete."
-        b: null
-        beslut: 'a'
-        skal: "Princip 1, ett stycke ar ett stycke. Andra halvan av samma avgorande. Stycket bryts av bildtexten `Nya elprisrekord varje manad` pa rad 915, och rad 914 slutar `som minskar eller tar` mot rad 916 `bort utslappen`. Ett stycke, buret av tva spann."
-      - slag: bara_a
-        sida: 17
-        a_rader: '994-996'
-        b_rader: null
-        a: "Den gröna omställningen förpliktigar. Fram till 2045 kommer Sveriges elbehov mer än fördubblas."
-        b: null
-        beslut: 'a'
-        skal: "Princip 1, ett stycke ar ett stycke. Rad 994-996 ar block 420 och slutar med punkt. Rad 997 borjar block 421. Tva stycken."
-      - slag: styckat_olika
-        sida: 17
-        a_rader: '997-1008'
-        b_rader: '994-1008'
-        a: "Ska vi klara det behövs en elproduktion där alla fossilfria energikällor är med och bidrar. I det läge Sverige har hamnat i på grund av dåliga politiska beslut kommer en utbyggnad av kärnkraften att vara helt central. Det är avgörande både för energiförsörjningen och klimatet. Inte minst finns ett behov av att bygga många nya, mindre reaktorer snarare än ett fåtal stora för att säkerställa att det finns elproduktion som fungerar oberoende av väder och vind. Moderaterna vill att staten garanterar lån för byggandet av ny kärnkraft - det skulle möjliggöra att 10 nya reaktorer byggs."
-        b: "Den gröna omställningen förpliktigar. Fram till 2045 kommer Sveriges elbehov mer än fördubblas. Ska vi klara det behövs en elproduktion där alla fossilfria energikällor är med och bidrar. I det läge Sverige har hamnat i på grund av dåliga politiska beslut kommer en utbyggnad av kärnkraften att vara helt central. Det är avgörande både för energiförsörjningen och klimatet. Inte minst finns ett behov av att bygga många nya, mindre reaktorer snarare än ett fåtal stora för att säkerställa att det finns elproduktion som fungerar oberoende av väder och vind. Moderaterna vill att staten garanterar lån för byggandet av ny kärnkraft - det skulle möjliggöra att 10 nya reaktorer byggs."
-        beslut: 'a'
-        skal: "Princip 1, ett stycke ar ett stycke. Andra halvan av samma avgorande. B fogade ihop block 420 och 421 till en post."
-      - slag: styckat_olika
-        sida: 20
-        a_rader: '1159-1160'
-        b_rader: '1159-1161'
-        a: "Stävja minskningen av sill-/strömmingsbestånden i Östersjön genom att flytta gränsen för trålfiske från fyra till tolv nautiska mil"
-        b: "Stävja minskningen av sill-/strömmingsbestånden i Östersjön genom att flytta gränsen för trålfiske från fyra till tolv nautiska mil 30%"
-        beslut: 'a'
-        skal: "Princip 2, satsens egna delar ar inte loften. `30%` pa rad 1161 hor till infografiken pa rad 1164-1166, `Tva tredjedelar av Sveriges yta ar tackt av skog, 30% tagen ur produktion`. Instruktionen utesluter sifferetiketter i figurer."
   SD:
-    poster_a: 66
-    poster_b: 66
-    delade: 66
+    poster_a: 65
+    poster_b: 65
+    delade: 65
     bara_a: 0
     bara_b: 0
     styckat_olika: 0
     fall: []
   C:
     poster_a: 214
-    poster_b: 211
-    delade: 211
-    bara_a: 3
-    bara_b: 0
+    poster_b: 235
+    delade: 214
+    bara_a: 0
+    bara_b: 21
     styckat_olika: 0
     fall:
-      - slag: bara_a
-        sida: 6
-        a_rader: '190'
-        b_rader: null
-        a: "Framtiden är grön."
-        b: null
-        beslut: 'a'
-        skal: "Princip 3, innehallet avgor aldrig. `Framtiden ar gron.` ar satt i 9,7 punkter, exakt sidans brodtextgrad. Ingen rubrik typografiskt, alltsa ett stycke."
-      - slag: bara_a
-        sida: 9
-        a_rader: '294'
-        b_rader: null
-        a: "Landsbygden bygger Sverige."
-        b: null
-        beslut: 'a'
-        skal: "Princip 3, innehallet avgor aldrig. `Landsbygden bygger Sverige.` ar satt i 9,7 punkter, sidans brodtextgrad."
-      - slag: bara_a
-        sida: 14
-        a_rader: '484'
-        b_rader: null
-        a: "Utan småföretagen stannar Sverige."
-        b: null
-        beslut: 'a'
-        skal: "Princip 3, innehallet avgor aldrig. `Utan smaforetagen stannar Sverige.` ar satt i 9,7 punkter, sidans brodtextgrad."
+      - slag: bara_b
+        sida: 7
+        a_rader: null
+        b_rader: '244'
+        a: null
+        b: "Fördubbla produktionen av utsläppsfri el och förnybara bränslen"
+        beslut: 'b'
+        skal: "Instruktionen sager att graden bara kan visa att ett block INTE ar en rubrik. Blocket star i sidans brodtextgrad 9,7, alltsa ar det ingen rubrik, alltsa ar det en post. Pass A och C uteslot de 21 blocken som mellanrubriker, vilket ar just det omdome princip 3 forbjuder. Samma lage som `Framtiden ar gron.` pa rad 190. B foljer regeln."
+      - slag: bara_b
+        sida: 8
+        a_rader: null
+        b_rader: '259'
+        a: null
+        b: "Gör det lätt att göra rätt"
+        beslut: 'b'
+        skal: "Instruktionen sager att graden bara kan visa att ett block INTE ar en rubrik. Blocket star i sidans brodtextgrad 9,7, alltsa ar det ingen rubrik, alltsa ar det en post. Pass A och C uteslot de 21 blocken som mellanrubriker, vilket ar just det omdome princip 3 forbjuder. Samma lage som `Framtiden ar gron.` pa rad 190. B foljer regeln."
+      - slag: bara_b
+        sida: 8
+        a_rader: null
+        b_rader: '276'
+        a: null
+        b: "Vårda Sveriges miljö - till havs och på land"
+        beslut: 'b'
+        skal: "Instruktionen sager att graden bara kan visa att ett block INTE ar en rubrik. Blocket star i sidans brodtextgrad 9,7, alltsa ar det ingen rubrik, alltsa ar det en post. Pass A och C uteslot de 21 blocken som mellanrubriker, vilket ar just det omdome princip 3 forbjuder. Samma lage som `Framtiden ar gron.` pa rad 190. B foljer regeln."
+      - slag: bara_b
+        sida: 10
+        a_rader: null
+        b_rader: '336'
+        a: null
+        b: "Frigör landsbygdens växtkraft"
+        beslut: 'b'
+        skal: "Instruktionen sager att graden bara kan visa att ett block INTE ar en rubrik. Blocket star i sidans brodtextgrad 9,7, alltsa ar det ingen rubrik, alltsa ar det en post. Pass A och C uteslot de 21 blocken som mellanrubriker, vilket ar just det omdome princip 3 forbjuder. Samma lage som `Framtiden ar gron.` pa rad 190. B foljer regeln."
+      - slag: bara_b
+        sida: 10
+        a_rader: null
+        b_rader: '352'
+        a: null
+        b: "Skapa snabba, billiga och pålitliga kommunikationer i hela landet"
+        beslut: 'b'
+        skal: "Instruktionen sager att graden bara kan visa att ett block INTE ar en rubrik. Blocket star i sidans brodtextgrad 9,7, alltsa ar det ingen rubrik, alltsa ar det en post. Pass A och C uteslot de 21 blocken som mellanrubriker, vilket ar just det omdome princip 3 forbjuder. Samma lage som `Framtiden ar gron.` pa rad 190. B foljer regeln."
+      - slag: bara_b
+        sida: 10
+        a_rader: null
+        b_rader: '369'
+        a: null
+        b: "Landsbygden ska få sin rättvisa andel av offentlig service och intäkter"
+        beslut: 'b'
+        skal: "Instruktionen sager att graden bara kan visa att ett block INTE ar en rubrik. Blocket star i sidans brodtextgrad 9,7, alltsa ar det ingen rubrik, alltsa ar det en post. Pass A och C uteslot de 21 blocken som mellanrubriker, vilket ar just det omdome princip 3 forbjuder. Samma lage som `Framtiden ar gron.` pa rad 190. B foljer regeln."
+      - slag: bara_b
+        sida: 12
+        a_rader: null
+        b_rader: '437'
+        a: null
+        b: "Stoppa mäns våld mot kvinnor och hedersförtryck"
+        beslut: 'b'
+        skal: "Instruktionen sager att graden bara kan visa att ett block INTE ar en rubrik. Blocket star i sidans brodtextgrad 9,7, alltsa ar det ingen rubrik, alltsa ar det en post. Pass A och C uteslot de 21 blocken som mellanrubriker, vilket ar just det omdome princip 3 forbjuder. Samma lage som `Framtiden ar gron.` pa rad 190. B foljer regeln."
+      - slag: bara_b
+        sida: 13
+        a_rader: null
+        b_rader: '454'
+        a: null
+        b: "Alla kvinnor ska ha möjlighet till ekonomisk egenmakt"
+        beslut: 'b'
+        skal: "Instruktionen sager att graden bara kan visa att ett block INTE ar en rubrik. Blocket star i sidans brodtextgrad 9,7, alltsa ar det ingen rubrik, alltsa ar det en post. Pass A och C uteslot de 21 blocken som mellanrubriker, vilket ar just det omdome princip 3 forbjuder. Samma lage som `Framtiden ar gron.` pa rad 190. B foljer regeln."
+      - slag: bara_b
+        sida: 13
+        a_rader: null
+        b_rader: '471'
+        a: null
+        b: "Vården ska bli mer jämställd"
+        beslut: 'b'
+        skal: "Instruktionen sager att graden bara kan visa att ett block INTE ar en rubrik. Blocket star i sidans brodtextgrad 9,7, alltsa ar det ingen rubrik, alltsa ar det en post. Pass A och C uteslot de 21 blocken som mellanrubriker, vilket ar just det omdome princip 3 forbjuder. Samma lage som `Framtiden ar gron.` pa rad 190. B foljer regeln."
+      - slag: bara_b
+        sida: 15
+        a_rader: null
+        b_rader: '531'
+        a: null
+        b: "Sänk skatten och rensa upp i regelverket"
+        beslut: 'b'
+        skal: "Instruktionen sager att graden bara kan visa att ett block INTE ar en rubrik. Blocket star i sidans brodtextgrad 9,7, alltsa ar det ingen rubrik, alltsa ar det en post. Pass A och C uteslot de 21 blocken som mellanrubriker, vilket ar just det omdome princip 3 forbjuder. Samma lage som `Framtiden ar gron.` pa rad 190. B foljer regeln."
+      - slag: bara_b
+        sida: 15
+        a_rader: null
+        b_rader: '541'
+        a: null
+        b: "Arbetslösheten och kompetensbristen får inte tillåtas fortsätta"
+        beslut: 'b'
+        skal: "Instruktionen sager att graden bara kan visa att ett block INTE ar en rubrik. Blocket star i sidans brodtextgrad 9,7, alltsa ar det ingen rubrik, alltsa ar det en post. Pass A och C uteslot de 21 blocken som mellanrubriker, vilket ar just det omdome princip 3 forbjuder. Samma lage som `Framtiden ar gron.` pa rad 190. B foljer regeln."
+      - slag: bara_b
+        sida: 16
+        a_rader: null
+        b_rader: '557'
+        a: null
+        b: "Värna och vidareutveckla Sveriges öppenhet mot världen"
+        beslut: 'b'
+        skal: "Instruktionen sager att graden bara kan visa att ett block INTE ar en rubrik. Blocket star i sidans brodtextgrad 9,7, alltsa ar det ingen rubrik, alltsa ar det en post. Pass A och C uteslot de 21 blocken som mellanrubriker, vilket ar just det omdome princip 3 forbjuder. Samma lage som `Framtiden ar gron.` pa rad 190. B foljer regeln."
+      - slag: bara_b
+        sida: 17
+        a_rader: null
+        b_rader: '615'
+        a: null
+        b: "Mer pengar kvar i plånboken för Sveriges hushåll"
+        beslut: 'b'
+        skal: "Instruktionen sager att graden bara kan visa att ett block INTE ar en rubrik. Blocket star i sidans brodtextgrad 9,7, alltsa ar det ingen rubrik, alltsa ar det en post. Pass A och C uteslot de 21 blocken som mellanrubriker, vilket ar just det omdome princip 3 forbjuder. Samma lage som `Framtiden ar gron.` pa rad 190. B foljer regeln."
+      - slag: bara_b
+        sida: 17
+        a_rader: null
+        b_rader: '628'
+        a: null
+        b: "Sveriges ekonomi ska stärkas, seriöst och långsiktigt"
+        beslut: 'b'
+        skal: "Instruktionen sager att graden bara kan visa att ett block INTE ar en rubrik. Blocket star i sidans brodtextgrad 9,7, alltsa ar det ingen rubrik, alltsa ar det en post. Pass A och C uteslot de 21 blocken som mellanrubriker, vilket ar just det omdome princip 3 forbjuder. Samma lage som `Framtiden ar gron.` pa rad 190. B foljer regeln."
+      - slag: bara_b
+        sida: 19
+        a_rader: null
+        b_rader: '690'
+        a: null
+        b: "Vård och omsorg ska bedrivas nära människan"
+        beslut: 'b'
+        skal: "Instruktionen sager att graden bara kan visa att ett block INTE ar en rubrik. Blocket star i sidans brodtextgrad 9,7, alltsa ar det ingen rubrik, alltsa ar det en post. Pass A och C uteslot de 21 blocken som mellanrubriker, vilket ar just det omdome princip 3 forbjuder. Samma lage som `Framtiden ar gron.` pa rad 190. B foljer regeln."
+      - slag: bara_b
+        sida: 19
+        a_rader: null
+        b_rader: '705'
+        a: null
+        b: "Arbetsvillkoren inom vård och omsorg måste förbättras"
+        beslut: 'b'
+        skal: "Instruktionen sager att graden bara kan visa att ett block INTE ar en rubrik. Blocket star i sidans brodtextgrad 9,7, alltsa ar det ingen rubrik, alltsa ar det en post. Pass A och C uteslot de 21 blocken som mellanrubriker, vilket ar just det omdome princip 3 forbjuder. Samma lage som `Framtiden ar gron.` pa rad 190. B foljer regeln."
+      - slag: bara_b
+        sida: 20
+        a_rader: null
+        b_rader: '748'
+        a: null
+        b: "Skydda den liberala demokratin från inre och yttre hot"
+        beslut: 'b'
+        skal: "Instruktionen sager att graden bara kan visa att ett block INTE ar en rubrik. Blocket star i sidans brodtextgrad 9,7, alltsa ar det ingen rubrik, alltsa ar det en post. Pass A och C uteslot de 21 blocken som mellanrubriker, vilket ar just det omdome princip 3 forbjuder. Samma lage som `Framtiden ar gron.` pa rad 190. B foljer regeln."
+      - slag: bara_b
+        sida: 21
+        a_rader: null
+        b_rader: '764'
+        a: null
+        b: "Värna och vidareutveckla individens rättigheter"
+        beslut: 'b'
+        skal: "Instruktionen sager att graden bara kan visa att ett block INTE ar en rubrik. Blocket star i sidans brodtextgrad 9,7, alltsa ar det ingen rubrik, alltsa ar det en post. Pass A och C uteslot de 21 blocken som mellanrubriker, vilket ar just det omdome princip 3 forbjuder. Samma lage som `Framtiden ar gron.` pa rad 190. B foljer regeln."
+      - slag: bara_b
+        sida: 21
+        a_rader: null
+        b_rader: '783'
+        a: null
+        b: "Stärk den liberala demokratin i hela landet"
+        beslut: 'b'
+        skal: "Instruktionen sager att graden bara kan visa att ett block INTE ar en rubrik. Blocket star i sidans brodtextgrad 9,7, alltsa ar det ingen rubrik, alltsa ar det en post. Pass A och C uteslot de 21 blocken som mellanrubriker, vilket ar just det omdome princip 3 forbjuder. Samma lage som `Framtiden ar gron.` pa rad 190. B foljer regeln."
+      - slag: bara_b
+        sida: 23
+        a_rader: null
+        b_rader: '838'
+        a: null
+        b: "Hela Sverige ska vara tryggt och säkert, från landets gränser till ditt kvarter"
+        beslut: 'b'
+        skal: "Instruktionen sager att graden bara kan visa att ett block INTE ar en rubrik. Blocket star i sidans brodtextgrad 9,7, alltsa ar det ingen rubrik, alltsa ar det en post. Pass A och C uteslot de 21 blocken som mellanrubriker, vilket ar just det omdome princip 3 forbjuder. Samma lage som `Framtiden ar gron.` pa rad 190. B foljer regeln."
+      - slag: bara_b
+        sida: 23
+        a_rader: null
+        b_rader: '853-854'
+        a: null
+        b: "Skolan ska förbättras i hela landet, med ordning i klassrummet och skolpolitiken"
+        beslut: 'b'
+        skal: "Instruktionen sager att graden bara kan visa att ett block INTE ar en rubrik. Blocket star i sidans brodtextgrad 9,7, alltsa ar det ingen rubrik, alltsa ar det en post. Pass A och C uteslot de 21 blocken som mellanrubriker, vilket ar just det omdome princip 3 forbjuder. Samma lage som `Framtiden ar gron.` pa rad 190. B foljer regeln."
   V:
     poster_a: 68
     poster_b: 68
@@ -127,69 +255,77 @@ dokument:
     styckat_olika: 0
     fall: []
   KD:
-    poster_a: 56
-    poster_b: 52
-    delade: 50
-    bara_a: 5
-    bara_b: 1
-    styckat_olika: 1
+    poster_a: 63
+    poster_b: 55
+    delade: 55
+    bara_a: 8
+    bara_b: 0
+    styckat_olika: 0
     fall:
       - slag: bara_a
-        sida: 2
-        a_rader: '7-20'
-        b_rader: null
-        a: "Det har gått åtta år sedan Kristdemokraterna senast satt i regeringen. Sedan dess har utvecklingen gått åt fel håll och vanligt folk har fått det sämre. Vårdköerna har tredubblats. 140 000 människor har väntat olagligt länge på besök hos specialist eller på behandling. Gängkrigen har tagit mer än tvåhundra liv de senaste fem åren. El- och drivmedelspriserna pressar hushållen, inte minst i Sveriges hjärtland. Drivmedelspriserna har skenat och den gångna vinterns elpriser låg periodvis tusen procent högre än året innan. Sverige har blivit dyrare, otryggare och med sämre tillgång till vård för den som behöver - det är orimligt."
-        b: null
-        beslut: 'a'
-        skal: "Princip 3, innehallet avgor aldrig. Forordets forsta stycke. Den korta uteslutningslistan i `Avsnitt utan liststruktur` namner namnunderskrifter men inte forordstext, och ett forord ar ett listlost avsnitt."
-      - slag: bara_a
-        sida: 2
-        a_rader: '21-42'
-        b_rader: null
-        a: "Det behöver inte vara så här. Det går att vända utvecklingen. Sverige är ett fantastiskt land med en stark ekonomisk grund och ett välfärdssystem som stödjer människor utifrån behov genom hela livet. Köer i vården, gängkrig och upplopp på gatorna är inte värdigt vårt land. Det är inte det Sverige vi växte upp i och det är inte det Sverige vi ska lämna över till våra barn. Kristdemokraterna vill bygga ett samhälle där ingen hålls tillbaka och ingen lämnas efter. Vi når dit genom att i vår demokrati främja goda värden som medmänsklighet ansvarstagande, förvaltarskap, hederlighet, måttfullhet och jämställdhet. Vi prioriterar välfärdens viktigaste delar, samtidigt som vi ger människor utrymme att forma sina egna liv i gemenskap med andra. De problem vi har fått på senare år är djupa, men de kan lösas och de ska lösas. Det är dags nu. Vi är redo för en ny regering."
-        b: null
-        beslut: 'a'
-        skal: "Princip 1, ett stycke ar ett stycke. Rad 29 slutar `...ska lamna over till vara` och rad 30 borjar `barn.` Satsen har brutit en mening mellan block 5 och block 6. Avsnittet `Sidbrytningen` sager att ett spaltbyte fogas ihop. Pass C delade dar i tva."
-      - slag: bara_a
-        sida: 2
-        a_rader: '43-52,54-57'
-        b_rader: null
-        a: "Vi prioriterar vården, för alla dem som lider i väntan på vård. Vi prioriterar samhällets äldsta och yngsta, dem som inte längre orkar höja sin röst eller ännu inte lärt sig att använda den. Vi prioriterar lantbruket, det som sällan syns i media men som producerar vår mat. Vi ser den som bor utanför storstäderna och är beroende av sin bil. Vi prioriterar tryggheten, vi är redo att bekämpa brotten. Vi ser människors behov av välfärd och vi ser företagaren vars affärsidéer gör det möjligt att betala för välfärden. Vi ser den som drabbats av elfattigdom och som tvingades ha ytterjackan på sig hemma i vintras för att uppvärmningen blivit för dyr."
-        b: null
-        beslut: 'a'
-        skal: "Princip 3, innehallet avgor aldrig. Forordets stycke, buret av tva spann eftersom rubrikresten `ING` pa rad 53 inte hor till det."
-      - slag: bara_a
-        sida: 3
-        a_rader: '58-65'
-        b_rader: null
-        a: "I Sverige ska vi ha råd med värme. Både den värme som kommer från element och den som kommer från mänsklig gemenskap. Om du har läst ända hit så ber vi dig att läsa i en minut till, så ska vi berätta hur det ska gå till."
-        b: null
-        beslut: 'a'
-        skal: "Princip 3, innehallet avgor aldrig. Forordets sista stycke."
-      - slag: styckat_olika
         sida: 12
-        a_rader: '286-287'
-        b_rader: '286'
-        a: "Fyra prioriterade områden. Men vi går också till val på förslag som rör andra viktiga områden. Förslag för"
-        b: "Fyra prioriterade områden. Men vi går också till val på"
+        a_rader: '288-289'
+        b_rader: null
+        a: "FLER JOBB FLER FöRETAG STARKARE FAMILJER"
+        b: null
         beslut: 'a'
-        skal: "Princip 1, ett stycke ar ett stycke. `Fyra prioriterade omraden. Men vi gar ocksa till val pa forslag som ror andra viktiga omraden.` ar en mening som satsen delat i tva block."
-      - slag: bara_b
-        sida: 12
-        a_rader: null
-        b_rader: '287'
-        a: null
-        b: "förslag som rör andra viktiga områden. Förslag för"
-        beslut: 'ingen'
-        skal: "Princip 1, ett stycke ar ett stycke. Andra halvan av samma mening, och den ligger redan i posten 286-287. En egen post har skulle ta samma rad tva ganger."
+        skal: "Var och ett av blocken 82 till 88 ar ett eget block, och huvudregelns led 2 gor da varje block till en post. Pass C laste raderna som objekt till meningen som slutar `Forslag for` pa rad 287, vilket ar den basta lasningen spraakligt, men det sprakliga provet i princip 1 kraver gemen begynnelsebokstav och versalraderna har versal. Pass B uteslot dem som grafik, men underlaget bar ingen uppgift om figurer och graden 10,9 ligger mellan KD:s tva brodtextgrader."
       - slag: bara_a
         sida: 12
-        a_rader: '302-304'
+        a_rader: '290'
         b_rader: null
-        a: "Vill du läsa mer om våra förslag eller om vår politik på alla politikområden, läs mer på kristdemokraterna.se"
+        a: "BÄTTRE OMSORG FÖR UTSATTA"
         b: null
         beslut: 'a'
-        skal: "Princip 3, innehallet avgor aldrig. `Vill du lasa mer om vara forslag...` ar satt i 12,2 punkter, sidans brodtextgrad, och star i ett listlost avsnitt."
+        skal: "Var och ett av blocken 82 till 88 ar ett eget block, och huvudregelns led 2 gor da varje block till en post. Pass C laste raderna som objekt till meningen som slutar `Forslag for` pa rad 287, vilket ar den basta lasningen spraakligt, men det sprakliga provet i princip 1 kraver gemen begynnelsebokstav och versalraderna har versal. Pass B uteslot dem som grafik, men underlaget bar ingen uppgift om figurer och graden 10,9 ligger mellan KD:s tva brodtextgrader."
+      - slag: bara_a
+        sida: 12
+        a_rader: '291'
+        b_rader: null
+        a: "SJÄLVBESTÄMMANDE VID FUNKTIONSNEDSÄTTNING"
+        b: null
+        beslut: 'a'
+        skal: "Var och ett av blocken 82 till 88 ar ett eget block, och huvudregelns led 2 gor da varje block till en post. Pass C laste raderna som objekt till meningen som slutar `Forslag for` pa rad 287, vilket ar den basta lasningen spraakligt, men det sprakliga provet i princip 1 kraver gemen begynnelsebokstav och versalraderna har versal. Pass B uteslot dem som grafik, men underlaget bar ingen uppgift om figurer och graden 10,9 ligger mellan KD:s tva brodtextgrader."
+      - slag: bara_a
+        sida: 12
+        a_rader: '292-295'
+        b_rader: null
+        a: "BRA SKOLA EN STRAM MIGRATION MINSKADE KLIMATUTSLÄPP INTERNATIONELLT ANSVARSTAGANDE"
+        b: null
+        beslut: 'a'
+        skal: "Var och ett av blocken 82 till 88 ar ett eget block, och huvudregelns led 2 gor da varje block till en post. Pass C laste raderna som objekt till meningen som slutar `Forslag for` pa rad 287, vilket ar den basta lasningen spraakligt, men det sprakliga provet i princip 1 kraver gemen begynnelsebokstav och versalraderna har versal. Pass B uteslot dem som grafik, men underlaget bar ingen uppgift om figurer och graden 10,9 ligger mellan KD:s tva brodtextgrader."
+      - slag: bara_a
+        sida: 12
+        a_rader: '296-297'
+        b_rader: null
+        a: "STÄRKT CIVILSAMHÄLLE FÖRBÄTTRAD INTEGRATION"
+        b: null
+        beslut: 'a'
+        skal: "Var och ett av blocken 82 till 88 ar ett eget block, och huvudregelns led 2 gor da varje block till en post. Pass C laste raderna som objekt till meningen som slutar `Forslag for` pa rad 287, vilket ar den basta lasningen spraakligt, men det sprakliga provet i princip 1 kraver gemen begynnelsebokstav och versalraderna har versal. Pass B uteslot dem som grafik, men underlaget bar ingen uppgift om figurer och graden 10,9 ligger mellan KD:s tva brodtextgrader."
+      - slag: bara_a
+        sida: 12
+        a_rader: '298'
+        b_rader: null
+        a: "FLER BOSTÄDER"
+        b: null
+        beslut: 'a'
+        skal: "Var och ett av blocken 82 till 88 ar ett eget block, och huvudregelns led 2 gor da varje block till en post. Pass C laste raderna som objekt till meningen som slutar `Forslag for` pa rad 287, vilket ar den basta lasningen spraakligt, men det sprakliga provet i princip 1 kraver gemen begynnelsebokstav och versalraderna har versal. Pass B uteslot dem som grafik, men underlaget bar ingen uppgift om figurer och graden 10,9 ligger mellan KD:s tva brodtextgrader."
+      - slag: bara_a
+        sida: 12
+        a_rader: '299'
+        b_rader: null
+        a: "JÄMSTÄLLDHET PÅ RIKTIGT"
+        b: null
+        beslut: 'a'
+        skal: "Var och ett av blocken 82 till 88 ar ett eget block, och huvudregelns led 2 gor da varje block till en post. Pass C laste raderna som objekt till meningen som slutar `Forslag for` pa rad 287, vilket ar den basta lasningen spraakligt, men det sprakliga provet i princip 1 kraver gemen begynnelsebokstav och versalraderna har versal. Pass B uteslot dem som grafik, men underlaget bar ingen uppgift om figurer och graden 10,9 ligger mellan KD:s tva brodtextgrader."
+      - slag: bara_a
+        sida: 12
+        a_rader: '300-301'
+        b_rader: null
+        a: "VI ÄR REDO Din röst behövs för förändring"
+        b: null
+        beslut: 'a'
+        skal: "Blocken 80 och 81 pa samma sida star ocksa i 12,2 punkter, sa 12,2 ar sidans egen brodtextgrad. Uteslutningen av slagord galler bara block utanfor brodtextgraden, och biter darfor inte. Pass C stoder A."
   MP:
     poster_a: 138
     poster_b: 138
