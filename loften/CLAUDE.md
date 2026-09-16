@@ -164,12 +164,16 @@ Allt som rör spåret flyttades hit 2026-09-16, inklusive de två förkastade m�
 ```
 loften/
   CLAUDE.md                        denna fil
+  docs/beslut/                     spårets bärande beslut
+  docs/loftesregister_2022/        instruktionen till genomgångarna, och rapporten
   docs/valmanifest_2022/           källdokumenten 2022. PDF:erna ligger utanför git.
   docs/valmanifest_2026/           källdokumenten 2026. PDF:erna ligger utanför git.
   docs/verklighetsbild_pilot/      FÖRKASTAT mått, nedlagt 2026-09-13
   docs/samstammighet_poc/          FÖRKASTAT mått, nedlagt 2026-09-16
+  config/loftesregister_2022/      genomgångarna, differensen och det låsta registret
   config/verklighetsbild/          korpusarna, urvalet och pilotens resultat
   config/samstammighet_poc/        POC:ens resultat
+  underlag/valmanifest_2022/       textunderlaget. Ligger utanför git.
 ```
 
 Koden ligger kvar i `pipeline/tools/` och proven i `tests/`, eftersom de är paket och inte
@@ -208,11 +212,20 @@ trösklar får inte bära ett avslagsskäl.
   **Alla åtta adresser är belagda** i `hamtmanifest.yaml`: varje URL hämtades om och den
   hämtade filens SHA-256 jämfördes byte för byte. V:s dokument heter `valplattform`, vilket
   är partiets eget ord för samma slags dokument.
+- `loften/config/loftesregister_2022/`: de två blinda genomgångarna och differensen mellan dem
+  (#54). Läsanvisningen står i [`docs/loftesregister_2022/registret.md`](docs/loftesregister_2022/registret.md).
 
 **Saknas**
 
-- Full lydelse och sidnummer. De hamnar i ett **nytt register**, aldrig i den frysta korpusen.
+- Det låsta 2022-registret. Genomgångarna är klara och differensen räknad, men **17 fall väntar
+  på projektägarens avgörande** (beslut 7), och bygget vägrar skriva registret innan dess.
 - Regeringens propositioner, som regel 2 kräver. Ingen kod i projektet hämtar dem i dag.
+
+**Utanför git**
+
+- `loften/underlag/valmanifest_2022/`: textunderlaget som registret dras ur. Det är hela det
+  upphovsrättsskyddade verket, ord för ord, av samma skäl som PDF:erna. Bygg om det med
+  `python -m pipeline.tools.loftesregister --underlag`.
 
 Budgetåret 2026 ur bet. 2025/26:FiU1 stod här tidigare. Det **behövs inte** av spåret, eftersom
 budgeten läses som text. Modellens `a1` behöver det fortfarande, men det är en annan biljett.
