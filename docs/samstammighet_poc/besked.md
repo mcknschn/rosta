@@ -6,6 +6,9 @@
   [`config/samstammighet_poc/resultat.yaml`](../../config/samstammighet_poc/resultat.yaml)
 - Trösklarna: [`forhandsregistrering.md`](forhandsregistrering.md) version 1, låst före räkningen
 
+**Måttet är nedlagt sedan 2026-09-16.** Skälet står i [`avslagsskal.md`](avslagsskal.md).
+Grillningen avgjorde aldrig fråga 0. Frågan togs bort.
+
 ## 1. Utfallet
 
 **Måttet klarar alla tre trösklarna.** Det gör det i den primära uppställningen och i var och en
