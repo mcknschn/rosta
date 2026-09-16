@@ -9,8 +9,8 @@
 
 version: 1
 beslutad_av: 'ADR 0016 beslutspunkt 6'
-kodbok: 'docs/verklighetsbild_pilot/kodbok_pilot.md version 1'
-forhandsregistrering: 'docs/verklighetsbild_pilot/forhandsregistrering.md version 1'
+kodbok: 'loften/docs/verklighetsbild_pilot/kodbok_pilot.md version 1'
+forhandsregistrering: 'loften/docs/verklighetsbild_pilot/forhandsregistrering.md version 1'
 
 metod: |
   1. Läs mappning_bakat.md och kandidater_bakat.md i den ordning posterna står.

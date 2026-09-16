@@ -6,7 +6,7 @@ och importeras inte av `pipeline/build_all.py`.
 
 POC:en bygger inte måttet. Den avgör om måttet är värt att grilla, och svarar på tre frågor:
 skiljer måttet partierna, mäter det dokumentlängd, och är det neutralt mellan regering och
-opposition. Trösklarna är låsta i `docs/samstammighet_poc/forhandsregistrering.md` och ändras
+opposition. Trösklarna är låsta i `loften/docs/samstammighet_poc/forhandsregistrering.md` och ändras
 aldrig efteråt.
 
     python -m pipeline.tools.samstammighet --resultat   # steg 2 till 4: räkna och skriv
@@ -44,9 +44,9 @@ import yaml
 from pipeline import budget, config
 
 ROT = Path(__file__).resolve().parents[2]
-KORPUSKATALOG = ROT / "config" / "verklighetsbild"
-UTKATALOG = ROT / "config" / "samstammighet_poc"
-POCKATALOG = ROT / "docs" / "samstammighet_poc"
+KORPUSKATALOG = ROT / "loften" / "config" / "verklighetsbild"
+UTKATALOG = ROT / "loften" / "config" / "samstammighet_poc"
+POCKATALOG = ROT / "loften" / "docs" / "samstammighet_poc"
 
 # --- de låsta talen (förhandsregistreringen 6 och 7.2). Ändras ett av dem faller POC:en. -----
 FRO = 20260914
@@ -655,14 +655,14 @@ def rakna_resultat(
 #   scoring     A:s blandning mellan a1 och a2, och a1:s egna regler
 #   mappings    utgiftsområdenas kategorimappning OCH blocken
 KALLOR = {
-    "korpus_bakat": "config/verklighetsbild/korpus_bakat.yaml",
-    "korpus_framat": "config/verklighetsbild/korpus_framat.yaml",
+    "korpus_bakat": "loften/config/verklighetsbild/korpus_bakat.yaml",
+    "korpus_framat": "loften/config/verklighetsbild/korpus_framat.yaml",
     "delpoang_a": "dist/scores.json",
     "a1_ra": "config/budget_ramar.yaml",
     "kategorier": "config/categories.yaml",
     "poangsattning": "config/scoring.yaml",
     "blocken": "config/mappings.yaml",
-    "forhandsregistrering": "docs/samstammighet_poc/forhandsregistrering.md",
+    "forhandsregistrering": "loften/docs/samstammighet_poc/forhandsregistrering.md",
 }
 
 
@@ -713,7 +713,7 @@ def kor(
 
 
 def skriv_resultat(resultat: dict[str, Any]) -> Path:
-    """Skriver den maskinläsbara räkningen. Enda utkatalogen är config/samstammighet_poc/."""
+    """Skriver den maskinläsbara räkningen. Enda utkatalogen är loften/config/samstammighet_poc/."""
     UTKATALOG.mkdir(parents=True, exist_ok=True)
     fil = UTKATALOG / "resultat.yaml"
     fil.write_text(
@@ -723,7 +723,7 @@ def skriv_resultat(resultat: dict[str, Any]) -> Path:
         "#\n"
         "#     python -m pipeline.tools.samstammighet --resultat\n"
         "#\n"
-        "# Trösklarna är låsta i docs/samstammighet_poc/forhandsregistrering.md, skriven innan\n"
+        "# Trösklarna är låsta i loften/docs/samstammighet_poc/forhandsregistrering.md, skriven innan\n"
         "# något räknades. Inget tal här inne är ett betyg: POC:en mäter skiljbarhet och inte\n"
         "# samstämmighet. Ett glapp är ett glapp, och ingen rad läser det som ohederlighet.\n"
         "#\n"

@@ -84,18 +84,56 @@ Båda kommer ur nedlagda mått i projektet och gäller här.
    och mätte ändå fel sak. Profilavståndet korrelerade 0,998 med retorikens egen koncentration.
    Trösklar som bara prövar hur talen fördelar sig kan inte se var talen kommer ifrån. Varje
    förhandsregistrering i detta spår ska bära minst ett prov som pekar på ursprunget.
-   Se [`docs/samstammighet_poc/avslagsskal.md`](../docs/samstammighet_poc/avslagsskal.md).
+   Se [`docs/samstammighet_poc/nedlaggning.md`](docs/samstammighet_poc/nedlaggning.md).
 2. **Korsläs kodboken innan den låses.** Pilotkodbokens avsnitt 6.5 stred mot avsnitt 10. Tre
    kodare hittade motsägelsen oberoende av varandra och löste den åt olika håll.
-   Se [`docs/verklighetsbild_pilot/avslagsskal.md`](../docs/verklighetsbild_pilot/avslagsskal.md).
+   Se [`docs/verklighetsbild_pilot/avslagsskal.md`](docs/verklighetsbild_pilot/avslagsskal.md).
+
+## Mappen
+
+Allt som rör spåret flyttades hit 2026-09-16, inklusive de två förkastade måtten.
+
+```
+loften/
+  CLAUDE.md                        denna fil
+  docs/valmanifest_2026/           källdokumenten. PDF:erna ligger utanför git.
+  docs/verklighetsbild_pilot/      FÖRKASTAT mått, nedlagt 2026-09-13
+  docs/samstammighet_poc/          FÖRKASTAT mått, nedlagt 2026-09-16
+  config/verklighetsbild/          korpusarna, urvalet och pilotens resultat
+  config/samstammighet_poc/        POC:ens resultat
+```
+
+Koden ligger kvar i `pipeline/tools/` och proven i `tests/`, eftersom de är paket och inte
+dokument.
+
+### De två förkastade måtten är arkiv
+
+Dokumenten under `docs/verklighetsbild_pilot/` och `docs/samstammighet_poc/` **ändras aldrig**.
+Två av dem är dessutom hashpinnade i sitt eget resultat, så en ändrad bokstav fäller ett prov.
+
+Följden: deras relativa länkar skrevs före flytten. Står det `](../adr/...)` i en arkivfil menas
+`docs/adr/...` i repots rot, inte en katalog under `loften/`. Länken lagas inte. Filen står som
+den signerades.
+
+Nya filer i spåret skriver förstås rätt länkar.
+
+### Skillnaden mellan avslagsskäl och nedläggning
+
+- **`avslagsskal.md`** betyder att måttet **föll på sin förhandsregistrerade tröskel**.
+  Verklighetsbild gjorde det.
+- **`nedlaggning.md`** betyder att måttet lades ned **av något annat skäl**. Samstämmighet klarade
+  alla tre trösklarna, och lades ned därför att frågan byttes.
+
+Ett prov i `tests/test_samstammighet_poc.py` vaktar skillnaden: ett mått som klarade sina
+trösklar får inte bära ett avslagsskäl.
 
 ## Material
 
 **Ligger i repot**
 
-- `config/verklighetsbild/korpus_framat.yaml`: 1 073 poster ur valmanifesten 2026, typen
+- `loften/config/verklighetsbild/korpus_framat.yaml`: 1 073 poster ur valmanifesten 2026, typen
   `detta ska vi göra`. Bär **rubriker och inte full text**. Noll poster bär ett årtal.
-- `config/verklighetsbild/korpus_bakat.yaml`: 896 poster, typen `detta är ett problem`.
+- `loften/config/verklighetsbild/korpus_bakat.yaml`: 896 poster, typen `detta är ett problem`.
 - `config/budget_ramar.yaml`: partiernas egna föreslagna utgiftsramar, budgetåren 2011 till 2025.
 
 **Saknas**

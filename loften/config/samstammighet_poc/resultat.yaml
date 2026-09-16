@@ -4,7 +4,7 @@
 #
 #     python -m pipeline.tools.samstammighet --resultat
 #
-# Trösklarna är låsta i docs/samstammighet_poc/forhandsregistrering.md, skriven innan
+# Trösklarna är låsta i loften/docs/samstammighet_poc/forhandsregistrering.md, skriven innan
 # något räknades. Inget tal här inne är ett betyg: POC:en mäter skiljbarhet och inte
 # samstämmighet. Ett glapp är ett glapp, och ingen rad läser det som ohederlighet.
 #
@@ -941,14 +941,14 @@ utfall:
   klarar: true
   fallna_trosklar: *id001
 kallor:
-  korpus_bakat: config/verklighetsbild/korpus_bakat.yaml
-  korpus_framat: config/verklighetsbild/korpus_framat.yaml
+  korpus_bakat: loften/config/verklighetsbild/korpus_bakat.yaml
+  korpus_framat: loften/config/verklighetsbild/korpus_framat.yaml
   delpoang_a: dist/scores.json
   a1_ra: config/budget_ramar.yaml
   kategorier: config/categories.yaml
   poangsattning: config/scoring.yaml
   blocken: config/mappings.yaml
-  forhandsregistrering: docs/samstammighet_poc/forhandsregistrering.md
+  forhandsregistrering: loften/docs/samstammighet_poc/forhandsregistrering.md
 kallhashar:
   korpus_bakat: f6a6ae73ba232eec8de3ecae5238ad2f395e81978e45b1134e9dab8751d83f8e
   korpus_framat: 07b690fbb816a07aebcda9f4eba146c0d2b04e4df474b87e364078384e7b3b74

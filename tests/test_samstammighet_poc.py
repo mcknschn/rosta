@@ -24,8 +24,8 @@ import yaml
 from pipeline.tools import samstammighet as sam
 
 ROT = Path(__file__).resolve().parents[1]
-POC = ROT / "docs" / "samstammighet_poc"
-KONFIG = ROT / "config" / "samstammighet_poc"
+POC = ROT / "loften" / "docs" / "samstammighet_poc"
+KONFIG = ROT / "loften" / "config" / "samstammighet_poc"
 FORHANDSREG = POC / "forhandsregistrering.md"
 RESULTAT_YAML = KONFIG / "resultat.yaml"
 
@@ -675,8 +675,8 @@ _SKRIVANDE = (
 
 def test_7_verktyget_skriver_bara_i_sin_egen_utkatalog():
     """Varje skrivande rad i verktyget måste utgå från UTKATALOG, och den ligger inte i dist/."""
-    assert sam.UTKATALOG == ROT / "config" / "samstammighet_poc"
-    assert sam.UTKATALOG.relative_to(ROT).parts[0] == "config"
+    assert sam.UTKATALOG == ROT / "loften" / "config" / "samstammighet_poc"
+    assert sam.UTKATALOG.relative_to(ROT).parts[:2] == ("loften", "config")
     kallan = (ROT / "pipeline" / "tools" / "samstammighet.py").read_text(encoding="utf-8")
     skrivrader = [
         r.strip() for r in kallan.splitlines()

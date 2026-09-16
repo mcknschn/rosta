@@ -6,7 +6,7 @@
   [`config/samstammighet_poc/resultat.yaml`](../../config/samstammighet_poc/resultat.yaml)
 - Trösklarna: [`forhandsregistrering.md`](forhandsregistrering.md) version 1, låst före räkningen
 
-**Måttet är nedlagt sedan 2026-09-16.** Skälet står i [`avslagsskal.md`](avslagsskal.md).
+**Måttet är nedlagt sedan 2026-09-16.** Skälet står i [`nedlaggning.md`](nedlaggning.md).
 Grillningen avgjorde aldrig fråga 0. Frågan togs bort.
 
 ## 1. Utfallet

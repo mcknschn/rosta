@@ -310,3 +310,20 @@ och ingen regel nämner ett parti.
   diagnosens punkt 9.
 - **Ingenting i pipen, configen eller gränssnittet ändras av detta beslut.** Inga betyg rör sig,
   och `dist/` är orört.
+
+## Notering 2026-09-16: materialet har flyttat
+
+Beslutet i denna ADR står oförändrat. Sökvägarna i texten ovan gör det inte.
+
+Allt material som ADR:n pekar på ligger sedan 2026-09-16 under `loften/`, alltså i löftesspårets
+egen mapp ([#52](https://github.com/mcknschn/rosta/issues/52)):
+
+| Stod i ADR:n | Ligger nu |
+|---|---|
+| `docs/valmanifest_2026/` | `loften/docs/valmanifest_2026/` |
+| `docs/verklighetsbild_pilot/` | `loften/docs/verklighetsbild_pilot/` |
+| `config/verklighetsbild/` | `loften/config/verklighetsbild/` |
+
+Raden i `.gitignore` följde med och håller nu `loften/docs/valmanifest_2026/*.pdf` utanför git.
+
+ADR:er är beslutsprotokoll och rättas inte i efterhand. Noteringen står daterad här i stället.

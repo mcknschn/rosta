@@ -28,8 +28,8 @@ import yaml
 from pipeline.tools import verklighetsbild as vb
 
 ROT = Path(__file__).resolve().parents[1]
-PILOT = ROT / "docs" / "verklighetsbild_pilot"
-KONFIG = ROT / "config" / "verklighetsbild"
+PILOT = ROT / "loften" / "docs" / "verklighetsbild_pilot"
+KONFIG = ROT / "loften" / "config" / "verklighetsbild"
 KODBOK = PILOT / "kodbok_pilot.md"
 FORHANDSREG = PILOT / "forhandsregistrering.md"
 
@@ -359,7 +359,7 @@ def test_9_originaltexten_ar_oforandrad_mot_kallan():
 
 def test_9_pdferna_ligger_utanfor_git():
     gitignore = (ROT / ".gitignore").read_text(encoding="utf-8")
-    assert "docs/valmanifest_2026/*.pdf" in gitignore
+    assert "loften/docs/valmanifest_2026/*.pdf" in gitignore
 
 
 # ------------------------------------------------------------------------ regel 10

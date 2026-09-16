@@ -17,7 +17,7 @@ Stegen körs i biljettens ordning, och varje steg committas innan nästa börjar
 
 Räkningarna, alla prövade i `tests/test_verklighetsbild.py`:
 
-  las_bakat / las_framat   läser de tre markdownfilerna i docs/valmanifest_2026/ och ger
+  las_bakat / las_framat   läser de tre markdownfilerna i loften/docs/valmanifest_2026/ och ger
                            utsagor med stabila id. Mappade poster behåller sitt eget id.
                            Kandidater får ett härlett id av formen `<PARTI>k-<nnn>`, satt
                            av ordningen i filen.
@@ -29,7 +29,7 @@ Räkningarna, alla prövade i `tests/test_verklighetsbild.py`:
   prova_trosklarna         de två trösklarna i förhandsregistreringen.
 
 Ingen av dem avgör om ett påstående är sant. Piloten mäter utbyte och reliabilitet
-(se `docs/verklighetsbild_pilot/kodbok_pilot.md` avsnitt 1).
+(se `loften/docs/verklighetsbild_pilot/kodbok_pilot.md` avsnitt 1).
 """
 
 from __future__ import annotations
@@ -47,9 +47,9 @@ from pathlib import Path
 import yaml
 
 ROT = Path(__file__).resolve().parents[2]
-KALLKATALOG = ROT / "docs" / "valmanifest_2026"
-UTKATALOG = ROT / "config" / "verklighetsbild"
-PILOTKATALOG = ROT / "docs" / "verklighetsbild_pilot"
+KALLKATALOG = ROT / "loften" / "docs" / "valmanifest_2026"
+UTKATALOG = ROT / "loften" / "config" / "verklighetsbild"
+PILOTKATALOG = ROT / "loften" / "docs" / "verklighetsbild_pilot"
 
 # Partikoderna i `config/categories.yaml`-ordning. Ordningen är en del av dragningens
 # metod: byts den, byts urvalet.
@@ -181,7 +181,7 @@ def las_framat(rot: Path = KALLKATALOG) -> list[Utsaga]:
 def dra_urval(utsagor: list[Utsaga], fro: int, per_parti: int) -> list[Utsaga]:
     """Stratifierad dragning utan återläggning, `per_parti` ur varje parti.
 
-    Metoden är låst och står i `config/verklighetsbild/urval_pilot.yaml`: ett
+    Metoden är låst och står i `loften/config/verklighetsbild/urval_pilot.yaml`: ett
     `random.Random(fro)` sås en gång, och partierna dras i PARTIER-ordning ur varje
     partis utsagor i korpusordning. Samma frö och samma korpus ger samma urval.
     """
@@ -427,8 +427,8 @@ def skriv_urval(ut: Path = UTKATALOG / "urval_pilot.yaml") -> Path:
         "",
         "version: 1",
         "beslutad_av: 'ADR 0016 beslutspunkt 6'",
-        "kodbok: 'docs/verklighetsbild_pilot/kodbok_pilot.md version 1'",
-        "forhandsregistrering: 'docs/verklighetsbild_pilot/forhandsregistrering.md version 1'",
+        "kodbok: 'loften/docs/verklighetsbild_pilot/kodbok_pilot.md version 1'",
+        "forhandsregistrering: 'loften/docs/verklighetsbild_pilot/forhandsregistrering.md version 1'",
         "",
         "metod: |",
         "  1. Läs mappning_bakat.md och kandidater_bakat.md i den ordning posterna står.",
@@ -494,7 +494,7 @@ def blinda(utsage_id: list[str], fro: int, prefix: str) -> dict[str, str]:
 
     Utsage-id:t bär partikoden i sitt prefix. Ett blint id är det enda sättet att hålla
     kodbokens regel 11.4, alltså att kodaren aldrig väger in vilket parti utsagan kom
-    från. Nyckeln ligger i `config/verklighetsbild/blindning.yaml` och når aldrig en kodare.
+    från. Nyckeln ligger i `loften/config/verklighetsbild/blindning.yaml` och når aldrig en kodare.
     """
     blandad = list(utsage_id)
     random.Random(fro).shuffle(blandad)
@@ -518,7 +518,7 @@ sammanfattning, inga kodstaket.
 def skriv_uppdrag(ut: Path, batchstorlek: int = UTSAGOR_PER_BATCH) -> list[Path]:
     """Skriver kodningsunderlaget, ett blindat parti utsagor per batchfil.
 
-    Skriver också nyckeln till `config/verklighetsbild/blindning.yaml`, alltså UTANFÖR
+    Skriver också nyckeln till `loften/config/verklighetsbild/blindning.yaml`, alltså UTANFÖR
     `ut`. De två hör ihop: utan nyckeln går kodarens svar inte att översätta tillbaka.
     Batchfilerna går till `ut`, som ligger utanför repot, eftersom de bär kodboken plus
     utdragen och är helt härledbara ur nyckeln och korpusen.

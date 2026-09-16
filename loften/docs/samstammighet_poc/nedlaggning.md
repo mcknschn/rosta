@@ -1,4 +1,8 @@
-# Avslagsskäl: Samstämmighet byggs inte
+# Nedläggning: Samstämmighet byggs inte
+
+**Detta är inget avslagsskäl.** Måttet klarade alla tre trösklarna. Filen heter därför inte
+`avslagsskal.md`, som i projektet betyder att ett mått föll på sin förhandsregistrerade
+tröskel. Samstämmighet lades ned därför att frågan byttes.
 
 - Datum: **2026-09-16**
 - Beslutad av: projektägaren i biljett
@@ -25,7 +29,7 @@ lyfta genom att svara på fråga 0.
 
 1. **Tidsaxeln går åt fel håll.** Korpusen är valmanifesten från 2026, alltså löften inför den
    kommande perioden. Handlingssidan är a1 med budgetåren 2011 till 2025, och A är förankrad mot
-   samma fönster ([ADR 0005](../adr/0005-a-forankras-i-tid-inte-i-faltet.md)). Måttet håller
+   samma fönster ([ADR 0005](../../../docs/adr/0005-a-forankras-i-tid-inte-i-faltet.md)). Måttet håller
    alltså ett löfte mot arbete som utfördes innan löftet gavs.
 2. **Enheten är kategorin och inte löftet.** Ett parti kan lova en sak inom en kategori, arbeta
    med en annan sak inom samma kategori, och profilerna sammanfaller ändå.
@@ -57,7 +61,7 @@ Tre fynd bär vidare, oberoende av att måttet lades ned.
    prov som pekar på talens ursprung och inte bara på deras spridning.
 2. **A:s normerade profil är nästan jämn.** Varje cell ligger mellan 0,123 och 0,165, alltså tätt
    runt 1/7. Det är en egenskap hos A som mått på prioritering mot en historisk förankring
-   ([ADR 0005](../adr/0005-a-forankras-i-tid-inte-i-faltet.md)) och ingen brist. A duger däremot
+   ([ADR 0005](../../../docs/adr/0005-a-forankras-i-tid-inte-i-faltet.md)) och ingen brist. A duger däremot
    inte som andel av kraft i ett annat mått. Förhandsregistreringen 3.2 skrev det före körningen,
    och utfallet höll.
 3. **Kanalvalet avgör utfallet.** Byts handlingssidan från A till a1 rå korrelerar de två
@@ -68,7 +72,7 @@ Tre fynd bär vidare, oberoende av att måttet lades ned.
 
 - **Betygen.** Samstämmighet hade vikt 0 och ingick aldrig i någon poäng, något band eller någon
   rangordning. Vikterna 0,30 A + 0,50 B + 0,20 D, C = 0 står kvar
-  ([ADR 0002](../adr/0002-kategoripoangens-ansprak-och-vikter.md)). `dist/` är orört.
+  ([ADR 0002](../../../docs/adr/0002-kategoripoangens-ansprak-och-vikter.md)). `dist/` är orört.
 - **Trösklarna i POC:en.** De var låsta före körningen och klarades. De skrivs inte om i
   efterhand.
 - **Talen i `resultat.md`.** De får citeras som skiljbarhet och aldrig som samstämmighet, precis
