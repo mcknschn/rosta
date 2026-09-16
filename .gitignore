@@ -35,4 +35,11 @@ loften/docs/valmanifest_2022/*.pdf
 #     python -m pipeline.tools.loftesregister --underlag
 loften/underlag/
 
+# Granskningsarbetet under .granskning/ bar utvunnen text ur valmanifestens PDF:er, alltså
+# samma upphovsrättsskyddade verk som underlaget ovan. Repot är publikt, så det stannar utanför.
+.granskning/
+
+# Playwright-artefakt från rotkatalogen, motsvarar web/test-results/ ovan.
+/test-results/
+
 # Obs: /dist/ (scores.json + evidence.json) är deploy-artefakten och versionshanteras.
