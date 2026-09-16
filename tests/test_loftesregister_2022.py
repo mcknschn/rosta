@@ -155,6 +155,52 @@ def test_smal_lucka_delar_inte_spalter():
     assert [r[4] for r in lr.xy_snitt(rutor)][0] == "over"
 
 
+def test_smal_ranna_delar_anda_spalterna():
+    """M sätter sina spalter med elva punkters ränna, och tröskeln måste ligga under den.
+
+    Ligger tröskeln över rännan vägras den lodräta delningen, och snittet faller tillbaka
+    på vågräta band. Då läses sidan vänster, höger, vänster, höger, och ett stycke som
+    löper från vänsterspaltens fot till högerspaltens hjässa får sin andra halva före sin
+    första. Måtten är hämtade ur M:s sida 3.
+    """
+    rutor = [
+        _ruta(304.7, 206.8, 527.6, 264.6, "hoger ett"),
+        _ruta(63.8, 205.9, 293.6, 294.5, "vanster ett"),
+        _ruta(304.7, 281.8, 526.6, 354.6, "hoger tva"),
+        _ruta(63.8, 311.7, 289.1, 369.5, "vanster tva"),
+    ]
+    assert [r[4] for r in lr.xy_snitt(rutor)] == [
+        "vanster ett",
+        "vanster tva",
+        "hoger ett",
+        "hoger tva",
+    ]
+
+
+def test_rubrik_over_bada_spalterna_delas_av_en_harfin_lucka():
+    """KD:s sida 2: rubriken korsar rännan, och luckan under den är 0,2 punkter.
+
+    Rubriken hindrar den lodräta delningen, eftersom den täcker båda spalterna. Då måste
+    den vågräta delningen skilja av rubrikbandet, annars faller snittet igenom till en
+    sortering på y som läser vänster, höger, höger, vänster. Måtten är hämtade ur KD:s
+    sida 2.
+    """
+    rutor = [
+        _ruta(24.2, 4.1, 418.3, 190.1, "rubrik"),
+        _ruta(26.9, 190.3, 205.2, 429.1, "vanster ett"),
+        _ruta(227.5, 190.3, 405.4, 389.5, "hoger ett"),
+        _ruta(227.5, 396.8, 402.6, 569.6, "hoger tva"),
+        _ruta(26.9, 436.4, 206.3, 569.6, "vanster tva"),
+    ]
+    assert [r[4] for r in lr.xy_snitt(rutor)] == [
+        "rubrik",
+        "vanster ett",
+        "vanster tva",
+        "hoger ett",
+        "hoger tva",
+    ]
+
+
 def test_ensam_ruta_star_kvar():
     assert lr.xy_snitt([_ruta(0, 0, 10, 10, "en")]) == [_ruta(0, 0, 10, 10, "en")]
 
@@ -486,3 +532,60 @@ def test_varje_differens_ar_avgjord_fore_lasningen():
         if fall.get("beslut") in (None, "")
     ]
     assert not oavgjort, f"registret ar last men dessa fall star oavgjorda: {oavgjort}"
+
+
+# ------------------------------------------------------------------- tackningen
+
+# Block som instruktionens version 3 lamnar utanfor med avsikt, trots sin langd.
+# Var rad ar ett dokument och ett blocknummer, med skalet. Listan ar avsiktligt kort:
+# den bar bara satsens egna delar, aldrig ett stycke av partiets text.
+TILLATNA_LANGA_LUCKOR: dict[str, dict[int, str]] = {
+    # Diagrammet `Sa har arbetslosheten forandrats i EU sedan 2014` pa M:s sida 5.
+    # Blocket ar de 27 landernas namn under stapelaxeln, ett namn per rad. Det raknas
+    # som langt bara for att namnen fogas ihop till en strang, inte for att det bar
+    # lopande text. Blocket fore ar diagramrubriken och blocken efter ar axeltalen.
+    "M": {51: "axeletiketterna i diagrammet pa sida 5, 27 landsnamn"},
+}
+
+# En rubrik, en bildtext, ett sidnummer, ett sidhuvud eller en tryckortsrad ar aldrig
+# 200 tecken lopande text. Ett otackt block over den langden ar darfor ett stycke som
+# genomgangen tappade, inte satsens form.
+LANGT_BLOCK = 200
+
+
+def _underlag_finns() -> bool:
+    return all(lr.underlagsfil(d["id"]).is_file() for d in lr.dokument())
+
+
+@pytest.mark.skipif(
+    not REGISTER.is_file() or not _underlag_finns(),
+    reason="underlaget ligger utanfor git, och provet kan inte koras utan det",
+)
+def test_inget_langt_block_ligger_utanfor_registret():
+    """Version 3 av instruktionen: ett listlost avsnitt har stycket som enhet.
+
+    Foljden ska vara att inget stycke av partiets text hamnar utanfor registret. Provet
+    mater just det, och det ar det enda provet som skulle ha fallit pa version 2: da lag
+    379 brodtextstycken utanfor, darav hela S:s slutkapitel om utrikespolitiken.
+    """
+    tagna: dict[str, set[int]] = {}
+    for post in _register()["poster"]:
+        for lo, hi in lr.tolka_spann(post["rader"]):
+            tagna.setdefault(post["parti"], set()).update(range(lo, hi + 1))
+
+    luckor = []
+    for dok in lr.dokument():
+        kod = dok["id"]
+        block: dict[int, list] = {}
+        for rad in lr.las_underlag(lr.underlagsfil(kod)):
+            block.setdefault(rad.block, []).append(rad)
+        tillatna = TILLATNA_LANGA_LUCKOR.get(kod, {})
+        for nr, rader in block.items():
+            if any(r.nr in tagna.get(kod, set()) for r in rader):
+                continue
+            text = " ".join(r.text for r in rader)
+            if len(text) < LANGT_BLOCK or nr in tillatna:
+                continue
+            luckor.append(f"{kod} block {nr} (rad {rader[0].nr}): {text[:70]}")
+
+    assert not luckor, f"{len(luckor)} langa block ligger utanfor registret: {luckor[:8]}"

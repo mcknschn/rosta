@@ -49,11 +49,24 @@ HAMTMANIFEST = PDF_KATALOG / "hamtmanifest.yaml"
 UNDERLAG = ROT / "loften" / "underlag" / "valmanifest_2022"
 KONFIG = ROT / "loften" / "config" / "loftesregister_2022"
 
-# Kolumnrännan i ett valmanifest är bred. Radavståndet inom en spalt är det inte.
+# Kolumnrännan i ett valmanifest är smal. Radavståndet inom en spalt är smalare.
 # Tröskeln skiljer de två, och en lodrät delning provas före en vågrät, så att en
 # tillfällig lucka mellan två punkter i samma spalt aldrig fogar ihop två spalter.
-RANNA_MIN = 14.0
-BAND_MIN = 3.0
+#
+# Talet är mätt och inte valt. M sätter sina spalter med 8,9 till 12,2 punkters ränna,
+# och de sju andra dokumenten sätts i en spalt eller med en ränna på 50 punkter och mer.
+# Utfallet är identiskt för varje tröskel mellan 7,0 och 10,0, och 8,5 ligger mitt på den
+# platån. Vid 12,0 och uppåt flätas M:s spalter ihop: sidan läses vänster, höger, vänster,
+# och ett stycke som löper över spaltbytet får sin andra halva före sin första.
+RANNA_MIN = 8.5
+# Den vågräta delningen bevarar alltid ordningen, eftersom den skiljer band uppifrån och
+# ned. Den behöver därför ingen bred lucka för att vara säker, och tröskeln är låg med
+# flit. Dess uppgift är att skilja av ett band som korsar rännan, typiskt en rubrik över
+# båda spalterna, så att spalterna därunder kan delas lodrätt. KD sätter luckan under en
+# sådan rubrik till 0,2 punkter. Utfallet är identiskt för varje tröskel mellan 0,01 och
+# 0,2, och vid 0,3 och uppåt faller KD:s sida 2 igenom till en sortering på y som läser
+# vänster, höger, höger, vänster.
+BAND_MIN = 0.1
 
 
 # ------------------------------------------------------------------------ hämtmanifest
