@@ -28,4 +28,11 @@ loften/docs/valmanifest_2026/*.pdf
 # Samma skäl gäller valmanifesten 2022, inlagda 2026-09-16 för löftesspåret (#52).
 loften/docs/valmanifest_2022/*.pdf
 
+# Textunderlaget för löftesregistret (#54) är hela dokumentet, ord för ord. Det är samma
+# upphovsrättsskyddade verk som PDF:en och stannar därför också utanför git. Registret bär
+# de citerade löftena, och `underlag_sha256` i register.yaml binder registret till det
+# underlag det drogs ur. Bygg om underlaget med:
+#     python -m pipeline.tools.loftesregister --underlag
+loften/underlag/
+
 # Obs: /dist/ (scores.json + evidence.json) är deploy-artefakten och versionshanteras.

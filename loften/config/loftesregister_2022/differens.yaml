@@ -1,0 +1,224 @@
+# Rösta - DIFFERENSEN mellan de två blinda genomgångarna (biljett #54, beslut 7).
+#
+# Tre tal per dokument: poster bara A har, poster bara B har, och poster båda har
+# men styckat olika. Talen är räknade av pipeline/tools/loftesregister.py på
+# radspann i underlaget, aldrig på avskriven text.
+#
+# PROJEKTÄGAREN AVGÖR VARJE FALL INNAN LÅSNINGEN. Fältet `beslut` tar:
+#   a       A:s styckning gäller
+#   b       B:s styckning gäller
+#   ingen   fallet är ingen post och faller ur registret
+#   <spann> projektägarens egen gräns, till exempel 93-99 eller 93-95,98-99
+# `skal` är frivilligt och står kvar i filen som spår av avgörandet.
+#
+# Ett oavgjort fall stoppar bygget. Det är avsiktligt: en tyst förvald sida vore
+# ett avgörande utan avgörare.
+
+version: 1
+
+summa:
+  bara_a: 8
+  bara_b: 7
+  styckat_olika: 2
+
+dokument:
+  S:
+    poster_a: 40
+    poster_b: 40
+    delade: 40
+    bara_a: 0
+    bara_b: 0
+    styckat_olika: 0
+    fall: []
+  M:
+    poster_a: 253
+    poster_b: 253
+    delade: 253
+    bara_a: 0
+    bara_b: 0
+    styckat_olika: 0
+    fall: []
+  SD:
+    poster_a: 42
+    poster_b: 42
+    delade: 42
+    bara_a: 0
+    bara_b: 0
+    styckat_olika: 0
+    fall: []
+  C:
+    poster_a: 94
+    poster_b: 96
+    delade: 92
+    bara_a: 0
+    bara_b: 2
+    styckat_olika: 2
+    fall:
+      - slag: styckat_olika
+        sida: 8
+        a_rader: '260-265'
+        b_rader: '260-263'
+        a: "Det ska vara enkelt och billigt att installera solpaneler, bygga laddning till elbilar och minska energianvändningen hemma - vare sig man bor i hus eller lägenhet. Det kan vi lösa genom att bredda och skala upp det gröna avdraget och göra det enklare att installera solpaneler på flerfamiljshus. Det ska finnas gott om laddplatser längs våra vägar och på våra parkeringar i hela landet."
+        b: "Det ska vara enkelt och billigt att installera solpaneler, bygga laddning till elbilar och minska energianvändningen hemma - vare sig man bor i hus eller lägenhet. Det kan vi lösa genom att bredda och skala upp det gröna avdraget och göra det enklare att installera solpaneler på flerfamiljshus."
+        beslut: null
+        skal: null
+      - slag: bara_b
+        sida: 8
+        a_rader: null
+        b_rader: '264-265'
+        a: null
+        b: "Det ska finnas gott om laddplatser längs våra vägar och på våra parkeringar i hela landet."
+        beslut: null
+        skal: null
+      - slag: bara_b
+        sida: 15
+        a_rader: null
+        b_rader: '548'
+        a: null
+        b: "Matchningen måste förbättras. Alla ska ha rätt till en effektiv matchningstjänst och det ska bli lättare att hitta medarbetare inom alla yrken."
+        beslut: null
+        skal: null
+      - slag: styckat_olika
+        sida: 15
+        a_rader: '548-550'
+        b_rader: '549-550'
+        a: "Matchningen måste förbättras. Alla ska ha rätt till en effektiv matchningstjänst och det ska bli lättare att hitta medarbetare inom alla yrken. Utbildningssystemet behöver i betydligt större utsträckning utgå från arbetsmarknadens behov."
+        b: "Utbildningssystemet behöver i betydligt större utsträckning utgå från arbetsmarknadens behov."
+        beslut: null
+        skal: null
+  V:
+    poster_a: 43
+    poster_b: 43
+    delade: 38
+    bara_a: 5
+    bara_b: 5
+    styckat_olika: 0
+    fall:
+      - slag: bara_a
+        sida: 3
+        a_rader: '58-60'
+        b_rader: null
+        a: "Därför vill Vänsterpartiet använda valrörelsen till ett avstamp för att genom öppna samtal lägga grunden till en bred folkrörelse där vi tillsammans kämpar för omställningen till ett mer rättvist, tryggt och hållbart samhälle."
+        b: null
+        beslut: null
+        skal: null
+      - slag: bara_b
+        sida: 8
+        a_rader: null
+        b_rader: '291-297'
+        a: null
+        b: "Välfärdsskulden som uppstått innebär att hundratusentals jobb försvunnit ur skola, vård och omsorg sedan 1990-talet, och det behövs en politisk vilja för att successivt börja bygga upp en bättre kvalitet igen. Men politikens ansvar stannar inte vid offentliganställda. Det som gjorde Sverige till en ledande industrination var de politiska beslut som då innebar byggandet av en miljon bostäder under kort tid, byggandet av infrastruktur och utbyggnad av välfärd åt alla. Investeringar i jämlikhet, jämställdhet och trygghet är bra också för de svenska företagen."
+        beslut: null
+        skal: null
+      - slag: bara_b
+        sida: 8
+        a_rader: null
+        b_rader: '298-302'
+        a: null
+        b: "Genom en politik för högre löner för dem med lägst inkomster så skapas efterfrågan. Pensionärer som får högre pension gör så att affären kan hålla öppet på en liten ort. När politiken levererar välfärd, försäkringar som a-kassa, pensioner och sjukpenning, om staten satsar stort på klimatomställning och infrastruktur, då skapas jobb i företagen och möjligheter att leva och bo i hela landet."
+        beslut: null
+        skal: null
+      - slag: bara_b
+        sida: 8
+        a_rader: null
+        b_rader: '303-315'
+        a: null
+        b: "När högern och näringslivets lobbyorganisationer talar om flexibilitet på arbetsmarknaden menar de i klarspråk försämrad anställningstrygghet, och sanningen är att arbetslivet har blivit allt mer otryggt för många av oss som arbetar. Otryggheten skapas genom tillfälliga anställningar, sms-jobb, gig-jobb, deltidsjobb och bemanningsjobb. Otrygga anställningar leder till tysta arbetsplatser och lägre facklig organisationsgrad. Du bråkar inte gärna med den chef som dagen efter kan avsluta din anställning. Du tar inte strid mot sexuella trakasserier eller diskriminering om det kan kosta dig nästa jobbpass. Få av oss väljer den osäkra arbetssituationen frivilligt. De flesta av oss vill ha en viss trygghet för att kunna planera våra liv, skaffa en bostad, kunna ta semester eller veta att vi lugnt kan sätta barnen i skola utan att behöva flytta från orten inom några år. Samhällsutvecklingen går stick i stäv med människors behov. Sedan förra valet har andelen unga som tycker att kollektivavtal och fast anställning är viktigt ökat kraftigt."
+        beslut: null
+        skal: null
+      - slag: bara_b
+        sida: 9
+        a_rader: null
+        b_rader: '332-341'
+        a: null
+        b: "Ett tryggt samhälle ställer inte människor mot varandra. När högerpartier förespråkar låglönejobb och begränsad välfärd för de av oss som inte är födda i Sverige bygger det på ett cyniskt utnyttjande av människor, ibland förklätt till antirasism. När människors utsatta situation utnyttjas pressas allas våra löner och våra möjligheter ner. Därför behöver vi hålla ihop. Det är inte när någon annan får sämre villkor som du får bättre villkor. Tvärtom, vi har ett gemensamt intresse av att förbättra villkoren istället för att öka den vinst som ett fåtal kan göra på våra arbetsinsatser. Det är inte genom tidsbegränsade uppehållstillstånd som integrationen förbättras. Tvärtom, det är genom en trygg och permanent tillvaro i samhället som vi människor rotar oss. Genom att hålla ihop skapar vi trygga liv för alla."
+        beslut: null
+        skal: null
+      - slag: bara_b
+        sida: 12
+        a_rader: null
+        b_rader: '471-477'
+        a: null
+        b: "De massiva skattesänkningar som genomförts av högerpartier och socialdemokrater under många år har resulterat i att det nu finns 350 miljarder mindre per år till välfärden än 1990. Därför är det färre som jobbar inom välfärden, trots att vi har blivit fler i Sverige. I takt med att skatterna på de mest förmögna minskat ökar trycket på lokal- och regionalpolitiker att höja skatten för att slippa skära ner ytterligare. Det är en omvänd fördelningspolitik, där pengar flyttas från allas vår välfärd till ett fåtal redan rika."
+        beslut: null
+        skal: null
+      - slag: bara_a
+        sida: 16
+        a_rader: '628-635'
+        b_rader: null
+        a: "Det är hög tid för förändring. Vänsterpartiet satte ner foten kring marknadshyror för att nu är gränsen nådd. Ska vi alla ha en framtid som vi kan tro på, så är det Vänsterpartiet som ska leda den politiska förändringen. Vänsterpartiet är ett parti som lägger sin energi på konkreta politiska reformer för att återuppbygga och utveckla de trygghetssystem som rivits ner, en kraftfull grön omställning med jobb och välfärd i hela landet, i både storstad och glesbygd, förort och landsbygd. Ett parti som står upp för oss alla, inte bara en liten rik elit. Vänsterpartiet ställer krav på kollektivavtal vid offentliga upphandlingar."
+        b: null
+        beslut: null
+        skal: null
+      - slag: bara_a
+        sida: 16
+        a_rader: '636-651'
+        b_rader: null
+        a: "Politik är inte något som händer någon annanstans. Det är tillsammans med folkrörelser som Vänsterpartiet driver fram förändringar. Vårt parti är också en stolt del av en internationellt växande vänster som i åratal kritiserat politikens blinda tro på marknaden och agerat mot dess konsekvenser. Kapitalismen och klimathotet har inga landgränser. Därför är vi en rörelse som sätter den internationella solidariteten högt på dagordningen. Vänsterpartiet är ett socialistiskt, feministiskt och antirasistiskt parti på ekologisk grund. Asylrätten undergrävs just nu i land efter land. När rasismen växer, länder sluter sig och EU bygger murar ska Sverige agera för flyktingars rättigheter och försvara asylrätten både i Sverige och internationellt. Vänsterpartiet anser att Sverige ska vara en röst för fred och rättvisa, inte för ökad militarisering. Sverige ska öka biståndet, stärka FN och skriva under kärnvapenkonventionen. Därför är Vänsterpartiet motståndare till Sveriges allt djupare militära samarbete med NATO och EU, och vi är det enda riksdagspartiet som konsekvent värnar och vill återupprätta svensk alliansfrihet. Vänsterpartiet vill att Sverige river upp värdlandsavtalet med NATO. I en rättvis värld måste den globala ojämlikheten kraftigt minskas."
+        b: null
+        beslut: null
+        skal: null
+      - slag: bara_a
+        sida: 16
+        a_rader: '652-660'
+        b_rader: null
+        a: "Vänsterpartiet vill ha en regering som står till vänster i svensk politik. Vänsterpartiet kommer att arbeta för att en sådan regering har modet att driva vänsterpolitik och stå emot nyliberalism och rasism. Vänsterpartiet samarbetar gärna med andra partier, men bara om resultatet av arbetet innebär ökad jämlikhet, grön omställning och kraftigt stärkt välfärd. För oss står inte valet mellan två dåliga alternativ. Du som väljare håller förmodligen inte med oss i alla frågor. Det är ok. Men detta valår är det viktigt att lägga sin röst på ett vänsterparti som du kan lita på och som har modet att stå upp för sina ideal. För den som vill ha mer vänsterpolitik så finns det bara Vänsterpartiet att rösta på i detta val."
+        b: null
+        beslut: null
+        skal: null
+      - slag: bara_a
+        sida: 17
+        a_rader: '674-679'
+        b_rader: null
+        a: "Vi står vid en vändpunkt. Det som måste göras kommer att ta tid. Men det viktiga är att bryta trenden, och att istället för att acceptera fler försämringar börja bygga framtiden. Det finns självklara och brådskande problem att lösa för att rädda jorden från klimathotet. Välfärden måste byggas upp, jämlikheten stärkas och framförallt måste politiken ta ansvar för samhällsutvecklingen och lösa de behov som finns hos människor och miljö."
+        b: null
+        beslut: null
+        skal: null
+  KD:
+    poster_a: 46
+    poster_b: 46
+    delade: 46
+    bara_a: 0
+    bara_b: 0
+    styckat_olika: 0
+    fall: []
+  MP:
+    poster_a: 114
+    poster_b: 111
+    delade: 111
+    bara_a: 3
+    bara_b: 0
+    styckat_olika: 0
+    fall:
+      - slag: bara_a
+        sida: 3
+        a_rader: '8'
+        b_rader: null
+        a: "solidaritet med djur, natur och det ekologiska systemet"
+        b: null
+        beslut: null
+        skal: null
+      - slag: bara_a
+        sida: 3
+        a_rader: '9'
+        b_rader: null
+        a: "solidaritet med kommande generationer"
+        b: null
+        beslut: null
+        skal: null
+      - slag: bara_a
+        sida: 3
+        a_rader: '10'
+        b_rader: null
+        a: "solidaritet med världens alla människor"
+        b: null
+        beslut: null
+        skal: null
+  L:
+    poster_a: 75
+    poster_b: 75
+    delade: 75
+    bara_a: 0
+    bara_b: 0
+    styckat_olika: 0
+    fall: []
