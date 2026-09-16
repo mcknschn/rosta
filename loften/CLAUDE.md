@@ -212,10 +212,14 @@ trösklar får inte bära ett avslagsskäl.
   **Alla åtta adresser är belagda** i `hamtmanifest.yaml`: varje URL hämtades om och den
   hämtade filens SHA-256 jämfördes byte för byte. V:s dokument heter `valplattform`, vilket
   är partiets eget ord för samma slags dokument.
-- `loften/config/loftesregister_2022/register.yaml`: **löftesregistret 2022, 729 poster**, låst och
-  hashpinnat 2026-09-16 (#54). En rad per löfte med full lydelse, sidnummer och parti. Inget
-  kategorifält (beslut 11). Bredvid ligger de två blinda genomgångarna, differensen med
-  projektägarens 21 avgöranden, och arkivet över V:s första körning. Läsanvisningen står i
+- `loften/config/loftesregister_2022/register.yaml`: **löftesregistret 2022, 1120 poster**, låst
+  och hashpinnat 2026-09-16 (#54). En rad per löfte med full lydelse, sidnummer och parti. Inget
+  kategorifält (beslut 11). Bredvid ligger de **tre** blinda genomgångarna, differensen med
+  projektägarens 15 avgöranden, och arkivet över den första låsningen på 729 poster. Den första
+  låsningen band styckeregeln till hela dokumentet, vilket lät registret mäta typografi: andelen
+  av dokumentets text som kom med gick från 27 procent hos M till 98 hos V. Version 3 av
+  instruktionen flyttar regeln till avsnittsnivå, och spannet är nu 89 till 100 procent.
+  Läsanvisningen står i
   [`docs/loftesregister_2022/registret.md`](docs/loftesregister_2022/registret.md).
 
 **Saknas**
