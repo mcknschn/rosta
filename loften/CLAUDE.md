@@ -96,7 +96,8 @@ Allt som rör spåret flyttades hit 2026-09-16, inklusive de två förkastade m�
 ```
 loften/
   CLAUDE.md                        denna fil
-  docs/valmanifest_2026/           källdokumenten. PDF:erna ligger utanför git.
+  docs/valmanifest_2022/           källdokumenten 2022. PDF:erna ligger utanför git.
+  docs/valmanifest_2026/           källdokumenten 2026. PDF:erna ligger utanför git.
   docs/verklighetsbild_pilot/      FÖRKASTAT mått, nedlagt 2026-09-13
   docs/samstammighet_poc/          FÖRKASTAT mått, nedlagt 2026-09-16
   config/verklighetsbild/          korpusarna, urvalet och pilotens resultat
@@ -135,10 +136,13 @@ trösklar får inte bära ett avslagsskäl.
   `detta ska vi göra`. Bär **rubriker och inte full text**. Noll poster bär ett årtal.
 - `loften/config/verklighetsbild/korpus_bakat.yaml`: 896 poster, typen `detta är ett problem`.
 - `config/budget_ramar.yaml`: partiernas egna föreslagna utgiftsramar, budgetåren 2011 till 2025.
+- `loften/docs/valmanifest_2022/`: de åtta dokumenten inför valet 2022, inlagda 2026-09-16.
+  **Alla åtta adresser är belagda** i `hamtmanifest.yaml`: varje URL hämtades om och den
+  hämtade filens SHA-256 jämfördes byte för byte. V:s dokument heter `valplattform`, vilket
+  är partiets eget ord för samma slags dokument.
 
 **Saknas**
 
-- Valmanifesten 2022.
 - Budgetåret 2026, ur bet. 2025/26:FiU1.
 - Full lydelse och sidnummer i korpusen.
 - Regeringens propositioner, som regel 2 kräver.
@@ -155,6 +159,10 @@ frysningen hindrar.
 
 **Skriv ned URL och hämtdatum samtidigt som filen sparas.** Adresserna till valmanifesten 2026
 skrevs aldrig ned och går inte att återskapa. Den luckan upprepas inte.
+
+Går en adress ändå förlorad finns en väg tillbaka, och den användes för 2022: leta upp
+dokumentet, hämta det på nytt och jämför SHA-256 byte för byte mot filen på disk. Stämmer
+hashen är adressen **belagd** och inte gissad. Stämmer den inte skrivs ingen URL.
 
 ## Nedläggning är en godkänd utgång
 
