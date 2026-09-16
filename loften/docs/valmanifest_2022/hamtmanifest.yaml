@@ -1,0 +1,112 @@
+# Rösta - hämtmanifest för valmanifesten 2022 (löftesspåret, biljett #52).
+#
+# PDF:erna ligger UTANFÖR git, av samma skäl som 2026 års: repot är publikt och dokumenten
+# är upphovsrättsskyddade verk. `.gitignore` håller dem utanför sedan 2026-09-16.
+#
+# ADRESSERNA ÄR BELAGDA, INTE UPPGIVNA. Varje URL nedan hämtades på nytt 2026-09-16 och
+# den hämtade filens SHA-256 jämfördes byte för byte med filen på disk. Alla åtta stämde
+# exakt. En URL står här bara om den träffade.
+#
+# Detta är skillnaden mot 2026 års hämtmanifest, där `url` är tom för alla åtta eftersom
+# adresserna aldrig skrevs ned. Den luckan upprepas inte.
+#
+# BEGRÄNSNINGEN, i klartext: hashen styrker VILKET dokument som lästes, men den återskapar
+# det inte. Dör partiets URL finns ingen väg tillbaka till dokumentet. `arkivadress` är ett
+# frivilligt fält för en kopia hos oberoende tredje part, och är tomt för alla åtta.
+
+version: 1
+hamtdatum_kalla: 'uppgivet av projektägaren 2026-09-16, styrkt av omhämtning samma dag'
+belagg: 'omhämtad 2026-09-16 med curl, SHA-256 jämförd byte för byte mot filen på disk'
+dokument:
+  - id: S
+    filnamn: s-valmanifest-2022.pdf
+    dokumenttitel: 'Socialdemokraternas valmanifest 2022: Vårt Sverige kan bättre'
+    hamtdatum: 2026-09-16
+    url: 'https://www.socialdemokraterna.se/download/18.36cb33a81817fcdd3ec50a0/1661417788892/Valmanifest%20tryck%20(1).pdf'
+    arkivadress: null
+    sidor: 17
+    byte: 1902090
+    sha256: 4809ebbbc4e6b5f13311366e22e361b2e9663084f52376fc00bb5edea3790a35
+    url_belagd: true
+  - id: M
+    filnamn: m-valmanifest-2022.pdf
+    dokumenttitel: 'Moderaternas valmanifest 2022: Så får vi ordning på Sverige'
+    hamtdatum: 2026-09-16
+    url: 'https://moderaterna.se/app/uploads/2022/08/moderaternas_valmanifest_2022_webversion.pdf'
+    arkivadress: null
+    sidor: 40
+    byte: 1083087
+    sha256: d47a978d8af289a6740715a5dfc714a165d10763d4f266b18b67724d983cb5c6
+    url_belagd: true
+  - id: SD
+    filnamn: sd-valmanifest-2022.pdf
+    dokumenttitel: 'Sverigedemokraternas valmanifest 2022'
+    hamtdatum: 2026-09-16
+    url: 'https://www.sd.se/wp-content/uploads/2022/08/valmanifest.pdf'
+    arkivadress: null
+    sidor: 12
+    byte: 7016822
+    sha256: e166f63c0c9b619ee9cf1a5ef72effc9ce0d7a0b720a8edfde199b03540fc6c6
+    url_belagd: true
+  - id: C
+    filnamn: c-valmanifest-2022.pdf
+    dokumenttitel: 'Centerpartiets valmanifest 2022: För Sveriges bästa'
+    hamtdatum: 2026-09-16
+    url: 'https://www.centerpartiet.se/download/18.35b6d81319c986cebc41f44f/1772711642589/Valmanifest%202022%20Utskrift%20ny.pdf'
+    arkivadress: null
+    sidor: 25
+    byte: 162804
+    sha256: 11a37f23306f3cfc3e71d174da321dba091479e7b79458cf844701a3aa708364
+    url_belagd: true
+  - id: V
+    filnamn: v-valplattform-2022.pdf
+    dokumenttitel: 'Vänsterpartiets valplattform 2022'
+    hamtdatum: 2026-09-16
+    url: 'https://www.vansterpartiet.se/wp-content/uploads/2022/07/valplattform-2022.pdf'
+    arkivadress: null
+    sidor: 17
+    byte: 261593
+    sha256: c8560f56aeeaa22595d8471c8b7736c352251ac84c58e79ca6ca7f1982a3c97c
+    url_belagd: true
+  - id: KD
+    filnamn: kd-valmanifest-2022.pdf
+    dokumenttitel: 'Kristdemokraternas valmanifest 2022: Redo för en ny regering'
+    hamtdatum: 2026-09-16
+    url: 'https://kristdemokraterna.se/download/18.2e2b5b3e18180017d1be0d/1660223521596/Valmanifest2022-KD.pdf'
+    arkivadress: null
+    sidor: 12
+    byte: 1269643
+    sha256: d83d1bfca8c2e620bc202610d86870ad6999dffe011a36c7b36b256612b614e9
+    url_belagd: true
+  - id: MP
+    filnamn: mp-valmanifest-2022.pdf
+    dokumenttitel: 'Miljöpartiets valmanifest 2022: Alla ska med när Sverige ställer om'
+    hamtdatum: 2026-09-16
+    url: 'https://www.mp.se/wp-content/uploads/2022/08/valmanifest2022_hela_a4_klart.pdf'
+    arkivadress: null
+    sidor: 12
+    byte: 140694
+    sha256: f6e9567d82b8a47b3eead83d76beca10bbaef76f3e7a7ab52768e144ec73c47a
+    url_belagd: true
+  - id: L
+    filnamn: l-valmanifest-2022.pdf
+    dokumenttitel: 'Liberalernas valmanifest 2022: Maktskifte för ett nytt Sverige'
+    hamtdatum: 2026-09-16
+    url: 'https://www.liberalerna.se/wp-content/uploads/valmanifest-2022.pdf'
+    arkivadress: null
+    sidor: 19
+    byte: 190778
+    sha256: 67913d793c33b56d8e5f56cd2474ef915ce3d228ddcdc11a9572c08b598c2276
+    url_belagd: true
+
+# Två noteringar om enskilda dokument.
+#
+# V: partiet kallar sitt dokument `valplattform` och inte `valmanifest`. Sidhuvudet på varje
+# sida lyder `Vänsterpartiets valplattform 2022`. Det är partiets eget dokument inför valet
+# 2022, alltså samma slags dokument som de sju övriga. Projektet har godtagit avvikande namn
+# förut: S:s dokument 2026 heter `Valprogram`.
+#
+# M: filens PDF-metadata säger att den skapades 2026-03-17 med Ghostscript, alltså långt efter
+# valet. Den filen är vad partiet självt serverar idag, och den hämtade kopian stämmer byte för
+# byte. Byten är därför inte augusti 2022 års original, men dokumentet är partiets eget.
+# De sju övriga bär skapandedatum från februari till augusti 2022.
