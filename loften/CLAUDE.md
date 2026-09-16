@@ -3,6 +3,10 @@
 Allt under `loften/` hör till detta spår. Projektets rot-CLAUDE.md gäller fortfarande för
 språk, källor och skrivregler. Denna fil säger var spåret **avviker**.
 
+Spårets form avgjordes 2026-09-16 i [#52](https://github.com/mcknschn/rosta/issues/52). De 34
+besluten står med sina skäl i
+[beslutsdokumentet](docs/beslut/2026-09-16-sparets-form.md). Denna fil bär reglerna i kort form.
+
 ## Frågan spåret ställer
 
 **Vad lovar ett parti sina väljare inför ett val, och har partiet sedan arbetat med det löftet?**
@@ -44,14 +48,24 @@ Därför gäller:
 
 | Partiets läge | Vad som räknas som framläggande |
 |---|---|
-| Opposition | Partiets egna motioner och egen budgetmotion |
-| Regering | Regeringens propositioner och budgetpropositionen, tillskrivna regeringspartierna |
+| Opposition | Partiets **partimotioner och kommittémotioner**, och egen budgetmotion |
+| Regering | Regeringens propositioner och budgetpropositionen, **kollektivt på alla regeringspartier** |
+| Stödparti | Samma som opposition. Den saknade budgetkanalen är en **lucka, aldrig en nolla** |
 
 Detta är **ingen maktkorrigering i efterhand**. Båda lägena mäts med sitt eget instrument, så
 ingen justering behövs efteråt.
 
-Två fall är olösta och ska avgöras innan något byggs. En koalitionsproposition bärs av flera
-partier. Ett stödparti är varken regering eller ren opposition.
+**Enskild motion räknas aldrig.** Den är en ledamots papper och inte partiets. Fältet `subtyp` i
+riksdagens dokumentlista bär skillnaden. Riksmötet 2023/24 lade M 612 enskilda motioner av 613,
+och V 1 av 124. Detta avviker från hur `a2` räknar i modellen, där alla motioner ingår.
+Avvikelsen är avsiktlig. Om `a2` bär samma fel är en egen fråga för en egen biljett.
+
+**Budgeten läses som text**, aldrig som ramtal. Budgetmotionen och budgetpropositionen är dokument
+som alla andra. Att pröva ett löfte mot en ram kräver en magnitud, och magnituden avvisas.
+
+De två fall som stod olösta är avgjorda 2026-09-16: en koalitionsproposition bärs kollektivt
+(RF 7 kap. 3 §), och ett stödparti mäts som opposition. Skälen står i beslut 15 och 17 i
+[beslutsdokumentet](docs/beslut/2026-09-16-sparets-form.md).
 
 ### 3. Spåret väger 0 och rör aldrig rangordningen
 
@@ -61,6 +75,60 @@ C = 0 står orörda (ADR 0002). `dist/` skrivs aldrig av detta spår.
 ### 4. Utfall hör inte hit
 
 Varje text som antyder att ett uppfyllt löfte är bra för Sverige är ett fel i spåret.
+
+## Formen i korthet
+
+Reglerna nedan binder lika hårt som de fyra ovan. Skälen står i
+[beslutsdokumentet](docs/beslut/2026-09-16-sparets-form.md), med beslutsnumret inom parentes.
+
+**Löftessidan**
+
+- Posten följer dokumentets egen struktur, samma regel för båda årgångarna (3).
+- Ovanpå ligger ett **atomiseringslager**: en post som bär flera skilda åtgärder styckas, med
+  provet "kan det här bli två skilda motioner?", och ursprungspostens id står kvar (4).
+- Registret dras om ur PDF:erna med full lydelse och sidnummer. Korpusen står orörd och blir en
+  tredje oberoende genomgång (5).
+- **Prövbart löfte** avgörs av handlingsprovet: posten namnger en åtgärd som går att lägga på
+  papper. Bortfallet redovisas per parti (6).
+- Kompletthet beläggs med **två blinda genomgångar**, tre differenstal per dokument, och
+  projektägaren avgör varje differens innan låsning (7).
+- Registret låses hårt och hashpinnat. Enda öppningen är en errata-rad för ett avskrivningsfel (8).
+- Alla löften räknas, också de utanför de sju kategorierna (9).
+- Spåret får en **egen, längre kategorilista**, men innehållet bestäms först när 2022 är mappat.
+  Extraktionen bär inget kategorifält. En ärlig rest är tillåten (10, 11, 12).
+- Båda årgångarna visas. 2026 utan kolumn för uppfyllelse, inte ens en tom (13).
+
+**Handlingssidan**
+
+- Perioden är hela mandatperioden 2022 till 2026 (21).
+- Löften som inget riksdagspapper kan bära räknas bort ur nämnaren, och antalet redovisas per
+  parti. Gränsen är snäv: kommun, region och EU ligger **innanför** (22).
+- Pappret hittas genom sökning från löftet, plus ett omvänt stickprov som mäter vad sökningen
+  missar (23).
+- **Tummen är binär**, och kopplingen bär dokumentets id (24).
+- Uppfyllelsen kodas i två blinda genomgångar (25).
+
+**Redovisning**
+
+- Talen räknas per parti och kategori, i **absoluta tal**. En cell utan löften skriver
+  "inget löfte" (26).
+- Maktläget står som etikett per parti och år, och regeringsår poolas aldrig med oppositionsår (27).
+- Antalet konkreta förslag publiceras per parti som upplysning om nämnaren, aldrig som omdöme (28).
+- Två filer per årgång, register och utfall. Celltalen räknas fram i kod till spårets egen utfil,
+  aldrig till `dist/` (29).
+
+**Kvalitet**
+
+- Tre förhandsregistrerade prov: kodaröverensstämmelse, missgrad och **korsprovet**, alltså samma
+  sökning mot ett annat partis papper (31).
+- Faller ett prov läggs spåret **inte** ned. Talet publiceras inte, metoden lagas och körs om under
+  ny förhandsregistrering med eget datum, och den fällda körningen ligger kvar i arkivet (32).
+- Trösklarnas siffror sätts i förhandsregistreringen, innan en enda kodning görs (33).
+
+**Bygget**
+
+1. Mappa alla åtta valmanifest 2022. Hela registret, ingen pilot.
+2. Kategorilistan, och flödestestet på **KD** från löfte till tumme (34).
 
 ## Förhållandet till projektets ADR:er
 
@@ -143,9 +211,11 @@ trösklar får inte bära ett avslagsskäl.
 
 **Saknas**
 
-- Budgetåret 2026, ur bet. 2025/26:FiU1.
-- Full lydelse och sidnummer i korpusen.
-- Regeringens propositioner, som regel 2 kräver.
+- Full lydelse och sidnummer. De hamnar i ett **nytt register**, aldrig i den frysta korpusen.
+- Regeringens propositioner, som regel 2 kräver. Ingen kod i projektet hämtar dem i dag.
+
+Budgetåret 2026 ur bet. 2025/26:FiU1 stod här tidigare. Det **behövs inte** av spåret, eftersom
+budgeten läses som text. Modellens `a1` behöver det fortfarande, men det är en annan biljett.
 
 ## Frysningen
 
