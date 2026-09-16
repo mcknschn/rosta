@@ -1,0 +1,109 @@
+# Rösta - ARKIV: V:s första genomgångar, körda under instruktionens version 1.
+#
+# Beslut 32 i loften/docs/beslut/2026-09-16-sparets-form.md kräver att en fälld körning
+# ligger kvar i arkivet när metoden lagas och körs om. Detta är den körningen.
+#
+# VARFÖR DEN KÖRDES OM. Instruktionens version 1 gick inte att tillämpa på V:s
+# valplattform, som saknar lista helt. Den sade både att enheten är den finaste nivå
+# dokumentet markerar, alltså stycket, och att löpande brödtext inte är en post, vilket
+# träffar varje stycke i V. De två kan inte gälla samtidigt. Följden blev att båda
+# genomgångarna sållade på innehåll utan att skriva ned sållet: 50 av 77 brödtextstycken
+# var, samma 67 uteslutna, och 10 fall där de gick isär.
+#
+# Skälet står i genomgangsinstruktion.md under Ändringar, och i registret.md.
+# Filen ändras aldrig.
+
+version: 1
+instruktion: 'version 1, 2026-09-16'
+arkiverat: 2026-09-16
+dokument: V
+
+genomgang_a:
+  - '58-60'
+  - '124-133,136-157'
+  - '158-168'
+  - '169-180'
+  - '183-194'
+  - '195-207'
+  - '208-218'
+  - '219-226,229-238'
+  - '250-262'
+  - '263-274,277-278'
+  - '279-286'
+  - '316-319'
+  - '322-331'
+  - '342-359'
+  - '360-363'
+  - '366-370'
+  - '371-375'
+  - '385-401'
+  - '402-407,410-413'
+  - '414-419'
+  - '420-423'
+  - '424-427'
+  - '428-445'
+  - '463-470'
+  - '478-490'
+  - '491-494'
+  - '495-497,500-513'
+  - '515-527'
+  - '528-533'
+  - '534-543,546-549'
+  - '550-557'
+  - '558-564'
+  - '565-567'
+  - '569-576'
+  - '577-586,589-591'
+  - '592-597'
+  - '598-611'
+  - '612-617'
+  - '619-624'
+  - '628-635'
+  - '636-651'
+  - '652-660'
+  - '674-679'
+
+genomgang_b:
+  - '124-133,136-157'
+  - '158-168'
+  - '169-180'
+  - '183-194'
+  - '195-207'
+  - '208-218'
+  - '219-226,229-238'
+  - '250-262'
+  - '263-274,277-278'
+  - '279-286'
+  - '291-297'
+  - '298-302'
+  - '303-315'
+  - '316-319'
+  - '322-331'
+  - '332-341'
+  - '342-359'
+  - '360-363'
+  - '366-370'
+  - '371-375'
+  - '385-401'
+  - '402-407,410-413'
+  - '414-419'
+  - '420-423'
+  - '424-427'
+  - '428-445'
+  - '463-470'
+  - '471-477'
+  - '478-490'
+  - '491-494'
+  - '495-497,500-513'
+  - '515-527'
+  - '528-533'
+  - '534-543,546-549'
+  - '550-557'
+  - '558-564'
+  - '565-567'
+  - '569-576'
+  - '577-586,589-591'
+  - '592-597'
+  - '598-611'
+  - '612-617'
+  - '619-624'

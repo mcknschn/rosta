@@ -15,12 +15,11 @@ ingenting annat. Om åtgärden var klok avgörs av delpoäng B och D i modellen,
 | Underlaget draget ur alla åtta PDF:er | klart |
 | Två blinda genomgångar per dokument | klart |
 | De tre differenstalen räknade per dokument | klart |
-| Varje differens avgjord av projektägaren | **öppet, 13 fall** |
-| Registret byggt och hashpinnat | väntar på avgörandet |
+| Varje differens avgjord av projektägaren | klart, 21 fall |
+| Registret byggt och hashpinnat | klart, **729 poster** |
 
-Bygget stannar med flit vid avgörandet. `pipeline/tools/loftesregister.py --bygg` vägrar skriva
-registret så länge ett fall står oavgjort, eftersom en tyst förvald sida vore ett avgörande utan
-avgörare.
+Registret är låst. `pipeline/tools/loftesregister.py --bygg` vägrar skriva det så länge ett fall
+står oavgjort, eftersom en tyst förvald sida vore ett avgörande utan avgörare.
 
 ## Underlaget
 
@@ -75,7 +74,7 @@ i varje dokument. Talen är räknade på genomgång A.
 | M | en punkt i listorna som inleds med `Moderaterna kommer att:` | 253 av 253 | 0 | 204 | 27 % |
 | SD | ett förslag i listorna som inleds med `Några av Sverigedemokraternas vallöften:` | 0 | 0 | 42 | 61 % |
 | C | en punkt i en `reformagenda` | 94 av 94 | 0 | 94 | 35 % |
-| V | **ett stycke löptext** | 0 | 0 | 42 | 66 % |
+| V | **ett stycke i den löpande texten** | 0 | 0 | 68 | 98 % |
 | KD | en punkt i listan under kapitlets rubrik | 0 | 0 | 46 | 49 % |
 | MP | en punkt i listan efter `Vi vill:` | 114 av 114 | 0 | 2 | 51 % |
 | L | ett numrerat löfte, `1.` till `75.` | 0 | 75 av 75 | 74 | 66 % |
@@ -83,9 +82,10 @@ i varje dokument. Talen är räknade på genomgång A.
 **V avviker, och avvikelsen är ett faktum om dokumentet.** Vänsterpartiets valplattform 2022 bär
 ingen listmarkör, inget löpnummer och ingen rad som annonserar en uppräkning. Den är löptext under
 rubriker. Den finaste nivå dokumentet självt markerar är därför stycket, och V:s poster är stycken
-medan M:s är punkter i en lista. Det är också där de två genomgångarna gick isär mest.
+medan M:s är punkter i en lista. V:s poster täcker 98 procent av dokumentets tecken, mot 27 procent
+hos M. Talen mäter dokumentens form, inte partiernas vilja.
 
-Fjorton poster bärs av **flera radspann**: 7 hos V, 6 hos S och 1 hos C. Punkten bryts där av en
+Sexton poster bärs av **flera radspann**: 9 hos V, 6 hos S och 1 hos C. Punkten bryts där av en
 sidbrytning, och sidnumret däremellan hör inte till löftet.
 
 ### C kördes om
@@ -98,6 +98,31 @@ lagades, och **båda genomgångarna kördes om för C i nya sammanhang**. Radnum
 Utfallet är värt att skriva ned: genomgång A gav exakt samma 94 poster som förut, medan genomgång
 B gick från 96 till 94. C:s fyra differenser försvann helt, och dokumentet går nu ihop på varje
 post.
+
+### V kördes också om, och av ett tyngre skäl
+
+Instruktionens version 1 gick inte att tillämpa på V. Den sade både att enheten är den finaste nivå
+dokumentet självt markerar, vilket för V är stycket, och att löpande brödtext inte är en post,
+vilket träffar vart och ett av V:s stycken. De två kan inte gälla samtidigt.
+
+Följden var att båda genomgångarna gjorde något tredje: de tog 50 av 77 brödtextstycken var och
+sållade på innehåll utan att skriva ned sållet. De sållade lika i 67 fall och olika i 10. Fem
+stycken som **båda** uteslöt beskriver ett problem utan att namnge en åtgärd, vilket är
+handlingsprovet i beslut 6 tillämpat ett steg för tidigt. Ett register som låses på ett osagt såll
+går inte att göra om.
+
+Instruktionen fick därför ett nytt avsnitt, `Dokument utan liststruktur`, och V kördes om under
+version 2. Ändringen står i klartext i
+[instruktionens ändringsnot](genomgangsinstruktion.md#ändringar), och den första körningen ligger
+kvar i [`arkiv/v_genomgangar_version1.yaml`](../../config/loftesregister_2022/arkiv/v_genomgangar_version1.yaml).
+Det är vad spärren i beslut 32 kräver av en omkörning. De sju andra dokumenten bär alla en lista,
+så klausulen kan inte falla ut för dem, och de kördes inte om.
+
+Omkörningen gav ett mycket renare utfall. **Båda genomgångarna tog exakt samma 647 av V:s 689
+rader**, och de 42 som blev över är identiska i båda: 16 sidhuvuden, 16 sidnummer och 10
+kapitelrubriker. Ingen oenighet alls om vad som är text. Kvar stod nio stycken som bryts av en
+sidbrytning, där A fogade ihop halvorna och B lät dem stå som två poster. Instruktionens avsnitt
+`Sidbrytningen` svarar på det, så alla nio avgjordes till A.
 
 ## De två blinda genomgångarna
 
@@ -128,47 +153,57 @@ samma rad, och antalet rader ingen post tog är räknat. Sexton prövningar, nol
 | M | 253 | 253 | 253 | 0 | 0 | 0 |
 | SD | 42 | 42 | 42 | 0 | 0 | 0 |
 | C | 94 | 94 | 94 | 0 | 0 | 0 |
-| V | 43 | 43 | 38 | 5 | 5 | 0 |
+| V | 68 | 77 | 59 | 0 | 9 | 9 |
 | KD | 46 | 46 | 46 | 0 | 0 | 0 |
 | MP | 114 | 111 | 111 | 3 | 0 | 0 |
 | L | 75 | 75 | 75 | 0 | 0 | 0 |
-| **Summa** | **707** | **704** | **699** | **8** | **5** | **0** |
+| **Summa** | **732** | **738** | **720** | **3** | **9** | **9** |
 
-Sex av åtta dokument gav noll i alla tre talen. De två som inte gjorde det är de två där
-dokumentets egen struktur är svagast:
+Sex av åtta dokument gav noll i alla tre talen, alltså samma svar på varje post. De två som inte
+gjorde det gav 21 fall, och alla 21 är av två slag:
 
-- **V** står för tio av de tretton fallen. Dokumentet bär ingen lista alls, så gränsen mellan ett
-  förslag och ett resonemang vilar helt på ett omdöme.
-- **MP** har tre fall, alla samma sak: de tre raderna om solidaritet på sidan 3, som den ena
-  genomgången läste som punkter och den andra som partiets värdegrund.
+- **V, arton fall.** Nio stycken bryts av en sidbrytning. A fogade ihop halvorna till en post med
+  två radspann, B lät dem stå som två poster. Varje par ger ett `styckat olika` och ett `bara B`.
+  Det är ingen tolkningsfråga: instruktionens avsnitt `Sidbrytningen` säger att posten bärs av
+  flera radspann, och varje första halva slutar mitt i en mening.
+- **MP, tre fall.** De tre raderna om solidaritet på sidan 3, som den ena genomgången läste som
+  punkter och den andra som partiets värdegrund.
 
-Inget fall är av slaget **styckat olika**. Där båda genomgångarna såg en post drog de också
-gränsen på samma rad, i alla 699 fallen.
+## Projektägarens avgöranden
+
+Alla 21 fall är avgjorda, och varje avgörande står med sitt skäl i
+[`differens.yaml`](../../config/loftesregister_2022/differens.yaml).
+
+| Fall | Avgörande | Skäl |
+|---|---|---|
+| V, nio stycken över en sidbrytning | A:s styckning | Instruktionens avsnitt `Sidbrytningen` gäller redan. Samma regel bär de sex hos S och den hos C som båda genomgångarna var eniga om från början. |
+| V, nio andra halvor | ingen post | Raderna ligger redan i den hopfogade posten. En egen post skulle ta samma rader två gånger. |
+| MP, tre solidaritetsrader | ingen post | Raderna bär MP:s värdegrund och ingen åtgärd. De står som punkter i dokumentet, men innehållet är inte ett löftesled. |
+
+MP-avgörandet är det enda där innehållet fick väga tyngre än strukturen, och det är projektägarens
+kall.
 
 Varje fall står i [`differens.yaml`](../../config/loftesregister_2022/differens.yaml) med båda
 genomgångarnas lydelse, sidnummer och radspann, och ett tomt `beslut`.
 
 ## Antal poster per parti
 
-Talen nedan är vad de två genomgångarna redan är eniga om, alltså registret utan de tretton
-oavgjorda fallen. Det slutliga antalet sätts när differensen är avgjord.
-
-| Parti | Poster (eniga) | Sidor i dokumentet |
+| Parti | Poster | Sidor i dokumentet |
 |---|---|---|
 | S | 40 | 17 |
 | M | 253 | 40 |
 | SD | 42 | 12 |
 | C | 94 | 25 |
-| V | 38 | 17 |
+| V | 68 | 17 |
 | KD | 46 | 12 |
 | MP | 111 | 12 |
 | L | 75 | 19 |
-| **Summa** | **699** | |
+| **Summa** | **729** | |
 
 **Antalet följer dokumentets form, inte partiets vilja.** M får 253 poster och S 40 därför att M
 skriver korta punkter genom fyrtio sidor medan S buntar sina förslag i fyrtio längre punkter, inte
-därför att M lovar sex gånger mer. V:s 38 är stycken och inte punkter, och är därför inte samma
-slags tal som de övriga. Partier rangordnas aldrig efter antalet, och den här meningen ska stå
+därför att M lovar sex gånger mer. V:s 68 är stycken och inte punkter, och är därför inte samma
+slags tal som de övriga alls. Partier rangordnas aldrig efter antalet, och den här meningen ska stå
 intill talet varje gång det visas (beslut 28).
 
 ## Vad registret inte bär
@@ -181,15 +216,16 @@ intill talet varje gång det visas (beslut 28).
 
 ## Låsningen
 
-När differensen är avgjord byggs registret med
+Registret är byggt och låst 2026-09-16 med
 
 ```
-python -m pipeline.tools.loftesregister --bygg <datum>
+python -m pipeline.tools.loftesregister --bygg 2026-09-16
 ```
 
-Filen bär då sin egen SHA-256, räknad över filen utan just den raden, och varje dokuments PDF-hash
-ur hämtmanifestet. `tests/test_loftesregister_2022.py` räknar om hashen och faller på en ändrad
-bokstav.
+Filen bär sin egen SHA-256, räknad över filen utan just den raden, och varje dokuments PDF-hash ur
+hämtmanifestet plus underlagets hash. `tests/test_loftesregister_2022.py` räknar om hashen. Provet
+är kört mot en ändrad bokstav i en lydelse och föll, och passerade igen när bokstaven lades
+tillbaka.
 
 Efter låsningen ändras ingen post. Enda öppningen är en **errata-rad** för ett avskrivningsfel som
 går att belägga mot PDF:en, med datum och skäl (beslut 8). Fältet `errata` finns i filen och är

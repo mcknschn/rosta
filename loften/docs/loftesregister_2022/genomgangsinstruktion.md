@@ -4,6 +4,8 @@
 > [#54](https://github.com/mcknschn/rosta/issues/54). Den är låst och lika för A och B.
 > Beslut 7 i [beslutsdokumentet](../beslut/2026-09-16-sparets-form.md) kräver att de två
 > genomgångarna får samma instruktion och arbetar i skilda kontexter.
+>
+> **Version 2, 2026-09-16.** Ändringen mot version 1 står längst ned.
 
 ## Uppgiften
 
@@ -59,6 +61,8 @@ Den förkortas aldrig.
 
 - Rubriker, kapitelrubriker och mellanrubriker.
 - Löpande brödtext, inledningar och resonemang som inte står som en punkt i en lista.
+  **Denna punkt gäller bara dokument som bär en lista.** Saknar dokumentet lista helt,
+  läs avsnittet `Dokument utan liststruktur` nedan.
 - Den rad som annonserar listan, alltså raden som slutar med kolon.
 - Innehållsförteckning, sidnummer, sidhuvud och sidfot.
 - Tryckortsuppgifter, ISBN, upplaga, grafisk form, webbadresser och konton i sociala
@@ -69,6 +73,31 @@ Den förkortas aldrig.
 
 En punkt är en post även när innehållet ligger utanför de sju kategorier Rösta mäter
 (beslut 9). Ingen punkt sorteras bort på ämne.
+
+## Dokument utan liststruktur
+
+Ett dokument kan sakna lista helt: ingen listmarkör, inget löpnummer, och ingen rad som
+annonserar en uppräkning. Då är den finaste nivå dokumentet självt markerar **stycket**, och
+**varje stycke i dokumentets löpande text är en post**.
+
+Tre saker binder när regeln gäller:
+
+1. **Regeln gäller hela dokumentet eller inte alls.** Bär dokumentet en lista någonstans
+   gäller de fyra signalerna ovan i stället, också i de kapitel som saknar lista.
+2. **Innehållet avgör aldrig.** Ett stycke som bara beskriver ett problem är en post lika
+   mycket som ett stycke som namnger en åtgärd. Var stycket står i dokumentet avgör inte
+   heller: ett stycke i inledningen och ett i slutkapitlet är poster på samma villkor som ett
+   stycke mitt i ett sakkapitel.
+3. **Bara satsens egna delar faller bort.** Listan under `Vad som inte är en post` ersätts
+   här av en kortare: rubriker, bildtexter, diagramrubriker, sidnummer, sidhuvuden,
+   innehållsförteckning, tryckortsuppgifter och namnunderskrifter. Ingenting annat utesluts.
+   Ett stycke som slutar med en uppmaning att rösta är alltså en post, medan en rubrik som
+   lyder `Rösta på partiet!` inte är det.
+
+Skälet till punkt 2: prövbarheten avgörs av handlingsprovet i beslut 6, i en senare biljett.
+Sållar genomgången på innehåll redan här görs det provet två gånger, en gång utan nedskriven
+regel. Ett stycke som utesluts här kan dessutom aldrig komma tillbaka, eftersom låsningen i
+beslut 8 bara öppnar för avskrivningsfel.
 
 ## Sidbrytningen
 
@@ -104,3 +133,31 @@ poster:
 3. **Varje rad i ett spann finns i underlaget.** Radnumren skrivs av, aldrig av minnet.
 4. **Inga poster utelämnas för att de liknar varandra.** Står samma förslag två gånger i
    dokumentet blir det två poster.
+
+## Ändringar
+
+### Version 2, 2026-09-16: avsnittet `Dokument utan liststruktur` tillagt
+
+Version 1 gick inte att tillämpa på V:s valplattform, som saknar lista helt. Den sade två
+saker som inte kan gälla samtidigt för ett sådant dokument:
+
+- enheten är den finaste nivå dokumentet självt markerar, vilket för V är stycket, och
+- löpande brödtext är inte en post, vilket träffar vart och ett av V:s stycken.
+
+Följer man den första regeln har V 77 poster. Följer man den andra har V noll. Båda
+genomgångarna gjorde i stället något tredje: de tog 50 brödtextstycken var och sållade på
+innehåll utan att skriva ned sållet. De sållade lika i 67 fall och olika i 10. Fem stycken
+som **båda** uteslöt beskriver ett problem utan att namnge en åtgärd, vilket är
+handlingsprovet i beslut 6 tillämpat ett steg för tidigt.
+
+Motsägelsen är av samma slag som den i pilotkodboken, där avsnitt 6.5 stred mot avsnitt 10
+och tre kodare löste den åt olika håll. Spårets andra lärdom säger att kodboken ska korsläsas
+innan den låses. Version 1 blev inte korsläst.
+
+**Följden:** V körs om, båda genomgångarna, under version 2. Den första körningen ligger kvar
+i [`arkiv/v_genomgangar_version1.yaml`](../../config/loftesregister_2022/arkiv/v_genomgangar_version1.yaml)
+och ändras aldrig.
+
+**De sju andra dokumenten körs inte om.** Alla sju bär en lista, så klausulen kan inte falla
+ut för dem, och ingen annan rad i instruktionen är ändrad. Deras två genomgångar gav samma
+svar på 661 poster av 661.

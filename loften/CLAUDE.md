@@ -212,13 +212,14 @@ trösklar får inte bära ett avslagsskäl.
   **Alla åtta adresser är belagda** i `hamtmanifest.yaml`: varje URL hämtades om och den
   hämtade filens SHA-256 jämfördes byte för byte. V:s dokument heter `valplattform`, vilket
   är partiets eget ord för samma slags dokument.
-- `loften/config/loftesregister_2022/`: de två blinda genomgångarna och differensen mellan dem
-  (#54). Läsanvisningen står i [`docs/loftesregister_2022/registret.md`](docs/loftesregister_2022/registret.md).
+- `loften/config/loftesregister_2022/register.yaml`: **löftesregistret 2022, 729 poster**, låst och
+  hashpinnat 2026-09-16 (#54). En rad per löfte med full lydelse, sidnummer och parti. Inget
+  kategorifält (beslut 11). Bredvid ligger de två blinda genomgångarna, differensen med
+  projektägarens 21 avgöranden, och arkivet över V:s första körning. Läsanvisningen står i
+  [`docs/loftesregister_2022/registret.md`](docs/loftesregister_2022/registret.md).
 
 **Saknas**
 
-- Det låsta 2022-registret. Genomgångarna är klara och differensen räknad, men **13 fall väntar
-  på projektägarens avgörande** (beslut 7), och bygget vägrar skriva registret innan dess.
 - Regeringens propositioner, som regel 2 kräver. Ingen kod i projektet hämtar dem i dag.
 
 **Utanför git**
