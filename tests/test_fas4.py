@@ -4,16 +4,18 @@ from __future__ import annotations
 
 import pytest
 
-from pipeline import effects
+from pipeline import config, effects
 
 
 def test_aggregate_effects_net_support_direction_and_confidence() -> None:
     claims = [
         {"id": "claim:evidence_effect:1", "type": "evidence_effect", "party": "M",
          "category": "ekonomi", "indicator": "arbetsloshet", "direction": "positive",
+         "policy_type": "typ_a",
          "evidence_level": "authority_evaluation", "effect_strength": "high", "confidence": "high"},
         {"id": "claim:evidence_effect:2", "type": "evidence_effect", "party": "M",
          "category": "ekonomi", "indicator": "arbetsloshet", "direction": "negative",
+         "policy_type": "typ_a",
          "evidence_level": "single_study_report", "effect_strength": "medium", "confidence": "medium"},
     ]
     eff = effects.aggregate_effects(claims)
@@ -21,9 +23,11 @@ def test_aggregate_effects_net_support_direction_and_confidence() -> None:
     e = eff[0]
     assert (e["party"], e["category"], e["indicator"]) == ("M", "ekonomi", "arbetsloshet")
     assert e["expected_direction"] == "down"  # ur categories.yaml
-    # ADR 0004: kvalitetsviktat medel av storlekar med tecken.
-    # q1=0.8*0.85=0.68, m1=+1.0 · q2=0.5*0.6=0.30, m2=-0.6 -> net=(0.68-0.18)/0.98
-    assert e["net_support"] == pytest.approx(0.5102, abs=1e-3)
+    # ADR 0019: poolning INOM åtgärdstypen, sedan summa mot budgeten K = R x m_max.
+    # Båda claimen ligger på samma typ, så x_t är det kvalitetsviktade medlet:
+    # q1=0.8*0.85=0.68, m1=+1.0 · q2=0.5*0.6=0.30, m2=-0.6 -> x_t=(0.68-0.18)/0.98
+    k = int(config.scoring()["B_evidens"]["saturation_action_types"]) * 1.0
+    assert e["net_support"] == pytest.approx(0.5102 / k, abs=1e-3)
     assert e["confidence"] == pytest.approx(0.725, abs=1e-3)
     assert "claim:evidence_effect:1" in e["supporting_claims"]
     assert "claim:evidence_effect:2" in e["contradicting_claims"]
@@ -82,7 +86,7 @@ def test_shipped_party_positions_are_sourced_not_fabricated() -> None:
     # källa (kort beteckning + URL + dok-id + ordagrant utdrag).
     from pipeline import config
     pp = config.party_positions()
-    assert pp.get("version") == 2  # sign-off 2026-06-07 (B-grön + integration-svepen); v1 = 2026-06-05
+    assert pp.get("version") == 3  # 2026-09-16 (#50): Klimatklivet-svepet; v2 = 2026-06-07; v1 = 2026-06-05
     assert pp.get("status") == "expert_reviewed"
     parties = set(config.party_codes())
     ledger_policies = {e["policy_type"] for e in config.evidence_ledger()["entries"]}

@@ -399,6 +399,10 @@ function buildMethod() {
      <p>Efter varje betyg står ett spann, till exempel 3,3-4,1. Spannet visar hur säkert
      kategoribetyget är. Det säger däremot ingenting om vilket av två partier som ligger före det
      andra.</p>
+     <p class="warn"><b>Spannet är preliminärt.</b> Vi har nyligen ändrat hur betygen räknas, men
+     spannets bredd är ännu satt efter det gamla sättet. Den är alltså inte omräknad för de nya
+     talen. Felet går åt det försiktiga hållet: spannet är hellre för brett än för smalt. Vi
+     räknar om det, och till dess ska spannet läsas som ungefärligt.</p>
      ${stabilityMethodHTML()}
      ${ceilingMethodHTML()}
      <p>Appen mäter vad ett förslag väntas ge för resultat, inte vilken väg partiet väljer dit.

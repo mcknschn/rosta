@@ -19,6 +19,41 @@ from . import config
 _FLIP = {"positive": "negative", "negative": "positive", "mixed": "mixed", "unclear": "unclear"}
 
 
+def _dedup_estimands(ledger: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Ett estimand bidrar EN gång i sin nod (ADR 0019 beslut 10).
+
+    Noden är (evaluation_id, indikator, åtgärdstyp). Två rader som delar nod OCH estimand men
+    bär olika storlek eller riktning är en motsägelse om analysenheten, aldrig ett tyst
+    medelvärde: hård fail, så redaktören tvingas lösa den.
+
+    Regeln har noll aktiva fall i dagens liggare. Den byggs ändå, eftersom estimatorn annars
+    gör något tyst och fel den dag en andra rad landar i samma nod, och antalet rader då blir
+    en dold vikt.
+    """
+    sedda: dict[tuple[str, str, str, str], dict[str, Any]] = {}
+    ut: list[dict[str, Any]] = []
+    for e in ledger:
+        nyckel = (
+            config.evaluation_id(e), config.estimand_id(e), e["indicator"], e["policy_type"],
+        )
+        tidigare = sedda.get(nyckel)
+        if tidigare is None:
+            sedda[nyckel] = e
+            ut.append(e)
+            continue
+        samma = all(
+            tidigare.get(f) == e.get(f)
+            for f in ("direction", "effect_strength", "evidence_level", "confidence")
+        )
+        if not samma:
+            raise config.ConfigError(
+                "samma utvärdering och estimand med olika storlek i noden "
+                f"{nyckel[0]} / {e['indicator']} / {e['policy_type']}: analysenheten är "
+                "motsägelsefull och måste lösas i liggaren"
+            )
+    return ut
+
+
 def build_evidence_effect_claims(
     positions: list[dict[str, Any]] | None = None,
     ledger: list[dict[str, Any]] | None = None,
@@ -31,12 +66,14 @@ def build_evidence_effect_claims(
     if positions is None:
         positions = config.party_positions().get("entries") or []
     if ledger is None:
-        # Bara poster som passerar den symmetriska evidensgrinden (rubriken §5, ADR 0006).
-        # En utlyft post står kvar i liggaren med källa och skäl men ger inga claims.
-        ledger = config.admitted_ledger_entries()
+        # Bara poster som passerar den symmetriska evidensgrinden (rubriken §5, ADR 0006)
+        # OCH vars åtgärdstyp inte är spärrad från jämförande poängsättning (ADR 0019).
+        # En utlyft eller spärrad post står kvar i liggaren med källa och skäl men ger
+        # inga claims. De två uteslutningarna är skilda och blandas aldrig ihop.
+        ledger = config.scoring_eligible_ledger_entries()
 
     by_policy: dict[str, list[dict[str, Any]]] = {}
-    for e in ledger:
+    for e in _dedup_estimands(ledger):
         by_policy.setdefault(e["policy_type"], []).append(e)
 
     claims: list[dict[str, Any]] = []
@@ -50,6 +87,7 @@ def build_evidence_effect_claims(
             claims.append({
                 "id": f"claim:evidence_effect:{party}:{policy}:{e['category']}:{e['indicator']}",
                 "type": "evidence_effect", "party": party,
+                "policy_type": policy,
                 "category": e["category"], "indicator": e["indicator"],
                 "direction": direction,
                 "evidence_level": e["evidence_level"],

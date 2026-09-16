@@ -92,8 +92,11 @@ def test_b_coverage_shrink_av_ger_okrympt_b(monkeypatch: pytest.MonkeyPatch) -> 
     off = scorerun.build(con)["scores"]["scores"]
     cell_on = on["C"]["integration"]["components"]["B"]
     cell_off = off["C"]["integration"]["components"]["B"]
-    assert cell_on == pytest.approx(3.475, abs=1e-3)   # 2,5 + (4,00 - 2,5) * 0,65
-    assert cell_off == pytest.approx(4.0, abs=1e-3)    # B_raw, okrympt
+    # Låst som RELATION och inte som två tal. Magnituderna var 3,475 och 4,00 före ADR 0019
+    # och flyttade med formen; invarianten reglaget prövar är att avstängd krympning ger B_raw
+    # och påslagen drar exakt täckningsandelen mot neutral.
+    assert cell_on == pytest.approx(2.5 + (cell_off - 2.5) * 0.65, abs=1e-3)
+    assert cell_on < cell_off, "krympningen ska dra mot neutral, aldrig från"
     assert "B_shrink_65/100" in off["C"]["integration"]["flags"]
     con.close()
 

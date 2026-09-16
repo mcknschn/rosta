@@ -1,0 +1,387 @@
+# Rösta — åtgärdstypsregistret (ADR 0019 beslut 6, biljett #50)
+#
+# VERSIONERAT OCH SLUTET. Varje åtgärdstyp som förekommer i party_positions.yaml eller
+# evidence_ledger.yaml måste stå här. En typ utanför registret ger HÅRD FAIL.
+#
+# D1, den frusna avgränsningsregeln: två poster får registreras som SKILDA åtgärdstyper endast
+# om minst en versionslåst källa behandlar dem som separata, självständigt ställningstagbara
+# BESLUTSPUNKTER. Skillnaden dokumenteras med källhänvisning och exakt beslutsenhet. Språkliga
+# varianter, underpunkter och samtidiga genomföranden utgör inte i sig skilda typer. Vid
+# oenighet mellan källor gäller den MINST UPPDELADE indelning som ändå bevarar explicit
+# separata beslutspunkter.
+#
+# ATT DELA ELLER SLÅ IHOP EN TYP ÄR EN SKALÄNDRING, inte ett datatillskott: summan går över
+# åtgärdstyper, så indelningen är en del av mätskalan. En delning går genom samma
+# versionsmaskineri som en ändring av R. Delning eller sammanslagning efter att beräkningen
+# har påbörjats är förbjuden.
+#
+# HÄRKOMST: harledd = beslutsenheten är den starkaste positionsradens källa och ordagranna
+# citat, alltså ett yrkande eller en votering som redan är verifierad mot fulltexten.
+# handskriven = typen saknar positionsrad och avgränsningen är skriven för hand.
+
+version: 1
+types:
+- id: aktiveringskrav_ekonomiskt_bistand
+  harkomst: harledd
+  kalla: Budgetmotion (L) – data.riksdagen.se/H9024181
+  kalltyp: budgetmotion
+  doc_id: H9024181
+  datum: '2021-10-01'
+  beslutsenhet: Liberalerna vill därför utöka möjligheterna för kommuner att ställa krav på motprestation
+    för försörjningsstöd.
+- id: arbetsmarknadsutbildning
+  harkomst: harledd
+  kalla: Budgetmotion (KD) – data.riksdagen.se/H8023409
+  kalltyp: budgetmotion
+  doc_id: H8023409
+  datum: '2020-10-06'
+  beslutsenhet: Regeringen tillför i budgetpropositionen 2021 772 miljoner kr till arbetsmarknadsutbildningen.
+    Kristdemokraterna minskar det tillskottet med 372 miljoner kr för 2021 och 200 miljoner kr per år
+    2022 – 2023, under anslag 1:3.
+- id: ateraktiverad_utokad_varnplikt
+  harkomst: harledd
+  kalla: Kommittemotion (L) – data.riksdagen.se/H3022265
+  kalltyp: kommittemotion
+  doc_id: H3022265
+  datum: '2015-10-06'
+  beslutsenhet: En återinförd värnplikt skulle innebära att vi aktiverar värnpliktslagen där en allmän
+    och könsneutral mönstringsplikt ska ingå.
+- id: atgarder_mot_invasiva_frammande_arter
+  harkomst: harledd
+  kalla: Enhälligt betänkande 2025/26:MJU13 punkt 1; S särskilt yttrande välkomnar lagskärpningen
+  kalltyp: betankande
+  doc_id: HD01MJU13 punkt 1
+  datum: '2026-03-12'
+  beslutsenhet: Vi socialdemokrater välkomnar förslaget om att regelverket för invasiva främmande arter
+    skärps. Vi står därmed bakom utskottets ställningstagande.
+- id: atgarder_mot_otillaten_paverkan_offentlig_sektor
+  harkomst: harledd
+  kalla: Kommittemotion (S) – data.riksdagen.se/HD023586
+  kalltyp: kommittemotion
+  doc_id: HD023586
+  datum: '2025-10-07'
+  beslutsenhet: Riksdagen ställer sig bakom det som anförs i motionen om att Sveriges kommuner bör ges
+    resurser och rätt förutsättningar för det brottsförebyggande arbetet, däribland möjlighet till utvidgade
+    bakgrundskontroller på blivande anställda och befintlig personal, och tillkännager detta för regeringen.
+- id: begransa_biometrisk_realtidsovervakning_rattssakerhet
+  harkomst: harledd
+  kalla: 'Votering bet. 2025/26:JuU28 (prop. 2025/26:150), punkt 1 (reservation 1, C: avslag)'
+  kalltyp: votering
+  doc_id: HD01JuU28 / votering E6B9D4D1-D69A-492F-ADBB-82345B549240 punkt 1
+  datum: '2026-05-26'
+  beslutsenhet: 'Röst: Nej (punkt 1) — yrkade avslag på hela lagen: ''detta är en lagstiftning som innebär
+    omfattande ingrepp i enskildas personliga integritet. Den kan därför inte accepteras. Regeringens
+    förslag bör därmed avslås.'''
+- id: behandlingsprogram_kriminalvard
+  harkomst: harledd
+  kalla: Kommittemotion (C) – data.riksdagen.se/H6023062
+  kalltyp: kommittemotion
+  doc_id: H6023062
+  datum: '2019-04-10'
+  beslutsenhet: Centerpartiet vill att målet ska vara att alla intagna som är i behov av behandling för
+    kriminalitet, missbruk, aggressioner eller våldsamt beteende ska genomgå Kriminalvårdens behandlingsprogram.
+- id: dca_avtal_usa
+  harkomst: harledd
+  kalla: Bet. 2023/24:UFöU1 punkt 1 (prop. 2023/24:141), riksdagens beslut 2024-06-18 + följdvoteringar
+    p5/p3
+  kalltyp: votering
+  doc_id: 'HB01UFöU1 punkt 1 (huvudvotering saknas i votering-API) / korroboration: votering A1C914E0-4544-4389-A757-A5BEDDACBFD9
+    (p5) + A52E4273-06BE-4869-9C8D-078E3607B40F (p3)'
+  datum: '2024-06-18'
+  beslutsenhet: 'Röst: Ja (p1) — "Riksdagen godkänner avtalet om försvarssamarbete mellan Konungariket
+    Sveriges regering och Amerikas förenta staters regering (DCA-avtalet) och antar regeringens lagförslag."
+    Kammaren biföll utskottets förslag 2024-06-18 (266 Ja / 37 Nej, kvalificerad 3/4-majoritet).'
+- id: fast_omsorgskontakt
+  harkomst: harledd
+  kalla: Bet. 2021/22:SoU24 punkt 2 (Lagförslaget i övrigt) (prop. 2021/22:116), acklamation
+  kalltyp: betankande
+  doc_id: H901SoU24 punkt 2
+  datum: '2022-04-25'
+  beslutsenhet: Riksdagen antar regeringens förslag till lag om ändring i socialtjänstlagen (2001:453)
+    i de delar som inte omfattas av utskottets förslag ovan.
+- id: fokuserad_avskrackning_gvi
+  harkomst: harledd
+  kalla: Kommittemotion (S) – data.riksdagen.se/HC023111
+  kalltyp: kommittemotion
+  doc_id: HC023111
+  datum: '2024-10-04'
+  beslutsenhet: Riksdagen ställer sig bakom det som anförs i motionen om att använda Sluta skjut i större
+    omfattning och tillkännager detta för regeringen.
+- id: fou_avdrag_skatteincitament
+  harkomst: harledd
+  kalla: Votering bet. 2022/23:SfU19 (prop. 2022/23:79), sakfrågan
+  kalltyp: votering
+  doc_id: HA01SfU19 / votering 198C0FEC-86BA-4075-8020-9D85FE07E2AF
+  datum: '2023-05-31'
+  beslutsenhet: 'Röst: Ja (partiets majoritet bland icke-frånvarande) — biföll höjt tak för FoU-avdraget
+    och avslog avslagsyrkandet.'
+- id: grundlagsskydd_domstolarnas_oberoende
+  harkomst: harledd
+  kalla: Votering bet. 2025/26:KU2 (prop. 2024/25:165), punkt 1
+  kalltyp: votering
+  doc_id: HD01KU2 / votering 3C8070DF-2ECB-405A-83AD-A14CF2A79C61 punkt 1
+  datum: '2025-09-29'
+  beslutsenhet: 'Röst: Ja — biföll utskottets förslag att anta som vilande regeringens RF/RO-ändringar
+    som stärker domstolarnas oberoende.'
+- id: inkomststarkande_hushallspolitik
+  harkomst: harledd
+  kalla: Budgetmotion 2025/26 (C), Elisabeth Thand Ringqvist m.fl.
+  kalltyp: budgetmotion
+  doc_id: HD023811
+  datum: '2025-10-07'
+  beslutsenhet: Inkomstskatterna sänks i ett första steg med ett nytt jobbskatteavdrag som förstärks för
+    de med låga och medelstora inkomster.
+- id: insyn_partifinansiering
+  harkomst: harledd
+  kalla: Lagen (2018:90) om insyn i finansiering av partier; enhälligt bet. 2017/18:KU19 punkt 1 (prop.
+    2017/18:55), acklamation
+  kalltyp: betankande
+  doc_id: H501KU19 punkt 1
+  datum: '2018-02-02'
+  beslutsenhet: Riksdagen antar regeringens förslag till lag om insyn i finansiering av partier, till
+    lag om ändring i lagen om insyn i finansiering av partier samt till lag om ändring i lagen (1972:625)
+    om statligt stöd till politiska partier.
+- id: internationella_materielsamarbeten
+  harkomst: handskriven
+  beslutsenhet: 'Ingen positionsrad finns. Typen är utlyft ur täckningsnämnaren på grund E1 (sidoeffekt-proxy):
+    utvärderingen mäter leveranstidsrisk, inte om samarbetsformen i sig är sämre politik.'
+- id: jobbskatteavdrag
+  harkomst: handskriven
+  beslutsenhet: 'Ingen positionsrad finns. Liggarposten är UTLYFT (admitted: false) på den symmetriska
+    evidensgrinden, ger därför aldrig ett claim och kan inte delas för att nå full skala.'
+- id: klimatinvesteringsstod_klimatklivet
+  harkomst: handskriven
+  beslutsenhet: Beslutsenheten är yrkanden i budgetmotioner för utgiftsområde 20 som namnger Klimatklivet.
+    Rubriken frystes i docs/rubrik_klimatklivet.md före svepet. Typen är spärrad från jämförande poängsättning
+    på grund E3, se config/scoring.yaml.
+- id: koldioxidskatt
+  harkomst: harledd
+  kalla: Budgetmotion 2024/25:1924 (V), Nooshi Dadgostar m.fl.
+  kalltyp: budgetmotion
+  doc_id: HC021924
+  datum: 2024/25
+  beslutsenhet: Koldioxidskatten är ett centralt styrmedel i vår nationella klimatpolitik. … [skatteförändring:]
+    Återinföra koldioxidskatt på bränsle inom EU ETS.
+- id: kompetensutveckling_larare
+  harkomst: harledd
+  kalla: Budgetmotion (L) – data.riksdagen.se/H9024181
+  kalltyp: budgetmotion
+  doc_id: H9024181
+  datum: '2021-10-05'
+  beslutsenhet: Liberalerna menar att legitimerade lärare själva borde få mandat att välja och styra över
+    sin fortbildning. Det ska exempelvis vara möjligt att läsa kurser i de ämnen läraren undervisar i
+    eller i ämnesmetodik.
+- id: koncentration_nationell_hogspecialiserad_vard
+  harkomst: harledd
+  kalla: Bet. 2017/18:SoU18 punkt 1 (prop. 2017/18:40), acklamation
+  kalltyp: betankande
+  doc_id: H501SoU18 punkt 1
+  datum: '2018-02-20'
+  beslutsenhet: Utskottet välkomnar de lagändringar som regeringen föreslår och ställer sig bakom propositionen.
+- id: konkurrenskraftig_foretags_och_agarbeskattning
+  harkomst: harledd
+  kalla: Partimotion 2018/19:2030 (L), Jan Björklund m.fl.
+  kalltyp: partimotion
+  doc_id: H6022030
+  datum: '2018-11-29'
+  beslutsenhet: En skattereform bör därför dels sänka bolagsskatten, och dels inkludera reformer för att
+    underlätta företagande, finansiering och rekrytering.
+- id: kontroller_och_informationsutbyte_mot_valfardsbrott
+  harkomst: harledd
+  kalla: Partimotion (L) – data.riksdagen.se/H9023974
+  kalltyp: partimotion
+  doc_id: H9023974
+  datum: '2021-10-05'
+  beslutsenhet: Vi är också öppna för att utbytet av uppgifter ska kunna ske mellan fler myndigheter än
+    i dag, något som regeringen äger makt att avgöra. Det räcker inte med att granska utbetalningar från
+    statliga system, utan även felaktiga utbetalningar som går till kriminella personer via kommunala
+    system måste granskas.
+- id: lagstadgat_kommunalt_brottsforebyggande_ansvar
+  harkomst: harledd
+  kalla: Enhälligt bet. 2022/23:JuU9 punkt 1 (prop. 2022/23:43, lagen 2023:196), acklamation
+  kalltyp: betankande
+  doc_id: HA01JuU9 punkt 1
+  datum: '2023-03-23'
+  beslutsenhet: Propositionen har inte lett till några motionsyrkanden eller andra invändningar under
+    utskottsbehandlingen. Utskottet anser att regeringens lagförslag är ändamålsenligt utformat och att
+    det bör antas av riksdagen.
+- id: lagstadgat_oberoende_public_service
+  harkomst: harledd
+  kalla: Enhälligt betänkande 2025/26:KrU2 punkt 1 (prop. 2024/25:166), acklamation. S-reservationer gäller
+    punkt 2-14 (ej punkt 1)
+  kalltyp: betankande
+  doc_id: HD01KrU2 punkt 1
+  datum: '2025-10-22'
+  beslutsenhet: Det har inte väckts någon motion som går emot att riksdagen antar regeringens lagförslag.
+    Utskottet föreslår att riksdagen antar lagförslagen, av de skäl som anförs i propositionen.
+- id: minskad_klasstorlek
+  harkomst: harledd
+  kalla: Partimotion (budgetmotion) (M) – data.riksdagen.se/H2023002
+  kalltyp: partimotion (budgetmotion)
+  doc_id: H2023002
+  datum: '2014-11-11'
+  beslutsenhet: Vi föreslår satsningar på fler utbildade lärare, satsningar på fler karriärtjänster i
+    skolan–särskilda satsningar görs i utanförskapsområden, satsningar på fler speciallärare, minskad
+    klasstorlek i lågstadiet, satsningar på ett fortsatt mattelyft, satsningar på ett fortsatt läslyft.
+- id: nato_medlemskap
+  harkomst: harledd
+  kalla: Votering bet. 2022/23:UU16 (prop. 2022/23:74), punkt 1
+  kalltyp: votering
+  doc_id: HA01UU16 / votering 6B63ADBF-B6F8-4CE0-A574-230BEE238A46 punkt 1
+  datum: '2023-03-22'
+  beslutsenhet: 'Röst: Ja — godkände Sveriges anslutning till Nordatlantiska fördraget (Nato-medlemskap).'
+- id: nedtrappad_ersattningsprofil_akassa
+  harkomst: harledd
+  kalla: Votering bet. 2023/24:AU9 punkt 1 (prop. 2023/24:128), sakfrågan
+  kalltyp: votering
+  doc_id: HB01AU9 / votering 20D6BDDC-B9AC-47E8-B286-48CF613D7276
+  datum: '2024-06-18'
+  beslutsenhet: 'Röst: Ja (partiets samtliga närvarande) — antog regeringens förslag till ny lag om arbetslöshetsförsäkring
+    (prop. 2023/24:128), inkl. nedtrappningen av ersättningsnivån, och avslog V:s avslagsyrkande (res.
+    1).'
+- id: ny_karnkraft
+  harkomst: harledd
+  kalla: Budgetmotion (S) – data.riksdagen.se/HD023594
+  kalltyp: budgetmotion
+  doc_id: HD023594
+  datum: '2025-10-07'
+  beslutsenhet: Vi är öppna för byggandet av all fossilfri elproduktion och accepterar därför ramen, med
+    villkoret att bemyndigandet vidgas till all storskalig fossilfri elproduktion och att en bred energiöverenskommelse
+    görs innan ett investeringsbeslut i ny kärnkraft fattas.
+- id: psykosociala_insatser_frivard
+  harkomst: handskriven
+  beslutsenhet: 'Ingen positionsrad finns. Liggarposten är UTLYFT (admitted: false) på den symmetriska
+    evidensgrinden, ger därför aldrig ett claim och kan inte delas för att nå full skala.'
+- id: reduktionsplikt_drivmedel
+  harkomst: harledd
+  kalla: Votering bet. 2023/24:MJU5 (prop. 2023/24:28), punkt 1 sakfrågan
+  kalltyp: votering
+  doc_id: HB01MJU5 / votering 21E8B615-C235-489F-8189-D26CABD56F24 punkt 1
+  datum: 2023/24
+  beslutsenhet: 'Röst: Nej (partiets majoritet bland icke-frånvarande) — avslog förslaget att sänka reduktionsplikten.'
+- id: riktade_insatser_nyanlanda_elever
+  harkomst: harledd
+  kalla: Partimotion (M) – data.riksdagen.se/H9024033
+  kalltyp: partimotion
+  doc_id: H9024033
+  datum: '2021-10-05'
+  beslutsenhet: Detta för att fler nyanlända elever ska få en god start och ha en meningsfull sysselsättning
+    under sommarmånaderna när skolorna är stängda.
+- id: riktat_likvardighetsbidrag
+  harkomst: handskriven
+  beslutsenhet: Ingen positionsrad finns. Liggarposten bär riktning unclear, alltså tecken 0, och är inert
+    per konstruktion (grund E2). En riktningslös post kan inte bära en ståndpunkt, eftersom en stance
+    betyder något bara mot en riktad effekt.
+- id: se_over_ansvarsfordelning_atervandande
+  harkomst: harledd
+  kalla: Bet. 2020/21:SfU6 punkt 2, votering — Utskottets förslag (tillkännagivande om utredning som ser
+    över ansvarsfördelningen) mot reservation 3 (S,MP); M röstade ja. M medförfattare till motion 2020/21:145
+    yrk. 3 (delvis bifallen).
+  kalltyp: votering
+  doc_id: H801SfU6 punkt 2; votering C7DEF4C6-4668-4D8E-AF06-7A820A666C39 (M 11 ja); motion H802145 yrk.
+    3
+  datum: '2020-11-11'
+  beslutsenhet: Riksdagen ställer sig bakom det som utskottet anför om att regeringen bör tillsätta en
+    utredning som ser över ansvarsfördelningen för återvändandeverksamheten och tillkännager detta för
+    regeringen. Därmed bifaller riksdagen delvis motionerna 2020/21:145 ... yrkande 3 ...
+- id: sfi_kombinerat_med_praktik
+  harkomst: harledd
+  kalla: Parti-/kommittémotion (M) – data.riksdagen.se/H4023372
+  kalltyp: parti-/kommittémotion
+  doc_id: H4023372
+  datum: '2016-10-05'
+  beslutsenhet: Moderaterna vill se mer av kombinerade utbildningar inom etableringsuppdraget där grundläggande
+    vuxenutbildning varvas med sfi och yrkesutbildning. Vi vill stimulera till sådana utbildningar genom
+    särskilda medel.
+- id: situationell_prevention_kamerabevakning
+  harkomst: handskriven
+  beslutsenhet: Ingen positionsrad finns. Liggarposten bär riktning mixed, alltså tecken 0, och är inert
+    per konstruktion (grund E2).
+- id: situationell_prevention_utomhusbelysning
+  harkomst: harledd
+  kalla: Partimotion (L) – data.riksdagen.se/H9023974
+  kalltyp: partimotion
+  doc_id: H9023974
+  datum: '2021-10-05'
+  beslutsenhet: God belysning, röjning av buskage och genomtänkt förläggning av gångvägar är andra åtgärder
+    som förebygger brott och ökar tryggheten.
+- id: snabbforfarande_lagforing
+  harkomst: harledd
+  kalla: Enhälligt betänkande 2022/23:JuU2 punkt 1 (prop. 2021/22:279), acklamation
+  kalltyp: betankande
+  doc_id: HA01JuU2 punkt 1
+  datum: '2022-12-07'
+  beslutsenhet: 1. Snabbare lagföring av brott — Riksdagen antar regeringens förslag [...]. Därmed bifaller
+    riksdagen proposition 2021/22:279 punkterna 1–5.
+- id: sprakpraktik_kombinerad_sprakutbildning_och_arbetspraktik
+  harkomst: harledd
+  kalla: Budgetmotion (V) – data.riksdagen.se/HA021299
+  kalltyp: budgetmotion
+  doc_id: HA021299
+  datum: '2022-11-22'
+  beslutsenhet: 'Metoden, ”matchning från dag 1”, kombinerade flera parallella insatser: kartläggning
+    av kompetens, språkutbildning, praktik och subventionerade anställningar. Arbetsförmedlingens effektutvärdering
+    visar på mycket goda resultat. [...] Arbetsförmedlingen bör göra projektet Jämställd etablering till
+    en del av myndighetens ordinarie verksamhet i hela landet.'
+- id: starkt_oberoende_granskning_och_insyn
+  harkomst: harledd
+  kalla: Partimotion (MP) – data.riksdagen.se/HA02181
+  kalltyp: partimotion
+  doc_id: HA02181 yrk. 9
+  datum: '2022-11-16'
+  beslutsenhet: Riksdagen ställer sig bakom det som anförs i motionen om att friskolor ska omfattas av
+    offentlighetsprincipen och tillkännager detta för regeringen.
+- id: subventionerade_anstallningar
+  harkomst: harledd
+  kalla: Budgetmotion (KD) – data.riksdagen.se/H9024198
+  kalltyp: budgetmotion
+  doc_id: H9024198
+  datum: '2021-10-05'
+  beslutsenhet: Riksdagen ställer sig bakom det som anförs i motionen om att tillfälligt höja subventionsgraden
+    i förordningen (2018:43) om stöd för nystartsjobb och tillkännager detta för regeringen.
+- id: systematiskt_antikorruptionsarbete_kommuner_regioner
+  harkomst: harledd
+  kalla: Kommittemotion (C) – data.riksdagen.se/HD023581
+  kalltyp: kommittemotion
+  doc_id: HD023581
+  datum: '2025-10-07'
+  beslutsenhet: Riksdagen ställer sig bakom det som anförs i motionen om behovet av särskilt stöd och
+    vägledning för kommuner och regioner i arbetet mot korruption och infiltration och tillkännager detta
+    för regeringen.
+- id: tidiga_insatser_lagstadiet
+  harkomst: harledd
+  kalla: Budgetmotion (S) – data.riksdagen.se/HD023810
+  kalltyp: budgetmotion
+  doc_id: HD023810
+  datum: 2025/26
+  beslutsenhet: Kraven på huvudmännen ska skärpas att sätta in stöd tidigt för att alla elever ska uppnå
+    kunskapsmålen för att läsa, skriva och räkna i varje årskurs i lågstadiet.
+- id: tydlig_statlig_styrning_civilt_forsvar
+  harkomst: harledd
+  kalla: Kommittemotion (L) – data.riksdagen.se/H8023429
+  kalltyp: kommittemotion
+  doc_id: H8023429
+  datum: '2020-10-06'
+  beslutsenhet: Regeringen kan aldrig släppa ifrån sig ansvaret för att leda och samordna myndigheternas
+    agerande vid civila eller militära kriser. Därför behöver krisledningsansvaret läggas direkt hos statsministern
+    via statsrådsberedningen och stödjas av ett nationellt säkerhetsråd.
+- id: uppsokande_forskoleerbjudande_nyanlandas_barn
+  harkomst: harledd
+  kalla: Votering bet. 2021/22:UbU24 punkt 1 (prop. 2021/22:132 Förskola för fler barn), avslagsfrågan
+  kalltyp: votering
+  doc_id: H901UbU24 / votering 13F52F92-6597-473E-B912-4C7BB0EEE42F
+  datum: '2022-06-08'
+  beslutsenhet: 'Röst: Ja (partiets samtliga närvarande) — avslog SD:s och KD:s avslagsyrkanden på prop.
+    2021/22:132, vars förslag är att hemkommunen ska "genom uppsökande verksamhet ta kontakt med vårdnadshavare
+    till de barn som inte har en plats i förskolan" och att det blir "obligatoriskt för hemkommunen att
+    erbjuda förskola till barn som har bott i Sverige kort tid eller som har vårdnadshavare som har bott
+    i Sverige kort tid".'
+- id: upptrappning_forsvarsanslag_mot_mal
+  harkomst: harledd
+  kalla: Enhälligt bet. 2024/25:FöU2 punkt 1 (Mål för totalförsvaret) + punkt 5 (Framtida ekonomisk inriktning)
+    (prop. 2024/25:34), acklamation
+  kalltyp: betankande
+  doc_id: HC01FöU2 punkt 1
+  datum: '2024-12-16'
+  beslutsenhet: Riksdagen godkänner regeringens förslag till övergripande mål för totalförsvaret som ska
+    gälla fr.o.m. 2025. Därmed bifaller riksdagen proposition 2024/25:34 punkt 1.

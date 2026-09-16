@@ -191,6 +191,9 @@ def test_liggarpost_mot_en_indikator_med_riktning_passerar(monkeypatch: pytest.M
         "category": "forsvar", "indicator": "forsvarsfinansiering_upptrappning_mot_mal",
     })
     monkeypatch.setattr(config, "evidence_ledger", lambda: led)
+    # Registret är slutet (ADR 0019 beslut 6), så fixturens typ måste kännas igen.
+    registrerade = frozenset(config.registered_policy_types()) | {"test_typ"}
+    monkeypatch.setattr(config, "registered_policy_types", lambda: registrerade)
     config.validate()
 
 

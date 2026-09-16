@@ -205,7 +205,11 @@ def test_ny_mode_ger_viktad_djuptackning_handraknat(monkeypatch: pytest.MonkeyPa
     # storlekar; före rättningen 5.00, alltså taket) -> B = 2.5 + 1.5*0.65 = 3.475
     c_int = sc["C"]["integration"]
     assert "B_shrink_65/100" in c_int["flags"]
-    assert c_int["components"]["B"] == pytest.approx(3.475, abs=1e-3)
+    # Magnituden låstes tidigare här till 3,475. Den hör inte hemma i ett täckningsprov och
+    # flyttade när ADR 0019 bytte form på net. Provet låser täckningen, alltså nämnaren och
+    # flaggan; formens tal låses i tests/test_b_magnitude.py. Kvar står krympningens
+    # riktning: täckning under 1 drar betyget MOT neutral, aldrig från.
+    assert 2.5 < c_int["components"]["B"] < 5.0
     # M/demokrati: korruption_tillit (20), yttrandefrihet_medier (20) och transparens_ansvar (15)
     # tömdes 2026-08-23 av den symmetriska grinden (#26) -> taket är personlig_frihet (20) +
     # rattsstat_maktdelning (25) = 45, och M kodar båda fullt. Var 86,7/100 före utlyftet.

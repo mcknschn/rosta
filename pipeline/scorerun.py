@@ -593,7 +593,7 @@ def _b_codable_types_by_submeasure() -> dict[str, dict[str, set[str]]]:
     b_exclude = set(config.scoring()["B_evidens"].get("coverage_exclude", []))
     meta = _indicator_meta()
     out: dict[str, dict[str, set[str]]] = {}
-    for e in config.admitted_ledger_entries():
+    for e in config.scoring_eligible_ledger_entries():
         if signed.get(e["direction"], 0) == 0 or e["policy_type"] in b_exclude:
             continue
         key = (e["category"], e["indicator"])
@@ -611,6 +611,11 @@ def _b_codable_types_by_submeasure() -> dict[str, dict[str, set[str]]]:
 # är partiets. De är ömsesidigt uteslutande, så säkerheten sänks ett steg och aldrig två.
 B_THIN_CATEGORY = "B_thin_category_ceiling"
 B_THIN_PARTY = "B_thin_party_coverage"
+
+
+def _r_saturation() -> int:
+    """R, mättnadsbredden. Räknas ur configen och skrivs aldrig in som konstant."""
+    return int(config.scoring()["B_evidens"]["saturation_action_types"])
 
 
 def _b_shrink_flag(covered_weight: float, total_weight: float) -> str:
@@ -1079,9 +1084,12 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
     for e in ind_effects:
         b_net.setdefault((e["party"], e["category"]), {})[e["indicator"]] = e["net_support"]
         b_conf_in.setdefault((e["party"], e["category"]), {})[e["indicator"]] = e["confidence"]
+    b_terms: dict[tuple[str, str], set[str]] = {}
     for cl in ee_claims:
         key = (cl["party"], cl["category"])
         b_n_claims[key] = b_n_claims.get(key, 0) + 1
+        if cl.get("policy_type"):
+            b_terms.setdefault(key, set()).add(cl["policy_type"])
     meta = _indicator_meta()
     sub_w = _submeasure_weights()
     b_evidens = config.scoring()["B_evidens"]
@@ -1092,8 +1100,9 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
     # kategorins KODBARA åtgärdstyper partiet faktiskt har en ståndpunkt på. Frånvaro av ståndpunkt
     # = "vet ej", inte motstånd -> ett ensamt supports-claim kan inte längre ge maxbetyg i kategorin.
     signed = config.claims()["aggregation"]["signed_direction"]
-    # Utlyfta poster (admitted: false) är inte kodbara: de ger varken claims eller nämnare.
-    ledger_entries = config.admitted_ledger_entries()
+    # Utlyfta poster (admitted: false) och spärrade åtgärdstyper (ADR 0019) är inte kodbara:
+    # de ger varken claims eller nämnare. Skilda uteslutningar, samma verkan här.
+    ledger_entries = config.scoring_eligible_ledger_entries()
     pol2cat = {e["policy_type"]: e["category"] for e in ledger_entries}
     b_exclude = set(b_evidens.get("coverage_exclude", []))
     cov_den: dict[str, set[str]] = {}  # kategori -> kodbara åtgärdstyper (signed != 0, ej exkluderade)
@@ -1188,6 +1197,11 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
                 # krymp mot neutral efter täckning (av -> B_raw, se B_evidens.coverage_shrink)
                 b_val = score.coverage_shrink(b_raw, coverage) if b_shrink else b_raw
                 b_flags.append(cov_flag)
+                # ADR 0019, D6 punkt 5: antalet åtgärdstyper som faktiskt bildade LED i
+                # summan. Nämnaren K står fast oavsett hur många led som bildas, så olika
+                # antal led betyder olika nåbar poängvidd. Utan talet syns inte den
+                # skillnaden i jämförelsen mellan partier.
+                b_flags.append(f"B_terms_{len(b_terms.get((p, c), ()))}")
                 thin = coverage < thin_cov
                 if thin:
                     # Vems är locket? Ligger KATEGORINS tak under tröskeln kan inget parti nå
@@ -1351,6 +1365,14 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
             "power_window_end": POWER_WINDOW_END.isoformat(),
             "data_as_of": fresh.as_of, "latest_observation_year": fresh.latest_year,
             "parties": parties, "model_version": 1,
+            # ADR 0019 beslut 12: bandets bredd läser bara säkerhetsetiketterna, medan
+            # ADR 0019 beslut 1 bytte vad net ÄR. En bredd satt för den gamla skalan hängd
+            # runt ett tal på den nya är alltså OKALIBRERAD. Felet lutar åt det försiktiga
+            # hållet: betygen komprimeras mot neutral medan bredden står still, så bandet
+            # överdriver osäkerheten snarare än tvärtom. Därför märks det i stället för att
+            # döljas - att ta bort ett band som överdriver osäkerhet gör sidan mer
+            # tvärsäker, inte ärligare. Märkningen lyfts när säkerhetsmodellen är byggd.
+            "safety_model_status": "provisional",
             # coverage = banderollen på sajten: vanlig svenska, för en förstagångsbesökare.
             # coverage_technical = samma körning för granskare, med termer och beslut.
             "coverage": (f"Underlaget i den här versionen: alla {len(cats)} kategorier har betyg "
@@ -1427,24 +1449,33 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
                 "när taket räcker och partiet ändå täcker tunt. Exakt en av dem sätts, så "
                 "säkerheten sänks ett steg och aldrig två. Krympningens egen täljare och "
                 "nämnare står i B_shrink-flaggan och är en ANNAN nämnare än Täckningens "
-                "(ADR 0011 punkt 9). B mäter GENOMSNITTLIG BELAGD EFFEKTSTYRKA "
-                "(ADR 0018 punkt 3, som ändrar ADR 0004 beslut 1). B svarar på hur "
-                "stark den belagda effekten är i genomsnitt hos de åtgärder partiet "
-                "driver, justerat för täckning. Anspråket om STORLEKEN PÅ DEN VÄNTADE "
-                "FÖRBÄTTRINGEN är INTE LÄNGRE B:s, och gäller först när nämnaren är "
-                "rättad. Formen är ett kvalitetsviktat MEDEL av storlekar med tecken, "
-                "net_support = Σ(q·m)/Σq med q=evidence_level×confidence och "
-                "m=effect_strength×tecken(riktning), så ett ensamt claim ger sin egen "
-                "effektstyrka i stället för ±1. KÄND FÖLJD AV MEDELVÄRDET: en "
-                "ytterligare åtgärd med belagd positiv effekt KAN SÄNKA B. Det sker "
-                "varje gång åtgärdens egen storlek ligger under partiets dittills "
-                "vägda medel på indikatorn. Mätt 2026-09-14: sju av åtta partier bär "
-                "ett lägre välfärdsbetyg därför att en åtgärd som alla åtta stödjer "
-                "ligger i liggaren. Rättelsen är en normaliserad summa med "
-                "förhandsbestämd nämnare och byggs i biljett #50 (ADR 0018 punkt 7). "
-                "En post lyfter alla åtta lika mycket bara när den är ENSAM PÅ SIN "
-                "INDIKATOR; delar den indikator med andra poster blir rörelsen olika "
-                "stor och kan byta tecken (ADR 0018 punkt 4). KONSENSUS KRÄVER ALLA "
+                "(ADR 0011 punkt 9). B RÄKNAS I TVÅ LED (ADR 0019 beslut 1, som ändrar "
+                "ADR 0004 beslut 3): INOM en åtgärdstyp poolas flera utvärderingar "
+                "kvalitetsviktat, x_t = Σ(q·m)/Σq, eftersom de är upprepade mätningar "
+                "av EN storhet; ÖVER åtgärdstyper SUMMERAS bidragen mot en fast budget, "
+                f"net = clip(Σ x_t / K), där K = R × max(effect_strength) och R = {_r_saturation()}. "
+                "Kvoten var aldrig fel i sig, den användes över fel enheter, och "
+                "ADR 0018 namngav bara den ena halvan av felet. FÖLJDEN: en ytterligare "
+                "ÅTGÄRDSTYP med belagd positiv effekt HÖJER alltid talet, medan en ny "
+                "utvärdering INOM en typ får sänka den typens bidrag, vilket är "
+                "poolning och inget fel. q är därmed RELATIV POOLNINGSVIKT och aldrig "
+                "amplitudfaktor: en ensam utvärdering ger x_t = sin egen effektstyrka "
+                "med tecken, så ADR 0004 beslut 2 står orört. R ÄR NORMATIVT och låst i "
+                "modellversionen: full skala betyder tre skilda åtgärdstyper som var och "
+                "en bidrar maximalt i samma riktning, och därutöver skiljer modellen "
+                "inte på tillräckligt och mer. GARANTINS RÄCKVIDD (ADR 0019 beslut 2): "
+                "monotoniciteten är ovillkorlig för net inom indikatorn, gäller B_rått "
+                "bara vid oförändrat indikatormedlemskap, och gäller INTE publicerat B, "
+                "eftersom krympningen FÖRSTÄRKER avvikelsen från neutral åt båda håll "
+                "när täckningen ökar. KVARSTÅENDE FEL, mätt och utskrivet: samma "
+                "konstruktfel finns en nivå upp i upprullningen över indikatorer, där en "
+                "ny post på en tom indikator kan sänka B_rått; det rättas inte här. "
+                "ÅTGÄRDSTYPSREGISTRET är slutet (config/atgardstyper.yaml): en typ "
+                "utanför det ger hård fail, och att dela eller slå ihop en typ är en "
+                "SKALÄNDRING, eftersom indelningen är en del av mätskalan. SPÄRR: en "
+                "evidensgodkänd post vars åtgärdstyp inte är JÄMFÖRELSEBERÄTTIGAD ger "
+                "varken claims eller nämnare, med grund per typ i scoring.yaml; det är "
+                "en ANNAN uteslutning än grindens admitted. KONSENSUS KRÄVER ALLA "
                 "ÅTTA KODADE (ADR 0018 punkt 5): en post där bara några partier har "
                 "en position är PARTIELLT KODAD ENSIDIGHET och beskrivs aldrig som "
                 "konsensus. En SAKNAD POSITION är UTTRYCKLIGEN OKÄND och läses varken "

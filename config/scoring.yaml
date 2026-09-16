@@ -97,6 +97,29 @@ A_agerande:
 # confidence) bär säkerhetsetiketten och därmed bandet.
 # Bygger på indicator_effects (config/claims.yaml).
 B_evidens:
+  # MÄTTNADSBREDDEN R (ADR 0019 beslut 4). net per (parti, kategori, indikator) räknas som
+  # x_t = Σ(q·m)/Σq INOM en åtgärdstyp (poolning: flera utvärderingar av SAMMA ingrepp är
+  # upprepade mätningar av en storhet), och net = clip(Σ_t x_t / K, -1, 1) ÖVER åtgärdstyper
+  # (summa: skilda ingrepp vars effekter ska adderas). K = R × max(effect_strength).
+  # Ordagrann lydelse, LÅST i modellversionen: "Positiv respektive negativ full skala nås när
+  # tre skilda åtgärdstyper var och en bidrar med maximal belagd effekt i samma riktning.
+  # Summor med större absolut magnitud klipps vid skalans ändpunkt. Modellen skiljer därefter
+  # inte mellan tillräcklig och större sammanlagd effekt." Talet är NORMATIVT och inte härlett;
+  # min_claims_for_high_confidence avvisades uttryckligen som ankare, eftersom den deklarerades
+  # för säkerhetsetiketten och återanvändning hade gjort en säkerhetsparameter till en dold
+  # breddparameter. Ett nytt R är en NY MODELLVERSION. R dras INTE i robustness.SOURCES:
+  # ADR 0003:s mått saknar strukturellt känslighet för en gemensam positiv skalning före
+  # klippning, så R redovisas som egen nivå- och klippningsdiagnostik (ADR 0019, D5).
+  saturation_action_types: 3
+  # SPÄRR: evidensgodkänd men inte jämförelseberättigad (ADR 0019, biljett #50). Skilt från
+  # grindens `admitted` i evidence_ledger.yaml, som avgör om posten är evidensgodkänd ALLS.
+  # Den här spärren filtrerar BÅDE claims och täckningsnämnaren, och kräver alltid en grund.
+  #   E3 = aktivitetsbias: bortfallet av kodbara ståndpunkter är STRUKTURELLT bundet till
+  #        regeringsställning genom källhierarkin, alltså uttrycks de okodade partiernas
+  #        hållning enbart i dokument hierarkin utesluter. Den partiella täckningen skulle då
+  #        skilja partier efter dokumentform och regeringsroll i stället för efter hållning.
+  scoring_excluded:
+    klimatinvesteringsstod_klimatklivet: "E3 aktivitetsbias, konstaterad i svep 2026-09-16 under den FRUSNA rubriken docs/rubrik_klimatklivet.md. Svepet gav fyra tillåtna, instrumentexakta ståndpunktskällor: S (HD023732), V (HD023173), MP (HD023506) och C (HD023728), samtliga supports och samtliga kodade i party_positions.yaml. SD:s enda träff (HA02998) uttryckte inget instrumentexakt ställningstagande till instrumentets existens. För M, KD och L hittades ingen tillåten ståndpunktskälla: deras hållning uttrycks i regeringens proposition, som rubriken uttryckligen utesluter, och utskottsbetänkandet visar att regeringen FÖRSTÄRKER instrumentet. Bortfallet spårar alltså exakt skiljelinjen regering mot opposition, och en partiell kodning hade gett fyra negativa bidrag mot fyra nollbidrag för ett instrument samtliga åtta stöder. Beslutet är fattat EFTER svepet och är ett postnivåbeslut om poänginkludering, aldrig en omkodning: de fyra supports-raderna står kvar i evidensloggen. Åberopad tidigare nedskriven regel: aktivitetsbiasen i evidens_trovardighet.md §5.6, namngiven i ADR 0018 diagnos 5. Återöppningsvillkor: en tillåten ståndpunktskälla för M, KD eller L, eller en reviderad källhierarki."
   # B per (parti, kategori) = submåttsviktat medel av indikatorernas net_support_to_score.
   rollup: submeasure_weighted_mean
   per_indicator: net_support_to_score      # net_support[-1,1] -> [0,5]: 5*(net_support+1)/2

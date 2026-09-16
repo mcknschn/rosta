@@ -21,7 +21,7 @@ export function fmtCoverage(x) {
 // täljare och nämnare, som efter ADR 0011 är ett annat tal än täckningen.
 // Kvar står flaggorna som markerar något annat: en ej tillämplig del, ett tunt underlag,
 // en åtgärd i modellen eller en subnationell attribution.
-const COVERAGE_FLAGS = [/^A_a1_active$/, /^A_a2_only$/, /^B_shrink_/, /^D_shrink_/];
+const COVERAGE_FLAGS = [/^A_a1_active$/, /^A_a2_only$/, /^B_shrink_/, /^B_terms_/, /^D_shrink_/];
 
 export function visibleFlags(flags) {
   return (flags || []).filter((f) => !COVERAGE_FLAGS.some((re) => re.test(f)));

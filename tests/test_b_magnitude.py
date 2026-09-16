@@ -26,10 +26,21 @@ from pipeline import config, effects, positions, scorerun, warehouse
 from pipeline.sources import government
 
 
-def _claim(cid: str, direction: str, strength: str, level: str, conf: str) -> dict:
+def _k() -> float:
+    """Budgeten K = R x max(effect_strength), räknad ur configen (ADR 0019 beslut 4)."""
+    cl = config.claims()
+    return (
+        int(config.scoring()["B_evidens"]["saturation_action_types"])
+        * max(cl["numeric"]["effect_strength"].values())
+    )
+
+
+def _claim(
+    cid: str, direction: str, strength: str, level: str, conf: str, policy: str = "typ_a"
+) -> dict:
     return {
         "id": cid, "type": "evidence_effect", "party": "M", "category": "ekonomi",
-        "indicator": "arbetsloshet", "direction": direction,
+        "indicator": "arbetsloshet", "direction": direction, "policy_type": policy,
         "evidence_level": level, "effect_strength": strength, "confidence": conf,
     }
 
@@ -39,29 +50,32 @@ def _claim(cid: str, direction: str, strength: str, level: str, conf: str) -> di
 
 @pytest.mark.parametrize(("strength", "expected"), [("low", 0.3), ("medium", 0.6), ("high", 1.0)])
 def test_ensamt_claim_ger_sin_egen_effektstyrka(strength: str, expected: float) -> None:
-    """Regressionen hela ADR 0004 handlar om: ett ensamt claim ska ge sin egen storlek med
-    tecken, inte tecknet. 184 av 228 celler har exakt ett claim, och den gamla formen gav
-    dem alla ±1 oavsett hur svag evidensen var."""
+    """Regressionen ADR 0004 handlar om, nu på ÅTGÄRDSTYPENS nivå (ADR 0019 beslut 1).
+
+    Ett ensamt claim ger x_t = m, alltså sin egen storlek med tecken och aldrig tecknet. Det är
+    den egenskapen som håller ADR 0004 beslut 2 sant: q är relativ poolningsvikt och aldrig
+    amplitudfaktor. Cellens net är sedan x_t / K, eftersom summan går mot en fast budget."""
     eff = effects.aggregate_effects(
         [_claim("c1", "positive", strength, "authority_evaluation", "medium")]
     )
-    assert eff[0]["net_support"] == pytest.approx(expected, abs=1e-4)
+    assert eff[0]["net_support"] == pytest.approx(expected / _k(), abs=1e-4)
 
 
 def test_ensamt_negativt_claim_behaller_tecknet() -> None:
     eff = effects.aggregate_effects([_claim("c1", "negative", "low", "systematic_review", "high")])
-    assert eff[0]["net_support"] == pytest.approx(-0.3, abs=1e-4)
+    assert eff[0]["net_support"] == pytest.approx(-0.3 / _k(), abs=1e-4)
 
 
 def test_enhallig_cell_kollapsar_inte_till_taket() -> None:
-    """Två claims åt samma håll, båda svaga: gamla formen gav +1.0, nya ger medelstorleken."""
+    """Två claims på SAMMA åtgärdstyp åt samma håll: poolningen ger medelstorleken, inte taket."""
     eff = effects.aggregate_effects([
         _claim("c1", "positive", "low", "authority_evaluation", "medium"),   # q=0.48, m=0.3
         _claim("c2", "positive", "medium", "single_study_report", "low"),    # q=0.15, m=0.6
     ])
     net = eff[0]["net_support"]
-    assert net == pytest.approx((0.48 * 0.3 + 0.15 * 0.6) / (0.48 + 0.15), abs=1e-4)
-    assert 0.3 < net < 0.6
+    x_t = (0.48 * 0.3 + 0.15 * 0.6) / (0.48 + 0.15)
+    assert net == pytest.approx(x_t / _k(), abs=1e-4)
+    assert 0.3 < x_t < 0.6
 
 
 def test_evidensgraderingen_nar_betyget() -> None:
@@ -88,8 +102,8 @@ def test_mixed_drar_mot_neutral_men_behaller_sin_vikt() -> None:
         _claim("c1", "positive", "high", "authority_evaluation", "high"),   # q=0.68, m=1.0
         _claim("c2", "mixed", "medium", "authority_evaluation", "high"),    # q=0.68, m=0
     ])[0]["net_support"]
-    assert ensam == pytest.approx(1.0, abs=1e-4)
-    assert med_oklar == pytest.approx(0.5, abs=1e-4)
+    assert ensam == pytest.approx(1.0 / _k(), abs=1e-4)
+    assert med_oklar == pytest.approx(0.5 / _k(), abs=1e-4)
 
 
 def test_unknown_effect_strength_ger_ingen_storlek() -> None:
@@ -106,7 +120,7 @@ def test_unknown_effect_strength_drar_mot_neutral_som_mixed() -> None:
         _claim("c1", "positive", "high", "authority_evaluation", "high"),      # q=0.68, m=1.0
         _claim("c2", "positive", "unknown", "authority_evaluation", "high"),   # q=0.68, m=0
     ])[0]["net_support"]
-    assert med_unknown == pytest.approx(0.5, abs=1e-4)
+    assert med_unknown == pytest.approx(0.5 / _k(), abs=1e-4)
 
 
 def test_claims_delas_pa_tecknet_som_forut() -> None:
@@ -119,7 +133,7 @@ def test_claims_delas_pa_tecknet_som_forut() -> None:
 
 
 def test_net_support_stannar_i_intervallet() -> None:
-    """Storleksskalan når som mest 1.0, så medlet kan aldrig lämna [-1, 1]."""
+    """x_t når som mest 1.0 och net klipps mot budgeten, så net lämnar aldrig [-1, 1]."""
     for strength in ("low", "medium", "high"):
         for direction in ("positive", "negative"):
             net = effects.aggregate_effects(
@@ -231,22 +245,34 @@ def _metodrutan() -> str:
     return text
 
 
-def test_metodrutan_bar_inte_kvar_anspraket_om_vantad_storlek() -> None:
-    """ADR 0018 punkt 3 ändrade ADR 0004 beslut 1. Metodrutan följer med dist/scores.json och är
-    därmed det anspråk som når en granskare utanför repot. Den gamla lydelsen får inte stå kvar."""
+def test_metodrutan_bar_formen_i_tva_led() -> None:
+    """Metodrutan följer med dist/scores.json och är därmed det anspråk som når en granskare
+    utanför repot. Varken den gamla medelvärdesformen eller det retirerade anspråket får stå kvar."""
     text = _metodrutan()
     assert "B mäter VÄNTAD STORLEK" not in text
-    assert "B mäter GENOMSNITTLIG BELAGD EFFEKTSTYRKA" in text
-    assert "INTE LÄNGRE B:s" in text
-    assert "ADR 0018 punkt 3" in text
+    assert "B mäter GENOMSNITTLIG BELAGD EFFEKTSTYRKA" not in text
+    assert "B RÄKNAS I TVÅ LED" in text
+    assert "ADR 0019 beslut 1" in text
+    assert str(config.scoring()["B_evidens"]["saturation_action_types"]) in text
 
 
-def test_metodrutan_skriver_ut_icke_monotoniciteten() -> None:
-    """ADR 0018 punkt 3 kräver att följden skrivs ut. Utan den läser en granskare ett fall i B som
-    ett besked om partiet, när det är en egenskap hos medelvärdet."""
+def test_metodrutan_skriver_ut_garantins_rackvidd() -> None:
+    """ADR 0019 beslut 2: monotoniciteten gäller i tre led och inte fler. Utan den gränsen läser
+    en granskare ett fall i publicerat B som ett besked om partiet, när det är krympningens
+    förstärkning av avvikelsen från neutral."""
     text = _metodrutan()
-    assert "KAN SÄNKA B" in text
-    assert "#50" in text  # rättelsen har en adress, annars läses felet som accepterat
+    assert "GARANTINS RÄCKVIDD" in text
+    assert "oförändrat indikatormedlemskap" in text
+    assert "KVARSTÅENDE FEL" in text  # upprullningen rättas inte här, och det ska stå
+
+
+def test_metodrutan_namner_registret_och_sparren() -> None:
+    """Två låsningar som annars är osynliga: registret är slutet, och en evidensgodkänd post kan
+    ändå sakna jämförelseberättigande. De är skilda uteslutningar och får inte läsas ihop."""
+    text = _metodrutan()
+    assert "ÅTGÄRDSTYPSREGISTRET" in text
+    assert "SKALÄNDRING" in text
+    assert "JÄMFÖRELSEBERÄTTIGAD" in text
 
 
 def test_metodrutan_skiljer_konsensus_fran_partiellt_kodad_ensidighet() -> None:
@@ -257,3 +283,94 @@ def test_metodrutan_skiljer_konsensus_fran_partiellt_kodad_ensidighet() -> None:
     assert "KONSENSUS KRÄVER ALLA" in text
     assert "PARTIELLT KODAD ENSIDIGHET" in text
     assert "UTTRYCKLIGEN OKÄND" in text
+
+
+def test_skilda_atgardstyper_summeras_och_hojer_alltid() -> None:
+    """ADR 0019 beslut 1 och 2: skilda ingrepp adderas, och en tillagd typ med q*m > 0 får
+    aldrig sänka talet. Det är felet ADR 0018 diagnostiserade, rättat på rätt nivå."""
+    en = effects.aggregate_effects(
+        [_claim("c1", "positive", "medium", "authority_evaluation", "medium", "typ_a")]
+    )[0]["net_support"]
+    tva = effects.aggregate_effects([
+        _claim("c1", "positive", "medium", "authority_evaluation", "medium", "typ_a"),
+        _claim("c2", "positive", "low", "authority_evaluation", "medium", "typ_b"),
+    ])[0]["net_support"]
+    assert tva > en, "en tillagd åtgärdstyp med belagd positiv effekt måste höja talet"
+    assert tva == pytest.approx((0.6 + 0.3) / _k(), abs=1e-4)
+
+
+def test_negativ_post_kan_aldrig_hoja() -> None:
+    """Symmetrin till beslut 2: en post med q*m < 0 sänker alltid eller lämnar talet orört."""
+    en = effects.aggregate_effects(
+        [_claim("c1", "positive", "high", "authority_evaluation", "medium", "typ_a")]
+    )[0]["net_support"]
+    med_negativ = effects.aggregate_effects([
+        _claim("c1", "positive", "high", "authority_evaluation", "medium", "typ_a"),
+        _claim("c2", "negative", "medium", "authority_evaluation", "medium", "typ_b"),
+    ])[0]["net_support"]
+    assert med_negativ < en
+
+
+def test_full_skala_kraver_R_skilda_typer() -> None:
+    """R = antalet fullt verksamma åtgärdstyper som definierar full skala (ADR 0019 beslut 4).
+    Färre än R maximala typer når inte 1,0; R stycken gör det exakt."""
+    r = int(config.scoring()["B_evidens"]["saturation_action_types"])
+    maxad = [
+        _claim(f"c{i}", "positive", "high", "systematic_review", "high", f"typ_{i}")
+        for i in range(r)
+    ]
+    assert effects.aggregate_effects(maxad)[0]["net_support"] == pytest.approx(1.0, abs=1e-9)
+    assert effects.aggregate_effects(maxad[:-1])[0]["net_support"] < 1.0
+
+
+def test_claim_utan_policy_type_hard_failar() -> None:
+    """Utan grupperingsnyckel går formen inte att räkna, och en tyst hopslagning av skilda
+    ingrepp vore precis det fel som rättas. Hård fail, aldrig en gissning (ADR 0019 beslut 1)."""
+    trasig = _claim("c1", "positive", "medium", "authority_evaluation", "medium")
+    del trasig["policy_type"]
+    with pytest.raises(config.ConfigError, match="policy_type"):
+        effects.aggregate_effects([trasig])
+
+
+# --- invariansproven (ADR 0019 beslut 13) -------------------------------------------
+
+
+def _net(ledger: list[dict]) -> float:
+    pos = [{"party": "M", "policy_type": "typ_a", "stance": "supports", "source": "s"}]
+    cl = positions.build_evidence_effect_claims(positions=pos, ledger=ledger)
+    return effects.aggregate_effects(cl)[0]["net_support"]
+
+
+def _post(**over) -> dict:
+    bas = {
+        "category": "ekonomi", "indicator": "arbetsloshet", "policy_type": "typ_a",
+        "direction": "positive", "evidence_level": "authority_evaluation",
+        "effect_strength": "medium", "confidence": "medium",
+        "source": "Myndigheten, Rapport 1", "source_url": "https://ex.test/rapport-1",
+    }
+    bas.update(over)
+    return bas
+
+
+def test_invarians_duplicerat_estimand_andrar_ingenting() -> None:
+    """Samma utvärdering två gånger väger lika mycket som en gång."""
+    assert _net([_post()]) == pytest.approx(_net([_post(), _post()]), abs=1e-9)
+
+
+def test_invarians_redaktionell_uppdelning_andrar_ingenting() -> None:
+    """Samma utvärdering uppdelad i två rader med olika formulering väger lika mycket som en."""
+    delad = [_post(), _post(source="Myndigheten, Rapport 1 (del 2)")]
+    assert _net([_post()]) == pytest.approx(_net(delad), abs=1e-9)
+
+
+def test_invarians_bytt_dokumentrepresentation_andrar_ingenting() -> None:
+    """Samma utvärdering hämtad som .text respektive .html är samma utvärdering."""
+    bytt = [_post(source_url="http://EX.test/rapport-1.html/")]
+    assert _net([_post()]) == pytest.approx(_net(bytt), abs=1e-9)
+
+
+def test_motsagelse_inom_samma_estimand_hard_failar() -> None:
+    """Två rader som delar utvärdering och estimand men bär olika storlek är en motsägelse om
+    analysenheten, aldrig ett tyst medelvärde."""
+    with pytest.raises(config.ConfigError, match="motsägelsefull"):
+        _net([_post(), _post(effect_strength="high")])

@@ -18,7 +18,7 @@
 # högrisk-screening: inga fabrikat). Skarp betygsättning aktiverad. Metod oförändrad; rättelser
 # i denna fil dokumenterade per rad (mapping_note "EXPERTBESLUT 2026-06-05").
 
-version: 2
+version: 3
 status: expert_reviewed
 entries:
 - party: S
@@ -3108,3 +3108,55 @@ entries:
   date: '2024-06-18'
   confidence: medium
   mapping_note: 'FLAGGAD v0 (B3 2026-06-12, kräver mänsklig slutgranskning). INSTRUMENT-EXAKT opposes: MP:s avvikande mening i Ds 2024:6 bilaga 4, citat ordagrant omverifierat mot fulltexten 2026-06-12. Nej-röst p1 korroborerad via följdvoteringarna (live-verifierade 2026-06-12): p5 MP 15 Nej, p3 MP 15 Avstår. VILLKORAT NEJ (bunten-regeln §2, nyansen ändrar inte stance): MP:s nej är villkorat av en kärnvapenförbudslag — bilaga 4 ordagrant: "Miljöpartiet kan inte stödja ett avtal som lämnar en avgörande fråga som kärnvapenfrågan öppen" och "Vi vill se en lagstiftning som förbjuder införsel av kärnvapen på svenskt territorium för att kunna stå bakom avtalet" — partiet motsatte sig instrumentet i den form det beslutades. Detta är MP:s FÖRSTA AKTUELLA position på indikatorn nato_interoperabilitet (nato_medlemskap = none pga reversering till Nato-stöd; DCA-motståndet är däremot aktuellt: april + juni 2024, ingen senare reversering funnen). Opposes -> _FLIP -> negativt B-bidrag. CONFIDENCE MEDIUM (Codex-villkor 3): p1-härledd rad. ANTI-STACKNING: DCA distinkt instrument från nato_medlemskap (bilateralt basavtal vs multilateralt alliansmedlemskap) — MP illustrerar själva distinktionen (stödjer medlemskapet, röstade nej till DCA), se liggarposten.'
+
+# --- klimatinvesteringsstod_klimatklivet: svep 2026-09-16 (#50) -----------------------------
+# Rubriken frystes i docs/rubrik_klimatklivet.md och committades (76ecf33) FÖRE svepet.
+# SD:s enda träff (HA02998) föll på avgränsning 3: den jämför instrumentets kostnadseffektivitet
+# ogynnsamt och vill flytta pengar från 'ineffektiva åtgärder i Sverige', men namnger inte
+# instrumentet som det som ska bort. M, KD och L: ingen tillåten ståndpunktskälla funnen; deras
+# hållning uttrycks i regeringens proposition, som rubriken utesluter. Bortfallet spårar därmed
+# skiljelinjen regering mot opposition, och åtgärdstypen är spärrad på grund E3.
+- party: S
+  policy_type: klimatinvesteringsstod_klimatklivet
+  stance: supports
+  source: 'Kommittemotion (S) – data.riksdagen.se/HD023732'
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/HD023732.text
+  doc_id: HD023732
+  quote: 'Riksdagen ställer sig bakom det som anförs i motionen om att utveckla och skapa stabila förutsättningar för Klimatklivet för att underlätta klimatomställning för vanligt folk och tillkännager detta för regeringen.'
+  date: '2025-10-07'
+  confidence: high
+  mapping_note: 'Partikollektiv kommittémotion, utgiftsområde 20, riksmöte 2025/26 — inom föredragen period (§4). Yrkandet avser instrumentet direkt: utveckla och skapa stabila förutsättningar => behålla och bygga ut => supports. Svepet 2026-09-16 (#50) under den FRUSNA rubriken docs/rubrik_klimatklivet.md, skriven och committad (76ecf33) INNAN någon sökning på partiernas ståndpunkter gjordes. Instrumentexakt enligt §1: citatet namnger Klimatklivet. Åtgärdstypen är SPÄRRAD från jämförande poängsättning på grund E3 (aktivitetsbias), se config/scoring.yaml: raden ger därför inget claim. Den står kvar här eftersom kodningen var möjlig och ska synas, vilket är skillnaden mellan evidensgodkänd och jämförelseberättigad.'
+- party: V
+  policy_type: klimatinvesteringsstod_klimatklivet
+  stance: supports
+  source: 'Partimotion (V) – data.riksdagen.se/HD023173'
+  source_type: partimotion
+  source_url: https://data.riksdagen.se/dokument/HD023173.text
+  doc_id: HD023173
+  quote: 'Klimatklivet bör förstärkas och förlängas för att staten fortsatt ska möjliggöra företagens behov av stöd för en grön omställning även efter 2030.'
+  date: '2025-10-06'
+  confidence: high
+  mapping_note: 'Partimotion, utgiftsområde 20, riksmöte 2025/26 — inom föredragen period (§4). ''förstärkas och förlängas'' är instrumentexakt => supports. Motionen anger vidare att Klimatklivet bör förlängas till 2035. Svepet 2026-09-16 (#50) under den FRUSNA rubriken docs/rubrik_klimatklivet.md, skriven och committad (76ecf33) INNAN någon sökning på partiernas ståndpunkter gjordes. Instrumentexakt enligt §1: citatet namnger Klimatklivet. Åtgärdstypen är SPÄRRAD från jämförande poängsättning på grund E3 (aktivitetsbias), se config/scoring.yaml: raden ger därför inget claim. Den står kvar här eftersom kodningen var möjlig och ska synas, vilket är skillnaden mellan evidensgodkänd och jämförelseberättigad.'
+- party: MP
+  policy_type: klimatinvesteringsstod_klimatklivet
+  stance: supports
+  source: 'Kommittemotion (MP) – data.riksdagen.se/HD023506'
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/HD023506.text
+  doc_id: HD023506
+  quote: 'Över tre år satsar Miljöpartiet 9,5 miljarder kronor på Klimatklivet, utöver regeringens anslag, och satsningen permanentas till 2030.'
+  date: '2025-10-07'
+  confidence: high
+  mapping_note: 'Partikollektiv kommittémotion, utgiftsområde 20, riksmöte 2025/26 — inom föredragen period (§4). Avsnittsrubriken lyder ''Miljöpartiets satsningar Klimatklivet och Industriklivet utökas''. ANSLAGSNIVÅN ensam vore INTE stance (avgränsning 2, omfattning ägs av A); det som bär raden är ''utökas'' och ''permanentas'', alltså instrumentets fortlevnad och utbyggnad => supports. Svepet 2026-09-16 (#50) under den FRUSNA rubriken docs/rubrik_klimatklivet.md, skriven och committad (76ecf33) INNAN någon sökning på partiernas ståndpunkter gjordes. Instrumentexakt enligt §1: citatet namnger Klimatklivet. Åtgärdstypen är SPÄRRAD från jämförande poängsättning på grund E3 (aktivitetsbias), se config/scoring.yaml: raden ger därför inget claim. Den står kvar här eftersom kodningen var möjlig och ska synas, vilket är skillnaden mellan evidensgodkänd och jämförelseberättigad.'
+- party: C
+  policy_type: klimatinvesteringsstod_klimatklivet
+  stance: supports
+  source: 'Kommittemotion (C) – data.riksdagen.se/HD023728'
+  source_type: kommittemotion
+  source_url: https://data.riksdagen.se/dokument/HD023728.text
+  doc_id: HD023728
+  quote: 'Riksdagen ställer sig bakom det som anförs i motionen om att regeringen bör se över formerna för Klimatklivet så att det går att söka stöd även för hamnarna och tillkännager detta för regeringen.'
+  date: '2025-10-07'
+  confidence: high
+  mapping_note: 'Partikollektiv kommittémotion, riksmöte 2025/26 — inom föredragen period (§4). Yrkandet förutsätter instrumentets fortlevnad och vill vidga kretsen sökande => bygga ut => supports. SVAGARE än S/V/MP: det rör kretsen sökande, inte instrumentets fortlevnad i sig. Nyansen ändrar inte stance (§2). Svepet 2026-09-16 (#50) under den FRUSNA rubriken docs/rubrik_klimatklivet.md, skriven och committad (76ecf33) INNAN någon sökning på partiernas ståndpunkter gjordes. Instrumentexakt enligt §1: citatet namnger Klimatklivet. Åtgärdstypen är SPÄRRAD från jämförande poängsättning på grund E3 (aktivitetsbias), se config/scoring.yaml: raden ger därför inget claim. Den står kvar här eftersom kodningen var möjlig och ska synas, vilket är skillnaden mellan evidensgodkänd och jämförelseberättigad.'

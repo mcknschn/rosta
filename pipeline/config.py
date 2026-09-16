@@ -6,6 +6,8 @@ inget mänskligt omdöme utanför config). Invarianterna nedan testas i tests/te
 
 from __future__ import annotations
 
+import re
+from collections.abc import Mapping
 from functools import cache
 from typing import Any
 
@@ -75,9 +77,72 @@ def entry_admitted(entry: Any) -> bool:
     return entry.get("admitted", True) is not False
 
 
+def evaluation_id(entry: Mapping[str, Any]) -> str:
+    """Kanonisk identitet för den UNDERLIGGANDE UTVÄRDERINGEN (ADR 0019 beslut 10).
+
+    Härledd deterministiskt ur källidentiteten, aldrig ur rå strängformatering: URL:en
+    normaliseras (schema, värd, avslutande snedstreck och skiftläge faller bort), och saknas den
+    används källsträngen normaliserad på samma sätt. Ett explicit `evaluation_id` i liggaren
+    vinner alltid över härledningen.
+
+    Syftet är INVARIANS mot redaktionell uppdelning: samma utvärdering ska väga lika mycket
+    oavsett hur många rader någon råkar skriva om den.
+    """
+    explicit = str(entry.get("evaluation_id") or "").strip()
+    if explicit:
+        return explicit
+    raw = str(entry.get("source_url") or entry.get("source") or "").strip()
+    raw = re.sub(r"^https?://", "", raw, flags=re.IGNORECASE).rstrip("/")
+    raw = re.sub(r"\.(text|html|json)$", "", raw, flags=re.IGNORECASE)
+    return re.sub(r"\s+", " ", raw).casefold()
+
+
+def estimand_id(entry: Mapping[str, Any]) -> str:
+    """Det specifika kodade resultatet inom en utvärdering. Default `primary`.
+
+    Ingen post bär i dag två estimand ur samma utvärdering på samma indikator och åtgärdstyp,
+    så defaulten har noll aktiva fall. Regeln skrivs ändå: den dag två poster delar utvärdering
+    OCH estimand men bär olika storlek är analysenheten motsägelsefull och det ger hård fail.
+    """
+    return str(entry.get("estimand_id") or "primary").strip()
+
+
+def scoring_eligible_ledger_entries() -> list[dict[str, Any]]:
+    """Admitterade poster MINUS de vars åtgärdstyp är spärrad från poängsättning.
+
+    Två skilda uteslutningar, aldrig hopblandade: `admitted: false` säger att posten inte är
+    evidensgodkänd, spärren säger att en godkänd post inte är jämförelseberättigad.
+    """
+    blocked = scoring_excluded_policy_types()
+    return [e for e in admitted_ledger_entries() if e["policy_type"] not in blocked]
+
+
 def admitted_ledger_entries() -> list[dict[str, Any]]:
     """Liggarens poster som passerar grinden. Enda vägen in i B."""
     return [e for e in (evidence_ledger().get("entries") or []) if entry_admitted(e)]
+
+
+@cache
+def atgardstyper() -> dict[str, Any]:
+    """Åtgärdstypsregistret (ADR 0019 beslut 6). Slutet: en typ utanför det ger hård fail."""
+    return _load("atgardstyper.yaml")
+
+
+@cache
+def registered_policy_types() -> frozenset[str]:
+    return frozenset(t["id"] for t in (atgardstyper().get("types") or []) if t.get("id"))
+
+
+@cache
+def scoring_excluded_policy_types() -> dict[str, str]:
+    """Åtgärdstyp -> grund, för typer som är EVIDENSGODKÄNDA men inte JÄMFÖRELSEBERÄTTIGADE.
+
+    Skilt från grindens `admitted` (ADR 0006), som avgör om en post är evidensgodkänd alls.
+    Den här spärren avgör om en godkänd post får bidra till den jämförande poängsättningen,
+    och den filtrerar BÅDE claims och täckningsnämnaren (ADR 0019, biljett #50).
+    """
+    blk = scoring()["B_evidens"].get("scoring_excluded") or {}
+    return {str(k): str(v) for k, v in blk.items()}
 
 
 @cache
@@ -172,6 +237,35 @@ def _require(present: bool, msg: str) -> None:
         raise ConfigError(msg)
 
 
+def _validate_atgardstyper() -> None:
+    """Registret är SLUTET (ADR 0019 beslut 6). En typ utanför det ger hård fail.
+
+    Hårt fel åt båda hållen: en åtgärdstyp som används men inte är registrerad, och en
+    registrerad typ utan beslutsenhet. D1:s syfte är att stänga vägen att dela en bred typ i
+    tre smala för att nå full skala, och den vägen står öppen så snart en typ kan användas
+    utan att bära en frusen avgränsning.
+    """
+    reg = atgardstyper()
+    _require(isinstance(reg.get("types"), list), "atgardstyper.yaml saknar 'types'")
+    for t in reg["types"]:
+        _require(bool(t.get("id")), "En post i atgardstyper.yaml saknar 'id'")
+        _require(
+            bool(str(t.get("beslutsenhet") or "").strip()),
+            f"Åtgärdstypen '{t.get('id')}' saknar beslutsenhet (D1)",
+        )
+    registered = registered_policy_types()
+    anvanda = {e["policy_type"] for e in evidence_ledger().get("entries") or []}
+    anvanda |= {p["policy_type"] for p in party_positions().get("entries") or []}
+    okanda = sorted(anvanda - registered)
+    if okanda:
+        raise ConfigError(
+            "Åtgärdstyper utanför registret (atgardstyper.yaml): " + ", ".join(okanda)
+        )
+    for pt, grund in scoring_excluded_policy_types().items():
+        _require(pt in registered, f"Spärrad åtgärdstyp '{pt}' saknas i registret")
+        _require(bool(grund.strip()), f"Spärren för '{pt}' saknar grund")
+
+
 def validate(tolerance: float = 1e-6) -> None:
     """Kontrollerar modellinvarianterna. Höjer ConfigError vid fel (aldrig KeyError)."""
     cats = categories()
@@ -223,6 +317,8 @@ def validate(tolerance: float = 1e-6) -> None:
 
     _validate_ledger_against_exclusions()
     _validate_scoring(sub_w, tolerance)
+    # Sist, så att äldre och mer specifika invarianter behåller sin felprioritet.
+    _validate_atgardstyper()
 
 
 VALID_DIRECTIONS = frozenset({"up", "down"})
