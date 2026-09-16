@@ -158,11 +158,18 @@ frysningen hindrar.
 ## Hämtning av dokument
 
 **Skriv ned URL och hämtdatum samtidigt som filen sparas.** Adresserna till valmanifesten 2026
-skrevs aldrig ned och går inte att återskapa. Den luckan upprepas inte.
+skrevs aldrig ned vid hämtningen. Den luckan upprepas inte.
 
-Går en adress ändå förlorad finns en väg tillbaka, och den användes för 2022: leta upp
-dokumentet, hämta det på nytt och jämför SHA-256 byte för byte mot filen på disk. Stämmer
-hashen är adressen **belagd** och inte gissad. Stämmer den inte skrivs ingen URL.
+Går en adress ändå förlorad finns en väg tillbaka: leta upp dokumentet, hämta det på nytt och
+jämför SHA-256 byte för byte mot filen på disk. Stämmer hashen är adressen **belagd** och inte
+gissad. Stämmer den inte skrivs ingen URL.
+
+Den vägen användes 2026-09-16 för båda årgångarna. **Alla sexton adresser är belagda**, och
+båda hämtmanifesten bär dem. Ingen hash rördes, eftersom en flytt av adress inte är en ändring
+av innehåll.
+
+Pilotens rapport säger fortfarande att fälten är tomma. Den står kvar oförändrad, eftersom den
+beskriver vad som gällde 2026-09-13. Arkivet rättas inte i efterhand.
 
 ## Nedläggning är en godkänd utgång
 

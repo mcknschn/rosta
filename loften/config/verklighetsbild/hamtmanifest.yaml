@@ -7,10 +7,13 @@
 # BEGRÄNSNINGEN, i klartext: hashen styrker VILKET dokument som lästes, men den
 # återskapar det inte. Dör partiets URL finns ingen väg tillbaka till dokumentet.
 #
-# `url` är TOM för alla åtta. Adresserna skrevs inte ned vid hämtningen 2026-09-13 och
-# står varken i mappningsfilerna, i biljett #42 eller i PDF:ernas metadata. De gissas
-# inte här. Fältet fylls av den som kan belägga adressen, och `arkivadress` är ett
-# frivilligt fält för en kopia hos oberoende tredje part.
+# `url` stod TOM för alla åtta fram till 2026-09-16, eftersom adresserna inte skrevs ned
+# vid hämtningen 2026-09-13. De gissades aldrig.
+#
+# ADRESSERNA ÄR NU BELAGDA. Varje dokument hämtades om 2026-09-16 och den hämtade filens
+# SHA-256 jämfördes byte för byte mot filen på disk. Alla åtta träffade exakt. En adress
+# står här bara om den träffade. `arkivadress` är ett frivilligt fält för en kopia hos
+# oberoende tredje part, och är tomt för alla åtta.
 #
 # `hamtdatum` vilar på två ben: mappningsfilerna säger själva att materialet är
 # framställt 2026-09-13 ur dessa filer, och filernas tidsstämplar ligger samma dag.
@@ -21,56 +24,64 @@ dokument:
   - id: S
     filnamn: S-Valprogram-2026.pdf
     hamtdatum: 2026-09-13
-    url: null
+    url: 'https://www.socialdemokraterna.se/download/18.40fb56b21a04255a9803c1e/1788259051237/Soc%20Valprogram%202026.pdf'
+    url_belagd: true
     arkivadress: null
     byte: 4400186
     sha256: 252d28dfd7f72ca36d2ad5a3c02c4f6ac1cd1b4b5884580abe9267c0b3f2c051
   - id: M
     filnamn: M-Valmanifest-2026.pdf
     hamtdatum: 2026-09-13
-    url: null
+    url: 'https://moderaterna.se/app/uploads/2026/09/Valmanifest-2026_digital.pdf'
+    url_belagd: true
     arkivadress: null
     byte: 670319
     sha256: b6705c50e73d4dd25c626cc48ec9ff64041de3170f40e65ca7589805b1ee7cd3
   - id: SD
     filnamn: sd-valmanifest-2026.pdf
     hamtdatum: 2026-09-13
-    url: null
+    url: 'https://www.sd.se/wp-content/uploads/2026/09/valmanifest-2026.pdf'
+    url_belagd: true
     arkivadress: null
     byte: 1287613
     sha256: 7ebe576c2cd22a0a59ada68aace0a439a795c7c33dcdcf0fd145d1dc588e6e75
   - id: C
     filnamn: C-Valmanifest-2026.pdf
     hamtdatum: 2026-09-13
-    url: null
+    url: 'https://val2026.centerpartiet.se/wp-content/uploads/2026/06/Valmanifest-2026.pdf'
+    url_belagd: true
     arkivadress: null
     byte: 2619329
     sha256: 69013e13c1abd35bdfc5cde0dfa3201ab5b4f25cc171141e0932e57d63af8892
   - id: V
     filnamn: V-Valmanifest-2026.pdf
     hamtdatum: 2026-09-13
-    url: null
+    url: 'https://www.vansterpartiet.se/wp-content/uploads/2026/09/Valmanifest_2026_WEBB-2.pdf'
+    url_belagd: true
     arkivadress: null
     byte: 5972541
     sha256: becffa6d8a3aa95778bc3b32b7814933fbcef1baae1d24fb0dc504d157aca8ee
   - id: KD
     filnamn: kd-Valmanifest-2026.pdf
     hamtdatum: 2026-09-13
-    url: null
+    url: 'https://kristdemokraterna.se/download/18.3fb0a02c1a01f5f28f7326/1787292489599/Valmanifest%202026.pdf'
+    url_belagd: true
     arkivadress: null
     byte: 2498235
     sha256: 6aafa90124dc4a694d278a0446b7532b53e84cca007bcd80de50f78ebacc4630
   - id: MP
     filnamn: mp-valmanifest-2026.pdf
     hamtdatum: 2026-09-13
-    url: null
+    url: 'https://www.mp.se/wp-content/uploads/2026/08/miljopartiets-valmanifest-2026.pdf'
+    url_belagd: true
     arkivadress: null
     byte: 238713
     sha256: 2f5ae7faee5f47921d633b261db17c3c63a865634fc905d6d1553fa396b08865
   - id: L
     filnamn: L-valmanifest-2026.pdf
     hamtdatum: 2026-09-13
-    url: null
+    url: 'https://www.liberalerna.se/wp-content/uploads/liberalernas-valmanifest-2026-40s-komprimerad.pdf'
+    url_belagd: true
     arkivadress: null
     byte: 699812
     sha256: c37b7163ca017aa73a14861f3a66298b89fced7e7d5939aa3d697510ddf8cd31

@@ -67,6 +67,23 @@ KALLDOKUMENT = {
     "L": "L-valmanifest-2026.pdf",
 }
 
+# Adresserna till de åtta källdokumenten. Fälten stod TOMMA fram till 2026-09-16, eftersom de
+# inte skrevs ned vid hämtningen 2026-09-13. De gissades aldrig.
+#
+# Varje adress nedan är BELAGD, inte uppgiven: dokumentet hämtades om 2026-09-16 och den hämtade
+# filens SHA-256 jämfördes byte för byte mot filen på disk. Alla åtta träffade exakt. En adress
+# står här bara om den träffade.
+KALLDOKUMENT_URL = {
+    "S": "https://www.socialdemokraterna.se/download/18.40fb56b21a04255a9803c1e/1788259051237/Soc%20Valprogram%202026.pdf",
+    "M": "https://moderaterna.se/app/uploads/2026/09/Valmanifest-2026_digital.pdf",
+    "SD": "https://www.sd.se/wp-content/uploads/2026/09/valmanifest-2026.pdf",
+    "C": "https://val2026.centerpartiet.se/wp-content/uploads/2026/06/Valmanifest-2026.pdf",
+    "V": "https://www.vansterpartiet.se/wp-content/uploads/2026/09/Valmanifest_2026_WEBB-2.pdf",
+    "KD": "https://kristdemokraterna.se/download/18.3fb0a02c1a01f5f28f7326/1787292489599/Valmanifest%202026.pdf",
+    "MP": "https://www.mp.se/wp-content/uploads/2026/08/miljopartiets-valmanifest-2026.pdf",
+    "L": "https://www.liberalerna.se/wp-content/uploads/liberalernas-valmanifest-2026-40s-komprimerad.pdf",
+}
+
 # Bortfallskoderna i ADR 0016 beslutspunkt 2, i kodbokens företrädesordning (avsnitt 8.1).
 BORTFALLSKODER = (
     "framtida_utfall",
@@ -1195,10 +1212,13 @@ def skriv_hamtmanifest(ut: Path = UTKATALOG / "hamtmanifest.yaml") -> Path:
         "# BEGRÄNSNINGEN, i klartext: hashen styrker VILKET dokument som lästes, men den",
         "# återskapar det inte. Dör partiets URL finns ingen väg tillbaka till dokumentet.",
         "#",
-        "# `url` är TOM för alla åtta. Adresserna skrevs inte ned vid hämtningen 2026-09-13 och",
-        "# står varken i mappningsfilerna, i biljett #42 eller i PDF:ernas metadata. De gissas",
-        "# inte här. Fältet fylls av den som kan belägga adressen, och `arkivadress` är ett",
-        "# frivilligt fält för en kopia hos oberoende tredje part.",
+        "# `url` stod TOM för alla åtta fram till 2026-09-16, eftersom adresserna inte skrevs ned",
+        "# vid hämtningen 2026-09-13. De gissades aldrig.",
+        "#",
+        "# ADRESSERNA ÄR NU BELAGDA. Varje dokument hämtades om 2026-09-16 och den hämtade filens",
+        "# SHA-256 jämfördes byte för byte mot filen på disk. Alla åtta träffade exakt. En adress",
+        "# står här bara om den träffade. `arkivadress` är ett frivilligt fält för en kopia hos",
+        "# oberoende tredje part, och är tomt för alla åtta.",
         "#",
         "# `hamtdatum` vilar på två ben: mappningsfilerna säger själva att materialet är",
         "# framställt 2026-09-13 ur dessa filer, och filernas tidsstämplar ligger samma dag.",
@@ -1216,7 +1236,8 @@ def skriv_hamtmanifest(ut: Path = UTKATALOG / "hamtmanifest.yaml") -> Path:
             f"  - id: {parti}",
             f"    filnamn: {filnamn}",
             "    hamtdatum: 2026-09-13",
-            "    url: null",
+            f"    url: '{KALLDOKUMENT_URL[parti]}'",
+            "    url_belagd: true",
             "    arkivadress: null",
             f"    byte: {fil.stat().st_size}",
             f"    sha256: {sha256(fil)}",
