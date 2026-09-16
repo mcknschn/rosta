@@ -18,8 +18,8 @@ version: 1
 
 summa:
   bara_a: 8
-  bara_b: 7
-  styckat_olika: 2
+  bara_b: 5
+  styckat_olika: 0
 
 dokument:
   S:
@@ -48,44 +48,12 @@ dokument:
     fall: []
   C:
     poster_a: 94
-    poster_b: 96
-    delade: 92
+    poster_b: 94
+    delade: 94
     bara_a: 0
-    bara_b: 2
-    styckat_olika: 2
-    fall:
-      - slag: styckat_olika
-        sida: 8
-        a_rader: '260-265'
-        b_rader: '260-263'
-        a: "Det ska vara enkelt och billigt att installera solpaneler, bygga laddning till elbilar och minska energianvändningen hemma - vare sig man bor i hus eller lägenhet. Det kan vi lösa genom att bredda och skala upp det gröna avdraget och göra det enklare att installera solpaneler på flerfamiljshus. Det ska finnas gott om laddplatser längs våra vägar och på våra parkeringar i hela landet."
-        b: "Det ska vara enkelt och billigt att installera solpaneler, bygga laddning till elbilar och minska energianvändningen hemma - vare sig man bor i hus eller lägenhet. Det kan vi lösa genom att bredda och skala upp det gröna avdraget och göra det enklare att installera solpaneler på flerfamiljshus."
-        beslut: null
-        skal: null
-      - slag: bara_b
-        sida: 8
-        a_rader: null
-        b_rader: '264-265'
-        a: null
-        b: "Det ska finnas gott om laddplatser längs våra vägar och på våra parkeringar i hela landet."
-        beslut: null
-        skal: null
-      - slag: bara_b
-        sida: 15
-        a_rader: null
-        b_rader: '548'
-        a: null
-        b: "Matchningen måste förbättras. Alla ska ha rätt till en effektiv matchningstjänst och det ska bli lättare att hitta medarbetare inom alla yrken."
-        beslut: null
-        skal: null
-      - slag: styckat_olika
-        sida: 15
-        a_rader: '548-550'
-        b_rader: '549-550'
-        a: "Matchningen måste förbättras. Alla ska ha rätt till en effektiv matchningstjänst och det ska bli lättare att hitta medarbetare inom alla yrken. Utbildningssystemet behöver i betydligt större utsträckning utgå från arbetsmarknadens behov."
-        b: "Utbildningssystemet behöver i betydligt större utsträckning utgå från arbetsmarknadens behov."
-        beslut: null
-        skal: null
+    bara_b: 0
+    styckat_olika: 0
+    fall: []
   V:
     poster_a: 43
     poster_b: 43

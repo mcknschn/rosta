@@ -53,6 +53,18 @@ def test_bel_star_kvar_till_markoren():
     assert lr.dela_markor("\u0007Infor en arbetarepension") == (True, "Infor en arbetarepension")
 
 
+def test_markor_pa_egen_rad_bars_till_nasta_rad():
+    """C satter glyfen ensam pa en rad och texten pa nasta. Flaggan far inte falla bort."""
+    assert lr.markerade_rader(["• ", "Sverige ska bli Europas grona batteri", "och rusta"]) == [
+        (True, "Sverige ska bli Europas grona batteri"),
+        (False, "och rusta"),
+    ]
+
+
+def test_tom_rad_utan_markor_bar_ingen_flagga_vidare():
+    assert lr.markerade_rader(["   ", "vanlig text"]) == [(False, "vanlig text")]
+
+
 def test_markor_av_flera_tecken_skiljs_helt():
     """S satter sin punkt som en Wingdings-glyf, ett tabbsteg, ett mellanslag och ett BEL."""
     assert lr.dela_markor("\t Kraftigt oka antalet poliser") == (
@@ -197,6 +209,13 @@ def test_overlappande_poster_ar_ett_fel():
     assert "p1" in fel[0] and "p2" in fel[0]
 
 
+def test_post_som_tar_samma_rad_tva_ganger_ar_ett_fel():
+    """`1-5,3-7` skulle annars ge en lydelse med tre dubblerade ord."""
+    rader = _underlag("a", "b", "c", "d", "e", "f", "g")
+    fel = lr.kontrollera_spann(rader, [_post("S", "1-5,3-7", "p1")])
+    assert fel and "egna spann" in fel[0]
+
+
 def test_rad_utanfor_underlaget_ar_ett_fel():
     rader = _underlag("a", "b")
     fel = lr.kontrollera_spann(rader, [_post("S", "1-9", "p1")])
@@ -329,6 +348,20 @@ def test_projektagaren_far_satta_en_egen_grans():
     assert lr.facit(_differens(fall), a, b)["S"][0].spann == ((1, 3), (5, 6))
 
 
+def test_ett_beslut_som_varken_ar_ord_eller_spann_namnger_fallet():
+    a = {"S": [_post("S", "1-3", "a1")]}
+    b: dict = {"S": []}
+    with pytest.raises(SystemExit) as fel:
+        lr.facit(_differens(_fall("bara_a", "1-3", None, "ja")), a, b)
+    assert "varken" in str(fel.value) and "S sida 1" in str(fel.value)
+
+
+def test_citat_skyddar_osynliga_tecken_over_ff_med_fyra_siffror():
+    """`\\x200b` laser YAML tillbaka som blanksteg plus nolla. Lydelsen ska overleva."""
+    assert yaml.safe_load("t: " + lr._citat("ett​ord")) == {"t": "ett​ord"}
+    assert yaml.safe_load("t: " + lr._citat("punkt")) == {"t": "punkt"}
+
+
 def test_beslutet_a_pa_ett_fall_bara_b_har_ar_ett_fel():
     """Beslutet pekar pa en genomgang som inte har nagon post dar."""
     a: dict = {"S": []}
@@ -399,13 +432,24 @@ def test_antalet_per_parti_stammer_med_posterna():
     assert sum(raknat.values()) == data["antal"]
 
 
-@pytestmark_register
 def test_differensen_ar_redovisad_per_dokument():
-    """Beslut 7: tre tal per dokument, och varje differens avgjord fore lasningen."""
+    """Beslut 7: tre tal per dokument. Galler aven fore lasningen."""
     differens = yaml.safe_load(DIFFERENS.read_text(encoding="utf-8"))
     assert set(differens["dokument"]) == {d["id"] for d in lr.dokument()}
     for tal in differens["dokument"].values():
-        for nyckel in ("bara_a", "bara_b", "styckat_olika"):
+        for nyckel in ("poster_a", "poster_b", "delade", "bara_a", "bara_b", "styckat_olika"):
             assert isinstance(tal[nyckel], int)
-    for fall in differens.get("avgjort") or []:
-        assert fall["beslut"], "varje differens ska bara ett avgorande"
+        assert len(tal["fall"]) == tal["bara_a"] + tal["bara_b"] + tal["styckat_olika"]
+
+
+@pytestmark_register
+def test_varje_differens_ar_avgjord_fore_lasningen():
+    """Beslut 7: projektagaren avgor varje differens INNAN registret las."""
+    differens = yaml.safe_load(DIFFERENS.read_text(encoding="utf-8"))
+    oavgjort = [
+        f"{dok} sida {fall['sida']}"
+        for dok, tal in differens["dokument"].items()
+        for fall in tal["fall"]
+        if fall.get("beslut") in (None, "")
+    ]
+    assert not oavgjort, f"registret ar last men dessa fall star oavgjorda: {oavgjort}"

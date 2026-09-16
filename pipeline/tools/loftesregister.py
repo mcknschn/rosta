@@ -143,6 +143,25 @@ def dela_markor(rad: str) -> tuple[bool, str]:
     return utan != rad, utan
 
 
+def markerade_rader(rader: Iterable[str]) -> list[tuple[bool, str]]:
+    """Textraderna med sin listmarkör, där en markör på egen rad bärs vidare.
+
+    C sätter sina punkter så att glyfen står ensam på en rad och texten börjar på nästa.
+    Raden blir tom när markören skilts av, och utan det här steget föll flaggan bort med
+    den. C har 96 sådana punkter, alltså hela dokumentets liststruktur.
+    """
+    ut: list[tuple[bool, str]] = []
+    hangande = False
+    for rad in rader:
+        markor, text = dela_markor(rad)
+        if not platta(text):
+            hangande = hangande or markor
+            continue
+        ut.append((markor or hangande, text))
+        hangande = False
+    return ut
+
+
 def foga_avstavning(rader: Sequence[tuple[bool, str]]) -> list[tuple[bool, str]]:
     """Fogar ihop ord som satsen bröt över ett radslut.
 
@@ -242,7 +261,7 @@ def sidrader(pdf: Path) -> list[Rad]:
             block = [b for b in sida.get_text("blocks") if b[6] == 0 and b[4].strip()]
             for ruta in xy_snitt(block):
                 blocknr += 1
-                rena = [dela_markor(r) for r in stada(ruta[4]).split("\n") if r.strip()]
+                rena = markerade_rader(stada(ruta[4]).split("\n"))
                 for markor, text in foga_avstavning(rena):
                     text = platta(text)
                     if not text:
@@ -424,6 +443,9 @@ def kontrollera_spann(rader: dict[int, Rad], poster: Sequence[Post]) -> list[str
         for lo, hi in post.spann:
             if hi < lo:
                 fel.append(f"{post.id}: spannet {lo}-{hi} vänder på sig")
+        if len(set(post.rader)) != len(post.rader):
+            fel.append(f"{post.id}: postens egna spann överlappar varandra")
+            continue
         krock = False
         for n in post.rader:
             if n not in rader:
@@ -580,7 +602,10 @@ def _citat(text: str) -> str:
         elif tecken == '"':
             ut.append('\\"')
         elif unicodedata.category(tecken) in ("Cc", "Cf"):
-            ut.append(f"\\x{ord(tecken):02x}")
+            # YAML:s `\xNN` bär bara två siffror. Ett osynligt tecken över U+00FF måste
+            # skrivas `\uNNNN`, annars läses `\x200b` tillbaka som ett blanksteg och en
+            # nolla, och lydelsen är tyst förvanskad.
+            ut.append(f"\\x{ord(tecken):02x}" if ord(tecken) <= 0xFF else f"\\u{ord(tecken):04x}")
         else:
             ut.append(tecken)
     return '"' + "".join(ut) + '"'
@@ -625,7 +650,12 @@ def facit(
                 else:
                     valda[dok].append(tolka_spann(spann))
             else:
-                valda[dok].append(tolka_spann(str(beslut)))
+                try:
+                    valda[dok].append(tolka_spann(str(beslut)))
+                except ValueError:
+                    oavgjort.append(
+                        f"{plats}: `{beslut}` är varken {', '.join(BESLUT)} eller ett radspann"
+                    )
     if oavgjort:
         raise SystemExit(
             "differensen är inte avgjord, och registret låses inte förrän den är det:\n  "
@@ -739,19 +769,19 @@ def _kommando_differens(skriv: bool) -> int:
     print("summa:", rapport["summa"])
     if skriv:
         fil = KONFIG / "differens.yaml"
+        # Projektägarens avgöranden överlever en omräkning. Både beslutet och skälet
+        # bärs över, eftersom skälet är spåret av avgörandet och inte en anteckning.
         tidigare = {}
         if fil.is_file():
             gammal = yaml.safe_load(fil.read_text(encoding="utf-8")) or {}
             for dok, tal in (gammal.get("dokument") or {}).items():
                 for fall in tal.get("fall") or []:
-                    tidigare[(dok, fall["slag"], fall["a_rader"], fall["b_rader"])] = fall.get(
-                        "beslut"
-                    )
+                    nyckel = (dok, fall["slag"], fall["a_rader"], fall["b_rader"])
+                    tidigare[nyckel] = (fall.get("beslut"), fall.get("skal"))
         for dok, tal in rapport["dokument"].items():
             for fall in tal["fall"]:
                 nyckel = (dok, fall["slag"], fall["a_rader"], fall["b_rader"])
-                fall["beslut"] = tidigare.get(nyckel)
-                fall["skal"] = None
+                fall["beslut"], fall["skal"] = tidigare.get(nyckel, (None, None))
         fil.write_text(differenstext(rapport), encoding="utf-8", newline="\n")
         print(f"skrev {fil.relative_to(ROT)}")
     return 0

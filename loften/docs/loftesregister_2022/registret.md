@@ -15,7 +15,7 @@ ingenting annat. Om åtgärden var klok avgörs av delpoäng B och D i modellen,
 | Underlaget draget ur alla åtta PDF:er | klart |
 | Två blinda genomgångar per dokument | klart |
 | De tre differenstalen räknade per dokument | klart |
-| Varje differens avgjord av projektägaren | **öppet, 17 fall** |
+| Varje differens avgjord av projektägaren | **öppet, 13 fall** |
 | Registret byggt och hashpinnat | väntar på avgörandet |
 
 Bygget stannar med flit vid avgörandet. `pipeline/tools/loftesregister.py --bygg` vägrar skriva
@@ -74,7 +74,7 @@ i varje dokument. Talen är räknade på genomgång A.
 | S | en punkt i listorna som inleds med `Våra viktigaste förslag handlar om att:` | 40 av 40 | 0 | 40 | 54 % |
 | M | en punkt i listorna som inleds med `Moderaterna kommer att:` | 253 av 253 | 0 | 204 | 27 % |
 | SD | ett förslag i listorna som inleds med `Några av Sverigedemokraternas vallöften:` | 0 | 0 | 42 | 61 % |
-| C | en punkt i en `reformagenda` | 0 | 0 | 94 | 35 % |
+| C | en punkt i en `reformagenda` | 94 av 94 | 0 | 94 | 35 % |
 | V | **ett stycke löptext** | 0 | 0 | 42 | 66 % |
 | KD | en punkt i listan under kapitlets rubrik | 0 | 0 | 46 | 49 % |
 | MP | en punkt i listan efter `Vi vill:` | 114 av 114 | 0 | 2 | 51 % |
@@ -87,6 +87,17 @@ medan M:s är punkter i en lista. Det är också där de två genomgångarna gic
 
 Fjorton poster bärs av **flera radspann**: 7 hos V, 6 hos S och 1 hos C. Punkten bryts där av en
 sidbrytning, och sidnumret däremellan hör inte till löftet.
+
+### C kördes om
+
+C sätter sin punktglyf ensam på en rad och texten på nästa. Den första utvinningen tappade
+markören där, så C:s underlag bar noll listmarkörer trots 96 punkter i PDF:en, och båda
+genomgångarna läste C utan dess starkaste strukturssignal. Felet hittades i kodgranskningen,
+lagades, och **båda genomgångarna kördes om för C i nya sammanhang**. Radnumreringen rördes inte.
+
+Utfallet är värt att skriva ned: genomgång A gav exakt samma 94 poster som förut, medan genomgång
+B gick från 96 till 94. C:s fyra differenser försvann helt, och dokumentet går nu ihop på varje
+post.
 
 ## De två blinda genomgångarna
 
@@ -116,29 +127,30 @@ samma rad, och antalet rader ingen post tog är räknat. Sexton prövningar, nol
 | S | 40 | 40 | 40 | 0 | 0 | 0 |
 | M | 253 | 253 | 253 | 0 | 0 | 0 |
 | SD | 42 | 42 | 42 | 0 | 0 | 0 |
-| C | 94 | 96 | 92 | 0 | 2 | 2 |
+| C | 94 | 94 | 94 | 0 | 0 | 0 |
 | V | 43 | 43 | 38 | 5 | 5 | 0 |
 | KD | 46 | 46 | 46 | 0 | 0 | 0 |
 | MP | 114 | 111 | 111 | 3 | 0 | 0 |
 | L | 75 | 75 | 75 | 0 | 0 | 0 |
-| **Summa** | **707** | **706** | **697** | **8** | **7** | **2** |
+| **Summa** | **707** | **704** | **699** | **8** | **5** | **0** |
 
-Fem av åtta dokument gav noll i alla tre talen. De tre som inte gjorde det är de tre där
+Sex av åtta dokument gav noll i alla tre talen. De två som inte gjorde det är de två där
 dokumentets egen struktur är svagast:
 
-- **V** står för tio av de sjutton fallen. Dokumentet bär ingen lista alls, så gränsen mellan ett
+- **V** står för tio av de tretton fallen. Dokumentet bär ingen lista alls, så gränsen mellan ett
   förslag och ett resonemang vilar helt på ett omdöme.
-- **C** har fyra fall, som är två oenigheter räknade från båda hållen: en punkt som bär två
-  meningar, där genomgång B läste den andra meningen som en egen punkt.
 - **MP** har tre fall, alla samma sak: de tre raderna om solidaritet på sidan 3, som den ena
   genomgången läste som punkter och den andra som partiets värdegrund.
+
+Inget fall är av slaget **styckat olika**. Där båda genomgångarna såg en post drog de också
+gränsen på samma rad, i alla 699 fallen.
 
 Varje fall står i [`differens.yaml`](../../config/loftesregister_2022/differens.yaml) med båda
 genomgångarnas lydelse, sidnummer och radspann, och ett tomt `beslut`.
 
 ## Antal poster per parti
 
-Talen nedan är vad de två genomgångarna redan är eniga om, alltså registret utan de sjutton
+Talen nedan är vad de två genomgångarna redan är eniga om, alltså registret utan de tretton
 oavgjorda fallen. Det slutliga antalet sätts när differensen är avgjord.
 
 | Parti | Poster (eniga) | Sidor i dokumentet |
@@ -146,12 +158,12 @@ oavgjorda fallen. Det slutliga antalet sätts när differensen är avgjord.
 | S | 40 | 17 |
 | M | 253 | 40 |
 | SD | 42 | 12 |
-| C | 92 | 25 |
+| C | 94 | 25 |
 | V | 38 | 17 |
 | KD | 46 | 12 |
 | MP | 111 | 12 |
 | L | 75 | 19 |
-| **Summa** | **697** | |
+| **Summa** | **699** | |
 
 **Antalet följer dokumentets form, inte partiets vilja.** M får 253 poster och S 40 därför att M
 skriver korta punkter genom fyrtio sidor medan S buntar sina förslag i fyrtio längre punkter, inte

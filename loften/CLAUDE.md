@@ -217,7 +217,7 @@ trösklar får inte bära ett avslagsskäl.
 
 **Saknas**
 
-- Det låsta 2022-registret. Genomgångarna är klara och differensen räknad, men **17 fall väntar
+- Det låsta 2022-registret. Genomgångarna är klara och differensen räknad, men **13 fall väntar
   på projektägarens avgörande** (beslut 7), och bygget vägrar skriva registret innan dess.
 - Regeringens propositioner, som regel 2 kräver. Ingen kod i projektet hämtar dem i dag.
 
