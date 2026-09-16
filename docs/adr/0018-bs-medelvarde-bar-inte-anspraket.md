@@ -177,9 +177,26 @@ algebran. Ingen del av det följer ur vem som steg eller föll.
    antalet poster en dold vikt, och flera poster på samma åtgärdstyp måste dela sin budgetandel.
    Budgetens form är en öppen designfråga och avgörs i sin egen biljett, inte här.
 
+   > **Daterad not 2026-09-16, [ADR 0019](0019-kvoten-anvandes-over-fel-enheter.md) beslut 1.**
+   > Frågan var fel ställd. Nämnaren är ingen storhet som ska väljas: kvoten användes över fel
+   > enheter. Inom en åtgärdstyp står `Σ q` kvar som poolningsnämnare, eftersom flera
+   > utvärderingar av samma ingrepp är upprepade mätningar av en storhet. Över åtgärdstyper
+   > summeras bidragen mot `K = R × m_max`. Kravet att poster på samma åtgärdstyp delar sin
+   > budgetandel uppfylls exakt: de delar typens plats i summan.
+
 8. **Godkännandetestet för punkt 7, låst i förväg.** Bygget godkänns om **en tillagd post med
    belagd positiv effekt aldrig sänker något partis B**. Aldrig om rangordningen blev bättre, mer
    separerad eller mer stabil. Utfallet redovisas som det blir.
+
+   > **Daterad not 2026-09-16, [ADR 0019](0019-kvoten-anvandes-over-fel-enheter.md) beslut 2
+   > och 3.** Testet går inte att uppfylla som det är skrivet, och det beror inte på nämnaren.
+   > Krympningen multiplicerar avståndet från neutral, så en positiv post kan sänka publicerat B
+   > för ett parti vars `B_rått` ligger under neutral. Sex av 56 celler gör det. Mätt 2026-09-16:
+   > en admitterad post med belagd positiv verkan sänker fyra partier utan position på den med
+   > 0,075 till 0,150, helt genom täckningskanalen. Testet delas därför i evidensmonotonicitet,
+   > med universum fixerat, och universumändring, som är ett versionsärende. Garantin gäller
+   > `net` inom indikatorn ovillkorligt, `B_rått` bara vid oförändrat indikatormedlemskap, och
+   > publicerat B inte alls.
 
 ## Vad beslutet inte rör
 

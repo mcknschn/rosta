@@ -89,6 +89,16 @@ faktiskt räknar är andelen av partiets kodade ståndpunkter som backar liggare
    `unclear` ger `m = 0` men behåller sitt `q`, alltså drar en källa som säger "oklart" cellen
    mot neutral, vilket är vad den säger.
 
+   > **Daterad not 2026-09-16, skriven i biljett [#50](https://github.com/mcknschn/rosta/issues/50)
+   > under [ADR 0019](0019-kvoten-anvandes-over-fel-enheter.md) beslut 1.** Formen ovan gäller
+   > inte längre över en hel cell. Kvoten var aldrig fel i sig, men den användes över fel
+   > enheter: flera utvärderingar av **samma** åtgärdstyp är upprepade mätningar av en storhet
+   > och ska poolas, medan flera **åtgärdstyper** är skilda ingrepp och ska summeras. Formen
+   > delas därför i två led, `x_t = Σ(q·m)/Σq` inom typen och `net = clip(Σ x_t / K, -1, 1)`
+   > över typerna. Egenskapen att ett ensamt claim ger `net = m` **bevaras** inom typen, och
+   > det är just den egenskapen som håller beslut 2 sant: `q` förblir relativ poolningsvikt
+   > och blir aldrig amplitudfaktor. Beslut 2 och 4 står oförändrade.
+
 4. **Talen 0,3 / 0,6 / 1,0 behålls oförändrade.** `numeric.effect_strength` i
    `config/claims.yaml` blir nu B:s skala rakt av: `low` ger 3,25, `medium` 4,00, `high` 5,00.
    Tabellen är ärvd och aldrig härledd. Den behålls ändå, och skälet är prövningsregeln i
