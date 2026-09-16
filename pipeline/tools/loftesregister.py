@@ -48,6 +48,13 @@ PDF_KATALOG = ROT / "loften" / "docs" / "valmanifest_2022"
 HAMTMANIFEST = PDF_KATALOG / "hamtmanifest.yaml"
 UNDERLAG = ROT / "loften" / "underlag" / "valmanifest_2022"
 KONFIG = ROT / "loften" / "config" / "loftesregister_2022"
+INSTRUKTION = ROT / "loften" / "docs" / "loftesregister_2022" / "genomgangsinstruktion.md"
+
+# Instruktionens version, satt för hand när instruktionen ändras. Talet står i
+# registret bredvid instruktionens hash, så att ett register aldrig kan hänvisa till
+# en regel det inte kördes under. Version 3:s register pinnade instruktionen med en
+# sökväg, och den filen skrevs sedan om till version 4.
+INSTRUKTION_VERSION = 4
 
 # Kolumnrännan i ett valmanifest är smal. Radavståndet inom en spalt är smalare.
 # Tröskeln skiljer de två, och en lodrät delning provas före en vågrät, så att en
@@ -225,6 +232,15 @@ class Rad:
     text: str
     block: int
     markor: bool
+    grad: float | None = None
+    """Blockets dominerande textgrad i punkter, mätt i PDF:en.
+
+    Graden är ett faktum om satsen och inte ett omdöme om texten. Den ligger i
+    underlaget därför att genomgången annars inte kan skilja en rubrik från ett
+    stycke utan att läsa innehållet, vilket instruktionens princip 3 förbjuder.
+    `Framtiden är grön.` hos C är satt i 9,7 punkter, alltså samma grad som
+    styckena omkring, medan rubriken över är satt i 15,5.
+    """
 
 
 def _snitt(rutor: Sequence[tuple], lo: int, hi: int, minsta: float) -> tuple[list, list] | None:
@@ -264,6 +280,34 @@ def xy_snitt(rutor: Sequence[tuple]) -> list[tuple]:
     return sorted(rutor, key=lambda r: (r[1], r[0]))
 
 
+def _blockgrader(doc) -> dict[tuple, float]:
+    """Varje blocks dominerande textgrad, nycklad på blockets ruta.
+
+    `get_text("blocks")` bär rutan och texten men ingen grad, och `get_text("dict")`
+    bär graden. De två listorna är INTE para: `dict` bär också block vars text bara
+    är blanktecken, och hos V skiljer de sig på 13 sidor av 17. Därför slås graden
+    upp på rutan och aldrig på platsen i listan.
+    """
+    karta: dict[tuple, float] = {}
+    for sidnr, sida in enumerate(doc, start=1):
+        for block in sida.get_text("dict")["blocks"]:
+            if block.get("type") != 0:
+                continue
+            tecken: dict[float, int] = {}
+            for rad in block["lines"]:
+                for span in rad["spans"]:
+                    grad = round(span["size"], 1)
+                    tecken[grad] = tecken.get(grad, 0) + len(span["text"].strip())
+            if not any(tecken.values()):
+                continue
+            karta[_rutnyckel(sidnr, block["bbox"])] = max(tecken, key=lambda g: tecken[g])
+    return karta
+
+
+def _rutnyckel(sidnr: int, ruta: Sequence[float]) -> tuple:
+    return (sidnr, round(ruta[0], 1), round(ruta[1], 1), round(ruta[2], 1), round(ruta[3], 1))
+
+
 def sidrader(pdf: Path) -> list[Rad]:
     """Dokumentets textrader i läsordning, numrerade löpande över hela dokumentet."""
     import fitz  # lokal import: PyMuPDF är inget pipeline-beroende
@@ -272,10 +316,12 @@ def sidrader(pdf: Path) -> list[Rad]:
     nr = 0
     blocknr = 0
     with fitz.open(pdf) as doc:
+        grader = _blockgrader(doc)
         for sidnr, sida in enumerate(doc, start=1):
             block = [b for b in sida.get_text("blocks") if b[6] == 0 and b[4].strip()]
             for ruta in xy_snitt(block):
                 blocknr += 1
+                grad = grader.get(_rutnyckel(sidnr, ruta))
                 rena = markerade_rader(stada(ruta[4]).split("\n"))
                 for markor, text in foga_avstavning(rena):
                     text = platta(text)
@@ -283,7 +329,14 @@ def sidrader(pdf: Path) -> list[Rad]:
                         continue
                     nr += 1
                     rader.append(
-                        Rad(nr=nr, sida=sidnr, text=text, block=blocknr, markor=markor)
+                        Rad(
+                            nr=nr,
+                            sida=sidnr,
+                            text=text,
+                            block=blocknr,
+                            markor=markor,
+                            grad=grad,
+                        )
                     )
     return rader
 
@@ -297,8 +350,16 @@ HUVUD = """\
 #   markör `.`  raden gör det inte
 #
 # En rad som börjar med # är satsens form och inte partiets text:
-#   ---- sida N ----   sidbrytning i PDF:en
-#   ---- block ----    nytt textblock i PDF:en, alltså dokumentets egen styckning
+#   ---- sida N ----        sidbrytning i PDF:en
+#   ---- block grad G ----  nytt textblock i PDF:en, alltså dokumentets egen
+#                           styckning, och blockets dominerande textgrad i punkter
+#
+# Graden är mätt i PDF:en och säger hur stort blocket är satt. En rubrik är satt
+# större än den löpande texten omkring sig. Talet är ett faktum om satsen, och det
+# ligger här för att en rubrik ska gå att skilja från ett stycke utan att texten
+# läses. Dokumenten sätter olika grader, och ett och samma dokument kan sätta två
+# brödtextgrader. Jämför därför alltid med blocken närmast omkring, aldrig med ett
+# tal hämtat från ett annat dokument.
 #
 # Avstavning över radslut är hopfogad. Bindestreck i sammansättningar står kvar.
 # Tankstreck är ersatta med bindestreck. Partiets egna stavfel står kvar.
@@ -316,24 +377,44 @@ def underlagstext(rader: Iterable[Rad]) -> str:
         if rad.block != forra_block:
             if forra_block is not None:
                 ut.append("")
-            ut.append("# ---- block ----")
+            grad = "?" if rad.grad is None else f"{rad.grad:g}"
+            ut.append(f"# ---- block grad {grad} ----")
             forra_block = rad.block
         ut.append(f"{rad.nr}|{rad.sida}|{'*' if rad.markor else '.'}|{rad.text}")
     return "\n".join(ut) + "\n"
 
 
+# Graden kom till efter den första låsningen. Ett underlag utan grad är därför en
+# giltig form och läses med `grad` satt till None, inte som ett fel.
+BLOCKRAD = re.compile(r"^# ---- block(?: grad (\?|[\d.]+))? ----$")
+
+
 def las_underlag(fil: Path) -> list[Rad]:
+    return las_underlag_text(fil.read_text(encoding="utf-8"))
+
+
+def las_underlag_text(text: str) -> list[Rad]:
     rader = []
     blocknr = 0
-    for rad in fil.read_text(encoding="utf-8").splitlines():
-        if rad.startswith("# ---- block ----"):
+    grad = None
+    for rad in text.splitlines():
+        blockrad = BLOCKRAD.match(rad)
+        if blockrad:
             blocknr += 1
+            grad = None if blockrad[1] in (None, "?") else float(blockrad[1])
             continue
         if not rad or rad.startswith("#"):
             continue
         nr, sida, markor, text = rad.split("|", 3)
         rader.append(
-            Rad(nr=int(nr), sida=int(sida), text=text, block=blocknr, markor=markor == "*")
+            Rad(
+                nr=int(nr),
+                sida=int(sida),
+                text=text,
+                block=blocknr,
+                markor=markor == "*",
+                grad=grad,
+            )
         )
     return rader
 
@@ -474,6 +555,39 @@ def kontrollera_spann(rader: dict[int, Rad], poster: Sequence[Post]) -> list[str
         if not krock:
             for n in post.rader:
                 tagna[n] = post.id
+    return fel
+
+
+# Tecken som avslutar en mening. Kolon räknas med: en rad som slutar på kolon
+# annonserar något, och lydelsen är då inte avhuggen mitt i en sats.
+MENINGSSLUT = ".!?:»\"”)…"
+
+
+def avhuggna_poster(rader: dict[int, Rad], poster: Sequence[Post]) -> list[str]:
+    """Poster vars lydelse slutar mitt i en mening.
+
+    Krav 5 i genomgångsinstruktionen. Provet är det språkliga: postens sista rad slutar
+    utan avslutande skiljetecken, och nästa rad i SAMMA block börjar med gemen bokstav
+    utan att någon annan post tagit den.
+
+    Kravet på samma block skiljer det äkta fallet från två falska. En diagramsiffra i
+    nästa block börjar också med gemen, och en listpunkt som följer på en annan gör det
+    med. I 2022 års korpus ger provet en enda träff, nämligen posten som slutar
+    `för att trygga vår` medan orden `fred och frihet.` står på nästa rad.
+    """
+    tagna = {n for post in poster for n in post.rader}
+    fel = []
+    for post in poster:
+        sist = rader.get(post.rad_slut)
+        nasta = rader.get(post.rad_slut + 1)
+        if sist is None or nasta is None or nasta.nr in tagna:
+            continue
+        if nasta.block != sist.block:
+            continue
+        text = lydelse(rader, post).rstrip()
+        if text and text[-1] not in MENINGSSLUT and nasta.text.lstrip()[:1].islower():
+            svans = text[-40:].lstrip()
+            fel.append(f"{post.id}: slutar `{svans}` men rad {nasta.nr} fortsätter meningen")
     return fel
 
 
@@ -703,13 +817,19 @@ def registertext(poster: dict[str, list[Post]], underlag: dict[str, dict[int, Ra
         "# faller på en ändrad bokstav.",
         "#",
         "# `rader` pekar in i underlaget under loften/underlag/valmanifest_2022/, som är",
-        "# deterministiskt utvunnet ur PDF:en. Flera spann betyder att punkten bröts av en",
-        "# sidbrytning, och att sidnumret däremellan inte hör till löftet.",
+        "# deterministiskt utvunnet ur PDF:en. Flera spann betyder att satsen lagt något",
+        "# mitt i punkten, till exempel ett sidnummer eller en bildtext, och att det som",
+        "# ligger däremellan inte hör till löftet.",
+        "#",
+        "# `instruktion_sha256` pinnar den regel genomgångarna körde under. Utan den kan",
+        "# ett register hänvisa till en instruktionsfil som skrivits om efteråt.",
         "",
         "version: 1",
         f"byggt: {datum}",
         "hamtmanifest: '../../docs/valmanifest_2022/hamtmanifest.yaml'",
         "instruktion: '../../docs/loftesregister_2022/genomgangsinstruktion.md'",
+        f"instruktion_version: {INSTRUKTION_VERSION}",
+        f"instruktion_sha256: {sha256_text(INSTRUKTION)}",
         f"antal: {antal}",
         "",
         "dokument:",
@@ -762,12 +882,13 @@ def _kommando_kontroll() -> int:
             rader = underlag[dok]
             fel = kontrollera_spann(rader, poster)
             otagna = otagna_rader(rader, poster)
+            avhuggna = avhuggna_poster(rader, poster)
             trasigt += len(fel)
             print(
                 f"{namn} {dok:3s} poster={len(poster):4d} fel={len(fel):3d} "
-                f"otagna rader={len(otagna):5d} av {len(rader)}"
+                f"avhuggna={len(avhuggna):3d} otagna rader={len(otagna):5d} av {len(rader)}"
             )
-            for rad in fel[:10]:
+            for rad in [*fel[:10], *avhuggna[:10]]:
                 print(f"      {rad}")
     return 1 if trasigt else 0
 

@@ -209,6 +209,36 @@ def test_ensam_ruta_star_kvar():
     assert lr.xy_snitt([_ruta(0, 0, 10, 10, "en")]) == [_ruta(0, 0, 10, 10, "en")]
 
 
+# ------------------------------------------------------------------- textgraden
+
+
+def test_underlaget_bar_blockets_grad_och_laser_tillbaka_den():
+    """Graden skrivs ut per block och kommer tillbaka på varje rad i blocket."""
+    rader = [
+        lr.Rad(nr=1, sida=1, text="RUBRIKEN", block=1, markor=False, grad=15.5),
+        lr.Rad(nr=2, sida=1, text="Ett stycke.", block=2, markor=False, grad=9.7),
+        lr.Rad(nr=3, sida=1, text="Samma stycke.", block=2, markor=False, grad=9.7),
+    ]
+    text = lr.underlagstext(rader)
+    assert "# ---- block grad 15.5 ----" in text
+    assert "# ---- block grad 9.7 ----" in text
+    assert [r.grad for r in lr.las_underlag_text(text)] == [15.5, 9.7, 9.7]
+
+
+def test_ett_underlag_utan_grad_ar_en_giltig_form():
+    """Den första låsningens underlag bar ingen grad. Det läses, det faller inte."""
+    text = "\n".join(["# ---- sida 1 ----", "# ---- block ----", "1|1|.|Ett stycke."])
+    rader = lr.las_underlag_text(text)
+    assert [(r.block, r.grad) for r in rader] == [(1, None)]
+
+
+def test_grad_som_saknas_skrivs_som_fragetecken_och_laser_tillbaka_som_none():
+    rader = [lr.Rad(nr=1, sida=1, text="x", block=1, markor=False, grad=None)]
+    text = lr.underlagstext(rader)
+    assert "# ---- block grad ? ----" in text
+    assert lr.las_underlag_text(text)[0].grad is None
+
+
 # ------------------------------------------------------------------- radspannen
 
 
@@ -276,6 +306,62 @@ def test_otagna_rader_visar_vad_genomgangen_lamnade():
     rader = _underlag("a", "b", "c", "d")
     assert lr.otagna_rader(rader, [_post("S", "1-2")]) == [3, 4]
     assert lr.otagna_rader(rader, [_post("S", "1-4")]) == []
+
+
+# ------------------------------------------------------------------- avhuggna poster
+
+
+def _block(*rader: tuple[int, str]) -> dict[int, lr.Rad]:
+    """Rader med uttryckligt blocknummer: (blocknr, text)."""
+    return {
+        i: lr.Rad(nr=i, sida=1, text=text, block=blocknr, markor=False)
+        for i, (blocknr, text) in enumerate(rader, start=1)
+    }
+
+
+def test_post_som_slutar_mitt_i_en_mening_fangas():
+    """S-066:s fall. Raden efter bar bade meningens slut och listannonseringen."""
+    rader = _block(
+        (1, "Men nu kravs mer samarbete, for att trygga var"),
+        (1, "fred och frihet. Darfor vill vi att:"),
+    )
+    assert lr.avhuggna_poster(rader, [_post("S", "1", "S-066")]) == [
+        "S-066: slutar `kravs mer samarbete, for att trygga var` men rad 2 fortsätter meningen"
+    ]
+
+
+def test_nasta_rad_i_ett_annat_block_ar_ingen_avhuggning():
+    """M-076:s falska trager: rad efter ar en diagramsiffra i nasta block."""
+    rader = _block(
+        (1, "frigora resurser till forsvaret"),
+        (2, "per ar i bidragsfusk"),
+    )
+    assert lr.avhuggna_poster(rader, [_post("M", "1")]) == []
+
+
+def test_nasta_rad_som_en_annan_post_tagit_ar_ingen_avhuggning():
+    """MP:s tre solidaritetspunkter borjar var och en med gemen."""
+    rader = _block(
+        (1, "solidaritet med djur och natur"),
+        (1, "solidaritet med kommande generationer"),
+    )
+    poster = [_post("MP", "1", "MP-002"), _post("MP", "2", "MP-003")]
+    assert lr.avhuggna_poster(rader, poster) == []
+
+
+def test_post_som_slutar_med_punkt_ar_inte_avhuggen():
+    rader = _block((1, "Ett helt stycke."), (1, "fortsattning med gemen"))
+    assert lr.avhuggna_poster(rader, [_post("S", "1")]) == []
+
+
+def test_post_som_slutar_med_kolon_ar_inte_avhuggen():
+    rader = _block((1, "Vi vill foljande:"), (1, "punkt ett"))
+    assert lr.avhuggna_poster(rader, [_post("S", "1")]) == []
+
+
+def test_post_vars_nasta_rad_borjar_med_versal_ar_inte_avhuggen():
+    rader = _block((1, "Ett stycke utan punkt"), (1, "Nytt stycke med versal"))
+    assert lr.avhuggna_poster(rader, [_post("S", "1")]) == []
 
 
 # ------------------------------------------------------------------- differensen
