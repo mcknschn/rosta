@@ -684,26 +684,20 @@ def test_varje_differens_ar_avgjord_fore_lasningen():
 
 # ------------------------------------------------------------------- tackningen
 
-# Block som instruktionens version 3 lamnar utanfor med avsikt, trots sin langd.
+# Block som instruktionens version 4 lamnar utanfor med avsikt, trots sin langd.
 # Var rad ar ett dokument och ett blocknummer, med skalet. Listan ar avsiktligt kort:
 # den bar bara satsens egna delar, aldrig ett stycke av partiets text.
+#
+# ETT ENDA UNDANTAG I HELA KORPUSEN. Version 3 hade tva. Det andra var MP:s block 3, dar
+# raderna 6-7 var en inledning i samma block som tre listpunkter. Version 4 gor raderna
+# fore blockets forsta listsignal till en post, sa MP:s langsta otagna foljd ar nu 70
+# tecken och undantaget behovs inte langre.
 TILLATNA_LANGA_LUCKOR: dict[str, dict[int, str]] = {
     # Diagrammet `Sa har arbetslosheten forandrats i EU sedan 2014` pa M:s sida 5.
     # Blocket ar de 27 landernas namn under stapelaxeln, ett namn per rad. Det raknas
     # som langt bara for att namnen fogas ihop till en strang, inte for att det bar
     # lopande text. Blocket fore ar diagramrubriken och blocken efter ar axeltalen.
     "M": {51: "axeletiketterna i diagrammet pa sida 5, 27 landsnamn"},
-    # MP:s sida 3. Blocket bar bade brodtext (rad 6-7) och tre listpunkter (rad 8-10).
-    # Raderna 6-7 ar inledningen, och rad 7 slutar `Allt vi gor bygger pa solidaritet i
-    # ord och handling:`, alltsa den rad som annonserar listan. Blocket bar en lista, sa
-    # de fyra signalerna galler dar och inte styckeregeln, och instruktionens langa lista
-    # utesluter bade inledningar och den annonserande raden. Alla tre genomgangarna
-    # uteslot dem.
-    #
-    # Detta ar den kvarvarande formberoendet i version 3: en inledning fore en lista ar
-    # ingen post, medan ett stycke i ett listlost avsnitt ar det. Undantaget ar ett och
-    # bara ett i hela korpusen, och det star nedskrivet i registret.md.
-    "MP": {3: "inledningen som annonserar solidaritetslistan pa sida 3"},
 }
 
 # En rubrik, en bildtext, ett sidnummer, ett sidhuvud eller en tryckortsrad ar aldrig
