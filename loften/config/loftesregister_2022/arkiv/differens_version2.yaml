@@ -1,0 +1,256 @@
+# Rösta - DIFFERENSEN mellan de två blinda genomgångarna (biljett #54, beslut 7).
+#
+# Tre tal per dokument: poster bara A har, poster bara B har, och poster båda har
+# men styckat olika. Talen är räknade av pipeline/tools/loftesregister.py på
+# radspann i underlaget, aldrig på avskriven text.
+#
+# PROJEKTÄGAREN AVGÖR VARJE FALL INNAN LÅSNINGEN. Fältet `beslut` tar:
+#   a       A:s styckning gäller
+#   b       B:s styckning gäller
+#   ingen   fallet är ingen post och faller ur registret
+#   <spann> projektägarens egen gräns, till exempel 93-99 eller 93-95,98-99
+# `skal` är frivilligt och står kvar i filen som spår av avgörandet.
+#
+# Ett oavgjort fall stoppar bygget. Det är avsiktligt: en tyst förvald sida vore
+# ett avgörande utan avgörare.
+
+version: 1
+
+summa:
+  bara_a: 3
+  bara_b: 9
+  styckat_olika: 9
+
+dokument:
+  S:
+    poster_a: 40
+    poster_b: 40
+    delade: 40
+    bara_a: 0
+    bara_b: 0
+    styckat_olika: 0
+    fall: []
+  M:
+    poster_a: 253
+    poster_b: 253
+    delade: 253
+    bara_a: 0
+    bara_b: 0
+    styckat_olika: 0
+    fall: []
+  SD:
+    poster_a: 42
+    poster_b: 42
+    delade: 42
+    bara_a: 0
+    bara_b: 0
+    styckat_olika: 0
+    fall: []
+  C:
+    poster_a: 94
+    poster_b: 94
+    delade: 94
+    bara_a: 0
+    bara_b: 0
+    styckat_olika: 0
+    fall: []
+  V:
+    poster_a: 68
+    poster_b: 77
+    delade: 59
+    bara_a: 0
+    bara_b: 9
+    styckat_olika: 9
+    fall:
+      - slag: styckat_olika
+        sida: 3
+        a_rader: '82-89,92-93'
+        b_rader: '82-89'
+        a: "Vilka som verkligen bidrar till samhället och vilka som inte gör det har visat sig ännu tydligare under pandemin. De av oss som måste gå till jobbet för att samhället ska fungera, det är vi som jobbar i mataffären, vi som kör bussen, vi som städar. Det är vi som sliter i vården och omsorgen och vi som ser till att förskolor och skolor fungerar. Det är lågbetalda samhällsbärande arbetarklassyrken som plötsligt synliggjorts, precis så viktiga som de är. Det är för oss, alla vi som bor i Sverige, som vi nu också ska återuppbygga landet - bättre och tryggare. Ett land där vi bidrar efter förmåga och våra olika förutsättningar. Det är möjligt, men det kräver en annan politik och att vi omfördelar resurserna från rika till fattiga människor, från rika områden till fattiga områden och förorter."
+        b: "Vilka som verkligen bidrar till samhället och vilka som inte gör det har visat sig ännu tydligare under pandemin. De av oss som måste gå till jobbet för att samhället ska fungera, det är vi som jobbar i mataffären, vi som kör bussen, vi som städar. Det är vi som sliter i vården och omsorgen och vi som ser till att förskolor och skolor fungerar. Det är lågbetalda samhällsbärande arbetarklassyrken som plötsligt synliggjorts, precis så viktiga som de är. Det är för oss, alla vi som bor i Sverige, som vi nu också ska återuppbygga landet - bättre och tryggare. Ett land där vi bidrar efter förmåga och våra olika förutsättningar. Det är möjligt, men det kräver en annan politik och att"
+        beslut: 'a'
+        skal: "Projektagaren 2026-09-16: stycket bryts av en sidbrytning, och instruktionens avsnitt Sidbrytningen sager att posten da bars av flera radspann. Genomgang A foljde regeln, genomgang B tillampade den inte pa detta dokument. Forsta halvan slutar mitt i en mening."
+      - slag: bara_b
+        sida: 4
+        a_rader: null
+        b_rader: '92-93'
+        a: null
+        b: "vi omfördelar resurserna från rika till fattiga människor, från rika områden till fattiga områden och förorter."
+        beslut: 'ingen'
+        skal: "Projektagaren 2026-09-16: andra halvan av ett stycke som bryts av en sidbrytning. Raderna ligger redan i den hopfogade posten, och en egen post har skulle ta samma rader tva ganger."
+      - slag: bara_b
+        sida: 4
+        a_rader: null
+        b_rader: '124-133'
+        a: null
+        b: "Det är genom en grön politik från vänster som vi kan skapa fler jobb, företag och framtidstro även utanför storstäderna. Sverige är en liten industri- och kunskapsnation som en gång i tiden, genom stora investeringar och politiska satsningar, skapade en stark, modern och väl utvecklad ekonomi, där växande företag balanserades av en stark arbetarrörelse och stat som såg till att de stora ekonomiska värden som skapades kunde fördelas relativt jämnt över hela landet och befolkningen. Det byggde världens mest jämlika land. Politiken tog ansvar för problem, byggde bort bostadsbristen, byggde ut välfärden och gjorde stora investeringar i telenät, järnväg och annan infrastruktur. Idag står samhället inför nya utmaningar. Välfärden är urholkad genom åratal av nyliberal politik och"
+        beslut: 'ingen'
+        skal: "Projektagaren 2026-09-16: andra halvan av ett stycke som bryts av en sidbrytning. Raderna ligger redan i den hopfogade posten, och en egen post har skulle ta samma rader tva ganger."
+      - slag: styckat_olika
+        sida: 4
+        a_rader: '124-133,136-157'
+        b_rader: '136-157'
+        a: "Det är genom en grön politik från vänster som vi kan skapa fler jobb, företag och framtidstro även utanför storstäderna. Sverige är en liten industri- och kunskapsnation som en gång i tiden, genom stora investeringar och politiska satsningar, skapade en stark, modern och väl utvecklad ekonomi, där växande företag balanserades av en stark arbetarrörelse och stat som såg till att de stora ekonomiska värden som skapades kunde fördelas relativt jämnt över hela landet och befolkningen. Det byggde världens mest jämlika land. Politiken tog ansvar för problem, byggde bort bostadsbristen, byggde ut välfärden och gjorde stora investeringar i telenät, järnväg och annan infrastruktur. Idag står samhället inför nya utmaningar. Välfärden är urholkad genom åratal av nyliberal politik och ojämlikheten ökar. Vi måste lösa klimatkrisen och skydda den biologiska mångfalden - omställningen går alldeles för sakta. Över hela världen orsakar klimatkatastrofer förödelse - bränder, översvämningar, djur- och växtarter som försvinner och människor som drivs på flykt. Vi befinner oss i ett klimatnödläge. Omställningen behöver ske omgående och alla politiska beslut behöver ta hänsyn till den akuta kris som vi befinner oss i. Det är politikens, och inte individens, ansvar att skapa möjligheter för människor att välja enkla och billiga klimatsmarta alternativ. En del lösningar behöver vara internationella men mycket går att genomföra nationellt, om bara den politiska viljan finns. Investeringar i grön teknik, industri och infrastruktur, utbyggd energikapacitet och stärkt styrning utifrån nya, skärpta klimatmål behövs. Återanvändning och återvinning av material behöver öka. Över hela världen växer en ung klimatrörelse sig stark med stora krav på politiken för en snabb och genomgripande omställning. Det är en rörelse som med rätta ställer krav på systemförändringar, för kapitalismen håller på att göra jorden obeboelig. Ett ständigt överutnyttjande av naturens resurser leder till kraftig utarmning av den biologiska mångfalden och växthusgasutsläpp. Skogens roll att naturligt minska och lagra utsläpp behöver stärkas och torrlagda våtmarker som läcker utsläpp ska återställas. Skyddet av skogs- och strandområden är en viktig del för att värna den svenska allemansrätten och den biologiska mångfalden. För att uppnå klimatmålen behöver skogens funktion som kolsänka bevaras de kommande decennierna, därför behöver kalhyggesbruket fasas ut. Den skog som avverkas måste användas klokt där endast restprodukter ska användas till biobränsle."
+        b: "ojämlikheten ökar. Vi måste lösa klimatkrisen och skydda den biologiska mångfalden - omställningen går alldeles för sakta. Över hela världen orsakar klimatkatastrofer förödelse - bränder, översvämningar, djur- och växtarter som försvinner och människor som drivs på flykt. Vi befinner oss i ett klimatnödläge. Omställningen behöver ske omgående och alla politiska beslut behöver ta hänsyn till den akuta kris som vi befinner oss i. Det är politikens, och inte individens, ansvar att skapa möjligheter för människor att välja enkla och billiga klimatsmarta alternativ. En del lösningar behöver vara internationella men mycket går att genomföra nationellt, om bara den politiska viljan finns. Investeringar i grön teknik, industri och infrastruktur, utbyggd energikapacitet och stärkt styrning utifrån nya, skärpta klimatmål behövs. Återanvändning och återvinning av material behöver öka. Över hela världen växer en ung klimatrörelse sig stark med stora krav på politiken för en snabb och genomgripande omställning. Det är en rörelse som med rätta ställer krav på systemförändringar, för kapitalismen håller på att göra jorden obeboelig. Ett ständigt överutnyttjande av naturens resurser leder till kraftig utarmning av den biologiska mångfalden och växthusgasutsläpp. Skogens roll att naturligt minska och lagra utsläpp behöver stärkas och torrlagda våtmarker som läcker utsläpp ska återställas. Skyddet av skogs- och strandområden är en viktig del för att värna den svenska allemansrätten och den biologiska mångfalden. För att uppnå klimatmålen behöver skogens funktion som kolsänka bevaras de kommande decennierna, därför behöver kalhyggesbruket fasas ut. Den skog som avverkas måste användas klokt där endast restprodukter ska användas till biobränsle."
+        beslut: 'a'
+        skal: "Projektagaren 2026-09-16: stycket bryts av en sidbrytning, och instruktionens avsnitt Sidbrytningen sager att posten da bars av flera radspann. Genomgang A foljde regeln, genomgang B tillampade den inte pa detta dokument. Forsta halvan slutar mitt i en mening."
+      - slag: bara_b
+        sida: 6
+        a_rader: null
+        b_rader: '219-226'
+        a: null
+        b: "Att som individ försöka minska sin klimat- och miljöpåverkan är bra, men det kommer aldrig att räcka. Vi måste ta oss an klimatkrisen som samhälle. Mycket av det vi konsumerar behöver vi för att leva bra liv - mat, kläder, boende och resor men sättet sakerna och energin framställs på behöver ändras. För de flesta av oss sker en stor del av konsumtionen och resandet för att hållbara alternativ saknas. Det gäller inte minst på landsbygden. Det är samhället och politikens ansvar att se till att alternativen finns. Där inte teknikskiften räcker för att minska utsläppen måste konsumtionen styras bort från det smutsiga och alla ges förutsättningar att leva mer hållbart. Vi ser ett hållbart liv som ett bättre liv. Kortare arbetsdagar med mer tid för"
+        beslut: 'ingen'
+        skal: "Projektagaren 2026-09-16: andra halvan av ett stycke som bryts av en sidbrytning. Raderna ligger redan i den hopfogade posten, och en egen post har skulle ta samma rader tva ganger."
+      - slag: styckat_olika
+        sida: 6
+        a_rader: '219-226,229-238'
+        b_rader: '229-238'
+        a: "Att som individ försöka minska sin klimat- och miljöpåverkan är bra, men det kommer aldrig att räcka. Vi måste ta oss an klimatkrisen som samhälle. Mycket av det vi konsumerar behöver vi för att leva bra liv - mat, kläder, boende och resor men sättet sakerna och energin framställs på behöver ändras. För de flesta av oss sker en stor del av konsumtionen och resandet för att hållbara alternativ saknas. Det gäller inte minst på landsbygden. Det är samhället och politikens ansvar att se till att alternativen finns. Där inte teknikskiften räcker för att minska utsläppen måste konsumtionen styras bort från det smutsiga och alla ges förutsättningar att leva mer hållbart. Vi ser ett hållbart liv som ett bättre liv. Kortare arbetsdagar med mer tid för relationer och egna intressen, produkter som håller och lätt kan återanvändas och delas istället för slit- och släng. Renare storstadsluft, billig och fungerande tåg- och kollektivtrafik. Hälsosammare mat från vår egen svenska landsbygd. Men för ett fåtal är konsumtion en livsstil av lyx och överflöd. Den rikaste procenten släpper ut tio gånger mer utsläpp än majoriteten av befolkningen. Det är denna elit som behöver dra ner sin konsumtion mest. Hos samma personer samlas rikedomar på hög istället för att gå till investeringar i framtiden. Det är hög tid att de få som har stora kapitaltillgångar bidrar mer till omställningen. För alla oss andra kommer omställningen att skapa större möjligheter, nya jobb, friskare liv och mer framtidstro."
+        b: "relationer och egna intressen, produkter som håller och lätt kan återanvändas och delas istället för slit- och släng. Renare storstadsluft, billig och fungerande tåg- och kollektivtrafik. Hälsosammare mat från vår egen svenska landsbygd. Men för ett fåtal är konsumtion en livsstil av lyx och överflöd. Den rikaste procenten släpper ut tio gånger mer utsläpp än majoriteten av befolkningen. Det är denna elit som behöver dra ner sin konsumtion mest. Hos samma personer samlas rikedomar på hög istället för att gå till investeringar i framtiden. Det är hög tid att de få som har stora kapitaltillgångar bidrar mer till omställningen. För alla oss andra kommer omställningen att skapa större möjligheter, nya jobb, friskare liv och mer framtidstro."
+        beslut: 'a'
+        skal: "Projektagaren 2026-09-16: stycket bryts av en sidbrytning, och instruktionens avsnitt Sidbrytningen sager att posten da bars av flera radspann. Genomgang A foljde regeln, genomgang B tillampade den inte pa detta dokument. Forsta halvan slutar mitt i en mening."
+      - slag: styckat_olika
+        sida: 7
+        a_rader: '263-274,277-278'
+        b_rader: '263-274'
+        a: "Barn, sjuka och arbetslösa måste självklart ha samma rätt som arbetande människor att ha goda liv. Alla har vi varit barn. Alla kan vi bli sjuka eller förlora jobbet. När vi blir gamla blir vi förhoppningsvis pensionärer. När du blir sjuk eller föder barn ska du kunna lita på att få ersättning från Försäkringskassan utan att behöva stånga dig blodig. När du blir gammal ska du kunna leva på din pension, inte bara överleva. På samma sätt ska du som lever med funktionsnedsättning kunna lita på att du får det stöd du behöver, och på att din rätt att delta i samhället på det sätt du vill inte ständigt ifrågasätts och försvåras. Tryggheten i ett samhälle hänger ihop med hur våra trygghetssystem fungerar - a-kassan, sjukförsäkringen, LSS och pensionerna. Vänsterpartiet vill se en mänsklig sjukförsäkring och ett slut på utförsäkrandet av sjuka. Du som blir arbetslös ska veta att du får en bra a-kassa och inte behöva oroa dig över att du måste flytta till en billigare lägenhet, sälja huset eller inte kunna ha mat på bordet. Men politiska beslut har gjort att a-kassans ersättningar är lägst i Norden."
+        b: "Barn, sjuka och arbetslösa måste självklart ha samma rätt som arbetande människor att ha goda liv. Alla har vi varit barn. Alla kan vi bli sjuka eller förlora jobbet. När vi blir gamla blir vi förhoppningsvis pensionärer. När du blir sjuk eller föder barn ska du kunna lita på att få ersättning från Försäkringskassan utan att behöva stånga dig blodig. När du blir gammal ska du kunna leva på din pension, inte bara överleva. På samma sätt ska du som lever med funktionsnedsättning kunna lita på att du får det stöd du behöver, och på att din rätt att delta i samhället på det sätt du vill inte ständigt ifrågasätts och försvåras. Tryggheten i ett samhälle hänger ihop med hur våra trygghetssystem fungerar - a-kassan, sjukförsäkringen, LSS och pensionerna. Vänsterpartiet vill se en mänsklig sjukförsäkring och ett slut på utförsäkrandet av sjuka. Du som blir arbetslös ska veta att du får en bra a-kassa och inte behöva oroa dig över att du måste flytta till en billigare lägenhet, sälja huset eller inte kunna ha"
+        beslut: 'a'
+        skal: "Projektagaren 2026-09-16: stycket bryts av en sidbrytning, och instruktionens avsnitt Sidbrytningen sager att posten da bars av flera radspann. Genomgang A foljde regeln, genomgang B tillampade den inte pa detta dokument. Forsta halvan slutar mitt i en mening."
+      - slag: bara_b
+        sida: 8
+        a_rader: null
+        b_rader: '277-278'
+        a: null
+        b: "mat på bordet. Men politiska beslut har gjort att a-kassans ersättningar är lägst i Norden."
+        beslut: 'ingen'
+        skal: "Projektagaren 2026-09-16: andra halvan av ett stycke som bryts av en sidbrytning. Raderna ligger redan i den hopfogade posten, och en egen post har skulle ta samma rader tva ganger."
+      - slag: styckat_olika
+        sida: 10
+        a_rader: '402-407,410-413'
+        b_rader: '402-407'
+        a: "Föräldrar ska inte behöva oroa sig över skjutvapenvåld och drömma mardrömmar om att deras barn ska drabbas. Kriminaliteten behöver mötas både med ett fungerande och närvarande rättssystem som fler patrullerande poliser, arbete mot narkotikahandel, kamp mot tillgången till illegala skjutvapen och ett effektivt avhopparprogram, men framför allt med en kamp mot kriminalitetens djupare orsaker - klassamhället, segregationen, rasismen på arbetsmarknaden, trångboddheten och bristen på framtidstro. Många unga, särskilt med utländsk bakgrund, som bor i fattiga områden, utsätts även för rasism och övervåld från polisen, vilket blev tydligt i diskussionen kring Black Lives Matter-rörelsen. Att återupprätta tilltron till polisen kräver stora förändringar av hur polisen arbetar."
+        b: "Föräldrar ska inte behöva oroa sig över skjutvapenvåld och drömma mardrömmar om att deras barn ska drabbas. Kriminaliteten behöver mötas både med ett fungerande och närvarande rättssystem som fler patrullerande poliser, arbete mot narkotikahandel, kamp mot tillgången till illegala skjutvapen och ett effektivt avhopparprogram, men framför allt med en kamp mot kriminalitetens djupare orsaker - klassamhället, segregationen, rasismen på arbetsmarknaden,"
+        beslut: 'a'
+        skal: "Projektagaren 2026-09-16: stycket bryts av en sidbrytning, och instruktionens avsnitt Sidbrytningen sager att posten da bars av flera radspann. Genomgang A foljde regeln, genomgang B tillampade den inte pa detta dokument. Forsta halvan slutar mitt i en mening."
+      - slag: bara_b
+        sida: 11
+        a_rader: null
+        b_rader: '410-413'
+        a: null
+        b: "trångboddheten och bristen på framtidstro. Många unga, särskilt med utländsk bakgrund, som bor i fattiga områden, utsätts även för rasism och övervåld från polisen, vilket blev tydligt i diskussionen kring Black Lives Matter-rörelsen. Att återupprätta tilltron till polisen kräver stora förändringar av hur polisen arbetar."
+        beslut: 'ingen'
+        skal: "Projektagaren 2026-09-16: andra halvan av ett stycke som bryts av en sidbrytning. Raderna ligger redan i den hopfogade posten, och en egen post har skulle ta samma rader tva ganger."
+      - slag: bara_b
+        sida: 11
+        a_rader: null
+        b_rader: '447-451'
+        a: null
+        b: "De senaste decennierna har politiken förlitat sig på att marknaden ska lösa våra behov av trygghet, men marknadslösningar har urholkat vår gemensamma välfärd samtidigt som en allt större del av våra skattemedel går till administration och kontroll. Privatiseringar har lett till dyrare elpris, att apoteken flyttar från landsbygd till städer och från fattiga till rika områden, att du har olika tillgång till vård, skola"
+        beslut: 'ingen'
+        skal: "Projektagaren 2026-09-16: andra halvan av ett stycke som bryts av en sidbrytning. Raderna ligger redan i den hopfogade posten, och en egen post har skulle ta samma rader tva ganger."
+      - slag: styckat_olika
+        sida: 11
+        a_rader: '447-451,454-462'
+        b_rader: '454-462'
+        a: "De senaste decennierna har politiken förlitat sig på att marknaden ska lösa våra behov av trygghet, men marknadslösningar har urholkat vår gemensamma välfärd samtidigt som en allt större del av våra skattemedel går till administration och kontroll. Privatiseringar har lett till dyrare elpris, att apoteken flyttar från landsbygd till städer och från fattiga till rika områden, att du har olika tillgång till vård, skola och omsorg beroende på var du bor, att det gått inflation i betygen och till en allt sämre kvalitet på service och välfärd. Även kulturen och idrotten har utarmats när skolbibliotek läggs ned, simskolan blivit dyrare och biografer finns på färre orter. Det borde vara nog med skandaler om hur välfärdsprofitörer roffar åt sig vinster men låter äldre dö i ensamhet på boendet eller sparar på lärare och material så att skolbarn inte får tillräckliga kunskaper. Privatiseringarna av välfärden öppnar upp för kriminella att sko sig på skattemedel. Välfärdsbrott bekämpas inte bäst genom ytterligare tandlös kontroll. Brotten mot välfärden bekämpas bäst genom att det inte går att göra vinster vare sig på barn eller på sjuka och gamla människor."
+        b: "och omsorg beroende på var du bor, att det gått inflation i betygen och till en allt sämre kvalitet på service och välfärd. Även kulturen och idrotten har utarmats när skolbibliotek läggs ned, simskolan blivit dyrare och biografer finns på färre orter. Det borde vara nog med skandaler om hur välfärdsprofitörer roffar åt sig vinster men låter äldre dö i ensamhet på boendet eller sparar på lärare och material så att skolbarn inte får tillräckliga kunskaper. Privatiseringarna av välfärden öppnar upp för kriminella att sko sig på skattemedel. Välfärdsbrott bekämpas inte bäst genom ytterligare tandlös kontroll. Brotten mot välfärden bekämpas bäst genom att det inte går att göra vinster vare sig på barn eller på sjuka och gamla människor."
+        beslut: 'a'
+        skal: "Projektagaren 2026-09-16: stycket bryts av en sidbrytning, och instruktionens avsnitt Sidbrytningen sager att posten da bars av flera radspann. Genomgang A foljde regeln, genomgang B tillampade den inte pa detta dokument. Forsta halvan slutar mitt i en mening."
+      - slag: bara_b
+        sida: 12
+        a_rader: null
+        b_rader: '495-497'
+        a: null
+        b: "Välfärden är samhällets ansvar och borde styras demokratiskt. Det är politikens uppgift att se till att den fungerar, kommer alla till del och att de anställda ges inflytande. De som jobbar på sjukhusen, skolorna eller hemtjänsten idag har burit"
+        beslut: 'ingen'
+        skal: "Projektagaren 2026-09-16: andra halvan av ett stycke som bryts av en sidbrytning. Raderna ligger redan i den hopfogade posten, och en egen post har skulle ta samma rader tva ganger."
+      - slag: styckat_olika
+        sida: 12
+        a_rader: '495-497,500-513'
+        b_rader: '500-513'
+        a: "Välfärden är samhällets ansvar och borde styras demokratiskt. Det är politikens uppgift att se till att den fungerar, kommer alla till del och att de anställda ges inflytande. De som jobbar på sjukhusen, skolorna eller hemtjänsten idag har burit skattesänkningarnas konsekvenser på sina axlar, med att arbeta hårdare, avstå löneökningar och se kollegorna bli färre och det egna lasset större varje år. Istället för att lösa resursbristen har styrande politiker svarat med ineffektiva modeller, minutstyrning och idéer som optimerad schemaläggning, där ingen som arbetar i verksamheten tillfrågats. Läkare och sjuksköterskor, undersköterskor, lärare och socialsekreterare, alla som behövs i välfärden, förvandlas till administratörer i ett system där politiker kräver att allt dokumenteras i modeller som inte hade behövts. Det är resurser som främst behövs, inte formulär för kvalitetssäkring, nya bokningssystem för sjukhussängar eller ännu en managementkonsult som inte kan något om verksamheten. Kombinationen av marknadslösningar, byråkrati och resursbrist har skapat närmast omänskliga villkor för de samhällsbärare vi inte klarar oss utan. Dessa samhällsbärare förtjänar att bli lyssnade på. De har handfast kunskap som är avgörande för att lyfta välfärden, och den behöver tas om hand. De anställda i välfärden bör också få ett kraftigt utökat inflytande över verksamheterna de arbetar i."
+        b: "skattesänkningarnas konsekvenser på sina axlar, med att arbeta hårdare, avstå löneökningar och se kollegorna bli färre och det egna lasset större varje år. Istället för att lösa resursbristen har styrande politiker svarat med ineffektiva modeller, minutstyrning och idéer som optimerad schemaläggning, där ingen som arbetar i verksamheten tillfrågats. Läkare och sjuksköterskor, undersköterskor, lärare och socialsekreterare, alla som behövs i välfärden, förvandlas till administratörer i ett system där politiker kräver att allt dokumenteras i modeller som inte hade behövts. Det är resurser som främst behövs, inte formulär för kvalitetssäkring, nya bokningssystem för sjukhussängar eller ännu en managementkonsult som inte kan något om verksamheten. Kombinationen av marknadslösningar, byråkrati och resursbrist har skapat närmast omänskliga villkor för de samhällsbärare vi inte klarar oss utan. Dessa samhällsbärare förtjänar att bli lyssnade på. De har handfast kunskap som är avgörande för att lyfta välfärden, och den behöver tas om hand. De anställda i välfärden bör också få ett kraftigt utökat inflytande över verksamheterna de arbetar i."
+        beslut: 'a'
+        skal: "Projektagaren 2026-09-16: stycket bryts av en sidbrytning, och instruktionens avsnitt Sidbrytningen sager att posten da bars av flera radspann. Genomgang A foljde regeln, genomgang B tillampade den inte pa detta dokument. Forsta halvan slutar mitt i en mening."
+      - slag: styckat_olika
+        sida: 13
+        a_rader: '534-543,546-549'
+        b_rader: '534-543'
+        a: "Många år av privatiseringar och ständig jakt på effektiviseringar i arbetslivet, skolan, vården och omsorgen har påverkat både hälsa, vårdbehov och tillgången till vård negativt. Stressrelaterade sjukdomar blir allt vanligare och psykisk ohälsa ökar särskilt bland kvinnor och hos unga utan att det leder till utbyggd vård eller förändrad arbetsmiljö. Du ska ha rätt till hjälp snabbt oavsett om du har brutit benet eller blivit utbränd. Men Sverige har idag minst antal vårdplatser i EU och en alldeles för dåligt utbyggd primärvård. Att du är beroende av omsorg ska inte, som idag, begränsa dina möjligheter att styra över ditt liv. Vittnesmålen om äldre som nästan aldrig får gå ut eller som måste äta sin middag tidigt på eftermiddagen för att personalen ska få tiden att gå ihop vittnar om en förskjutning i synen på människovärde. Vård och omsorg måste ges efter behov oavsett om du bor på ett särskilt boende eller har insatser av hemtjänsten. Därför vill Vänsterpartiet satsa mer resurser på hälso- och sjukvården och äldreomsorgen, samt satsa på personalen så att vi samtidigt får bort personalbristen och stärker personalens villkor och arbetsmiljö."
+        b: "Många år av privatiseringar och ständig jakt på effektiviseringar i arbetslivet, skolan, vården och omsorgen har påverkat både hälsa, vårdbehov och tillgången till vård negativt. Stressrelaterade sjukdomar blir allt vanligare och psykisk ohälsa ökar särskilt bland kvinnor och hos unga utan att det leder till utbyggd vård eller förändrad arbetsmiljö. Du ska ha rätt till hjälp snabbt oavsett om du har brutit benet eller blivit utbränd. Men Sverige har idag minst antal vårdplatser i EU och en alldeles för dåligt utbyggd primärvård. Att du är beroende av omsorg ska inte, som idag, begränsa dina möjligheter att styra över ditt liv. Vittnesmålen om äldre som nästan aldrig får gå ut eller som måste äta sin middag tidigt på eftermiddagen för att personalen ska få tiden att gå ihop vittnar om en förskjutning i synen på"
+        beslut: 'a'
+        skal: "Projektagaren 2026-09-16: stycket bryts av en sidbrytning, och instruktionens avsnitt Sidbrytningen sager att posten da bars av flera radspann. Genomgang A foljde regeln, genomgang B tillampade den inte pa detta dokument. Forsta halvan slutar mitt i en mening."
+      - slag: bara_b
+        sida: 14
+        a_rader: null
+        b_rader: '546-549'
+        a: null
+        b: "människovärde. Vård och omsorg måste ges efter behov oavsett om du bor på ett särskilt boende eller har insatser av hemtjänsten. Därför vill Vänsterpartiet satsa mer resurser på hälso- och sjukvården och äldreomsorgen, samt satsa på personalen så att vi samtidigt får bort personalbristen och stärker personalens villkor och arbetsmiljö."
+        beslut: 'ingen'
+        skal: "Projektagaren 2026-09-16: andra halvan av ett stycke som bryts av en sidbrytning. Raderna ligger redan i den hopfogade posten, och en egen post har skulle ta samma rader tva ganger."
+      - slag: styckat_olika
+        sida: 14
+        a_rader: '577-586,589-591'
+        b_rader: '577-586'
+        a: "Sverige är extremt. Som enda land i världen råder det fri dragningsrätt på de skattemedel som ska gå till våra barns utbildning. Pengarna du och jag betalar för våra barns skolgång och framgång går till vinster i skolkoncerner och hamnar i skatteparadis. Dessutom leder den marknadsanpassade skolan till betygsinflation, segregation och ökad ojämlikhet. Privatiseringsexperimentet med marknadsskolan har förstört möjligheterna för tusentals barn. Om dina föräldrar är låg- eller höginkomsttagare, akademiskt skolade eller inte, invandrade eller svenskfödda, spelar en allt större roll för dina möjligheter att klara skolan. Marknadsskolan är ett monumentalt misslyckande. Det tycker en majoritet av svenska folket och stora delar av lärarkåren. Vänsterpartiet vill avskaffa marknadsskolan med start nästa mandatperiod. Barnens rätt till utbildning kan inte vänta. Varje år är det nya elever som skickas igenom systemet utan tillräckliga kunskaper. För varenda en av dem är det en förlorad livschans."
+        b: "Sverige är extremt. Som enda land i världen råder det fri dragningsrätt på de skattemedel som ska gå till våra barns utbildning. Pengarna du och jag betalar för våra barns skolgång och framgång går till vinster i skolkoncerner och hamnar i skatteparadis. Dessutom leder den marknadsanpassade skolan till betygsinflation, segregation och ökad ojämlikhet. Privatiseringsexperimentet med marknadsskolan har förstört möjligheterna för tusentals barn. Om dina föräldrar är låg- eller höginkomsttagare, akademiskt skolade eller inte, invandrade eller svenskfödda, spelar en allt större roll för dina möjligheter att klara skolan. Marknadsskolan är ett monumentalt misslyckande. Det tycker en majoritet av svenska folket och stora delar av lärarkåren. Vänsterpartiet vill avskaffa marknadsskolan med start nästa"
+        beslut: 'a'
+        skal: "Projektagaren 2026-09-16: stycket bryts av en sidbrytning, och instruktionens avsnitt Sidbrytningen sager att posten da bars av flera radspann. Genomgang A foljde regeln, genomgang B tillampade den inte pa detta dokument. Forsta halvan slutar mitt i en mening."
+      - slag: bara_b
+        sida: 15
+        a_rader: null
+        b_rader: '589-591'
+        a: null
+        b: "mandatperiod. Barnens rätt till utbildning kan inte vänta. Varje år är det nya elever som skickas igenom systemet utan tillräckliga kunskaper. För varenda en av dem är det en förlorad livschans."
+        beslut: 'ingen'
+        skal: "Projektagaren 2026-09-16: andra halvan av ett stycke som bryts av en sidbrytning. Raderna ligger redan i den hopfogade posten, och en egen post har skulle ta samma rader tva ganger."
+  KD:
+    poster_a: 46
+    poster_b: 46
+    delade: 46
+    bara_a: 0
+    bara_b: 0
+    styckat_olika: 0
+    fall: []
+  MP:
+    poster_a: 114
+    poster_b: 111
+    delade: 111
+    bara_a: 3
+    bara_b: 0
+    styckat_olika: 0
+    fall:
+      - slag: bara_a
+        sida: 3
+        a_rader: '8'
+        b_rader: null
+        a: "solidaritet med djur, natur och det ekologiska systemet"
+        b: null
+        beslut: 'ingen'
+        skal: "Projektagaren 2026-09-16: raderna bar MP:s vardegrund och ingen atgard. De star som punkter i dokumentet, men innehallet ar inte ett loftesled."
+      - slag: bara_a
+        sida: 3
+        a_rader: '9'
+        b_rader: null
+        a: "solidaritet med kommande generationer"
+        b: null
+        beslut: 'ingen'
+        skal: "Projektagaren 2026-09-16: raderna bar MP:s vardegrund och ingen atgard. De star som punkter i dokumentet, men innehallet ar inte ett loftesled."
+      - slag: bara_a
+        sida: 3
+        a_rader: '10'
+        b_rader: null
+        a: "solidaritet med världens alla människor"
+        b: null
+        beslut: 'ingen'
+        skal: "Projektagaren 2026-09-16: raderna bar MP:s vardegrund och ingen atgard. De star som punkter i dokumentet, men innehallet ar inte ett loftesled."
+  L:
+    poster_a: 75
+    poster_b: 75
+    delade: 75
+    bara_a: 0
+    bara_b: 0
+    styckat_olika: 0
+    fall: []

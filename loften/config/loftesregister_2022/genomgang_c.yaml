@@ -1,10 +1,11 @@
-# Genomgang A av valmanifesten 2022 (biljett #54, beslut 7).
+# Genomgang C av valmanifesten 2022 (biljett #54, beslut 7).
 #
-# Pass A ar Claude Opus 5, ett eget sammanhang per dokument. Genomgangen sag aldrig
-# pass B. Instruktionen ar version 3 av
+# Pass C ar ett tredje blint pass, Claude Opus 5, ett eget sammanhang per dokument.
+# Genomgangen sag varken pass A eller pass B. Instruktionen ar version 3 av
 # loften/docs/loftesregister_2022/genomgangsinstruktion.md.
 #
-# Varje post ar ett eller flera radspann i underlaget, aldrig avskriven text.
+# Passet bestalldes av projektagaren som ett extra prov pa hur stabil regeln ar.
+# Det avgor ingenting: differensen och facit raknas pa A mot B, enligt beslut 7.
 poster:
   S:
     - '22-23'
@@ -819,7 +820,8 @@ poster:
     - '686-688'
   KD:
     - '7-20'
-    - '21-42'
+    - '21-29'
+    - '30-42'
     - '43-52,54-57'
     - '58-65'
     - '72-77'
@@ -873,6 +875,7 @@ poster:
     - '277-278'
     - '279-281'
     - '286-287'
+    - '300-301'
     - '302-304'
   MP:
     - '5'
