@@ -1,4 +1,4 @@
-"""ADR 0004 - B mäter väntad storlek, inte bara riktning.
+"""ADR 0004 - B bär storlek och inte bara riktning, med anspråket begränsat av ADR 0018.
 
 Två lås:
   * Formen (pipeline/effects.py). net_support är ett KVALITETSVIKTAT medel av storlekar med
@@ -9,6 +9,10 @@ Två lås:
   * Säkerheten (pipeline/scorerun.py). B:s grundnivå härleds ur evidensaggregatets
     confidence med min_claims_for_high_confidence, och sänks ett steg vid tunn täckning.
     B kan för första gången nå high.
+  * Anspråket (metodrutan). ADR 0018 punkt 3 tog anspråket om den väntade förbättringens
+    storlek ifrån B, eftersom Σ q i nämnaren gör talet till ett medelvärde. Formen står
+    orörd tills biljett #50 avgör nämnaren, så texten är det enda som rättas här, och
+    den låses nedan.
 """
 
 from __future__ import annotations
@@ -215,3 +219,41 @@ def test_n_claims_raknas_per_parti_och_kategori(monkeypatch: pytest.MonkeyPatch)
     ]
     assert sedda == vantade
     assert max(sedda) > 1  # annars säger testet ingenting om vilken storhet som räknas
+
+
+def _metodrutan() -> str:
+    """Metodrutan ur en ren körning. Warehouse UTAN observationer, `:memory:`, aldrig
+    data/warehouse.duckdb."""
+    con = warehouse.connect(":memory:")
+    warehouse.upsert(con, "responsibility", government.build_national_responsibility())
+    text = scorerun.build(con)["scores"]["meta"]["coverage_technical"]
+    con.close()
+    return text
+
+
+def test_metodrutan_bar_inte_kvar_anspraket_om_vantad_storlek() -> None:
+    """ADR 0018 punkt 3 ändrade ADR 0004 beslut 1. Metodrutan följer med dist/scores.json och är
+    därmed det anspråk som når en granskare utanför repot. Den gamla lydelsen får inte stå kvar."""
+    text = _metodrutan()
+    assert "B mäter VÄNTAD STORLEK" not in text
+    assert "B mäter GENOMSNITTLIG BELAGD EFFEKTSTYRKA" in text
+    assert "INTE LÄNGRE B:s" in text
+    assert "ADR 0018 punkt 3" in text
+
+
+def test_metodrutan_skriver_ut_icke_monotoniciteten() -> None:
+    """ADR 0018 punkt 3 kräver att följden skrivs ut. Utan den läser en granskare ett fall i B som
+    ett besked om partiet, när det är en egenskap hos medelvärdet."""
+    text = _metodrutan()
+    assert "KAN SÄNKA B" in text
+    assert "#50" in text  # rättelsen har en adress, annars läses felet som accepterat
+
+
+def test_metodrutan_skiljer_konsensus_fran_partiellt_kodad_ensidighet() -> None:
+    """ADR 0018 punkt 5. En post som bara några partier är kodade på skiljer partier åt på
+    kodningsflit och inte på hållning, så den får aldrig heta konsensus. En saknad position bär
+    inget besked alls och ska stå som okänd."""
+    text = _metodrutan()
+    assert "KONSENSUS KRÄVER ALLA" in text
+    assert "PARTIELLT KODAD ENSIDIGHET" in text
+    assert "UTTRYCKLIGEN OKÄND" in text

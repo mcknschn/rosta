@@ -383,9 +383,12 @@ function buildMethod() {
          som lägger ungefär som vanligt hamnar därför mitt på skalan, inte högst eller lägst.
          Budgeten och motionerna väger lika tungt. Båda mäts mot sitt eget normalläge, och ingen
          skillnad mellan dem ger ett sakligt skäl att väga den ena högre.</li>
-       <li><b>B. Hur mycket åtgärderna brukar ge (50 %).</b> Officiell statistik och forskning får avgöra
-         hur stor förbättring de åtgärder partiet driver brukar ge. En åtgärd med liten känd effekt
-         ger färre poäng än en med stor.</li>
+       <li><b>B. Hur starka åtgärderna är (50 %).</b> Officiell statistik och forskning får avgöra
+         hur stark effekt de åtgärder partiet driver brukar ha. En åtgärd med liten känd effekt
+         ger färre poäng än en med stor. Talet är ett genomsnitt över partiets åtgärder, alltså hur
+         stark den typiska åtgärden är. Det säger inte hur stor förbättringen blir sammanlagt.
+         Genomsnittet har en känd svaghet som vi håller på att rätta: en åtgärd till med svag men
+         belagd effekt kan dra ner talet.</li>
        <li><b>D. Hur det gick (20 %).</b> Om siffrorna blev bättre under tiden partiet hade ansvar.</li>
      </ul>
      <p>Vi räknar också ut varje partis <b>maktandel</b>, alltså hur mycket makt partiet haft.

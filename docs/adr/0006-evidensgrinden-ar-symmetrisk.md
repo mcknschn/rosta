@@ -143,6 +143,13 @@ världen också lutar går inte att pröva härifrån, och det står kvar som k�
 
 - **Anspråket i ADR 0002 står fast.** B svarar fortfarande på hur stor förbättring som väntas av de
   åtgärder partiet driver.
+
+  > **Daterad not 2026-09-14, skriven i byggslice [#51](https://github.com/mcknschn/rosta/issues/51)
+  > under [ADR 0018](0018-bs-medelvarde-bar-inte-anspraket.md) punkt 3.** Meningen ovan gällde när
+  > den skrevs. Den gäller inte längre. Formen är ett medelvärde och bär därför inte anspråket om
+  > storleken på den väntade förbättringen. B svarar tills vidare på hur stark den belagda effekten
+  > är i genomsnitt hos de åtgärder partiet driver, justerat för täckning. Beslutet i den här ADR:n
+  > står oförändrat: grinden är symmetrisk oavsett vilket anspråk B bär.
 - **Formen i ADR 0004 rörs inte.** `net = Σ(q·m)/Σq` och talen 0,3/0,6/1,0 står oförändrade.
 - **Vikterna 0,30/0,50/0,20 rörs inte.**
 - **Ståndpunktssidan rörs inte.** Biljetten gäller liggarens innehåll. Reglerna för `supports` och

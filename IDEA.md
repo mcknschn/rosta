@@ -117,13 +117,17 @@ kan inte flytta dem: användaren väger kategorier, aldrig metod.
 | Del | Vikt | Fråga | Exempel på källor |
 |-----|------|-------|-------------------|
 | A. Prioritering | 30 % | Hur stor andel av partiets föreslagna anslag och egna motioner går till kategorin? | Budgetmotioner och regeringens budgetproposition via FiU1-rambeslutet, motionsräkning per utskott |
-| B. Evidens | 50 % | Hur stor förbättring av kategoriindikatorerna väntas av de åtgärder partiet driver? Storleken kommer ur evidensen, säkerheten ur källans styrka ([ADR 0004](docs/adr/0004-vad-delpoang-b-mater.md)). | Myndigheter, forskningsöversikter, utvärderingar |
+| B. Evidens | 50 % | Hur stark är den belagda effekten i genomsnitt hos de åtgärder partiet driver, justerat för täckning? Storleken kommer ur evidensen, säkerheten ur källans styrka ([ADR 0004](docs/adr/0004-vad-delpoang-b-mater.md), anspråket begränsat av [ADR 0018](docs/adr/0018-bs-medelvarde-bar-inte-anspraket.md) punkt 3). | Myndigheter, forskningsöversikter, utvärderingar |
 | C. Maktandel | 0 % | Har partiet haft makt att påverka utfallet, och hur mycket? | Regeringsställning, region- och kommunstyren |
 | D. Resultat | 20 % | Har relevanta indikatorer förbättrats där partiet haft ansvar? | SCB, Brå, Socialstyrelsen, Skolverket, Kolada, Försvarsmakten |
 
 B väger mer än A eftersom B är det enda ledet som bär riktning. A bär omfattning. Sedan
-[ADR 0004](docs/adr/0004-vad-delpoang-b-mater.md) bär B dessutom storlek: hur stor förbättring
-åtgärderna väntas ge, inte bara åt vilket håll de pekar. D:s vikt är satt så
+[ADR 0004](docs/adr/0004-vad-delpoang-b-mater.md) bär B dessutom storlek: hur stark effekt
+åtgärderna har, inte bara åt vilket håll de pekar. Talet är ett genomsnitt över partiets
+åtgärder, och ett medelvärde mäter inte den sammanlagda förbättringen.
+[ADR 0018](docs/adr/0018-bs-medelvarde-bar-inte-anspraket.md) punkt 3 tog därför anspråket om
+den väntade förbättringens storlek ifrån B, tills nämnaren är rättad (biljett #50). Känd följd:
+en ytterligare åtgärd med belagd positiv effekt kan sänka B. D:s vikt är satt så
 att ett motsägande utfall som mest flyttar betyget 1,0 poäng, alltså nog för att vända ett jämnt läge
 men inte ett tydligt försprång.
 

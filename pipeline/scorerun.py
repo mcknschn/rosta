@@ -4,8 +4,8 @@ Beräknar A/B/C/D per (parti, kategori) deterministiskt och skriver de enda file
 deployas. Kategoribetyg = 0,30 A + 0,50 B + 0,20 D; C väger 0 (ADR 0002). Läget i dag:
   A = prioritering: a1 budgetandel (gated) + a2 motionsandel, mot historisk
       förankring (ADR 0005)                                               -> hög säkerhet
-  B = evidens: partiståndpunkter x evidensliggare -> väntad storlek, krympt efter
-      täckning; säkerheten härleds ur evidensen (ADR 0004)                -> hög/medel/låg
+  B = evidens: partiståndpunkter x evidensliggare -> genomsnittlig belagd
+      effektstyrka, krympt efter täckning (ADR 0018 punkt 3)              -> hög/medel/låg
   C = maktandel: nationell + subnationell makt, rank-norm. Ger inga poäng -> hög/medel
   D = resultat: attribuerad indikatorförändring där partiet haft ansvar   -> medel/låg
 Osäkerheten speglar detta ärligt. Kör: python -m pipeline.scorerun
@@ -1427,11 +1427,28 @@ def build(con: object | None = None, budget_cfg: dict[str, object] | None = None
                 "när taket räcker och partiet ändå täcker tunt. Exakt en av dem sätts, så "
                 "säkerheten sänks ett steg och aldrig två. Krympningens egen täljare och "
                 "nämnare står i B_shrink-flaggan och är en ANNAN nämnare än Täckningens "
-                "(ADR 0011 punkt 9). B mäter VÄNTAD STORLEK och "
-                "inte riktning (ADR 0004): net_support är ett kvalitetsviktat medel av "
-                "storlekar med tecken, Σ(q·m)/Σq med q=evidence_level×confidence och "
+                "(ADR 0011 punkt 9). B mäter GENOMSNITTLIG BELAGD EFFEKTSTYRKA "
+                "(ADR 0018 punkt 3, som ändrar ADR 0004 beslut 1). B svarar på hur "
+                "stark den belagda effekten är i genomsnitt hos de åtgärder partiet "
+                "driver, justerat för täckning. Anspråket om STORLEKEN PÅ DEN VÄNTADE "
+                "FÖRBÄTTRINGEN är INTE LÄNGRE B:s, och gäller först när nämnaren är "
+                "rättad. Formen är ett kvalitetsviktat MEDEL av storlekar med tecken, "
+                "net_support = Σ(q·m)/Σq med q=evidence_level×confidence och "
                 "m=effect_strength×tecken(riktning), så ett ensamt claim ger sin egen "
-                "effektstyrka i stället för ±1; B:s säkerhet härleds ur evidensens "
+                "effektstyrka i stället för ±1. KÄND FÖLJD AV MEDELVÄRDET: en "
+                "ytterligare åtgärd med belagd positiv effekt KAN SÄNKA B. Det sker "
+                "varje gång åtgärdens egen storlek ligger under partiets dittills "
+                "vägda medel på indikatorn. Mätt 2026-09-14: sju av åtta partier bär "
+                "ett lägre välfärdsbetyg därför att en åtgärd som alla åtta stödjer "
+                "ligger i liggaren. Rättelsen är en normaliserad summa med "
+                "förhandsbestämd nämnare och byggs i biljett #50 (ADR 0018 punkt 7). "
+                "En post lyfter alla åtta lika mycket bara när den är ENSAM PÅ SIN "
+                "INDIKATOR; delar den indikator med andra poster blir rörelsen olika "
+                "stor och kan byta tecken (ADR 0018 punkt 4). KONSENSUS KRÄVER ALLA "
+                "ÅTTA KODADE (ADR 0018 punkt 5): en post där bara några partier har "
+                "en position är PARTIELLT KODAD ENSIDIGHET och beskrivs aldrig som "
+                "konsensus. En SAKNAD POSITION är UTTRYCKLIGEN OKÄND och läses varken "
+                "som stöd eller som motstånd. B:s säkerhet härleds ur evidensens "
                 "confidence (tröskel 0,85/0,60 + min_claims_for_high_confidence) och sänks "
                 "ett steg vid tunn täckning. party_positions expertgranskad v2 (mänsklig "
                 "sign-off 2026-06-07). evidence_ledger v3 (2026-08-23, ADR 0006): den "
