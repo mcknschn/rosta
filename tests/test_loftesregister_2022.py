@@ -432,6 +432,39 @@ def test_antalet_per_parti_stammer_med_posterna():
     assert sum(raknat.values()) == data["antal"]
 
 
+def _pdf_finns() -> bool:
+    return all(lr.pdf_stammer(d) for d in lr.dokument())
+
+
+@pytest.mark.skipif(
+    not REGISTER.is_file() or not _pdf_finns(),
+    reason="PDF:erna ligger utanfor git, och provet kan inte koras utan dem",
+)
+def test_varje_post_gar_att_sla_upp_i_pdfen_pa_sitt_sidnummer():
+    """Biljettens tredje krav, provat mot kallan och inte mot underlaget.
+
+    Underlaget bar ocksa sidnumret, men det ar utvunnet av samma kod som skrev registret.
+    Detta prov gar runt underlaget: det oppnar PDF:en pa den sida registret namner och
+    letar efter postens lydelse dar. Glider sidnumreringen isar fran kallan sager provet det.
+    """
+    fitz = pytest.importorskip("fitz", reason="PyMuPDF behovs for att lasa PDF:en")
+
+    def nyckel(text: str) -> str:
+        return "".join(t for t in lr.stada(text).lower() if t.isalnum())
+
+    sidor = {}
+    for post in lr.dokument():
+        with fitz.open(lr.PDF_KATALOG / post["filnamn"]) as doc:
+            sidor[post["id"]] = [nyckel(sida.get_text()) for sida in doc]
+
+    saknas = [
+        f"{p['id']} sida {p['sida']}"
+        for p in _register()["poster"]
+        if nyckel(p["lydelse"])[:60] not in sidor[p["parti"]][p["sida"] - 1]
+    ]
+    assert not saknas, f"posterna gar inte att hitta pa sin sida: {saknas[:10]}"
+
+
 def test_differensen_ar_redovisad_per_dokument():
     """Beslut 7: tre tal per dokument. Galler aven fore lasningen."""
     differens = yaml.safe_load(DIFFERENS.read_text(encoding="utf-8"))
