@@ -12,17 +12,17 @@ ingenting annat. Om åtgärden var klok avgörs av delpoäng B och D i modellen,
 
 | Steg | Läge |
 |---|---|
-| Underlaget draget ur alla åtta PDF:er | klart |
-| Tre blinda genomgångar per dokument | klart |
+| Underlaget draget ur alla åtta PDF:er, med blockens textgrad | klart |
+| Tre blinda genomgångar per dokument, under instruktionens version 4 | klart |
 | De tre differenstalen räknade per dokument | klart |
-| Varje differens avgjord av projektägaren | klart, 15 fall |
-| Registret byggt och hashpinnat | klart, **1120 poster** |
+| Varje differens avgjord av projektägaren | klart, 32 fall i 3 frågor |
+| Registret byggt och hashpinnat | klart, **1147 poster** |
 
 Registret är låst. `pipeline/tools/loftesregister.py --bygg` vägrar skriva det så länge ett fall
 står oavgjort, eftersom en tyst förvald sida vore ett avgörande utan avgörare.
 
-Registret bar 729 poster i sin första låsning samma dag. Varför det gjordes om står under
-[Varför registret gjordes om](#varför-registret-gjordes-om).
+Registret bar 729 poster i sin första låsning och 1120 i sin andra, båda samma dag. Varför det
+gjordes om två gånger står under [Varför registret gjordes om](#varför-registret-gjordes-om).
 
 ## Underlaget
 
@@ -140,34 +140,66 @@ hos partierna.
 Version 3 flyttar klausulen från dokument till avsnitt: **en följd av block som ingen listsignal
 rör har stycket som enhet.** Det är samma regel som redan gällde V, tillämpad där den biter.
 
-Den första låsningen ligger kvar i
-[`arkiv/register_version2.yaml`](../../config/loftesregister_2022/arkiv/register_version2.yaml)
-tillsammans med sina genomgångar och sin differens, och ändras aldrig. Ändringen står i klartext i
-[instruktionens ändringsnot](genomgangsinstruktion.md#ändringar).
+### Och varför det gjordes om en gång till
+
+Version 3 gav 1120 poster, men en kodgranskning och en korsläsning fällde regeln som sådan.
+
+Version 3 hade **två regimer**: fyra listsignaler där avsnittet bar en lista, och en styckeregel
+där det inte gjorde det. Vilken regim som gällde berodde på var listan slutade, och var listan
+slutade berodde på regimen. Signal 3 pekade ut block som inte bar någon signal, så gränsen gick
+inte att läsa ur underlaget. Cirkeln gick inte att laga med en gränsregel.
+
+Version 4 tar bort gränsen i stället för att dra den. En regel, två led, ingen regim. Mätningen som
+motiverar det: **fyra av de åtta dokumenten bär inte en enda listmarkör**, så för dem var de fyra
+signalerna redan verkningslösa.
+
+Tre fel till rättades, alla funna i granskningen av version 3:
+
+- **Princip 3 var inte tillämpbar.** Den säger att typografin och inte innehållet avgör
+  rubrikfrågan, men underlaget bar ingen textgrad. Därför uteslöt två genomgångar av tre
+  `Framtiden är grön.` som ett slagord. Blocket bär nu sin grad, mätt i PDF:en.
+- **En post var avhuggen.** S-066 slutade `för att trygga vår` medan orden `fred och frihet.` stod
+  på nästa rad, tillsammans med listannonseringen. Alla tre genomgångarna uteslöt hela raden.
+- **Registret pinnade instruktionen med en sökväg.** Filen skrevs sedan om, så det låsta registret
+  hänvisade till en regel det aldrig kördes under.
+
+Täckningen rörde sig knappt, från 88-99 procent till 88-99. Det säger vad version 4 var till för:
+inte att fånga mer text, utan att göra regeln tillämpbar lika av tre oberoende genomgångar.
+
+De två tidigare låsningarna ligger kvar i
+[`arkiv/`](../../config/loftesregister_2022/arkiv/) tillsammans med sina genomgångar, sin differens
+och den instruktionsversion var och en kördes under, se
+[`arkiv/LASMIG.md`](../../config/loftesregister_2022/arkiv/LASMIG.md). De ändras aldrig. Varje
+ändring står i klartext i [instruktionens ändringsnot](genomgangsinstruktion.md#ändringar).
 
 ## Vad en post är
 
 Posten följer dokumentets egen struktur (beslut 3). Instruktionen som alla genomgångar fick står i
 [`genomgangsinstruktion.md`](genomgangsinstruktion.md) och är lika för A, B och C.
 
-| Dokument | Poster | Varav listpunkt | Varav löpnummer | Poster med flera radspann |
-|---|---|---|---|---|
-| S | 81 | 40 | 0 | 8 |
-| M | 377 | 253 | 0 | 7 |
-| SD | 66 | 0 | 0 | 0 |
-| C | 214 | 94 | 0 | 4 |
-| V | 68 | 0 | 0 | 9 |
-| KD | 56 | 0 | 0 | 1 |
-| MP | 138 | 114 | 0 | 0 |
-| L | 120 | 0 | 75 | 0 |
+Version 4 har **en regel med två led**. Bär blocket listsignaler är varje punkt en post. Bär det
+inga är hela blocket en post. En listsignal är listmarkören `*` eller ett inledande löpnummer.
 
-Resten är stycken i listlösa avsnitt. En post med flera radspann är ett stycke som satsen brutit
-över en sidbrytning eller ett spaltbyte, och raderna däremellan, alltså sidnummer, sidhuvud eller
-en bildtext, hör inte till löftet.
+| Dokument | Poster | Varav listpunkt | Varav löpnummer | Flera radspann | Täckning |
+|---|---|---|---|---|---|
+| S | 82 | 40 | 0 | 6 | 93,4 % |
+| M | 376 | 253 | 0 | 7 | 87,6 % |
+| SD | 65 | 0 | 0 | 0 | 97,9 % |
+| C | 235 | 94 | 0 | 4 | 95,3 % |
+| V | 68 | 0 | 0 | 9 | 98,4 % |
+| KD | 63 | 0 | 0 | 1 | 95,0 % |
+| MP | 138 | 114 | 0 | 0 | 95,5 % |
+| L | 120 | 0 | 75 | 0 | 98,9 % |
+| **Summa** | **1147** | **501** | **75** | **27** | |
 
-SD, V, KD och L bär ingen listmarkör alls. SD annonserar sina listor med raden
-`Några av Sverigedemokraternas vallöften:`, KD sätter ett eget block per förslag, L numrerar 1 till
-75, och V bär ingen lista alls och är i sin helhet ett listlöst avsnitt.
+Resten är hela block. Täckningen är tecken i tagna rader genom alla tecken i underlaget.
+
+**Fyra av de åtta dokumenten, SD, V, KD och L, bär inte en enda listmarkör.** För dem gäller bara
+andra ledet: varje block är en post. Det är den ojämnheten regeln finns till för. L är undantaget
+bland de fyra och numrerar sina 75 förslag i löptext.
+
+M ligger lägst på 87,6 procent, och det som saknas är diagram. Tolv procent av M:s text är
+axeletiketter, bildtexter, sifferetiketter och källrader, som alla faller i steg 1.
 
 ## De tre blinda genomgångarna
 
@@ -195,102 +227,120 @@ tar samma rad, och antalet rader ingen post tog är räknat. Tjugofyra prövning
 
 | Dokument | Poster A | Poster B | Delade | Bara A | Bara B | Styckat olika |
 |---|---|---|---|---|---|---|
-| S | 81 | 81 | 81 | 0 | 0 | 0 |
-| M | 377 | 375 | 372 | 2 | 0 | 3 |
-| SD | 66 | 66 | 66 | 0 | 0 | 0 |
-| C | 214 | 211 | 211 | 3 | 0 | 0 |
+| S | 82 | 80 | 79 | 2 | 0 | 1 |
+| M | 376 | 376 | 376 | 0 | 0 | 0 |
+| SD | 65 | 65 | 65 | 0 | 0 | 0 |
+| C | 214 | 235 | 214 | 0 | 21 | 0 |
 | V | 68 | 68 | 68 | 0 | 0 | 0 |
-| KD | 56 | 52 | 50 | 5 | 1 | 1 |
+| KD | 63 | 55 | 55 | 8 | 0 | 0 |
 | MP | 138 | 138 | 138 | 0 | 0 | 0 |
 | L | 120 | 120 | 120 | 0 | 0 | 0 |
-| **Summa** | **1120** | **1111** | **1106** | **10** | **1** | **4** |
+| **Summa** | **1126** | **1137** | **1115** | **10** | **21** | **1** |
 
-Fem av åtta dokument gav noll i alla tre talen, alltså samma svar på varje post.
+Fem av åtta dokument gav noll i alla tre talen, alltså samma svar på varje post. Under version 3
+gällde det också fem dokument, men M var inte ett av dem. Nu är M identiskt i alla tre passen,
+alla 376 posterna.
 
 ### Vad det tredje passet visade
 
 | Dokument | A | B | C | Alla tre eniga |
 |---|---|---|---|---|
-| S | 81 | 81 | 81 | 81 |
-| M | 377 | 375 | 377 | 372 |
-| SD | 66 | 66 | 66 | 66 |
-| C | 214 | 211 | 214 | 211 |
+| S | 82 | 80 | 82 | 79 |
+| M | 376 | 376 | 376 | 376 |
+| SD | 65 | 65 | 65 | 65 |
+| C | 214 | 235 | 214 | 214 |
 | V | 68 | 68 | 68 | 68 |
-| KD | 56 | 52 | 58 | 50 |
+| KD | 63 | 55 | 56 | 54 |
 | MP | 138 | 138 | 138 | 138 |
 | L | 120 | 120 | 120 | 120 |
-| **Summa** | **1120** | **1111** | **1122** | **1106** |
+| **Summa** | **1126** | **1137** | **1119** | **1114** |
 
-**1106 av 1120 poster drogs exakt lika av tre oberoende genomgångar.**
+**1114 poster drogs exakt lika av tre oberoende genomgångar.** Pass A och C är två oberoende
+körningar av samma modell och är **identiska i sju av åtta dokument**, KD undantaget. Oenigheten
+går alltså nästan helt mellan leverantörerna och inte mellan körningarna.
 
-Det mest upplysande är inte talet utan var oenigheten ligger. A och C är två oberoende körningar av
-samma modell, och de är **identiska i sju av åtta dokument**. Bara KD skiljer dem åt, och där på
-två ställen. Oenigheten går alltså nästan helt mellan leverantörerna och inte mellan körningarna,
-vilket är ett starkare besked om regelns stabilitet än differenstalet i sig.
+Alla 24 genomgångarna är maskinellt prövade mot underlaget: varje radnummer finns, inga två poster
+tar samma rad, och ingen post slutar mitt i en mening. Noll fel i alla tre talen.
 
 ## Projektägarens avgöranden
 
-Alla 15 fall är avgjorda, och varje avgörande står med sitt skäl i
-[`differens.yaml`](../../config/loftesregister_2022/differens.yaml). Projektägaren godkände tre
-principer, och varje fall hör till en av dem.
+De 32 fallen faller i tre frågor, och varje avgörande står med sitt skäl i
+[`differens.yaml`](../../config/loftesregister_2022/differens.yaml).
 
-| Princip | Fall | Avgörande |
-|---|---|---|
-| **1. Ett stycke är ett stycke.** Har satsen brutit ett stycke över en sidbrytning eller ett spaltbyte är det en post. Står två stycken efter varandra är det två. | M-01 till M-04, KD-02, KD-05, KD-06 | sju |
-| **2. Satsens egna delar är inte löften.** | M-05 | ett |
-| **3. Innehållet avgör aldrig.** Är texten satt i brödtextgrad är den ett stycke. | C-01 till C-03, KD-01, KD-03, KD-04, KD-07 | sju |
+### Fråga 1: S, tre fall. Avgjord till A
 
-Fjorton fall avgjordes till A och ett till `ingen`. I varje fall utom ett står två av tre
-genomgångar bakom avgörandet. Undantaget är KD-02, där A och C har samma rader men drar gränsen
-olika, och där A:s hopfogning följer instruktionens avsnitt `Sidbrytningen`.
+Rad 165 slutar `...gå till jobbet.` med punkt och rad 168 på nästa sida börjar `Fler insatser
+krävs` med versal. Det språkliga provet i princip 1 ger då två poster, inte en över sidbrytningen.
+Pass B fogade ihop dem ändå. Det tredje fallet är rad 588-590, tre rader löpande prosa i 12,0
+punkter mot sidans 9,5, som A och C tog och B uteslöt. Pass C stöder A på alla tre.
 
-Princip 3 är den som bär registrets omfång, och den är hela poängen med version 3. Att
-`Framtiden är grön.` är satt i 9,7 punkter, exakt sidans brödtextgrad, är ett faktum om satsen.
-Att meningen låter som ett slagord är ett faktum om innehållet, och innehållet avgör aldrig.
+### Fråga 2: C, 21 fall. Avgjord till B, mot pass A och C
 
-**Ett observandum: alla 15 fall gick till A, inget till B.** Pass C stöder A i 14 av de 15, så
-avgörandena har stöd av två genomgångar av tre. Men A och C är samma modell, och förfarandet har
-därmed inget fall som visar att ett avgörande kan falla mot A. Det är inte ett fel i något enskilt
-avgörande, vars skäl går att pröva var för sig i
-[`differens.yaml`](../../config/loftesregister_2022/differens.yaml), men det är värt att veta när
-nästa årgång körs.
+Det här är det mest upplysande avgörandet i hela omkörningen, eftersom **instruktionen gav Codex
+rätt mot båda mina egna pass.**
 
-## Formberoendet som är kvar
+C sätter 21 mellanrubriker i sidans brödtextgrad 9,7, till exempel `Fördubbla produktionen av
+utsläppsfri el och förnybara bränslen` på rad 244, var och en över en punktlista. Pass A och C
+uteslöt dem som mellanrubriker. Pass B tog dem som poster.
 
-Version 3 tog bort skevheten mellan lista och löptext, men inte all formberoende. Ett stycke i ett
-listlöst avsnitt är en post. En inledning i ett block som bär en lista är det inte, eftersom de
-fyra signalerna gäller där och instruktionens långa lista utesluter inledningar.
+Instruktionen säger att graden bara kan visa att ett block **inte** är en rubrik. Står blocket i
+brödtextgrad är det alltså ingen rubrik, och då är det en post. Det är exakt samma läge som
+`Framtiden är grön.` på rad 190, som version 3 redan avgjorde åt det hållet. Pass A och C
+tillämpade det omdöme princip 3 förbjuder, och de gjorde det likadant båda två.
 
-I hela korpusen slår det igenom på **ett ställe**: MP:s sida 3, raderna 6-7, 260 tecken. Blocket
-bär både brödtexten och de tre solidaritetspunkterna, och rad 7 slutar
-`Allt vi gör bygger på solidaritet i ord och handling:`, alltså den rad som annonserar listan. Alla
-tre genomgångarna uteslöt raderna.
+Att två pass av samma modell kan gå fel åt samma håll är skälet till att ett tredje pass av en
+annan leverantör behövs. Här gjorde det sitt jobb.
 
-Stället är namngivet i provet `test_ingen_lang_radfoljd_ligger_utanfor_registret`, som annars
-faller på det. Provet mäter otagna **radföljder** och inte otagna block, just för att ett block kan
-bära både tagen och otagen text.
+### Fråga 3: KD sida 12, åtta fall. Avgjord till A
+
+Raderna 288-299 är sju block i grad 10,9 med versala fraser, `FLER JOBB FLER FÖRETAG`, `BÄTTRE
+OMSORG FÖR UTSATTA` och så vidare. Pass A gjorde sju poster, pass B uteslöt dem som grafik, och
+pass C slog ihop 286-299 till en enda post. Tre olika svar på samma textställe, det enda i hela
+korpusen.
+
+Pass C läste versalraderna som objekt till meningen som slutar `Förslag för` på rad 287, vilket är
+den bästa läsningen språkligt. Men det språkliga provet kräver gemen begynnelsebokstav, och
+versalraderna har versal. Huvudregelns andra led ger då sju block, alltså sju poster.
+
+Rad 300-301, `VI ÄR REDO` och `Din röst behövs för förändring`, står i 12,2 punkter, samma grad som
+blocken 80 och 81 på samma sida. 12,2 är alltså sidans egen brödtextgrad, och uteslutningen av
+slagord gäller bara block utanför brödtextgraden.
+
+## Formberoendet som stängdes
+
+Version 3 lät en inledning i ett block som bar en lista falla bort, medan samma inledning i ett
+eget block blev en post. I hela korpusen slog det igenom på **ett ställe**: MP:s sida 3, raderna
+6-7, 259 tecken. Blocket bär både brödtexten och de tre solidaritetspunkterna.
+
+Version 4 gör raderna före blockets första listsignal till en post för sig. MP:s rad 6-7 är nu
+posten `Vi strävar efter en värld där alla kan leva goda liv utan att försämra villkoren för
+kommande generationer...`, och C:s motsvarande inledning i eget block behandlas likadant.
+
+Kvar är formberoendet mellan ett långt och ett kort dokument, se
+[Antal poster per parti](#antal-poster-per-parti). Det är en egenskap hos dokumenten och inget ett
+register kan räkna bort.
 
 ## Antal poster per parti
 
 | Parti | Poster | Sidor i dokumentet |
 |---|---|---|
-| S | 81 | 17 |
-| M | 377 | 40 |
-| SD | 66 | 12 |
-| C | 214 | 25 |
+| S | 82 | 17 |
+| M | 376 | 40 |
+| SD | 65 | 12 |
+| C | 235 | 25 |
 | V | 68 | 17 |
-| KD | 56 | 12 |
+| KD | 63 | 12 |
 | MP | 138 | 12 |
 | L | 120 | 19 |
-| **Summa** | **1120** | |
+| **Summa** | **1147** | |
 
-**Antalet följer dokumentets form, inte partiets vilja.** M får 377 poster och KD 56 därför att M
+**Antalet följer dokumentets form, inte partiets vilja.** M får 376 poster och KD 63 därför att M
 skriver korta punkter genom fyrtio sidor medan KD skriver tolv, inte därför att M lovar sju gånger
 mer. Partier rangordnas aldrig efter antalet, och den här meningen ska stå intill talet varje gång
 det visas (beslut 28).
 
-Version 3 tog bort den grövsta skevheten, den mellan lista och löptext, men inte den mellan ett
-långt och ett kort dokument. Den senare är en egenskap hos dokumenten och inget ett register kan
+Version 3 och 4 tog bort skevheten mellan lista och löptext, men inte den mellan ett långt och ett
+kort dokument. Den senare är en egenskap hos dokumenten och inget ett register kan
 räkna bort.
 
 ## En iakttagelse som inte ändrades
@@ -330,17 +380,27 @@ hämtmanifestet plus underlagets hash. `tests/test_loftesregister_2022.py` räkn
 är kört mot en ändrad bokstav i en lydelse och föll, och passerade igen när bokstaven lades
 tillbaka.
 
-Två prov till bär version 3. Det första: **ingen otagen radföljd på 200 tecken eller mer får ligga
-utanför registret.** En rubrik, en bildtext, ett sidnummer eller en tryckortsrad är aldrig så lång,
-så en lång radföljd utanför registret är ett stycke som en genomgång tappade. Provet mäter
-radföljder och inte block, eftersom ett block kan bära både tagen och otagen text. Det har två
-namngivna undantag, de 27 landsnamnen under stapelaxeln i diagrammet på M:s sida 5 och MP:s
-inledning på sida 3.
+Fyra prov till bär låsningen.
 
-Det andra: **registret pinnar det underlag det drogs ur.** Registret bär bara radspann, så en
-lydelse är sann bara relativt ett bestämt underlag. Ändras utvinningen glider radnumren, och då
-pekar spannen på annan text utan att `innehall_sha256` reagerar. `underlag_sha256` är spärren, och
-provet räknar om den mot filen på disk.
+**Ingen otagen radföljd på 200 tecken eller mer får ligga utanför registret.** En rubrik, en
+bildtext, ett sidnummer eller en tryckortsrad är aldrig så lång, så en lång radföljd utanför
+registret är ett stycke som en genomgång tappade. Provet mäter radföljder och inte block, eftersom
+ett block kan bära både tagen och otagen text.
+
+**Registret pinnar det underlag det drogs ur.** Registret bär bara radspann, så en lydelse är sann
+bara relativt ett bestämt underlag. Ändras utvinningen glider radnumren, och då pekar spannen på
+annan text utan att `innehall_sha256` reagerar. `underlag_sha256` är spärren.
+
+**Registret pinnar den instruktion genomgångarna kördes under.** Version 3:s register pinnade
+instruktionen med en sökväg, och filen skrevs sedan om. `instruktion_sha256` och
+`instruktion_version` är spärren. Provet är kört mot en tillagd rad i instruktionen och föll, och
+passerade igen när raden togs bort.
+
+**Ingen post slutar mitt i en mening.** Provet är det språkliga: en posts sista rad slutar utan
+avslutande skiljetecken och nästa rad i samma block börjar med gemen, utan att någon annan post tog
+den. Mot version 3:s register gav det exakt en träff, nämligen S-066. Mot version 4:s ger det noll.
+Provet är den enda spärren mot ett fel som alla tre genomgångarna gör likadant, för då ger
+differensen ingen signal.
 
 Efter låsningen ändras ingen post. Enda öppningen är en **errata-rad** för ett avskrivningsfel som
 går att belägga mot PDF:en, med datum och skäl (beslut 8). Fältet `errata` finns i filen och är

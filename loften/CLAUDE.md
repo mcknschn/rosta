@@ -212,14 +212,23 @@ trösklar får inte bära ett avslagsskäl.
   **Alla åtta adresser är belagda** i `hamtmanifest.yaml`: varje URL hämtades om och den
   hämtade filens SHA-256 jämfördes byte för byte. V:s dokument heter `valplattform`, vilket
   är partiets eget ord för samma slags dokument.
-- `loften/config/loftesregister_2022/register.yaml`: **löftesregistret 2022, 1120 poster**, låst
-  och hashpinnat 2026-09-16 (#54). En rad per löfte med full lydelse, sidnummer och parti. Inget
-  kategorifält (beslut 11). Bredvid ligger de **tre** blinda genomgångarna, differensen med
-  projektägarens 15 avgöranden, och arkivet över den första låsningen på 729 poster. Den första
-  låsningen band styckeregeln till hela dokumentet, vilket lät registret mäta typografi: andelen
-  av dokumentets text som kom med gick från 35 procent hos C till 98 hos V. Version 3 av
-  instruktionen flyttar regeln till avsnittsnivå, och spannet är nu 88 till 99 procent.
-  Läsanvisningen står i
+- `loften/config/loftesregister_2022/register.yaml`: **löftesregistret 2022, 1147 poster**, låst
+  och hashpinnat 2026-09-16 (#54) under genomgångsinstruktionens **version 4**. En rad per löfte
+  med full lydelse, sidnummer och parti. Inget kategorifält (beslut 11). Bredvid ligger de **tre**
+  blinda genomgångarna, differensen med projektägarens 32 avgöranden i tre frågor, och arkivet över
+  de två tidigare låsningarna på 729 och 1120 poster.
+
+  Registret gjordes om två gånger samma dag. Version 2 band styckeregeln till hela dokumentet och
+  lät registret mäta typografi: 35 procent av C:s text kom med mot 98 av V:s. Version 3 flyttade
+  regeln till avsnittsnivå. Version 4 tog bort avsnittsbegreppet helt, efter att en korsläsning
+  visat att gränsen mellan ett listbärande och ett listlöst avsnitt var cirkulär. **Regeln har nu
+  två led: bär blocket listsignaler är varje punkt en post, bär det inga är hela blocket en post.**
+  Fyra av de åtta dokumenten bär inte en enda listmarkör.
+
+  Underlaget bär sedan version 4 varje blocks textgrad, mätt i PDF:en, eftersom instruktionens
+  princip 3 annars inte går att tillämpa. Registret pinnar instruktionen med hash och inte med
+  sökväg. Täckningen är 88 till 99 procent, och 1114 av posterna drogs exakt lika av tre
+  oberoende genomgångar. Läsanvisningen står i
   [`docs/loftesregister_2022/registret.md`](docs/loftesregister_2022/registret.md).
 
 **Saknas**
