@@ -25,5 +25,7 @@ web/.playwright/
 # Repot är publikt och dokumenten är upphovsrättsskyddade verk. Instrumentet behöver bara de
 # citerade meningarna, och hämtmanifestet bär URL, hämtdatum, filnamn och SHA-256.
 loften/docs/valmanifest_2026/*.pdf
+# Samma skäl gäller valmanifesten 2022, inlagda 2026-09-16 för löftesspåret (#52).
+loften/docs/valmanifest_2022/*.pdf
 
 # Obs: /dist/ (scores.json + evidence.json) är deploy-artefakten och versionshanteras.
